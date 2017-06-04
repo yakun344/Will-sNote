@@ -85,8 +85,8 @@ KMP 的基本思想就是对O\(n^2\) 的brute force的匹配算法进行改进�
 当p**\[12\] **失配时，**i **会移动到 **next\[i - 1\] = next\[11\] = 8 , **而 **p\[8\] **和 **p\[12\] **都是 **a**，所以必然继续失配。为了避免这种不必要的情况发生，我们可以检查 **if \(p[i] == p(next[i - 1])\) { i = next[next[i - 1]] } **。优化之后的code:
 
 
-```java
-    asdasdsdfksldfjsldkfjl
+```
+    ssdfsdf
 ```
 
 
