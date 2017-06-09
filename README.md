@@ -4,7 +4,9 @@
 
 This book is for people who want to learn some basic Algorithms and Datastructures. The examples and code is this book are either written by me or I have found somewhere else. Feel free to contact me if you have any questions or advice. 
 
+Language: Java 8 / Python 3
 
+---
 
 Xiaozheng
 
