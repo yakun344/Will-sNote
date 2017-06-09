@@ -2,6 +2,7 @@
 Regex 是处理string非常有力的工具。使用Java可以很方便地利用regex。这里收录一些和regex相关的题目。
 
 ---
+_Jun 9, 2017 update_ 
 ### [459, Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/#/description)
 Given a non-empty string check if it can be constructed by taking a substring of it and appending multiple copies of the substring together. You may assume the given string consists of lowercase English letters only and its length will not exceed 10000.
 #### Solution:
