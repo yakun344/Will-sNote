@@ -23,7 +23,7 @@ Given a list of non-negative integers representing the amount of money of each h
         return dp[dp.length - 1];
     }
 ```
-我们注意到得出每个dp[i]我们实际上只需要前面两个元素，所以我们可以把数组dp[ ]简化为两个变量，从而实现`O(1)`的space complexity:
+我们注意到得出每个dp[i]我们实际上只需要前面两个元素，所以我们可以把数组dp[ ]简化为两个变量`dp0`和`dp1`，从而实现`O(1)`的space complexity:
 ```java
         public int rob(int[] nums) {
             if (nums.length == 0) return 0;
@@ -38,3 +38,5 @@ Given a list of non-negative integers representing the amount of money of each h
             return dp1;
         }
 ```
+---
+_Jun 9, 2017_
