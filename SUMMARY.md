@@ -14,3 +14,5 @@
 
 ## Tips for Python
 
+* [About Python Class and OOP](tips-for-python/about-python-class-and-oop.md)
+
