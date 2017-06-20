@@ -1,6 +1,6 @@
 ## Regular Expressions
 Regex 是处理string非常有力的工具。使用Java可以很方便地利用regex。这里收录一些和regex相关的题目。
-
+    * `java`的`string.matches(regex)`会直接匹配到整个字符串的最后，返回`true or false``. 但是`python`的`re.match(regex, string)`则是从头开始尽力匹配，如果有一部分匹配，则返回一个匹配对象，否则返回None。所以使用`python`的时候需要在regex的最后加上`$`来匹配结尾。
 ---
 _Jun 9, 2017 update_ 
 ### [459, Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/#/description)
@@ -21,3 +21,28 @@ Regex code:
      }
      // 或者直接用 return s.matches("regex"); 这样就是java one line。
 ``` 
+### [520, Detect Capital](https://leetcode.com/problems/detect-capital/#/description)
+Given a word, you need to judge whether the usage of capitals in it is right or not.
+
+We define the usage of capitals in a word to be right when one of the following cases holds:
+
+All letters in this word are capitals, like "USA".
+All letters in this word are not capitals, like "leetcode".
+Only the first letter in this word is capital if it has more than one letter, like "Google".
+Otherwise, we define that this word doesn't use capitals in a right way.
+
+```java
+    // java
+    public boolean detectCapitalUse(String word) {
+        return word.matches("[A-Z]+|[A-Z][a-z]*|[a-z]+");
+    }
+```
+```python
+    # python
+    def detectCapitalUse(self, word):
+        """
+        :type word: str
+        :rtype: bool
+        """
+        return bool(re.match('([A-Z]+|[A-Z][a-z]*|[a-z]+)$', word))
+```
