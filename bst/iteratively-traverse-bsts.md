@@ -23,7 +23,8 @@ _update Jun 21, 2017_
 
 ### Inorder
 Inorder 稍微复杂一些，可以画示意图理解。
-    * 基本算法是先一路向左，push in stack。然后keep popping，visit each node之后检查其是否有 right child， 如果有，把 right child 当做 root，一路向左，push in stack。
+
+基本算法是先一路向左，push in stack。然后keep popping，visit each node之后检查其是否有 right child， 如果有，把 right child 当做 root，一路向左，push in stack。
     
 ```java
     // java
@@ -51,7 +52,8 @@ Inorder 稍微复杂一些，可以画示意图理解。
 
 ### Postorder
 Postorder 是最复杂的，有两种实现方法，一种用两个stack，另一种只用一个。这里提供只用一个stack的。
-    * 基本思想是先像 inorder 一样把node一路向左 push in stack， 然后对每个stack.peek node，先检查它是否有 right child，如果没有，则 pop 然后 visit it， 如果有，检查是否是刚刚 visited 的，如果是，则说明 this node 的左右 child 都完成了，则pop，让curr = that node。
+
+基本思想是先像 inorder 一样把node一路向左 push in stack， 然后对每个stack.peek node，先检查它是否有 right child，如果没有，则 pop 然后 visit it， 如果有，检查是否是刚刚 visited 的，如果是，则说明 this node 的左右 child 都完成了，则pop，让curr = that node。
     
 ```java
     // java
