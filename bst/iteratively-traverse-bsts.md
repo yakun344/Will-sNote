@@ -81,4 +81,5 @@ Postorder 是最复杂的，有两种实现方法，一种用两个stack，另�
         }
     }
 ```
+*注意： 这个方法是可以求该 BST 的 max hight 的，就是 stack 的最大 size*
 
