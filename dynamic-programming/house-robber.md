@@ -11,6 +11,7 @@ Given a list of non-negative integers representing the amount of money of each h
 根据dp的思想，我们可以归纳 sub problem： `dp[i] = index <= i 的最大和`，且`dp[i] = max{dp[i - 1], dp[i - 2] + v[i]}`。即对于每个房子，我们要考虑是否抢劫，如果抢，那么就是`dp[i - 2]`加当前房子价值，如果不抢，则收益就等于`dp[i - 1]`。
 除了subproblem的递推公式之外，我们还需要写出基本起始条件，详情见下面的code:
 ```java
+    // java
     public int rob(int[] nums) {
         if (nums.length == 0) return 0;
         if (nums.length == 1) return nums[0];
@@ -25,18 +26,19 @@ Given a list of non-negative integers representing the amount of money of each h
 ```
 我们注意到得出每个dp[i]我们实际上只需要前面两个元素，所以我们可以把数组dp[ ]简化为两个变量`dp0`和`dp1`，从而实现`O(1)`的space complexity:
 ```java
-        public int rob(int[] nums) {
-            if (nums.length == 0) return 0;
-            if (nums.length == 1) return nums[0];
-            int dp0 = nums[0];
-            int dp1 = Math.max(nums[0], nums[1]);
-            for (int i = 2; i < nums.length; ++i) {
-                int curr = Math.max(dp0 + nums[i], dp1);
-                dp0 = dp1;
-                dp1 = curr;
-            }
-            return dp1;
+    // java
+    public int rob(int[] nums) {
+        if (nums.length == 0) return 0;
+        if (nums.length == 1) return nums[0];
+        int dp0 = nums[0];
+        int dp1 = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < nums.length; ++i) {
+            int curr = Math.max(dp0 + nums[i], dp1);
+            dp0 = dp1;
+            dp1 = curr;
         }
+        return dp1;
+    }
 ```
 _Jun 9, 2017_
 
