@@ -14,6 +14,7 @@
   * [437. Path Sum III](Tree/437,Path Sum III.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
+  * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
 
 ## Tips for Python
 
