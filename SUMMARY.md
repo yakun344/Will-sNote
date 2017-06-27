@@ -10,8 +10,8 @@
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
 * [Tree](Tree.md)
-  * [Iteratively Traverse BSTs](bst/iteratively-traverse-bsts.md)
-  * 437. Path Sum III
+  * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
+  * [437. Path Sum III.md](Tree/437,Path Sum III.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
 
