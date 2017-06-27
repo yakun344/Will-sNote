@@ -16,7 +16,7 @@
   * [House Robber](dynamic-programming/house-robber.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
 * [Other Problems](other-problems.md)
-* Merge Two Sorted Lists
+  * Merge Two Sorted Lists
 
 ## Tips for Python
 
