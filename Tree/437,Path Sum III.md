@@ -1,7 +1,8 @@
-## [437. Path Sum III](https://leetcode.com/problems/path-sum-iii/#/solutions)
+## Path Sum III
 _update Jun 27, 2017_
 
 ---
+[leetcode](https://leetcode.com/problems/path-sum-iii/#/description)
 You are given a binary tree in which each node contains an integer value.
 
 Find the number of paths that sum to a given value.
@@ -50,4 +51,20 @@ Python Code：
             if not node: 
                 return 0
             return (node.val == target) + self.dfs(node.left, target - node.val) + self.dfs(node.right, target - node.val)
+```
+Java code:
+```java
+    // java
+    public class Solution {
+        public int pathSum(TreeNode root, int sum) {
+            if (root == null) return 0;
+            return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+        }
+        private int dfs(TreeNode node, int target) {
+            if (node == null) return 0;
+            int path = 0;
+            if (node.val == target) path++;
+            return path + dfs(node.left, target - node.val) + dfs(node.right, target - node.val);
+        }
+    }
 ```
