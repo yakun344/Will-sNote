@@ -11,6 +11,7 @@
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
+  * [Lowest Common Ancestor of a Binary Search Tree](Tree/lowest-common-ancestor-of-a-binary-search-tree.md)
   * [Path Sum III](Tree/Path Sum III.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
