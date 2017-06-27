@@ -30,7 +30,7 @@ Return 3. The paths that sum to 8 are:
 
 **解释**下：这道题的意思就是说找任意path上相邻节点的和是 given sum value 的数量。
 **思路**： 这道题目的难点是要考虑从上到下每一段path上nodes的和。我们可以写两个 recursive function， 外层的用来对每个node（做为root）考虑其子树中的所有path。而内层 function 则用来考虑包含该 node（做为root）的所有path。
-**细节**： 对于内层function，没次调用下一层时候，传入下层的 sum 变为 sum - node.val，这样当下层 val == sum 的时候，就说明有了一条满足条件的path。
+**细节**： 对于内层function，每次调用下一层时候，传入下层的 sum 变为 sum - node.val，这样当下层 val == sum 的时候，就说明有了一条满足条件的path。
 
 Python Code：
 ```python
