@@ -11,7 +11,6 @@
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
 * [Tree](bst.md)
   * [Iteratively Traverse BSTs](bst/iteratively-traverse-bsts.md)
-  * 437. Path Sum III
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
 
