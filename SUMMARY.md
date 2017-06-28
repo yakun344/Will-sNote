@@ -14,6 +14,7 @@
   * [Lowest Common Ancestor of a Binary Search Tree](Tree/lowest-common-ancestor-of-a-binary-search-tree.md)
   * [Path Sum III](Tree/Path Sum III.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
+  * [Binary Tree Paths](Tree/binary-tree-paths.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
