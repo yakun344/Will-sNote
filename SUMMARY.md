@@ -20,6 +20,7 @@
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
 * [Other Problems](other-problems.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
+  * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
 
 ## Tips for Python
 
