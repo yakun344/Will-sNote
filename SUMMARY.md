@@ -22,6 +22,7 @@
 * [Other Problems](other-problems.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
+  * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
 
 ## Tips for Python
 
