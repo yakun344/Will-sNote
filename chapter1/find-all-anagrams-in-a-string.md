@@ -1,4 +1,4 @@
-## Find All Anagrams in a String
+## Find All Anagrams in a String （window sliding alg）
 _update Jun 29, 2017_
 
 ---
@@ -114,3 +114,6 @@ The order of output does not matter.
                 res.append(left)
         return res
 ```
+
+---
+[Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/#/description)这道题也可以用window sliding的方法做，可以结合在一起。
