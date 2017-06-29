@@ -5,7 +5,7 @@ _update Jun 29, 2017_
 [leetcode](https://leetcode.com/problems/palindrome-linked-list/#/description)
 Given a singly linked list, determine if it is a palindrome.
 
-Follow up:
+**Follow up**:
 Could you do it in O(n) time and O(1) space?
 
 #### 思路：
