@@ -79,6 +79,7 @@ The order of output does not matter.
     }
 ```
 #### Python code：
+上面的java实现采用的操作顺序是 移动right -- check need -- 移动left，下面的python实现采用 移动right -- 移动left -- check need，感觉更好理解。
 ```python
     class Solution(object):
         def findAnagrams(self, s, p):
@@ -87,27 +88,29 @@ The order of output does not matter.
             :type p: str
             :rtype: List[int]
             """
-            res = []
-            if not s or not p or len(s) == 0 or len(p) == 0:
-                return res
-            counter = collections.Counter(p)
-            left = 0
-            right = 0
-            need = len(p)
-            while right < len(s):
-                # check right and move right by one
-                if counter[s[right]] > 0:
-                    need -= 1
-                counter[s[right]] -= 1
-                right += 1
-                # if need goes to 0, add left to res
-                if need == 0:
-                    res.append(left)
-                # when window size goes to len(p), start moving left to right by one
-                if right - left == len(p):
-                    if counter[s[left]] >= 0:
-                        need += 1
-                    counter[s[left]] += 1
-                    left += 1
+        res = []
+        if not s or not p or len(s) == 0 or len(p) == 0:
             return res
+        counter = collections.Counter(p)
+        left = 0
+        right = 0
+        need = len(p)
+        while right < len(s):
+            # move right bound
+            if counter[s[right]] > 0:
+                need -= 1
+            counter[s[right]] -= 1
+            right += 1
+            
+            # move left bound
+            if right - left == len(p) + 1:
+                if counter[s[left]] >= 0:
+                    need += 1
+                counter[s[left]] += 1
+                left += 1
+            
+            # check if need == 0
+            if need == 0:
+                res.append(left)
+        return res
 ```
