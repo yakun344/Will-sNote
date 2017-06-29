@@ -78,3 +78,36 @@ The order of output does not matter.
         }
     }
 ```
+#### Python code：
+```python
+    class Solution(object):
+        def findAnagrams(self, s, p):
+            """
+            :type s: str
+            :type p: str
+            :rtype: List[int]
+            """
+            res = []
+            if not s or not p or len(s) == 0 or len(p) == 0:
+                return res
+            counter = collections.Counter(p)
+            left = 0
+            right = 0
+            need = len(p)
+            while right < len(s):
+                # check right and move right by one
+                if counter[s[right]] > 0:
+                    need -= 1
+                counter[s[right]] -= 1
+                right += 1
+                # if need goes to 0, add left to res
+                if need == 0:
+                    res.append(left)
+                # when window size goes to len(p), start moving left to right by one
+                if right - left == len(p):
+                    if counter[s[left]] >= 0:
+                        need += 1
+                    counter[s[left]] += 1
+                    left += 1
+            return res
+```
