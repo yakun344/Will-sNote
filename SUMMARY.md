@@ -10,6 +10,7 @@
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
   * [Find All Anagrams in a String](chapter1/find-all-anagrams-in-a-string.md)
+  * [Longest Common Prefix](chapter1/longest-common-prefix.md)
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Lowest Common Ancestor of a Binary Search Tree](Tree/lowest-common-ancestor-of-a-binary-search-tree.md)
