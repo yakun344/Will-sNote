@@ -31,6 +31,7 @@
   * [Intersection of Two Linked Lists](other-problems/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](other-problems/maximum-distance-in-arrays.md)
   * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
+  * [Min Stack](min-stack.md)
 
 ## Tips for Python
 
