@@ -28,6 +28,7 @@
   * [Nth digit](other-problems/nth-digit.md)
   * [Intersection of Two Linked Lists](other-problems/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](other-problems/maximum-distance-in-arrays.md)
+  * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
 
 ## Tips for Python
 
