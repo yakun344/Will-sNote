@@ -20,6 +20,8 @@
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
+* [Bit Manipulation](bit-manipulation.md)
+  * [Reverse Bits](bit-manipulation/reverse-bits.md)
 * [Other Problems](other-problems.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
