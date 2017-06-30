@@ -25,6 +25,7 @@
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Add Binary](other-problems/add-binary.md)
+  * [Nth digit](other-problems/nth-digit.md)
   * [Intersection of Two Linked Lists](other-problems/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](other-problems/maximum-distance-in-arrays.md)
 
