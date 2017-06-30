@@ -31,23 +31,23 @@ The 11th digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0, wh
 
 #### Java code：
 ```java
-    // java 
+    //java
     public class Solution {
         public int findNthDigit(int n) {
-            long start = 1;
             int size = 1;
             long step = 9;
             long prob = 9;
+            int start = 1;
             while (n > prob) {
-                n -= prob;
                 size += 1;
                 step *= 10;
                 start *= 10;
-                prob = size * step;
+                n -= prob;
+                prob = step * size;
             }
             long number = start + (n - 1) / size;
-            int dig = (n - 1) % size;
-            return (number + "").charAt(dig) - '0';
+            int pos = (n - 1) % size;
+            return (number + "").charAt(pos) - '0';
         }
     }
 ```
