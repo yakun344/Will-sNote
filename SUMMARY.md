@@ -27,11 +27,13 @@
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Add Binary](other-problems/add-binary.md)
-  * [Nth digit](other-problems/nth-digit.md)
   * [Intersection of Two Linked Lists](other-problems/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](other-problems/maximum-distance-in-arrays.md)
   * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
   * [Min Stack](min-stack.md)
+* [Mathematical Problems](mathematical-problem.md)
+  * [Nth digit](other-problems/nth-digit.md)
+  * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
 
 ## Tips for Python
 
