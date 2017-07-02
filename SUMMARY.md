@@ -34,6 +34,7 @@
 * [Mathematical Problems](mathematical-problem.md)
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
+  * [Count Primes](other-problems/count-primes.md)
 
 ## Tips for Python
 
