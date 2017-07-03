@@ -21,6 +21,7 @@
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
+  * [Counting Bits](dynamic-programming/counting-bits.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
 * [Other Problems](other-problems.md)
