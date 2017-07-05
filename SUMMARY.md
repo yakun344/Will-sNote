@@ -24,6 +24,12 @@
   * [Counting Bits](dynamic-programming/counting-bits.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
+* [Permutation & Combination](permutation-and-combination.md)
+  * [Beautiful Arrangement](permutation-and-combination/beautiful-arrangement.md)
+* [Mathematical Problems](mathematical-problem.md)
+  * [Nth digit](other-problems/nth-digit.md)
+  * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
+  * [Count Primes](other-problems/count-primes.md)
 * [Other Problems](other-problems.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
@@ -33,10 +39,6 @@
   * [Maximum Distance in Arrays](other-problems/maximum-distance-in-arrays.md)
   * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
   * [Min Stack](min-stack.md)
-* [Mathematical Problems](mathematical-problem.md)
-  * [Nth digit](other-problems/nth-digit.md)
-  * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
-  * [Count Primes](other-problems/count-primes.md)
 
 ## Tips for Python
 
