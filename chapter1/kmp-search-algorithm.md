@@ -1,4 +1,5 @@
 ## KMP Search Algorithm
+_update Jun 4, 2017_
 
 ---
 
@@ -110,7 +111,23 @@ KMP 的基本思想就是对O\(n^2\) 的brute force的匹配算法进行改进�
 ```
 
 ---------
-_Jun 4, 2017_
+_update Jul 6, 2017_
+
+最后再看一下O(n^2)的 StrStr 的实现，在匹配string比较短的时候，这种方法速度可能会更快。
+
+```java
+    // java
+    public int strStr(String haystack, String needle) {
+        if (needle.length() == 0) return 0;
+        for (int i = 0; ; i++) {
+            for (int j = 0; ; j++) {
+                if (i + j == haystack.length()) return -1;
+                if (haystack.charAt(i + j) != needle.charAt(j)) break;
+                if (j == needle.length() - 1) return i;
+            }
+        }
+    }
+```
 
 
 
