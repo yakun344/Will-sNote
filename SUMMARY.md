@@ -19,6 +19,8 @@
   * [Longest Common Prefix](chapter1/longest-common-prefix.md)
   * [Valid Palindrome](chapter1/valid-palindrome.md)
   * [Find Duplicate File in System](chapter1/find-duplicate-file-in-system.md)
+* DFS
+  * [Array Nesting](array-nesting.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
