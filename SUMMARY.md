@@ -43,6 +43,7 @@
   * [Maximum Distance in Arrays](other-problems/maximum-distance-in-arrays.md)
   * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
   * [Min Stack](min-stack.md)
+  * [Drop Eggs](other-problems/drop-eggs.md)
 
 ## Tips for Python
 
