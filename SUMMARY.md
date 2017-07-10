@@ -34,6 +34,7 @@
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
   * [Count Primes](other-problems/count-primes.md)
+  * [Divide Two Integers](other-problems/divide-two-integers.md)
 * [Other Problems](other-problems.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
