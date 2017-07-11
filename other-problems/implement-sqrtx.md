@@ -32,18 +32,21 @@ Compute and return the square root of x.
 ```
 
 ##### Newton's Method Python:
-```python
-    class Solution(object):
-        def mySqrt(self, x):
-            """
-            :type x: int
-            :rtype: int
-            """
-            if not x: return 0
-            last = x / 2 + 1
-            curr = -1
-            while not int(last) ** 2 <= x < int(last + 1) ** 2:
-                curr = (last + x / last) / 2
-                last = curr
-            return int(last)
+如下代码计算的是double type的精确sqrt(x).
+```java
+    public class Solution {
+        /**
+         * @param x a double
+         * @return the square root of x
+         */
+        public double sqrt(double x) {
+            // 使用牛顿迭代
+            if (x == 0) return 0;
+            double it = x;
+            while (Math.abs(it * it - x) > 1e-12) {
+                it = (it + x / it) / 2;
+            }
+            return it;
+        }
+    }
 ```
