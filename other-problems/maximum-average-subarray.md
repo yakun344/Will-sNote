@@ -18,7 +18,7 @@ It's guaranteed that the size of the array is greater or equal to k.
 #### Basic Idea:
 **Reference: ** **[Hyoung's Blog](http://blog.hyoung.me/cn/2017/02/binary-search-ii/)**
 
-首先有一点需要明确，即如果当前子序列的最后一个元素为nums[i], 其之前小于0的最小前缀和为 min_pre，则该子序列的最大和为 `sum[nums[0:i]] - min_pre`。这也是 Kadane 算法的基本原理。
+首先有一点需要明确，即如果当前子序列的最后一个元素为nums[i], 其之前小于0的最小前缀和为 min_pre，则该子序列的包含`nums[i]`的最大和为 `sum[nums[0:i]] - min_pre`。这也是 Kadane 算法的基本原理。
 
 接下来，我们可以用二分法确定候选最大平均值，然后检验当前候选平均值的长度不小于k的子数组是否存在。这是二分结果的思路。
 
