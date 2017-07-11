@@ -46,6 +46,7 @@
   * [Min Stack](min-stack.md)
   * [Drop Eggs](other-problems/drop-eggs.md)
   * [Search a 2D Matrix II ](other-problems/search-a-2d-matrix-ii.md)
+  * [Maximum Average Subarray](other-problems/maximum-average-subarray.md)
 
 ## Tips for Python
 
