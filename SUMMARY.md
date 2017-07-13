@@ -12,6 +12,7 @@
   * [Path Sum III](Tree/Path Sum III.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
   * [Binary Tree Paths](Tree/binary-tree-paths.md)
+  * [Subtree with Maximum Average](Tree/subtree-with-maximum-average.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
