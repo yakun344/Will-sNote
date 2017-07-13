@@ -73,3 +73,34 @@ return the node 11.
         }
     }
 ```
+
+#### Python Code:
+因为python可以返回不同类型的不止一个值，就不必专门定义ReturnType class 了。
+```python
+    class Solution:
+        # @param {TreeNode} root the root of binary tree
+        # @return {TreeNode} the root of the maximum average of subtree
+        
+        sum, num, root = 0, 0, None
+        
+        def findSubtree2(self, root):
+            def helper(node):
+                """
+                param: TreeNode node
+                retype: int sum, int num
+                """
+                if not node:
+                    return 0, 0
+                lsum, lnum = helper(node.left)
+                rsum, rnum = helper(node.right)
+                sum = lsum + rsum + node.val
+                num = lnum + rnum + 1
+                if (not self.root) or (self.sum * num < sum * self.num):
+                    self.sum = sum
+                    self.num = num
+                    self.root = node
+                return sum, num
+        
+            helper(root)
+            return self.root
+```
