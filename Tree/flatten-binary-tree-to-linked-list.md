@@ -13,7 +13,8 @@ Here we use the right pointer in TreeNode as the next pointer in ListNode.
 Don't forget to mark the left child of each node to null. Or you will get Time Limit Exceeded or Memory Limit Exceeded.
 
 
-    Example
+**Example:**
+
                   1
                    \
          1          2
