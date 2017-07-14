@@ -54,6 +54,7 @@ node A or node B may not exist in tree.
                 return root;
             }
             TreeNode ret = null;
+        // 这么写两个if是为了解决A, B 相等，自己是自己的LCA的情况。
             if (root == A) {
                 Aexist = true;
                 ret = A;
