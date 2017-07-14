@@ -14,6 +14,7 @@
   * [Binary Tree Paths](Tree/binary-tree-paths.md)
   * [Subtree with Maximum Average](Tree/subtree-with-maximum-average.md)
   * [Flatten Binary Tree to Linked List](Tree/flatten-binary-tree-to-linked-list.md)
+  * [Lowest Common Ancestor III](Tree/lowest-common-ancestor-iii.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
