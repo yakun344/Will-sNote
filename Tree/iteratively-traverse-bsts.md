@@ -56,30 +56,32 @@ Postorder 是最复杂的，有两种实现方法，一种用两个stack，另�
 基本思想是先像 inorder 一样把node一路向左 push in stack。然后每次检查`stack.peek`，如果`peek` 没有`right child` 或者 `rc == curr`即右孩子刚刚 visited 过，则另`curr = stack.pop()`，visit 这个 node。如果`peek`有`right child`且没有 visited 过，则把它当做root，一路向左 push in stack。
     
 ```java
-    // java
-    private void helper(TreeNode root) {
+    public ArrayList<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> res = new ArrayList<>();
+        if (root == null) return res;
         Deque<TreeNode> stack = new LinkedList<>();
-        TreeNode curr = root;
-        while (curr != null) {
-            stack.add(curr);
-            curr = curr.left;
+        TreeNode node = root;
+        while(node != null) {
+            stack.addLast(node);
+            node = node.left;
         }
-        while (stack.size() > 0) {
-            TreeNode node = stack.peekLast();
-            if (node.right == null || node.right == curr) {
-                // 如果没有 right child 或者 rc 是刚刚 visited 的，则 pop and visit
-                curr = stack.removeLast();
-                System.out.print(" " + curr.val);
+    // 用prev跟踪前一个被visit的node
+        TreeNode prev = null;
+        while(stack.size() > 0) {
+        // 如果没有右孩子或者右子树已经被visit过，则visit当前peek
+            if (stack.peekLast().right == null || stack.peekLast().right == prev) {
+                prev = stack.peekLast();
+                res.add(stack.removeLast().val);
             } else {
-                // 如果有 rc 并且没有被 visited 过，则要一路向左 add in stack
-                node = node.right;
-                while (node != null) {
-                    stack.add(node);
+        // 否则，不pop，traverse当前栈顶的右子树
+                node = stack.peekLast().right;
+                while(node != null) {
+                    stack.addLast(node);
                     node = node.left;
                 }
             }
         }
-    }
+        return res;
 ```
 *注意： 这个方法是可以求该 BST 的 max hight 的，就是 stack 的最大 size*
 
