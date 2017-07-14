@@ -23,7 +23,7 @@ All root-to-leaf paths are:
 #### 分析
 这道题目应该很经典，要输出所有的path，我们就需要在每层recursion中传入当前node之前的路径，也就是path。明白了这一点之后，这个问题几乎就变成了简单的dfs或者bfs。在这里，我记录三种实现，分别是recursive dfs，dfs with stack and bfs with queue。
 
-##### Recursive DFS
+#### Recursive DFS
 Python Code：
 ```python
     class Solution(object):
@@ -51,8 +51,8 @@ Python Code：
             return ret
 ```
 
-##### DFS with Stack
-Python Code:
+#### DFS with Stack
+**Python Code:**
 ```python
     class Solution(object):
         def binaryTreePaths(self, root):
@@ -62,7 +62,7 @@ Python Code:
             """
             if not root:
                 return []
-            res, stack = [], [(root, '')] # python 的list可以轻松存放tuple，如果是java则需要使用两个stack
+            res, stack = [], [(root, '')] # python 的list可以轻松存放tuple，如果是java则需要使用两个stack,或者用内部类
             while stack:
                 node, path = stack.pop()
                 if not node.left and not node.right:
@@ -73,8 +73,43 @@ Python Code:
                     stack.append((node.right, path + str(node.val) + '->'))
             return res
 ```
+**Java Code**
+```java
+    // using stack
+    private class Path { // inner class
+        String path;
+        TreeNode node;
+        public Path(String path, TreeNode node) {
+            this.path = path;
+            this.node = node;
+        }
+    }
+    public List<String> binaryTreePaths(TreeNode root) {
+        Deque<Path> stack = new LinkedList<>(); // stack of inner class
+        List<String> res = new ArrayList<>();
+        if (root == null) return res;
+        stack.addLast(new Path(root.val + "", root));
+        while (stack.size() > 0) {
+            TreeNode node = stack.peekLast().node;
+            String path = stack.peekLast().path;
+            stack.removeLast();
+            if (node.left == null && node.right == null) {
+                res.add(path);
+                continue;
+            }
+            if (node.left != null) {
+                stack.addLast(new Path(path + "->" + node.left.val, node.left));
+            }
+            if (node.right != null) {
+                stack.addLast(new Path(path + "->" + node.right.val, node.right));
+            }
+        }
+        return res;
+    }
+```
 
-##### BFS with Queue
+#### BFS with Queue
+**Python code:**
 ```python
     class Solution(object):
         def binaryTreePaths(self, root):
@@ -103,7 +138,7 @@ _update Jul 14, 2017 14:17_
 
 **java 实现：**
 ```java
-    // traverse 法
+ // traverse 法
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> res = new ArrayList<>();
         if (root == null) return res;
@@ -126,7 +161,7 @@ _update Jul 14, 2017 14:17_
         }
     }
     
-    // 分治 法
+ // 分治 法
     public List<String> binaryTreePaths(TreeNode root) {
         if (root == null) return new ArrayList<String>();
         List<String> res = helper(root);
