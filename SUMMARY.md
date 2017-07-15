@@ -17,6 +17,7 @@
   * [Lowest Common Ancestor III](Tree/lowest-common-ancestor-iii.md)
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Binary Tree Path Sum II](Tree/binary-tree-path-sum-ii.md)
+  * [Binary Tree Serialization](Tree/binary-tree-serialization.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
