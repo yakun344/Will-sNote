@@ -6,6 +6,8 @@
 
 ## Algorithm Problems
 
+* [Graph](graph.md)
+  * Graph Valid Tree
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Lowest Common Ancestor of a Binary Search Tree](Tree/lowest-common-ancestor-of-a-binary-search-tree.md)
