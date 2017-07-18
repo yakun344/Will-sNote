@@ -7,7 +7,7 @@
 ## Algorithm Problems
 
 * [Graph](graph.md)
-  * Graph Valid Tree
+  * [Graph Valid Tree](graph/graph-valid-tree.md)
   * [Clone Graph ](graph/clone-graph.md)
   * [Topological Sorting](graph/topological-sorting.md)
   * [Course Schedule](graph/course-schedule.md)
