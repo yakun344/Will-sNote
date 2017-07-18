@@ -23,6 +23,13 @@ Find the number of islands.
 #### Basic Idea:
 首先我们可以想到的就是使用一个bfs helper function，对每个原图中为1的点bfs，然后用一个visited set记录是否已经visited。每次成功进入bfs，则ret += 1. 由此思路，我们可以进一步考虑，如果我们不使用额外的visited set，只在原图中改动，其实也可以达到目的，我们只需在每次bfs的时候，将遇到的点全部改为0，这样每次进入bfs的时候即说明当前的1没有被visited，ret++。
 
+**具体的**我们注意到在处理对上下左右四个方向bfs的时候，为了代码concise，我们使用了`rdir 和 cdir`两个`int[]`，其实是列出了r和c两个坐标每次的偏移量，
+```
+    {-1, 0, 1, 0}
+    {0, -1, 0, 1}
+```
+其实就表示了下左上右四个方向的相邻坐标点。九章算法中把这个内容叫做**坐标变换数组**。
+
 #### Java Code:
 ```java
     public class Solution {
@@ -58,7 +65,7 @@ Find the number of islands.
             grid[r][c] = false;
             Deque<int[]> queue = new LinkedList<>();
             queue.addFirst(cord);
-            // 下面两个分别代表下上左右四个点的坐标偏移量
+            // 下面两个分别代表下左上右四个点的坐标偏移量
             int[] rdir = new int[]{-1, 0, 1, 0};
             int[] cdir = new int[]{0, -1, 0, 1};
             while (! queue.isEmpty()) {
