@@ -13,6 +13,7 @@
   * [Course Schedule](graph/course-schedule.md)
   * [Sequence Reconstruction](graph/sequence-reconstruction.md)
   * [Number of Islands](graph/number-of-islands.md)
+  * [Zombie in Matrix](graph/zombie-in-matrix.md)
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Lowest Common Ancestor of a Binary Search Tree](Tree/lowest-common-ancestor-of-a-binary-search-tree.md)
