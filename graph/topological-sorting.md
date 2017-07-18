@@ -39,7 +39,7 @@ Can you do it in both BFS and DFS?
 **Follow up:** 如何判断能否进行 topological sort 呢（即是否有环）？
 1.  如果bfs结束之后，仍有indegree > 0的node，则说明至少有一个环。
 2.  如果采用下面python dfs的类似方法也是一样，如果仍存在大于0的indegree的node，则有环。
-
+3.  (待续)
 #### Java Code:
 ```java
     /**
