@@ -48,6 +48,7 @@ If the knight is at (x, y), he can get to the following positions in one step:
 1.  双向BFS由于搜索深度减半，可以获得相当于普通BFS开根号级别的时间复杂度。
 2.  要注意双向BFS是双向逐层搜索，所以是每次搜索一个队列中的全部节点。
 3.  需要注意奇偶不同的边界条件（参考下面的实现）。
+4.  当一方队列为空时，如果仍未找到，则说明搜索失败了。
 
 #### Java Implementation：
 *  普通BFS
