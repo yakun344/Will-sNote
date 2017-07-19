@@ -117,7 +117,9 @@ If the knight is at (x, y), he can get to the following positions in one step:
         int step = 0;
             // 若一方队列为空，则fail
         while (! q1.isEmpty() && ! q2.isEmpty()) {
-            int smallStep = 0;
+           
+            int smallStep = 0; // ！！！这里很关键！！！！
+            
             // bfs1, 进行一层
             int size1 = q1.size();
             smallStep++;
