@@ -38,7 +38,7 @@
   * [Valid Palindrome](chapter1/valid-palindrome.md)
   * [Find Duplicate File in System](chapter1/find-duplicate-file-in-system.md)
   * [Fraction Addition and Subtraction](chapter1/fraction-addition-and-subtraction.md)
-* DFS
+* [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
@@ -49,6 +49,7 @@
 * [Permutation & Combination & Subsets](permutation-and-combination.md)
   * [Beautiful Arrangement](permutation-and-combination/beautiful-arrangement.md)
   * [Subsets](permutation-and-combination/subsets.md)
+  * [Palindrome Partitioning](permutation-and-combination/palindrome-partitioning.md)
 * [Mathematical Problems](mathematical-problem.md)
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
