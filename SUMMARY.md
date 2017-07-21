@@ -52,6 +52,7 @@
   * [Subsets](permutation-and-combination/subsets.md)
   * [Palindrome Partitioning](permutation-and-combination/palindrome-partitioning.md)
   * [Combination Sum](permutation-and-combination/combination-sum.md)
+  * [Combination Sum II](permutation-and-combination/combination-sum-ii.md)
 * [Mathematical Problems](mathematical-problem.md)
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
