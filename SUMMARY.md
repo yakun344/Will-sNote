@@ -51,6 +51,7 @@
   * [Beautiful Arrangement](permutation-and-combination/beautiful-arrangement.md)
   * [Subsets](permutation-and-combination/subsets.md)
   * [Palindrome Partitioning](permutation-and-combination/palindrome-partitioning.md)
+  * [Combination Sum](permutation-and-combination/combination-sum.md)
 * [Mathematical Problems](mathematical-problem.md)
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
