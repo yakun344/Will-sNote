@@ -128,3 +128,37 @@ Return all possible palindrome partitioning of s.
         }
     }
 ```
+
+#### python code:
+```python
+    class Solution:
+        # @param s, a string
+        # @return a list of lists of string
+        def partition(self, s):
+            if not s:
+                return [[]]
+            res = []
+            self.helper(s, 0, [], res)
+            return res
+            
+        
+        def helper(self, s, pos, path, res):
+            # str s, int pos, list<str> path, list<list<str>> res, return: void
+            if pos == len(s):
+                res.append(path[:])
+                return
+            for i in range(pos, len(s)):
+                partition = s[pos : i + 1]
+                if self.isPalindrome(partition):
+                    path.append(partition)
+                    self.helper(s, i + 1, path, res)
+                    del path[-1]
+            
+        
+        def isPalindrome(self, s):
+            # str s, return: boolean
+            for i in range(len(s) // 2):
+                if s[i] != s[- i - 1]:
+                    return False
+            return True
+```
