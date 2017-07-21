@@ -32,6 +32,7 @@ Note: The solution set must not contain duplicate subsets.
         res += [pre + [num] for pre in res]
     return res
 ```
+4.  Bit manipulation. 因为长度为length的数组共有(2 ^ length)种subsets，所以我们只要用从 0 至 （2 ^ length - 1）的数作为bitMap，就可以搞定。
 
 #### DFS 决策树，java code：
 ```java
@@ -106,5 +107,32 @@ java：
             }
             return res;
         }
+    }
+```
+
+#### Bit Manipulation, Java Code:
+```java
+    // non-recursion, bit manipulation
+    public ArrayList<ArrayList<Integer>> subsets(int[] nums) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            res.add(new ArrayList<Integer>());
+            return res;
+        } 
+        Arrays.sort(nums);
+        for (int subset = 0; subset < (1 << nums.length); ++subset) {
+            bitMapToRes(nums, subset, res);
+        }
+        return res;
+    }
+    private void bitMapToRes(int[] nums, int bitMap, List<ArrayList<Integer>> res) {
+        ArrayList<Integer> subset = new ArrayList<>();
+        int i = 0;
+        while (bitMap != 0) {
+            if ((bitMap & 1) == 1) subset.add(nums[i]);
+            i++;
+            bitMap >>= 1;
+        }
+        res.add(subset);
     }
 ```
