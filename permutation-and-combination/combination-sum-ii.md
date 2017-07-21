@@ -61,6 +61,7 @@ Given candidate set [10,1,6,7,2,1,5] and target 8,
                 return;
             }          
             for (int i = pos; i < nums.length; ++i) {
+        // 结果避免重复的关键就是这里：
                 if (i != pos && nums[i] == nums[i - 1]) continue;
                 if (nums[i] > remainSum) break; // 因为是升序排列, 所以无需继续
                 path.add(nums[i]);
