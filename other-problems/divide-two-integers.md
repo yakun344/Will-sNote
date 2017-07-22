@@ -40,7 +40,7 @@ If it is overflow, return 2147483647
                     else r = q;
                 }
                 int n = 0;
-                if (dvs << r <= dvd) n = r;
+                if ((dvs << r) <= dvd) n = r;
                 else n = p;
                 dvd -= dvs << n;
                 res += 1 << n;
