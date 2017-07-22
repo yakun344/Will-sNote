@@ -36,7 +36,7 @@ If it is overflow, return 2147483647
                 int p = 0, r = 31;
                 while (p + 1 < r) {
                     int q = p + (r - p) / 2;
-                    if (dvs << q <= dvd) p = q;
+                    if ((dvs << q) <= dvd) p = q;
                     else r = q;
                 }
                 int n = 0;
