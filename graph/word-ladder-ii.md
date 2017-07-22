@@ -146,3 +146,81 @@ Each intermediate word must exist in the dictionary
         }
     }
 ```
+
+#### Python Code:
+```python
+    class Solution:
+        # @param start, a string
+        # @param end, a string
+        # @param dict, a set of string
+        # @return a list of lists of string
+        def findLadders(self, start, end, dict):
+            if start == end:
+                return [[start]]
+            dict = set(dict)
+            dict.add(start)
+            dict.add(end)
+            
+            # bfs找从end到start最短路径, 并沿途记录各点距离end的路径长度
+            distances = {node : float('INF') for node in dict}
+            distances[end] = 1
+            minStep = self.bfs(end, start, dict, distances)
+            
+            # dfs
+            res = []
+            self.dfs(start, end, dict, set(), distances, minStep, res, [])
+            return res
+            
+        # 使用BFS找到从end到start的最短路径长度
+        # str start, str target, set<str> dict
+        def bfs(self, start, target, dict, distances):
+            visited = set()
+            queue = collections.deque()
+            queue.appendleft(start)
+            visited.add(start)
+            step = 1
+            while queue:
+                step += 1
+                size = len(queue)
+                for i in range(size):
+                    node = queue.pop()
+                    for neighbor in self.getNeighbors(node, dict, visited):
+                        if neighbor == target: return step
+                        visited.add(neighbor)
+                        queue.appendleft(neighbor)
+                        distances[neighbor] = step
+                                    
+        
+        # str node, set<str> dict, set<str> visited
+        def getNeighbors(self, node, dict, visited):
+            neighbors = []
+            for i in range(len(node)):
+                for c in range(ord('a'), ord('z') + 1):
+                    neighbor = node[: i] + chr(c) + node[i + 1 :]
+                    if neighbor in dict and neighbor not in visited:
+                        neighbors.append(neighbor)
+            return neighbors
+            
+        
+        # 使用DFS找到所有长度等于最短路径的从start到end的路径
+        def dfs(self, start, target, dict, visited, distances, remainSteps, res, path):
+            # 出口
+            if remainSteps < 1: return
+            if remainSteps == 1:
+                if start == target:
+                    path.append(start)
+                    res.append(path[:])
+                    del path[-1]
+                else:
+                    return
+            
+            visited.add(start)
+            path.append(start)
+            for neighbor in self.getNeighbors(start, dict, visited):
+                # 只选择距离end更近的点
+                if distances[start] <= distances[neighbor]: 
+                    continue
+                self.dfs(neighbor, target, dict, visited, distances, remainSteps - 1, res, path)
+            del path[-1]
+            visited.remove(start)
+```
