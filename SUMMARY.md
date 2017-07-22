@@ -73,6 +73,7 @@
   * [Search a 2D Matrix II ](other-problems/search-a-2d-matrix-ii.md)
   * [Maximum Average Subarray](other-problems/maximum-average-subarray.md)
   * [Next Greater Element II](other-problems/next-greater-element-ii.md)
+  * [K Closest Numbers In Sorted Array ](other-problems/k-closest-numbers-in-sorted-array.md)
 
 ## Tips for Python
 
