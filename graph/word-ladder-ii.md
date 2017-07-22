@@ -27,7 +27,7 @@ Each intermediate word must exist in the dictionary
       ]
       
 #### Basic Idea:
-这道题目的难点是要求出所有最短路径。之前的 [Word Ladder I](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/word-ladder.html)只要求输出最短路径的长度，我们只需要做一次BFS即可，但是现在要求所有的最短路径，我们就需要结合DFS。因为BFS得到的结果是一个一个分层的点，我们所能知道的只有起点到达某个状态需要几步，
+这道题目的难点是要求出所有最短路径。之前的 **[Word Ladder I](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/word-ladder.html)**只要求输出最短路径的长度，我们只需要做一次BFS即可，但是现在要求所有的最短路径，我们就需要结合DFS。因为BFS得到的结果是一个一个分层的点，我们所能知道的只有起点到达某个状态需要几步，
 
 具体地，我们可以先用BFS确定最短路径的长度，然后用DFS找到所有路径。我们还可以利用BFS的结果进行**优化**：
 1.  从 end 开始做 BFS 找 start，记录沿途各点到 end 的距离，找到 start 就可以停止。
