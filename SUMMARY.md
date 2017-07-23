@@ -55,6 +55,7 @@
   * [Combination Sum](permutation-and-combination/combination-sum.md)
   * [Combination Sum II](permutation-and-combination/combination-sum-ii.md)
   * [Permutations II](permutation-and-combination/permutations-ii.md)
+  * [Next Permutation](permutation-and-combination/next-permutation.md)
 * [Mathematical Problems](mathematical-problem.md)
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
