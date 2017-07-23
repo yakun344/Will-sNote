@@ -35,6 +35,7 @@
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
+  * [Robin Karp Algorithm](chapter1/robin-karp-algorithm.md)
   * [Find All Anagrams in a String](chapter1/find-all-anagrams-in-a-string.md)
   * [Longest Common Prefix](chapter1/longest-common-prefix.md)
   * [Valid Palindrome](chapter1/valid-palindrome.md)
