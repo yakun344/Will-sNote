@@ -8,7 +8,7 @@ _update Jul 23, 2017 23:39_
 **具体地：**
 
 HashCode 计算方法：
-例如对于字符串“abc”，其hashcode即为 `(31^2 * a + 31^1 * b + 21^0 * c) % 1e6`，其中1e6为BASE，31 为 magic number。
+例如对于字符串“abc”，其hashcode即为 `(31^2 * a + 31^1 * b + 21^0 * c) % 1e6`，其中 1e6 为 BASE，31 为 magic number。
 
 我们先计算 target 的 hashcode，然后用 source 中相同长短子字符串的hashcode与其相比，既可以过滤掉绝大多数不匹配的情况。具体实现中，可以想象用一个长度等于 len(target) 的 window 从左向右移动，每次加入右边字符，减去左边字符，然后和 targetCode比较。
 
