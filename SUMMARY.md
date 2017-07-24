@@ -33,7 +33,7 @@
   * [Binary Tree Path Sum II](Tree/binary-tree-path-sum-ii.md)
   * [Binary Tree Serialization](Tree/binary-tree-serialization.md)
 * [LinkedList & Array](linkedlist-and-array.md)
-  * Insert into a Cyclic Sorted List
+  * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
