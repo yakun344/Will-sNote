@@ -43,7 +43,6 @@
   * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
   * [Maximum Average Subarray](other-problems/maximum-average-subarray.md)
   * [Next Greater Element II](other-problems/next-greater-element-ii.md)
-  * Subarray Sum
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
