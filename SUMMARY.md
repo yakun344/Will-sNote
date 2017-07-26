@@ -35,6 +35,7 @@
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
+  * [Subarray Sum](linkedlist-and-array/subarray-sum.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Intersection of Two Linked Lists](other-problems/intersection-of-two-linked-lists.md)
@@ -42,7 +43,7 @@
   * [Shortest Unsorted Continuous Subarray](shortest-unsorted-continuous-subarray.md)
   * [Maximum Average Subarray](other-problems/maximum-average-subarray.md)
   * [Next Greater Element II](other-problems/next-greater-element-ii.md)
-  * [K Closest Numbers In Sorted Array ](other-problems/k-closest-numbers-in-sorted-array.md)
+  * Subarray Sum
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
