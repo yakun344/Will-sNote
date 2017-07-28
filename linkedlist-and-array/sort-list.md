@@ -15,10 +15,10 @@ Solve it by merge sort & quick sort separately.
 
 #### Basic Idea:
 **Merge Sort:**
-对链表进行 Merge Sort 的精髓在于 **分** 的方法：getMid，然后断开mid之后的链。然后使用merge two sorted list 将两端merge。
+对链表进行 Merge Sort 的精髓在于 **分** 的方法：getMid，然后断开mid之后的链。然后使用merge two sorted list 将两端merge。在合并的时候可以先新建dummy node指向head，然后从dummy开始，可以让code更concise。
 
 **Quick Sort**
-如果交换 node 本身会让问题变得复杂，所以精髓是只交换值而不交换 node。
+如果交换 node 本身会让问题变得复杂，所以精髓是只交换值而不交换 node。注判断递归出口的细节，要加上当`head == tail.next` 时，直接return。
 
 #### Java Code:
 **Merge sort:**
@@ -160,4 +160,108 @@ Solve it by merge sort & quick sort separately.
             return head;
         }
     }
+```
+
+#### Python Code:
+Merge Sort：
+```python
+    class Solution:
+        """
+        @param head: The first node of the linked list.
+        @return: You should return the head of the sorted linked list,
+                      using constant space complexity.
+        """
+        def sortList(self, head):
+            if not head or not head.next: return head
+            mid = self.getMid(head)
+            right_head = mid.next
+            mid.next = None
+            left = self.sortList(head)
+            right = self.sortList(right_head)
+            return self.merge(left, right)
+            
+        
+        def getMid(self, head):
+            slow = head
+            fast = head.next
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+            return slow
+        
+        
+        def merge(self, left, right):
+            dummy = ListNode(0)
+            curr = dummy
+            while left or right:
+                if not left:
+                    curr.next = right
+                    break
+                if not right:
+                    curr.next = left
+                    break
+                if left.val <= right.val:
+                    curr.next = left
+                    curr = curr.next
+                    left = left.next
+                else:
+                    curr.next = right
+                    curr = curr.next
+                    right = right.next
+            return dummy.next    
+```
+
+Quick Sort:
+```python
+    # Quick Sort solution
+    class Solution:
+        """
+        @param head: The first node of the linked list.
+        @return: You should return the head of the sorted linked list,
+                      using constant space complexity.
+        """
+        def sortList(self, head):
+            if not head or not head.next:
+                return head
+            tail = self.getTail(head)
+            self.quickSort(head, tail)
+            return head
+            
+        
+        def quickSort(self, head, tail):
+            if not head or not tail or head == tail or tail.next == head:
+                return
+            # do partition first
+            dummy = ListNode(0)
+            dummy.next = head
+            left_tail = None
+            pivot = head.val
+            left = dummy
+            right = head
+            while right != tail.next:
+                if right.val <= pivot:
+                    left_tail = left
+                    left = left.next
+                    self.swapValue(left, right)
+                right = right.next
+            self.swapValue(head, left)
+        
+            mid = left
+            
+            self.quickSort(head, left_tail)
+            self.quickSort(mid.next, tail)
+        
+        
+        def getTail(self, head):
+            while head.next:
+                head = head.next
+            return head
+            
+            
+        def swapValue(self, node1, node2):
+            if node1 is node2:
+                return
+            t = node1.val
+            node1.val = node2.val
+            node2.val = t
 ```
