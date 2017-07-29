@@ -54,6 +54,8 @@
   * [Fraction Addition and Subtraction](chapter1/fraction-addition-and-subtraction.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
+* [Random](random.md)
+  * [Linked List Random Node](random/linked-list-random-node.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
