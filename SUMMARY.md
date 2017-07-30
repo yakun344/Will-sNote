@@ -63,6 +63,7 @@
   * [Integer Break](dynamic-programming/integer-break.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
+  * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
 * [Permutation & Combination & Subsets](permutation-and-combination.md)
   * [Beautiful Arrangement](permutation-and-combination/beautiful-arrangement.md)
   * [Subsets](permutation-and-combination/subsets.md)
