@@ -20,7 +20,7 @@ What if you cannot modify the input lists? In other words, reversing the lists i
 这道题的唯一难点是链表从高位连向低位，所以我们可以有三种思路：
 1.  reverse the linked list；
 2.  use stack to store numbers，so that we can reverse the sequence；
-3.  把数字存在字符串中；
+3.  把数字存在字符串中，和方法 2 类似；
 **follow up** 所说的不可以reverse the list，所以我们使用第二个方法。
 **具体地：**还有一个细节，就是在生成结果list的时候，只要一直在dummy.next添加新节点就可以保证正确顺序。
 
