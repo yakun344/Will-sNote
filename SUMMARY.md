@@ -61,6 +61,7 @@
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
   * [Counting Bits](dynamic-programming/counting-bits.md)
   * [Integer Break](dynamic-programming/integer-break.md)
+  * [Predict the Winner](dynamic-programming/predict-the-winner.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
