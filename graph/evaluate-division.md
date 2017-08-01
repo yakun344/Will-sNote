@@ -27,65 +27,106 @@ The input is: `vector<pair<string, string>> equations, vector<double>& values, v
 
 #### Java Code:
 ```java
+    // 正统方法
     public class Solution {
-        private class GraphNode {
-            String label = null;
-            Map<String, Double> neighbors = null;
-            public GraphNode(String label) {
-                this.label = label;
-                this.neighbors = new HashMap<>();
-            }
-        }
         // 先建graph，然后dfs, 不能用bfs，因为要沿途累乘weight, 跟踪path
+        // 图的形式是adjacent list，Map<String, Map<String, Double>>, adj list 是一个map，因为每个neighbor对应一个weight
         public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
-            Map<String, GraphNode> graph = initGraph(equations, values);
             List<Double> res = new ArrayList<>();
-            // dfs for each query
+            // init graph
+            Map<String, Map<String, Double>> Graph = initGraph(equations, values);
+            // 对每个query，dfs graph，从第一个开始找第二个，沿途乘积就是解
             for (String[] query : queries) {
-                String s = query[0];
-                String e = query[1];
+                String start = query[0];
+                String target = query[1];
                 Set<String> visited = new HashSet<>();
-                Double ans = dfs(graph, s, e, 1, visited);
+                Double ans = dfs(Graph, start, target, visited, 1);
                 if (ans != null) res.add(ans);
                 else res.add(-1.0);
-            }
-            // convert list to array
+            }    
+            // convert res list to array
             double[] ret = new double[res.size()];
-            for (int i = 0; i < ret.length; ++i) {
-                ret[i] = res.get(i);
-            }
+            for (int i = 0; i < ret.length; ++i) ret[i] = res.get(i);
             return ret;
         }
-        
-        // 把所有给定的equations存入graph
-        // 例如：a / b = 2，则新建node a，neighbor b，weight = 2， node b，neighbor a，weight = 1/2
-        private Map<String, GraphNode> initGraph(String[][] equations, double[] values) {
-            Map<String, GraphNode> graph = new HashMap<>();
-            for (int i = 0; i < equations.length; ++i) {
-                String d1 = equations[i][0];
-                String d2 = equations[i][1];
-                double weight = values[i];
-                // get node d1, d2, put neighbor and weight
-                if (! graph.containsKey(d1)) graph.put(d1, new GraphNode(d1));
-                if (! graph.containsKey(d2)) graph.put(d2, new GraphNode(d2));
-                graph.get(d1).neighbors.put(d2, weight);
-                graph.get(d2).neighbors.put(d1, 1 / weight);
-            }
-            return graph;
-        }
-        // dfs 来找到从start到end的路径，并返回沿途路径weight的乘积  
-        private Double dfs(Map<String, GraphNode> graph, String start, String end, double product, Set<String> visited) {
-            GraphNode node = graph.get(start);
-            if (node == null) return null;
-            if (start.equals(end)) return product;
+        private Double dfs(Map<String, Map<String, Double>> Graph, 
+                           String start, String target, Set<String> visited, double product) {
+            if ((! Graph.containsKey(start)) || (! Graph.containsKey(target))) return null;
+            if (start.equals(target)) return product;
             if (visited.contains(start)) return null;
             visited.add(start);
-            for (String s : node.neighbors.keySet()) {
-                double weight = node.neighbors.get(s);
-                Double ans = dfs(graph, s, end, product * weight, visited);
+            Map<String, Double> neighbors = Graph.get(start);
+            for (String neighbor : neighbors.keySet()) {
+                Double weight = neighbors.get(neighbor);
+                Double ans = dfs(Graph, neighbor, target, visited, product * weight);
                 if (ans != null) return ans;
             }
             return null;
         }
+        
+        private Map<String, Map<String, Double>> initGraph(String[][] equations, double[] values) {
+            Map<String, Map<String, Double>> Graph = new HashMap<>();
+            for (int i = 0; i < equations.length; ++i) {
+                String d1 = equations[i][0];
+                String d2 = equations[i][1];
+                double weight = values[i];
+                if (! Graph.containsKey(d1)) Graph.put(d1, new HashMap<String, Double>());
+                if (! Graph.containsKey(d2)) Graph.put(d2, new HashMap<String, Double>());
+                Graph.get(d1).put(d2, weight);
+                Graph.get(d2).put(d1, 1 / weight);
+            }
+            return Graph;
+        }
     }
+```
+
+#### Python Code:
+```python
+    class Solution(object):
+        def calcEquation(self, equations, values, queries):
+            """
+            :type equations: List[List[str]]
+            :type values: List[float]
+            :type queries: List[List[str]]
+            :rtype: List[float]
+            """
+            Graph = self.initGraph(equations, values)
+            res = []
+            # bfs
+            for query in queries:
+                start, target = query[0], query[1]
+                visited = set()
+                ans = self.dfs(Graph, start, target, visited, 1.0)
+                if ans is not None: res.append(ans)
+                else: res.append(-1.0)
+            return res
+                
+            
+        # dict<str, dict<str, double>> Graph, str start, str target, 
+        # set<str> visited, double product
+        def dfs(self, Graph, start, target, visited, product):
+            if start not in Graph: return None
+            if start == target: return product
+            if start in visited: return None
+            visited.add(start)
+            neighbors = Graph[start]
+            for neighbor in neighbors:
+                weight = neighbors[neighbor]
+                ans = self.dfs(Graph, neighbor, target, visited, product * weight)
+                if ans is not None: return ans
+            return None
+        
+        
+        # init graph, dict(str, dict(str, double)).
+        def initGraph(self, equations, values):
+            Graph = {}
+            i = 0
+            for equation in equations:
+                d1, d2, ans = equation[0], equation[1], values[i]
+                i += 1
+                if d1 not in Graph: Graph[d1] = {}
+                if d2 not in Graph: Graph[d2] = {}
+                Graph[d1][d2] = ans
+                Graph[d2][d1] = 1 / ans
+            return Graph
 ```
