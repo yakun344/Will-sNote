@@ -75,6 +75,7 @@
   * [Combination Sum III](permutation-and-combination/combination-sum-iii.md)
   * [Permutations II](permutation-and-combination/permutations-ii.md)
   * [Next Permutation](permutation-and-combination/next-permutation.md)
+  * [Generate Parentheses](permutation-and-combination/generate-parentheses.md)
 * [Mathematical Problems](mathematical-problem.md)
   * [Nth digit](other-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
