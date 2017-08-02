@@ -142,7 +142,7 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
     }
 ```
 
-**经过测试：** 应用Alpha-Beta Pruning 之后，时间复杂度变为普通minMax的多项式低阶。而根据wiki，平均因为普通minMax方法的 3/4 次方。比较符合。
+**经过测试：** 应用Alpha-Beta Pruning 之后，时间复杂度变为普通minMax的多项式低阶。而根据wiki，平均应为普通minMax方法的 3/4 次方。比较符合。
 
 
 
