@@ -144,6 +144,35 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
 
 **经过测试：** 应用Alpha-Beta Pruning 之后，时间复杂度变为普通minMax的多项式低阶。而根据wiki，平均应为普通minMax方法的 3/4 次方。比较符合。
 
+#### Dp Solution:
+最快的方法还是使用memoization，避免了大量的重复工作，将时间复杂度缩减到O(n^2)。
+
+```java
+    // 进一步简化，不再区分 p1 p2，并且使用memoization
+    // 还是利用在p2的局，将其得分定为负数
+    // table 使用Integer[][] 因为可以初始化为null
+    public class Solution {
+        private int stepCount = 1;
+        public boolean PredictTheWinner(int[] nums) {
+            Integer[][] table = new Integer[nums.length][nums.length];
+            int ret = dfs(nums, 0, nums.length - 1, table);
+            System.out.println(stepCount);
+            return ret >= 0;
+        }
+        private int dfs(int[] nums, int start, int end, Integer[][] table) {
+            if (table[start][end] != null) return table[start][end];
+            stepCount++;
+            if (start == end) {
+                return nums[start];
+            }
+            int a = nums[start] - dfs(nums, start + 1, end, table);
+            int b = nums[end] - dfs(nums, start, end - 1, table);
+            int score = Math.max(a, b);
+            table[start][end] = score;
+            return score;
+        }
+    }
+```
 
 
 
