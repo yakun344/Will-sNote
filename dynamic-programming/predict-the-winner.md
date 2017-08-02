@@ -147,6 +147,9 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
 #### Dp Solution:
 最快的方法还是使用memoization，避免了大量的重复工作，将时间复杂度缩减到O(n^2)。
 
+**解释：**
+可以这样理解，这里的dfs函数的定义为：
+
 ```java
     // 进一步简化，不再区分 p1 p2，并且使用memoization
     // 还是利用在p2的局，将其得分定为负数
