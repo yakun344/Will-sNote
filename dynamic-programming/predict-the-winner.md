@@ -30,5 +30,84 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
 *  If the scores of both players are equal, then player 1 is still the winner.
 
 #### Basic Idea:
-**[这里](https://liuqinh2s.gitbooks.io/leetcode/content/%E4%B8%AD%E6%96%87%E7%89%88/%E7%AC%AC%E4%B8%80%E9%81%8D/486.%20Predict%20the%20Winner.html)**是一个很好的分析文章。
+**[这里](https://liuqinh2s.gitbooks.io/leetcode/content/%E4%B8%AD%E6%96%87%E7%89%88/%E7%AC%AC%E4%B8%80%E9%81%8D/486.%20Predict%20the%20Winner.html)**是一个很好的分析文章，讲了使用minMax方法的思路。
+**[这里](http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html)** 是ucla关于Alpha-Beta 剪枝算法的讲义，非常好。
+
+**先概括说一下思路**
+这道题目属于一个双方博弈的零和问题，可以使用博弈树模型来理解其过程。最intuitive的解法是用minMax算法recursively地对双方依次计算所有的下一个状态，并为双方取所有结果可能的最大值，最终再比较两方player1 和 player2 的最大值。代码如下：
+
+```java
+    // min-max algo
+    // 基础版本
+    public class Solution {
+        private boolean P1 = true;
+        private boolean P2 = false;
+        public boolean PredictTheWinner(int[] nums) {
+            int[] scores = minMax(nums, 0, nums.length - 1, P1);
+            return scores[0] >= scores[1];
+        }
+        // 首先需要定义结果的评分标准
+        // p1, p2 分别统计分数，最终再对比, p1 的分数存入 scores[0], p2 scores[1]
+        private int[] minMax(int[] nums, int start, int end, boolean player) {
+            int[] scores = new int[2];
+            if (start == end) { // 出口
+                if (player == P1) scores[0] = nums[start];
+                else scores[1] = nums[start];
+                return scores;
+            }
+            if (player == P1) {
+                int[] s1 = minMax(nums, start + 1, end, P2);
+                s1[0] += nums[start];
+                int[] s2 = minMax(nums, start, end - 1, P2);
+                s2[0] += nums[end];
+                return s1[0] > s2[0] ? s1 : s2;
+            } else {
+                int[] s1 = minMax(nums, start + 1, end, P1);
+                s1[1] += nums[start];
+                int[] s2 = minMax(nums, start, end - 1, P1);
+                s2[1] += nums[end];
+                return s1[1] > s2[1] ? s1 : s2;
+            }
+        }
+    }
+```
+我们觉得上面的代码太复杂，想到：player 1 获胜就是 `player1.score > player2.score` 也就是 `player1.score - player2.score > 0`，基于这种思路，我们可以给整个局势的结果统一制定评分标准，就是总分大于等于0，则player1获胜。每次player1的得分记为正数，player2 的分数则为负数。然后用一个 `int player` 来标注，1 表示 player1，-1 表示 player2. 代码如下：
+
+```java
+    // 优化版本recursion 博弈树
+    // 不再分别为p1 p2统计分数，而是统计总分(p1.score - p2.score).
+    // 这样一来，p2 得分贡献为负值，p1 为正值，就无需分别考虑，利用 1 来表示 p1,
+    // -1 表示 p2， 只要分数乘上这个值就可以了
+    // 这也就是 negaMax 的方法
+    public class Solution {
+        private int stepCount = 1;
+        public boolean PredictTheWinner(int[] nums) {
+            boolean ret = minMax(nums, 0, nums.length - 1, 1) >= 0;
+            System.out.println(stepCount);
+            return ret;
+        }
+        private int minMax(int[] nums, int start, int end, int player) {
+            stepCount++;
+            if (start == end) return nums[start] * player; 
+            // select left
+            int s1 = nums[start] * player +  minMax(nums, start + 1, end, -player);
+            // select right
+            int s2 = nums[end] * player + minMax(nums, start, end - 1, -player);
+            if (player == 1) {
+                // 如果是 1，选择最大分数
+                return Math.max(s1, s2);
+            } else {
+                // 如果是2，选择最小值
+                return Math.min(s1, s2);
+            }
+        }
+    }
+```
+接下来，我们还可以应用 **Alpha-Beta Pruning** 算法对上面的negaMax进行优化。详见
+
+
+
+
+
+
 
