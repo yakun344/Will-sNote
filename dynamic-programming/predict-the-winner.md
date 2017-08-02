@@ -103,8 +103,46 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
         }
     }
 ```
-接下来，我们还可以应用 **Alpha-Beta Pruning** 算法对上面的negaMax进行优化。详见
+接下来，我们还可以应用 **Alpha-Beta Pruning** 算法对上面的negaMax进行优化。详见前面的链接。
+在这里，我们对 minMax() 函数传入每层选择的数字，这样到了出口我们就会知道这条path的总分，进而进行剪枝就会变得方便。![](/assets/Screen Shot 2017-08-01 at 10.42.02 PM.png) ![](/assets/Screen Shot 2017-08-01 at 10.44.54 PM.png)!![![](/assets/Screen Shot 2017-08-01 at 10.45.45 PM.pn](/assets/Screen Shot 2017-08-01 at 10.45.59 PM.png)g)![](/assets/Screen Shot 2017-08-01 at 10.46.12 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.33 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.49 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.59 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.12 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.23 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.33 PM.png)代码如下：
+```java
+    // 使用 Alpha-Beta剪枝 算法优化上面的negaMax算法
+    // alpha 为lower bound，beta 为upper bound
+    public class Solution {
+        private int stepCount = 1;
+        public boolean PredictTheWinner(int[] nums) {
+            int ret = minMax(nums, 0, nums.length - 1, 0, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
+            System.out.println(stepCount);
+            return ret >= 0;
+        }
+        private int minMax(int[] nums, int start, int end, int path, 
+                           int alpha, int beta, int player) {
+            stepCount++;
+            if (start > end) return path;
+            // go left
+            int s1 = minMax(nums, start + 1, end, path + player * nums[start], alpha, beta, -player);
+            
+            // alpha beta 剪枝
+            if (player == 1) { 
+                // max node, 如果大于upper bound beta 则剪
+                if (s1 > beta) return s1;
+                // 如果不大于，则更新lower bound alpha，然后算下一个node
+                alpha = Math.max(alpha, s1);
+            } else {
+                if (s1 < alpha) return s1;
+                beta = Math.min(beta, s1);
+            }
+            
+            // go right
+            int s2 = minMax(nums, start, end - 1, path + player * nums[end], alpha, beta, -player);
+            
+            // 选取总分最大的返回
+            return player * Math.max(player * s1, player * s2);
+        }
+    }
+```
 
+**经过测试：** 应用Alpha-Beta Pruning 之后，时间复杂度变为普通minMax的多项式低阶。而根据wiki，平均因为普通minMax方法的 3/4 次方。比较符合。
 
 
 
