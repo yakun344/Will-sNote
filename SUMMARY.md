@@ -44,6 +44,7 @@
   * [Add Two Numbers II](linkedlist-and-array/add-two-numbers-ii.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
+  * [Valid Triangle Number](linkedlist-and-array/valid-triangle-number.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
