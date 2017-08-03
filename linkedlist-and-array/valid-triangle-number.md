@@ -87,3 +87,57 @@ The integers in the given array are in the range of [0, 1000].
                         a += 1  # 找合适的 a 的左边界
             return ret
 ```
+
+#### Java Code：
+```java
+    // brute force then check
+    public class Solution {
+        private int count = 0;
+        public int triangleNumber(int[] nums) {
+            dfs(nums, 0, 3, new ArrayList<Integer>());
+            return count;
+        }
+        private void dfs(int[] nums, int pos, int remainLength, List<Integer> path) {
+            if (remainLength == 0) {
+                if (isValid(path)) count++;
+                return;
+            }
+            if (remainLength > 0 && pos >= nums.length) return;
+            for (int i = pos; i < nums.length; ++i) {
+                path.add(nums[i]);
+                dfs(nums, i + 1, remainLength - 1, path);
+                path.remove(path.size() - 1);
+            }
+        }
+        private boolean isValid(List<Integer> edges) {
+            int a = edges.get(0);
+            int b = edges.get(1);
+            int c = edges.get(2);
+            if (a + b <= c || a + c <= b || c + b <= a) return false;
+            return true;
+        }
+    }
+```
+
+```java
+    // two pointers
+    public class Solution {
+        public int triangleNumber(int[] nums) {
+            Arrays.sort(nums);
+            int ret = 0;
+            for (int c = nums.length - 1; c >= 2; --c) {
+                int a = 0;
+                int b = c - 1;
+                while (a < b) {
+                    if (nums[a] + nums[b] > nums[c]) {
+                        ret += b - a;
+                        b--;
+                    } else {
+                        a++;
+                    }
+                }
+            }
+            return ret;
+        }
+    }
+```
