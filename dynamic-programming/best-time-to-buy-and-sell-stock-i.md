@@ -23,7 +23,7 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
 #### Basic Idea:
 对于这道题，只要找到数组中右边和左边数字的最大差即可，我们可以利用 Kanane 算法的思想，一次累加两数之差，当这个值小于零的时候，我们从零重新开始，表示抛弃前面的数字重新开始累加。
 
-另一种思路是跟踪左边最小值，沿途记录最大差。
+另一种思路是跟踪左边最小值，沿途记录最大差。**这种思路更通用。**
 
 #### Code:
 思路1：
