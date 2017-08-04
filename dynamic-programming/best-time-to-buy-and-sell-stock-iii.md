@@ -51,8 +51,46 @@ python实现如下：
 ```
 
 **思路 2：**
-
-
+直接考虑最多允许 k 次交易的情况，在状态的表示中增加一个维度，表示在之前最多有几次交易：
+```java
+    buy[j][i] = max{ buy[j][i-1], sell[j][i-1]-prices[i] }
+    sell[j][i]= max{ sell[j][i-1], buy[j-1][i-1]+prices[i] }
+```
+详细解释见下一题：IV。
+Python Code：
+```python
+    class Solution(object):
+        def maxProfit(self, k, prices):
+            """
+            :type k: int
+            :type prices: List[int]
+            :rtype: int
+            """
+            if not prices: return 0
+            if k > len(prices) / 2: return self.easySolution(prices)
+            # 初始化 buy 和 sell 
+            buy = []
+            sell = []
+            for i in range(k):
+                buy.append([0] * len(prices))
+                buy[i][0] = -prices[0]
+            for i in range(k + 1):
+                sell.append([0] * len(prices))
+            
+            for j in range(1, k + 1):
+                for i in range(1, len(prices)):
+                    buy[j - 1][i] = max(buy[j - 1][i - 1], sell[j - 1][i - 1] - prices[i])
+                    sell[j][i] = max(sell[j][i - 1], buy[j - 1][i - 1] + prices[i])
+            return sell[-1][-1]
+            
+            
+        def easySolution(self, prices):
+            ret = 0
+            for i in range(1, len(prices)):
+                t = prices[i] - prices[i - 1]
+                if t > 0: ret += t
+            return ret
+```
 
 
 
