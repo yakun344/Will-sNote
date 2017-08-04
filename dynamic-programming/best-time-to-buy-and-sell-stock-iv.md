@@ -58,3 +58,36 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
             return ret
 ```
 
+#### Java Code (O(n) 空间):
+    ```java
+    public class Solution {
+        public int maxProfit(int k, int[] prices) {
+            if (prices == null || prices.length == 0) return 0;
+            int n = prices.length;
+            if (k > n / 2) return easySolution(prices);
+            int[] buy_last = null;
+            int[] buy_this = new int[n];
+            int[] sell = new int[n];
+            buy_this[0] = -prices[0];
+            for (int j = 0; j < k + 1; ++j) {
+                for (int i = 1; i < n; ++i) {
+                    buy_this[i] = Math.max(buy_this[i - 1], sell[i - 1] - prices[i]);
+                    sell[i] = Math.max(sell[i - 1], (j > 0 ? buy_last[i - 1] + prices[i] : 0));
+                }            
+                buy_last = buy_this;
+                buy_this = new int[n];
+                buy_this[0] = -prices[0];
+            }
+            return sell[n - 1];
+        }
+        private int easySolution(int[] prices) {
+            int ret = 0;
+            for (int i = 1; i < prices.length; ++i) {
+                if (prices[i] > prices[i - 1]) {
+                    ret += prices[i] - prices[i - 1];
+                }
+            }
+            return ret;
+        }
+    }
+```
