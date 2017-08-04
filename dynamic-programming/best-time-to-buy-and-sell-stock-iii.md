@@ -59,37 +59,28 @@ python实现如下：
 详细解释见下一题：IV。
 Python Code：
 ```python
+    # 方法2, 使用 IV 的方法，更加通用
     class Solution(object):
-        def maxProfit(self, k, prices):
+        def maxProfit(self, prices):
             """
-            :type k: int
             :type prices: List[int]
             :rtype: int
             """
             if not prices: return 0
-            if k > len(prices) / 2: return self.easySolution(prices)
             # 初始化 buy 和 sell 
             buy = []
             sell = []
-            for i in range(k):
+            for i in range(2):
                 buy.append([0] * len(prices))
                 buy[i][0] = -prices[0]
-            for i in range(k + 1):
+            for i in range(2 + 1):
                 sell.append([0] * len(prices))
             
-            for j in range(1, k + 1):
+            for j in range(1, 2 + 1):
                 for i in range(1, len(prices)):
                     buy[j - 1][i] = max(buy[j - 1][i - 1], sell[j - 1][i - 1] - prices[i])
                     sell[j][i] = max(sell[j][i - 1], buy[j - 1][i - 1] + prices[i])
             return sell[-1][-1]
-            
-            
-        def easySolution(self, prices):
-            ret = 0
-            for i in range(1, len(prices)):
-                t = prices[i] - prices[i - 1]
-                if t > 0: ret += t
-            return ret
 ```
 
 
