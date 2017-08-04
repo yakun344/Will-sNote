@@ -50,3 +50,29 @@ Given n pairs of parentheses, write a function to generate all combinations of w
     }
 }
 ```
+
+#### Python Code:
+    ```python
+    class Solution(object):
+        def generateParenthesis(self, n):
+            """
+            :type n: int
+            :rtype: List[str]
+            """
+            def dfs(left, right):
+                if right == n:
+                    res.append(''.join(path))
+                if left < n:
+                    path.append("(")
+                    dfs(left + 1, right)
+                    del path[-1]
+                if right < left:
+                    path.append(")")
+                    dfs(left, right + 1)
+                    del path[-1]
+            
+            path = []
+            res = []
+            dfs(0, 0)
+            return res
+```
