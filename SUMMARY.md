@@ -83,17 +83,18 @@
   * [Next Permutation](permutation-and-combination/next-permutation.md)
   * [Generate Parentheses](permutation-and-combination/generate-parentheses.md)
   * [Shopping Offers](permutation-and-combination/shopping-offers.md)
-* [Mathematical Problems](mathematical-problem.md)
-  * [Nth digit](other-problems/nth-digit.md)
-  * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
-  * [Count Primes](other-problems/count-primes.md)
-  * [Divide Two Integers](other-problems/divide-two-integers.md)
 * [Other Problems](other-problems.md)
   * [Add Binary](other-problems/add-binary.md)
   * [Min Stack](min-stack.md)
   * [Drop Eggs](other-problems/drop-eggs.md)
   * [Search a 2D Matrix II ](other-problems/search-a-2d-matrix-ii.md)
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
+* [Math Problems](mathematical-problem.md)
+  * [Nth digit](other-problems/nth-digit.md)
+  * [Implement Sqrt\(x\)](other-problems/implement-sqrtx.md)
+  * [Count Primes](other-problems/count-primes.md)
+  * [Divide Two Integers](other-problems/divide-two-integers.md)
+  * [2 Keys Keyboard](other-problems/2-keys-keyboard.md)
 
 ## Tips for Python
 
