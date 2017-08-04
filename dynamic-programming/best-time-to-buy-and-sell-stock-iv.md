@@ -21,6 +21,8 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
 这个方法时间复杂度和空间复杂度都是 O(k*n). 注意到 计算buy只需要同样 j 的sell，计算sell只要前一天的buy，所以我们可以把空间优化到 O(n)。
 
+另外还有一种情况，因为每次完整交易都需要至少两天，所以如果 k > n/2，那么我们就可以随意交易，问题就退化为 问题II 了。
+
 #### Python Code：
 ```python
     class Solution(object):
