@@ -19,6 +19,7 @@ Given n pairs of parentheses, write a function to generate all combinations of w
     
 #### Basic Idea:
 首先会有一个思路：生成所有的组合，再判断是否valid，但是这种思路显然是太慢了，弃之。
+
 之后，我们注意到括号的性质，就是open和close总是成对出现，我们只要保证每添加一个close之前都有足够的（至少一个）open 与之对应即可。因此，我们在每个状态下，依次考虑添加open和添加close的情况，用left和right的个数进行限制。
 
 #### Java Code:
