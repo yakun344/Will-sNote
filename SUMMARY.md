@@ -72,6 +72,7 @@
   * [Best Time To Buy Ang Sell Stock II](dynamic-programming/best-time-to-buy-ang-sell-stock-ii.md)
   * [Best Time to Buy and Sell Stock III](dynamic-programming/best-time-to-buy-and-sell-stock-iii.md)
   * [Best Time to Buy and Sell Stock IV](dynamic-programming/best-time-to-buy-and-sell-stock-iv.md)
+  * [Delete Operation for Two Strings（LCS）](dynamic-programming/delete-operation-for-two-stringslcs.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
