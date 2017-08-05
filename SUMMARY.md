@@ -57,6 +57,7 @@
   * [Find Duplicate File in System](chapter1/find-duplicate-file-in-system.md)
   * [Fraction Addition and Subtraction](chapter1/fraction-addition-and-subtraction.md)
   * [Is Subsequence](chapter1/is-subsequence.md)
+  * [Maximum Product of Word Lengths](chapter1/maximum-product-of-word-lengths.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
 * [Random](random.md)
