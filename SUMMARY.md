@@ -45,6 +45,7 @@
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Valid Triangle Number](linkedlist-and-array/valid-triangle-number.md)
+  * [Odd Even Linked List](linkedlist-and-array/odd-even-linked-list.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
 * [String Manipulation](chapter1.md)
