@@ -102,6 +102,7 @@
   * [Search a 2D Matrix II ](other-problems/search-a-2d-matrix-ii.md)
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Minimum Number of Arrows to Burst Balloons](other-problems/minimum-number-of-arrows-to-burst-balloons.md)
+  * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
 
 ## Tips for Python
 
