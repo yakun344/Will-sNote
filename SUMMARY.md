@@ -104,6 +104,7 @@
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Minimum Number of Arrows to Burst Balloons](other-problems/minimum-number-of-arrows-to-burst-balloons.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
+  * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
 
 ## Tips for Python
 
