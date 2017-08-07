@@ -104,7 +104,8 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
     }
 ```
 接下来，我们还可以应用 **Alpha-Beta Pruning** 算法对上面的negaMax进行优化。详见前面的链接。
-在这里，我们对 minMax() 函数传入每层选择的数字，这样到了出口我们就会知道这条path的总分，进而进行剪枝就会变得方便。![](/assets/Screen Shot 2017-08-01 at 10.42.02 PM.png) ![](/assets/Screen Shot 2017-08-01 at 10.44.54 PM.png)!![![](/assets/Screen Shot 2017-08-01 at 10.45.45 PM.pn](/assets/Screen Shot 2017-08-01 at 10.45.59 PM.png)g)![](/assets/Screen Shot 2017-08-01 at 10.46.12 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.33 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.49 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.59 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.12 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.23 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.33 PM.png)代码如下：
+在这里，我们对 minMax() 函数传入每层选择的数字，这样到了出口我们就会知道这条path的总分，进而进行剪枝就会变得方便。![](/assets/Screen Shot 2017-08-01 at 10.42.02 PM.png) ![](/assets/Screen Shot 2017-08-01 at 10.44.54 PM.png)!![![](/assets/Screen Shot 2017-08-01 at 10.45.45 PM.pn](/assets/Screen Shot 2017-08-01 at 10.45.59 PM.png)g)![](/assets/Screen Shot 2017-08-01 at 10.46.12 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.33 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.49 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.46.59 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.12 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.23 PM.png)![](/assets/Screen Shot 2017-08-01 at 10.47.33 PM.png)
+Java 代码如下：
 ```java
     // 使用 Alpha-Beta剪枝 算法优化上面的negaMax算法
     // alpha 为lower bound，beta 为upper bound
@@ -140,6 +141,51 @@ Given an array of scores, predict whether player 1 is the winner. You can assume
             return player * Math.max(player * s1, player * s2);
         }
     }
+```
+Python Code:
+```python
+    # nega-max Alpha-Beta pruning algorithm
+    class Solution(object):
+        def PredictTheWinner(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: bool
+            """
+            if len(nums) % 2 == 0: return True
+            self.count = 0
+            ret = self.minMax(nums, 0, len(nums) - 1, 0, float('-INF'), float('INF'), True) >= 0
+            print self.count
+            return ret
+        
+        # alpha: lower bound of min node, beta: upper bound of max node
+        def minMax(self, nums, start, end, currScore, alpha, beta, player1):
+            self.count += 1
+            if player1: 
+                # max node
+                if start > end:
+                    return currScore
+                left = self.minMax(nums, start + 1, end, currScore + nums[start], alpha, beta, False)
+                
+            # pruning
+                if left > beta:
+                    return left
+                alpha = max(alpha, left)
+                
+                right = self.minMax(nums, start, end - 1, currScore + nums[end], alpha, beta, False)
+                return max(left, right)
+            else:
+                # min node
+                if start > end:
+                    return currScore
+                left = self.minMax(nums, start + 1, end, currScore - nums[start], alpha, beta, True)
+                
+            # pruning
+                if left < alpha:
+                    return left
+                beta = min(left, beta)
+                
+                right = self.minMax(nums, start, end - 1, currScore - nums[end], alpha, beta, True)
+                return min(left, right)
 ```
 
 **经过测试：** 应用Alpha-Beta Pruning 之后，时间复杂度变为普通minMax的多项式低阶。而根据wiki，平均应为普通minMax方法的 3/4 次方。比较符合。
