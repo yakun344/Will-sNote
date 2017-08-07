@@ -168,7 +168,7 @@ Python Code:
                 
             # pruning
                 if left > beta:
-                    return left
+                    return left  # 注意这里返回left，而不是beta
                 alpha = max(alpha, left)
                 
                 right = self.minMax(nums, start, end - 1, currScore + nums[end], alpha, beta, False)
@@ -181,7 +181,7 @@ Python Code:
                 
             # pruning
                 if left < alpha:
-                    return left
+                    return left  # 同理
                 beta = min(left, beta)
                 
                 right = self.minMax(nums, start, end - 1, currScore - nums[end], alpha, beta, True)
