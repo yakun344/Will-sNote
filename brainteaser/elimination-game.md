@@ -27,7 +27,7 @@ Find the last number that remains starting with a list of length n.
 #### Basic Idea:
 [这里](https://discuss.leetcode.com/topic/59293/java-easiest-solution-o-logn-with-explanation) 是一个很好的解读。
 
-基本思路就是跟踪当前序列的最左边元素，称为head。当我们从左边开始的时候，这个head一定会右移，当我们从右开始的时候，只有当前序列长度为奇数的时候，head会右移。右移的步数初始为1，每次乘二。
+基本思路就是跟踪当前序列的最左边元素，称为head。当我们从左边开始的时候，这个head一定会右移，当我们从右开始的时候，只有当前序列长度为奇数的时候，head会右移。右移的步数初始为1，每次乘二。当序列长度为1的时候，head就是唯一的元素，返回head即可。
 
 #### Java Code:
 ```java
