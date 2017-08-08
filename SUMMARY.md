@@ -60,6 +60,7 @@
   * [Is Subsequence](chapter1/is-subsequence.md)
   * [Maximum Product of Word Lengths](chapter1/maximum-product-of-word-lengths.md)
   * [Longest Repeating Character Replacement](chapter1/longest-repeating-character-replacement.md)
+  * 482. License Key Formatting
 * [Random](random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
