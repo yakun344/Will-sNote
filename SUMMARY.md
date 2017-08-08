@@ -59,6 +59,7 @@
   * [Fraction Addition and Subtraction](chapter1/fraction-addition-and-subtraction.md)
   * [Is Subsequence](chapter1/is-subsequence.md)
   * [Maximum Product of Word Lengths](chapter1/maximum-product-of-word-lengths.md)
+  * [Longest Repeating Character Replacement](chapter1/longest-repeating-character-replacement.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
 * [Random](random.md)
