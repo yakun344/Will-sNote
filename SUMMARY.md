@@ -99,6 +99,8 @@
   * [Count Primes](other-problems/count-primes.md)
   * [Divide Two Integers](other-problems/divide-two-integers.md)
   * [2 Keys Keyboard](other-problems/2-keys-keyboard.md)
+* [Brainteaser](brainteaser.md)
+  * [Bulb Switcher](brainteaser/bulb-switcher.md)
 * [Other Problems](other-problems.md)
   * [Add Binary](other-problems/add-binary.md)
   * [Min Stack](min-stack.md)
