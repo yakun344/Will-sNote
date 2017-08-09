@@ -61,6 +61,7 @@
   * [Maximum Product of Word Lengths](chapter1/maximum-product-of-word-lengths.md)
   * [Longest Repeating Character Replacement](chapter1/longest-repeating-character-replacement.md)
   * [License Key Formatting](chapter1/license-key-formatting.md)
+  * [Single Number II](chapter1/single-number-ii.md)
 * [Random](random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
