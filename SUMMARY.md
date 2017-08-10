@@ -48,6 +48,7 @@
   * [Odd Even Linked List](linkedlist-and-array/odd-even-linked-list.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
+  * [Find Right Interval](binary-search/find-right-interval.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
