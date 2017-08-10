@@ -97,6 +97,8 @@ You may assume none of these intervals have the same start point.
 **思路2：TreeMap**
 利用treemap自带排序的性质，把每个start及其index存入treemap,然后对每个end在map中找大于等于它的最小的start对应的index。
 
+注意TreeMap的使用。
+
 ```java
     // Using TreeMap
     // treemap 存储所有的start-index对，然后对每个原interval的end，找treemap中最小的大于等于它的start的index
