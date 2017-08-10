@@ -85,6 +85,7 @@
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
   * [Single Number II](chapter1/single-number-ii.md)
+  * [Single Number III](bit-manipulation/single-number-iii.md)
 * [Permutation & Combination & Subsets](permutation-and-combination.md)
   * [Subsets](permutation-and-combination/subsets.md)
   * [Beautiful Arrangement](permutation-and-combination/beautiful-arrangement.md)
