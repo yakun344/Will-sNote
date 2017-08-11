@@ -68,6 +68,7 @@
   * [Random Pick Index](random/random-pick-index.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
+  * [Lexicographical Numbers](lexicographical-numbers.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [House Robber III](dynamic-programming/house-robber-iii.md)
