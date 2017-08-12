@@ -114,6 +114,7 @@
   * [Count Primes](other-problems/count-primes.md)
   * [Divide Two Integers](other-problems/divide-two-integers.md)
   * [2 Keys Keyboard](other-problems/2-keys-keyboard.md)
+  * [Gray Code](other-problems/gray-code.md)
 * [Brainteaser](brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
