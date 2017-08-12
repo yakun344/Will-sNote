@@ -69,6 +69,8 @@
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
+* [Greedy Algorithm Problems](greedy-algorithm-problems.md)
+  * [Non-overlapping Intervals](greedy-algorithm-problems/non-overlapping-intervals.md)
 * [Dynamic Programming](dynamic-programming.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [House Robber III](dynamic-programming/house-robber-iii.md)
@@ -110,13 +112,13 @@
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
 * [Other Problems](other-problems.md)
-  * [Add Binary](other-problems/add-binary.md)
   * [Min Stack](min-stack.md)
   * [Drop Eggs](other-problems/drop-eggs.md)
   * [Search a 2D Matrix II ](other-problems/search-a-2d-matrix-ii.md)
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Minimum Number of Arrows to Burst Balloons](other-problems/minimum-number-of-arrows-to-burst-balloons.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
+  * [Add Binary](other-problems/add-binary.md)
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
 
 ## Tips for Python
