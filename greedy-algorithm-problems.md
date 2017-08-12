@@ -1,1 +1,1 @@
-## Problems about greedy algorithm
+## Interval Problems
