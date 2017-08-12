@@ -19,6 +19,8 @@ Given an array of meeting time intervals consisting of start and end times [[s1,
 
 ![](/assets/Untitled-1.jpg)
 
+这种思路可以算作是：**基于事件的分析**
+
 #### Java Code:
 ```java
     /**
