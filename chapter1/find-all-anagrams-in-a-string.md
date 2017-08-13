@@ -35,7 +35,8 @@ The order of output does not matter.
         
 #### 思路
 最简单的方法就是把pattern string的char进行统计，建counting map，然后brute force，但是这样做的速度太慢。一个优化的方法是使用 **sliding window algorithm** ，也就是 maintain 一个长度等于`len(pattern)`的 window， 每次向右移动一格，统计进入和离开 window的char，用一个 **int need**变量记录当前还需要match的char数量，如果need==0，则说明找到一个subString。
-[这里](https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems)有一个window slide解决substring问题的模板。
+
+[这里](https://discuss.leetcode.com/topic/30941/here-is-a-10-line-template-that-can-solve-most-substring-problems) 是一个很棒的分析，有提供window slide解决substring问题的模板。
 
 #### Java code：
 ```java
