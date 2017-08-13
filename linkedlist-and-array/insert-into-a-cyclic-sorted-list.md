@@ -18,7 +18,7 @@ Given a node from a cyclic linked list which has been sorted, write a function t
     
 #### Basic Idea:
 1.  考虑当输入是null时的情况
-2.  当可以找到 curr <= target <= next 时的情况
+2.  当可以找到 `curr <= target <= next` 时的情况
 3.  target 比所有node值都大或者都小的情况
 
 #### Python Code:
