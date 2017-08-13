@@ -33,6 +33,7 @@
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Binary Tree Path Sum II](Tree/binary-tree-path-sum-ii.md)
   * [Binary Tree Serialization](Tree/binary-tree-serialization.md)
+  * [Unique Binary Search Trees II](Tree/unique-binary-search-trees-ii.md)
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
