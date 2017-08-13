@@ -17,7 +17,7 @@ Given n = 3, your program should return all 5 unique BST's shown below.
      2     1         2                 3
      
 #### Basic Idea:
-**首先明确一点**，很多时候求解的数量时用dp，但是求所有解的时候一定要用dfs。
+**首先明确一点**，很多时候求解的数量时用dp，但是求所有解的时候一定要用dfs。(用dp求此题解的数量的题目笔记在 [这里](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dynamic-programming/unique-binary-search-trees.html))
 
 所以这里首先考虑dfs的解法。我们可以定义一个`list<TreeNode> helper(int start, int end)`函数，这个函数的定义是：`返回一个list，包含[start, end]这个序列组成的所有BST`。我们利用这个函数，对于一个输入 n 即 [1,n]，我们可以另其内每个元素为root，然后生成其左右两子序列的所有BST，然后只要以其本身为root，将生成的左右子树们两两配对组装即可。
 
