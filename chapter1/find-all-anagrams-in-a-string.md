@@ -107,8 +107,8 @@ The order of output does not matter.
             
             # move left bound
             if right - left == len(p) + 1:
-                # 这里可以这么判断是因为p中没有的字符都已经在从right进入的时候
-                # 减成了负数，大于等于0的一定是在p中有的
+                # 这里可以这么判断是因为p中没有的或者少于当前window中的字符都已经在从right进入的时候
+                # 减成了负数，等于0说明window中该字符数刚好和p中相等。
                 if counter[s[left]] >= 0:
                     need += 1
                 counter[s[left]] += 1
