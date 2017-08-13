@@ -93,6 +93,7 @@
   * [Delete Operation for Two Strings（LCS）](dynamic-programming/delete-operation-for-two-stringslcs.md)
   * [Longest Palindromic Subsequence](dynamic-programming/longest-palindromic-subsequence.md)
   * [Guess Number Higher or Lower II](dynamic-programming/guess-number-higher-or-lower-ii.md)
+  * [Unique Binary Search Trees](dynamic-programming/unique-binary-search-trees.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
