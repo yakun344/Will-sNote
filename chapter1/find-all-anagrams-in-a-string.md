@@ -81,6 +81,8 @@ The order of output does not matter.
 ```
 #### Python code：
 上面的java实现采用的操作顺序是 移动right -- check need -- 移动left，下面的python实现采用 移动right -- 移动left -- check need，感觉更好理解。
+
+这里的need其实就是九章中所讲的 “需要的字母数量减去window中相应字母数量的table的绝对值和”，维持这个need，就可以做到O(1)时间内更新因为移动window造成的所有变化。
 ```python
     class Solution(object):
         def findAnagrams(self, s, p):
@@ -105,6 +107,8 @@ The order of output does not matter.
             
             # move left bound
             if right - left == len(p) + 1:
+                # 这里可以这么判断是因为p中没有的字符都已经在从right进入的时候
+                # 减成了负数，大于等于0的一定是在p中有的
                 if counter[s[left]] >= 0:
                     need += 1
                 counter[s[left]] += 1
