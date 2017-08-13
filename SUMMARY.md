@@ -78,6 +78,7 @@
   * [Summary Ranges](greedy-algorithm-problems/summary-ranges.md)
   * [Missing Ranges](greedy-algorithm-problems/missing-ranges.md)
 * [Dynamic Programming](dynamic-programming.md)
+  * [Unique Paths](dynamic-programming/unique-paths.md)
   * [House Robber](dynamic-programming/house-robber.md)
   * [House Robber III](dynamic-programming/house-robber-iii.md)
   * [Maximum Subarray](dynamic-programming/maximum-subarray.md)
