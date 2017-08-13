@@ -30,6 +30,8 @@ Given n = 3, there are a total of 5 unique BST's.
 
 则 dp[4] = f1 + f2 + f3 + f4 = 5+2+2+5 = 14.
 
+求**所有解本身**的题目分析在[这里](https://will-gxz.gitbooks.io/xiaozheng_algo/content/Tree/unique-binary-search-trees-ii.html);
+
 #### Python Code:
 ```python
     class Solution(object):
