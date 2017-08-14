@@ -24,22 +24,27 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
          *          and the index of the last number
          */
         public int[] subarraySumClosest(int[] nums) {
-            int[][] sums = new int[nums.length + 1][2];
-            for (int i = 0; i < nums.length; ++i) {
-                sums[i + 1][0] = nums[i] + sums[i][0];
-                sums[i + 1][1] = i + 1;
+            if (nums.length == 1) return new int[] {0, 0};
+            // create prefix-sum array
+            int[][] sums = new int[nums.length][2];
+            sums[0][0] = nums[0];
+            sums[0][1] = 0;
+            for (int i = 1; i < sums.length; ++i) {
+                sums[i][0] = nums[i] + sums[i - 1][0];
+                sums[i][1] = i;
             }
-            // sort
+            // sort according to prefix-sum
             Arrays.sort(sums, new Comparator<int[]>() {
                 public int compare(int[] a, int[] b) {
                     return a[0] - b[0];
-                }  
+                }
             });
-            // 逐对找最接近的
+        
+            // find closest prefix-sum pair
+            long minDiff = (long)Integer.MAX_VALUE + 1;
             int[] ret = new int[2];
-            long minDiff = 1 + (long)Integer.MAX_VALUE;
             for (int i = 1; i < sums.length; ++i) {
-                int diff = Math.abs(sums[i][0] - sums[i - 1][0]);
+                long diff = Math.abs(sums[i][0] - sums[i - 1][0]);
                 if (diff < minDiff) {
                     minDiff = diff;
                     ret[0] = sums[i][1];
@@ -47,7 +52,7 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
                 }
             }
             Arrays.sort(ret);
-            ret[1]--;
+            ret[0]++;
             return ret;
         }
     }
