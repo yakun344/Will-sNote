@@ -52,3 +52,43 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
         }
     }
 ```
+
+#### Python Code:
+```python
+    class Solution:
+        """
+        @param nums: A list of integers
+        @return: A list of integers includes the index of the first number 
+                 and the index of the last number
+        """
+        def subarraySumClosest(self, nums):
+            if len(nums) == 1:
+                return [0, 0]
+            # create prefix-sum array: sums
+                # eg: 
+                # nums: [1, 2, 3, 4]
+                # sums: [1, 3, 6,10]
+                #       [0, 1, 2, 3]
+            sums = [[0]* 2 for i in range(len(nums))]
+            sums[0][0] = nums[0]
+            sums[0][1] = 0
+            for i in range(1, len(sums)):
+                sums[i][0] = nums[i] + sums[i - 1][0]
+                sums[i][1] = i
+            
+            # sort according to prefix-sum
+            sums.sort(key = lambda a : a[0])
+            
+            # 遍历，找最小差值的prefix-sum对
+            ret = [0, 0]
+            minDiff = float('INF')
+            for i in range(1, len(sums)):
+                diff = abs(sums[i][0] - sums[i - 1][0])
+                if diff < minDiff:
+                    minDiff = diff
+                    ret = [sums[i][1], sums[i - 1][1]]
+            ret.sort()
+            ret[0] += 1
+            return ret
+```
+
