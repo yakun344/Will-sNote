@@ -24,9 +24,9 @@ The substrings with different start indexes or end indexes are counted as differ
 The input string length won't exceed 1000.
 
 #### Basic Idea:
-题目要求所有的回文序列个数，最直观的方法就是以每个字符为中心，向两边扩张。扩张的同时要考虑单数和双数的情况。对于单数，则 `expand(i, i)`，对于双数，则是 `expand(i, i+1)`。
+题目要求所有的回文子序列个数（连续的，不可以有间隔），最直观的方法就是以每个字符为中心，向两边扩张。扩张的同时要考虑单数和双数的情况。对于单数，则 `expand(i, i)`，对于双数，则是 `expand(i, i+1)`。
 
-对于**求最长回文子序列长度**的问题，在dp章节中，[这里](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dynamic-programming/longest-palindromic-subsequence.html).
+对于**求最长回文子序列长度（不需要连续）**的问题，在dp章节中，[这里](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dynamic-programming/longest-palindromic-subsequence.html).
 
 #### Python Code:
 ```python
