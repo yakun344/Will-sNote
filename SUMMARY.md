@@ -130,6 +130,7 @@
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
   * [Add Binary](other-problems/add-binary.md)
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
+  * [Insert Delete GetRandom O\(1\)](insert-delete-getrandom-o1.md)
 
 ## Tips for Python
 
