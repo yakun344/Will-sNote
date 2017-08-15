@@ -48,7 +48,10 @@ java Code：
 **思路2：使用 Priority Queue**
 利用一个priority queue，实现在每个周期中，依次选择剩余数量更多的几个task。细节直接看code，应该可以看懂。
 
-#### Java Code:
+**---特别注意：**python中使用 max heap queue 不方便，可以直接把存入的元素变为一个tuple[2]，其中[0]是元素值的相反数，[1]是其本身。
+例如：想要将 3 存入，则存入 (-3, 3)，heapq会自动将[0]位作为key。
+
+Java Code:
 ```java
     public class Solution {
         public int leastInterval(char[] tasks, int n) {
@@ -86,5 +89,39 @@ java Code：
         }
     }
 ```
-
+Python Code:
+```python
+    class Solution(object):
+        def leastInterval(self, tasks, n):
+            """
+            :type tasks: List[str]
+            :type n: int
+            :rtype: int
+            """
+            counter = [0] * 26
+            for task in tasks:
+                counter[ord(task) - ord('A')] += 1
+            
+            # push all numbers in pq
+            pq = [(-a, a) for a in counter if a > 0]
+            heapq.heapify(pq)
+            
+            # 每个周期中，一次从数量最多的task开始选择，剩余的存入list，周期结束后push回pq
+            ret = 0
+            while pq:
+                lst = []
+                time = 1
+                while time <= n + 1:
+                    if pq:
+                        task = heapq.heappop(pq)
+                        if task[1] > 1:
+                            lst.append((task[0] + 1, task[1] - 1))
+                    time += 1
+                    ret += 1
+                    if not pq and not lst:
+                        break
+                for task in lst:
+                    heapq.heappush(pq, task)
+            return ret
+```
 
