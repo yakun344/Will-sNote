@@ -133,6 +133,7 @@
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
   * [Insert Delete GetRandom O\(1\)](insert-delete-getrandom-o1.md)
   * [Exclusive Time of Functions](exclusive-time-of-functions.md)
+  * [Task Scheduler](task-scheduler.md)
 
 ## Tips for Python
 
