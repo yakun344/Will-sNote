@@ -132,6 +132,7 @@
   * [Add Binary](other-problems/add-binary.md)
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
   * [Insert Delete GetRandom O\(1\)](insert-delete-getrandom-o1.md)
+  * [Exclusive Time of Functions](exclusive-time-of-functions.md)
 
 ## Tips for Python
 
