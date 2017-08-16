@@ -118,23 +118,38 @@ N is a positive integer and will not exceed 15.
     // 如果要使用memoization，则需要使用bitmask来代替used数组，因为存储数组作为Key在java中不方便
     // from left to right, key 为string： “pos,used”
     public class Solution {
-        Map<String, Integer> cached;
-        public int countArrangement(int N) {
-            cached = new HashMap<>();
-            return dfs(N, N, 0); // used is initialized to be 0 (all numbers in [1-N] are available.
-        }
-        private int dfs(int N, int pos, int used) {
-            if (pos == 0) return 1;
-            String key = pos + "," + used;
-            if (cached.containsKey(key)) return cached.get(key);
-            int ret = 0;
-            for (int i = 1; i <= N; ++i) {
-                if (((1 << i) & used) == 0 && (pos % i == 0 || i % pos == 0)) {
-                    ret += dfs(N, pos - 1, used | (1 << i));
-                }
+            Map<String, Integer> cached;
+            public int countArrangement(int N) {
+                cached = new HashMap<String, Integer>();
+                return dfs(N, N, 0, cached);
             }
-            cached.put(key, ret);
-            return ret;
+            private int dfs(int N, int pos, int used, Map<String, Integer> cached) {
+                if (pos == 1) return 1;
+                if (pos < 1) return 0;
+                String key = pos + "," + used;
+                if (cached.containsKey(key)) return cached.get(key);
+                int ret = 0;
+                for (int i = 1; i <= N; ++i) {
+                    if (isAvailable(i, used) && ((pos % i == 0) || (i % pos == 0))) {
+                        used = setUsed(i, used);
+                        ret += dfs(N, pos - 1, used, cached);
+                        used = setUnused(i, used);
+                    }
+                }
+                cached.put(key, ret);
+                return ret;
+            }
+            
+            // 分离对于bitmap的操作，使代码更好理解
+            private int setUsed(int num, int used) {
+                return used | (1 << num);
+            }
+            private int setUnused(int num, int used) {
+                return used & (~(1 << num));
+            }
+            private boolean isAvailable(int num, int used) {
+                return ((1 << num) & used) == 0;
+            }
         }
     }
 ```
