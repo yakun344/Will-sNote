@@ -16,6 +16,7 @@ You can swap elements in the array
     In array [1,2,3,4,5], the 1st largest element is 5, 2nd largest element is 4, 3rd largest element is 3 and etc.
     
 #### Basic Idea:
+**思路1：使用 Quick Selection**
 Quick Select, 关键在于写出 bug free 的 quickselect。
 
 Java Code：
@@ -59,4 +60,21 @@ Java Code：
             nums[j] = t;
         }
     }
+```
+**思路2：使用 priority queue**
+java就是PriorityQueue, python 就是 heapq.
+
+python code:
+```python
+    class Solution:
+        # @param nums {int[]} an integer unsorted array
+        # @param k {int} an integer from 1 to n
+        # @return {int} the kth largest element
+        def kthLargestElement2(self, nums, k):
+            import heapq
+            arr = [(-a, a) for a in nums]
+            heapq.heapify(arr)
+            for i in range(k - 1):
+                heapq.heappop(arr)
+            return heapq.heappop(arr)[1]        
 ```
