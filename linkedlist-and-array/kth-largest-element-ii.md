@@ -17,3 +17,46 @@ You can swap elements in the array
     
 #### Basic Idea:
 Quick Select, 关键在于写出 bug free 的 quickselect。
+
+Java Code：
+```java
+    class Solution {
+        /**
+         * @param nums an integer unsorted array
+         * @param k an integer from 1 to n
+         * @return the kth largest element
+         */
+        public int kthLargestElement2(int[] nums, int k) {
+            if (nums == null || nums.length == 0) return -1;
+            return quickSelect(nums, k - 1);
+        }
+        // 这个函数是精髓，使用while循环避免过程中需要改变k的值
+        private int quickSelect(int[] nums, int k) {
+            int p = 0, r = nums.length - 1;
+            while (p < r) {
+                int q = partition(nums, p, r);
+                if (q == k) return nums[q];
+                if (q < k) {
+                    p = q + 1;
+                } else {
+                    r = q - 1;
+                }
+            }
+            return nums[p];
+        }
+        private int partition(int[] nums, int p, int r) {
+            int pivot = nums[r];
+            int i = p - 1;
+            for (int j = p; j < r; j++) {
+                if (nums[j] >= pivot) swap(nums, ++i, j);
+            }
+            swap(nums, ++i, r);
+            return i;
+        }
+        private void swap(int[] nums, int i, int j) {
+            int t = nums[i];
+            nums[i] = nums[j];
+            nums[j] = t;
+        }
+    }
+```
