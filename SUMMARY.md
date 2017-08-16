@@ -48,6 +48,7 @@
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Valid Triangle Number](linkedlist-and-array/valid-triangle-number.md)
   * [Increasing Triplet Subsequence](linkedlist-and-array/increasing-triplet-subsequence.md)
+  * [Median of two Sorted Arrays](linkedlist-and-array/median-of-two-sorted-arrays.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
