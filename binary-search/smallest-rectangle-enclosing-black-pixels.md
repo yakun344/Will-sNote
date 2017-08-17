@@ -18,9 +18,14 @@ and x = 0, y = 2,
 Return 6.
 
 #### Basic Idea:
-如果使用BFS的话时间复杂度会太高，可以考虑使用二分法。上下左右分别搜索，时间复杂度应该是 O(mlogn + nlogm).
+**思路 1：二分法**
+上下左右分别搜索，时间复杂度应该是 O(mlogn + nlogm).
+
+**思路 2：BFS 或者 DFS**
+时间复杂度为O(Number of black pixels) == O(mn).
 
 #### Python Code:
+二分法：
 ```python
     class Solution(object):
         def minArea(self, image, x, y):
@@ -104,3 +109,101 @@ Return 6.
             else:
                 return p
 ```
+
+#### Java Code：
+DFS：
+```java
+    // dfs solution
+    public class Solution {
+        private int[] dr = null;
+        private int[] dc = null;
+        private int up;
+        private int down;
+        private int left;
+        private int right;
+        public int minArea(char[][] image, int x, int y) {
+            dr = new int[] {0, 1, 0, -1};
+            dc = new int[] {1, 0, -1, 0};
+            up = down = x;
+            left = right = y;
+            dfs(image, x, y);
+            return (right - left + 1) * (down - up + 1);
+        }
+        
+        private void dfs(char[][] image, int r, int c) {
+            if (! isValid(image, r, c) || image[r][c] == '0') return;
+            image[r][c] = '0';
+            if (r < up) up = r;
+            if (r > down) down = r;
+            if (c < left) left = c;
+            if (c > right) right = c;
+            for (int i = 0; i < dr.length; ++i) {
+                dfs(image, r + dr[i], c + dc[i]);
+            }
+        }
+        
+        private boolean isValid(char[][] image, int r, int c) {
+            if (r < 0 || c < 0 || r >= image.length || c >= image[0].length) 
+                return false;
+            return true;
+        }
+    }
+```
+
+BFS:
+```java
+    // bfs solution
+    public class Solution {
+        private class Coord {
+            int r;
+            int c;
+            public Coord(int r, int c) {
+                this.r = r;
+                this.c = c;
+            }
+        }
+        
+        private int[] dr = null;
+        private int[] dc = null;
+        private int up;
+        private int down;
+        private int left;
+        private int right;
+        public int minArea(char[][] image, int x, int y) {
+            dr = new int[] {0, 1, 0, -1};
+            dc = new int[] {1, 0, -1, 0};
+            up = down = x;
+            left = right = y;
+            bfs(image, x, y);
+            return (right - left + 1) * (down - up + 1);
+        }
+        private void bfs(char[][] image, int r, int c) {
+            Deque<Coord> queue = new LinkedList<>();
+            queue.addFirst(new Coord(r, c));
+            while (! queue.isEmpty()) {
+                Coord coord = queue.removeLast();
+                r = coord.r;
+                c = coord.c;
+                image[r][c] = '0';
+                if (r < up) up = r;
+                if (r > down) down = r;
+                if (c < left) left = c;
+                if (c > right) right = c;
+                for (int i = 0; i < dc.length; ++i) {
+                    int nr = r + dr[i];
+                    int nc = c + dc[i];
+                    if (isValid(image, nr, nc) && image[nr][nc] == '1') {
+                        queue.addFirst(new Coord(nr, nc));
+                    }
+                    
+                }
+            }
+        }
+        private boolean isValid(char[][] image, int r, int c) {
+            if (r < 0 || c < 0 || r >= image.length || c >= image[0].length) 
+                return false;
+            return true;
+        }
+    }
+```
+    
