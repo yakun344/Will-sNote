@@ -56,6 +56,7 @@
   * [Search a 2D Matrix II ](other-problems/search-a-2d-matrix-ii.md)
   * [Maximum Number in Mountain Sequence](binary-search/maximum-number-in-mountain-sequence.md)
   * [Find Peak Element ](binary-search/find-peak-element.md)
+  * [Total Occurrence of Target](binary-search/total-occurrence-of-target.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
