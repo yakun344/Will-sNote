@@ -51,6 +51,7 @@
   * [Median of two Sorted Arrays](linkedlist-and-array/median-of-two-sorted-arrays.md)
   * [Kth Largest Element II](linkedlist-and-array/kth-largest-element-ii.md)
   * [Maximum Average Subarray](linkedlist-and-array/maximum-average-subarray.md)
+  * [Maximum Average Subarray II](linkedlist-and-array/maximum-average-subarray-ii.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)

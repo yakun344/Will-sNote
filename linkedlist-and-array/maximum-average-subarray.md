@@ -19,6 +19,8 @@ Elements of the given array will be in the range [-10,000, 10,000].
 #### Basic Idea:
 比较好的有两种思路，前缀和 以及 sliding window。时间复杂度都是O(n)。这里贴一个前缀和的java Code。
 
+此题的 follow up 就是 II，条件变成了长度不小于 k 的连续子序列的最大平均值。
+
 Java Code:
 ```java
     class Solution {
