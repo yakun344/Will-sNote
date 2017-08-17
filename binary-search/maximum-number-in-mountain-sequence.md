@@ -12,7 +12,7 @@ Given nums = [1, 2, 4, 8, 6, 3] return 8
 Given nums = [10, 9, 8, 7], return 10
 
 #### Basic Idea:
-用二分法逐渐像峰顶逼近，找拐点。因为计算 q 的方法会趋左，所有每次判断 `nums[q + 1] - nums[q]` 是安全的。
+用二分法逐渐像峰顶逼近，找拐点。
 
 #### Java Code：
 ```java
