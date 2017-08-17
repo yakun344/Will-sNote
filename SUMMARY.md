@@ -57,6 +57,7 @@
   * [Maximum Number in Mountain Sequence](binary-search/maximum-number-in-mountain-sequence.md)
   * [Find Peak Element ](binary-search/find-peak-element.md)
   * [Total Occurrence of Target](binary-search/total-occurrence-of-target.md)
+  * [K Closest Numbers In Sorted Array](binary-search/k-closest-numbers-in-sorted-array.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
