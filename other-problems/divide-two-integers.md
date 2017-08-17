@@ -3,6 +3,7 @@ _update Jul 10, 2017 18:39_
 
 ---
 [Lintcode](http://www.lintcode.com/en/problem/divide-two-integers/)
+[LeetCode](https://leetcode.com/problems/divide-two-integers/description/)
 
 Divide two integers without using multiplication, division and mod operator.
 
