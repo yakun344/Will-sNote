@@ -24,17 +24,27 @@ The output is a list of group of duplicate file paths. For each group, it contai
     [["root/a/2.txt","root/c/d/4.txt","root/4.txt"],["root/a/1.txt","root/c/3.txt"]]
 **Note:**
 No order is required for the final output.
+
 You may assume the directory name, file name and file content only has letters and digits, and the length of file content is in the range of [1,50].
+
 The number of files given is in the range of [1,20000].
+
 You may assume no files or directories share the same name in the same directory.
-You may assume each given directory info represents a unique directory. Directory path and file info are separated by a single blank space.
+
+You may assume each given directory info represents a unique directory. 
+
+Directory path and file info are separated by a single blank space.
 
 **Follow-up beyond contest:**
 
 Imagine you are given a real file system, how will you search files? DFS or BFS?
+
 If the file content is very large (GB level), how will you modify your solution?
+
 If you can only read the file by 1kb each time, how will you modify your solution?
+
 What is the time complexity of your modified solution? What is the most time-consuming part and memory consuming part of it? How to optimize?
+
 How to make sure the duplicated files you find are not false positive?
 
 #### Basic Idea:
