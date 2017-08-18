@@ -61,6 +61,7 @@
   * [K Closest Numbers In Sorted Array](binary-search/k-closest-numbers-in-sorted-array.md)
   * [Smallest Rectangle Enclosing Black Pixels](binary-search/smallest-rectangle-enclosing-black-pixels.md)
   * [Maximum Average Subarray II](linkedlist-and-array/maximum-average-subarray-ii.md)
+  * [Wood Cut](binary-search/wood-cut.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
