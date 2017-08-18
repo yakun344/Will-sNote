@@ -28,7 +28,9 @@ You may assume the directory name, file name and file content only has letters a
 The number of files given is in the range of [1,20000].
 You may assume no files or directories share the same name in the same directory.
 You may assume each given directory info represents a unique directory. Directory path and file info are separated by a single blank space.
-Follow-up beyond contest:
+
+**Follow-up beyond contest:**
+
 Imagine you are given a real file system, how will you search files? DFS or BFS?
 If the file content is very large (GB level), how will you modify your solution?
 If you can only read the file by 1kb each time, how will you modify your solution?
