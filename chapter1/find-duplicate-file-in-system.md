@@ -107,6 +107,27 @@ How to make sure the duplicated files you find are not false positive?
 ```
 另外注意，使用stream时要用 someCollection.stream() instead of stream.of();
 
+---
+_update Aug 17, 2017  22:01_
 
-
+**更新：**这种写法更为简单。java 的 split(regex) 和 python 的 re.split(regex, str) 这两个函数非常重要。
+```java
+    public class Solution {
+        public List<List<String>> findDuplicate(String[] paths) {
+            Map<String, List<String>> map = new HashMap<>();
+            for (String path : paths) {
+                String[] arr = path.split("\\s+");
+                String pwd = arr[0];
+                for (int i = 1; i < arr.length; ++i) {
+                    String[] file = arr[i].split("[()]");
+                    String file_name = file[0];
+                    String file_content = file[1];
+                    if (! map.containsKey(file_content)) map.put(file_content, new ArrayList<String>());
+                    map.get(file_content).add(pwd + "/" + file_name);
+                }
+            }
+            return map.values().stream().filter(a -> a.size() > 1).collect(Collectors.toList());
+        }
+    }
+```
 
