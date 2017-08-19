@@ -84,6 +84,8 @@
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
+* [Two Pointers Problem](two-pointers-problem.md)
+  * [3Sum](two-pointers-problem/3sum.md)
 * [Interval Problems](greedy-algorithm-problems.md)
   * [Non-overlapping Intervals](greedy-algorithm-problems/non-overlapping-intervals.md)
   * [Merge Intervals](greedy-algorithm-problems/merge-intervals.md)
