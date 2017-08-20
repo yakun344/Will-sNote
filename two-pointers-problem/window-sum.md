@@ -35,7 +35,7 @@ Given an array of n integer, and a moving window(size k), move the window at eac
                     res.append(suum)
                     suum -= nums[left]
                     left += 1  # 写在这里的if中，说明要size达到k时再开始右移left
-                right += 1
+                right += 1  # right 每次都要右移
             return res
 ```
             
