@@ -49,7 +49,7 @@ cur > right扫描结束。
         public void sortColors(int[] nums) {
             int i0 = 0, i2 = nums.length - 1;
             int i = 0;
-            while (i <= i2 && i0 <= i2) {
+            while (i <= i2 && i0 < i2) {
                 if (nums[i] == 0) swap(nums, i0++, i++);
                 else if (nums[i] == 2) swap(nums, i2--, i);
                 else i++;
