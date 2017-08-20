@@ -43,3 +43,23 @@ For the purpose of this problem, we define empty string as valid palindrome.
             s = re.sub('[^0-9a-zA-Z]', '', s).lower()
             return s == s[::-1]
 ```
+
+另一种方式，不用regex：
+```python
+    class Solution:
+        """
+        @param: s: A string
+        @return: Whether the string is a valid palindrome
+        """
+        def isPalindrome(self, s):
+            arr = [c.lower() for c in s if c.isalpha() or c.isdigit()]
+            left = 0
+            right = len(arr) - 1
+            while left < right:
+                if not arr[left] == arr[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+```
+            
