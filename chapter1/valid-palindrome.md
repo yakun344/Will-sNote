@@ -31,6 +31,27 @@ For the purpose of this problem, we define empty string as valid palindrome.
         }
     }
 ```
+In Java7，we cannot use Stream（）：
+```java
+    public class Solution {
+        public boolean isPalindrome(String s) {
+            List<Character> lst = new ArrayList<>();
+            for (char c : s.toCharArray()) {
+                char a = Character.toUpperCase(c);
+                if (Character.isLetter(a) || Character.isDigit(a)) {
+                    lst.add(a);
+                }
+            }
+            int left = 0, right = lst.size() - 1;
+            while (left < right) {
+                if (lst.get(left) != lst.get(right)) return false;
+                left++;
+                right--;
+            }
+            return true;
+        }
+    }
+```
 
 #### Python Code Using Regex:
 ```python
