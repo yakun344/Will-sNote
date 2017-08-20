@@ -30,11 +30,11 @@ Given an array of n integer, and a moving window(size k), move the window at eac
             res = []
             suum = 0
             while right < len(nums):
-                suum += nums[right]
-                if right >= k - 1:
+                suum += nums[right] # 刚扩展right，把right加入suum
+                if right >= k - 1: # window size满足条件时，结果加入res
                     res.append(suum)
                     suum -= nums[left]
-                    left += 1
+                    left += 1  # 写在这里的if中，说明要size达到k时再开始右移left
                 right += 1
             return res
 ```
