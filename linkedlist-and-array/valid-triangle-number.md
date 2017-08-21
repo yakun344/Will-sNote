@@ -67,25 +67,30 @@ The integers in the given array are in the range of [0, 1000].
 
 ```python
     # 解法2， 双指针遍历，每次固定第三条边，找a,b的范围
-    class Solution(object):
-        def triangleNumber(self, nums):
-            """
-            :type nums: List[int]
-            :rtype: int
-            """    
-            nums.sort()
-            ret = 0
-            # c 从右向左扫描
-            for c in range(len(nums) - 1, 1, -1):
-                # a, b 分别为 0到c 的最左和最右
+    class Solution:
+        """
+        @param: S: A list of integers
+        @return: An integer
+        """
+        def triangleCount(self, S):
+            # 两个短边的和大于第三边就可以组成三角形
+            # 所以可以排序后，从右向左选择边长作为第三边，用双指针确定另外两边组合数量
+            # 三边分别为 a,b,c, 时间复杂度为O(n^2)
+            if not S or len(S) < 3:
+                return 0
+            S.sort()
+            res = 0
+            for c in range(len(S) - 1, 1, -1):
+                ## 接下来转变为求a，b的和大于c的组合个数的问题
+                ## 每次固定b，找a的最小值，然后res加上b-a
                 a, b = 0, c - 1
                 while a < b:
-                    if nums[a] + nums[b] > nums[c]:
-                        ret += b - a  # 第一条边a的可能情况数量
-                        b -= 1  # 第二条边b左移
+                    if S[a] + S[b] > S[c]:
+                        res += b - a
+                        b -= 1
                     else:
-                        a += 1  # 找合适的 a 的左边界
-            return ret
+                        a += 1
+            return res
 ```
 
 #### Java Code：
