@@ -72,7 +72,7 @@ The integers in the given array are in the range of [0, 1000].
         @param: S: A list of integers
         @return: An integer
         """
-        def triangleCount(self, S):
+        def triangleNumber(self, S):
             # 两个短边的和大于第三边就可以组成三角形
             # 所以可以排序后，从右向左选择边长作为第三边，用双指针确定另外两边组合数量
             # 三边分别为 a,b,c, 时间复杂度为O(n^2)
