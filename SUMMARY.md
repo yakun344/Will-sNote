@@ -85,6 +85,7 @@
   * [K Closest Points](datastructure-problems/k-closest-points.md)
   * [Kth Largest Element II](linkedlist-and-array/kth-largest-element-ii.md)
   * [Rehashing](datastructure-problems/rehashing.md)
+  * [Merge k Sorted Lists](datastructure-problems/merge-k-sorted-lists.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
