@@ -63,6 +63,7 @@ Java Code：
 ```
 **思路2：使用 priority queue**
 java就是PriorityQueue, python 就是 heapq.
+但是要注意，要找第k大的数，pq中就需要维持当前k个最大数，则需要使用minheap；
 
 python code:
 ```python
