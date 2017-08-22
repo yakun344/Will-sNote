@@ -16,7 +16,7 @@ Return these points sorted by distance, if they are same with distance, sorted b
 #### Basic Idea:
 思路自然是使用Priority Queue：
 
-1.  只要维持一个以 distance 为 key 的 max heap，保持 heap 的 size==k，最终 heap 中就是距离origin最短的k个元素，时间复杂度为O(n + logk)；也可以用minheap，把所有点都加入heap，然后pop最小的k个元素，但是这样的话时间复杂度最坏情况会变为O(nlogn + logk), 因为相当于用一个一个push的方法建堆消耗了O(nlogn)。
+1.  只要维持一个以 distance 为 key 的 max heap，保持 heap 的 size==k，最终 heap 中就是距离origin最短的k个元素，时间复杂度为O(nlogk)；也可以用minheap，把所有点都加入heap，然后pop最小的k个元素，但是这样的话时间复杂度最坏情况会变为O(nlogn), 因为相当于用一个一个push的方法建堆消耗了O(nlogn)。
 2.  另外要注意的就是当 distance 相等时先后顺序的处理。按照题目要求，三个key分别为（dist，x，y），而这里的处理方法在**JAVA和PYTHON中是不同**的：
   *  在java中，我们通过在定义PriorityQueue的时候定义Comparator匿名类来解决；
   *  在python中，如果我们存入heapq的是一个tuple，则会自动把tuple中的attributes从左至右识别为主次key；
