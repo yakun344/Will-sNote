@@ -72,9 +72,11 @@ python code:
         # @return {int} the kth largest element
         def kthLargestElement2(self, nums, k):
             import heapq
-            arr = [(-a, a) for a in nums]
-            heapq.heapify(arr)
-            for i in range(k - 1):
-                heapq.heappop(arr)
-            return heapq.heappop(arr)[1]        
+            # 维持k个当前最大值的pq，应该用minheap，每次和当前k个最大中最小的比较
+            pq = []
+            for num in nums:
+                heapq.heappush(pq, num)
+                if len(pq) > k:
+                    heapq.heappop(pq)
+            return pq[0]  
 ```
