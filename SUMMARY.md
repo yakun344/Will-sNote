@@ -86,6 +86,7 @@
   * [Kth Largest Element II](linkedlist-and-array/kth-largest-element-ii.md)
   * [Rehashing](datastructure-problems/rehashing.md)
   * [Merge k Sorted Lists](datastructure-problems/merge-k-sorted-lists.md)
+  * [Ugly Number II ](datastructure-problems/ugly-number-ii.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
