@@ -21,9 +21,15 @@ Analyze and describe its complexity.
       return -1->2->4->null.
       
 #### Basic Idea:
+**思路1：heap**
 利用 min heap，先把每个 list 的 head 加入 heap，每次拿出当前 heap 的 peek 作为当前最小值，放入 res，再把该最小node 的 next 加入heap。这样一来，就可以保证当前 heap 的顶一定为剩余所有node中最小的。
 
 时间复杂度为O(nklogk), 因为我们每个node都访问了一遍（nk），对于每个node，需要logk的heap操作，所以是 nklogk。空间复杂度为 O(k)，即 priority queue 的 size；
+
+**思路2：merge sort 分治法**
+类似于merge sort 的思路，我们先把 k 组 head 分为 2 组，再继续划分，直到每组尺度不大于2，开始merge。
+
+时间复杂度同样为O(nklogk), 因为 `T(n) = 2T(n/2) + O(nk)`；
 
 #### Java Code：
     ```java
