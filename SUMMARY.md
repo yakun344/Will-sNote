@@ -81,6 +81,8 @@
 * [Random](random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
+* [DataStructure Problems](datastructure-problems.md)
+  * [High Five](datastructure-problems/high-five.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
