@@ -54,4 +54,54 @@ There are two properties in the node student id and scores, to ensure that each 
                     i += 1
                 res[id] = (avg + 0.0) / i
             return res
-```           
+```
+
+#### Java Code:
+```java
+    /**
+     * Definition for a Record
+     * class Record {
+     *     public int id, score;
+     *     public Record(int id, int score){
+     *         this.id = id;
+     *         this.score = score;
+     *     }
+     * }
+     */
+    public class Solution {
+        /**
+         * @param results a list of <student_id, score>
+         * @return find the average of 5 highest scores for each person
+         * Map<Integer, Double> (student_id, average_score)
+         */
+        public Map<Integer, Double> highFive(Record[] results) {
+            Map<Integer, PriorityQueue<Integer>> map = new HashMap<>();
+            for (Record rec : results) {
+                int id = rec.id;
+                int score = rec.score;
+                if (! map.containsKey(id)) map.put(id, new PriorityQueue<Integer>());
+                PriorityQueue<Integer> pq = map.get(id);
+                if (pq.size() >= 5) {
+                    if (pq.peek() < score) {
+                        pq.poll();
+                        pq.offer(score);
+                    }
+                } else {
+                    pq.offer(score);
+                }
+            }
+            Map<Integer, Double> res = new HashMap<>();
+            for (int id : map.keySet()) {
+                int i = 0;
+                double avg = 0;
+                PriorityQueue<Integer> pq = map.get(id);
+                while (! pq.isEmpty()) {
+                    avg += pq.poll();
+                    i += 1;
+                }
+                res.put(id, avg / i);
+            }
+            return res;
+        }
+    }           
+```
