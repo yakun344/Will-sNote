@@ -77,3 +77,41 @@ Analyze and describe its complexity.
         }
     }
 ```
+
+#### Python Code:
+This code got AC in LeetCode;
+    ```python
+    # Definition for singly-linked list.
+    # class ListNode(object):
+    #     def __init__(self, x):
+    #         self.val = x
+    #         self.next = None
+    
+    class Solution(object):
+        def mergeKLists(self, lists):
+            """
+            :type lists: List[ListNode]
+            :rtype: ListNode
+            """
+            dummy = ListNode(0)
+            curr = dummy
+            # 维持min heap，就可以跟踪剩余node中的最小值
+            pq = []
+            for head in lists:
+                if head:
+                    heapq.heappush(pq, (head.val, head))
+                
+            while pq:
+                node = heapq.heappop(pq)[1]
+                if node.next:
+                    heapq.heappush(pq, (node.next.val, node.next))
+                curr.next = ListNode(node.val)
+                curr = curr.next
+            return dummy.next
+```
+
+
+
+
+
+
