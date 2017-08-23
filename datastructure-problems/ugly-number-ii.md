@@ -85,4 +85,24 @@ O(n log n) or O(n) time.
         }
     }
 ```
-    
+LeetCode python:
+```python   
+    class Solution(object):
+        def nthUglyNumber(self, n):
+            """
+            :type n: int
+            :rtype: int
+            """        
+         # min heap solution
+            if n == 1:
+                return 1
+            pq = [1]        
+            for i in range(n - 1):
+                currMin = heapq.heappop(pq)
+                while pq and pq[0] == currMin:
+                    heapq.heappop(pq)
+                heapq.heappush(pq, currMin * 2)
+                heapq.heappush(pq, currMin * 3)
+                heapq.heappush(pq, currMin * 5)
+            return pq[0]
+```
