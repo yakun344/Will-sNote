@@ -87,6 +87,7 @@
   * [Rehashing](datastructure-problems/rehashing.md)
   * [Merge k Sorted Lists](datastructure-problems/merge-k-sorted-lists.md)
   * [Ugly Number II ](datastructure-problems/ugly-number-ii.md)
+  * [LRU Cache](datastructure-problems/lru-cache.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
