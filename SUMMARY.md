@@ -92,6 +92,7 @@
   * [Top k Largest Numbers II](datastructure-problems/top-k-largest-numbers-ii.md)
   * [Merge k Sorted Arrays](datastructure-problems/merge-k-sorted-arrays.md)
   * [Merge k Sorted Lists](datastructure-problems/merge-k-sorted-lists.md)
+  * [Top K Frequent Words](datastructure-problems/top-k-frequent-words.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
