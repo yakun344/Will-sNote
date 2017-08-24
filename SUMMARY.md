@@ -93,6 +93,7 @@
   * [Merge k Sorted Lists](datastructure-problems/merge-k-sorted-lists.md)
   * [Merge k Sorted Arrays](datastructure-problems/merge-k-sorted-arrays.md)
   * [Top K Frequent Words](datastructure-problems/top-k-frequent-words.md)
+  * [Heapify ](datastructure-problems/heapify.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
