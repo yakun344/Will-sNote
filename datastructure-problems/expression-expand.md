@@ -69,10 +69,111 @@ java:
     }
 ```
 
+python
+```python
+    # recursive solution
+    class Solution:
+        # @param {string} s  an expression includes numbers, letters and brackets
+        # @return {string} a string
+        def expressionExpand(self, s):
+            res = []
+            i = 0
+            while i < len(s):
+                # 普通字符
+                if s[i].isalpha():
+                    res.append(s[i])
+                    i += 1
+                # 数字
+                elif s[i].isdigit():
+                    dig = s[i]
+                    i += 1
+                    while s[i].isdigit():
+                        dig += s[i]
+                        i += 1
+                    factor = int(dig) # 系数得到了
+                    
+                    # 接下来获取之后括号内的内容
+                    i += 1  # 跳过'[' 
+                    right = -1
+                    inner = []
+                    while right != 0:
+                        if s[i] == '[': 
+                            right -= 1
+                        elif s[i] == ']': 
+                            right += 1
+                        if right == 0: 
+                            break
+                        inner.append(s[i])
+                        i += 1
+                    
+                    #  处理inner
+                    inner_expanded = self.expressionExpand(inner)
+                    res += list(inner_expanded * factor)
+                else:
+                    i += 1
+            return ''.join(res)
+```
+            
 **思路2：using stack**
 使用stack可以模拟recursion的过程；
 
-
+Java:
+```java
+    // non-recusive solution
+    public class Solution {
+        /**
+         * @param s  an expression includes numbers, letters and brackets
+         * @return a string
+         */
+        public String expressionExpand(String s) {
+            Deque<Object> stack = new LinkedList<>();
+            StringBuilder sb = new StringBuilder();
+            
+            for (int i = 0; i < s.length(); ++i) {
+                Character c = s.charAt(i);
+                // 如果是数字，则找到完整数字，并压栈
+                if (Character.isDigit(c)) {
+                    Integer factor = 0;
+                    String dig = c + "";
+                    i++;
+                    while (Character.isDigit(s.charAt(i))) {
+                        dig += s.charAt(i++);
+                    } // 此时i指向数字之后的'['
+                    factor = Integer.valueOf(dig);
+                    stack.addLast(factor);
+                } 
+                else if (Character.isLetter(c)) {
+                    stack.addLast(c);
+                } 
+                if (c == ']' || i == s.length() - 1) {
+                    // 在stack中拿出最近的直到数字的字符串，处理之后放回stack中
+                    // 便于后面的处理
+                    int factor = 1;
+                    StringBuilder inner_sb = new StringBuilder();
+                    while (! stack.isEmpty()) {
+                        if (stack.peekLast().getClass() == Integer.class) {
+                            factor = (Integer)(stack.removeLast());
+                            break;
+                        }
+                        inner_sb.append((Character)(stack.removeLast()));
+                    }
+                    String inner = inner_sb.reverse().toString();
+                    for (int j = 0; j < factor; ++j) {
+                        for (char ch : inner.toCharArray()) {
+                            stack.addLast(ch);
+                        }
+                    }
+                }
+            }
+            // 把stack中的内容放入stringbuilder，因为这里使用的stack是Deque，可以从
+            // 两端pop，很方便
+            while (! stack.isEmpty()) {
+                sb.append(stack.removeFirst());
+            }
+            return sb.toString();
+        }
+    }
+```
 
 
 
