@@ -115,7 +115,7 @@ python
 ```
             
 **思路2：using stack**
-使用stack可以模拟recursion的过程；
+使用stack可以模拟recursion的过程，但是要特别注意实现细节，跟踪好每一步之后指针 i 的位置。
 
 Java:
 ```java
