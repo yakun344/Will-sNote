@@ -4,7 +4,7 @@ _update Aug 23, 2017  23:29_
 ---
 [LintCode](http://www.lintcode.com/en/problem/heapify/)
 
-Given an integer array, heapify it into a min-heap array.
+Given an integer array, heapify it into a **min-heap** array.
 
 For a heap array A, A[0] is the root of heap, and for each `A[i]`, `A[i * 2 + 1]` is the left child of` A[i]` and `A[i * 2 + 2]` is the right child of `A[i]`.
 
