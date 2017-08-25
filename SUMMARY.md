@@ -97,6 +97,7 @@
   * [Heapify ](datastructure-problems/heapify.md)
   * [Longest Consecutive Sequence](datastructure-problems/longest-consecutive-sequence.md)
   * [Expression Expand](datastructure-problems/expression-expand.md)
+  * [Zigzag Iterator](datastructure-problems/zigzag-iterator.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
