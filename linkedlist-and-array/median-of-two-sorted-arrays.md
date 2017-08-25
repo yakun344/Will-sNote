@@ -23,6 +23,8 @@ The overall run time complexity should be O(log (m+n)).
 
 于是，我们就可以得到一个log(n)时间的解法。
 
+实现的细节：当两个数组不一样长的时候，可能会出现 k/2 比短的那个数组长度还大，此时我们可以假设两个数组都是无限长，超过有效值部分都是 INF；
+
 #### Java Code：
 ```java
     class Solution {
