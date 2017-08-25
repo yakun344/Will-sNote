@@ -90,6 +90,7 @@
   * [Min Stack](min-stack.md)
   * [Implement Stack by Two Queues](datastructure-problems/implement-stack-by-two-queues.md)
   * [LRU Cache](datastructure-problems/lru-cache.md)
+  * [LFU Cache](datastructure-problems/lfu-cache.md)
   * [Top k Largest Numbers II](datastructure-problems/top-k-largest-numbers-ii.md)
   * [Merge k Sorted Lists](datastructure-problems/merge-k-sorted-lists.md)
   * [Merge k Sorted Arrays](datastructure-problems/merge-k-sorted-arrays.md)
