@@ -89,6 +89,8 @@ Follow up Zigzag Iterator: What if you are given k 1d vectors? How well can your
 #### Basic Idea:
 这道题目是之前那道的 Follow Up。事实上需要改动的地方就是把之前的 boolean flag 改为一个数字，用来标识下一个element 所在 list 的序号。同时，还需要建一个 HashMap 记录每个 list 下一个要访问的index；
 
+具体地，我们用一个getNextList 的 helper function 简化逻辑。这个function接受一个当前list的编号，计算下一个仍未遍历完的list编号。如果所有list都已经遍历完，则返回-1；
+
 #### Java Code:
 ```java
     public class ZigzagIterator2 {
