@@ -26,29 +26,27 @@ All root-to-leaf paths are:
 #### Recursive DFS
 Python Code：
 ```python
+    # dfs recursive
     class Solution(object):
-        res = []
         def binaryTreePaths(self, root):
             """
             :type root: TreeNode
             :rtype: List[str]
             """
-            def dfs(node, path): #path is a [string]
-                if not node: return
-                if not node.left and not node.right:
-                    self.res.append(path + str(node.val))
-                path += str(node.val) + '->'
-                if node.left:
-                    dfs(node.left, path[:])
-                if node.right:
-                    dfs(node.right, path[:])
+            def dfs(root, path):
+                if root is None:
+                    return
+                if root.left is None and root.right is None:
+                    res.append(path + str(root.val))
+                    return
+                if root.left:
+                    dfs(root.left, path + str(root.val) + '->')
+                if root.right:
+                    dfs(root.right, path + str(root.val) + '->')
                     
-            if root is None:
-                return self.res
+            res = []
             dfs(root, '')
-            ret = self.res[:]
-            del self.res[:]
-            return ret
+            return res
 ```
 
 #### DFS with Stack
