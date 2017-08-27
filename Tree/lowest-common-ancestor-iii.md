@@ -70,3 +70,45 @@ node A or node B may not exist in tree.
         }
     }
 ```
+
+---
+_update Aug 27, 2017  16:08_
+
+更新python的解，对上面的java解法进一步简化，完全的按照可能出现的情况分情况讨论，思路更加自然；
+#### Python
+```python
+    class Solution:
+        """
+        @param {TreeNode} root The root of the binary tree.
+        @param {TreeNode} A and {TreeNode} B two nodes
+        @return Return the LCA of the two nodes.
+        """ 
+        def lowestCommonAncestor3(self, root, A, B):
+            def helper(root):
+                if not root:
+                    return None
+                left = helper(root.left)
+                right = helper(root.right)
+                # 如果 A==B，自己是ancestor
+                if root == A and root == B:
+                    flag[0] = flag[1] = True
+                    return root
+                if root == A:
+                    flag[0] = True
+                    return root
+                if root == B:
+                    flag[1] = True
+                    return root
+                # 处理过各种情况之后再考虑返回
+                if (left == A and right == B) or (left == B and right == A):
+                    return root
+                # 如果当前root不是lowest ancestor，则返回l和r中非null的，若都是null，则返回null
+                return left if left else right
+                
+            flag = [False] * 2
+            ret = helper(root)
+            if not flag[0] or not flag[1]:
+                return None
+            return ret
+```
+
