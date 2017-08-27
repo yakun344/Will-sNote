@@ -54,3 +54,39 @@ Don't forget to mark the left child of each node to null. Or you will get Time L
         }
     }
 ```
+
+---
+update Aug 26,2017  22:05
+
+更新一段Python的code，与前面先处理再遍历一遍左子树找lowest相比，这种方法虽然代码复杂，但是可以直接返回lowest；
+```python
+    class Solution:
+        """
+        @param: root: a TreeNode, the root of the binary tree
+        @return: 
+        """
+        def flatten(self, root):
+            def helper(root):
+                if not root.left and not root.right:
+                    return root
+                if not root.left:
+                    right = helper(root.right)
+                    return right
+                if not root.right:
+                    left = helper(root.left)
+                    root.right = root.left
+                    root.left = None
+                    return left
+                else:
+                    left = helper(root.left)
+                    right = helper(root.right)
+                    left.right = root.right
+                    root.right = root.left
+                    root.left = None
+                    return right
+                
+            if root is None:
+                return root
+            helper(root)
+            return root
+```
