@@ -37,6 +37,7 @@
   * [Unique Binary Search Trees II](Tree/unique-binary-search-trees-ii.md)
   * [Two Sum IV - Input is a BST](Tree/two-sum-iv-input-is-a-bst.md)
   * [Balanced Binary Tree](Tree/balanced-binary-tree.md)
+  * Binary Tree Longest Consecutive Sequence II
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
