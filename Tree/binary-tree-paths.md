@@ -160,27 +160,20 @@ _update Jul 14, 2017 14:17_
     }
     
  // 分治 法
-    public List<String> binaryTreePaths(TreeNode root) {
-        if (root == null) return new ArrayList<String>();
-        List<String> res = helper(root);
-        return res;
-    }
-    private List<String> helper(TreeNode node) {
-        List<String> res = new ArrayList<>();
-        if (node == null) {
+    class Solution {
+        public List<String> binaryTreePaths(TreeNode root) {
+            List<String> res = new ArrayList<>();
+            if (root == null) return res;
+            if (root.left == null && root.right == null) {
+                res.add("" + root.val);
+                return res;
+            }
+            res.addAll(binaryTreePaths(root.left));
+            res.addAll(binaryTreePaths(root.right));
+            for (int i = 0; i < res.size(); ++i) {
+                res.set(i, root.val + "->" + res.get(i));
+            }
             return res;
         }
-        List<String> left = helper(node.left);
-        List<String> right = helper(node.right);
-        res.addAll(left);
-        res.addAll(right);
-        if (res.size() == 0) {
-            res.add(node.val + "");
-        } else {
-            for (int i = 0; i < res.size(); ++i) {
-                res.set(i, node.val + "->" + res.get(i));
-            }
-        }
-        return res;
     }
 ```
