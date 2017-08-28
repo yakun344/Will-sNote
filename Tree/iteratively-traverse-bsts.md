@@ -51,6 +51,8 @@ Inorder 稍微复杂一些，可以画示意图理解。
 ```
 
 ### Postorder
+这道题目在LeetCode里居然是hard。。这或许是我见过的最草率的hard题目了，233333；[LeetCode](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)
+
 Postorder 是最复杂的，有两种实现方法，一种用两个stack，另一种只用一个。这里提供只用一个stack的。
 
 基本思想是先像 inorder 一样把node一路向左 push in stack。然后每次检查`stack.peek`，如果`peek` 没有`right child` 或者 `rc == curr`即右孩子刚刚 visited 过，则另`curr = stack.pop()`，visit 这个 node。如果`peek`有`right child`且没有 visited 过，则把它当做root，一路向左 push in stack。
