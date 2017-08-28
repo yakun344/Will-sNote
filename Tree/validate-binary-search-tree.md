@@ -67,3 +67,35 @@ A single node tree is a BST
         }
     }
 ```
+
+---
+_update Aug 27, 2017  20:39_
+
+更新一个Python的解法，和前面Java的思路类似，但是这次我们不使用boolean flag，而是当我们检测到当前树invalid时，直接返回None；
+另外还有一种思路，最简单的，就是inorder遍历一遍，然后验证生成的数组是否是递增的，但是这种方法有局限，就是无法判断如下情况：
+
+         1                   1
+       /   \     ---------     \
+      1     1                   1
+                                  \
+                                   1
+      有相同的 inorderList: [1,1,1]
+      
+ #### Python:
+ ```python
+     class Solution(object):
+        def isValidBST(self, root):
+            # 返回（min, max），如果检查出已经invalid，返回None
+            def helper(root):
+                if not root:
+                    return (float('inf'), float('-inf'))
+                left = helper(root.left)
+                right = helper(root.right)
+                if not left or not right:
+                    return None
+                if left[1] >= root.val or right[0] <= root.val:
+                    return None
+                return (min(left[0], right[0], root.val), max(left[1], right[1], root.val))
+            
+            return helper(root) is not None
+```
