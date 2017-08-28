@@ -3,6 +3,7 @@ _update Aug 28, 2017  16:30_
 
 ---
 [LintCode](http://www.lintcode.com/en/problem/binary-tree-longest-consecutive-sequence-ii/)
+[LeetCode](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/description/)
 
 Given a binary tree, find the length of the longest consecutive sequence path.
 
@@ -86,4 +87,44 @@ The path could be start and end at any node in the tree
             return new RetType(desc, asc);
         }
     }
+```
+#### Python Code:
+```python
+    class Solution(object):
+        def longestConsecutive(self, root):
+            """
+            :type root: TreeNode
+            :rtype: int
+            """
+            def helper(root):
+                if not root: return None
+                if not root.left and not root.right:
+                    self.maxLength = max(self.maxLength, 1)
+                    return (1, 1)
+                left = helper(root.left)
+                right = helper(root.right)
+                asc = 1
+                desc = 1
+                
+                if root.left and root.val == root.left.val + 1:
+                    desc = left[0] + 1
+                if root.left and root.val == root.left.val - 1:
+                    asc = left[1] + 1
+                if root.right and root.val == root.right.val + 1:
+                    desc = max(desc, right[0] + 1)
+                if root.right and root.val == root.right.val - 1:
+                    asc = max(asc, right[1] + 1)
+                    
+                if root.left and root.right:
+                    if root.val == root.left.val + 1 and root.val == root.right.val - 1:
+                        self.maxLength = max(self.maxLength, left[0] + 1 + right[1])
+                    elif root.val == root.left.val - 1 and root.val == root.right.val + 1:
+                        self.maxLength = max(self.maxLength, left[1] + 1 + right[0])
+                
+                self.maxLength = max(self.maxLength, asc, desc)
+                return (desc, asc)
+            
+            self.maxLength = 0
+            helper(root)
+            return self.maxLength
 ```
