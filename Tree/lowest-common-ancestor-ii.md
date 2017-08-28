@@ -62,4 +62,31 @@ The node has an extra attribute parent which point to the father of itself. The 
         }
     }
 ```
-      
+
+#### Python Code:
+```python
+    class Solution:
+        """
+        @param root: The root of the tree
+        @param A and B: Two node in the tree
+        @return: The lowest common ancestor of A and B
+        """ 
+        def lowestCommonAncestorII(self, root, A, B):
+            if A == B:
+                return A
+            lstA = []
+            lstB = []
+            while A:
+                lstA.append(A)
+                A = A.parent
+            while B:
+                lstB.append(B)
+                B = B.parent
+            temp = root
+            length = min(len(lstA), len(lstB))
+            for i in range(length):
+                if lstA[-1] == lstB[-1]:
+                    temp = lstA.pop()
+                    lstB.pop()
+            return temp
+```   
