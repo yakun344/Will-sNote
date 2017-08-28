@@ -135,31 +135,26 @@ _update Jul 14, 2017 14:17_
 学习了九章，他们强调对于这类题目有两种思路，分别是**traverse法和分治法**。**前者**比较类似之前的第一种python实现，利用全局变量res记录paths，然后随着遍历逐个node更新path，当走到leaf的时候把path加入res。**后者**则是利用同一个问题对于左右子树的结论去推导最终结论。对于这道题，先得到左右子树所有的paths，然后在他们前面加上当前node.val（用for loop）。
 
 **java 实现：**
-```java
- // traverse 法
-    public List<String> binaryTreePaths(TreeNode root) {
-        List<String> res = new ArrayList<>();
-        if (root == null) return res;
-        helper(root, "", res);
-        for (int i = 0; i < res.size(); ++i) {
-            res.set(i, res.get(i).substring(2, res.get(i).length()));
+    ```java
+     // traverse 法
+     class Solution {
+        public List<String> binaryTreePaths(TreeNode root) {
+            List<String> res = new ArrayList<>();
+            dfs(root, "", res);
+            return res;
         }
-        return res;
-    }
-    private void helper(TreeNode node, String path, List<String> res) {
-        if (node.left == null && node.right == null) {
-            res.add(path + "->" + node.val);
-            return;
-        }
-        if (node.left != null) {
-            helper(node.left, path + "->" + node.val, res);
-        }
-        if (node.right != null) {
-            helper(node.right, path + "->" + node.val, res);
+        private void dfs(TreeNode root, String path, List<String> res) {
+            if (root == null) return;
+            if (root.left == null && root.right == null) {
+                res.add(path + root.val);
+                return;
+            }
+            dfs(root.left, path + root.val + "->", res);
+            dfs(root.right, path + root.val + "->", res);
         }
     }
     
- // 分治 法
+  // 分治 法
     class Solution {
         public List<String> binaryTreePaths(TreeNode root) {
             List<String> res = new ArrayList<>();
