@@ -47,6 +47,32 @@ For this problem, a path is defined as any sequence of nodes from some starting 
         }
     }
 ```
-
+#### Python Code:
+```python
+    class Solution(object):
+        def maxPathSum(self, root):
+            """
+            :type root: TreeNode
+            :rtype: int
+            """
+            def helper(root):
+                if not root:
+                    return 0
+                left_max = helper(root.left)
+                right_max = helper(root.right)
+                v_path_sum = left_max + right_max + root.val
+                currMaxSum = max(left_max, right_max) + root.val
+                if currMaxSum < root.val:
+                    currMaxSum = root.val
+                self.maxSum = max(currMaxSum, v_path_sum, self.maxSum)
+                return currMaxSum
+                
+                
+            if not root:
+                return 0
+            self.maxSum = float('-inf')
+            helper(root)
+            return self.maxSum
+```
 
 
