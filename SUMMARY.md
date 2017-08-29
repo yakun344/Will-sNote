@@ -33,6 +33,7 @@
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Binary Tree Path Sum II](Tree/binary-tree-path-sum-ii.md)
   * [Path Sum III](Tree/Path Sum III.md)
+  * [Binary Tree Maximum Path Sum](Tree/binary-tree-maximum-path-sum.md)
   * [Binary Tree Serialization](Tree/binary-tree-serialization.md)
   * [Unique Binary Search Trees II](Tree/unique-binary-search-trees-ii.md)
   * [Two Sum IV - Input is a BST](Tree/two-sum-iv-input-is-a-bst.md)
