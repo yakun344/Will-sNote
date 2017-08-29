@@ -6,7 +6,6 @@ _update Jun 27, 2017_
 
 [leetcode](https://leetcode.com/problems/path-sum-iii/#/description)
 
-  
 You are given a binary tree in which each node contains an integer value.
 
 Find the number of paths that sum to a given value.
@@ -64,16 +63,16 @@ Java code:
 
 ```java
     // java
-    public class Solution {
+    class Solution {
         public int pathSum(TreeNode root, int sum) {
             if (root == null) return 0;
-            return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+            return helper(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
         }
-        private int dfs(TreeNode node, int target) {
-            if (node == null) return 0;
-            int path = 0;
-            if (node.val == target) path++;
-            return path + dfs(node.left, target - node.val) + dfs(node.right, target - node.val);
+        // 返回以当前node开始向下的符合条件的path数量
+        private int helper(TreeNode root, int target) {
+            if (root == null) return 0;
+            if (root.val == target) return 1 + helper(root.left, 0) + helper(root.right, 0);
+            else return helper(root.left, target - root.val) + helper(root.right, target - root.val);
         }
     }
 ```
