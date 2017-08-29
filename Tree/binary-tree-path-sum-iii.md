@@ -36,6 +36,7 @@ Give a binary tree, and a target number, find all path that the sum of nodes equ
 时间复杂度应该是 O(N^2 * logN)，因为一颗二叉树所有路径个数为 C(N, 2) (因为树种任意两个node之间有且只有一条路径)，我们如上算法中考察了所有路径, 而路径长度为 O(logN)；
 
 #### Python Code:
+实现起来的确非常麻烦，如果用Java的话会很复杂；
 ```python
     class Solution:
         # @param {ParentTreeNode} root the root of binary tree
