@@ -41,6 +41,7 @@
   * [Balanced Binary Tree](Tree/balanced-binary-tree.md)
   * [Binary Tree Longest Consecutive Sequence II](Tree/binary-tree-longest-consecutive-sequence-ii.md)
   * [Inorder Successor in Binary Search Tree](Tree/inorder-successor-in-binary-search-tree.md)
+  * [Equal Tree Partition](Tree/equal-tree-partition.md)
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
