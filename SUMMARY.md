@@ -47,6 +47,7 @@
   * [Construct Binary Tree from Preorder and Inorder Traversal](Tree/construct-binary-tree-from-preorder-and-inorder-traversal.md)
   * [Convert Sorted List to Binary Search Tree](Tree/convert-sorted-list-to-binary-search-tree.md)
   * [Binary Tree Vertical Order Traversal](Tree/binary-tree-vertical-order-traversal.md)
+  * [Binary Tree Zigzag Level Order Traversal](Tree/binary-tree-zigzag-level-order-traversal.md)
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
