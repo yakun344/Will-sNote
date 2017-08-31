@@ -22,6 +22,7 @@
   * [Word Ladder II](graph/word-ladder-ii.md)
   * [Evaluate Division](graph/evaluate-division.md)
   * [Minimum Height Trees](graph/minimum-height-trees.md)
+  * [Path Sum IV](graph/path-sum-iv.md)
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
