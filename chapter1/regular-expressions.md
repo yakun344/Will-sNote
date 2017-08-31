@@ -1,6 +1,8 @@
 ## Regular Expressions
 Regex 是处理string非常有力的工具。使用Java可以很方便地利用regex。这里收录一些和regex相关的题目。
-    * `java`的`string.matches(regex)`会直接匹配到整个字符串的最后，返回`true or false``. 但是`python`的`re.match(regex, string)`则是从头开始尽力匹配，如果有一部分匹配，则返回一个匹配对象，否则返回None。所以使用`python`的时候需要在regex的最后加上`$`来匹配结尾。
+
+`java`的`string.matches(regex)`会直接匹配到整个字符串的最后，返回`true or false``. 但是`python`的`re.match(regex, string)`则是从头开始尽力匹配，如果有一部分匹配，则返回一个匹配对象，否则返回None。所以使用`python`的时候需要在regex的最后加上`$`来匹配结尾。
+
 ---
 _Jun 9, 2017 update_ 
 ### [459, Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/#/description)
