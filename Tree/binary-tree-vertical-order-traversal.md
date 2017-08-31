@@ -67,6 +67,7 @@ If two nodes are in the same row and column, the order should be from left to ri
 
 最终发现，用 HashMap + BFS 最为方便：
 -  新建一个QElement class，其中除 TreeNode 外还有一个 int col 属性，用来标识节点在水平方向上的位置。root 的 col 为0，左边 -1，右边 +1；
+-  HashMap 的key为 col，value 为该 col 上的 vals list；
 -  每次出队元素之后，将其val加入对应的col的list中，再把左右两子树更新过col之后加入queue；
 -  最终，按照从左到右的顺序遍历 HashMap，将所有的list放入res中返回；
 
