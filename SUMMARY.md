@@ -49,6 +49,7 @@
   * [Binary Tree Vertical Order Traversal](Tree/binary-tree-vertical-order-traversal.md)
   * [Binary Tree Zigzag Level Order Traversal](Tree/binary-tree-zigzag-level-order-traversal.md)
   * [Find Duplicate Subtrees](Tree/find-duplicate-subtrees.md)
+  * [Count Complete Tree Nodes](Tree/count-complete-tree-nodes.md)
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
