@@ -119,4 +119,61 @@ If the node is found, delete the node.
             return root
 ```
 
-
+#### Java Code:
+```java
+    class Solution {
+        public TreeNode deleteNode(TreeNode root, int key) {
+            // 先找到 key
+            TreeNode target = root;
+            TreeNode parent = root;
+            while (target != null && target.val != key) {
+                parent = target;
+                if (key < target.val) {
+                    target = target.left;
+                } else {
+                    target = target.right;
+                }
+            }
+            if (target == null) return root;
+            TreeNode temp = remove(parent, target);
+            if (target == root) return temp;
+            return root;
+        }
+        private TreeNode remove(TreeNode parent, TreeNode target) {
+            if (target.left == null && target.right == null) {
+                // 两边都空
+                if (parent.left == target) parent.left = null;
+                else parent.right = null;
+                return null;
+            } else if (! (target.left != null && target.right != null)) {
+                // 有一个子树
+                TreeNode child = target.left != null ? target.left : target.right;
+                if (parent.left == target) parent.left = child;
+                else parent.right = child;
+                return child;
+            } else {
+                // 有两个子树
+                // 找target的successor
+                TreeNode next_parent = target;
+                TreeNode next_target = target.right;
+                while (next_target.left != null) {
+                    next_parent = next_target;
+                    next_target = next_target.left;
+                }
+                // 复制，替换
+                TreeNode temp = new TreeNode(next_target.val);
+                temp.left = target.left;
+                temp.right = target.right;
+                if (parent.left == target) {
+                    parent.left = temp;
+                } else {
+                    parent.right = temp;
+                }
+                    // 重要一步，如果next_parent是之前的target， 也需要替换
+                if (next_parent == target) next_parent = temp;
+                remove(next_parent, next_target);
+                return temp;
+            }
+        }
+    }
+```
