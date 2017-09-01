@@ -51,6 +51,7 @@
   * [Find Duplicate Subtrees](Tree/find-duplicate-subtrees.md)
   * [Count Complete Tree Nodes](Tree/count-complete-tree-nodes.md)
   * [Closest Binary Search Tree Value II](Tree/closest-binary-search-tree-value-ii.md)
+  * [Delete Node in a BST](Tree/delete-node-in-a-bst.md)
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
