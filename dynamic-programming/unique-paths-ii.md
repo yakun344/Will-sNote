@@ -33,3 +33,22 @@ An obstacle and empty space is marked as 1 and 0 respectively in the grid.
 ```
 
 #### Java Code：
+只提供 O(m * n) 时间和空间的解法，可以像上题一样用滚动法优化；
+```java
+    class Solution {
+        public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+            int R = obstacleGrid.length;
+            int C = obstacleGrid[0].length;
+            int[][] dp = new int[R + 1][C + 1];
+            for (int r = 1; r <= R; ++r) {
+                for (int c = 1; c <= C; ++c) {
+                // 初始条件，左上角的path数量为1，如果左上角有障碍，则误解
+                    if (r == 1 && c == 1 && obstacleGrid[0][0] != 1) dp[r][c] = 1;
+                    else if (obstacleGrid[r - 1][c - 1] == 1) dp[r][c] = 0;
+                    else dp[r][c] = dp[r - 1][c] + dp[r][c - 1];
+                }
+            }
+            return dp[R][C];
+        }
+    }
+```
