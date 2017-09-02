@@ -39,9 +39,9 @@ Python Code：
 ```
 
 **思路2：**
-还是那句话，面对一道 hard 难度的题目，给出如上那么 “straight forward” 的解自然交不了差。要做到follow up的要求，我们需要知道一种叫做 Mirrors Traversing 算法，这种算法可以实现 O(n) time and O(1) Space 的 Binary Tree Traversing；
+还是那句话，面对一道 hard 难度的题目，给出如上那么 “straight forward” 的解自然交不了差。要做到follow up的要求，我们需要知道一种叫做 Morris-Traversal 算法，这种算法可以实现 O(n) time and O(1) Space 的 Binary Tree Traversing；
 
-[这里](http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html) 有个关于Mirrors Traverse 的介绍；
+[这里](http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html) 有个关于Morris-Traversal Alg 的介绍；
 
 盗图一张：
 ![](/assets/Screen Shot 2017-09-01 at 10.01.08 PM.png)
