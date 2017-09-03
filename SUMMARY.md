@@ -66,6 +66,7 @@
   * [Reverse Nodes in k-Group](linkedlist-and-array/reverse-nodes-in-k-group.md)
   * [Add Two Numbers II](linkedlist-and-array/add-two-numbers-ii.md)
   * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
+  * [Remove Duplicates from Sorted Array II](linkedlist-and-array/remove-duplicates-from-sorted-array-ii.md)
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Valid Triangle Number](linkedlist-and-array/valid-triangle-number.md)
   * [Increasing Triplet Subsequence](linkedlist-and-array/increasing-triplet-subsequence.md)
