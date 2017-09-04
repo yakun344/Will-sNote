@@ -7,8 +7,8 @@
 ## Algorithm Problems
 
 * [Graph](graph.md)
-  * [Dijkstra Algorithm](graph/dijkstra-algorithm.md)
   * [Floyd Algorithm](graph/floyd-algorithm.md)
+  * [Dijkstra Algorithm](graph/dijkstra-algorithm.md)
   * [Clone Graph ](graph/clone-graph.md)
   * [Graph Valid Tree](graph/graph-valid-tree.md)
   * [Topological Sorting](graph/topological-sorting.md)
