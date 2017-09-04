@@ -17,4 +17,35 @@ Floyd Algorithm 是一种用来解决多源最短路径问题（同时求出任�
 
 最终结果就是Graph中的每个格子 `G[r][c]` 都存放着 Vr 和 Vc 间的最短路径长度；
 
+#### Path Reconstruction:
+通过修改，可以让 Floyd Algo 具有重建最短路径的能力。基本思路是另外维持一个 v*v 大小的next矩阵，其中的每一个格子 `next[u][v]` 存储了从 u 到 v 的路径上的下一个节点，例如：
+```
+    next[u][v] = k; next[k][v] = v;
+    此时我们就可知，从 u 到 v 的最短路径为：u -> k -> v；
+```
 
+以下内容摘自Wiki：
+```cpp
+    let dist be a |V|*|V| array of minimum distances initialized to INF
+    let next be a |V|*|V| array of vertex indices initialized to null
+    
+    procedure FloydWarshallWithPathReconstruction ()
+       for each edge (u,v)
+          dist[u][v] ← w(u,v)  // the weight of the edge (u,v)
+          next[u][v] ← v
+       for k from 1 to |V| // standard Floyd-Warshall implementation
+          for i from 1 to |V|
+             for j from 1 to |V|
+                if dist[i][j] > dist[i][k] + dist[k][j] then
+                   dist[i][j] ← dist[i][k] + dist[k][j]
+                   next[i][j] ← next[i][k]
+    
+    procedure Path(u, v)
+       if next[u][v] = null then
+           return []
+       path = [u]
+       while u ≠ v
+           u ← next[u][v]
+           path.append(u)
+       return path
+```
