@@ -7,8 +7,10 @@
 ## Algorithm Problems
 
 * [Graph](graph.md)
-  * [Graph Valid Tree](graph/graph-valid-tree.md)
+  * [Dijkstra Algorithm](graph/dijkstra-algorithm.md)
+  * [Floyd Algorithm](graph/floyd-algorithm.md)
   * [Clone Graph ](graph/clone-graph.md)
+  * [Graph Valid Tree](graph/graph-valid-tree.md)
   * [Topological Sorting](graph/topological-sorting.md)
   * [Course Schedule](graph/course-schedule.md)
   * [Sequence Reconstruction](graph/sequence-reconstruction.md)
@@ -21,7 +23,7 @@
   * [Word Ladder](graph/word-ladder.md)
   * [Word Ladder II](graph/word-ladder-ii.md)
   * [Evaluate Division](graph/evaluate-division.md)
-  * [Minimum Height Trees](graph/minimum-height-trees.md)
+  * Floyd Algorithm
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
