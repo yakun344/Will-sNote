@@ -54,6 +54,10 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 
 给定一个由 0 1 构成的迷宫，再给定一个起始坐标start和一个目的地坐标destination。从start出发，可以向上下左右四个方向移动，碰到墙壁才会停止，然后才可以转向。另外，只有停在destination的位置上才行，经过不算。返回true或者false。
 
+关于一些**细节**：
+
+
+
 **思路 1，DFS：**
 -  2个参数，初始坐标 start，visited矩阵;
 -  以当前start为开始，向除dir外的三个方向探测，走到直到撞墙，然后递归调用，继续搜索；
