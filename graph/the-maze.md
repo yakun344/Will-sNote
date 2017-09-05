@@ -57,6 +57,7 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 关于一些**细节**：
 
 1. 关于搜索中去重，主要保证不停在同一个地方重新搜索就可以了。也就是说，每次在停下之后再将坐标加入visited，并且也是在停下之后再检查当前位置是否在visited中；
+2. 因为上面的原因，BFS的时候也需要在停下之后再将其加入queue，poll出之后再判断是否在visited中，若不在，再加入visited；
 
 **思路 1，DFS：**
 -  2个参数，初始坐标 start，visited矩阵;
@@ -119,6 +120,7 @@ Java Code:
     }
 ```
 
+**思路 2：BFS**
 
 
 
