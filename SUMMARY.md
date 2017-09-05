@@ -23,6 +23,7 @@
   * [Word Ladder](graph/word-ladder.md)
   * [Word Ladder II](graph/word-ladder-ii.md)
   * [Evaluate Division](graph/evaluate-division.md)
+  * [The Maze](graph/the-maze.md)
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
