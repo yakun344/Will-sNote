@@ -60,6 +60,8 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 -  无需关心来路方向，因为无论在当前start同方向继续调用还是折返回到前一个位置，都会遇到visited中的点而被返回；
 -  利用方向数组 dr dc 可以把四个方向写进一个for loop，使代码更简洁；
 
+**自我感觉自己这段code写的很不错，值得日后复习。**
+
 Java Code:
 ```java
     class Solution {
