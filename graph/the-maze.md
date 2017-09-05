@@ -55,7 +55,64 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 给定一个由 0 1 构成的迷宫，再给定一个起始坐标start和一个目的地坐标destination。从start出发，可以向上下左右四个方向移动，碰到墙壁才会停止，然后才可以转向。另外，只有停在destination的位置上才行，经过不算。返回true或者false。
 
 **思路 1，DFS：**
+-  三个参数，初始坐标 start，方向 dir（0,1,2,3 分别代表上下左右），visited矩阵;
+-  以当前start为开始，向除dir外的三个方向探测，走到直到撞墙，然后递归调用，继续搜索；
+-  利用方向数组 dr dc 可以把四个方向写进一个for loop，使代码更简洁；
 
+Java Code:
+```java
+    class Solution {
+        private int[] dr;
+        private int[] dc;
+        private int[][] MAZE;
+        private int R;
+        private int C;
+        private int[] dest;
+        private boolean res;
+        public boolean hasPath(int[][] maze, int[] start, int[] destination) {
+            dr = new int[]{-1, 1, 0, 0}; // u d l r
+            dc = new int[]{0, 0, -1, 1}; // u d l r
+            MAZE = maze;
+            R = maze.length;
+            C = maze[0].length;
+            dest = destination;
+            res = false;
+            
+            // 初始方向不关心
+            dfs(-1, start, new boolean[R][C]);
+            return res;
+        }
+        
+        private void dfs(int dir, int[] start, boolean[][] visited) {
+            int r = start[0], c = start[1];
+            if (Arrays.equals(start, dest)) {
+                res = true;
+                return;
+            } 
+            if (visited[r][c]) return;
+            visited[r][c] = true;
+            // up down left right
+            for (int i = 0; i < 4; ++i) {
+                if (i == dir) continue;
+                int x = r, y = c;
+                while (isValid(new int[]{x + dr[i], y + dc[i]})) {
+                    x += dr[i];
+                    y += dc[i];
+                }
+                dfs(i, new int[]{x, y}, visited);
+            }
+        }
+        
+        // return true if the coord is valid and maze[coord] == 0;
+        private boolean isValid(int[] coord) {
+            int r = coord[0];
+            int c = coord[1];
+            if (r < 0 || r >= R || c < 0 || c >= C) return false; 
+            if (MAZE[r][c] == 1) return false;
+            return true;
+        }
+    }
+```
 
 
 
