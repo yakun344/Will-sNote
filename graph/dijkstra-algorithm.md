@@ -64,6 +64,12 @@ Algo：
 
 这里可能会有疑问，如果已经在pq中的v的minDist发生了变化怎么办？其实无须担心，只需更新之后重新将其加入pq即可，这样更新之后的会先被访问，之后被加入 visited，等pq中之前那个v被poll出之后，由于已经在visitd中，会被忽略；
 
+---
+_update Sep 6,2017  19:50_
+
+**优化：**
+
+做过了 **[The Maze II](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/the-maze-ii.html)** 后，发现其实不需要visited，只需在新node出队的时候判断 `if (distance[node] < node.dist) continue`， 这样就可以排除因为`dist`更新而被重复加入pq的node。而在更新`currNode` 所有 `neighbor` 的时候也无需判断是否在`visited`中，因为检查 `distance[neighbor] > newDistance` 的过程也是 O(1) 的，已经完成的 node 不会通过判断，也就不会被重复处理。
 
 
 
