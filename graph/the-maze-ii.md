@@ -145,7 +145,7 @@ JavaCode:
 ```
 上面的实现除了使用 `distance[][]` 之外还使用了一个 `visited[][]` table 来标记每个完成的点，但是事实上我们无需这么做。判断一个节点v是否完成，只需要判断 `distance[v]` 是否小于当前出队节点所记录的距离，如果小于，那么 v 已经完成。
 
-下面的 python code 就使用了这样的简化思路：
+下面的 **python code** 就使用了这样的简化思路：
 ```python
     class Solution(object):
         def shortestDistance(self, maze, start, destination):
