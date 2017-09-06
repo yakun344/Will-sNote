@@ -122,6 +122,53 @@ Java Code:
 
 **思路 2：BFS**
 
+Python Code:
+```python
+    # BFS Solution;
+    class Solution(object):
+        def hasPath(self, maze, start, destination):
+            """
+            :type maze: List[List[int]]
+            :type start: List[int]
+            :type destination: List[int]
+            :rtype: bool
+            """
+            # return true if input is valid and maze[input]== 0
+            def isValid(coord):
+                r = coord[0]
+                c = coord[1]
+                if r < 0 or r >= R or c < 0 or c >= C:
+                    return False
+                if maze[r][c] == 1:
+                    return False
+                return True
+            
+            # 先定义变量
+            R = len(maze)
+            C = len(maze[0])
+            dr = [-1, 1, 0, 0] # u,d,l,r
+            dc = [0, 0, -1, 1]
+            
+            queue = collections.deque()
+            visited = [[False for i in range(C)] for j in range(R)]
+            queue.appendleft(tuple(start))
+            # BFS
+            while queue:
+                curr = queue.pop()
+                r, c = curr
+                if visited[r][c]: continue
+                else: visited[r][c] = True
+                for i in range(4):
+                    newCoord = [r, c]
+                    while isValid((newCoord[0] + dr[i], newCoord[1] + dc[i])):
+                        newCoord[0] += dr[i]
+                        newCoord[1] += dc[i]
+                    if newCoord == destination:
+                        return True
+                    queue.appendleft(tuple(newCoord))
+                    
+            return False
+```
 
 
 
