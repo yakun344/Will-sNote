@@ -121,6 +121,7 @@ Java Code:
 ```
 
 **思路 2：BFS**
+和dfs的做法类似，用停下再入队，出队检查去重的原则。每次poll新坐标之后先检查是否在visited中，如果不在，加入visited中，然后向四个方向搜索，走到撞墙，把最后一个valid的坐标加入queue；
 
 Python Code:
 ```python
