@@ -147,10 +147,52 @@ JavaCode:
 
 下面的 python code 就使用了这样的简化思路：
 ```python
-
-
-
-
+    class Solution(object):
+        def shortestDistance(self, maze, start, destination):
+            """
+            :type maze: List[List[int]]
+            :type start: List[int]
+            :type destination: List[int]
+            :rtype: int
+            """
+            def isValid(r, c):
+                if r < 0 or r >= R or c < 0 or c >= C:
+                    return False
+                if maze[r][c] == 1:
+                    return False
+                return True
+            
+            # 先定义变量
+            R, C = len(maze), len(maze[0])
+            dr = [-1, 1, 0, 0]
+            dc = [0, 0, -1, 1]
+            distance = [[99999 for i in range(C)] for j in range(R)]
+            pq = []
+            
+            # Dijkstra
+            heapq.heappush(pq, (0, start[0], start[1]))
+            distance[start[0]][start[1]] = 0
+            while pq:
+                weight, r, c = heapq.heappop(pq)
+                # 排除已经被更新的在pq中的节点
+                if distance[r][c] < weight:
+                    continue
+                if [r, c] == destination:
+                    return distance[r][c]
+                for i in range(4):
+                    x, y = r, c
+                    count = 0
+                    while isValid(x + dr[i], y + dc[i]):
+                        x += dr[i]
+                        y += dc[i]
+                        count += 1
+                    newDist = count + distance[r][c]
+                    # 同时就可以去重
+                    if distance[x][y] > newDist:
+                        distance[x][y] = newDist
+                        heapq.heappush(pq, (newDist, x, y))
+            return -1
+```
 
 
 
