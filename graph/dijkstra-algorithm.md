@@ -4,7 +4,7 @@ _update Sep 4, 2017  0:16_
 ---
 Dijkstra Algorithm 是一种贪心算法实现的单源最短路径（SSSP）算法，可以同时找到从单一起点 S 出发，到其他任意点的最短路径。
 
-时间复杂度：O(n^2) (Matrix), O(ElogV) (adj list + heap queue);
+时间复杂度：O(n^2) for (Matrix), O(ElogV) for (adj list + heap queue);
 
 #### Basic Idea
 Dijkstra 的基本思想是将图中所有的 V 分成两组：visited 和 not visited，同时维持一个 distance array 记录每个 v 到 S 的 距离，distance[s]=0；
