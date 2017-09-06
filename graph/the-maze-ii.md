@@ -53,14 +53,14 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 #### Basic Idea:
 **思路 1：DFS or BFS 暴力更新最短路径**
 
-这种方法维持一个distance[][] table，从start开始暴力搜索，每次撞墙停止后，更新到达点的distance，再向周围继续搜索。
+这种方法维持一个`distance[][]` table，从start开始暴力搜索，每次撞墙停止后，更新到达点的distance，再向周围继续搜索。
 
 Time Complexity： 因为搜索覆盖所有从start出发的路径可能，时间复杂度为 `O(m*n*max(m,n))`。
 因为共有 `m*n` 个节点，每个节点的搜索可以在不撞墙的情况下搜索 max(m,n) 个格子；
 
 **思路 2：Dijkstra Algorithm**
 
-利用 Dijkstra 单源最短路径的算法，维持一个 distance[][] table，从start开始，使用一个 priority queue，每次取当前距离 start 最近的点作为起始点 bfs。撞墙停止之后更新 distance。根据 Dijkstra 算法的定义，每次 poll 出队的节点都是当前已经完成的节点，所以只要遇到 destination 被poll出，就可以结束搜索。
+利用 Dijkstra 单源最短路径的算法，维持一个 `distance[][]` table，从start开始，使用一个 priority queue，每次取当前距离 start 最近的点作为起始点 bfs。撞墙停止之后更新 distance。根据 Dijkstra 算法的定义，每次 poll 出队的节点都是当前已经完成的节点，所以只要遇到 destination 被poll出，就可以结束搜索。
 
 Time Complexity: `O(m * n * log(mn))`，因为至多有 （mn）个节点和 （mn）条边。
 
@@ -143,7 +143,7 @@ JavaCode:
         }
     }
 ```
-上面的实现除了使用 distance[][] 之外还使用了一个 visited[][] table 来标记每个完成的点，但是事实上我们无需这么做。判断一个节点v是否完成，只需要判断 distance[v] 是否小于当前出队节点所记录的距离，如果小于，那么 v 已经完成。
+上面的实现除了使用 `distance[][]` 之外还使用了一个 `visited[][]` table 来标记每个完成的点，但是事实上我们无需这么做。判断一个节点v是否完成，只需要判断 `distance[v]` 是否小于当前出队节点所记录的距离，如果小于，那么 v 已经完成。
 
 下面的 python code 就使用了这样的简化思路：
 ```python
