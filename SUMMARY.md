@@ -25,6 +25,7 @@
   * [Evaluate Division](graph/evaluate-division.md)
   * [The Maze](graph/the-maze.md)
   * [The Maze II](graph/the-maze-ii.md)
+  * [The Maze III](graph/the-maze-iii.md)
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
