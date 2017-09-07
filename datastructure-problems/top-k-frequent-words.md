@@ -42,6 +42,7 @@ for k = 4, return ["code", "lint", "baby", "yes"],
 
 >时间复杂度：统计词频O(n) + 维持pq的操作O(nlogk) + 最终k次poll的O(klogk) = O(nlogk)；
 
+
 #### Python Code （思路1）：
 Bucket sort solution：
 ```python
@@ -132,3 +133,8 @@ Heap q solution:
         }
     }
 ```
+
+---
+_update Sep 7, 17:15_
+
+更新，关于python局限的问题，我们可以把 queue element 封装入一个 inner class，重写其 `__lt__` 方法，以实现功能。详见 [The Maze III](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/the-maze-iii.html) 中的python 解法之前内容；
