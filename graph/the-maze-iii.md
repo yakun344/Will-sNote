@@ -54,7 +54,10 @@ Explanation: The ball cannot reach the hole.
 这道题目困扰了很长时间。第一次见到这道题目，自己只会简单的dfs和bfs，尝试之后发现都不是很好的方法，于是打开Greg的课件开始复习，经过两天学习背景知识之后，开始尝试用 Dijkstra 算法来切入。
 
 一开始有一个疑问，Dijkstra 能否为我们找到所有最短路径？  
-答案是可以，只要每次更新neighbor的distance时候，当 oldDistance == newDistance 的时候，x相应更新pred，这种情况下每个节点的pred应该是一个list，这样
+>  答案是可以，只要每次更新neighbor的distance时候，当 oldDistance == newDistance 的时候，相应更新pred，这种情况下每个节点的pred应该是一个list，这样最终就可以重建所有路径；
+
+接下来面临的问题是先找到所有最短路径，再按照字典顺序排序，实现起来会否过于复杂？
+>  其实我们不必生成所有最短路径，只需要在更新的过程中采用合适的排序策略。在JAVA中，我们可以override CompareTo 函数，实现 1st key: distance, 2nd key: path 的比较规则，然后利用这种规则对neighbor 进行更新。
 
 #### Java Code:  
 ```java
