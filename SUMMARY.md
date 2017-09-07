@@ -115,7 +115,7 @@
   * [Kth Largest Element II](linkedlist-and-array/kth-largest-element-ii.md)
   * [Rehashing](datastructure-problems/rehashing.md)
   * [Ugly Number II ](datastructure-problems/ugly-number-ii.md)
-  * [Insert Delete GetRandom O\(1\)](insert-delete-getrandom-o1.md)
+  * [Insert Delete GetRandom O\(1\)](datastructure-problems/insert-delete-getrandom-o1.md)
   * [Min Stack](min-stack.md)
   * [Implement Stack by Two Queues](datastructure-problems/implement-stack-by-two-queues.md)
   * [LRU Cache](datastructure-problems/lru-cache.md)
