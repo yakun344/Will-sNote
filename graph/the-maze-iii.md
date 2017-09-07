@@ -58,7 +58,7 @@ Explanation: The ball cannot reach the hole.
 - 将节点的坐标、距离以及path封装进 Vertex class，做为保存在 `distance[][]` table 中和 pq 中的元素类型；
 - 在每次沿着四个方向分别搜索的时候，更新后需要加入 pq 和 distance table 的 Vertex 中要同时更新path （在后面 append 一个方向 char）；
 - 为避免 side effect，distance 中和 pq 中 以及每次更新的 vertex 都必须是新建的；
--
+- 每次 poll 出之后检查当前 Vertex 是否就是 hole 位置，是的话直接返回其 path；
 
 
 1. 一开始有一个疑问，Dijkstra 能否为我们找到所有最短路径？  
