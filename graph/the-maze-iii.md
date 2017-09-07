@@ -53,14 +53,21 @@ Explanation: The ball cannot reach the hole.
 #### Basic Idea:  
 这道题目困扰了很长时间。第一次见到这道题目，自己只会简单的dfs和bfs，尝试之后发现都不是很好的方法，于是打开Greg的课件开始复习，经过两天学习背景知识之后，开始尝试用 Dijkstra 算法来切入。
 
+算法思想概述：  
+
+- 将节点的坐标、距离以及path封装进 Vertex class，做为保存在 `distance[][]` table 中和 pq 中的元素类型；
+- 在每次沿着四个方向分别搜索的时候，更新后需要加入 pq 和 distance table 的 Vertex 中要同时更新path （在后面 append 一个方向 char）；
+- 为避免 side effect，distance 中和 pq 中 以及每次更新的 vertex 都必须是新建的；
+
+
 1. 一开始有一个疑问，Dijkstra 能否为我们找到所有最短路径？  
 >  答案是可以，只要每次更新neighbor的distance时候，当 oldDistance == newDistance 的时候，相应更新pred，这种情况下每个节点的pred应该是一个list，这样最终就可以重建所有路径；
 
 2. 接下来面临的问题是先找到所有最短路径，再按照字典顺序排序，实现起来会否过于复杂？
->  其实我们不必生成所有最短路径，只需要在更新的过程中采用合适的排序策略。在JAVA中，我们可以override CompareTo 函数，实现 1st key: distance, 2nd key: path 的比较规则，然后利用这种规则对neighbor 进行更新。
+>  其实我们不必生成所有最短路径，只需要在更新的过程中采用合适的排序策略。在JAVA中，我们可以override compareTo 函数，实现 1st key: distance, 2nd key: path 的比较规则，然后利用这种规则对neighbor 进行更新。
 
 3. 第三个问题是如何解决 hole 不在墙边的问题（想到如果需要继续搜索，不可以从hole的位置开始）？
->  当我们遇到 hole 的时候，可以直接 break 这条路，将hole及其相应 distance 和 path 加入 pq。跟据 Dijkstra 算法的定义，当 hole 的节点在 pq 顶端 poll 出时，它一定已经完成了最短路径的搜索，所以无需担心，可以直接返回。可能有人会担心可能会有同样路径长度，但是字典顺序更小的路径仍未发现，担心直接返回会有不妥
+>  当我们遇到 hole 的时候，可以直接 break 这条路，将hole及其相应 distance 和 path 加入 pq。跟据 Dijkstra 算法的定义，当 hole 的节点在 pq 顶端 poll 出时，它一定已经完成了最短路径的搜索，所以无需担心，可以直接返回。可能有人会担心可能会有同样路径长度，但是字典顺序更小的路径仍未发现，担心直接返回会有不妥。但事实上是不需要担心的，因为 pq 排序的机制已经由我们之前 override 的 compareTo 函数确定，考虑了path的问题。
 
 #### Java Code:  
 ```java
