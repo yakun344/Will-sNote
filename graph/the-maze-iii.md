@@ -156,7 +156,7 @@ Explanation: The ball cannot reach the hole.
 
 #### Python Code:
 **重要一点：**  
-前情回顾，在做到 [Top K Frequent Words](https://will-gxz.gitbooks.io/xiaozheng_algo/content/datastructure-problems/top-k-frequent-words.html) 这道题目的时候，我说过在python中，如果要以 string 的字典顺序作为第二个 key 实现 priority queue 的比较规则很难，现在有了新的解决方法，就是新建一个inner class，然后 override `__lt__` 方法，相当于 Java 中的 interface Comparable 中的 compareTo 方法。如此
+前情回顾，在做到 [Top K Frequent Words](https://will-gxz.gitbooks.io/xiaozheng_algo/content/datastructure-problems/top-k-frequent-words.html) 这道题目的时候，我说过在python中，如果要以 string 的字典顺序作为第二个 key 实现 priority queue 的比较规则很难，现在有了新的解决方法，就是新建一个inner class，然后 override `__lt__` 方法，相当于 Java 中的 interface Comparable 中的 compareTo 方法。如此就可以实现以任意比较策略进行 heapq 操作的目的。
 
 ```python
     class Solution(object):
@@ -167,6 +167,7 @@ Explanation: The ball cannot reach the hole.
                 self.c = c
                 self.distance = distance
                 self.path = path
+                
             # override less than method，作为pq的规则
             def __lt__(self, that):
                 if self.distance != that.distance:
