@@ -9,6 +9,7 @@
 * [Graph](graph.md)
   * [Floyd Algorithm](graph/floyd-algorithm.md)
   * [Dijkstra Algorithm](graph/dijkstra-algorithm.md)
+  * [Union Find \(Disjoint Sets\) Algorithm](graph/union-find-disjoint-sets-algorithm.md)
   * [Clone Graph ](graph/clone-graph.md)
   * [Graph Valid Tree](graph/graph-valid-tree.md)
   * [Topological Sorting](graph/topological-sorting.md)
@@ -25,7 +26,7 @@
   * [Evaluate Division](graph/evaluate-division.md)
   * [The Maze](graph/the-maze.md)
   * [The Maze II](graph/the-maze-ii.md)
-  * [The Maze III](graph/the-maze-iii.md)
+  * Union Find \(Disjoint Sets\) Algorithm
 * [Tree](Tree.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
