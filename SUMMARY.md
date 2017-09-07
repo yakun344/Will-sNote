@@ -88,6 +88,7 @@
   * [Smallest Rectangle Enclosing Black Pixels](binary-search/smallest-rectangle-enclosing-black-pixels.md)
   * [Maximum Average Subarray II](linkedlist-and-array/maximum-average-subarray-ii.md)
   * [Wood Cut](binary-search/wood-cut.md)
+  * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
@@ -126,6 +127,8 @@
   * [Expression Expand](datastructure-problems/expression-expand.md)
   * [Zigzag Iterator](datastructure-problems/zigzag-iterator.md)
   * [Flatten Nested List Iterator](datastructure-problems/flatten-nested-list-iterator.md)
+  * [Exclusive Time of Functions](exclusive-time-of-functions.md)
+  * [Task Scheduler](task-scheduler.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
@@ -187,6 +190,7 @@
   * [Divide Two Integers](other-problems/divide-two-integers.md)
   * [2 Keys Keyboard](other-problems/2-keys-keyboard.md)
   * [Gray Code](other-problems/gray-code.md)
+  * [Add Binary](other-problems/add-binary.md)
 * [Brainteaser](brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
@@ -194,10 +198,6 @@
   * [Drop Eggs](other-problems/drop-eggs.md)
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
-  * [Add Binary](other-problems/add-binary.md)
-  * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
-  * [Exclusive Time of Functions](exclusive-time-of-functions.md)
-  * [Task Scheduler](task-scheduler.md)
 
 ## Tips for Python
 
