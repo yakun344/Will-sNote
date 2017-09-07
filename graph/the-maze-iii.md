@@ -24,10 +24,10 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
     Input 3: hole coordinate (rowHole, colHole) = (0, 1)
 
     Output: "lul"
-    Explanation: There are two shortest ways for the ball to drop into the hole.  
-    The first way is left -> up -> left, represented by "lul".  
-    The second way is up -> left, represented by 'ul'.  
-    Both ways have shortest distance 6, but the first way is lexicographically smaller because 'l' < 'u'. So the output is "lul".
+Explanation: There are two shortest ways for the ball to drop into the hole.  
+The first way is left -> up -> left, represented by "lul".  
+The second way is up -> left, represented by 'ul'.  
+Both ways have shortest distance 6, but the first way is lexicographically smaller because 'l' < 'u'. So the output is "lul".
 
 **Example 2**
     
@@ -42,11 +42,114 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
     Input 2: ball coordinate (rowBall, colBall) = (4, 3)
     Input 3: hole coordinate (rowHole, colHole) = (3, 0)
     Output: "impossible"
-    Explanation: The ball cannot reach the hole.
+Explanation: The ball cannot reach the hole.
     
-    Note:
-    There is only one ball and one hole in the maze.  
-    Both the ball and hole exist on an empty space, and they will not be at the same position initially.  
-    The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.   
-    The maze contains at least 2 empty spaces, and the width and the height of the maze won't exceed 30.  
+**Note:**
+-  There is only one ball and one hole in the maze.  
+-  Both the ball and hole exist on an empty space, and they will not be at the same position initially.  
+-  The given maze does not contain border (like the red rectangle in the example pictures), but you could assume the border of the maze are all walls.   
+-  The maze contains at least 2 empty spaces, and the width and the height of the maze won't exceed 30.  
     
+#### Basic Idea:
+
+
+#### Java Code:
+```java
+    class Solution {
+        private class Vertex implements Comparable<Vertex>{
+            int r, c, distance;
+            String path;
+            public Vertex(int r, int c, int distance) {
+                this.r = r;
+                this.c = c;
+                this.distance = distance;
+                this.path = "";
+            }
+            public Vertex(Vertex that) {
+                this.r = that.r;
+                this.c = that.c;
+                this.path = that.path;
+                this.distance = that.distance;
+            }
+            
+            // 这样写可以实现以distance为 1st key，以path为 2nd key，调用v.compareTo(anotherVertex) 即可
+            @Override
+            public int compareTo(Vertex v) {
+                if (this.distance != v.distance) return this.distance - v.distance;
+                else return this.path.compareTo(v.path);
+            }
+        }
+        
+        int[][] MAZE;
+        int R, C;
+        
+        public String findShortestWay(int[][] maze, int[] ball, int[] hole) {
+            MAZE = maze;
+            R = maze.length;
+            C = maze[0].length;
+            int[] dr = new int[]{-1, 1, 0, 0};
+            int[] dc = new int[]{0, 0, -1, 1};
+            char[] dir = new char[]{'u', 'd', 'l', 'r'};
+            Vertex[][] distance = new Vertex[R][C];
+            PriorityQueue<Vertex> pq = new PriorityQueue<>();
+            
+            // dijkstra
+            int r = ball[0], c = ball[1];
+            distance[r][c] = new Vertex(r, c, 0);
+            pq.offer(new Vertex(r, c, 0));
+            while (! pq.isEmpty()) {
+                Vertex v = pq.poll();
+                if (v.r == hole[0] && v.c == hole[1]) return distance[hole[0]][hole[1]].path;
+                // 用以解决更新之后，之前的旧节点仍在pq中的问题
+                if (distance[v.r][v.c] != null && v.compareTo(distance[v.r][v.c]) > 0) continue;
+                for (int i = 0; i < 4; ++i) {
+                    r = v.r; 
+                    c = v.c;
+                    int count = 0;
+                    while (isValid(r + dr[i], c + dc[i])) {
+                        r += dr[i];
+                        c += dc[i];
+                        count++;
+                        // 直接break，会把hole的位置和distance加入pq，当它被poll出pq的时候，就可以确定它一定已经结束，
+                        // 可以直接返回 distance[hole].path
+                        if (r == hole[0] && c == hole[1]) {
+                            break;
+                        }
+                    }
+                    // 更新distance table 和 pq 都新建 Vertex 处理，避免 side effect
+                    if (count == 0) continue;
+                    Vertex temp = new Vertex(r, c, v.distance + count);
+                    temp.path = v.path + dir[i];
+                    if (distance[r][c] == null || distance[r][c].compareTo(temp) > 0) {
+                        distance[r][c] = temp;
+                        pq.offer(new Vertex(temp));
+                    }
+                }
+            }
+            return "impossible";
+        }
+        
+        private boolean isValid(int r, int c) {
+            if (r < 0 || r >= R || c < 0 || c >= C) return false;
+            if (MAZE[r][c] == 1) return false;
+            return true;
+        }
+    }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
