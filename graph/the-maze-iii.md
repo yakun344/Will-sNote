@@ -154,7 +154,75 @@ Explanation: The ball cannot reach the hole.
     }
 ```
 
+#### Python Code:
+**重要一点：**  
+前情回顾，在做到 [Top K Frequent Words](https://will-gxz.gitbooks.io/xiaozheng_algo/content/datastructure-problems/top-k-frequent-words.html) 这道题目的时候，我说过在python中，如果要以 string 的字典顺序作为第二个 key 实现 priority queue 的比较规则很难，现在有了新的解决方法，就是新建一个inner class，然后 override `__lt__` 方法，相当于 Java 中的 interface Comparable 中的 compareTo 方法。如此
 
+```python
+    class Solution(object):
+        # define an inner class Vertex, just like java way
+        class Vertex(object):
+            def __init__(self, r, c, distance, path):
+                self.r = r
+                self.c = c
+                self.distance = distance
+                self.path = path
+            # override less than method，作为pq的规则
+            def __lt__(self, that):
+                if self.distance != that.distance:
+                    return self.distance < that.distance
+                else:
+                    return self.path < that.path
+        
+        
+        def findShortestWay(self, maze, ball, hole):
+            """
+            :type maze: List[List[int]]
+            :type ball: List[int]
+            :type hole: List[int]
+            :rtype: str
+            """
+            def isValid(r, c):
+                if r < 0 or r >= R or c < 0 or c >= C: return False
+                if maze[r][c] == 1: return False
+                return True
+            
+            R, C = len(maze), len(maze[0])
+            dr = [-1, 1, 0, 0]
+            dc = [0, 0, -1, 1]
+            dirs = ['u', 'd', 'l', 'r']
+            pq = []
+            distance = [[None for i in range(C)] for j in range(R)]
+            
+            # Dijkstra
+            r, c = ball[0], ball[1]
+            distance[r][c] = Solution.Vertex(r, c, 0, '')
+            heapq.heappush(pq, Solution.Vertex(r, c, 0, ''))
+            while pq:
+                v = heapq.heappop(pq)
+                # 若 hole 已经完成，直接返回
+                if (v.r == hole[0] and v.c == hole[1]):
+                    return distance[v.r][v.c].path
+                # 解决更新之后重复入队问题
+                if distance[v.r][v.c] and distance[v.r][v.c] < v: # 直接用 < 比较，因为重写了__lt__
+                    continue
+                # 四方向搜索
+                for i in range(4):
+                    r, c = v.r, v.c
+                    count = 0
+                    while isValid(r + dr[i], c + dc[i]):
+                        r += dr[i]
+                        c += dc[i]
+                        count += 1
+                        if r == hole[0] and c == hole[1]:
+                            break
+                    newVertex = Solution.Vertex(r, c, v.distance + count, v.path + dirs[i])
+                    if distance[r][c] is None or newVertex < distance[r][c]:
+                        distance[r][c] = newVertex
+                        heapq.heappush(pq, Solution.Vertex(r, c, newVertex.distance, newVertex.path))
+            
+            return 'impossible'
+```
 
 
 
