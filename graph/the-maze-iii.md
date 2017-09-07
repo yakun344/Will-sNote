@@ -51,7 +51,10 @@ Explanation: The ball cannot reach the hole.
 -  The maze contains at least 2 empty spaces, and the width and the height of the maze won't exceed 30.  
     
 #### Basic Idea:  
+这道题目困扰了很长时间。第一次见到这道题目，自己只会简单的dfs和bfs，尝试之后发现都不是很好的方法，于是打开Greg的课件开始复习，经过两天学习背景知识之后，开始尝试用 Dijkstra 算法来切入。
 
+一开始有一个疑问，Dijkstra 能否为我们找到所有最短路径？  
+答案是可以，只要每次更新neighbor的distance时候，当 oldDistance == newDistance 的时候，x相应更新pred，这种情况下每个节点的pred应该是一个list，这样
 
 #### Java Code:  
 ```java
