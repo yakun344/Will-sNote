@@ -77,6 +77,7 @@
   * [Valid Triangle Number](linkedlist-and-array/valid-triangle-number.md)
   * [Increasing Triplet Subsequence](linkedlist-and-array/increasing-triplet-subsequence.md)
   * [Median of two Sorted Arrays](linkedlist-and-array/median-of-two-sorted-arrays.md)
+  * [Shortest Unsorted Continuous Subarray](linkedlist-and-array/shortest-unsorted-continuous-subarray.md)
   * [Maximum Average Subarray](linkedlist-and-array/maximum-average-subarray.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
