@@ -16,4 +16,9 @@ _update Sep 7, 2017  18:06_
 > 这种实现方式理论上耗时更多，因为每次进行 union 操作的时候都要花费 O(n) 的时间改变每个 node 的parent。即使使用 weighted-union heuristic 进行优化，仍然要消耗 O(m + nlogn) 的时间（m 为操作数，n 为元素个数）。正是因为这种方法更加耗时，这里不多做介绍。
 
 2.  Disjoint-set Forests:
-> 也就是传说中的
+> 也就是传说中的树型实现方法。通过 _union by rank_ 和 _path compression_ 两种方法的优化之后，可以达到 `O(m * α(n))≈O(m) (m 为操作数，n 为元素个数)` 时间内完成 m 个操作的时间复杂度，也就是 O(1)。这里的 `α(n)` 是一个增长极其缓慢的函数，实际应用中不会超过 4。
+
+#### Implementation
+Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wikipedia.org/wiki/Disjoint-set_data_structure);
+
+[这里](https://www.youtube.com/watch?v=ID00PMy0-vE) 还有一个图杀老师讲并查集的视频。
