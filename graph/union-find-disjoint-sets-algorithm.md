@@ -22,3 +22,89 @@ _update Sep 7, 2017  18:06_
 Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wikipedia.org/wiki/Disjoint-set_data_structure);
 
 [这里](https://www.youtube.com/watch?v=ID00PMy0-vE) 还有一个图杀老师讲并查集的视频。
+
+**基础版本的实现（使用传统的tree node结构）：**
+```java
+    import java.util.*;    
+    class UnionFind {
+        private class Node {
+            int val, rank;
+            Node parent;
+            public Node(int val) {
+                this.val = val;
+                this.rank = 0;  // 高度，一般来说只有root的rank有意义
+                this.parent = this;
+            }
+        }
+        // 用以存放 int 和 node 的对应关系
+        private Map<Integer, Node> disjointSet;
+    
+        // if x is not already in the set, add x
+        public void makeSet(int x) {
+            if (disjointSet == null) disjointSet = new HashMap<>();
+            if (! disjointSet.containsKey(x)) {
+                disjointSet.put(x, new Node(x));
+            }
+        }
+    
+        public Node find(int x) {
+            if (! disjointSet.containsKey(x)) return null;
+            Node nodex = disjointSet.get(x);
+            return find(nodex);
+        }
+        // find the root of x, do path compression along recursion
+        private Node find(Node nodex) {
+            // path compression
+            while (nodex.parent != nodex) {
+                nodex.parent = find(nodex.parent);
+                nodex = nodex.parent;
+            }
+            return nodex;
+        }
+    
+        public void union(int x, int y) {
+            Node rootx = find(x);
+            Node rooty = find(y);
+            if (rootx == null || rooty == null) return;
+            // union by rank 优化
+            if (rootx.rank < rooty.rank) {
+                rootx.parent = rooty;
+            } else if (rootx.rank > rooty.rank) {
+                rooty.parent = rootx;
+            } else {
+                // 只有当合并之前两者rank相同的时候才需要增加rank
+                rootx.parent = rooty;
+                rooty.rank++;
+            }
+        }
+    
+        public static void main(String[] args) {
+            // test
+            UnionFind uf = new UnionFind();
+            // 1,2,3,4,5 五个set
+            uf.makeSet(1);
+            uf.makeSet(2);
+            uf.makeSet(3);
+            uf.makeSet(4);
+            uf.makeSet(5);
+            // for (int i = 1; i < 6; ++i) System.out.println(uf.find(i).val);
+    
+            // 合并 1，2 以及 3，4，5
+            uf.union(1,2);
+            uf.union(3,4);
+            uf.union(4,5);
+            // for (int i = 1; i < 6; ++i) System.out.println(uf.find(i).val);
+    
+            // 合并 1，5
+            uf.union(1, 5);
+            for (int i = 1; i < 6; ++i) System.out.println(uf.find(i).val);
+        }
+    }
+```
+
+
+
+
+
+
+
