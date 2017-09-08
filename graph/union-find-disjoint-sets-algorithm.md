@@ -106,8 +106,76 @@ Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wi
     }
 ```
 
-**简化版本实现（数组实现）：**
+**QuickUnion（数组实现）：**
+[普林斯顿](http://algs4.cs.princeton.edu/15uf/)  
 这种实现方式更加简短，但是需要预先设定 disjoint set 的 maxSize。
+
+这种实现方式的本质是维持一个长度和 n 相同的 `ids[]` 数组，数组的 index 表示 id 本身，而其对应的 value 则表示其 parent。这样就形成了一种一一对应，环环相套的映射关系。每个元素（index）对应的 value 正式它的parent，而其parent对应到又是parent的parent，直到root，其对应的就是自己，这也是为什么一开始要将所有value都等于index；
+
+当我们需要做path compression 的时候，只需要令 `ids[x] = find(ids[x])`，这一步的意义就相当于 `x.parent = find(x.parent)`；
+
+至于 union by rank，我们只需要另外维持一个长度和ids相等的rank数组；
+
+Java Code:
+```java
+    // int array implementation
+        class UnionFind {
+        private int[] ids; // index是id本身，val 存的是parent的index
+        private int[] rank;
+        public void makeSet(int maxSize) {
+            ids = new int[maxSize];
+            rank = new int[maxSize]; // 初始rank都为0
+            for (int i = 0; i < ids.length; ++i) {
+                // 初始时刻令每个元素的parent都指向自己
+                ids[i] = i;
+            }
+        }
+    
+        public int find(int x) {
+            while (ids[x] != x) {
+                // path compress
+                ids[x] = find(ids[x]); // 等价于 x.parent = find(x.parent)
+                x = ids[x];
+            }
+            return x;
+        }
+    
+        public void union(int x, int y) {
+            // 先找到 x 和 y 的root
+            int rootx = find(x);
+            int rooty = find(y);
+            // union by rank
+            if (rank[rootx] < rank[rooty]) {
+                ids[rootx] = rooty;
+            } else if (rank[rooty] < rank[rootx]) {
+                ids[rooty] = rootx;
+            } else {
+                ids[rootx] = rooty;
+                rank[rooty]++;
+            }
+        }
+    
+        public static void main(String[] args) {
+            // test
+            UnionFind uf = new UnionFind();
+            // 1,2,3,4,5 五个set
+            uf.makeSet(6);
+            // for (int i = 1; i < 6; ++i) System.out.println(uf.find(i));
+    
+            // 合并 1，2 以及 3，4，5
+            uf.union(1,2);
+            uf.union(3,4);
+            uf.union(4,5);
+            // for (int i = 1; i < 6; ++i) System.out.println(uf.find(i));
+    
+            // 合并 1，5
+            uf.union(1, 5);
+            for (int i = 1; i < 6; ++i) System.out.println(uf.find(i));
+        }
+    }
+```    
+
+
 
 
 
