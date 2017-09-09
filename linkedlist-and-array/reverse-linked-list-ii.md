@@ -53,4 +53,38 @@ Given m, n satisfy the following condition:
     }
 ```
 
-
+#### Python Code
+```python
+    class Solution(object):
+        def reverseBetween(self, head, m, n):
+            """
+            :type head: ListNode
+            :type m: int
+            :type n: int
+            :rtype: ListNode
+            """
+            dummy = ListNode(0)
+            dummy.next = head
+            curr = dummy
+            
+            # 先找到 M.prev
+            for i in range(m - 1):
+                curr = curr.next
+            before = curr  # M.prev
+            M = curr.next
+            
+            # reverse M 到 N 之间的指针，并得到 N.next
+            curr = M
+            prev = None
+            next = curr.next
+            for i in range(n - m):
+                prev = curr
+                curr = next
+                next = curr.next
+                curr.next = prev
+            
+            # 拼接
+            before.next = curr; # curr == N
+            M.next = next;      # next == N.next
+            return dummy.next
+```
