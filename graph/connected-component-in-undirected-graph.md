@@ -94,6 +94,8 @@ _update Sep 8, 2017  23:21_
 2.  find 所有 v，使用 `Map<Integer, List<Integer>>` 存储；
 3.  按照要求排序，输出；
 
+具体地，为了解决这里nodes的label无规律，无法直接作为 id 的问题，我们可以用一个 `Map<Integer, Node>` 为其人为制定 id;
+
 
 
 
