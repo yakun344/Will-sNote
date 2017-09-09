@@ -66,7 +66,56 @@ Python Code:
 **思路2：Union Find**
 每个朋友圈都相当于一个不相交集合。我们通过对并查集的合并，最终所剩下的不相交集合的数量就是朋友圈的数量。  
 基本思路是：
--  首先
+-  首先初始化并查集，每个人为一个独立的 disjoint set；
+-  接下来对每个人遍历其他人，执行 union(people1, people2)；
+-  完成之后，返回当前 disjoint set 的数量；
+
+Python Code:
+```python
+    class Solution(object):
+        def findCircleNum(self, M):
+            """
+            :type M: List[List[int]]
+            :rtype: int
+            """
+            def find(x):
+                while ids[x] != x:
+                    ids[x] = find(ids[x])
+                    x = ids[x]
+                return x
+            
+            def union(x, y):
+                rootx = find(x)
+                rooty = find(y)
+                if rootx == rooty:
+                    return
+                if rank[rootx] < rank[rooty]:
+                    ids[rootx] = rooty
+                elif rank[rootx] > rank[rooty]:
+                    ids[rooty] = rootx
+                else:
+                    ids[rootx] = rooty
+                    rank[rooty] += 1
+                self.count -= 1
+            
+            def getNumber():
+                return self.count
+            
+            ids = [i for i in range(len(M))]
+            rank = [0 for i in range(len(M))]
+            self.count = len(M)
+            
+            for people in range(len(M)):
+                for friend in range(people + 1, len(M)):
+                    if M[people][friend] == 1:
+                        union(people, friend);
+    
+            return getNumber();
+```
+
+
+
+
 
 
 
