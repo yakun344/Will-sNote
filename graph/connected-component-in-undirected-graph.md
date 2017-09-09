@@ -150,7 +150,12 @@ _update Sep 8, 2017  23:21_
             return ret
 ```
 
-
+我们看到，最后的排序部分甚至可以写成一行：
+```python
+    ret = sorted([sorted(components[i]) for i in components], 
+                key = lambda component : component[0])
+```
+对比上面做了同样事情的 Java Code， Python 的 concise 真是令人叹为观止。
 
 
 
