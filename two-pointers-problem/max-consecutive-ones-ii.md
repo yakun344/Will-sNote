@@ -61,8 +61,28 @@ Java Code:
 
 Java Code:
 ```java
-
-
+    // follow up solution
+    class Solution {
+        public int findMaxConsecutiveOnes(int[] nums) {
+            if (nums == null || nums.length == 0) return 0;
+            // 如果全是1，则返回总长度
+            boolean hasZero = false; 
+            int a = 0, b = 0, c = 0;
+            for (int num : nums) {
+                if (num == 0) {
+                    hasZero = true;
+                    b = c;
+                    c = 0;
+                } else {
+                    c++;
+                }
+                a = Math.max(a, b + 1 + c);
+            }
+            if (! hasZero) return nums.length;
+            return a;
+        }
+    }
+```
 
 
 
