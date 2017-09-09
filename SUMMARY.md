@@ -147,6 +147,7 @@
   * [Sort Colors II](two-pointers-problem/sort-colors-ii.md)
   * [Window Sum](two-pointers-problem/window-sum.md)
   * [Partition Array II ](two-pointers-problem/partition-array-ii.md)
+  * [Max Consecutive Ones II](two-pointers-problem/max-consecutive-ones-ii.md)
 * [Interval Problems](greedy-algorithm-problems.md)
   * [Non-overlapping Intervals](greedy-algorithm-problems/non-overlapping-intervals.md)
   * [Merge Intervals](greedy-algorithm-problems/merge-intervals.md)
