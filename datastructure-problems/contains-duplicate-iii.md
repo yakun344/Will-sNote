@@ -9,7 +9,7 @@ Given an array of integers, find out whether there are two distinct indices i an
 #### Basic Idea:
 这道题其实是问在给定数组nums中，是否有一个window（size为k+1）使得window内有两个元素的绝对值差不大于 t；
 
-**思路 1：BST**
+**思路 1：TreeSet**
 首先想到的思路是用 sliding window 的思路，每移动一次窗口，就扫描一遍窗口中的 k 个元素，看能否和刚进入的最右边元素满足要求，时间复杂度为`O(n * min(k,n))`。但是这么做显然太慢了。接下来就想到可以优化每次移动窗口后的比较过程，利用一个 TreeSet，这样每次的比较时间复杂度就从 O(k) 变成了 O(logk), 总的时间也变为了 `O(n * min(logn, logk))`;
 
 Java Code:
