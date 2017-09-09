@@ -17,7 +17,7 @@ You can assume that no duplicate edges will appear in edges. Since all edges are
 首先是树的两个性质：
 
 1.  `#node = 1 + #edge`
-2.  所有node连通
+2.  所有node连通 （解决这个问题有两种方法，一是普通的bfs或者dfs，再就是并查集（又叫 Union Find 或 Disjoint Set））；
 
 于是我们从这两个性质出发，先判断node和edge的个数是否符合要求，然后用一个BFS来判断是否connected。
 
@@ -98,3 +98,35 @@ You can assume that no duplicate edges will appear in edges. Since all edges are
                     visited.add(neighbor)
             return len(visited) == n
 ```
+
+----
+_update Sep 8, 2017  22:08_
+
+#### 更新，Union Find Solution：
+和前面类似的思路，只要判断两点，一是 `E=V-1`，二是连通，所以问题的主体就是判断全图的 v 连通。  
+
+这里我们使用并查集来解决连通性的问题，只要先将 `0 ~ n-1` 个 vertex 加入并查集，然后将所有的边两端的节点（u,v）进行 union 操作。只要最终并查集的 size==1 就可以说明图是连通的。
+
+这么做的时间复杂度虽然和之前的算法相同，但是因为我们不必使用 initGraph 函数生成希望的 `List<Set<Integer>>` 形式的图，所以理论上速度会更快。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
