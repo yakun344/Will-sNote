@@ -94,8 +94,61 @@ _update Sep 8, 2017  23:21_
 2.  find 所有 v，使用 `Map<Integer, List<Integer>>` 存储；
 3.  按照要求排序，输出；
 
-具体地，为了解决这里nodes的label无规律，无法直接作为 id 的问题，我们可以用一个 `Map<Integer, Node>` 为其人为制定 id;
+具体地，为了解决这里nodes的label无规律，无法直接作为 id 的问题，我们可以用一个 `Map<Node, Integer>` 为其人为指定 id，这样就可以通过 node 获取其 id。反过来，因为题目中的node是以list的形式给出，我们只需要以index为id，就可以轻易从id找到node。
 
+```python
+    # Union Find Algorithm
+    class Solution:
+        # @param {UndirectedGraphNode[]} nodes a array of undirected graph node
+        # @return {int[][]} a connected set of a undirected graph
+        def connectedSet(self, nodes):
+            def find(x):
+                while ids[x] != x:
+                    ids[x] = find(ids[x])
+                    x = ids[x]
+                return x
+                
+            def union(x, y):
+                rootx = find(x)
+                rooty = find(y)
+                if rootx == rooty:
+                    return
+                if rank[rootx] < rank[rooty]:
+                    ids[rootx] = rooty
+                elif rank[rootx] > rank[rooty]:
+                    ids[rooty] = rootx
+                else:
+                    ids[rootx] = rooty
+                    rank[rooty] += 1
+            
+            # initialize Union-Find        
+            ids = [i for i in range(len(nodes))]
+            rank = [0 for i in range(len(nodes))]
+            
+            # 将node和id 一一对应
+            # 只需要存储node：id的对应，id：node的对应在nodes中是原生的
+            # 因为id就是node在nodes中的index
+            nodeId = {}
+            for i in range(len(nodes)):
+                nodeId[nodes[i]] = i
+            
+            # do union find
+            for node in nodes:
+                for neighbor in node.neighbors:
+                    union(nodeId[node], nodeId[neighbor])
+                    
+            # 将每个set中的node进行存储
+            components = collections.defaultdict(list)
+            for node in nodes:
+                id = find(nodeId[node])
+                components[id].append(node.label)
+                
+            # 将components从map中移到list中, 并排序
+            ret = [sorted(components[i]) for i in components]
+            ret.sort(key = lambda component : component[0])
+            
+            return ret
+```
 
 
 
