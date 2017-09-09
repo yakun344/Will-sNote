@@ -111,8 +111,53 @@ TimeComplexity: 这么做的时间复杂度虽然和之前的算法相同，但�
 
 Java Code:
 ```java
-
-
+    // 方法2，传说中的 Union Find Algorithm
+    class Solution {
+        private int[] ids;
+        private int[] rank;
+        private int count;
+        
+        private void makeSet(int size) {
+            ids = new int[size];
+            rank = new int[size];
+            count = size;
+            // initialize union set data structure
+            Arrays.fill(rank, 0);
+            for (int i = 0; i < size; ++i) ids[i] = i;
+        }
+        private int find(int x) {
+            while (ids[x] != x) {
+                ids[x] = find(ids[x]);
+                x = ids[x];
+            }
+            return x;
+        }
+        private void union(int x, int y) {
+            int rootx = find(x);
+            int rooty = find(y);
+            if (rootx == rooty) return;
+            if (rank[rootx] < rank[rooty]) {
+                ids[rootx] = rooty;
+            } else if (rank[rootx] > rank[rooty]) {
+                ids[rooty] = rootx;
+            } else {
+                ids[rootx] = rooty;
+                rank[rooty]++;
+            }
+            count--;
+        }
+        
+        public boolean validTree(int n, int[][] edges) {
+            if (edges == null || edges.length != n - 1) return false;
+            makeSet(n);
+            for (int[] edge : edges) {
+                int u = edge[0], v = edge[1];
+                union(u, v);
+            }
+            return count == 1;
+        }
+    }
+```
 
 
 
