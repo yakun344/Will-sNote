@@ -115,7 +115,63 @@ Python Code:
             return getNumber();
 ```
 
-
+Java Code:
+```java
+    // 传说中的 Union Find Algorithm
+    public class Solution {
+        private class UnionFind {
+            private int[] ids;
+            private int[] rank;
+            private int count;
+            public UnionFind(int size) {
+                this.ids = new int[size];
+                this.rank = new int[size];
+                this.count = size;
+                // 初始化
+                Arrays.fill(rank, 0);
+                for (int i = 0; i < size; ++i) ids[i] = i;
+            }
+            
+            public int find(int x) {
+                while (ids[x] != x) {
+                    ids[x] = find(ids[x]);
+                    x = ids[x];
+                }
+                return x;
+            }
+            
+            public void union(int x, int y) {
+                int rootx = find(x);
+                int rooty = find(y);
+                if (rootx == rooty) return;
+                if (rank[rootx] < rank[rooty]) {
+                    ids[rootx] = rooty;
+                } else if (rank[rootx] > rank[rooty]) {
+                    ids[rooty] = rootx;
+                } else {
+                    ids[rootx] = rooty;
+                    rank[rooty]++;
+                }
+                count--;
+            }
+            
+            public int getCount() { 
+                return count;
+            }
+        }
+        public int findCircleNum(int[][] M) {
+            UnionFind uf = new UnionFind(M.length); 
+            for (int i = 0; i < M.length; ++i) {
+                for (int j = i + 1; j < M.length; ++j) {
+                    if (M[i][j] == 1) {
+                        uf.union(i, j);
+                    }
+                }
+            }
+            return uf.getCount();
+        }
+    }
+```
 
 
 
