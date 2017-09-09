@@ -38,10 +38,9 @@ You can assume that no duplicate edges will appear in edges. Since all edges are
             visited.add(0);
             while (! queue.isEmpty()) {
                 int v = queue.removeLast();
-                // 出队的才是要visit的，所以此时加入visited
-                visited.add(v);
                 for (int neighbor : graph.get(v)) {
                     if (visited.contains(neighbor)) continue;
+                    visited.add(neighbor);
                     queue.addFirst(neighbor);
                 }
             }
