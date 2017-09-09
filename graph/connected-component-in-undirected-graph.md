@@ -4,6 +4,7 @@ _update Jul 19, 2017 17:36_
 ---
 [lintCode](http://www.lintcode.com/en/problem/connected-component-in-undirected-graph/)
 
+
 Find the number connected component in the undirected graph. Each node in the graph contains a label and a list of its neighbors. (a connected component (or just component) of an undirected graph is a subgraph in which any two vertices are connected to each other by paths, and which is connected to no additional vertices in the supergraph.)
 
 ** Notice**
@@ -82,3 +83,30 @@ Each connected component should sort by label.
         }
     }
 ```
+
+---
+_update Sep 8, 2017  23:21_
+
+#### 更新：Union Find Algorithm Solution
+求每个 connected component 中的元素，典型的连通性问题，可以使用并查集解决。  
+基本思路：
+1.  使用并查集统计所有 v 的连通性；
+2.  find 所有 v，使用 `Map<Integer, List<Integer>>` 存储；
+3.  按照要求排序，输出；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
