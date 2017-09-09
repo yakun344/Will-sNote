@@ -21,43 +21,41 @@ You can assume that no duplicate edges will appear in edges. Since all edges are
 
 于是我们从这两个性质出发，先判断node和edge的个数是否符合要求，然后用一个BFS来判断是否connected。
 
-题目中给的是node个数以及edges，我们需要先把图转换为adjacent list的形式，即Java中的：`Map<node, Set<node>>`的形式，然后再做bfs。为了应对back edge，我们需要用一个HashSet visited 记录已经visited的node。
+题目中给的是node个数以及edges，我们需要先把图转换为adjacent list的形式，即Java中的：`List<Set<Integer>>`的形式，然后再做bfs。为了应对`back edge`，我们需要用一个`HashSet visited` 记录已经`visited` 的 `node`。
 
 #### Java Code：
 ```java
-    public class Solution {
-        /**
-         * @param n an integer
-         * @param edges a list of undirected edges
-         * @return true if it's a valid tree, or false
-         */
+    // 方法1，对每个V BFS，结束之后看是否已经完成所有V
+    class Solution {
         public boolean validTree(int n, int[][] edges) {
-            if (n != edges.length + 1) return false;
-            if (n == 1) return true;
-            Map<Integer, Set<Integer>> graph = initGraph(n, edges);
-            // 用bfs确定每个node是否连通
+            if (edges == null || edges.length != n - 1) return false;
+            List<Set<Integer>> graph = initGraph(n, edges);
+            
+            // bfs, 以 0 为入口
             Deque<Integer> queue = new LinkedList<>();
             Set<Integer> visited = new HashSet<>();
-            queue.add(0);
+            queue.addFirst(0);
             visited.add(0);
             while (! queue.isEmpty()) {
-                int node = queue.removeFirst();
-                for (int neighbor : graph.get(node)) {
+                int v = queue.removeLast();
+                // 出队的才是要visit的，所以此时加入visited
+                visited.add(v);
+                for (int neighbor : graph.get(v)) {
                     if (visited.contains(neighbor)) continue;
-                    visited.add(neighbor);
-                    queue.add(neighbor);
+                    queue.addFirst(neighbor);
                 }
             }
             return visited.size() == n;
         }
-        // 把edges转化为adjacent list的形式
-        private Map<Integer, Set<Integer>> initGraph(int n, int[][] edges) {
-            Map<Integer, Set<Integer>> graph = new HashMap<>();
-            for (int[] edge : edges) {
-                int u = edge[0];
-                int v = edge[1];
-                if (! graph.containsKey(u)) graph.put(u, new HashSet<Integer>());
-                if (! graph.containsKey(v)) graph.put(v, new HashSet<Integer>());
+        
+        private List<Set<Integer>> initGraph(int n, int[][] edges) {
+            List<Set<Integer>> graph = new ArrayList<>();
+            for (int i = 0; i < n; ++i) {
+                graph.add(new HashSet<Integer>());
+            }
+            for (int i = 0; i < edges.length; ++i) {
+                int u = edges[i][0];
+                int v = edges[i][1];
                 graph.get(u).add(v);
                 graph.get(v).add(u);
             }
