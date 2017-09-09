@@ -81,6 +81,7 @@
   * [Shortest Unsorted Continuous Subarray](linkedlist-and-array/shortest-unsorted-continuous-subarray.md)
   * [Maximum Average Subarray](linkedlist-and-array/maximum-average-subarray.md)
   * [Linked List Cycle II](linkedlist-and-array/linked-list-cycle-ii.md)
+  * [Reverse Linked List II](linkedlist-and-array/reverse-linked-list-ii.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
