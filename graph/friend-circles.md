@@ -96,6 +96,7 @@ Python Code:
                 else:
                     ids[rootx] = rooty
                     rank[rooty] += 1
+            # 合并成功之后，count--;
                 self.count -= 1
             
             def getNumber():
@@ -103,6 +104,7 @@ Python Code:
             
             ids = [i for i in range(len(M))]
             rank = [0 for i in range(len(M))]
+        # 初始化count为总人数 
             self.count = len(M)
             
             for people in range(len(M)):
