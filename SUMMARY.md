@@ -83,6 +83,7 @@
   * [Linked List Cycle II](linkedlist-and-array/linked-list-cycle-ii.md)
   * [Reverse Linked List II](linkedlist-and-array/reverse-linked-list-ii.md)
   * [Rotate Array](linkedlist-and-array/rotate-array.md)
+  * [Circular Array Loop](linkedlist-and-array/circular-array-loop.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
