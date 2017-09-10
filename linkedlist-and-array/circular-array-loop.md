@@ -62,6 +62,38 @@ Java Code:
     }
 ```
 
+**思路 2：DFS**
+对每个数字进行dfs，如果有回路（visited），则说明有环，同样需要特别考虑环中只有一个元素的情况；
+
+```python
+    class Solution(object):
+        def circularArrayLoop(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: bool
+            """
+            def dfs(start, positive, visited):
+                if (nums[start] > 0) != positive:
+                    return False
+                if start in visited: 
+                    # check if there is only one element in circle
+                    if (start + nums[start]) % len(nums) == start:
+                        return False
+                    return True
+                    
+                visited.add(start)
+                return dfs((nums[start] + start) % len(nums), positive, visited)
+    
+            
+            for i in range(len(nums)):
+                if nums[i] > 0:
+                    if dfs(i, True, set()):
+                        return True
+                else:
+                    if dfs(i, False, set()):
+                        return True
+            return False
+``` 
 
 
 
