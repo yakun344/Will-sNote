@@ -97,6 +97,7 @@
   * [Maximum Average Subarray II](linkedlist-and-array/maximum-average-subarray-ii.md)
   * [Wood Cut](binary-search/wood-cut.md)
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
+  * Search in Rotated Sorted Array
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
