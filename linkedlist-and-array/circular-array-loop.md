@@ -26,13 +26,11 @@ Java Code:
         public boolean circularArrayLoop(int[] nums) {
             int len = nums.length;
             int positive = -1, negative = -1;
+            // 对每个数字，检查circle，分为正数负数两种情况考虑
             for (int i = 0; i < len; ++i) {
                 if (nums[i] > 0) {
                     if (checkCircle(nums, i)) return true;
-                }
-            }
-            for (int i = 0; i < len; ++i) {
-                if (nums[i] < 0) {
+                } else if (nums[i] < 0) {
                     if (checkCircle(nums, i)) return true;
                 }
             }
