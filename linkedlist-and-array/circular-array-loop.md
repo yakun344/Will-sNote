@@ -54,6 +54,7 @@ Java Code:
             }
             return false;
         }
+        // 需要注意负数取余需要另外操作；
         private int getIndex(int input, int len) {
             if (input >= 0) return input % len;
             return len - (len - input) % len;
