@@ -44,8 +44,61 @@ You may assume that word1 does not equal to word2, and word1 and word2 are both 
     }
 ```
 
+---
+## Shortest Word Distance III (follow up)
+[LeetCode](https://leetcode.com/problems/shortest-word-distance-iii/description/)
 
+This is a follow up of Shortest Word Distance. The only difference is now word1 could be the same as word2.
 
+Given a list of words and two words word1 and word2, return the shortest distance between these two words in the list.
+
+word1 and word2 may be the same and they represent two individual words in the list.
+
+**For example,**
+
+    Assume that words = ["practice", "makes", "perfect", "coding", "makes"].
+    
+    Given word1 = “makes”, word2 = “coding”, return 1.
+    Given word1 = "makes", word2 = "makes", return 3.
+
+**Note:**  
+You may assume word1 and word2 are both in the list.
+
+#### Basic Idea:
+只需要增加一种情况，当 word1和word2 相同的时候，另外考虑即可。
+
+Java Code:
+```java
+    class Solution {
+        public int shortestWordDistance(String[] words, String word1, String word2) {
+            if (word1.equals(word2)) {
+                int ret = Integer.MAX_VALUE, lastIdx = -1;
+                for (int i = 0; i < words.length; ++i) {
+                    if (words[i].equals(word1)) {
+                        if (lastIdx != -1) ret = Math.min(i - lastIdx, ret);
+                        lastIdx = i;
+                    }
+                }
+                return ret;
+            }
+            // 如果不相等，和之前那道一样    
+            List<Integer> idx1 = new ArrayList<>();
+            List<Integer> idx2 = new ArrayList<>();
+            for (int i = 0; i < words.length; ++i) {
+                if (words[i].equals(word1)) idx1.add(i);
+                else if (words[i].equals(word2)) idx2.add(i);
+            }
+            int i = 0, j = 0, ret = Integer.MAX_VALUE;
+            while (i < idx1.size() && j < idx2.size()) {
+                int diff = idx1.get(i) - idx2.get(j);
+                ret = Math.min(ret, Math.abs(diff));
+                if (diff > 0) j++;
+                else i++;
+            }
+            return ret;
+        }
+    }
+```
 
 
 
