@@ -41,6 +41,7 @@ What if the number of hits per second could be very large? Does your design scal
 
 #### Basic Idea:
 因为是保持最近300秒内的hit个数，而且所给定的各种指令的 timestamp 又都是单调增顺序的，可以自然想到要使用 queue。
+
 1. 比较简单的思路是每当新的hit来到，就把其 timestamp offer，待 query 时用一连串的 poll 将超时的 timestamp 都移出去，同时保持一个 sum 变量；
 2. 但是考虑到 follow up，如果有很多hit在同一时间，在remove的时候就需要很多的操作。于是我们改变策略，在 queue 中保持两个变量，timestamp 以及 该时刻的 hit 的 count，如此就可以做到 O(1)时间 remove 一个 timestamp 的所有 hit；
 
