@@ -86,6 +86,7 @@
   * [Rotate Array](linkedlist-and-array/rotate-array.md)
   * [Circular Array Loop](linkedlist-and-array/circular-array-loop.md)
   * [Insertion Sort List](linkedlist-and-array/insertion-sort-list.md)
+  * [Shortest Word Distance](linkedlist-and-array/shortest-word-distance.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
