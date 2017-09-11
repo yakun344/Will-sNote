@@ -141,6 +141,7 @@
   * [Exclusive Time of Functions](exclusive-time-of-functions.md)
   * [Task Scheduler](task-scheduler.md)
   * [Contains Duplicate III](datastructure-problems/contains-duplicate-iii.md)
+  * [Design Hit Counter](datastructure-problems/design-hit-counter.md)
 * [DFS](dfs.md)
   * [Array Nesting](array-nesting.md)
   * [Lexicographical Numbers](lexicographical-numbers.md)
