@@ -113,6 +113,7 @@
   * [License Key Formatting](chapter1/license-key-formatting.md)
   * [Decode String](chapter1/decode-string.md)
   * [Palindromic Substrings](chapter1/palindromic-substrings.md)
+  * [Palindrome Permutation](chapter1/palindrome-permutation.md)
 * [Random](random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
