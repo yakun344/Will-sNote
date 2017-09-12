@@ -185,6 +185,7 @@
   * [Guess Number Higher or Lower II](dynamic-programming/guess-number-higher-or-lower-ii.md)
   * [Flip Game II](dynamic-programming/flip-game-ii.md)
   * [Can I Win](dynamic-programming/can-i-win.md)
+  * [Paint House](dynamic-programming/paint-house.md)
 * [Bit Manipulation](bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
