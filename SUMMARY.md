@@ -88,6 +88,7 @@
   * [Insertion Sort List](linkedlist-and-array/insertion-sort-list.md)
   * [Shortest Word Distance](linkedlist-and-array/shortest-word-distance.md)
   * [Shortest Word Distance II](linkedlist-and-array/shortest-word-distance-ii.md)
+  * [Longest Continuous Increasing Subsequence](linkedlist-and-array/longest-continuous-increasing-subsequence.md)
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
