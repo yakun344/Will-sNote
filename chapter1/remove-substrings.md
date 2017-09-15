@@ -43,6 +43,7 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
                 for (String pattern : dict) {
                     int pos = -1;
                     for (;;) {
+                    // 考虑每个pattern的所有出现位置，分别把删除相应位置之后的string加入queue
                         pos = curr.indexOf(pattern, pos + 1);
                         if (pos == -1) break;
                         String out = curr.substring(0, pos) 
@@ -58,3 +59,17 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
         }
     }
 ```
+
+#### Thoughts：
+起初拿到题目只想到需要考虑不同顺序的删除，但是没想出实现的方法。现在想来，应该是对 s.indexOf(pattern, start) 函数不够熟悉。
+
+最终的思路可以这么理解：对于input s，BFS 的第一层考虑了所有只删除一个 pattern 的情况，第二层再深入一层，考虑所有删除 两个 pattern 的情况，以此类推。
+> 例如，对于 s=‘ababcc’，pattern={‘a’，‘b’}；  
+第一层为删除一个 ‘a’ 或者删除一个 ‘b’ 的结果，即 ‘babcc’，‘abbcc’，‘aabcc’，’abacc‘；
+
+
+
+
+
+
+
