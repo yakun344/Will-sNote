@@ -62,6 +62,7 @@
   * [Recover Binary Search Tree](Tree/recover-binary-search-tree.md)
   * [Populating Next Right Pointers in Each Node](Tree/populating-next-right-pointers-in-each-node.md)
   * [Trim a Binary Search Tree](Tree/trim-a-binary-search-tree.md)
+  * [Convert Binary Tree to Linked Lists by Depth ](Tree/convert-binary-tree-to-linked-lists-by-depth.md)
 * [LinkedList & Array](linkedlist-and-array.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
   * [Merge Two Sorted Lists](other-problems/merge-two-sorted-lists.md)
