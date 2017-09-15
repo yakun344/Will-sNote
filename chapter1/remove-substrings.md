@@ -23,3 +23,37 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
 
 #### Java Code:
 ```java
+    public class Solution {
+        /**
+         * @param s a string
+         * @param dict a set of n substrings
+         * @return the minimum length
+         */
+        public int minLength(String s, Set<String> dict) {
+            if (s == null || s.length() == 0) return 0;
+            Deque<String> queue = new LinkedList<>();
+            Set<String> visited = new HashSet<>();
+            queue.addFirst(s);
+            visited.add(s);
+            int minLen = s.length();
+            
+            while (! queue.isEmpty()) {
+                String curr = queue.removeLast();
+                for (String pattern : dict) {
+                    int pos = -1;
+                    for (;;) {
+                        pos = curr.indexOf(pattern, pos + 1);
+                        if (pos == -1) break;
+                        String out = curr.substring(0, pos) 
+                                     + curr.substring(pos + pattern.length(), curr.length());
+                        if (visited.contains(out)) continue;
+                        visited.add(out);
+                        queue.addFirst(out);
+                    }
+                }
+                minLen = Math.min(minLen, curr.length());
+            }
+            return minLen;
+        }
+    }
+```
