@@ -60,6 +60,39 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
     }
 ```
 
+#### Python Code
+```python
+    class Solution:
+        # @param {string} s a string
+        # @param {set} dict a set of n substrings
+        # @return {int} the minimum length
+        def minLength(self, s, dict):
+            if not s:
+                return 0
+            queue = collections.deque()
+            visited = set()
+            minLen = len(s)
+            
+            queue.appendleft(s)
+            visited.add(s)
+            while queue:
+                curr = queue.pop()
+                for pattern in dict:
+                    pos = -1
+                    while 1:
+                        pos = curr.find(pattern, pos + 1)
+                        if pos == -1:
+                            break
+                        out = curr[: pos] + curr[pos + len(pattern) :]
+                        if out in visited:
+                            continue
+                        visited.add(out)
+                        queue.appendleft(out)
+                minLen = min(minLen, len(curr))
+            
+            return minLen
+```
+
 #### Thoughts：
 起初拿到题目只想到需要考虑不同顺序的删除，但是没想出实现的方法。现在想来，应该是对 s.indexOf(pattern, start) 函数不够熟悉。
 
