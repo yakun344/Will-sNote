@@ -19,7 +19,7 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
 因为移除 substring 的顺序会对结果造成影响，我们需要使用 bfs 搜索所有可能的删除顺序，输出最短的最终string长度。
 
 1.  使用 `s.indexOf(pattern, start)`(java) or `s.find(pattern, start)`(python) 获得要删除的 substring 的index;
-2.  对于每个 pattern, 每层bfs删除一个，但是需要考虑到不同位置，所以操作流程是：先得到第一个出现的 pos，将删掉pattern之后的string加入queue，把 start 调整到 pos + 1，继续，直到输出 -1；
+2.  对于每个 pattern, 每层bfs删除一个，但是需要考虑到不同位置，所以操作流程是：先得到第一个出现的 pos，将删掉pattern之后的string加入queue，把 start 调整到 pos + 1，对原string继续，直到输出 -1；
 3.  当所有 pattern 都不在结果中出现时，也就是 queue 为空时，结束；
 
 #### Java Code:
