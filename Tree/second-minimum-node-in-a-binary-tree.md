@@ -37,7 +37,7 @@ Explanation: The smallest value is 2, but there isn't any second smallest value.
 
 当当前 node.val 和 root值（最小值）相同的时候，继续向下找第一个大于 root值 的node。当当前node.val!=root.val 时，说明找到了，返回。在向下找的过程中，要返回左右子树找到的值中较小的。
 
-#### Java Code：
+#### Python Code：
 ```python
     class Solution(object):
         def findSecondMinimumValue(self, root):
