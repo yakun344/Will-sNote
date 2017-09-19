@@ -229,5 +229,5 @@
 ## Operating System
 
 * [Introduction](operating-system/introduction.md)
-* [Sep 18, 2017](operating-system/sep-18-2017.md)
+* [Life and Death of Processes](operating-system/sep-18-2017.md)
 
