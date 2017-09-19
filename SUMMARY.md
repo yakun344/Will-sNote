@@ -226,7 +226,8 @@
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
 
-## Tips for Python
+## Operating System
 
-* [About Python Class and OOP](tips-for-python/about-python-class-and-oop.md)
+* [Introduction](operating-system/introduction.md)
+* [Sep 18, 2017](operating-system/sep-18-2017.md)
 
