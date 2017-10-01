@@ -40,7 +40,7 @@ handler 是一段代码，用来接收并处理指定信号。当进程接到指
     
     main() {
        signal(SIGALRM,timeisup);
-       alarm(3);     /* Please wake me in 3 seconds */ // 默认操作是终止程序
+       alarm(3);     /* Please wake me in 3 seconds */ // 默认操作是终止当前进程
     
        sleeping = true;
        while (sleeping) {
