@@ -12,7 +12,8 @@ _update Sep 30, 2017  21:25_
 
     int fd = fileno(fp);
     FILE *fp = fdopen(fd); // buffers a raw descriptor
-    int pipe(int[] pipefd[2]); // 生成一个pipe，[0] 是read end, [1] 是write end; 
+    int pipe(int[] pipefd[2]); // 生成一个pipe，[0] 是read end, [1] 是write end, 相当于
+                               // 将生成的管道两端存入 pipefd[]; 
     dup(oldfd, newfd); // 将 oldfd 复制到 newfd，使得 newfd 指向同一个文件
     
 ```
@@ -52,10 +53,21 @@ fd 是 system call 的参数，而 FILE* 是buffered I/O 的参数，本质上�
 2.  one process can send signal to another: kill(pid, sig);
 3.  a process can respond to a signal: signal(sig, handler);
 4.  pipeline programming, typically: shell programming;
-![](/assets/Screen Shot 2017-09-30 at 11.02.11 PM.png)
+![](/assets/Screen Shot 2017-09-30 at 11.02.11 PM.png) ;
 
 #### pipe
-[这里](https://segmentfault.com/a/1190000009528245) 有一个不错的介绍，比较简洁；
+[这里](https://segmentfault.com/a/1190000009528245) 有一个不错的介绍，比较简洁，**一定要看**。
+
+**以下是摘要：**  
+
+1.  pipe 是一种只存在于内存中的FIFO文件, named pipe 则在磁盘中有实际文件；
+2.  pipe 就像一个纸条，一边写入，一边读取，环形数组实现。当空的时候，read的process会wait，当满的时候，write的process会wait；
+3.  创建过程：文中的图：  
+
+![](https://sfault-image.b0.upaiyun.com/169/623/1696232898-59241c2eb4c67);
+
+
+
 
 
 
