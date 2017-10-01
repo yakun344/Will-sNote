@@ -25,7 +25,7 @@ c:
     sigsetmask(0): 移除 block；
     
 ```    
-需要注意的是，如上的 signal(sig, handler) 函数已经 deprecated，我们应该用 POSIX 标准的 sigaction() 函数。还有关于sigmask的 posix 函数，详见下面的例子。
+需要注意的是，如上的 signal(sig, handler) 函数已经 deprecated，我们应该用 POSIX 标准的 sigaction() 函数。还有关于sigmask的 posix 函数，详见下面的例子。需要注意，POSIX的sigaction可以避免例如 SIGUSR 在处理过程中多次到达积累，造成多次操作的问题。
 
 #### 关于 signal
 信号分为实时信号和常规信号，前31个都是常规信号。已经产生但还没有传递的信号称为挂起信号(pendingsignal)。任何时候，一个进程仅存在给定类型的一个挂起信号，同一进程同种类型的其他信号不被排队，只被简单地丢弃。但是，实时信号是不同的：同种类型的挂起信号可以有好几个。

@@ -231,4 +231,5 @@
 * [Introduction](operating-system/introduction.md)
 * [Life and Death of Processes](operating-system/sep-18-2017.md)
 * [Signals and handlers](operating-system/signals-and-handlers.md)
+* [Shell and Glue](operating-system/shell-and-glue.md)
 
