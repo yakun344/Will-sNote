@@ -195,7 +195,35 @@ exit code for 15089 is 0
     }
 ```
 
-
+**实现 ps -ef |& ./proc2**
+基本思路就是将主程序作为parent，其stdin和执行ps的child的stdout相连，其stdout和执行proc2的child的stdin相连。
+```c
+    #define SIZE 256
+    #define READ 0
+    #define WRITE 1
+    main()
+    { 
+        pid_t pid1, pid2, pid3; int status;
+        int fd[2]; struct rusage usage;
+        pipe(fd); // create the pipe first 
+        if (!(pid1=fork())) {        // child 1 is the reader: "| proc2"
+            close(fd[WRITE]);        // close unused side
+            close(fileno(stdin)); 
+            dup(fd[READ]); 
+            close(fd[READ]);         // don't leave the unduped descriptor 
+            execl(proc2, proc2, NULL) 
+        } else if (!(pid2=fork())) { // child 2 is the writer: "proc1 |"
+            close(fd[READ]);         // closed unused side
+            close(fileno(stdout)); 
+            dup(fd[WRITE]); 
+            close(fd[WRITE]);        // don't leave the unduped descriptor
+            execl(proc1, proc1, NULL); 
+        } else {  // parent waits (or reaps) twice!
+            pid3=wait3(&status, 0, &usage);       
+            pid3=wait3(&status, 0, &usage);       
+        } 
+    }
+```
 
 
 
