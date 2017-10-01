@@ -12,6 +12,7 @@ _update Sep 30, 2017  21:25_
 
     int fd = fileno(fp);
     FILE *fp = fopen(fd);
+    int pipe(int[] pipefd[2]); // 生成一个pipe，[0] 是read end, [1] 是write end; 
 ```
 
 #### 关于 open() 和 fopen() 以及 fdopen(）
@@ -51,6 +52,8 @@ fd 是 system call 的参数，而 FILE* 是buffered I/O 的参数，本质上�
 4.  pipeline programming, typically: shell programming;
 ![](/assets/Screen Shot 2017-09-30 at 11.02.11 PM.png)
 
+#### pipe
+[这里](https://segmentfault.com/a/1190000009528245) 有一个不错的介绍，比较简洁；
 
 
 
