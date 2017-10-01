@@ -11,8 +11,10 @@ _update Sep 30, 2017  21:25_
     p1 |& p2     : put stdout and stderr of p1 into the stdin of p2;
 
     int fd = fileno(fp);
-    FILE *fp = fopen(fd);
+    FILE *fp = fdopen(fd); // buffers a raw descriptor
     int pipe(int[] pipefd[2]); // 生成一个pipe，[0] 是read end, [1] 是write end; 
+    dup(oldfd, newfd); // 将 oldfd 复制到 newfd，使得 newfd 指向同一个文件
+    
 ```
 
 #### 关于 open() 和 fopen() 以及 fdopen(）
