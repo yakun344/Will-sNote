@@ -125,8 +125,41 @@ child 12617 got: 'hi there!
 exit code for 12617 is 0
 ```
 
-
-
+用pipe和dup实现 parent | cat，child 输出parent写入pipe的内容：
+```c
+    main()
+    { 
+        pid_t pid1, pid2; 
+        int status; 
+        int fd[2]; 
+        char buf[1024]; 
+        struct rusage usage; 
+        pipe(fd); 
+        printf("fd[0]=%d, fd[1]=%d\n", fd[0], fd[1]); 
+        if ((pid1=fork())) { // parent
+        	FILE *write = fdopen(fd[1],"w"); close(fd[0]); // parent 关读
+        	fprintf(write, "hi there!\n"); 
+        	fflush(write); fclose(write); 
+        	pid2=wait3(&status, 0, &usage); 
+            printf("exit code for %d is %d\n", pid2, status); 
+        } else { // child
+            close(0); /* close existing stdin, so that 0 is unused */ 
+        	dup(fd[0]); /* copy fd[0] into slot 0 */ 
+        	close(fd[0]); /* close copy */ // read end已经dup，关掉原来的
+        	close(fd[1]); /* close other side */ // child 关写
+    
+            // 执行cat，此时cat的stdin已经是pipe的读端
+            execl("/bin/cat", "cat", NULL); /* fool cat into echoing our input */ 
+        } 
+    } 
+```
+output:
+```
+couchvm01{xguo04}67: ./a.out
+fd[0]=3, fd[1]=4
+hi there!
+exit code for 15089 is 0
+```
 
 
 
