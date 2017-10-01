@@ -69,7 +69,7 @@ fd 是 system call 的参数，而 FILE* 是buffered I/O 的参数，本质上�
 
 
 #### 课上的小程序
-单程序读写pipe
+**单程序读写pipe**
 ```c
     #define READER 0
     #define WRITER 1
@@ -94,7 +94,7 @@ I wrote: hi there
 I read: hi there
 ```
 
-简单fork后，parent写入pipe，child读
+**简单fork后，parent写入pipe，child读**
 ```c
     main()
     {
@@ -125,7 +125,7 @@ child 12617 got: 'hi there!
 exit code for 12617 is 0
 ```
 
-用pipe和dup实现 parent | cat，child 输出parent写入pipe的内容：
+**用pipe和dup实现 parent | cat，child 输出parent写入pipe的内容：**
 ```c
     main()
     { 
@@ -161,6 +161,38 @@ hi there!
 exit code for 15089 is 0
 ```
 
+**实现 ps -ef (child | parent, 此处的parent相当于是shell)**
+```c
+    main()
+    {
+        pid_t pid1, pid2;
+        int status;
+        int fd[2];
+        char buf[1024];
+        struct rusage usage;
+        pipe(fd);
+        if ((pid1=fork())) { // parent
+        	FILE *read = fdopen(fd[0],"r"); close(fd[1]); // parent 关写
+        	if (read==NULL) {
+        	    perror("cannot dup");
+        	    exit(1);
+        	}
+        	while (!feof(read)) {
+        	    char buf[256];
+        	    fgets(buf,256,read);
+    	        printf("parent: %s",buf);
+        	}
+        	pid2=wait3(&status, 0, &usage);
+            printf("exit code for %d is %d\n", pid2, status);
+        } else { // child
+            close(1); /* close existing stdout, so that 1 is unused */
+            dup(fd[1]); /* copy fd[1] into slot 1 */
+    	    close(fd[1]); /* close copy */
+            close(fd[0]); /* close other side */
+            execl("/bin/ps", "ps", "-ef", NULL); /* call ps command */
+        }
+    }
+```
 
 
 
