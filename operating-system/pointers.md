@@ -8,3 +8,6 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 #### 关于const
 ![](/assets/Screen Shot 2017-10-01 at 2.27.14 PM.png)
 
+紧跟在 const 后的才是 constant 的。  
+一般而言在function 中 declare 为 const 的参数都是不会被 touch 的，而 non-const 的都会被 touch。    
+
