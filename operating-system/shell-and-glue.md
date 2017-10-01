@@ -2,13 +2,19 @@
 _update Sep 30, 2017  21:25_
 
 ---
-#### functions
+#### commands and functions
 ```c
+    a.out > file : put stdout into a file;
+    a.out >& file: put stdout and stderr into a file;
+    a.out < file : take stdin from a file;
+    p1 | p2      : put stdout of p1 into the stdin of p2;
+    p1 |& p2     : put stdout and stderr of p1 into the stdin of p2;
+
     int fd = fileno(fp);
     FILE *fp = fopen(fd);
 ```
 
-#### 关于 open() 和 fopen() 以及 fdopen()
+#### 关于 open() 和 fopen() 以及 fdopen(）
 ```c
     FILE *fdopen(int fd, const char *mode);
     FILE *fopen(const char *path, const char *mode);
@@ -27,5 +33,24 @@ Line-buffered: 每次 “\n” 写入；
 block-buffered: 每 8192 bytes 写入；
 unbuffered：直接写入；
 
-#### 关于 fd
+#### 关于 fd 和 FILE*
 fd 是与每个 process 独立关联，当 fork 的时候，child 会继承 parent 的 fd table。当执行 exec 时，fd 也会被继承，但是之前进程的memory和buffer都会被抛弃。
+
+fd 是 system call 的参数，而 FILE* 是buffered I/O 的参数。
+
+|fd   | FILE*  | 
+| --- | ------ |
+|0    | stdin  |
+|1    | stdout |
+|2    | stderr |
+
+
+
+
+
+
+
+
+
+
+
