@@ -30,6 +30,7 @@ c:
 handler 是一段代码，用来接收并处理指定信号。当进程接到指定信号时，会调用handler，处理之后返回interrupt的位置。但是 segfault 或者 bus error（SGEV or BUS）无法恢复(但是可以被接收并处理)。SIGKILL (9) 无法被处理，会直直接终止进程。
 
 ### 课上所给程序
+接收 SIGALARM，唤醒睡眠
 ```c
     #include "header.h"
     typedef enum { false, true } bool;
@@ -63,6 +64,8 @@ zzz...
 I hate it when the alarm wakes me!
 Nuts, you woke me up!
 ```
+
+
 
 
 
