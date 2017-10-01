@@ -46,7 +46,10 @@ fd 是 system call 的参数，而 FILE* 是buffered I/O 的参数，本质上�
 
 #### profess 间通信的方法
 1.  fork() parent can read statistics of child；
-2.  one process can send signal to another: kill(sig, pid);
+2.  one process can send signal to another: kill(pid, sig);
+3.  a process can respond to a signal: signal(sig, handler);
+4.  pipeline programming, typically: shell programming;
+![](/assets/Screen Shot 2017-09-30 at 11.02.11 PM.png)
 
 
 
