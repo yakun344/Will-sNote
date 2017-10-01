@@ -25,3 +25,62 @@ c:
 
 #### 关于 handler
 handler 是一段代码，用来接收并处理指定信号。当进程接到指定信号时，会调用handler，处理之后返回interrupt的位置。但是 segfault 或者 bus error（SGEV or BUS）无法恢复(但是可以被接收并处理)。 
+
+### 课上所给程序
+```c
+    #include "header.h"
+    typedef enum { false, true } bool;
+    
+    int sleeping = false;
+    
+    void timeisup(int sig) {
+      fprintf(stderr, "I hate it when the alarm wakes me!\n");
+      sleeping = false;
+    }
+    
+    main() {
+       signal(SIGALRM,timeisup);
+       alarm(3);     /* Please wake me in 3 seconds */ // 默认操作是终止程序
+    
+       sleeping = true;
+       while (sleeping) {
+         printf("zzz...\n");
+         sleep(1);
+       }
+    
+       fprintf(stderr, "Nuts, you woke me up!\n");
+    }
+```
+Output:
+```
+couchvm01{xguo04}63: ./a.out
+zzz...
+zzz...
+zzz...
+I hate it when the alarm wakes me!
+Nuts, you woke me up!
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
