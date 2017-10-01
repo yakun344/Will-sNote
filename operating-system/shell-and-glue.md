@@ -67,9 +67,62 @@ fd 是 system call 的参数，而 FILE* 是buffered I/O 的参数，本质上�
 ![](https://sfault-image.b0.upaiyun.com/169/623/1696232898-59241c2eb4c67);
 
 
+#### 课上的小程序
+单程序读写pipe
+```c
+    #define READER 0
+    #define WRITER 1
+    main()
+    {
+        int fd[2]; char buf[1024];
+        if (pipe(fd)==0) {
+        	FILE *read = fdopen(fd[READER],"r");
+        	FILE *write= fdopen(fd[WRITER],"w");
+        	fprintf(write,"hi there\n"); // 在pipe的buffer中写入
+        	printf("I wrote: %s","hi there\n");
+        	fflush(write); // 正式写入pipe
+        	fgets(buf,1024,read); // 读 pipe，写入 buf 数组
+        	printf("I read: %s\n",buf); // 输出数组内容
+        }
+    } 
+```
+output:
+```
+couchvm01{xguo04}60: ./a.out
+I wrote: hi there
+I read: hi there
+```
 
-
-
+简单fork后，parent写入pipe，child读
+```c
+    main()
+    {
+        pid_t pid1, pid2;
+        int status;
+        int fd[2];
+        char buf[1024];
+        struct rusage usage;
+        pipe(fd); // 建立pipe
+        if ((pid1=fork())) { // parent
+        	FILE *write = fdopen(fd[1],"w"); close(fd[0]); // parent 关读开写
+        	fprintf(write, "hi there!\n");
+        	fflush(write); fclose(write); // 写入pipe，之前child一直在等
+        	pid2=wait3(&status, 0, &usage);
+            printf("exit code for %d is %d\n", pid2, status);
+        } else {
+        	FILE *read = fdopen(fd[0],"r"); close(fd[1]); // child 关写开读
+        	fgets(buf,1024,read); fclose(read);
+        	printf("child %d got: '%s'\n", getpid(),buf);
+        }
+    }
+```
+output:
+```
+couchvm01{xguo04}63: ./a.out
+child 12617 got: 'hi there!
+'
+exit code for 12617 is 0
+```
 
 
 
