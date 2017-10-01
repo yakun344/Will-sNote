@@ -18,6 +18,9 @@ c:
         One can put a process into a new group by calling setpgid().
         One's group id is the pid of the process that is group leader.
         One can query the group id via getpgid())
+        
+    signal(sig, handler): 用来调用接收处理指定信号的handler；    
+    
 ```    
 
 #### 关于 signal
