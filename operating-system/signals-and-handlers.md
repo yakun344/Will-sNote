@@ -20,8 +20,12 @@ c:
         One can query the group id via getpgid())
         
     signal(sig, handler): 用来调用接收处理指定信号的handler；    
+    handler(sig): 处理指定sig信号；
+    sigsetmask(sigmask(sig)): block 指定信号；
+    sigsetmask(0): 移除 block；
     
 ```    
+需要注意的是，如上的 signal(sig, handler) 函数已经 deprecated，我们应该用 POSIX 标准的 sigaction() 函数。还有关于sigmask的 posix 函数，详见下面的例子。
 
 #### 关于 signal
 信号分为实时信号和常规信号，前31个都是常规信号。已经产生但还没有传递的信号称为挂起信号(pendingsignal)。任何时候，一个进程仅存在给定类型的一个挂起信号，同一进程同种类型的其他信号不被排队，只被简单地丢弃。但是，实时信号是不同的：同种类型的挂起信号可以有好几个。
@@ -65,11 +69,62 @@ I hate it when the alarm wakes me!
 Nuts, you woke me up!
 ```
 
+推迟 SIGINT
+```c
+      void handler(int sig) {
+         printf("I received signal %d\n", sig);
+         exit(1);
+      }
+      
+      main() {
+         int i;
+         signal(SIGINT, handler);
+         sigsetmask(sigmask(SIGINT)); // defer control-C until after the loop
+         for (i=0; i<5; i++) { printf("zzz...\n"); sleep(1); }
+         sigsetmask(0);
+         printf("I completed normally\n");
+      } 
+```
+output:
+```
+couchvm01{xguo04}82: ./a.out
+zzz...
+zzz...
+^Czzz... // type ctrl-c here
+zzz...
+zzz...
+I received signal 2
+```
 
-
-
-
-
+使用 POSIX 函数推迟 SIGINT （ctrl-c）
+```c
+    main() { 
+        sigset_t mask; // 希望改成的mask
+        sigset_t old_mask; // 之前的mask
+        int i;
+        sigemptyset(&mask); // initialize
+        sigaddset(&mask, SIGINT); // 写 mask
+        int ret = sigprocmask(SIG_BLOCK, &mask, &old_mask); // 应用mask的同时，将原mask保存于 old_mask中
+        
+        // now SIGINT is blocked (ignore control-C)
+        // now do something without interruption
+        fprintf(stderr, "now I betcha you can't control-C me!\n");
+        for (i=0; i<10; i++) {
+            fprintf(stderr, "zzz...\n");
+            sleep(1);
+        }
+        ret = sigprocmask(SIG_UNBLOCK, &mask, &old_mask); // 用old_mask恢复当前使用的mask
+    
+        // now control-C works again.
+        fprintf(stderr, "OK, now you can control-C me to stop me!\n");
+        while (1) {
+            fprintf(stderr, "zzz...\n");
+            sleep(1);
+        }
+    }
+```
+output:
+```
 
 
 
