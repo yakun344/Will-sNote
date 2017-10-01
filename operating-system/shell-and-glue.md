@@ -2,6 +2,7 @@
 _update Sep 30, 2017  21:25_
 
 ---
+为什么说dup是完全违背 functional programming 的？ 因为有 side effects。
 #### commands and functions
 ```c
     a.out > file : put stdout into a file;
