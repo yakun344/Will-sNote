@@ -35,7 +35,12 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 
 extern 告诉编译器某变量在其他地方定义了；
 
-#### 
+#### 关于 typedef
+**eg: **`typedef int (*fint)()`  
+
+typedef 右边的部分相当于一个变量的声明，此处声明了一个叫做 fint 的变量，类型则是一个 返回int，没有参数的函数指针。加上了 typedef 之后，相当于这个 fint 本身变成了一种类型，可以用来定义该类型的其他的变量，而类型就是typedef 右边部分定义的类型。
+
+
 
 
 
