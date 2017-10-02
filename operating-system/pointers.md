@@ -41,10 +41,48 @@ extern 告诉编译器某变量在其他地方定义了；
 typedef 右边的部分相当于一个变量的声明，此处声明了一个叫做 fint 的变量，类型则是一个 返回int，没有参数的函数指针。加上了 typedef 之后，相当于这个 fint 本身变成了一种类型，可以用来定义该类型的其他的变量，而类型就是typedef 右边部分定义的类型。
 
 #### 应用
-考虑到 portability，比如不同系统对于int的长度定义不同，所以在操作系统中
+考虑到 portability，比如不同系统对于int的长度定义不同，所以在操作系统中一般看不到int，只有 int32_t, int64_t 之类的。
 
+同样的，很多 data 被定义为 `void*` 就是因为不同系统对该 data 的定义不同；
 
-
+**创建一个线程** 
+```c
+    struct inputdata { 
+        char name[20]; 
+    } ; 
+    
+    struct outputdata { 
+        int idno; 
+    } x ; 
+    
+    void *threaded_routine (void * v) { 
+        struct inputdata *d = (struct inputdata *)v; 
+        printf ("hello from the thread!\n"); 
+        printf ("my name is %s\n",d->name); 
+        sleep(5); 
+        printf ("setting idno\n"); 
+        x.idno = 42; 
+        printf ("bye from the thread!\n"); 
+        return (void *) &x; 
+    } 
+    
+    main()
+    { 
+       pthread_t thread; 
+       printf("hello from the parent... creating thread\n"); 
+       struct inputdata input; 
+       strcpy(input.name,"George"); 
+       struct outputdata *retptr; 
+       if (pthread_create( &thread, NULL, threaded_routine, (void *)&input)==0) { 
+    	pthread_join(thread,(void **)&retptr); 
+            printf("got id number %d\n", retptr->idno); 
+       } else { 
+    	printf("could not create thread!\n"); 
+       } 
+       printf("bye from the parent\n"); 
+    
+    } 
+```
 
 
 
