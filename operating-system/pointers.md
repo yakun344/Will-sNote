@@ -34,3 +34,28 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 如果可以的话尽量把变量定义为 static，limited scope；
 
 extern 告诉编译器某变量在其他地方定义了；
+
+#### 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
