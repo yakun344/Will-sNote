@@ -19,3 +19,9 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 
 #### 关于复杂的 C types
 [这里](http://blog.csdn.net/zhangnannan_/article/details/40677569) 有一篇不错的讲解。
+
+[这里](http://www.cnblogs.com/windlaughing/archive/2013/04/10/3012012.html) 有一个关于函数指针的讲解。
+
+**fun() 和 (*fun)()**  
+
+事实上两者在调用的时候是等价的，C 语言中函数名的本质其实是一个函数指针，反应了指令执行时候的跳转地址，为了方便
