@@ -24,4 +24,4 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 
 **fun() 和 (*fun)()**  
 
-事实上两者在调用的时候是等价的，C 语言中函数名的本质其实是一个函数指针，反应了指令执行时候的跳转地址，为了方便
+事实上两者在调用的时候是等价的，C 语言中函数名的本质其实是一个函数指针，反应了指令执行时候的跳转地址，为了方便才令 fun() 可以做到 `(*fun)()` 的工作。但是在 declare 的时候不大相同，通过 `void fun()` 声明的函数，fun 是一个函数指针常亮，不可以被赋值。而通过 `void (*fun)()` 声明的函数，fun 是一个函数指针变量，可以被赋值为其他有着同样 parameter and return type 的函数。
