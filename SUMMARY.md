@@ -232,5 +232,5 @@
 * [Life and Death of Processes](operating-system/sep-18-2017.md)
 * [Signals and handlers](operating-system/signals-and-handlers.md)
 * [Shell and Glue](operating-system/shell-and-glue.md)
-* [Pointers](operating-system/pointers.md)
+* [Pointers and Types](operating-system/pointers.md)
 

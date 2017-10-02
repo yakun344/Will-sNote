@@ -1,4 +1,4 @@
-# Pointers
+# Pointers and Types
 _update 2017-10-01 02:47:10_
 
 ---
@@ -16,3 +16,6 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 
 #### 关于 `void*` 指针
 `void* `pointer has no length, 所以不可以进行 add nor access，需要先 cast。
+
+#### 关于复杂的 C types
+[这里](http://blog.csdn.net/zhangnannan_/article/details/40677569) 有一篇不错的讲解。
