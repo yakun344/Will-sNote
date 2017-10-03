@@ -51,7 +51,7 @@ Algo：
     while pq:
         vertex = pq.poll()
         visited[vertex.label] = True
-        for neighbor in vertex.edges:
+        for neighborLabel in vertex.edges:
             if neighborLabel in visited: 
                 continue
             neighbor = Graph[neighborLabel]
