@@ -38,7 +38,7 @@ Algo：
 
 #### 在 Adj List 表示的 Graph 中实现的方法：
 Variables:
--  `class Vertex {int label, Map<int, int> edges, int minDist}`
+-  `class Vertex {int label, Map<int, int> edges, int minDist}` 其中的edges存放{neighborLabel : weight} 对；
 -  `Map<int, Vertex> Graph`, 存放graph；
 -  `Map<int, int> pred`, 存放每个节点在路径中的前驱节点；
 -  `Set<int> visited`, 标记每个 v 是否完成；
