@@ -233,4 +233,5 @@
 * [Signals and handlers](operating-system/signals-and-handlers.md)
 * [Shell and Glue](operating-system/shell-and-glue.md)
 * [Pointers and Types](operating-system/pointers.md)
+* [Threads](operating-system/threads.md)
 
