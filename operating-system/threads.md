@@ -32,6 +32,9 @@ TCB 包括了：
 1.  threads之间的通信方式更加灵活（more options than with pipes）。
 2.  比 pipe 快，因为 pipe 存储在 kernel memory 中。
 
+#### 关于 mutex_lock
+lock 和 unlock 都是在 user mode 完成的，只有当需要 block thread 的时候会进入 kernel mode。
+
 #### 应用
 1.  Hiding latency for multiple I/O requests; (optimize run time)
 > 1. Make multiple requests to web server, get answer asynchronously, one per thread.
