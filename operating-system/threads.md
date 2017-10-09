@@ -118,3 +118,56 @@ TCB 包括了：
        printf ("x = %d (should be 30)\n",x);
     }
 ```
+
+**Using mutex_lock **
+
+```c
+    /* mutex locks to avoid race conditions */
+    #include "./header.h"
+    
+    pthread_mutex_t locker;
+    // pthread_mutex_init(&locker, NULL);
+    // pthread_mutex_lock(&locker);
+    // pthread_mutex_trylock(&locker);
+    // pthread_mutex_unlock(&locker);
+    // pthread_mutex_unlock(&locker);
+    // pthread_mutex_destroy(&locker);
+    
+    int x=0;
+    
+    void *threaded_routine (void * v) {
+        const int *n = (int *)v;
+        int i;
+        for (i=0; i<10; i++)  {
+        	pthread_mutex_lock(&locker);
+        	int y=x;
+        	y++;
+        	printf("%d: y=%d\n",*n,y);
+        	sleep(1);
+        	x=y;
+        	printf("%d: x=%d\n",*n,x);
+            pthread_mutex_unlock(&locker);
+        }
+    }
+    
+    main()
+    {
+       pthread_t thread1, thread2, thread3;
+       void *retptr;
+       int n1=1,n2=2,n3=3;
+       pthread_mutex_init(&locker, NULL);
+    
+       pthread_create( &thread1, NULL, threaded_routine, (void *)&n1);
+       pthread_create( &thread2, NULL, threaded_routine, (void *)&n2);
+       pthread_create( &thread3, NULL, threaded_routine, (void *)&n3);
+    
+       printf("joining thread 1\n");
+       pthread_join(thread1,(void **)&retptr);
+       printf("joining thread 2\n");
+       pthread_join(thread2,(void **)&retptr);
+       printf("joining thread 3\n");
+       pthread_join(thread3,(void **)&retptr);
+       printf ("x = %d (should be 30)\n",x);
+       pthread_mutex_destroy(&locker);
+    }
+```
