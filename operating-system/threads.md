@@ -15,4 +15,4 @@ address space 大概相当于 process， task 大概相当于 thread，lightweig
 *  an memory map (包括 data(global)，stack，heap， text)；
 *  a process control block （linux中的 task_struct）(包括pid，state，pc等很多内容)；
 
-而 thread 从属于 process。一个process下的所有 threads 共享了 process 的 memory map中的 （data(global)，heap, text），而同时每个 thread 拥有自己的 stack 和 thread control block。
+而 thread 从属于 process。一个process下的所有 threads 共享了 process 的 memory map中的 （data(global)，heap, text），而同时每个 thread 拥有自己的 stack 和 thread control block（包括pc 和 register value）。
