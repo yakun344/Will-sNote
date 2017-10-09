@@ -26,6 +26,9 @@ TCB 包括了：
 2.  PC/registers for thread;
 3.  stack location in memory map;
 
+#### 与 process 相比的优势
+
+
 #### 应用
 1.  Hiding latency for multiple I/O requests; (optimize run time)
 > 1. Make multiple requests to web server, get answer asynchronously, one per thread.
