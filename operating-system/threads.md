@@ -2,6 +2,8 @@
 _update Oct 6,2017  15:42_
 
 ---
+[linux进程间通信方式demo汇总](https://github.com/clpsz/linux-ipcs)： 这是一个不错的repo，值得一看。
+
 #### 关于 address space 和 task 以及 lightweight process
 address space 大概相当于 process， task 大概相当于 thread，lightweight process 是 thread 的别称。
 
@@ -27,7 +29,7 @@ TCB 包括了：
 3.  stack location in memory map;
 
 #### 与 process 相比的优势
-
+threads之间的通信
 
 #### 应用
 1.  Hiding latency for multiple I/O requests; (optimize run time)
