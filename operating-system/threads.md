@@ -120,7 +120,7 @@ TCB 包括了：
 ```
 
 **Using mutex_lock **
-
+mutex_lock 的原理基于当pthread_mutex_lock() 的参数已经被lock时，该函数会令当前thread wait直到locker可以被lock。
 ```c
     /* mutex locks to avoid race conditions */
     #include "./header.h"
