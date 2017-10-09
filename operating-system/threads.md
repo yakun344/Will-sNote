@@ -41,7 +41,7 @@ TCB 包括了：
 
 #### 课上小程序示例分析
 **简单创建一个thread**
-对于这段代码，起初对于 pthread_join() 所接收的二级指针参数 `(void **)&retptr` 有所疑问，但是仔细想来就明白了。因为我们需要让retptr等于thread_routine的返回值，而其返回值是一个 `void *` 
+对于这段代码，起初对于 pthread_join() 所接收的二级指针参数 `(void **)&retptr` 有所疑问，但是仔细想来就明白了。因为我们需要让retptr等于thread_routine的返回值，而其返回值是一个 `void * ret`，为了令`retptr == ret`，我们需要传入 `&retptr`，此时 `&retptr`的类型就变成了 `void**`。
 ```c
     #include "header.h"
     
