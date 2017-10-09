@@ -9,3 +9,8 @@ address space 大概相当于 process， task 大概相当于 thread，lightweig
 [这里](http://community.bittiger.io/topic/434/%E8%BF%9B%E7%A8%8B-process-%E5%92%8C%E7%BA%BF%E7%A8%8B-thread-%E7%9A%84%E5%8C%BA%E5%88%AB/3) 有一个关于进程和线程区别的讨论。
 
 总结一下，在多进程多线程模型中，processes are used to group resources together; Threads are the entities scheduled for execution on the CPU.
+
+具体而言，process 包括了： 
+
+*  an address space (包括 data，stack，heap， text)
+*  a process control block （linux中的 task_struct）
