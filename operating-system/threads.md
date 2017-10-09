@@ -31,6 +31,9 @@ TCB 包括了：
 #### 与 process 相比的优势
 1.  threads之间的通信方式更加灵活（more options than with pipes）。
 2.  比 pipe 快，因为 pipe 存储在 kernel memory 中。
+3.  创建 thread 比创建 process 快十倍。
+4.  terminate 也快。
+5.  同一 process 的 threads 间切换也比 process 快。
 
 #### 关于 mutex_lock
 lock 和 unlock 都是在 user mode 完成的，只有当需要 block thread 的时候会进入 kernel mode。
@@ -39,6 +42,7 @@ lock 和 unlock 都是在 user mode 完成的，只有当需要 block thread 的
 1.  Hiding latency for multiple I/O requests; (optimize run time)
 > 1. Make multiple requests to web server, get answer asynchronously, one per thread.
 > 2. fork-join parallelism in web browser.
+> 3. a file system.
 
 2.  Producer / consumer program architecture; (simplify coding)
 

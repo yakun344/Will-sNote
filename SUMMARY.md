@@ -234,4 +234,5 @@
 * [Shell and Glue](operating-system/shell-and-glue.md)
 * [Pointers and Types](operating-system/pointers.md)
 * [Threads](operating-system/threads.md)
+* [Multithreaded Programming](operating-system/multithreaded-programming.md)
 
