@@ -39,4 +39,45 @@ TCB 包括了：
 
 2.  Producer / consumer program architecture; (simplify coding)
 
+#### 课上小程序示例分析
+**简单创建一个thread**
+对于这段代码，起初对于 pthread_join() 所接收的二级指针参数 `(void **)&retptr` 有所疑问，但是仔细想来就明白了。
+```c
+    #include "header.h"
+    
+    struct inputdata {
+        char name[20];
+    } ;
+    
+    struct outputdata {
+        int idno;
+    } x ;
+    
+    void *threaded_routine (void * v) {
+        struct inputdata *d = (struct inputdata *)v;
+        printf ("hello from the thread!\n");
+        printf ("my name is %s\n",d->name);
+        sleep(5);
+        printf ("setting idno\n");
+        x.idno = 42;
+        printf ("bye from the thread!\n");
+        return (void *) &x;
+    }
+    
+    main() {
+        pthread_t thread;
+        printf("hello from the parent... creating thread\n");
+        struct inputdata input;
+        strcpy(input.name,"George");
+        struct outputdata *retptr; 
+        if (pthread_create( &thread, NULL, threaded_routine, (void *)&input)==0) {
+            // 因为要改动 retptr 的值（令其等于routine返回的（void*）&x）, 所以必须使用二级指针
+            pthread_join(thread,(void **)&retptr); 
+            printf("got id number %d\n", retptr->idno);
+        } else { 
+            printf("could not create thread!\n");
+        }
+        printf("bye from the parent\n");
+    }
+```    
 
