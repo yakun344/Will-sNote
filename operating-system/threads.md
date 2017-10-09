@@ -19,3 +19,18 @@ address space 大概相当于 process， task 大概相当于 thread，lightweig
 
 #### 关于 TCB （Thread control block）
 ![](/assets/Screen Shot 2017-10-08 at 11.12.25 PM.png)
+
+TCB 包括了：
+
+1.  pointer to parent PCB;
+2.  PC/registers for thread;
+3.  stack location in memory map;
+
+#### 应用
+1.  Hiding latency for multiple I/O requests; (optimize run time)
+> 1. Make multiple requests to web server, get answer asynchronously, one per thread.
+> 2. fork-join parallelism in web browser.
+
+2.  Producer / consumer program architecture; (simplify coding)
+
+
