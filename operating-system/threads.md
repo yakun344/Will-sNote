@@ -29,7 +29,8 @@ TCB 包括了：
 3.  stack location in memory map;
 
 #### 与 process 相比的优势
-threads之间的通信
+1.  threads之间的通信方式更加灵活（more options than with pipes）。
+2.  比 pipe 快，因为 pipe 存储在 kernel memory 中。
 
 #### 应用
 1.  Hiding latency for multiple I/O requests; (optimize run time)
