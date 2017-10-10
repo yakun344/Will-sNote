@@ -9,3 +9,9 @@ _update 2017-10-09 19:25:34_
 
 判断是否 critical section 不是经验性的而是确定性的，根据 assembly language 的程序结构。
 
+使用 mutex 一定会让程序变慢，但是会增加 determinism。
+
+#### 关于 Heisenbugs
+"Heisenbug" is a bug in a program that is exceedingly difficult to reproduce.
+
+这种bug无法再debug中观察，只能理论分析code。
