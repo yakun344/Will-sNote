@@ -16,6 +16,9 @@ queue).
 **block on** read from empty buffer.  
 **block on** write to full buffer.  
 
+#### Bounded buffer queue
+This is a basic building block for all producer/consumer programs. 
+
 
 
 
