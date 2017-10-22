@@ -29,3 +29,8 @@ network objects
 use network communications  
 no shared architecture.   
 
+#### What is a mutex
+Basically, one word of **user** memory.  
+Utilize a simple race condition to acquire lock, based upon **atomicity of operations in assembly language**. If the word of memory is > 0, then a lock has been acquired.  
+If the word of memory == 0, then there is no lock.  
+Testset: **if word==0 then word=1** as an **atomic operation**.  
