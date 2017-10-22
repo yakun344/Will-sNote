@@ -18,6 +18,7 @@ binary: locked or unlocked
 user mode (except when they block!)  
 exploit shared memory  
 they're integers  
+Unlimited numbers available.  
 
 **Between processes: named semaphores**  
 kernel mode: live in kernel memory.  
