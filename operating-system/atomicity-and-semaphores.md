@@ -12,7 +12,7 @@ _update Oct 22, 2017  15:19_
 **Between threads: mutexes**  
 user mode (except when they block!)  
 exploit shared memory  
-binary: locked or unlocked  
+binary: locked or unlocked   
 
 **Between threads: unnamed semaphores**  
 user mode (except when they block!)  
@@ -22,7 +22,8 @@ they're integers
 **Between processes: named semaphores**  
 kernel mode: live in kernel memory.  
 no shared memory.  
-They're integers.   
+They're integers. An array offset in a kernel table.   
+Limited number available.  
 
 **Between machines: network semaphores**  
 network objects  
