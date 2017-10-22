@@ -34,3 +34,25 @@ Basically, one word of **user** memory.
 Utilize a simple race condition to acquire lock, based upon **atomicity of operations in assembly language**. If the word of memory is > 0, then a lock has been acquired.  
 If the word of memory == 0, then there is no lock.  
 Testset: **if word==0 then word=1** as an **atomic operation**.  
+
+#### what is a semaphore
+A semaphore is an integer to which access is atomic.  
+Initialized to some integer value.  
+locks decrement it.  
+unlocks increment it.  
+value determines number of concurrent locks available.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
