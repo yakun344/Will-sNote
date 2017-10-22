@@ -72,65 +72,6 @@ char dequeue() { 				// how to dequeue a character
     return out; 
 }
 
-void *threaded_routine_1 (void * v) { 
-    int i; 
-    fprintf (stderr, "hello from the first thread!\n"); 
-    for(i=0; i<200; i++) { 
-        fprintf(stderr, "first  %03d: enqueue('%c')\n", i, 'a'+(i%26)); 
-    	enqueue('a'+(i%26)); 
-    } 
-    fprintf (stderr, "bye from the first thread!\n"); 
-    return NULL;
-} 
-
-void *threaded_routine_2 (void * v) { 
-    int i; 
-    fprintf (stderr, "hello from the second thread!\n"); 
-    for(i=0; i<200; i++) { 
-        fprintf(stderr, "second %03d: enqueue('%c')\n", i, 'A'+(i%26)); 
-    	enqueue('A'+(i%26)); 
-    } 
-    fprintf (stderr, "bye from the second thread!\n"); 
-    return NULL;
-} 
-
-void *threaded_routine_3 (void * v) { 
-    int i; 
-    fprintf (stderr, "hello from the third thread!\n"); 
-    for(i=0; i<200; i++) { 
-        fprintf(stderr, "third  %03d: enqueue('%c')\n", i, '0'+(i%10)); 
-    	enqueue('0'+(i%10)); 
-    } 
-    fprintf (stderr, "bye from the third thread!\n"); 
-    return NULL;
-} 
-
-main()
-{ 
-   pthread_t thread1,thread2,thread3; 
-   void *retptr; 
-   int i; 
-   pthread_mutex_init(&can_modify, NULL);  // not being modified now => unlocked
-   pthread_mutex_init(&can_enqueue, NULL); // not full now => unlocked 
-   pthread_mutex_init(&can_dequeue, NULL);
-   pthread_mutex_lock(&can_dequeue); 	   // empty now => LOCKED 
-
-   fprintf(stderr,"hello from the parent... creating threads!\n"); 
-   pthread_create( &thread1, NULL, threaded_routine_1, NULL); 
-   pthread_create( &thread2, NULL, threaded_routine_2, NULL); 
-   pthread_create( &thread3, NULL, threaded_routine_3, NULL); 
-   for (i=0; i<600; i++) { 
-    	char c = dequeue(); 
-    	fprintf(stderr, "parent %03d: dequeue() is '%c'\n",i,c); 
-   } 
-   pthread_join(thread1,(void **)&retptr); 
-   pthread_join(thread2,(void **)&retptr); 
-   pthread_join(thread3,(void **)&retptr); 
-   pthread_mutex_destroy(&can_modify);
-   pthread_mutex_destroy(&can_enqueue);
-   pthread_mutex_destroy(&can_dequeue);
-   fprintf(stderr, "bye from the parent!\n"); 
-} 
 ```
 
 
