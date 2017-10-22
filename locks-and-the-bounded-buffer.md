@@ -74,6 +74,9 @@ char dequeue() { 				// how to dequeue a character
 
 ```
 
+#### 主要思想
+理解 bounded buffer queue 的机理，特别是其中三把锁的作用分别如何。
+
 
 
 
