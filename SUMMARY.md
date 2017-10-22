@@ -236,4 +236,5 @@
 * [Threads](operating-system/threads.md)
 * [Multithreaded Programming](operating-system/multithreaded-programming.md)
 * [Locks and the Bounded Buffer](locks-and-the-bounded-buffer.md)
+* [Atomicity and semaphores](operating-system/atomicity-and-semaphores.md)
 
