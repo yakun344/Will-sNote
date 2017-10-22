@@ -8,10 +8,13 @@ _update Oct 21,2017  12:55_
 
 #### What is a pipe?
 Semantically, a **ring buffer of characters** (an array
-queue).
-**write** enqueues to the buffer.
-**read** dequeues from the buffer.
-
+queue).  
+**write** enqueues to the buffer.  
+**read** dequeues from the buffer.  
+**Thread-safety** and async safety.  
+**simultaneous** usability by multiple processes.   
+**block on** read from empty buffer.  
+**block on** write to full buffer.  
 
 
 
