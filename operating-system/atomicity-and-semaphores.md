@@ -42,6 +42,15 @@ locks decrement it.
 unlocks increment it.  
 value determines number of concurrent locks available.  
 
+#### Mutex versus semphores
+![](/assets/Screen Shot 2017-10-22 at 4.15.51 PM.png)
+
+* Mutexes can only be locked or unlocked, they are sometimes called "binary semaphores".
+* Semaphores have an integer value that is the number of locks available. Can read a semaphore's value via sem_getvalue(&sem,&val) where val is an int. 
+
+#### Using a semphore
+![](/assets/Screen Shot 2017-10-22 at 4.38.38 PM.png)
+
 
 
 
