@@ -41,6 +41,14 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 #### Important to remember
 When a process awaits resources, it not ready or runnable. 因为它被block，它无法在runtime 纠正自己，所有的纠正 has to come from outside.
 
+#### Resource allocation graph
+<br>
+<img src="/assets/Screen Shot 2017-11-13 at 2.04.32 PM.png" width="410" height="300" />
+<br>
+<img src="/assets/Screen Shot 2017-11-13 at 2.05.00 PM.png" width="410" height="200" />
+<br>
+
+
 
 
 
