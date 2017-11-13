@@ -62,6 +62,8 @@ Compute resource allocation graph，如果有环，则有deadlock。在linux中�
 
 ## Tree approaches to deadlock prevention:
 ![](/assets/Screen Shot 2017-11-13 at 4.47.26 PM.png)
+### -->Banker's algorithm:
+
 
 
 
