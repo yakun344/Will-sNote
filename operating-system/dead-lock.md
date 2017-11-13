@@ -25,6 +25,9 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 **Deadlock when:**  
 进程需要资源，而它们在无 outside intervention(ctrl-d) 时不会结束时。 
 
+#### Atomicity is the key
+1. If every process ask for everything it needs all at ones, **deadlock cannot occur.**
+2. 产生deadlock的原因是： processes **waits for some resources but already holds others.**
 
 
 
