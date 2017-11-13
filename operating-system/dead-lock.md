@@ -39,7 +39,7 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 <br>
 
 #### Important to remember
-
+When a process awaits resources, it not ready or runnable. 因为它被block，它无法在runtime 纠正自己，所有的纠正 has to come from outside.
 
 
 
