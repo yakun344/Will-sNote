@@ -38,6 +38,8 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 <img src="/assets/Screen Shot 2017-11-13 at 12.26.26 PM.png" width="410" height="300" />
 <br>
 
+#### Important to remember
+
 
 
 
