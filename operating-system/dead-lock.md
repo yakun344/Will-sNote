@@ -26,18 +26,18 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 进程需要资源，而它们在无 outside intervention(ctrl-d) 时不会结束时。 
 
 #### Deadlock 的产生
-1. **circular dependency:**
+1. **Circular dependency:**  
     1. If every process ask for everything it needs all at ones, **deadlock cannot occur.**
     2. 产生deadlock的原因是： processes **waits for some resources but already holds others.**
 
-2. 另一种是 **Resource starvation:**
+2. 另一种是 **Resource starvation:**  
 
     是 circular dependency 的一种特殊情况，对于resource的需求供不应求。多在 incremental allocation 中产生 deadlock。 例如：  
 <br>
 <img src="/assets/Screen Shot 2017-11-13 at 12.26.26 PM.png" width="410" height="300" />
 <br>
 
-
+3. **Poor understanding of I/O:**  
 
 #### Important to remember
 When a process awaits resources, it not ready or runnable. 因为它被block，它无法在runtime 纠正自己，所有的纠正 has to come from outside.
