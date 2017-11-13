@@ -58,6 +58,9 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 2. 给lock设定优先级，如此避免circular dependency；
 3. Detect and break deadlock proactively；
 4. Grant lock 和 resource 之前先 analyze；
+##### 检测binary lock 的 deadlock
+Compute resource allocation graph，如果有环，则有deadlock。在linux中，系统会随机kill一个process来解决。
+
 
 
 
