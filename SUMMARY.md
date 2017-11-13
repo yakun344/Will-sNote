@@ -238,4 +238,5 @@
 * [Locks and the Bounded Buffer](locks-and-the-bounded-buffer.md)
 * [Atomicity and semaphores](operating-system/atomicity-and-semaphores.md)
 * [Dead Lock](operating-system/dead-lock.md)
+* [Deadlock Prevention](operating-system/deadlock-prevention.md)
 
