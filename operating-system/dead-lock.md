@@ -53,6 +53,11 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 2. Avoid resource allocation races;
 3. 这就是允许同时做多个semaphore操作的深层原因。
 
+#### OS deadlock prevention methods
+1. 提供atomic multi-resource locks (semp);
+2. 给lock设定优先级，如此避免circular dependency；
+3. Detect and break deadlock proactively；
+4. Grant lock 和 resource 之前先 analyze；
 
 
 
