@@ -48,7 +48,10 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 <img src="/assets/Screen Shot 2017-11-13 at 2.05.00 PM.png" width="410" height="200" />
 <br>
 
-
+#### Keys to deadlock prevention: Atomicity of allocation
+1. Request resources all at once;
+2. Avoid resource allocation races;
+3. 这就是允许同时做多个semaphore操作的深层原因。
 
 
 
