@@ -59,7 +59,9 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 3. Detect and break deadlock proactively；
 4. Grant lock 和 resource 之前先 analyze；
 ##### 检测binary lock 的 deadlock
-Compute resource allocation graph，如果有环，则有deadlock。在linux中，系统会随机kill一个process来解决。
+Compute resource allocation graph，如果有环，则有deadlock。在linux中，系统会随机kill一个process来解决。判断是否有环的方法和topological sort类似，可以每次把indegree为0的node去掉，如果最后还剩下node没有去掉，则说明有环。
+
+
 
 
 
