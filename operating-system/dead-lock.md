@@ -67,6 +67,7 @@ Next Class
 
 ## Three approaches to deadlock prevention:
 ![](/assets/Screen Shot 2017-11-13 at 4.47.26 PM.png)
+
 ### -->Banker's algorithm:
 <img src="/assets/Screen Shot 2017-11-13 at 4.58.55 PM.png" width="500" height="250" />
 <br>
@@ -114,14 +115,15 @@ So we store the schedule and update it as source requirement change (**via bubbl
 2. 为什么当 malloc 失败（没有内存资源供分配）时返回 0 而不是直接 kill 当前 process？
 > 虽然现在malloc不成功，不代表等一会也不会成功。根据 banker's algorithm 我们假设所有的 resource 最终都会被释放，所以这里的返回值 0 事实上是 indication that the process should wait.
 
-### -->Locking in order:
+### --> Locking in order:
 1. Number the locks in increasing order;
 2. Lock in that order;
-
-#### ---解释
+#### 解释
 1. 即使两process的起始lock编号不同，也不会出现deadlock；
+2. 即使有多个processes按照顺序lock，也不会出现deadlock；
 
-
+### --> Atomic allocation:
+If N processes request all resources all at once, then there is no deadlock;
 
 
 
