@@ -177,125 +177,125 @@ Could you do both operations in O(1) time complexity?
 ```
 #### Python Code
 ```python
-    class FreqNode(object):
-        def __init__(self, freq):
-            self.freq = freq
-            self.prev = None
-            self.next = None
-            self.head = DataNode(-1, -1)
-            self.tail = DataNode(-1, -1)
-            self.head.next = self.tail
-            self.tail.prev = self.head
+class FreqNode(object):
+    def __init__(self, freq):
+        self.freq = freq
+        self.prev = None
+        self.next = None
+        self.head = DataNode(-1, -1)
+        self.tail = DataNode(-1, -1)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        
+class DataNode(object):
+    def __init__(self, key, value):
+        self.key = key
+        self.val = value
+        self.freq = 1
+        self.prev = None
+        self.next = None
 
-    class DataNode(object):
-        def __init__(self, key, value):
-            self.key = key
-            self.val = value
-            self.freq = 1
-            self.prev = None
-            self.next = None
+class LFUCache(object):
 
-    class LFUCache(object):
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.capacity = capacity
+        self.head = FreqNode(0)
+        self.tail = FreqNode(0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.FreqMap = {}
+        self.DataMap = {}
 
-        def __init__(self, capacity):
-            """
-            :type capacity: int
-            """
-            self.capacity = capacity
-            self.head = FreqNode(0)
-            self.tail = FreqNode(0)
-            self.head.next = self.tail
-            self.tail.prev = self.head
-            self.FreqMap = {}
-            self.DataMap = {}
+    def get(self, key):
+        """
+        :type key: int
+        :rtype: int
+        """
+        if key not in self.DataMap:
+            return -1
+        dnode = self.DataMap[key]
+        self.updateFreq(dnode)
+        return dnode.val
+        
 
-        def get(self, key):
-            """
-            :type key: int
-            :rtype: int
-            """
-            if key not in self.DataMap:
-                return -1
+    def put(self, key, value):
+        """
+        :type key: int
+        :type value: int
+        :rtype: void
+        """
+        if self.capacity == 0:
+            return
+        if key in self.DataMap:
             dnode = self.DataMap[key]
+            dnode.val = value
             self.updateFreq(dnode)
-            return dnode.val
-
-
-        def put(self, key, value):
-            """
-            :type key: int
-            :type value: int
-            :rtype: void
-            """
-            if self.capacity == 0:
-                return
-            if key in self.DataMap:
-                dnode = self.DataMap[key]
-                dnode.val = value
-                self.updateFreq(dnode)
-            else:
-                # 若已满，则移除freq最小的fnode中靠近head的dnode
-                if len(self.DataMap) == self.capacity:
-                    fnode = self.head.next
-                    dnode = fnode.head.next
-                    del self.DataMap[dnode.key]
-                    self.removeDataNode(dnode)
-                    if self.isEmpty(fnode):
-                        del self.FreqMap[fnode.freq]
-                        self.removeFreqNode(fnode)
-
-                self.ensureFirstFreq()
-                fnode = self.FreqMap[1]
-                dnode = DataNode(key, value)
-                self.DataMap[key] = dnode
-                self.insertDataNode(dnode, fnode)
-
-
-        def isEmpty(self, fnode):
-            return fnode.head.next == fnode.tail
-
-        def ensureFirstFreq(self):
-            if self.head.next.freq == 1:
-                return
-            fnode = FreqNode(1)
-            self.FreqMap[1] = fnode
-            fnode.next = self.head.next
-            fnode.prev = self.head
-            self.head.next = fnode
-            fnode.next.prev = fnode
-
-        def insertDataNode(self, dnode, fnode):
-            # 把dnode插入到fnode中的tail之前
-            dnode.next = fnode.tail
-            dnode.prev = fnode.tail.prev
-            dnode.next.prev = dnode
-            dnode.prev.next = dnode
-
-        def removeFreqNode(self, fnode):
-            fnode.prev.next = fnode.next
-            fnode.next.prev = fnode.prev
-
-        def removeDataNode(self, dnode):
-            dnode.prev.next = dnode.next
-            dnode.next.prev = dnode.prev
-
-        def updateFreq(self, dnode):
-            prev_fnode = self.FreqMap[dnode.freq]
-            # 检查freq+1是否存在，若存在，则移动，否则先建freq+1的node
-            if dnode.freq + 1 not in self.FreqMap:
-                new_fnode = FreqNode(dnode.freq + 1)
-                new_fnode.prev = prev_fnode
-                new_fnode.next = prev_fnode.next
-                new_fnode.prev.next = new_fnode;
-                new_fnode.next.prev = new_fnode;
-                self.FreqMap[dnode.freq + 1] = new_fnode
-
-            new_fnode = self.FreqMap[dnode.freq + 1]
-            self.removeDataNode(dnode)
-            self.insertDataNode(dnode, new_fnode)
-            if self.isEmpty(prev_fnode):
-                del self.FreqMap[dnode.freq]
-                self.removeFreqNode(prev_fnode)
-            dnode.freq += 1
+        else:
+            # 若已满，则移除freq最小的fnode中靠近head的dnode
+            if len(self.DataMap) == self.capacity:
+                fnode = self.head.next
+                dnode = fnode.head.next
+                del self.DataMap[dnode.key]
+                self.removeDataNode(dnode)
+                if self.isEmpty(fnode):
+                    del self.FreqMap[fnode.freq]
+                    self.removeFreqNode(fnode)
+            
+            self.ensureFirstFreq()
+            fnode = self.FreqMap[1]
+            dnode = DataNode(key, value)
+            self.DataMap[key] = dnode
+            self.insertDataNode(dnode, fnode)
+                
+    
+    def isEmpty(self, fnode):
+        return fnode.head.next == fnode.tail
+        
+    def ensureFirstFreq(self):
+        if self.head.next.freq == 1:
+            return
+        fnode = FreqNode(1)
+        self.FreqMap[1] = fnode
+        fnode.next = self.head.next
+        fnode.prev = self.head
+        self.head.next = fnode
+        fnode.next.prev = fnode
+        
+    def insertDataNode(self, dnode, fnode):
+        # 把dnode插入到fnode中的tail之前
+        dnode.next = fnode.tail
+        dnode.prev = fnode.tail.prev
+        dnode.next.prev = dnode
+        dnode.prev.next = dnode
+        
+    def removeFreqNode(self, fnode):
+        fnode.prev.next = fnode.next
+        fnode.next.prev = fnode.prev
+        
+    def removeDataNode(self, dnode):
+        dnode.prev.next = dnode.next
+        dnode.next.prev = dnode.prev
+        
+    def updateFreq(self, dnode):
+        prev_fnode = self.FreqMap[dnode.freq]
+        # 检查freq+1是否存在，若存在，则移动，否则先建freq+1的node
+        if dnode.freq + 1 not in self.FreqMap:
+            new_fnode = FreqNode(dnode.freq + 1)
+            new_fnode.prev = prev_fnode
+            new_fnode.next = prev_fnode.next
+            new_fnode.prev.next = new_fnode;
+            new_fnode.next.prev = new_fnode;
+            self.FreqMap[dnode.freq + 1] = new_fnode
+        
+        new_fnode = self.FreqMap[dnode.freq + 1]
+        self.removeDataNode(dnode)
+        self.insertDataNode(dnode, new_fnode)
+        if self.isEmpty(prev_fnode):
+            del self.FreqMap[dnode.freq]
+            self.removeFreqNode(prev_fnode)
+        dnode.freq += 1
 ```
     
