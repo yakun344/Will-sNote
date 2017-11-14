@@ -60,23 +60,45 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 ##### 检测binary lock 的 deadlock
 Compute resource allocation graph，如果有环，则有deadlock。在linux中，系统会随机kill一个process来解决。判断是否有环的方法和topological sort类似，可以每次把indegree为0的node去掉，如果最后还剩下node没有去掉，则说明有环。
 
-## Tree approaches to deadlock prevention:
+---
+
+## Three approaches to deadlock prevention:
 ![](/assets/Screen Shot 2017-11-13 at 4.47.26 PM.png)
 ### -->Banker's algorithm:
 <img src="/assets/Screen Shot 2017-11-13 at 4.58.55 PM.png" width="500" height="250" />
 <br>
 
-#### Attributes of algorithm:
+#### ---Attributes of algorithm:
 * Paranoid and Pessimistic: assumes the worst about processes;
 * Incremental: resource needs not be known about it;
 * Can lead to livelock: it leaves processes that were denied resources in a runnable state;
 
-#### Basic Idea of the banker's algorithm:
+#### ---Basic Idea of the banker's algorithm:
 * The operating system is a banker;
 * The banker loans resources to processes;
 * The processes pay back the loan by returning the resources;
 * Banker's goal is to **assure that loans are paid back**;
 * 当client来索要resource的时候，bank需要确认当前剩余resource可以足够current loans to complete；
+
+#### ---Resource matrices:
+* **Rows**: processes;
+* **Columns**: resources
+* **At row i, column j**: demand or supply of resource j by process i;
+
+[https://en.wikipedia.org/wiki/Banker%27s_algorithm](https://en.wikipedia.org/wiki/Banker%27s_algorithm) 上面讲的很不错。
+
+#### ---What is unsafe?
+如果存在一种 completion schedule 可以令所有process最终完成，就是safety， 否则就是 unsafe；
+
+
+
+
+
+
+
+
+
+
 
 
 
