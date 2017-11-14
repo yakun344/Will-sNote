@@ -102,6 +102,8 @@ Compute resource allocation graph，如果有环，则有deadlock。在linux中�
 
 So we store the schedule and update it as source requirement change (**via bubble sort!**); (**bubble sort 居然有了用武之地**)
 
+所以性能上，需要 O(n^2) 时间initialize整个sequence，然后需要 O(n) per change（step)。If requests are small, the time is on average one step。
+
 
 
 
