@@ -97,7 +97,10 @@ Compute resource allocation graph，如果有环，则有deadlock。在linux中�
 
 #### ---Practicality:
 * 事实上我们不需要每次查找合适的schedule；
-* 
+* 当resource request 增加的时候，把它移向尾部；
+* 当resource request 减少的时候，把它移向头部；
+
+So we store the schedule and update it as source requirement change (**via bubble sort!**); (**bubble sort 居然有了用武之地**)
 
 
 
