@@ -115,6 +115,11 @@ So we store the schedule and update it as source requirement change (**via bubbl
 > 虽然现在malloc不成功，不代表等一会也不会成功。根据 banker's algorithm 我们假设所有的 resource 最终都会被释放，所以这里的返回值 0 事实上是 indication that the process should wait.
 
 ### -->Locking in order:
+1. Number the locks in increasing order;
+2. Lock in that order;
+
+#### ---解释
+1. 
 
 
 
