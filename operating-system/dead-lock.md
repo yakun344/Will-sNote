@@ -112,7 +112,9 @@ So we store the schedule and update it as source requirement change (**via bubbl
 > 因为当一个process结束的时候，它的resource的释放和重新分配需要时间。事实上在实际应用中会遇到很多异步的requests，而 actual granting 会需要比较长的时间，这期间还会有 requests 进入，形成一种 producer-consumer 的关系。
 
 2. 为什么当 malloc 失败（没有内存资源供分配）时返回 0 而不是直接 kill 当前 process？
-> 
+> 虽然现在malloc不成功，不代表等一会也不会成功。根据 banker's algorithm 我们假设所有的 resource 最终都会被释放，所以这里的返回值 0 事实上是 indication that the process should wait.
+
+
 
 
 
