@@ -81,7 +81,6 @@
   * [Palindrome Linked List](other-problems/palindrome-linked-list.md)
   * [Valid Triangle Number](linkedlist-and-array/valid-triangle-number.md)
   * [Increasing Triplet Subsequence](linkedlist-and-array/increasing-triplet-subsequence.md)
-  * [Median of two Sorted Arrays](linkedlist-and-array/median-of-two-sorted-arrays.md)
   * [Shortest Unsorted Continuous Subarray](linkedlist-and-array/shortest-unsorted-continuous-subarray.md)
   * [Maximum Average Subarray](linkedlist-and-array/maximum-average-subarray.md)
   * [Linked List Cycle II](linkedlist-and-array/linked-list-cycle-ii.md)
@@ -106,6 +105,7 @@
   * [Wood Cut](binary-search/wood-cut.md)
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
   * Search in Rotated Sorted Array
+  * [Median of two Sorted Arrays](linkedlist-and-array/median-of-two-sorted-arrays.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
   * [KMP Search Algorithm](chapter1/kmp-search-algorithm.md)
