@@ -104,7 +104,7 @@
   * [Maximum Average Subarray II](linkedlist-and-array/maximum-average-subarray-ii.md)
   * [Wood Cut](binary-search/wood-cut.md)
   * [Find the Duplicate Number](other-problems/find-the-duplicate-number.md)
-  * Search in Rotated Sorted Array
+  * [Search in Rotated Sorted Array](binary-search/search-in-rotated-sorted-array.md)
   * [Median of two Sorted Arrays](linkedlist-and-array/median-of-two-sorted-arrays.md)
 * [String Manipulation](chapter1.md)
   * [Regular Expressions](chapter1/regular-expressions.md)
