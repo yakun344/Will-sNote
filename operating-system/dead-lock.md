@@ -95,7 +95,9 @@ Compute resource allocation graph，如果有环，则有deadlock。在linux中�
 2. get a new request, and compute what would happen if we grant it;
 3. 如果grant之后使系统进入 safe state （即有可能所有processes都完成），则grant；
 
-
+#### ---Practicality:
+* 事实上我们不需要每次查找合适的schedule；
+* 
 
 
 
