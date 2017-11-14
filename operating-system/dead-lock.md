@@ -107,6 +107,12 @@ So we store the schedule and update it as source requirement change (**via bubbl
 
 所以性能上，需要 O(n^2) 时间initialize整个sequence，然后需要 O(n) per change（step)。If requests are small, the time is on average one step。
 
+#### ---题点
+1. 为什么banker's algorithm 要考虑 resources are requested, available and not granted 的情况？
+> 因为当一个process结束的时候，它的resource的释放和重新分配需要时间。事实上在实际应用中会遇到很多异步的requests，而 actual granting 会需要比较长的时间，这期间还会有 requests 进入，形成一种 producer-consumer 的关系。
+
+2. 为什么当 malloc 失败（没有内存资源供分配）时返回 0 而不是直接 kill 当前 process？
+> 
 
 
 
