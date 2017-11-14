@@ -130,6 +130,7 @@ If N processes request all resources all at once, then there is no deadlock;
 * 需要按照 priority 顺序 lock；
 * If attempt is made out of order, break 低优先级的 lock，按优先级继续；
 
+[http://www.cs.tufts.edu/comp/111/notes/Deadlock_prevention.pdf](http://www.cs.tufts.edu/comp/111/notes/Deadlock_prevention.pdf)
 
 
 
