@@ -125,6 +125,11 @@ So we store the schedule and update it as source requirement change (**via bubbl
 ### --> Atomic allocation:
 If N processes request all resources all at once, then there is no deadlock;
 
+### --> Lock prioritization
+* 为每个 lock 分配一定的 priority；
+* 需要按照 priority 顺序 lock；
+* If attempt is made out of order, break 低优先级的 lock，按优先级继续；
+
 
 
 
