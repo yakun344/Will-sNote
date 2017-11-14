@@ -90,6 +90,11 @@ Compute resource allocation graph，如果有环，则有deadlock。在linux中�
 #### ---What is unsafe?
 如果存在一种 completion schedule 可以令所有process最终完成，就是safety， 否则就是 unsafe；
 
+#### ---Employing the algorithm:
+1. 从一定的状态开始，此时有些process running，有些在等resources；
+2. get a new request, and compute what would happen if we grant it;
+3. 如果grant之后使系统进入 safe state （即有可能所有processes都完成），则grant；
+
 
 
 
