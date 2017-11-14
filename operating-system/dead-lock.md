@@ -119,7 +119,8 @@ So we store the schedule and update it as source requirement change (**via bubbl
 2. Lock in that order;
 
 #### ---解释
-1. 
+1. 即使两process的起始lock编号不同，也不会出现deadlock；
+
 
 
 
