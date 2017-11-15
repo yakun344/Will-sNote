@@ -29,8 +29,6 @@ _2017-11-14 23:18:54_
 
 ### Malloc:
 <img src="/assets/Screen Shot 2017-11-15 at 2.12.03 AM.png" width="700" height="500" />
-<br>
-
 #### --> Malloc 的行为
 Malloc 记录两个结构：现在正在使用的block的description以及可以被重用的block的description。为了简便，理解为 **free list** 和 **used list**；
 
@@ -39,6 +37,9 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
 **当调用 free 时**，在 used list 中找到 block's descriptor，将其放入 free list；
 
 **Effectively：** 所有之前已经 freed 的内存可以直接被 malloc 继续分配。所以只需要在free list 中的 descriptor 不够的时候才会 call sbrk（to add another page）；
+
+### The buddy System:
+这里有一篇文章讲得很好：[http://blog.csdn.net/vanbreaker/article/details/7605367](http://blog.csdn.net/vanbreaker/article/details/7605367);
 
 
 
