@@ -23,7 +23,11 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 ### Virtual memory:
 ![](/assets/Screen Shot 2017-11-15 at 12.26.19 PM.png)
 
-
+* Process run 的时候只有一部分 pages resident；
+* 如果一个page is needed and isn't resident:
+  1. block the process
+  2. swap in the required page
+  3. unblock the process after the page is resident(it returns to the run queue)
 
 
 
