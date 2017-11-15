@@ -239,4 +239,5 @@
 * [Atomicity and semaphores](operating-system/atomicity-and-semaphores.md)
 * [Dead Lock](operating-system/dead-lock.md)
 * [Memory Management](operating-system/memory-management.md)
+* [Virtual Memory](operating-system/virtual-memory.md)
 
