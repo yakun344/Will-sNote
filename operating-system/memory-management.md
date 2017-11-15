@@ -31,6 +31,8 @@ _2017-11-14 23:18:54_
 <img src="/assets/Screen Shot 2017-11-15 at 2.12.03 AM.png" width="700" height="500" />
 <br>
 
+Malloc 记录两个结构：现在正在使用的block的description以及可以被重用的block的description。为了简便，理解为 **free list** 和 **used list**；
+
 
 
 
