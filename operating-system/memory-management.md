@@ -62,11 +62,9 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
   1. block 的长度（2 的幂次方）；
   2. free list 中的 next pointer；
 
-
-
-
-
-
+####  --> 题点
+1. 注意对于给定大小需求时，实际分配内存大小的推断；
+2. 注意每次malloc所返回的指针之前的16bytes位descriptor，而这个位置是可以被 write over 的，所以如果 free 修改后descriptor的地址，就会 segmentation fault；
 
 
 
