@@ -32,6 +32,7 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 如果map时，有 unused frame，则将需要的contents从disk中读到这里，然后map到process page。否则，就将一个已经使用的frame unmap，按需要将其存入disk，然后用这个frame存新的。
 
 **The dirty bit:**  如果memory page 和 disk 中不同，则需要 flush to disk before reuse。
+![](/assets/Screen Shot 2017-11-15 at 1.05.03 PM.png)
 
 **LRU：**  
 Optimal if memory access is linear, and increasing;
