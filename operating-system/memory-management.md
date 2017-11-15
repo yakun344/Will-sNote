@@ -41,6 +41,13 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
 ### The buddy System:
 这里有一篇文章讲得很好：[http://blog.csdn.net/vanbreaker/article/details/7605367](http://blog.csdn.net/vanbreaker/article/details/7605367);
 
+#### --> Buddy system descriptors:
+```c
+  struct descriptor {
+      struct descriptor *next;
+      void *memory;
+  } descriptors[TABLESIZE], *free[POWERS];
+```
 
 
 
