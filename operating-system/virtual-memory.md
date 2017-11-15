@@ -40,6 +40,8 @@ Optimal if memory access is linear, and increasing;
 **LFU:**  
 Optimal for loops;
 
+### 题点
+
 
 
 
