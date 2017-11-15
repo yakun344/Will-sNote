@@ -27,6 +27,12 @@ _2017-11-14 23:18:54_
 <img src="/assets/Screen Shot 2017-11-15 at 2.07.47 AM.png" width="600" height="500" />
 <br>
 
+### Malloc:
+<img src="/assets/Screen Shot 2017-11-15 at 2.12.03 AM.png" width="700" height="500" />
+<br>
+
+
+
 
 
 
