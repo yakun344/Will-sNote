@@ -13,5 +13,17 @@ _2017-11-14 23:18:54_
   2. **shared:** (e.g., between threads);
   3. **copy on write:** when forking;
   
+### Tiers of memory:
+<img src="/assets/Screen Shot 2017-11-15 at 12.41.53 AM.png" width="410" height="200" />
+<br>
+
+### 命名
+<img src="/assets/Screen Shot 2017-11-15 at 12.59.43 AM.png" width="410" height="410" />
+<br>
+
+
+
+
+
   
   
