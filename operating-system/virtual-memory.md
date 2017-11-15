@@ -41,7 +41,8 @@ Optimal if memory access is linear, and increasing;
 Optimal for loops;
 
 ### 题点
-
+1. Why is it practical to relocate a frame to another physical address?
+> A frame gets mapped to a page. Its physical address can thus be moved and the logical address stays the same. In fact, this always happens when the page is recovered from disk;
 
 
 
