@@ -29,6 +29,7 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
   2. swap in the required page
   3. unblock the process after the page is resident(it returns to the run queue)
 
+如果map时，有 unused frame，则将需要的contents从disk中读到这里，然后map到process page。否则，就将一个已经使用的frame unmap，按需要将其存入disk，然后用这个frame存新的。
 
 
 
