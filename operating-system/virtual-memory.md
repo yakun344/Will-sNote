@@ -50,7 +50,7 @@ Optimal for loops;
 3. 保持很多休眠processes会不会 slow down the OS？
 > 只有一点慢。因为 process 的 pages 都已经 swapped out，而且 processes 都不在 run queue 中了。内存中只剩下 **process page tables**，会拖慢一点点。
 
-4. 
+
 
 
 
