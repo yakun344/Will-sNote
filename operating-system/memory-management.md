@@ -49,6 +49,9 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
   } descriptors[TABLESIZE], *free[POWERS];
 ```
 <img src="/assets/Screen Shot 2017-11-15 at 10.22.14 AM.png" width="700" height="700" />
+<img src="/assets/Screen Shot 2017-11-15 at 10.23.57 AM.png" width="700" height="350" />
+
+
 
 
 
