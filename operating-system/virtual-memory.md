@@ -47,7 +47,8 @@ Optimal for loops;
 2. Why is it impractical to relocate a heap page to another address?
 > 因为我们不知道有哪些指针正指向他们。
 
-
+3. 保持很多休眠processes会不会 slow down the OS？
+> 只有一点慢。因为 process 的 pages 都已经 swapped out，而且 processes 都不在 run queue 中了。内存中只剩下 process page tables，会拖慢一点点。
 
 
 
