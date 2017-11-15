@@ -36,6 +36,7 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 
 **LRU：**  
 Optimal if memory access is linear, and increasing;
+
 **LFU:**  
 Optimal for loops;
 
