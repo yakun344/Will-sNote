@@ -48,10 +48,19 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
       void *memory;
   } descriptors[TABLESIZE], *free[POWERS];
 ```
+
+#### --> How buddy system work:
 <img src="/assets/Screen Shot 2017-11-15 at 10.22.14 AM.png" width="700" height="700" />
 <img src="/assets/Screen Shot 2017-11-15 at 10.23.57 AM.png" width="700" height="350" />
 <img src="/assets/Screen Shot 2017-11-15 at 10.25.36 AM.png" width="650" height="450" />
 
+**总结：**  
+* You ask for m bytes;
+* Malloc actually hands out blocks of 2^p - 16;
+* Where actual size is such that 2^(p-1) - 16 < m < 2^p - 16;
+* The first 16 bytes say: 
+  1. block 的长度（2 的幂次方）；
+  2. free list 中的 next pointer；
 
 
 
