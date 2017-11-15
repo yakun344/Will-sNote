@@ -16,6 +16,8 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 #### --> OS needs to remember
 * What frame goes with what process/page?
 * Special handling instructions for pages: read-only,shared, private,...
+<img src="/assets/Screen Shot 2017-11-15 at 11.42.56 AM.png" width="700" height="580" />
+
 
 
 
