@@ -29,7 +29,7 @@ _2017-11-14 23:18:54_
 
 ### Malloc:
 <img src="/assets/Screen Shot 2017-11-15 at 2.12.03 AM.png" width="700" height="500" />
-#### --> Malloc 的行为
+#### --> Malloc 的行为(理解)
 Malloc 记录两个结构：现在正在使用的block的description以及可以被重用的block的description。为了简便，理解为 **free list** 和 **used list**；
 
 **当调用 malloc 时**，如果 free list 中存在一个足够大的block的descriptor，则把这个descriptor 从 free list 中移动到 used list 中，并将指针返回。如果没有，就向操作系统要更多内存。
