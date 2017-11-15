@@ -11,6 +11,7 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 * A frame is a unit of memory in the OS;
 * A page is a unit of memory  in the process;
 * Memory mapping associates (os) frames with (process) pages;
+* The OS has to maintain data on what gets mapped where;
 
 
 
