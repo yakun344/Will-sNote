@@ -23,6 +23,15 @@ _2017-11-14 23:18:54_
 **Page:** page 是 process's version of the memory;  
 **Frame:** frame 是 os's view of the memory;
 
+### The life cycle of logical memory:
+<img src="/assets/Screen Shot 2017-11-15 at 2.07.47 AM.png" width="600" height="500" />
+<br>
+
+
+
+
+
+
 
 
 
