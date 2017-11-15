@@ -33,6 +33,12 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 
 **The dirty bit:**  如果memory page 和 disk 中不同，则需要 flush to disk before reuse。
 
+**LRU：**  
+Optimal if memory access is linear, and increasing;
+**LFU:**  
+Optimal for loops;
+
+
 
 
 
