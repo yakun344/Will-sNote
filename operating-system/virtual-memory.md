@@ -7,7 +7,10 @@ _update 2017-11-15 11:00:15_
 
 Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（process exit，heap 释放，留下fragment） 造成。我们没有办法 eliminate fragments，因为我们不知道 pointers 在哪里。
 
-
+### Memory mapping:
+* A frame is a unit of memory in the OS;
+* A page is a unit of memory  in the process;
+* Memory mapping associates (os) frames with (process) pages;
 
 
 
