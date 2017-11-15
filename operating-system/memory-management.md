@@ -38,6 +38,8 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
 
 **当调用 free 时**，在 used list 中找到 block's descriptor，将其放入 free list；
 
+**Effectively：** 所有之前已经 freed 的内存可以直接被 malloc 继续分配。所以只需要在free list 中的 descriptor 不够的时候才会 call sbrk（to add another page）；
+
 
 
 
