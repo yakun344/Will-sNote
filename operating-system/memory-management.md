@@ -8,3 +8,10 @@ _2017-11-14 23:18:54_
   2. **Process/thread descriptors:** Describe how to run a process;
   3. **Semaphores and mutexes:** Describe the locations of shared memory;
   4. **File cache:** Describe what is on disk;
+2. **Application memory:**
+  1. **private:** for this application only;
+  2. **shared:** (e.g., between threads);
+  3. **copy on write:** when forking;
+  
+  
+  
