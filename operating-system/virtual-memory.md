@@ -44,7 +44,10 @@ Optimal for loops;
 1. Why is it practical to relocate a frame to another physical address?
 > A frame gets mapped to a page. Its physical address can thus be moved and the logical address stays the same. In fact, this always happens when the page is recovered from disk;
 
-2. 
+2. Why is it impractical to relocate a heap page to another address?
+> 因为我们不知道有哪些指针正指向他们。
+
+
 
 
 
