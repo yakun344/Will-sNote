@@ -13,6 +13,10 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 * Memory mapping associates (os) frames with (process) pages;
 * The OS has to maintain data on what gets mapped where;
 
+#### --> OS needs to remember
+* What frame goes with what process/page?
+* Special handling instructions for pages: read-only,shared, private,...
+
 
 
 
