@@ -240,4 +240,5 @@
 * [Dead Lock](operating-system/dead-lock.md)
 * [Memory Management](operating-system/memory-management.md)
 * [Virtual Memory](operating-system/virtual-memory.md)
+* [Memory Addressing](operating-system/memory-addressing.md)
 
