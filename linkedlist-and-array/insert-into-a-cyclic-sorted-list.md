@@ -24,6 +24,28 @@ Given a node from a cyclic linked list which has been sorted, write a function t
 ---
 _update 2017-11-21 01:59:08_
 
+这道题其实没有想象中的那么简单，而奇怪的是几个月前第一次刷这道题的时候还用一个错误解骗过了LintCode 的 OJ，导致一直没有发现问题。
+
+#### 问题在于：
+首先我们考虑共有哪些情况 ：
+
+1. node is None；
+2. 我们找到了明确可以插入的位置：`curr.val <= x <= curr.next.val`;
+3. x 比当前 linked list 的所有元素都大，或者都小；
+
+看到这里感觉还是没有问题的，和之前的分析也一样，但是关键就在于如何判断 x 比所有当前元素都大或者都小，此时需要分两种情况讨论：
+
+1. 给定 list 的元素不全都相同，例如 3,1,5；
+  >这种情况我们可以通过判断 `curr.val > curr.next.val` 来确定是否到达排序链表的 tail，然后分别判断 x 是否比 curr 和 curr.next 都大或者都小；
+2. 给定 list 所有元素都相同，这种情况下就很容易出现死循环；
+  >这种情况下，我们就需要记录一开始给定的 node，当出现 `curr is node` 的时候，我们就知道我们一定已经循环了一整圈，并且不符合以上其他情况，那么一定是因为给定list所有元素都相同，无法判断出tail导致，此时可以直接插入 x；
+  
+#### 综上所述
+正确的做法其实是使用多个判断语句分情况讨论：
+
+1. 如果 `curr is node`，说明已经一圈结束，且所有元素都相同，可以插入；
+2. `curr.val <= x <= curr.next.val`，即恰好有位置插入；
+3. 如果已经到 tail： `curr.val > curr.next.val`，继续判断 首位两元素是否都大于或者都小于 x，如果是，则可以插入；
 
 ---
 
@@ -48,10 +70,14 @@ _update 2017-11-21 01:59:08_
                 return target
             
             curr = node
+            
             while True:
+            // *****************************************************
+
                 if (curr.next is node) or (curr.val <= x and curr.next.val >=x) or \
                    (curr.val > curr.next.val and (curr.val > x and curr.next.val > x or \
                                                   curr.val < x and curr.next.val < x)):
+            // *****************************************************
                     target.next = curr.next
                     curr.next = target
                     return target
