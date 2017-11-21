@@ -21,6 +21,12 @@ Given a node from a cyclic linked list which has been sorted, write a function t
 2.  当可以找到 `curr <= target <= next` 时的情况
 3.  target 比所有node值都大或者都小的情况
 
+---
+_update 2017-11-21 01:59:08_
+
+
+---
+
 #### Python Code:
 ```python
     """
@@ -36,19 +42,19 @@ Given a node from a cyclic linked list which has been sorted, write a function t
         # @param {int} x an integer
         # @return {ListNode} the inserted new list node
         def insert(self, node, x):
+            target = ListNode(x)
             if node is None:
-                target = ListNode(x)
                 target.next = target
                 return target
             
             curr = node
-            next = None
             while True:
-                next = curr.next
-                if (next is node) or (curr.val <= x <= next.val):
-                    target = ListNode(x, next)
+                if (curr.next is node) or (curr.val <= x and curr.next.val >=x) or \
+                   (curr.val > curr.next.val and (curr.val > x and curr.next.val > x or \
+                                                  curr.val < x and curr.next.val < x)):
+                    target.next = curr.next
                     curr.next = target
-                    break
-                curr = next
-            return node
+                    return target
+                curr = curr.next
+            return None
 ```
