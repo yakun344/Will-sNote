@@ -72,3 +72,9 @@ Iteration 的方法可以先使用一个无意义的 dummy node 作为头指针�
         return dummy.next;
     }
 ```
+
+---
+_update 2017-11-21 14:44:35_
+
+#### 补充一点关于recursion方法的思路
+<img src="/assets/merge_two_sorted_lists.jpg" width="700" height="760" /><br>
