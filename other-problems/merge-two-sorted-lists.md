@@ -78,3 +78,27 @@ _update 2017-11-21 14:44:35_
 
 #### 补充一点关于recursion方法的思路
 <img src="/assets/merge_two_sorted_lists.jpg" width="700" height="760" /><br>
+
+**Java Code**
+```java
+    // recursive solution
+    public class Solution {
+        public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+            // base case
+            if (l1 == null) return l2;
+            else if (l2 == null) return l1;
+            
+            // 选择小的作为当前head，和剩余部分merge之后的head拼接
+            ListNode head;
+            if (l1.val < l2.val) {
+                head = l1;
+                l1 = l1.next;
+            } else {
+                head = l2;
+                l2 = l2.next;
+            }
+            head.next = mergeTwoLists(l1, l2);
+            return head;
+        }
+    }
+```
