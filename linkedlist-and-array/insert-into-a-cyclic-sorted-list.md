@@ -48,6 +48,36 @@ _update 2017-11-21 01:59:08_
 3. 如果已经到 tail： `curr.val > curr.next.val`，继续判断 首位两元素是否都大于或者都小于 x，如果是，则可以插入；
 
 ---
+#### Java Code:
+    ```java
+    public class Solution {
+        /*
+         * @param node: a list node in the list
+         * @param x: An integer
+         * @return: the inserted new list node
+         */
+        public ListNode insert(ListNode node, int x) {
+            ListNode target = new ListNode(x);
+            if (node == null) {
+                target.next = target;
+                return target;
+            } 
+            
+            ListNode curr = node;
+            while (true) {
+                if (curr.next == node || 
+                    (curr.val <= x && curr.next.val >= x) || 
+                    (curr.val > curr.next.val && (curr.val < x && curr.next.val < x || 
+                     curr.val > x && curr.next.val > x))) {
+                    target.next = curr.next;
+                    curr.next = target;
+                    return target;
+                }
+                curr = curr.next;
+            }
+        }
+    }
+```
 
 #### Python Code:
 ```python
