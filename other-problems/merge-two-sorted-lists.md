@@ -103,7 +103,7 @@ _update 2017-11-21 14:44:35_
     }
 ```
 
-#### 时隔数月，non-recursion 写出来解法的code也精简了不少
+#### 时隔数月，写出来的 non-recursion 的code也精简了不少
 ```java
     public class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
