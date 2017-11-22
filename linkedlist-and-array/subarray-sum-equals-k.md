@@ -40,6 +40,8 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
             return count
  ``` 
  
+ ---
+ _update Nov 11, 2017 09:39:41_
  #### Java Code:
  ```Java
      class Solution {
