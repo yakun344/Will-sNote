@@ -43,3 +43,22 @@ There is at least one subarray that it's sum equals to zero.
         }
     }
 ```
+
+#### Python Code:
+```python
+    class Solution:
+        """
+        @param: nums: A list of integers
+        @return: A list of integers includes the index of the first number and the index of the last number
+        """
+        def subarraySum(self, nums):
+            preSum = {}
+            preSum[0] = 0
+            currSum = 0
+            for i in range(len(nums)):
+                currSum += nums[i]
+                if currSum in preSum:
+                    return [preSum[currSum], i]
+                preSum[currSum] = i + 1
+            return []
+```
