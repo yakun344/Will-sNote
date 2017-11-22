@@ -39,3 +39,23 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
                 prev[sums[i]] += 1
             return count
  ``` 
+ 
+ #### Java Code:
+ ```Java
+     class Solution {
+        public int subarraySum(int[] nums, int k) {
+            Map<Integer, Integer> preSum = new HashMap<>();
+            preSum.put(0, 1);
+            int currSum = 0;
+            int res = 0;
+            for (int i = 0; i < nums.length; ++i) {
+                currSum += nums[i];
+                if (preSum.containsKey(currSum - k)) {
+                    res += preSum.get(currSum - k);
+                }
+                preSum.put(currSum, preSum.getOrDefault(currSum, 0) + 1);
+            }
+            return res;
+        }
+    }
+```
