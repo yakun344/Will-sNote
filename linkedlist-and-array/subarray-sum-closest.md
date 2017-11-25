@@ -15,6 +15,13 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
 
 而这道题求的是**和最接近0的subarray**，我们只要找到两个最接近的前缀和即可。所以我们可以令sums为一个二维数组，在其中保存index，然后对其按 `key = sums[i][0]` 进行排序，然后逐对对比，找最接近的两前缀和，然后从 `sums[i][1]` 读出index即可。
 
+例如，如下数组及其preSum数组：
+``` 
+    index:  0  1  2  3  4
+    Array:  1  2  3  4
+    preSum: 0  1  3  6  10
+```
+
 #### Java Code：
 ```java
     public class Solution {
@@ -24,35 +31,29 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
          *          and the index of the last number
          */
         public int[] subarraySumClosest(int[] nums) {
-            if (nums.length == 1) return new int[] {0, 0};
-            // create prefix-sum array
-            int[][] sums = new int[nums.length][2];
-            sums[0][0] = nums[0];
-            sums[0][1] = 0;
-            for (int i = 1; i < sums.length; ++i) {
-                sums[i][0] = nums[i] + sums[i - 1][0];
-                sums[i][1] = i;
+            int[][] preSum = new int[nums.length + 1][2];
+            for (int i = 0; i < nums.length; ++i) {
+                preSum[i + 1][0] = preSum[i][0] + nums[i];
+                preSum[i + 1][1] = i + 1;
             }
-            // sort according to prefix-sum
-            Arrays.sort(sums, new Comparator<int[]>() {
+            Arrays.sort(preSum, new Comparator<int[]>() {
+                @Override
                 public int compare(int[] a, int[] b) {
-                    return a[0] - b[0];
+                    return Integer.compare(a[0], b[0]);
                 }
             });
-        
-            // find closest prefix-sum pair
             long minDiff = (long)Integer.MAX_VALUE + 1;
             int[] ret = new int[2];
-            for (int i = 1; i < sums.length; ++i) {
-                long diff = Math.abs(sums[i][0] - sums[i - 1][0]);
+            for (int i = 1; i < preSum.length; ++i) {
+                int diff = preSum[i][0] - preSum[i - 1][0];
                 if (diff < minDiff) {
                     minDiff = diff;
-                    ret[0] = sums[i][1];
-                    ret[1] = sums[i - 1][1];
+                    ret[0] = preSum[i][1];
+                    ret[1] = preSum[i - 1][1];
                 }
             }
             Arrays.sort(ret);
-            ret[0]++;
+            ret[1] -= 1;
             return ret;
         }
     }
