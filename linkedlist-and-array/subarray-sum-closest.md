@@ -16,10 +16,12 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
 而这道题求的是**和最接近0的subarray**，我们只要找到两个最接近的前缀和即可。所以我们可以令sums为一个二维数组，在其中保存index，然后对其按 `key = sums[i][0]` 进行排序，然后逐对对比，找最接近的两前缀和，然后从 `sums[i][1]` 读出index即可。
 
 例如，如下数组及其preSum数组：
-``` 
+```python
     index:  0  1  2  3  4
     Array:  1  2  3  4
     preSum: 0  1  3  6  10
+    
+    若求 3，4 两数的和，即index 为 2，3 的subarray和，我们可以用 preSum[4] - preSum[2].
 ```
 
 #### Java Code：
