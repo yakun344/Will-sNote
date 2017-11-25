@@ -60,6 +60,9 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
 
 #### Python Code:
 ```python
+    /****************************************************
+              Jul, 26 2017 14:02
+    ****************************************************/
     class Solution:
         """
         @param nums: A list of integers
@@ -95,5 +98,31 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
             ret.sort()
             ret[0] += 1
             return ret
+            
+            
+    /****************************************************
+    Nov, 24 2017 22:11
+    Update:
+        更新之后的代码比一开始写的更加简洁，主要体现在：
+          1. 初始化 preSum 数组的时候，将第 0 位元素的单独前缀和
+             放在 preSum 数组中 1 的位置，这样可以用循环直接生成
+             前缀和数组；
+    ****************************************************/
+    def subarraySumClosest(self, nums):
+        preSum = [[0, 0] for i in range(len(nums) + 1)]
+        for i in range(len(nums)):
+            preSum[i + 1][0] = preSum[i][0] + nums[i]
+            preSum[i + 1][1] = i + 1
+        preSum.sort(key = lambda a : a[0])
+        minDiff = float('INF')
+        ret = None
+        for i in range(1, len(preSum)):
+            diff = preSum[i][0] - preSum[i - 1][0]
+            if diff < minDiff:
+                ret = sorted([preSum[i][1], preSum[i - 1][1]])
+                minDiff = diff
+        ret[1] -= 1
+        return ret
 ```
+
 
