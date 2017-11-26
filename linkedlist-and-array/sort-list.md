@@ -336,6 +336,58 @@ _update Nov 26, 2017_
     }
 ```
 
+#### Python Code
+**Merge Sort**
+```python
+    class Solution:
+        """
+        @param: head: The head of linked list.
+        @return: You should return the head of the sorted linked list, using constant space complexity.
+        """
+        def sortList(self, head):
+            # ret: <ListNode>
+            def split(head):
+                if not head:
+                    return None
+                slow = head
+                fast = head.next
+                while fast and fast.next:
+                    slow = slow.next
+                    fast = fast.next.next
+                ret = slow.next
+                slow.next = None
+                return ret
+        
+            # ret: <ListNode>
+            def mergeSort(head):
+                if not head or not head.next:
+                    return head
+                mid = split(head)
+                head1 = mergeSort(head)
+                head2 = mergeSort(mid)
+                return merge(head1, head2)
+            
+            # ret: <ListNode>
+            def merge(head1, head2):
+                dummy = ListNode(0)
+                curr = dummy
+                while head1 and head2:
+                    if head1.val < head2.val:
+                        curr.next = head1
+                        head1 = head1.next
+                    else:
+                        curr.next = head2
+                        head2 = head2.next
+                    curr = curr.next
+                if not head1:
+                    curr.next = head2
+                else:
+                    curr.next = head1
+                return dummy.next
+            
+            # Main part:
+            return mergeSort(head)
+```
 
 
 
