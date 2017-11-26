@@ -274,13 +274,68 @@ _update Nov 26, 2017_
 1. 首先，对于 merge sort：
     > 对于mergesort来说，最重要的是实现先分开再merge。之前的写法是先用一个getMid函数找到中间node，再将其与后部断开，如此得到两段list。这次我把断开两段list的代码放在了 getMid 函数中（split函数），使得code更加简洁。  
       另外，这次的merge函数也比上次更简洁了。
-
 2. 对于 quick sort：
     > 
 
 
-
-
+#### Java Code:
+**Merge Sort**
+```java
+    public class Solution {
+        /*
+         * @param head: The head of linked list.
+         * @return: You should return the head of the sorted linked list, using constant space complexity.
+         */
+         
+        // merge sort solution
+        public ListNode sortList(ListNode head) {
+            if (head == null || head.next == null) return head;
+            ListNode mid = split(head);
+            ListNode l1 = sortList(head);
+            ListNode l2 = sortList(mid);
+            return merge(l1, l2);
+        }
+        
+        
+        private ListNode merge(ListNode head1, ListNode head2) {
+            if (head1 == null) return head2;
+            else if (head2 == null) return head1;
+            
+            ListNode dummy = new ListNode(0);
+            ListNode curr = dummy;
+            while (head1 != null && head2 != null) {
+                if (head1.val < head2.val) {
+                    curr.next = head1;
+                    head1 = head1.next;
+                } else {
+                    curr.next = head2;
+                    head2 = head2.next;
+                }
+                curr = curr.next;
+            }
+            if (head1 == null) curr.next = head2;
+            else curr.next = head1;
+            
+            return dummy.next;
+        }
+        
+        // 找到中间偏右的node作为mid，例如 1->2->null，should return 2, 同时断开 1->2
+        // 精髓就是令fast的起始位置为 slow->next, 这样停止时的 slow 偏左，其右是应该
+        // 返回的 mid，保存mid.next, 先断开当前mid，然后返回其右即可。
+        private ListNode split(ListNode head) {
+            if (head == null || head.next == null) return null;
+            ListNode slow = head;
+            ListNode fast = slow.next;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            ListNode ret = slow.next;
+            slow.next = null;
+            return ret;
+        }
+    }
+```
 
 
 
