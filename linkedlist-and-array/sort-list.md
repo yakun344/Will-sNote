@@ -296,7 +296,6 @@ _update Nov 26, 2017_
             return merge(l1, l2);
         }
         
-        
         private ListNode merge(ListNode head1, ListNode head2) {
             if (head1 == null) return head2;
             else if (head2 == null) return head1;
