@@ -215,55 +215,49 @@ Quick Sort:
 ```python
     # Quick Sort solution
     class Solution:
-        """
-        @param head: The first node of the linked list.
-        @return: You should return the head of the sorted linked list,
-                      using constant space complexity.
-        """
+        # 仍然是交换值
         def sortList(self, head):
-            if not head or not head.next:
+            def quickSort(head, tail):
+                if not head or not tail or tail.next == head:
+                    return head
+                    
+                # do partition first
+                pivot = head.val
+                dummy = ListNode(0)
+                dummy.next = head
+                left = dummy
+                right = head
+                leftTail = dummy
+                while right != tail.next:
+                    if right.val <= pivot:
+                        leftTail = left
+                        left = left.next
+                        swap(left, right)
+                    right = right.next
+                swap(left, head)
+                # 此时的left就是pivot所在位置, leftTail 为前半段的tail
+                
+                head1 = quickSort(head, leftTail)
+                head2 = quickSort(left.next, tail)
+                return head1
+                
+            
+            def swap(node1, node2):
+                t = node1.val
+                node1.val = node2.val
+                node2.val = t
+                
+                
+            def getTail(head):
+                if not head:
+                    return None
+                while head.next:
+                    head = head.next
                 return head
-            tail = self.getTail(head)
-            self.quickSort(head, tail)
-            return head
             
-        
-        def quickSort(self, head, tail):
-            if not head or not tail or head == tail or tail.next == head:
-                return
-            # do partition first
-            dummy = ListNode(0)
-            dummy.next = head
-            left_tail = None
-            pivot = head.val
-            left = dummy
-            right = head
-            while right != tail.next:
-                if right.val <= pivot:
-                    left_tail = left
-                    left = left.next
-                    self.swapValue(left, right)
-                right = right.next
-            self.swapValue(head, left)
-        
-            mid = left
-            
-            self.quickSort(head, left_tail)
-            self.quickSort(mid.next, tail)
-        
-        
-        def getTail(self, head):
-            while head.next:
-                head = head.next
-            return head
-            
-            
-        def swapValue(self, node1, node2):
-            if node1 is node2:
-                return
-            t = node1.val
-            node1.val = node2.val
-            node2.val = t
+            # main part
+            tail = getTail(head)
+            return quickSort(head, tail)
 ```
 ---
 _update Nov 26, 2017_
@@ -275,7 +269,7 @@ _update Nov 26, 2017_
     > 对于mergesort来说，最重要的是实现先分开再merge。之前的写法是先用一个getMid函数找到中间node，再将其与后部断开，如此得到两段list。这次我把断开两段list的代码放在了 getMid 函数中（split函数），使得code更加简洁。  
       另外，这次的merge函数也比上次更简洁了。
 2. 对于 quick sort：
-    > 
+    > 之前的版本感觉已经不错，还没想出真正交换node的解法，更新已经在上面quickSort的python code中了。
 
 
 #### Java Code:
