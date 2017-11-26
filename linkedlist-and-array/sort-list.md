@@ -265,3 +265,27 @@ Quick Sort:
             node1.val = node2.val
             node2.val = t
 ```
+---
+_update Nov 26, 2017_
+
+#### 重写此题
+时隔数月，重写此题果然有了新的感悟。
+
+1. 首先，对于 merge sort：
+    > 对于mergesort来说，最重要的是实现先分开再merge。之前的写法是先用一个getMid函数找到中间node，再将其与后部断开，如此得到两段list。这次我把断开两段list的代码放在了 getMid 函数中（split函数），使得code更加简洁。  
+      另外，这次的merge函数也比上次更简洁了。
+
+2. 对于 quick sort：
+    > 
+
+
+
+
+
+
+
+
+
+
+
+
