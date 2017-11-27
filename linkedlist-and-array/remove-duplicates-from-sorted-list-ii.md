@@ -93,7 +93,7 @@ _update Nov 27, 2017 13:14_
 
 ### 更新，重新整理Code逻辑
 #### Java Code 
-之前的逻辑考虑的东西比较多，重新看的时候发现不好理解。现在的逻辑只需要注意curr指针的出口为 curr==null，然后结束之后记得把 prev.next 置为 null。
+之前的逻辑考虑的东西比较多，重新看的时候发现不好理解。现在的逻辑只需要注意curr指针的出口为 curr==null，然后结束之后记得把 prev.next 置为 null。而且，在循环中逻辑判断只有两点，即当前curr之前出现重复或未出现重复。
            
 ```java
     class Solution {
