@@ -57,3 +57,42 @@ What if you cannot modify the input lists? In other words, reversing the lists i
         }
     }
 ```
+
+---
+_update Nov 27, 2017 1:08_
+
+#### Python Code
+```python
+    class Solution:
+        def addTwoNumbers(self, l1, l2):
+            """
+            :type l1: ListNode
+            :type l2: ListNode
+            :rtype: ListNode
+            """
+            stack1 = []
+            stack2 = []
+            while l1:
+                stack1.append(l1.val)
+                l1 = l1.next
+            while l2:
+                stack2.append(l2.val)
+                l2 = l2.next
+            
+            dummy = ListNode(0)
+            carrier = 0
+            while stack1 or stack2 or carrier:
+                adder1 = 0 if not stack1 else stack1.pop()
+                adder2 = 0 if not stack2 else stack2.pop()
+                res = adder1 + adder2 + carrier
+                carrier = res // 10
+                num = res % 10
+                curr = ListNode(num)
+                curr.next = dummy.next
+                dummy.next = curr
+            
+            return dummy.next
+```
+
+
+
