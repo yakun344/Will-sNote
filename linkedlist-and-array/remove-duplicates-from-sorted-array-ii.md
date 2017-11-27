@@ -51,4 +51,37 @@ Your function should return length = 5, with the first five elements of nums bei
             return i + 1
 ```
 
+---
+_update Nov 27, 2017  11:32_
+
+#### 思路更新
+不同于之前的思路（记录重复数字本身），我们可以转而直接考虑重复次数（相同数字的个数），因为原数组是排序的，我们只要在出现重复之后令 count++。需要注意的是 count 的初始值应是 1。
+
+```java
+    class Solution {
+        public int removeDuplicates(int[] nums) {
+            if (nums.length == 0) return 0;
+            int count = 1;
+            int left = 0, right = 1;
+            while (right < nums.length) {
+                // 如果right指向数字和当前数字不同, 则直接把它换到left+1，并且把count 置 1
+                if (nums[left] != nums[right]) {
+                    nums[++left] = nums[right++];
+                    count = 1;
+                } else if (nums[left] == nums[right] && count < 2) {
+                    // 如果left指向数字和right指向数字相同，且count < 2， 则换到left+1，并且count++
+                    nums[++left] = nums[right++];
+                    count++;
+                } else {
+                    // 否则只把right++
+                    right++;
+                }
+            }
+            return left + 1;
+        }
+    }
+```
+
+
+
 
