@@ -36,3 +36,33 @@ Python code：
                 j += 1
             return i + 1
 ```
+
+---
+_update Nov 27, 2017  11:10_
+
+#### 更新code
+之前的写法，起初令 i,j 都等于0，依靠第一次 while 判定 nums[i]==nums[j] 不做操作。改进之后，令初始 i, j = 0, 1，这样更好理解：
+
+```python
+    class Solution(object):
+        def removeDuplicates(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: int
+            """
+            if not nums:
+                return 0
+            left, right = 0, 1
+            while right < len(nums):
+                if nums[left] != nums[right]:
+                    left += 1
+                    nums[left] = nums[right]
+                right += 1
+            return left + 1
+```
+
+
+
+
+
+
