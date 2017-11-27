@@ -87,5 +87,42 @@ Given 1->1->1->2->3, return 2->3.
         }
     }
 ```         
+
+---
+_update Nov 27, 2017 13:14_
+
+### 更新，重新整理Code逻辑
+#### Java Code 
+之前的逻辑考虑的东西比较多，重新看的时候发现不好理解。现在的逻辑只需要注意curr指针的出口为 curr==null，然后结束之后记得把 prev.next 置为 null。
+           
+```java
+    class Solution {
+        public ListNode deleteDuplicates(ListNode head) {
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+            boolean dup = false;
             
+            ListNode prev = dummy;
+            ListNode curr = dummy.next;
+            while (curr != null) {
+                // 如果当前curr和next不同，或者curr为null，考虑是否dup
+                if (curr.next == null || curr.val != curr.next.val) {
+                    if (! dup) {
+                        prev.next = curr;
+                        prev = prev.next;
+                    }
+                    dup = false;
+                } else {
+                // 如果当前curr和next重复，设dup为true
+                    dup = true;
+                }
+                curr = curr.next;
+            }
+            // 因为每次prev相当于是我们结果list的最后一个node，所以需要手动将prev最终的next设为null
+            prev.next = null;
+            
+            return dummy.next;
+        }
+    }
+```
             
