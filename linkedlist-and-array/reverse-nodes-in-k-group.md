@@ -37,63 +37,52 @@ Only constant memory is allowed.
 
 #### Python Code:
 ``` python
-    # Definition for singly-linked list.
-    # class ListNode:
-    #     def __init__(self, x):
-    #         self.val = x
-    #         self.next = None
-    
-    class Solution:
-        # @param head, a ListNode
-        # @param k, an integer
-        # @return a ListNode
-        def reverseKGroup(self, head, k):
-            dummy = ListNode(0)
-            dummy.next = head
-            kth = self.getKth(dummy.next, k)
-            right_most = dummy
-            while kth:
-                right_most = self.reverse(right_most, kth)
-                kth = self.getKth(right_most.next, k)
-            return dummy.next
-            
-            
-        def reverse(self, pre_head, tail):
-            # reverse 从 pre_head.next 到 tail 的部分，并和 tail.next 链接
-            
-                # store left and right most nodes first
-            left = pre_head.next
-            right = tail
-            right_next = tail.next
-            
-                # reverse nodes between them
-            prev = None
-            curr = pre_head.next
+class Solution:
+    """
+    @param: head: a ListNode
+    @param: k: An integer
+    @return: a ListNode
+    """
+    def reverseKGroup(self, head, k):
+        def getKth(head):
+            for i in range(k - 1):
+                if not head:
+                    return None
+                head = head.next
+            return head
+
+
+        def reverse(preHead, tail):
+            if preHead.next == tail:
+                return
+            head = preHead.next
+            tailNext = tail.next # 这里很重要，要提前保存好 tail.next, 否则的话tail会丢失next
+            # reverse head 和 tail 之间的部分
+            prev = head
+            curr = head.next
             next = None
-            while curr != right_next and curr is not None:
+            while curr != tailNext:
                 next = curr.next
                 curr.next = prev
                 prev = curr
                 curr = next
-            
-                # concatenate middle part with right and left part
-            pre_head.next = right
-            left.next = right_next
-                
-                # return the tail of middle part
-            return left
+            # 重新连接左右部分和中间部分
+            head.next = tailNext
+            preHead.next = tail
             
             
-        def getKth(self, head, k):
-            if not head: return None
-            count = 1
-            while count < k:
-                head = head.next
-                count += 1
-                if not head:
-                    return None
-            return head
-        
+        # main part
+        dummy = ListNode(0)
+        dummy.next = head
+        preHead = dummy
+        while True:
+            kth = getKth(preHead.next)
+            nextPreHead = preHead.next
+            if not kth:
+                break
+            reverse(preHead, kth)
+            preHead = nextPreHead
+        return dummy.next
 ```
 
 #### Java Code:
