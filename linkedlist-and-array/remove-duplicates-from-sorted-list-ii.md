@@ -92,9 +92,9 @@ Given 1->1->1->2->3, return 2->3.
 _update Nov 27, 2017 13:14_
 
 ### 更新，重新整理Code逻辑
-#### Java Code 
 之前的逻辑考虑的东西比较多，重新看的时候发现不好理解。现在的逻辑只需要注意curr指针的出口为 curr==null，然后结束之后记得把 prev.next 置为 null。而且，在循环中逻辑判断只有两点，即当前curr之前出现重复或未出现重复。
-           
+
+#### Java Code 
 ```java
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
@@ -125,4 +125,30 @@ _update Nov 27, 2017 13:14_
         }
     }
 ```
+#### Python Code
+```python
+    class Solution:
+        def deleteDuplicates(self, head):
+            """
+            :type head: ListNode
+            :rtype: ListNode
+            """
+            dummy = ListNode(0)
+            dummy.next = head
             
+            prev = dummy
+            curr = head
+            dup = False
+            while curr:
+                if not curr.next or curr.val != curr.next.val:
+                    if not dup:
+                        prev.next = curr
+                        prev = prev.next
+                    dup = False
+                else:
+                    dup = True
+                curr = curr.next
+            
+            prev.next = None
+            return dummy.next
+```           
