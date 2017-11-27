@@ -25,42 +25,33 @@ What if you cannot modify the input lists? In other words, reversing the lists i
 **具体地：**还有一个细节，就是在生成结果list的时候，只要一直在dummy.next添加新节点就可以保证正确顺序。
 
 #### Java Code:
-    ```java
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode(int x) { val = x; }
-     * }
-     */
-    public class Solution {
+```java
+    class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            // 把两个list的数字放入stack，这样pop的顺序就是低位到高位
             Deque<Integer> stack1 = new LinkedList<>();
             Deque<Integer> stack2 = new LinkedList<>();
-            
-            while (l1 != null || l2 != null) {
-                if (l1 != null) {
-                    stack1.push(l1.val);
-                    l1 = l1.next;
-                }
-                if (l2 != null) {
-                    stack2.push(l2.val);
-                    l2 =  l2.next;
-                }
+            while (l1 != null) {
+                stack1.addFirst(l1.val);
+                l1 = l1.next;
             }
-            int sum = 0;
-            int carrier = 0;
+            while (l2 != null) {
+                stack2.addFirst(l2.val);
+                l2 = l2.next;
+            }
+            
+            // 一次按位相加，存carrier，结果直接append到return list的左边
             ListNode dummy = new ListNode(0);
+            int carrier = 0;
             while (! stack1.isEmpty() || ! stack2.isEmpty() || carrier != 0) {
-                if (! stack1.isEmpty()) sum += stack1.pop();
-                if (! stack2.isEmpty()) sum += stack2.pop();
-                sum += carrier;
-                carrier = sum / 10;
-                ListNode this_dig = new ListNode(sum % 10);
-                this_dig.next = dummy.next;
-                dummy.next = this_dig;
-                sum = 0;
+                int adder1 = stack1.isEmpty() ? 0 : stack1.removeFirst();
+                int adder2 = stack2.isEmpty() ? 0 : stack2.removeFirst();
+                int res = adder1 + adder2 + carrier;
+                int num = res % 10;
+                carrier = res / 10;
+                ListNode curr = new ListNode(num);
+                curr.next = dummy.next;
+                dummy.next = curr;
             }
             return dummy.next;
         }
