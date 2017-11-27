@@ -87,64 +87,52 @@ class Solution:
 
 #### Java Code:
 ```java
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode(int x) { val = x; }
-     * }
-     */
     public class Solution {
-        /**
-         * @param head a ListNode
-         * @param k an integer
-         * @return a ListNode
+        /*
+         * @param head: a ListNode
+         * @param k: An integer
+         * @return: a ListNode
          */
         public ListNode reverseKGroup(ListNode head, int k) {
-            if (head == null || head.next == null || k == 1) return head;
             ListNode dummy = new ListNode(0);
             dummy.next = head;
-            ListNode pre_head = dummy;
-            ListNode kth = getKth(head, k);
-            while (kth != null) {
-                pre_head = reverse(pre_head, kth);
-                kth = getKth(pre_head.next, k);
+            ListNode preHead = dummy;
+            while (true) {
+                ListNode nextPreHead = preHead.next;
+                ListNode kth = getKth(preHead.next, k);
+                if (kth == null) break;
+                reverse(preHead, kth);
+                preHead = nextPreHead;
             }
             return dummy.next;
         }
+        
         private ListNode getKth(ListNode head, int k) {
-            if (head == null) return null;
-            int count = 1;
-            while (count < k) {
+            if (head == null) return head;
+            for (int i = 1; i < k; ++i) {
                 head = head.next;
                 if (head == null) return null;
-                count++;
             }
             return head;
         }
-        private ListNode reverse(ListNode pre_head, ListNode tail) {
-            // store left and right most node first
-            ListNode left = pre_head.next;
-            ListNode right_next = tail.next;
+        
+        private void reverse(ListNode preHead, ListNode tail) {
+            if (preHead.next == tail) return;
+            ListNode tailNext = tail.next;
+            ListNode head = preHead.next;
             
-            // reverse nodes between them
-            ListNode prev = null;
-            ListNode curr = left;
+            ListNode prev = head;
+            ListNode curr = head.next;
             ListNode next = null;
-            while (curr != right_next) {
+            while (curr != tailNext) {
                 next = curr.next;
                 curr.next = prev;
                 prev = curr;
                 curr = next;
             }
             
-            // concatenate left and right part
-            pre_head.next = tail;
-            left.next = right_next;
-            
-            // return the last node of middle part
-            return left;
+            head.next = tailNext;
+            preHead.next = tail;
         }
     }
 ```
