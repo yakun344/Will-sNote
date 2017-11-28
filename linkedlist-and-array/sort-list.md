@@ -267,9 +267,15 @@ _update Nov 26, 2017_
 
 1. 首先，对于 merge sort：
     > 对于mergesort来说，最重要的是实现先分开再merge。之前的写法是先用一个getMid函数找到中间node，再将其与后部断开，如此得到两段list。这次我把断开两段list的代码放在了 getMid 函数中（split函数），使得code更加简洁。  
-      另外，这次的merge函数也比上次更简洁了。
+    另外，这次的merge函数也比上次更简洁了。
 2. 对于 quick sort：
-    > 之前的版本感觉已经不错，还没想出真正交换node的解法，更新已经在上面quickSort的python code中了。
+    >终于写出了基于移动 node 本身的 quick sort。先说一下实现思路：
+    >
+    >整个思路的核心是 partition 的方法，这里采用的方法和之前的 Partition List 的思路非常接近，不同的是这里的 partition 不只考虑一整个list，而是一个list中的一段。在我的实现中，partition function takes preHead 和 tailNext 两个参数，即需要做partition的list左右与其相邻的node。具体的，仍然是将 `<= pivot` 的node都放到 dummy1 之后，`> pivot` 的node都放到dummy2之后，最终再链接回原来的地方。
+    >
+    >整个实现过程细节很多，个人感觉比较难一次写对，而且由于是recursion，很可能会陷入非常复杂的 debug。不过整个过程对于我的 debug 能力又是一次提高，这里写一下感悟：
+    >1. 链表的问题一定要特别注意想办法保持 prev node，这里写 partition 的时候，索性将两个参数都定为了 prevHead 和 tailNext；
+    >2. 写这类题目之前一定要在纸上列好框架，对于边界情况或者递归 base case 需要画出示意图；例如这道题中我写到quicksort时，前面需要考虑preHead和tailNext两个参数在什么情况下是 base case。写到 partition 又需要注意在将两个 partition 好的链表重新连接回原来位置的时候会有某个链表是空的（即pivot恰好是最值）；
 
 
 #### Java Code:
@@ -383,6 +389,101 @@ _update Nov 26, 2017_
             return mergeSort(head)
 ```
 
+**Quick Sort**
+```python
+    # Definition for singly-linked list.
+    # class ListNode:
+    #     def __init__(self, x):
+    #         self.val = x
+    #         self.next = None
+    
+    class Solution:
+        def sortList(self, head):
+            """
+            :type head: ListNode
+            :rtype: ListNode
+            """
+            if not head or not head.next:
+                return head
+            dummy = ListNode(0)
+            dummy.next = head
+            pivot = self.partition(dummy, None)
+            self.quickSort(dummy, pivot)
+            self.quickSort(pivot, None)
+            return dummy.next
+            
+        
+        def partition(self, preHead, tailNext):
+            dummy1 = ListNode(0)
+            dummy2 = ListNode(0)
+            curr1 = dummy1
+            curr2 = dummy2
+            
+            # 如果 preHead 和 tailNext 之间只有一个node, 直接返回
+            if preHead.next.next is tailNext:
+                return preHead.next
+            
+            # 用 preHead.next 作为 pivot，先将其移出
+            pivot = preHead.next
+            preHead.next = pivot.next
+            curr = preHead.next
+            while curr is not tailNext:
+                if curr.val <= pivot.val:
+                    curr1.next = curr
+                    curr = curr.next
+                    curr1 = curr1.next
+                    curr1.next = None
+                else:
+                    curr2.next = curr
+                    curr = curr.next
+                    curr2 = curr2.next
+                    curr2.next = None
+            # 将 pivot 插入到 dummy2.next 的位置，因为dummy2 都大于 pivot
+            pivot.next = dummy2.next
+            dummy2.next = pivot
+                # 检查如果 dummy2 为空，此时curr2仍然指向dummy2，而我们需要它指向dummy的尾  
+            if curr2 is dummy2:
+                curr2 = pivot
+            
+            # 链接两段到原来位置, 分情况考虑一个dummy链表为空的情况 
+            start, end = None, None
+            if not dummy1.next:
+                start = dummy2.next
+                end = curr2
+            elif not dummy2.next:
+                start = dummy1.next
+                end = curr1
+            else:
+                start = dummy1.next
+                end = curr2
+                curr1.next = dummy2.next
+            preHead.next = start
+            end.next = tailNext
+    
+            return pivot
+            
+        
+        def quickSort(self, preHead, tailNext):
+            if preHead is tailNext or preHead.next is tailNext:
+                return
+            pivot = self.partition(preHead, tailNext)
+            self.quickSort(preHead, pivot)
+            self.quickSort(pivot, tailNext)
+```
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
