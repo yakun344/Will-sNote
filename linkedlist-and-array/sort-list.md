@@ -2,7 +2,8 @@
 _update Jul,26 2017 21:57_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/sort-list/)
+[LintCode](http://www.lintcode.com/en/problem/sort-list/)  
+[LeetCode](https://leetcode.com/problems/sort-list/description/)
 
 Sort a linked list in O(n log n) time using constant space complexity.
 
