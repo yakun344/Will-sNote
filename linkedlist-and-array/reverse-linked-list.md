@@ -15,4 +15,6 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 i. Iteration 需要注意 prev，curr，next 三个变量的使用；
 ii. Recursion 要注意当`reverse(head.next)`之后，head仍然指向之前指向的node，即reverse之后的tail，于是我们可以直接利用 `head.next.next = head; head.next = null` 来将之前的head链接好。
 
-#### Java Code:
+### Java Code:
+**Iterative:**
+```java
