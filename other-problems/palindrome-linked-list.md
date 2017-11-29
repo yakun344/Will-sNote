@@ -110,7 +110,39 @@ _update Nov 29, 2017_
         }
     }
 ```
-
+**O(n) space, easy solution:**
+```python
+    class Solution:
+        def isPalindrome(self, head):
+            """
+            :type head: ListNode
+            :rtype: bool
+            """
+            if not head or not head.next:
+                return True
+            nums = []
+            while head:
+                nums.append(head.val)
+                head = head.next
+            
+            mid = len(nums) // 2
+            left, right = -1, -1
+            if len(nums) % 2 == 0:
+                left = mid - 1
+                right = mid
+            else:
+                left = mid - 1
+                right = mid + 1
+            
+            while left >= 0 or right < len(nums):
+                if left < 0 or right == len(nums):
+                    return False
+                if nums[left] != nums[right]:
+                    return False
+                left -= 1
+                right += 1
+            return True
+```
 
 
 
