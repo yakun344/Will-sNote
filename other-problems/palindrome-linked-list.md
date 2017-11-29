@@ -87,8 +87,10 @@ _update Nov 29, 2017_
             return node;
         }
         
-        // 以左边中点将list分成两组，如果结束时候fast在最右边，则说明list中有偶数个node
-        // 此时slow指向左中点。否则的话，slow指向中点的左边，需要手动右移。
+        // 将list分成两组，中间断开，返回值为后半段起点。
+        // 利用循环结束时 fast的位置来判断list中node个数的奇偶，如果fast在最右边则list中有偶数个node，
+        // 否则的话，则需要手动删去中心的node。
+        // 因为起始位置 fast 为 slow.next，这样循环结束的时候 slow 指向中点之前，更方便操作。
         private ListNode split(ListNode head) {
             ListNode preSlow = null;
             ListNode slow = head;
