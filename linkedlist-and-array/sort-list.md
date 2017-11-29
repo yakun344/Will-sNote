@@ -336,6 +336,69 @@ _update Nov 26, 2017_
         }
     }
 ```
+**Quick Sort**
+```java
+    class Solution {
+        public ListNode sortList(ListNode head) {
+            if (head == null || head.next == null) return head;
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+            ListNode pivot = partition(dummy, null);
+            quickSort(dummy, pivot);
+            quickSort(pivot, null);
+            return dummy.next;
+        }
+        
+        private void quickSort(ListNode preHead, ListNode tailNext) {
+            if (preHead == tailNext || preHead.next == tailNext) return;
+            ListNode pivot = partition(preHead, tailNext);
+            quickSort(preHead, pivot);
+            quickSort(pivot, tailNext);
+        }
+        
+        private ListNode partition(ListNode preHead, ListNode tailNext) {
+            // 先检查需要partition的部分是否只含有一个node，如果是则直接返回该node
+            if (preHead.next.next == tailNext) return preHead.next;
+            
+            // 把pivot（第一个node）取出来
+            ListNode pivot = preHead.next;
+            preHead.next = pivot.next;
+            
+            ListNode dummy1 = new ListNode(0);
+            ListNode dummy2 = new ListNode(0);
+            ListNode curr1 = dummy1, curr2 = dummy2;
+            ListNode curr = preHead.next;
+            while (curr != tailNext) {
+                if (curr.val <= pivot.val) {
+                    curr1.next = curr;
+                    curr = curr.next;
+                    curr1 = curr1.next;
+                    curr1.next = null;
+                } else {
+                    curr2.next = curr;
+                    curr = curr.next;
+                    curr2 = curr2.next;
+                    curr2.next = null;
+                }
+            }
+            
+            // 把pivot放回去，合并时考虑dummy1为空的情况，因为dummy2后面一定有pivot，所以不用考虑它
+            if (dummy2.next == null) curr2 = pivot;
+            pivot.next = dummy2.next;
+            dummy2.next = pivot;
+            if (dummy1.next == null) {
+                preHead.next = dummy2.next;
+                curr2.next = tailNext;
+            } else {
+                curr1.next = dummy2.next;
+                preHead.next = dummy1.next;
+                curr2.next = tailNext;
+            }
+            
+            return pivot;
+        }
+    }
+```
 
 #### Python Code
 **Merge Sort**
