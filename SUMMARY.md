@@ -72,6 +72,7 @@
   * [Subarray Sum Equals K](linkedlist-and-array/subarray-sum-equals-k.md)
   * [Subarray Sum Closest](linkedlist-and-array/subarray-sum-closest.md)
   * [Copy List with Random Pointer](linkedlist-and-array/copy-list-with-random-pointer.md)
+  * [Reverse Linked List](linkedlist-and-array/reverse-linked-list.md)
   * [Partition List](linkedlist-and-array/partition-list.md)
   * [Sort List](linkedlist-and-array/sort-list.md)
   * [Reverse Nodes in k-Group](linkedlist-and-array/reverse-nodes-in-k-group.md)
@@ -91,8 +92,6 @@
   * [Insertion Sort List](linkedlist-and-array/insertion-sort-list.md)
   * [Shortest Word Distance](linkedlist-and-array/shortest-word-distance.md)
   * [Shortest Word Distance II](linkedlist-and-array/shortest-word-distance-ii.md)
-  * [Longest Continuous Increasing Subsequence](linkedlist-and-array/longest-continuous-increasing-subsequence.md)
-  * Partition List
 * [Binary Search](binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
