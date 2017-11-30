@@ -17,7 +17,7 @@ The input array may contain duplicates, so ascending order here means `<=`.
 
 #### 思路：
 *  比较简单的想法就是用input array 和 sorted array 进行对比，找出最两端的和原数组不同的元素即为所求 sequence 的首尾。这个方法比较慢，O(NlogN) time O(N)space。
-*  `O(N)time O(1)space`的方法。**重点**是要应用 input array 自身的性质： 把input array 视作一个有一些元素互相换位破坏了排序性质的 sorted array。那么左边比较小的元素换到了右边，就一定有右边比较大的元素被换到左边。所以，所求的**unsorted subsequence**的左边界一定比它右边的最小值要大，同理，右边界也一定比它左边的最大值小。我们只要找到这两个**边界**就可以确定所求 sequence 的长度。
+*  `O(N)time O(1)space`的方法。**重点**是要应用 input array 自身的性质： 把input array 视作一个有一些元素互相换位破坏了排序性质的 sorted array。那么左边比较小的元素换到了右边，就一定有右边比较大的元素被换到左边。所以，我们可以通过从左往右找到左边的最大值（这个值一定比它右边相邻的还大，说明被换过位置）以及其右边小于它的最右边的数来确定右边界，左边界同理。
     
 #### O(nlogn) Java Implementation：
 ```java
