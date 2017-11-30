@@ -43,3 +43,15 @@ Your algorithm should run in O(n) time complexity and O(1) space complexity.
         }
     }
 ```
+---
+_update Nov 30, 2017_
+#### 更新
+时隔数月重新考虑这道题目的时候，思路是对的，但却没有看出只需要跟踪**当前第二小**这一点。在实现的时候，`<=` 的判断条件很重要；
+
+**更新一个Python的solution：**
+```python
+
+
+
+
+
