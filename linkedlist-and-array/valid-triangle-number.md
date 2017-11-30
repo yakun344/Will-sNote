@@ -53,8 +53,10 @@ The integers in the given array are in the range of [0, 1000].
                 if nums[p] < target: return p
                 else: return -1
             
+        # Main part
             nums.sort()
             ret = 0
+            # 对每一对a,b，找最大的c，则 b 到 最大c 之间的值都可以作为第三边
             for i in range(len(nums) - 1):
                 for j in range(i + 1, len(nums)):
                     if nums[i] == 0 or nums[j] == 0: continue
@@ -153,6 +155,39 @@ _update Nov 29, 2017_
 #### Update
 首先需要明确一个前提，两短边之和大于第三边是一定可以构成一个三角形的；
 
+**Binary search Java solution**
+```java
+    class Solution {
+        // 二分法, 对于每一对a，b，找比他们大的符合条件的最大边长c，
+        // 则c到b之间的值（包括c）都可以作为第三条边
+        public int triangleNumber(int[] nums) {
+            if (nums.length < 3) return 0;
+            Arrays.sort(nums);
+            int ret = 0;
+            for (int a = 0; a < nums.length - 2; ++a) {
+                for (int b = a + 1; b < nums.length - 1; ++b) {
+                    int c = biSearch(nums, b + 1, nums[a] + nums[b]);
+                    if (c == -1) continue;
+                    ret += c - b;
+                }
+            }
+            return ret;
+        }
+        
+        // 找到start（include）之后小于target的最大的数的index
+        private int biSearch(int[] nums, int start, int target) {
+            int p = start, r = nums.length - 1;
+            while (p + 1 < r) {
+                int q = p + (r - p) / 2;
+                if (nums[q] < target) p = q;
+                else r = q;
+            }
+            if (nums[r] < target) return r;
+            else if (nums[p] < target) return p;
+            else return -1;
+        }
+    }
+```
 
 
 
