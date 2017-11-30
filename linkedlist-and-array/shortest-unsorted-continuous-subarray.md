@@ -67,3 +67,65 @@ The input array may contain duplicates, so ascending order here means `<=`.
                 return 0
             return end - start + 1
 ```
+
+---
+_update Nov 30, 2017 16:35_
+#### 更新
+时隔数月，再次看到这道easy竟已经想不出 O(n) time 的最优解了。发现最优解的思路的确足够巧妙，以至从前的我以为自己懂了，却并没有真正领会其中的精神。于是把最优解又仔细考虑了一遍，发现画图和举例子对于找思路非常有用：
+
+
+**更新nlog(n)时间solution的java code，逻辑简化了不少：**
+```java
+    class Solution {
+        public int findUnsortedSubarray(int[] nums) {
+            if (nums.length == 0) return 0;
+            int[] sortedNums = Arrays.copyOf(nums, nums.length);
+            Arrays.sort(sortedNums);
+            int left = 0, right = nums.length - 1;
+            while (left < nums.length && nums[left] == sortedNums[left]) left++;
+            while (right > 0 && nums[right] == sortedNums[right]) right--;
+            return left < right ? right - left + 1 : 0;
+        }
+    }
+```
+
+**更新O(n)时间最优解 Python Code，优化了逻辑，比之前的容易理解许多**
+```python
+    class Solution:
+        def findUnsortedSubarray(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: int
+            """
+            # 从左往右找最大值，以及其右边小于该最大值的最右边的数，这个数就是右边界；
+            # 左边界同理，从右往左找最小值，最左边大于它的数就是左边界
+            # 可以用 1，2，4，5，3 这个数组举例子
+            if not nums: return 0
+            leftMax = nums[0]
+            rightMin = nums[-1]
+            leftBd = -1
+            rightBd = -1
+            # 从左往右找左边最大值，并确定右边界
+            for i in range(len(nums)):
+                if nums[i] > leftMax:
+                    leftMax = nums[i]
+                elif nums[i] < leftMax:
+                    rightBd = i
+            # 确定左边界
+            for i in range(len(nums) - 1, -1, -1):
+                if nums[i] < rightMin:
+                    rightMin = nums[i]
+                elif nums[i] > rightMin:
+                    leftBd = i
+                    
+            return rightBd - leftBd + 1 if rightBd > leftBd else 0
+```
+
+
+
+
+
+
+
+
+
