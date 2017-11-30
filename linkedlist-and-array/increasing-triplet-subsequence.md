@@ -56,14 +56,13 @@ _update Nov 30, 2017_
             :type nums: List[int]
             :rtype: bool
             """
-            # 跟踪第二小的数
             min1 = float('inf')
             min2 = float('inf')
-            for i in range(len(nums)):
-                if nums[i] <= min1:
-                    min1 = nums[i]
-                elif nums[i] <= min2:
-                    min2 = nums[i]
+            for n in nums:
+                if n <= min1:
+                    min1 = n
+                elif n <= min2:
+                    min2 = n
                 else:
                     return True
             return False
