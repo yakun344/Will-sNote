@@ -146,3 +146,24 @@ The integers in the given array are in the range of [0, 1000].
         }
     }
 ```
+
+---
+_update Nov 29, 2017_
+
+#### Update
+首先需要明确一个前提，两短边之和大于第三边是一定可以构成一个三角形的；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
