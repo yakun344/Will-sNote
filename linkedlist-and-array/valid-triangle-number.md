@@ -25,9 +25,13 @@ The integers in the given array are in the range of [0, 1000].
 [这里](http://fisherlei.blogspot.com/2017/07/leetcode-valid-triangle-number-solution.html)有一个双指针解法的说明.
 
 有**三种思路**，大致说一下：
+
 1.  首先想到的是暴力枚举三条边然后判断是否valid，用combination的dfs算法，时间复杂度是(C(n,3))，O(n^3)，结果TLE了；
 2.  接下来想到我们可以先排序原数组，固定两条边a,b，计算出第三条边的范围(a + b > c)，然后用binary search找，找到之后target和b之间的点都可以构成第三边。枚举所有两边的组合耗时O(n^2)，bi search每次耗时O(logN)，总的 time complexity 是 O(n^2 * log(n))。AC了;
 3.  接下来我们想到可以先排序，然后固定第三边 c 从最右端往左移。对每个 c，使用双指针找与之相配的a, b的范围（a 从最左端向右，b 从 c-1 向左，如果满足 a+b>c 则将 a,b 之间点的个数加入结果，作为 a 的可能值，然后 b--。如果不满足 a+b>c ，则令 a 右移一位，继续判断。到 a >= b 结束，c--，进行下一波判断）。
+> **_Nov 30,2017 补充解释_**
+> 
+> 这种方法相当于先对于每个C，再对于每个B，再找A的范围。时间复杂度因该是对于每个C需要O(n)的时间，总共为 O(n^2);
 
 #### Python Code:
 ```python
