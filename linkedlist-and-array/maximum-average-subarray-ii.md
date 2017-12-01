@@ -1,5 +1,6 @@
-## Maximum Average Subarray II
-_update Aug 17, 2017  18:55_
+#
+# Maximum Average Subarray II
+_update Aug 17, 2017 18:55_
 
 ---
 [LeetCode](https://leetcode.com/problems/maximum-average-subarray-ii/description/)
@@ -8,8 +9,8 @@ Given an array consisting of n integers, find the contiguous subarray whose leng
 
 **Example 1:**
 
-    Input: [1,12,-5,-6,50,3], k = 4
-    Output: 12.75
+Input: [1,12,-5,-6,50,3], k = 4
+Output: 12.75
 
 **Explanation:**
 
@@ -64,4 +65,45 @@ The answer with the calculation error less than 10-5 will be accepted.
             return false;
         }
     }
+```
+
+---
+_update Dec 1, 2017 12:58_
+
+#### 更新
+之前的 Java code 仍然感觉写的很好，尤其是 `isValid()` 函数。再更新一个Python的解，但是由于 LeetCode 的 OJ 设定问题，对于python的时间too tight，这个 O(c*n) (c 大概为几十) 的解会 TLE：
+```python
+    # 用二分结果的方法，对 MAX_VALUE 进行二分，对每个可能的结果进行验证，看其
+    # 是否可以出现。检验方法就是先把nums中所有数减去targetAvg，然后看有没有长
+    # 度大于等于 k 的连续子数组的和 大于零。这个过程耗时 O(n)，方法是从左到右
+    # 遍历，跟踪距离当前 currIndex 超过 k 之前的最小值，当出现 当前元素 - min
+    # >= 0, 即返回true
+    class Solution(object):
+        def findMaxAverage(self, nums, k):
+            """
+            :type nums: List[int]
+            :type k: int
+            :rtype: float
+            """
+            p, r = min(nums), max(nums)
+            while r - p > 1e-6:
+                q = (p + r) / 2.0
+                if self.isValid(nums, k, q):
+                    p = q
+                else:
+                    r = q
+            return p
+        
+        
+        
+        def isValid(self, nums, k, targetAvg):
+            preSum = [0] * (len(nums) + 1)
+            minSum = float('inf')
+            for i in range(len(nums)):
+                preSum[i + 1] = preSum[i] + nums[i] - targetAvg
+                if i >= k - 1:
+                    minSum = min(minSum, preSum[i - k  + 1])
+                    if preSum[i + 1] - minSum >= 0:
+                        return True
+            return False
 ```
