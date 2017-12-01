@@ -1,5 +1,4 @@
-#
-# Maximum Average Subarray II
+## Maximum Average Subarray II
 _update Aug 17, 2017 18:55_
 
 ---
