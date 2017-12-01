@@ -22,7 +22,7 @@ Could you do it in-place with O(1) extra space?
 例如对于 [1,2,3,4,5,6,7], k=3, rotate 之后为 [5,6,7,1,2,3,4].   
 仔细观察上面的两个数组，我们就会发现一个规律，将结果reverse之后是 [4,3,2,1,7,6,5]，其实就是对于长度为n的数组，先将前 n-k 个reverse，然后将后 k 个reverse，然后整体 reverse，就得到了最终结果。
 
-Java Code:
+**Java Code:**
 ```java
     class Solution {
         public void rotate(int[] nums, int k) {
@@ -43,4 +43,28 @@ Java Code:
             }
         }
     }
+```
+**Python Code:**
+```python
+    class Solution:
+        def rotate(self, nums, k):
+            """
+            :type nums: List[int]
+            :type k: int
+            :rtype: void Do not return anything, modify nums in-place instead.
+            """
+            def rotate(left, right):
+                if left >= right:
+                    return
+                while left < right:
+                    t = nums[left]
+                    nums[left] = nums[right]
+                    nums[right] = t
+                    left += 1
+                    right -= 1
+            
+            k = k % len(nums)
+            rotate(0, len(nums) - k - 1)
+            rotate(len(nums) - k, len(nums) - 1)
+            rotate(0, len(nums) - 1)
 ```
