@@ -28,26 +28,29 @@ Given m, n satisfy the following condition:
         public ListNode reverseBetween(ListNode head, int m, int n) {
             ListNode dummy = new ListNode(0);
             dummy.next = head;
-            ListNode curr = dummy;
-            // find prev of m
-            for (int i = 0; i < m - 1; ++i) {
-                curr = curr.next;
-            }
-            ListNode before = curr;
-            ListNode M = curr.next;
-            // reverse m到n之间的指针
-            curr = M;
+            
+            // find mth first
+            ListNode preHead = dummy;
+            for (int i = 0; i < m - 1; ++i) preHead = preHead.next;
+            ListNode mth = preHead.next;
+            
+            // reverse mth - nth
+            ListNode curr = mth;
             ListNode prev = null;
-            ListNode next = curr.next;
-            for (int i = 0; i < n - m; ++i) {
-                prev = curr;
-                curr = next;
+            ListNode next = null;
+            for (int i = 0; i < n - m + 1; ++i) {
                 next = curr.next;
                 curr.next = prev;
+                prev = curr;
+                curr = next;
             }
-            // 拼接两端，此时next为 N.next
-            before.next = curr;
-            M.next = next;
+            ListNode nth = prev;
+            ListNode tailNext = curr;
+            
+            // 连接
+            preHead.next = nth;
+            mth.next = tailNext;
+            
             return dummy.next;
         }
     }
@@ -55,7 +58,7 @@ Given m, n satisfy the following condition:
 
 #### Python Code
 ```python
-    class Solution(object):
+    class Solution:
         def reverseBetween(self, head, m, n):
             """
             :type head: ListNode
@@ -65,26 +68,28 @@ Given m, n satisfy the following condition:
             """
             dummy = ListNode(0)
             dummy.next = head
-            curr = dummy
+            preHead = dummy
             
-            # 先找到 M.prev
+            # 先找到 m-th
             for i in range(m - 1):
-                curr = curr.next
-            before = curr  # M.prev
-            M = curr.next
+                preHead = preHead.next    
+            mth = preHead.next
             
-            # reverse M 到 N 之间的指针，并得到 N.next
-            curr = M
+            # reverse m-n
             prev = None
-            next = curr.next
-            for i in range(n - m):
-                prev = curr
-                curr = next
+            curr = mth
+            next = None
+            for i in range(n - m + 1):
                 next = curr.next
                 curr.next = prev
+                prev = curr
+                curr = next
+            tailNext = curr
+            nth = prev
             
-            # 拼接
-            before.next = curr; # curr == N
-            M.next = next;      # next == N.next
-            return dummy.next
+            # 连接
+            preHead.next = nth
+            mth.next = tailNext
+            
+            return dummy.next     
 ```
