@@ -94,9 +94,39 @@ Java Code:
                         return True
             return False
 ``` 
+---
+_update Dec 1, 2017  17:58_
 
+#### 更新
+因为Java对负数取余的时候和python不同，所以用Java写 slow-fast 的解法比较麻烦，用python 好了很多。
 
-
+**python slow-fast solution:**
+```python
+    class Solution(object):
+        def circularArrayLoop(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: bool
+            """
+            def checkCircle(start):
+                forward = True if nums[start] > 0 else False
+                slow, fast = start, start
+                while forward == (nums[slow] > 0) and \
+                      forward == (nums[fast] > 0) and \
+                      forward == (nums[(nums[fast] + fast) % len(nums)] > 0):
+                    slow = (slow + nums[slow]) % len(nums)
+                    fast = (fast + nums[fast]) % len(nums)
+                    fast = (fast + nums[fast]) % len(nums)
+                    if (slow + nums[slow]) % len(nums) == slow: return False
+                    if slow == fast: return True
+                return False
+            
+            # Main part
+            for i in range(len(nums)):
+                if nums[i] > 0 and checkCircle(i): return True
+                elif nums[i] < 0 and checkCircle(i): return True
+            return False
+```
 
 
 
