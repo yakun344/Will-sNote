@@ -35,3 +35,47 @@ Java Code:
         }
     }
 ```
+
+---
+_update Nov 30, 2017_
+####  更新
+更新一个Java 的 sliding window solution：
+```java
+    // sliding window algorithm
+    class Solution {
+        public double findMaxAverage(int[] nums, int k) {
+            double maxAvg = (double)Integer.MIN_VALUE;
+            double currSum = 0;
+            int left = 0, right = -1; // right 初始值为 -1 是为了令 nums[0] 被考虑在内
+            while (true) {
+                if (right - left + 1 < k) { 
+                    right++;
+                    if (right >= nums.length) break;
+                    currSum += nums[right];
+                } else { // 此时 window size 一定等于 k
+                    maxAvg = Math.max(maxAvg, currSum / k);
+                    currSum -= nums[left];
+                    left++;
+                }
+            }
+            return maxAvg;
+        }
+    }
+```
+注意这里 sliding window 的写法，while 中第一个 if 判断是否需要扩大当前窗口（right++），else 表示当前窗口大小适宜。感觉这种写法逻辑比较清晰，比几个月前自己写的sliding window 要好理解。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
