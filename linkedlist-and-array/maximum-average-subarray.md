@@ -39,7 +39,7 @@ Java Code:
 ---
 _update Nov 30, 2017_
 ####  更新
-更新一个Java 的 sliding window solution：
+**更新一个Java 的 sliding window solution：**
 ```java
     // sliding window algorithm
     class Solution {
@@ -64,7 +64,23 @@ _update Nov 30, 2017_
 ```
 注意这里 sliding window 的写法，while 中第一个 if 判断是否需要扩大当前窗口（right++），else 表示当前窗口大小适宜。感觉这种写法逻辑比较清晰，比几个月前自己写的sliding window 要好理解。
 
-
+**再写一个 preSum 解法的 python：**
+```python
+    class Solution:
+        def findMaxAverage(self, nums, k):
+            """
+            :type nums: List[int]
+            :type k: int
+            :rtype: float
+            """
+            preSum = [0] * (len(nums) + 1)
+            maxAvg = float('-inf')
+            for i in range(len(nums)):
+                preSum[i + 1] = preSum[i] + nums[i]
+                if i >= k - 1:
+                    maxAvg = max(maxAvg, (preSum[i + 1] - preSum[i + 1 - k]) / k)
+            return maxAvg
+```
 
 
 
