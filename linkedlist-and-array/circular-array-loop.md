@@ -128,8 +128,34 @@ _update Dec 1, 2017  17:58_
             return False
 ```
 
-
-
+**Java dfs solution:**
+```java
+    // dfs solution，正负情况分别讨论，遇到之前visited的就说明有环
+    class Solution {
+        public boolean circularArrayLoop(int[] nums) {
+            for (int i = 0; i < nums.length; ++i) {
+                if (nums[i] > 0 && dfs(nums, i, true, new HashSet<Integer>())) return true;
+                if (nums[i] < 0 && dfs(nums, i, false, new HashSet<Integer>())) return true;
+            }
+            return false;
+        }
+        
+        private boolean dfs(int[] nums, int curr, boolean isForward, Set<Integer> visited) {
+            if (visited.contains(curr)) return true; // 有环
+            if ((nums[curr] > 0) != isForward) return false; // 符号不对
+            if (getIndex(curr + nums[curr], nums) == curr) return false; // 环中只有一个元素
+            int next = getIndex(curr + nums[curr], nums);
+            visited.add(curr);
+            return dfs(nums, next, isForward, visited);
+        }
+        
+        private int getIndex(int input, int[] nums) {
+            int len = nums.length;
+            if (input >= 0) return input % len;
+            else return len - (len - input) % len;
+        }
+    }
+```
 
 
 
