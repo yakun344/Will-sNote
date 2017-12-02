@@ -73,7 +73,34 @@ _update Dec 1, 2017  19:21_
         }
     }
 ```
-
+**Python Code**
+```python
+    class Solution:
+        def insertionSortList(self, head):
+            """
+            :type head: ListNode
+            :rtype: ListNode
+            """
+            dummy = ListNode(float('-inf'))
+            dummy.next = head
+            left = dummy
+            right = head
+            prevRight = dummy
+            while right:
+                if right.val < left.val: # 需要插
+                    prob = dummy
+                    while prob.next.val < right.val:
+                        prob = prob.next # 把 right 插到 prob 后面
+                    prevRight.next = right.next
+                    right.next = prob.next
+                    prob.next = right
+                    right = prevRight.next
+                else:
+                    left = left.next
+                    prevRight = right
+                    right = right.next
+            return dummy.next
+```
 
 
 
