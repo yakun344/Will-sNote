@@ -45,7 +45,7 @@ _update Dec 1, 2017  19:21_
 #### Update
 更新一个时隔多月后写的Code，和当时的思路有些不同，整个考虑上，逻辑判断比之前的要简单：
 
-Java
+**Java Code**
 ```java
     class Solution {
         public ListNode insertionSortList(ListNode head) {
