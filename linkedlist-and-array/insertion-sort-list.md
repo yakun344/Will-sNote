@@ -51,8 +51,8 @@ Java
         public ListNode insertionSortList(ListNode head) {
             ListNode dummy = new ListNode(Integer.MIN_VALUE);
             dummy.next = head;
-            ListNode i = dummy;
-            ListNode j = dummy.next;
+            ListNode i = dummy; // i 为左边已经排序部分的右边界
+            ListNode j = dummy.next; // j 为向右探测的指针
             ListNode prevJ = dummy;
             while (j != null) {
                 if (j.val < i.val) { // 需要插入
