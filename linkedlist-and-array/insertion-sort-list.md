@@ -53,7 +53,7 @@ Java
             dummy.next = head;
             ListNode i = dummy; // i 为左边已经排序部分的右边界
             ListNode j = dummy.next; // j 为向右探测的指针
-            ListNode prevJ = dummy;
+            ListNode prevJ = dummy; // j 之前的node，记录它方便移除 j
             while (j != null) {
                 if (j.val < i.val) { // 需要插入
                     ListNode k = dummy;
