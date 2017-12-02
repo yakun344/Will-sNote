@@ -39,3 +39,47 @@ Sort a linked list using insertion sort.
         }
     }
 ```
+--- 
+_update Dec 1, 2017  19:21_
+
+#### Update
+更新一个时隔多月后写的Code，和当时的思路有些不同，整个考虑上，逻辑判断比之前的要简单：
+
+Java
+```java
+    class Solution {
+        public ListNode insertionSortList(ListNode head) {
+            ListNode dummy = new ListNode(Integer.MIN_VALUE);
+            dummy.next = head;
+            ListNode i = dummy;
+            ListNode j = dummy.next;
+            ListNode prevJ = dummy;
+            while (j != null) {
+                if (j.val < i.val) { // 需要插入
+                    ListNode k = dummy;
+                    while (k.next.val < j.val) k = k.next;
+                    // 找到位置之后，把j插入到k之后
+                    prevJ.next = j.next;
+                    j.next = k.next;
+                    k.next = j;
+                    j = prevJ.next;
+                } else {
+                    prevJ = j;
+                    j = j.next;
+                    i = i.next;
+                }
+            }
+            return dummy.next;
+        }
+    }
+```
+
+
+
+
+
+
+
+
+
+
