@@ -56,7 +56,7 @@ Java
             ListNode prevJ = dummy; // j 之前的node，记录它方便移除 j
             while (j != null) {
                 if (j.val < i.val) { // 需要插入
-                    ListNode k = dummy;
+                    ListNode k = dummy; // 从左端点开始扫描，找合适插入位置的指针
                     while (k.next.val < j.val) k = k.next;
                     // 找到位置之后，把j插入到k之后
                     prevJ.next = j.next;
