@@ -63,7 +63,7 @@ _update Dec 1, 2017  19:21_
                     j.next = k.next;
                     k.next = j;
                     j = prevJ.next;
-                } else {
+                } else { // j 比 i 大，不需要插入，则两指针右移
                     prevJ = j;
                     j = j.next;
                     i = i.next;
