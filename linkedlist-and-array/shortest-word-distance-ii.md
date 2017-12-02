@@ -47,3 +47,41 @@ You may assume that word1 does not equal to word2, and word1 and word2 are both 
         }
     }
 ```
+
+---
+_update Dec 2, 2017  16:45_
+
+#### Update
+**更新一个Python的解法**
+```python
+    class WordDistance:
+        # 分别把每个word的indices存入一个list，所有的list以word为key存入hashMap 
+        def __init__(self, words):
+            """
+            :type words: List[str]
+            """
+            self.indices = {}
+            for i in range(len(words)):
+                if words[i] not in self.indices:
+                    self.indices[words[i]] = [i]
+                else:
+                    self.indices[words[i]].append(i)
+                    
+        # 从 dict 中取出两个 word 的indices list，然后就和 I 一样了
+        def shortest(self, word1, word2):
+            """
+            :type word1: str
+            :type word2: str
+            :rtype: int
+            """
+            lst1 = self.indices[word1]
+            lst2 = self.indices[word2]
+            i, j = 0, 0
+            minDiff = float('inf')
+            while i < len(lst1) and j < len(lst2):
+                diff = lst1[i] - lst2[j]
+                minDiff = min(minDiff, abs(diff))
+                if diff > 0: j += 1
+                else: i += 1
+            return minDiff
+```
