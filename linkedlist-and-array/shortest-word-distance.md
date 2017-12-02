@@ -99,6 +99,14 @@ Java Code:
         }
     }
 ```
+---
+_update Dec 2, 2017  1:22_
+
+#### Update
+找两个 sorted array 元素之间的最小差，使用两个指针分别指向两个array中的元素，则两个array中的元素分别为 `arr1[i] 和 arr2[j]`， 如果 `arr1[i] > arr2[j]`，我们令 `j++`，否则的话 `i++`；
+
+
+
 
 
 
