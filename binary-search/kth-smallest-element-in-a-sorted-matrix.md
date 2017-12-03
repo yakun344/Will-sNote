@@ -137,7 +137,49 @@ _update Dec 2, 2017  22:58_
 
 原本用两个binary search的做法时间复杂度为 `O(nlogn * log(max-min))`，前面一项表示每次确定target在matrix中的rank需要`O(nlogn)`的时间。这次更新的解法，在求rank的时候使用前面的线性时间的方法，将时间复杂度优化到 `O(nlog(max-min))`，在 `max-min` 比较小的情况下比之前使用 priority queue 的 `O(klogn)` 要快。（**这里的 n 指的是 matrix 的边长**）.
 
-
+**Python Code:**
+```python
+    class Solution:
+        def kthSmallest(self, matrix, k):
+            """
+            :type matrix: List[List[int]]
+            :type k: int
+            :rtype: int
+            """
+            p = matrix[0][0]
+            r = matrix[-1][-1]
+            while p + 1 < r:
+                q = p + (r - p) // 2
+                rank = self.getRank(matrix, q)
+                # 为了避免找到一个不存在的数（这个数一定比存在的 k-th 数要小），
+                # 我们找最后一个在 k 位置的数
+                if rank <= k:
+                    p = q
+                else:
+                    r = q
+            if self.getRank(matrix, r) <= k: return r # 当 k-th 有重复的时候，rank 可能会小于 k
+            else: return p
+            
+            
+        # 求第一个 target 出现时的 rank，one base
+        # 使用从左下角开始扫描的 O(n) 解法
+        def getRank(self, matrix, target):
+            N = len(matrix) # matrix 是正方形
+            rank = 0
+            r, c = N - 1, 0 # 定位左下角
+            while r >= 0 and c < N:
+                if matrix[r][c] == target: # 往右上移动
+                    rank += r
+                    r -= 1
+                    c += 1
+                elif matrix[r][c] < target: # 往右移
+                    rank += r + 1
+                    c += 1
+                else: # 往上移
+                    r -= 1
+            print(str(target) + " : " + str(rank + 1))
+            return rank + 1 # 此时的rank为小于target数的个数
+```
 
 
 
