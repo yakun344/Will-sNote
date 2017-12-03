@@ -147,26 +147,25 @@ _update Dec 3, 2017 2:10_
             int[] res = new int[intervals.length];
             for (int i = 0; i < intervals.length; ++i) {
                 int end = intervals[i].end;
-                int rightStartIndex = findRightStart(starts, end); // 不存在的 -1 的情况已经被涵盖
-                if (rightStartIndex == -1) res[i] = -1;
-                else res[i] = map.get(starts.get(rightStartIndex));
+                Integer rightStart = findRightStart(starts, end); 
+                if (rightStart == null) res[i] = -1;
+                else res[i] = map.get(rightStart);
             }
             
             return res;
         }
         
-        // 用二分法找大于等于 end 的最小start，返回其在 starts 中的index，如果不存在
-        // 直接返回 -1
-        private int findRightStart(List<Integer> starts, int end) {
+        // 用二分法找大于等于 end 的最小start，返回start，如果不存在则反回 null
+        private Integer findRightStart(List<Integer> starts, int end) {
             int p = 0, r = starts.size() - 1;
             while (p + 1 < r) {
                 int q = p + (r - p) / 2;
                 if (starts.get(q) >= end) r = q;
                 else p = q;
             }
-            if (starts.get(p) >= end) return p;
-            else if (starts.get(r) >= end) return r;
-            else return -1;
+            if (starts.get(p) >= end) return starts.get(p);
+            else if (starts.get(r) >= end) return starts.get(r);
+            else return null;
         }
     }
     ```
