@@ -132,6 +132,12 @@ _update Dec 2, 2017  22:58_
 #### O(n) 时间得到这种 sorted matrix 中某元素的 rank 的方法：
 类似 [这道题](https://will-gxz.gitbooks.io/xiaozheng_algo/content/other-problems/search-a-2d-matrix-ii.html), 我们从 matrix 的做下角出发，如果当前元素比 target 大，说明右边都比它大，则往上移动一行。如果当前元素比target小，说明这个元素及其上面一列都比 target 小，则右移一列。因为我们目的不是找到 target，而是确定target的rank，所以找到target之后要 keep going，沿途统计小于它元素的个数。
 
+#### Update Binary Search Solution
+之前写的 binary search 手法太过稚嫩，一定是经过了很多次尝试才最终把 base case 设定好。事实上写 binary search 一定要注意 base case： `while p + 1 < r:` 
+
+原本用两个binary search的做法时间复杂度为 `O(nlogn * log(max-min))`，前面一项表示每次确定target在matrix中的rank需要`O(nlogn)`的时间。这次更新的解法，在求rank的时候使用前面的线性时间的方法，将时间复杂度优化到 `O(nlog(max-min))`，在 `max-min` 比较小的情况下比之前使用 priority queue 的 `O(klogn)` 要快。（**这里的 n 指的是 matrix 的边长**）.
+
+
 
 
 
