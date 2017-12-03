@@ -31,7 +31,7 @@ Given candidate set [10,1,6,7,2,1,5] and target 8,
 这道题目和 Combination Sum I 的区别主要是有重复元素，而且每个只能用一次。所以重点就是如何避免重复。方法是，在每次 for loop 考虑pos之后的序列的时候，只考虑第一个重复的值。
 
 #### Java Code:
-    ```java
+```java
     public class Solution {
         /**
          * @param num: Given the candidate numbers
