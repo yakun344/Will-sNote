@@ -23,6 +23,7 @@ The same repeated number may be chosen from C unlimited number of times.
     
 #### Basic Idea:
 整个程序肯定是Subsets的框架，但是又有一些细节需要注意。
+
 1.  题目说每个数字可以使用多次，隐含了重复元素其实是没有意义的，所以我们可以先去重。去重的方法类似于quick sort中的partition函数，2 pointers。
 2.  如何实现多次使用某个元素呢？只要在dfs传递参数时传递 i 而不是 i + 1 即可。
 
