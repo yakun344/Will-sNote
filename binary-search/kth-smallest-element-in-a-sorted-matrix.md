@@ -27,14 +27,15 @@ You may assume k is always valid, 1 ? k ? n2.
 **思路1：**
 利用 priority queue 的性质，我们先把第一行的数字 offer，然后做如下事情 k-1 次：
 
-将当前最小 poll，然后将它下面的元素 offer。
-
-之后，queue.peek 就是第 k 小的数了。
+1. 将当前最小 poll，然后将它下面的元素 offer。
+2. 之后，queue.peek 就是第 k 小的数了。
 
 这个方法的原理是我们每次都保证不在 queue 中的数字比 queue 中的都大，那么我们经过 k-1 次的poll之后，一定会得到第 k 小的元素。
 
-代码如下：
-java：
+时间复杂度：O(klogn)
+
+**代码如下：**
+**java：**
 ```java
     // 为了保存坐标，新建了 wrapper，注意override compareTo的细节
     class Node implements Comparable<Node> {
@@ -71,26 +72,27 @@ java：
     }
 ```
 
-python:
+**python:**
 ```python
-    class Solution(object):
+    class Solution:
+        # heapq solution
         def kthSmallest(self, matrix, k):
             """
             :type matrix: List[List[int]]
             :type k: int
             :rtype: int
             """
-            heap = []
+            pq = []
+            # 先把第一row的元素都push进pq
             for i in range(len(matrix[0])):
-                heapq.heappush(heap, (matrix[0][i], 0, i))
-            for i in range(k - 1):
-                peek = heapq.heappop(heap)
-                r = peek[1]
-                c = peek[2]
-                if r == len(matrix) - 1: # 如果已经在最下面一行
-                    continue
-                heapq.heappush(heap, (matrix[r + 1][c], r + 1, c))
-            return heap[0][0]
+                heapq.heappush(pq, (matrix[0][i], (0, i)))
+            minVal = None
+            while k > 0:
+                minVal, (r, c) = heapq.heappop(pq)
+                if r + 1 < len(matrix): 
+                    heapq.heappush(pq, (matrix[r + 1][c], (r + 1, c)))
+                k -= 1
+            return minVal
 ```
 
 **思路2：**
@@ -124,6 +126,26 @@ python:
     	}
     }
 ```
+
+---
+_update Dec 2, 2017  22:58_
+#### O(n) 时间得到这种 sorted matrix 中某元素的 rank 的方法：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
