@@ -135,7 +135,7 @@ _update Dec 2, 2017  22:58_
 #### Update Binary Search Solution
 之前写的 binary search 手法太过稚嫩，一定是经过了很多次尝试才最终把 base case 设定好。事实上写 binary search 一定要注意 base case： `while p + 1 < r:` 
 
-原本用两个binary search的做法时间复杂度为 `O(nlogn * log(max-min))`，前面一项表示每次确定target在matrix中的rank需要`O(nlogn)`的时间。这次更新的解法，在求rank的时候使用前面的线性时间的方法，将时间复杂度优化到 `O(nlog(max-min))`，在 `max-min` 比较小的情况下比之前使用 priority queue 的 `O(klogn)` 要快。（**这里的 n 指的是 matrix 的边长**）.
+原本用两个binary search的做法时间复杂度为 `O(nlogn * log(max-min))`，前面一项表示每次确定target在matrix中的rank需要`O(nlogn)`的时间。这次更新的解法，在求rank的时候使用前面的线性时间的方法，将时间复杂度优化到 `O(nlog(max-min))`，在 `max-min` 比较小的情况下比之前使用 priority queue 的 `O(klogn)` 要快。（_这里的 n 指的是 matrix 的边长_）.
 
 **Python Code:**
 ```python
@@ -180,7 +180,9 @@ _update Dec 2, 2017  22:58_
             print(str(target) + " : " + str(rank + 1))
             return rank + 1 # 此时的rank为小于target数的个数
 ```
-
+这种解法中存在许多细节：
+1. 为了避免返回一个不存在的数（如果要找[1,4,7,9]中的第三大的数，有可能返回5或者6),在写二分法条件判断的时候，要按照找最后一个满足条件的数的情况去写，因为不存在的kth数一定比存在的kth数要小；
+2. 为了处理有重复元素的问题，如果二分结束后 r 对应的 rank 小于 k，则说明 kth 有不止一个数字，我们可以认为 r 就是解。
 
 
 
