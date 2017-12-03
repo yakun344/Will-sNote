@@ -66,5 +66,27 @@ _update Dec 3, 2017  15:08_
 
 事实上，在二分的过程中我们只需要跟踪第一个开始下降的点(_之所以是下降起始点，是因为 q=(p+r)/2 的操作是偏左的，这样验证当前点和其右是否下降时不会越界_)，如果退出时 p r 都不是下降起始点，则说明 nums 是一路上升，返回 nums[-1] 即可；
 
-
+**java**
+```java
+    public class Solution {
+        /*
+         * @param nums: a mountain sequence which increase firstly and then decrease
+         * @return: then mountain top
+         */
+        public int mountainSequence(int[] nums) {
+            if (nums.length == 1) return nums[0];
+            int p = 0, r = nums.length - 1;
+            while (p + 1 < r) {
+                int q = p + (r - p) / 2;
+                int diff = nums[q + 1] - nums[q];
+                if (diff <= 0) r = q;
+                else p = q;
+            }
+            // 如果左边点p是下降起始，它就是解，如果它不是，则有可能是r，也有可能
+            // r 是最右边的点，这两种情况都返回 r
+            if (nums[p + 1] - nums[p] < 0) return nums[p];
+            else return nums[r];
+        }
+    }
+```
 
