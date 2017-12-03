@@ -117,9 +117,22 @@ You may assume none of these intervals have the same start point.
         }
     }
 ```
+---
+_update Dec 3, 2017 2:10_
 
+### Update
+#### 前面二分法解法存在的问题
+之前写这道题的时候犯了大忌，因为实际上 Interval 这个 class 并没有 implement hashCode 方法，直接将其放入 hashMap 是不理智的。事实上我们没有必要在 hashMap 中存放完整的 interval 以及其 index，我们只需要存放 start 和 index 就够了。
 
+所以，这次实现中采用的方法和之前写的 TreeMap 的方法类似：
 
+1. 在 HashMap 中存放所有的 start--index 对；
+2. 将所有的start存入一个list，对其升序排序；
+3. 对于每个 interval，在前面的list中二分查找大于等于其 end 的最小start；
+4. 在 HashMap 中找到之前得到的 start 所对应的 index，就是对应 interval 的解；
+
+**Binary Search Java Code 更新：**
+```java
 
 
 
