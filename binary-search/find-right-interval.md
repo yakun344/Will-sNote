@@ -133,7 +133,43 @@ _update Dec 3, 2017 2:10_
 
 **Binary Search Java Code 更新：**
 ```java
-
+    class Solution {
+        public int[] findRightInterval(Interval[] intervals) {
+            Map<Integer, Integer> map = new HashMap<>(); // start--index 对 
+            List<Integer> starts = new ArrayList<>();    // 存start，一会排序
+            for (int i = 0; i < intervals.length; ++i) {
+                map.put(intervals[i].start, i);
+                starts.add(intervals[i].start);
+            }
+            Collections.sort(starts);
+            
+            // 开始
+            int[] res = new int[intervals.length];
+            for (int i = 0; i < intervals.length; ++i) {
+                int end = intervals[i].end;
+                int rightStartIndex = findRightStart(starts, end); // 不存在的 -1 的情况已经被涵盖
+                if (rightStartIndex == -1) res[i] = -1;
+                else res[i] = map.get(starts.get(rightStartIndex));
+            }
+            
+            return res;
+        }
+        
+        // 用二分法找大于等于 end 的最小start，返回其在 starts 中的index，如果不存在
+        // 直接返回 -1
+        private int findRightStart(List<Integer> starts, int end) {
+            int p = 0, r = starts.size() - 1;
+            while (p + 1 < r) {
+                int q = p + (r - p) / 2;
+                if (starts.get(q) >= end) r = q;
+                else p = q;
+            }
+            if (starts.get(p) >= end) return p;
+            else if (starts.get(r) >= end) return r;
+            else return -1;
+        }
+    }
+    ```
 
 
 
