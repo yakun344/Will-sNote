@@ -23,3 +23,10 @@ see other processes' space.
 
 #### Page Tables
 A page table keeps track of the correspondence between pages and frames. Each logical address is separated into a page number and an offset;
+
+Page table 也有可能不能完全加载，在出现page table cache miss 的时候，会发生如下：
+
+1. interrupt the OS
+2. load a new page table cache entry.
+3. continue
+
