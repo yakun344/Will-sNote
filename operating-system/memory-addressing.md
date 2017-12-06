@@ -34,3 +34,7 @@ Page table 也有可能不能完全加载，在出现page table cache miss 的�
 ![](/assets/Screen Shot 2017-12-06 at 1.27.29 AM.png)
 ![](/assets/Screen Shot 2017-12-06 at 1.29.17 AM.png)
 ![](/assets/Screen Shot 2017-12-06 at 1.29.32 AM.png)
+
+In practice, this is a huge (optimized) array access: 
+`table[pgd index][pmd index][pte index]`
+
