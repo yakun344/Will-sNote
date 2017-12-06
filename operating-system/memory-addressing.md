@@ -30,4 +30,4 @@ Page table 也有可能不能完全加载，在出现page table cache miss 的�
 2. load a new page table cache entry.
 3. continue
 
-#### IA64 不在内存中保存page table，而是使用 translation lookaside buffer (TLB)
+#### IA64 不用 page table，而是使用 translation lookaside buffer (TLB)
