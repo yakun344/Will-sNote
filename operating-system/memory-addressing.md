@@ -7,7 +7,7 @@ _update 2017-11-15 13:22:26_
 Process 只能看到 logical pages，而 OS 则使用 physical memory maps；
 (not finished)
 
-### Cache
+#### Cache
 **A basic design principle:**  
 
 * If a correspondence is large and sparse, use a hash.
@@ -38,3 +38,9 @@ Page table 也有可能不能完全加载，在出现page table cache miss 的�
 In practice, this is a huge (optimized) array access: 
 `table[pgd index][pmd index][pte index]`
 ![](/assets/Screen Shot 2017-12-06 at 1.32.55 AM.png)
+
+#### Virtual memory
+![](/assets/Screen Shot 2017-12-06 at 1.35.12 AM.png)
+
+#### Caches, hashes, and lookasides
+![](/assets/Screen Shot 2017-12-06 at 1.39.51 AM.png)
