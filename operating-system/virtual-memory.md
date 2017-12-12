@@ -7,6 +7,12 @@ _update 2017-11-15 11:00:15_
 
 Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（process exit，heap 释放，留下fragment） 造成。我们没有办法 eliminate fragments，因为我们不知道 pointers 在哪里。
 
+**造成 Fragmentation 的原因有三点：**
+
+1. Fixed page size： program的size不是 page size 的整数倍，所以会留下剩余，这是 internal fragmentation；
+2. Buddy system： 分配的空间是 power of two pages，这是 internal fragmentation；
+3. Reclaimation： 程序退出会释放内存，在 physical frame 中留下 holes，造成 external fragmentation；
+
 ### Memory mapping:
 * A frame is a unit of memory in the OS;
 * A page is a unit of memory  in the process;
