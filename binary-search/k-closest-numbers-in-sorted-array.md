@@ -3,7 +3,7 @@ _update Aug 17, 2017 14:11_
 
 ---
 [LintCode](http://www.lintcode.com/en/problem/k-closest-numbers-in-sorted-array/)  
-[LeetCode](https://leetcode.com/problems/find-k-closest-elements/description/) 这个题的要求有些不同，但是整体类似
+[LeetCode](https://leetcode.com/problems/find-k-closest-elements/description/) 这个题的要求有些不同，但是整体类似，只是需要结果最终排序。
 
 Given a target number, a non-negative integer k and an integer array A sorted in ascending order, find the k closest numbers to target in A, sorted in ascending order by the difference between the number and target. Otherwise, sorted in ascending order by number if the difference is same.
 
