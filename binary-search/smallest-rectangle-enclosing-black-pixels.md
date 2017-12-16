@@ -206,4 +206,40 @@ BFS:
         }
     }
 ```
-    
+---
+_update Dec 16, 2017_
+#### Python BFS solution
+```python
+    # bfs solution
+    class Solution:
+        def minArea(self, image, x, y):
+            """
+            :type image: List[List[str]]
+            :type x: int
+            :type y: int
+            :rtype: int
+            """
+            def isValid(x, y):
+                if x < 0 or x >= len(image) or y < 0 or y >= len(image[0]):
+                    return False
+                return True
+            
+            dx = (0, -1, 0, 1)
+            dy = (1, 0, -1, 0)
+            up, down = x, x
+            left, right = y, y
+            queue = collections.deque()
+            queue.appendleft((x, y))
+            while queue:
+                r, c = queue.pop()
+                if not isValid(r, c) or image[r][c] == '0': 
+                    continue
+                image[r][c] = '0'
+                up = min(up, r)
+                down = max(down, r)
+                left = min(left, c)
+                right = max(right, c)
+                for i in range(4):
+                    queue.appendleft((r + dx[i], c + dy[i]));
+            return (down - up + 1) * (right - left + 1)
+```
