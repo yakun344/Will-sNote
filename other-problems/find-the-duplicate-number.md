@@ -15,7 +15,7 @@ Given an array nums containing n + 1 integers where each integer is between 1 an
     
 #### Basic Idea:
 **思路1：**Binary Search
-从 p = 0, r = n 开始，每次计算小于等于 mid 的数的个数，如果大于mid，则说明重复在左侧，否则在右侧。
+从 p = 0, r = n 开始，每次计算小于等于 mid 的数的个数，如果大于mid，则说明重复在左侧，否则在右侧。时间复杂度为 O(nlogn)；
 ```python
     # binary search solution O(nlogn) time
     class Solution(object):
