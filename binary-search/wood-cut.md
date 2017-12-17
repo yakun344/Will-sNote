@@ -56,3 +56,37 @@ O(n log Len), where Len is the longest length of the wood.
         }
     };
 ```
+---
+_update Dec 16, 2017_
+#### Python Code:
+```python
+    class Solution:
+        """
+        @param: L: Given n pieces of wood with length L[i]
+        @param: k: An integer
+        @return: The maximum length of the small pieces
+        """
+        def woodCut(self, L, k):
+            def isValid(L, k, minLen):
+                for wood in L:
+                    k -= wood // minLen
+                return k <= 0
+                
+                
+            if not L:
+                return 0
+            minLen, maxLen = 1, max(L) # 注意：此处从1开始，而不是min
+            p, r = minLen, maxLen
+            while p + 1 < r:
+                q = p + (r - p) // 2
+                if isValid(L, k, q):
+                    p = q
+                else:
+                    r = q
+            if isValid(L, k, r):
+                return r
+            elif isValid(L, k, p):
+                return p
+            else:
+                return 0
+```
