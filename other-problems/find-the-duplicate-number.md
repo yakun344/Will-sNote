@@ -14,6 +14,8 @@ Given an array nums containing n + 1 integers where each integer is between 1 an
     There is only one duplicate number in the array, but it could be repeated more than once.
     
 #### Basic Idea:
+因为不能改变原来数组，而且空间复杂度要求是O(1)，所以我们不能排序。
+
 **思路1：**Binary Search
 从 p = 0, r = n 开始，每次计算小于等于 mid 的数的个数，如果大于mid，则说明重复在左侧，否则在右侧。时间复杂度为 O(nlogn)；
 ```python
