@@ -14,7 +14,11 @@ You may assume no duplicate exists in the array.
 
 #### Basic Idea:
 传说中的最难典型二分法题目，但其实搞懂了套路也可以轻易做出来。破题点是要把一个 rotated sorted array 想象成如下图的样子：  
-![](/assets/Screen Shot 2017-09-10 at 3.05.50 PM.png)
+<br>
+<img src="/assets/Screen Shot 2017-09-10 at 3.05.50 PM.png" width="600" height="400" />
+<br>
+
+
 如此一来，我们只要按照 target 在前半部分还是后半部分进行分类讨论，然后就可以写出合适的binary search。
 
 **Follow Up:**  
