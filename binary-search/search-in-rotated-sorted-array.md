@@ -57,7 +57,32 @@ What if duplicates are allowed?
         }
     }
 ```
+---
+_update Dec 17, 2017 1:14_
 
+#### Python Code
+```python
+    class Solution:
+        def search(self, nums, target):
+            """
+            :type nums: List[int]
+            :type target: int
+            :rtype: int
+            """
+            if not nums: return -1
+            p, r = 0, len(nums) - 1
+            while p + 1 < r:
+                q = p + (r - p) // 2
+                if target > nums[-1]:
+                    if nums[q] < nums[-1] or nums[q] > target: r = q
+                    else: p = q
+                else:
+                    if nums[q] > nums[-1] or nums[q] < target: p = q
+                    else: r = q
+            if nums[p] == target: return p
+            elif nums[r] == target: return r
+            else: return -1
+```
 
 
 
