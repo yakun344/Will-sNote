@@ -48,7 +48,7 @@
   * [Unique Binary Search Trees II](Tree/unique-binary-search-trees-ii.md)
   * [Two Sum IV - Input is a BST](Tree/two-sum-iv-input-is-a-bst.md)
   * [Balanced Binary Tree](Tree/balanced-binary-tree.md)
-  * [Binary Tree Longest Consecutive Sequence II](Tree/binary-tree-longest_consecutive-sequence.md)
+  * [Binary Tree Longest Consecutive Sequence](Tree/binary-tree-longest_consecutive-sequence.md)
   * [Binary Tree Longest Consecutive Sequence II](Tree/binary-tree-longest-consecutive-sequence-ii.md)
   * [Inorder Successor in Binary Search Tree](Tree/inorder-successor-in-binary-search-tree.md)
   * [Equal Tree Partition](Tree/equal-tree-partition.md)
