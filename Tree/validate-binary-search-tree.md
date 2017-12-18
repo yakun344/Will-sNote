@@ -25,7 +25,7 @@ A single node tree is a BST
     The above binary tree is serialized as {2,1,4,#,#,3,5} (in level order).
     
 #### Basic Idea:
-利用定义，每一个子树都需要是vlaid bst。对于每个root，需要保证root.val 大于左子树中的最大值，小于右子树的最小值。由此，我们可以定义一个ReturnType，其中包含`boolean isValid, max, min`三个变量。
+利用定义，每一个子树都需要是vlaid bst。对于每个root，需要保证root.val 大于左子树中的最大值，小于右子树的最小值。由此，我们可以定义一个ReturnType，其中包含`boolean isValid, max, min`三个变量。  
 （需要注意的是，当node的值是Integer.MAX_VALUE的时候，会造成边界判定不准，可以转成(long)Integer.MAX_VALUE + 1之类来处理）
 
 #### Java Code:
