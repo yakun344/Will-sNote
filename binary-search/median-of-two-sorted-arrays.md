@@ -84,7 +84,8 @@ _update Dec 18, 2017_
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
             int M = nums1.length, N = nums2.length;
             if ((M + N) % 2 == 0) {// even
-                return (findKth(nums1, nums2, 0, 0, (M + N) / 2) + findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1)) / 2.0;
+                return (findKth(nums1, nums2, 0, 0, (M + N) / 2) + 
+                        findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1)) / 2.0;
             } else { // odd
                 return findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1);
             }
@@ -94,6 +95,7 @@ _update Dec 18, 2017_
         private int findKth(int[] nums1, int[] nums2, int l, int r, int k) {
             while (k > 1) {
                 int mid = k / 2;
+                // 越界之后就按照 inf 计算
                 int n1 = l + mid - 1 < nums1.length ? nums1[l + mid - 1] : Integer.MAX_VALUE;
                 int n2 = r + mid - 1 < nums2.length ? nums2[r + mid - 1] : Integer.MAX_VALUE;
                 if (n1 <= n2) {
@@ -103,6 +105,7 @@ _update Dec 18, 2017_
                 }
                 k -= mid;
             }
+            // 当k==1时，只需要比较当前 l 和 r 选出较小的返回即可
             int n1 = l < nums1.length ? nums1[l] : Integer.MAX_VALUE;
             int n2 = r < nums2.length ? nums2[r] : Integer.MAX_VALUE;
             return Math.min(n1, n2);
