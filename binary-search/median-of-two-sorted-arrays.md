@@ -139,7 +139,8 @@ _update Dec 18, 2017_
             self.M = len(nums1)
             self.N = len(nums2)
             if (self.M + self.N) % 2 == 0: # even
-                return (findKth(0, 0, (self.M + self.N) // 2) + findKth(0, 0, (self.M + self.N) // 2 + 1)) / 2.0;
+                return (findKth(0, 0, (self.M + self.N) // 2) +
+                        findKth(0, 0, (self.M + self.N) // 2 + 1)) / 2.0;
             else:
                 return findKth(0, 0, (self.M + self.N) // 2 + 1);
 ```
