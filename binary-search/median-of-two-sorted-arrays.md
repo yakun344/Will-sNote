@@ -2,7 +2,8 @@
 _update Aug 15, 2017 22:41_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/median-of-two-sorted-arrays/#)
+[LintCode](http://www.lintcode.com/en/problem/median-of-two-sorted-arrays/#)   
+[LeetCode](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
 
 There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays.
 
