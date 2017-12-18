@@ -112,3 +112,35 @@ _update Dec 18, 2017_
         }
     }
 ```
+**Python recursive code:**
+```python
+    class Solution:
+        def findMedianSortedArrays(self, nums1, nums2):
+            """
+            :type nums1: List[int]
+            :type nums2: List[int]
+            :rtype: float
+            """
+            # return the kth number in nums1 and nums2, recursively
+            def findKth(l, r, k):
+                if l >= self.M: return nums2[r + k - 1]
+                elif r >= self.N: return nums1[l + k - 1]
+                elif k == 1: return min(nums1[l], nums2[r])
+                else:
+                    mid = k // 2
+                    n1 = nums1[l + mid - 1] if l + mid - 1 < self.M else float('inf')
+                    n2 = nums2[r + mid - 1] if r + mid - 1 < self.N else float('inf')
+                    if n1 <= n2: return findKth(l + mid, r, k - mid)
+                    else: return findKth(l, r + mid, k - mid)
+                
+            
+            self.M = len(nums1)
+            self.N = len(nums2)
+            if (self.M + self.N) % 2 == 0: # even
+                return (findKth(0, 0, (self.M + self.N) // 2) + findKth(0, 0, (self.M + self.N) // 2 + 1)) / 2.0;
+            else:
+                return findKth(0, 0, (self.M + self.N) // 2 + 1);
+```
+
+
+
