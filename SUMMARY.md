@@ -41,7 +41,7 @@
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Binary Tree Path Sum II](Tree/binary-tree-path-sum-ii.md)
   * [Path Sum III](Tree/Path-Sum-III.md)
-  * [Path Sum IV](graph/path-sum-iv.md)
+  * [Path Sum IV](Tree/path-sum-iv.md)
   * [Binary Tree Maximum Path Sum](Tree/binary-tree-maximum-path-sum.md)
   * [Binary Tree Path Sum III](Tree/binary-tree-path-sum-iii.md)
   * [Binary Tree Serialization](Tree/binary-tree-serialization.md)
