@@ -27,6 +27,7 @@ The overall run time complexity should be O(log (m+n)).
 实现的细节：当两个数组不一样长的时候，可能会出现 k/2 比短的那个数组长度还大，此时我们可以假设两个数组都是无限长，超过有效值部分都是 INF；
 
 #### Java Code：
+recursive solution:
 ```java
     class Solution {
         /**
@@ -71,4 +72,40 @@ The overall run time complexity should be O(log (m+n)).
         }
     }
 ```
+---
+_update Dec 18, 2017_
 
+### Update
+时隔数月，写出的code更加精简了。这次是 iterative 的 solution：
+
+**Java Code:**
+```java
+    class Solution {
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int M = nums1.length, N = nums2.length;
+            if ((M + N) % 2 == 0) {// even
+                return (findKth(nums1, nums2, 0, 0, (M + N) / 2) + findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1)) / 2.0;
+            } else {
+                return findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1);
+            }
+        }
+        
+        // return the kth number, 1 based
+        private int findKth(int[] nums1, int[] nums2, int l, int r, int k) {
+            while (k > 1) {
+                int mid = k / 2;
+                int n1 = l + mid - 1 < nums1.length ? nums1[l + mid - 1] : Integer.MAX_VALUE;
+                int n2 = r + mid - 1 < nums2.length ? nums2[r + mid - 1] : Integer.MAX_VALUE;
+                if (n1 <= n2) {
+                    l += mid;
+                } else {
+                    r += mid;
+                }
+                k -= mid;
+            }
+            int n1 = l < nums1.length ? nums1[l] : Integer.MAX_VALUE;
+            int n2 = r < nums2.length ? nums2[r] : Integer.MAX_VALUE;
+            return Math.min(n1, n2);
+        }
+    }
+```
