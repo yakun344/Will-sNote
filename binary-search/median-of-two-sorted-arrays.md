@@ -85,7 +85,7 @@ _update Dec 18, 2017_
             int M = nums1.length, N = nums2.length;
             if ((M + N) % 2 == 0) {// even
                 return (findKth(nums1, nums2, 0, 0, (M + N) / 2) + findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1)) / 2.0;
-            } else {
+            } else { // odd
                 return findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1);
             }
         }
