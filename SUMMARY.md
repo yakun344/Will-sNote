@@ -235,7 +235,7 @@
 * [Pointers and Types](operating-system/pointers.md)
 * [Threads](operating-system/threads.md)
 * [Multithreaded Programming](operating-system/multithreaded-programming.md)
-* [Locks and the Bounded Buffer](locks-and-the-bounded-buffer.md)
+* [Locks and the Bounded Buffer](operating-system/locks-and-the-bounded-buffer.md)
 * [Atomicity and semaphores](operating-system/atomicity-and-semaphores.md)
 * [Dead Lock](operating-system/dead-lock.md)
 * [Memory Management](operating-system/memory-management.md)
