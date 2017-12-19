@@ -84,11 +84,13 @@ _update Dec 19, 2017  16:42_
                 if not root:
                     return
                 helper(root.left)
+                # 更新 prev， count ，currMaxCount
                 if root.val == self.prev:
                     self.count += 1
                 else:
                     self.count = 1
                     self.prev = root.val
+                # 更新 res list
                 if self.count > self.currMaxCount:
                     self.res = [root.val]
                     self.currMaxCount = self.count
