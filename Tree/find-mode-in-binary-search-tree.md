@@ -69,6 +69,9 @@ Java recursive code：
 ```
 ---
 _update Dec 19, 2017  16:42_
+### Update
+要特别注意，更新 prev 和 更新 res list 是两回事，
+
 **python code**
 ```python
     class Solution:
