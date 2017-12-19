@@ -26,7 +26,7 @@ Note: If a tree has more than one mode, you can return them in any order.
 _Follow up_: Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).
 
 #### 思路
-这道题的难点是不可以使用 counting map 暴力统计每个数字的频数，所以我们只有利用BST的性质，用 inorder traverse 把问题化简为一个求 sorted array 中最大聘书的 element 的问题。我们可以 maintain 一个 `count`和一个`max`，同时跟踪`prev node`，如果`curr node.val == prev node.val`，我们另`count++`，如果`count == max`或者 `count > max`，我们再做出相应的操作。结果存在一个`list`中。
+这道题的难点是不可以使用 counting map 暴力统计每个数字的频数，所以我们只有利用BST的性质，用 inorder traverse 把问题化简为一个求 sorted array 中最大频数的 element 的问题。我们可以 maintain 一个 `count`和一个`max`，同时跟踪`prev node`，如果`curr node.val == prev node.val`，我们另`count++`，如果`count == max`或者 `count > max`，我们再做出相应的操作。结果存在一个`list`中。
 
 Java recursive code：
 ```java
