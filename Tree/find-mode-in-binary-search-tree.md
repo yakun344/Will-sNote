@@ -67,3 +67,37 @@ Java recursive code：
         }
     }
 ```
+---
+_update Dec 19, 2017  16:42_
+**python code**
+```python
+    class Solution:
+        def findMode(self, root):
+            """
+            :type root: TreeNode
+            :rtype: List[int]
+            """
+            def helper(root):
+                if not root:
+                    return
+                helper(root.left)
+                if root.val == self.prev:
+                    self.count += 1
+                else:
+                    self.count = 1
+                    self.prev = root.val
+                if self.count > self.currMaxCount:
+                    self.res = [root.val]
+                    self.currMaxCount = self.count
+                elif self.count == self.currMaxCount:
+                    self.res.append(root.val)
+                helper(root.right)
+                
+            
+            self.count = 0
+            self.prev = float('INF')
+            self.currMaxCount = float('-inf')
+            self.res = []
+            helper(root)
+            return self.res
+```
