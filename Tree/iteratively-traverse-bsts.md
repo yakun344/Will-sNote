@@ -61,32 +61,34 @@ Inorder 稍微复杂一些，可以画示意图理解。
 
 Postorder 是最复杂的，有两种实现方法，一种用两个stack，另一种只用一个。这里提供只用一个stack的。
 
-基本思想是先像 inorder 一样把node一路向左 push in stack。然后每次检查`stack.peek`，如果`peek` 没有`right child` 或者 `rc == curr`即右孩子刚刚 visited 过，则另`curr = stack.pop()`，visit 这个 node。如果`peek`有`right child`且没有 visited 过，则把它当做root，一路向左 push in stack。
+基本思想是先像 inorder 一样把node一路向左 push in stack。然后每次检查`stack.peek`，如果`peek` 没有`right child` 或者 `peek.right == prev`即右孩子刚刚 visited 过，说明该node的右子树刚刚被visit，则 visit 这个 peek, 将其出栈，并把它赋给 prev。如果`peek`有`right child`且没有 visited 过，则把 right 当做root，一路向左 push in stack。
     
 ```java
     class Solution {
         public List<Integer> postorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<>();
-            if (root == null) return res;
             Deque<TreeNode> stack = new LinkedList<>();
-            TreeNode curr = root;
-            while (curr != null) {
-                stack.addLast(curr);
-                curr = curr.left;
+            // 先一路向左push进stack
+            while (root != null) {
+                stack.addLast(root);
+                root = root.left;
             }
+            // prev 来跟踪之前一个被visit的node
             TreeNode prev = null;
             while (! stack.isEmpty()) {
-                // 说明当前栈顶元素没有右子树或者之前已经处理过右子树，接下来就需要处理栈顶元素
-                if (stack.peekLast().right == null || stack.peekLast().right == prev) {
-                    curr = stack.removeLast();
-                    res.add(curr.val);
-                    prev = curr;
+                TreeNode node = stack.peekLast();
+                // 如果栈顶node没有右孩子，或者右孩子刚被visit过，则应该visit栈顶node，
+                // 之后令 prev = 该node
+                if (node.right == null || node.right == prev) {
+                    res.add(node.val);
+                    prev = node;
+                    stack.removeLast();
                 } else {
-                    // 此时需要先处理peek的right子树
-                    curr = stack.peekLast().right;
-                    while (curr != null) {
-                        stack.addLast(curr);
-                        curr = curr.left;
+                    // 如果栈顶右孩子还没有被visit，则进入右子树，开始一路向左push
+                    node = node.right;
+                    while (node != null) {
+                        stack.addLast(node);
+                        node = node.left;
                     }
                 }
             }
