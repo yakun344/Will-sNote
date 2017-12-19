@@ -2,6 +2,12 @@
 _update Jun 21, 2017_
 
 ---
+**LeetCode problems:**  
+[Inorder](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)  
+[Preorder](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)  
+[Postorder](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)  
+<br>
+
 这里所讲的`BST Traversal`方法指的主要是`preorder, inorder, postorder`，严格意义上三种都属于`DFS`。用`recursion`做BST的`Traversal`比较简单，思路很直接，但是如果要用`Iterative`的方法，就要用到`stack`，没有那么直观。这里主要提供三种遍历的`java`实现。
 
 ### Preorder
