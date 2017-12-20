@@ -90,14 +90,14 @@ The node has an extra attribute parent which point to the father of itself. The 
                     lstB.pop()
             return temp
 ```   
-
+<br>
 ---
 _update Dec 20, 2017 1:04_
 
 ### Update
 更简单的方法是使用 HashSet，先把第一条链表每个node加入set，然后依次验证第二条链表的node是否在其中，第一个在 set 中的就是分叉节点；
 
-**Python Code**   
+**Python Code:**   
 ```python
 class Solution:
     """
@@ -116,3 +116,6 @@ class Solution:
                 return B
             B = B.parent
 ```
+
+**Java Code:**
+```java
