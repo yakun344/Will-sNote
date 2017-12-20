@@ -80,37 +80,38 @@ _update Aug 27, 2017  16:08_
 ```python
     class Solution:
         """
-        @param {TreeNode} root The root of the binary tree.
-        @param {TreeNode} A and {TreeNode} B two nodes
-        @return Return the LCA of the two nodes.
-        """ 
+        @param: root: The root of the binary tree.
+        @param: A: A TreeNode
+        @param: B: A TreeNode
+        @return: Return the LCA of the two nodes.
+        """
         def lowestCommonAncestor3(self, root, A, B):
-            def helper(root):
+            def helper(root, A, B):
                 if not root:
                     return None
-                left = helper(root.left)
-                right = helper(root.right)
-                # 如果 A==B，自己是ancestor
-                if root == A and root == B:
-                    flag[0] = flag[1] = True
+                left = helper(root.left, A, B)
+                right = helper(root.right, A, B)
+                if root is A and root is B:
+                    self.flag = [True] * 2
                     return root
-                if root == A:
-                    flag[0] = True
+                if root is A:
+                    self.flag[0] = True
                     return root
-                if root == B:
-                    flag[1] = True
+                if root is B:
+                    self.flag[1] = True
                     return root
-                # 处理过各种情况之后再考虑返回
-                if (left == A and right == B) or (left == B and right == A):
+                if left and right: # 左右不为空，root为LCA
                     return root
-                # 如果当前root不是lowest ancestor，则返回l和r中非null的，若都是null，则返回null
+                # 否则的话返回左右中不为空的
                 return left if left else right
                 
-            flag = [False] * 2
-            ret = helper(root)
-            if not flag[0] or not flag[1]:
+                
+            self.flag = [False] * 2
+            ret = helper(root, A, B)
+            if self.flag[0] and self.flag[1]:
+                return ret
+            else:
                 return None
-            return ret
 ```
 <br>
 
