@@ -32,44 +32,37 @@ return the node 11.
 #### Java Code:
 ```java
     public class Solution {
-        /**
-         * @param root the root of binary tree
-         * @return the root of the maximum average of subtree
+        /*
+         * @param root: the root of binary tree
+         * @return: the root of the maximum average of subtree
          */
-         
-     // ReturnTypr inner class
-        private class Rtype {
-            int sum;
-            int num;
-            public Rtype(int sum, int num) {
+        private class Tuple {
+            int sum, count;
+            Tuple(int sum, int count) {
                 this.sum = sum;
-                this.num = num;
+                this.count = count;
             }
         }
-      // 全局最优的 ReturnType      
-        private Rtype result = null;
-        private TreeNode maxRoot = null;
-        
+        private int currSum;
+        private int currCount;
+        private TreeNode currRoot;
         public TreeNode findSubtree2(TreeNode root) {
             helper(root);
-            return maxRoot;
+            return currRoot;
         }
         
-        private Rtype helper(TreeNode node) {
-            if (node == null)  {
-                return new Rtype(0, 0);
+        private Tuple helper(TreeNode root) {
+            if (root == null) return new Tuple(0, 0);
+            Tuple left = helper(root.left);
+            Tuple right = helper(root.right);
+            int sum = left.sum + right.sum + root.val;
+            int count = left.count + right.count + 1;
+            if (currRoot == null || currSum * count < currCount * sum) {
+                currSum = sum;
+                currCount = count;
+                currRoot = root;
             }
-            Rtype left = helper(node.left);
-            Rtype right = helper(node.right);
-            Rtype ret = new Rtype(
-                left.sum + right.sum + node.val, 
-                left.num + right.num + 1
-            );
-            if (result == null || result.sum * ret.num < ret.sum * result.num) {
-                result = ret;
-                maxRoot = node;
-            }
-            return ret;
+            return new Tuple(sum, count);
         }
     }
 ```
