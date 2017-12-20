@@ -50,6 +50,8 @@ Python Code：
 ```
 
 #### DFS with Stack
+相当于是一个 iterative 的 preorder traversal，但是用stack记录另一个变量：path。那么对于每个刚出stack的node来说，我们可以用它的左右孩子和他的path继续向下遍历。
+
 **Python Code:**
 ```python
     class Solution(object):
@@ -60,7 +62,9 @@ Python Code：
             """
             if not root:
                 return []
-            res, stack = [], [(root, '')] # python 的list可以轻松存放tuple，如果是java则需要使用两个stack,或者用内部类
+            res, stack = [], [(root, '')] 
+            # python 的list可以轻松存放tuple，如果是java则需要使用两个stack,
+            # 或者用内部类
             while stack:
                 node, path = stack.pop()
                 if not node.left and not node.right:
@@ -154,7 +158,7 @@ _update Jul 14, 2017 14:17_
         }
     }
     
-  // 分治 法
+    // 分治 法
     class Solution {
         public List<String> binaryTreePaths(TreeNode root) {
             List<String> res = new ArrayList<>();
