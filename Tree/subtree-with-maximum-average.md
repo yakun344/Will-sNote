@@ -23,9 +23,9 @@ Given a binary tree:
 return the node 11.
 
 #### Basic Idea:
-根据九章中给出的处理tree问题的思路，使用分治法和全局变量结合的方法更加容易。所谓分治法，**个人的理解就是**对于一个相对于root的大的问题，我们先看能否将其化解为关于两个 child 的小问题。状态的改变依赖于返回值而不是全局变量。对于**Java**，我们可以定义一个名为`ReturnType`的内部类作为helper函数的返回值。对于**python**，我们可以直接返回不止一个值（as tuple），所以不需定义多余的 class。
+根据九章中给出的处理tree问题的思路，使用分治法和全局变量结合的方法更加容易。所谓分治法，**个人的理解就是**对于一个相对于root的大的问题，我们先看能否将其化解为关于两个 child 的小问题。状态的改变依赖于返回值而不是全局变量。对于**Java**，我们可以定义一个名为`Tuple`的内部类作为helper函数的返回值。对于**python**，我们可以直接返回不止一个值（as tuple），所以不需定义多余的 class。
 
-具体到这道题，要求平均值最大的 subtree，我们除了要知道sum之外还得知道node的个数，所以定义一个包含这两个值的 ReturnType inner class，再用一个 ReturnType result 代表全剧最优值，和一个 TreeNode 作为全局最优值对应的 root。
+具体到这道题，要求平均值最大的 subtree，我们除了要知道sum之外还得知道node的个数，所以定义一个包含这两个值的 Tuple class 作为 helper function 的返回值，左右分治，得到左右返回的 Tuple 之后，结合当前 node.val 就可以得到当前 node 为root的子树的情况，进而和全局变量 `currSum, currCount` 进行对比，如果当前 average 更大，则 `currRoot = 当前node`。
 
 **Reference:** [九章笔记第三章](https://stomachache007.wordpress.com/2017/03/12/%E4%B9%9D%E7%AB%A0%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-3-binary-tree-divide-conquer/)
 
