@@ -35,38 +35,38 @@ node A or node B may not exist in tree.
 ### Java Code:
 ```java
     public class Solution {
-        /**
-         * @param root The root of the binary tree.
-         * @param A and B two nodes
+        /*
+         * @param root: The root of the binary tree.
+         * @param A: A TreeNode
+         * @param B: A TreeNode
          * @return: Return the LCA of the two nodes.
          */
-        private boolean Aexist = false;
-        private boolean Bexist = false;
+        private boolean A_appear;
+        private boolean B_appear;
         public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode A, TreeNode B) {
             TreeNode ret = helper(root, A, B);
-            if (Aexist && Bexist) return ret;
+            if (A_appear && B_appear) return ret;
             else return null;
         }
+        
         private TreeNode helper(TreeNode root, TreeNode A, TreeNode B) {
             if (root == null) return null;
             TreeNode left = helper(root.left, A, B);
             TreeNode right = helper(root.right, A, B);
-            if (left != null && right != null) {
+            if (root == A && root == B) {
+                A_appear = true;
+                B_appear = true;
                 return root;
-            }
-            TreeNode ret = null;
-        // 这么写两个if是为了解决A, B 相等，自己是自己的LCA的情况。
-            if (root == A) {
-                Aexist = true;
-                ret = A;
-            }
-            if (root == B) {
-                Bexist = true;
-                ret = B;
-            }
-            if (ret != null) return ret;
-            else {
-                return left != null ? left : right != null ? right : null;
+            } else if (root == A) {
+                A_appear = true;
+                return root;
+            } else if (root == B) {
+                B_appear = true;
+                return root;
+            } else if (left != null && right != null) {
+                return root;
+            } else {
+                return left != null ? left : right;
             }
         }
     }
