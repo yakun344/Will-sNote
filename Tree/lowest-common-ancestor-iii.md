@@ -145,8 +145,7 @@ _update Dec 20,2017  1:31_
             // 如果 root, left, right 中有 p 和 q，则说明root就是LCA
             } else if (root == p && (left == q || right == q) ||
                 root == q && (left == p || right == p) ||
-                left == p && right == q ||
-                left == q && right == p) {
+                left != null && right != null) {
                 ret = root;
                 return null;
             } else if (root == p || left == p || right == p){
