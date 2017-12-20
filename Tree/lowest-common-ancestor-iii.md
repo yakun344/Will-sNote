@@ -3,7 +3,7 @@ _update Jul 14, 2017 16:00_
 
 ---
 [LintCode](http://www.lintcode.com/en/problem/lowest-common-ancestor-iii/)  
-[LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+[LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/): leetcode 中的版本没有考虑 two node 不存在树中的情况。
 
 Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.  
 The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.  
