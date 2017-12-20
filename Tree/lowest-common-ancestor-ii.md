@@ -90,3 +90,29 @@ The node has an extra attribute parent which point to the father of itself. The 
                     lstB.pop()
             return temp
 ```   
+
+---
+_update Dec 20, 2017 1:04_
+
+### Update
+更简单的方法是使用 HashSet，先把第一条链表每个node加入set，然后依次验证第二条链表的node是否在其中，第一个在 set 中的就是分叉节点；
+
+**Python Code**   
+```python
+class Solution:
+    """
+    @param: root: The root of the tree
+    @param: A: node in the tree
+    @param: B: node in the tree
+    @return: The lowest common ancestor of A and B
+    """
+    def lowestCommonAncestorII(self, root, A, B):
+        st = set()
+        while A:
+            st.add(A)
+            A = A.parent
+        while B:
+            if B in st: 
+                return B
+            B = B.parent
+```
