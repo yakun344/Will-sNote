@@ -112,4 +112,48 @@ _update Aug 27, 2017  16:08_
                 return None
             return ret
 ```
+<br>
 
+---
+_update Dec 20,2017  1:31_
+
+### Update
+
+**Java Code:**
+```java
+    public class Solution {
+        /*
+         * @param root: The root of the binary tree.
+         * @param A: A TreeNode
+         * @param B: A TreeNode
+         * @return: Return the LCA of the two nodes.
+         */
+        private TreeNode ret;
+        public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
+            helper(root, p, q);
+            return ret;
+        }
+        
+        private TreeNode helper(TreeNode root, TreeNode p, TreeNode q) {
+            if (root == null) return null;
+            TreeNode left = helper(root.left, p, q);
+            TreeNode right = helper(root.right, p, q);
+            if (p == q && p == root) {
+                ret = root;
+                return null;
+            } else if (root == p && (left == q || right == q) ||
+                root == q && (left == p || right == p) ||
+                left == p && right == q ||
+                left == q && right == p) {
+                ret = root;
+                return null;
+            } else if (root == p || left == p || right == p){
+                return p;
+            } else if (root == q || left == q || right == q) {
+                return q;
+            } else {
+                return null;
+            }
+        }
+    }
+```
