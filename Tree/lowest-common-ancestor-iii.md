@@ -118,7 +118,7 @@ _update Aug 27, 2017  16:08_
 _update Dec 20,2017  1:31_
 
 ### Update
-
+这种写法很暴力地用判断语句枚举了各种情况，也比较符合 intuition;
 **Java Code:**
 ```java
     public class Solution {
@@ -138,9 +138,11 @@ _update Dec 20,2017  1:31_
             if (root == null) return null;
             TreeNode left = helper(root.left, p, q);
             TreeNode right = helper(root.right, p, q);
+            // 如果 p==q，自己是 ancestor
             if (p == q && p == root) {
                 ret = root;
                 return null;
+            // 如果 root, left, right 中有 p 和 q，则说明root就是LCA
             } else if (root == p && (left == q || right == q) ||
                 root == q && (left == p || right == p) ||
                 left == p && right == q ||
