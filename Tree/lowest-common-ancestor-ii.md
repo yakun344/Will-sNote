@@ -91,6 +91,7 @@ The node has an extra attribute parent which point to the father of itself. The 
             return temp
 ```   
 <br>
+
 ---
 _update Dec 20, 2017 1:04_
 
