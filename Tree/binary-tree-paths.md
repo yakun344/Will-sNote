@@ -112,24 +112,25 @@ Python Code：
 
 #### BFS with Queue
 **Python code:**
-```python
-    class Solution(object):
+    ```python
+    class Solution:
         def binaryTreePaths(self, root):
             """
             :type root: TreeNode
             :rtype: List[str]
             """
-            if root is None:
-                return []
-            res, queue = [], collections.deque([(root, '')])
+            if not root: return []
+            queue = collections.deque()
+            res = []
+            queue.appendleft((root, str(root.val)))
             while queue:
-                node, path = queue.popleft()
+                node, path = queue.pop()
                 if not node.left and not node.right:
-                    res.append(path + str(node.val))
+                    res.append(path)
                 if node.left:
-                    queue.append((node.left, path + str(node.val) + '->'))
+                    queue.appendleft((node.left, path + "->" + str(node.left.val)))
                 if node.right:
-                    queue.append((node.right, path + str(node.val) + '->'))
+                    queue.appendleft((node.right, path + "->" + str(node.right.val)))
             return res
 ```
 
