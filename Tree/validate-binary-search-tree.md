@@ -101,3 +101,46 @@ _update Aug 27, 2017  20:39_
             
             return helper(root) is not None
 ```
+<br>
+
+---
+_update Dec 20, 2017 15:30_
+
+### Update
+更新一种解法，返回值只用于判断左右子树是否为valid，而找 leftMax 和 rightMin 依靠每层递归中的 while 循环；
+
+**Java Code**
+```java
+    public class Solution {
+        /*
+         * @param root: The root of binary tree.
+         * @return: True if the binary tree is BST, or false
+         */
+        public boolean isValidBST(TreeNode root) {
+            if (root == null) return true;
+            if (! isValidBST(root.left) || ! isValidBST(root.right)) {
+                return false;
+            }
+            long leftMax;
+            long rightMin;
+            
+            TreeNode node = root.left;
+            while (node != null && node.right != null) node = node.right;
+            leftMax = node != null ? node.val : (long)Integer.MIN_VALUE - 1;
+            
+            node = root.right;
+            while (node != null && node.left != null) node = node.left;
+            rightMin = node != null ? node.val : (long)Integer.MAX_VALUE + 1;
+            
+            if (root.val > leftMax && root.val < rightMin) return true;
+            else return false;
+        }
+    }
+```
+
+
+
+
+
+
+
