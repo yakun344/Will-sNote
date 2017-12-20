@@ -2,7 +2,8 @@
 _update Jul 14, 2017 18:13_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/validate-binary-search-tree/)
+[LintCode](http://www.lintcode.com/en/problem/validate-binary-search-tree/)  
+[LeetCode](https://leetcode.com/problems/validate-binary-search-tree/description/)
 
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
