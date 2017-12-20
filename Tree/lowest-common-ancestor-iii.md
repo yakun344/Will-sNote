@@ -8,11 +8,11 @@ Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(L
 The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.  
 Return null if LCA does not exist.
 
-** Notice**
+** Notice**  
 
-node A or node B may not exist in tree.
+node A or node B may not exist in tree.  
   
-**Example**
+**Example**  
 
     For the following binary tree:
       
