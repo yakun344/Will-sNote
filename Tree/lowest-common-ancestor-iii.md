@@ -14,19 +14,19 @@ node A or node B may not exist in tree.
   
 **Example**  
 
-    For the following binary tree:
-      
-        4
-       / \
-      3   7
-         / \
-        5   6
-        
-    LCA(3, 5) = 4
-      
-    LCA(5, 6) = 7
-      
-    LCA(6, 7) = 7
+        For the following binary tree:
+          
+            4
+           / \
+          3   7
+             / \
+            5   6
+            
+        LCA(3, 5) = 4
+          
+        LCA(5, 6) = 7
+          
+        LCA(6, 7) = 7
 
 #### Basic Idea:
 两个given node，A, B。helper函数遇到其中之一的时候即返回它，如果左右node的返回值都不为空，即说明当前node为LCA，返回当前node。这样也可以解决两node其中之一是LCA的情况。但是考虑到有可能LCA不存在，我们设定两个boolean分别表示我们找到了A或B，如果最终两者不全为true，则返回null。
