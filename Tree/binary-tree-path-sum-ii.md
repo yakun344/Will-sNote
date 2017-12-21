@@ -3,7 +3,7 @@ _update Jul 14, 2017 20:14_
 
 ---
 [lintcode](http://www.lintcode.com/en/problem/binary-tree-path-sum-ii/)   
-[LeetCode](https://leetcode.com/problems/path-sum-iii/description/)  
+[LeetCode](https://leetcode.com/problems/path-sum-iii/description/) (类似，只要求输出路径个数)  
 
 Your are given a binary tree in which each node contains a value. Design an algorithm to get all paths which sum to a given value. The path does not need to start or end at the root or a leaf, but it must go in a straight line down.
 
