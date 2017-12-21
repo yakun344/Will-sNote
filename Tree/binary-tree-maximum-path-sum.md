@@ -80,7 +80,8 @@ For this problem, a path is defined as any sequence of nodes from some starting 
 _update Dec 21, 2017  2:19_
 
 ### Update
-
+这次重做这道题后有一点新感悟：  
+&emsp; 当我们需要得到从根向上的path时，我们选择使用函数的返回值，从对 左右子树 的调用中获取下方的信息。当我们需要从 root 往下的 path 时，我们使用传入 path 参数的方法。
 
 
 
