@@ -82,7 +82,8 @@ _update Aug 27, 2017  20:39_
                                   \
                                    1
       有相同的 inorderList: [1,1,1]
-      
+但因为此题规定二叉树左右和root一定不相等，所以不用考虑这种情况，所以inorder traverse 是可以用的。
+            
  #### Python:
  ```python
      class Solution(object):
