@@ -138,7 +138,35 @@ _update Dec 20, 2017 15:30_
         }
     }
 ```
-
+<br>
+再更新一种 iterative 的解法，就是简单的 inorder traversal，检查是否严格单调递增，对于这种没有重复元素的BST很好用。
+```python
+    # inorder traversal, check if is increasing
+    class Solution:
+        def isValidBST(self, root):
+            """
+            :type root: TreeNode
+            :rtype: bool
+            """
+            if not root: return True
+            stack = []
+            
+            while root:
+                stack.append(root)
+                root = root.left
+                
+            prev = float('-inf') # 跟踪前一个元素，初始化为负无穷
+            while stack:
+                node = stack.pop()
+                if node.val <= prev: # 说明不是递增，则不是BST
+                    return False
+                prev = node.val # 更新prev
+                node = node.right
+                while node:
+                    stack.append(node)
+                    node = node.left
+            return True
+```
 
 
 
