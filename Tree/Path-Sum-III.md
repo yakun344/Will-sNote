@@ -51,12 +51,16 @@ Python Code：
             """
             if not root:
                 return 0
-            return self.dfs(root, sum) + self.pathSum(root.left, sum) + self.pathSum(root.right, sum)
+            return self.dfs(root, sum) + 
+                   self.pathSum(root.left, sum) + 
+                   self.pathSum(root.right, sum)
 
         def dfs(self, node, target):
             if not node: 
                 return 0
-            return (node.val == target) + self.dfs(node.left, target - node.val) + self.dfs(node.right, target - node.val)
+            return (node.val == target) + 
+                   self.dfs(node.left, target - node.val) + 
+                   self.dfs(node.right, target - node.val)
 ```
 
 Java code:
