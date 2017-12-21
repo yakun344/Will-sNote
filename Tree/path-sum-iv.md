@@ -148,6 +148,43 @@ Given a list of`ascending`three-digits integers representing a binary with the d
 <br>
 
 ---
+_update Dec 21, 2017  1:26_
+
+### Update
+更新一个 python code，用 dict 实现 tree，居然在 python3 的答案中是最快的。
+
+**Python Code:**
+```python
+    class Solution:
+        def pathSum(self, nums):
+            """
+            :type nums: List[int]
+            :rtype: int
+            """
+            def helper(root, path):
+                if not root in tree: return 
+                path += tree[root]
+                if not root * 2 in tree and not root * 2 + 1 in tree:
+                    self.ret += path
+                else:
+                    helper(root * 2, path)
+                    helper(root * 2 + 1, path)
+                
+                
+            self.ret = 0
+            tree = {}
+            for node in nums:
+                tree[2 ** (node // 100 - 1) + node % 100 // 10 - 1] = node % 10
+            helper(1, 0)
+            return self.ret
+```
+
+
+
+
+
+
+
 
 
 
