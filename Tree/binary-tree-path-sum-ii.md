@@ -7,22 +7,24 @@ _update Jul 14, 2017 20:14_
 Your are given a binary tree in which each node contains a value. Design an algorithm to get all paths which sum to a given value. The path does not need to start or end at the root or a leaf, but it must go in a straight line down.
 
 **Example**
-      Given a binary tree:
-      
-          1
-         / \
-        2   3
-       /   /
-      4   2
-      for target = 6, return
-      
-      [
-        [2, 4],
-        [1, 3, 2]
-      ]
+
+          Given a binary tree:
+              
+                  1
+                 / \
+                2   3
+               /   /
+              4   2
+          for target = 6, return
+              
+              [
+                [2, 4],
+                [1, 3, 2]
+              ]
       
 #### Basic Idea:
-这道题和leetcode上的 **[Path Sum III](https://will-gxz.gitbooks.io/xiaozheng_algo/content/Tree/Path%20Sum%20III.html)** 其实很接近，但是这道题更加要求输出所有的路径。在前面的那篇文章中我们使用了两个函数两层递归的方式，但是这样的方法相对复杂。学习了九章算法之后，我发现我们可以使用一种**更加通用而且易于理解**的方法：
+这道题和leetcode上的 **[Path Sum III](https://will-gxz.gitbooks.io/xiaozheng_algo/content/Tree/Path%20Sum%20III.html)** 其实很接近，但是这道题更加要求输出所有的路径。在前面的那篇文章中我们使用了两个函数两层递归的方式，但是这样的方法相对复杂。学习了九章算法之后，我发现我们可以使用一种**更加通用而且易于理解**的方法：  
+
 整个代码的框架是一个求所有path并返回的程序，只是在我们到达每个node之后，对当前的path进行一次循环，考虑所有在当前位置结束的path，如果 sum == target ，则将这一段path加入res。具体地，对于Java，我们可以用 `res.add(new ArrayList<Integer>(path.subList(i, path.size())))` , 在Python中更加方便，直接`res.append(path[i:])`。
 
 #### Java Code：
