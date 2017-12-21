@@ -63,7 +63,7 @@ Your are given a binary tree in which each node contains a value. Design an algo
 ```
 
 #### Python Code:
-    ```python
+```python
     class Solution:
         # @param {TreeNode} root the root of binary tree
         # @param {int} target an integer
