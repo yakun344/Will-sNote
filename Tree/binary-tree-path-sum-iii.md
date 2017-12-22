@@ -92,11 +92,7 @@ Give a binary tree, and a target number, find all path that the sum of nodes equ
 _update Dec 22, 2017  0:27_
 
 ### Update 
-之前写这道题目的时候，没有注意到这是一个 parentTree，每个 node 除了 left 和 right 之外还有一个parent指针。
-
-这样就保证了我们可以从树中的**任意一点出发到达另外任意一点**，于是我们可以把这棵树当做一个**无向连通图**，这样题目就变成了**在一个图中找到所有 sum 为 target 的路径**。
-
-我们可以用 dfs 从每个 node 出发，搜索所有其他的 node，记录path，当 `path sum == target` 的时候，将 path 的副本加入 res。
+之前写这道题目的时候，没有注意到这是一个 parentTree，每个 node 除了 left 和 right 之外还有一个parent指针。这样就保证了我们可以从树中的**任意一点出发到达另外任意一点**，于是我们可以把这棵树当做一个**无向连通图**，这样题目就变成了**在一个图中找到所有 sum 为 target 的路径**。我们可以用 dfs 从每个 node 出发，搜索所有其他的 node，记录path，当 `path sum == target` 的时候，将 path 的副本加入 res。
 
 这个做法的**时间复杂度为 O(n^2)**:   
 &emsp; 因为在二叉树中任意两点间有且只有一条 path，我们的算法从每个点出发找到其他所有点，故总的时间复杂度为 O(n^2);
