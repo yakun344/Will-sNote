@@ -98,6 +98,8 @@ _update Dec 22, 2017  0:27_
 
 我们可以用 dfs 从每个 node 出发，搜索所有其他的 node，记录path，当 `path sum == target` 的时候，将 path 的副本加入 res。
 
+这个做法的**时间复杂度为 O(n^2)**:   
+&emsp; 
 
 
 
