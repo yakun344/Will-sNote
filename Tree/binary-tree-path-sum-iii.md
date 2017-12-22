@@ -7,7 +7,14 @@ _update Aug 28, 2017  23:13_
 Give a binary tree, and a target number, find all path that the sum of nodes equal to target, the path could be start and end at any node in the tree.
 
 **Example**
-
+```java    
+    
+      // Definition of ParentTreeNode:
+      class ParentTreeNode {
+          public int val;
+          public ParentTreeNode parent, left, right;
+      }
+```
     Given binary tree:
     
           1
