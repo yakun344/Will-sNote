@@ -23,79 +23,64 @@ Our data serialization use bfs traversal. This is just for when you got wrong an
 You can use other method to do serializaiton and deserialization.
 
 #### Basic Idea:
-1.  首先是serialization，只要按照level order的顺序遍历，遇null则append “#”即可。
-2.  deserialization，可以理解为一个一边建树，一边遍历的过程。从root开始，每次按照给定string建立node的左右孩子，然后把他们enque，再继续。使用isleft变量跟踪当前应该是做孩子还是右孩子。
+
+1.  首先是serialization，只要按照level order的顺序遍历，遇null则append “#”即可。serialization 的结果为 something like: `"1,2,#,#,4,5"`;
+2.  deserialization，可以理解为一个一边建树，一边遍历的过程。从root开始，按照leve order traversal 的顺序遍历，每次从 queue 中取出一个 node 之后，则按照相应的 string 更新其 left 和 right child，完事后再把他的 children enqueue。因为string的顺序和node是从左到右，从上到下一一对应的，所以可以保证正确性。
 
 #### Java Code:
 ```java
-class Solution {
-    /**
-     * This method will be invoked first, you should design your own algorithm 
-     * to serialize a binary tree which denote by a root node to a string which
-     * can be easily deserialized by your own "deserialize" method later.
-     */
-     
-    // 正常level order traversial的顺序，不论有无左右孩子都enque，如果处理的是null
-    // 则在结果中append "#"
-    public String serialize(TreeNode root) {
-        if (root == null) return "#";
-        Deque<TreeNode> queue = new LinkedList<>();
-        List<String> buffer = new ArrayList<>();
-        queue.addFirst(root);
-        while (queue.size() > 0) {
-            TreeNode node = queue.removeLast();
-            if (node == null) {
-                buffer.add("#");
-                continue;
-            }
-            else buffer.add(node.val + "");
-            queue.addFirst(node.left);
-            queue.addFirst(node.right);
-        }
-        while (buffer.get(buffer.size() - 1).equals("#")) buffer.remove(buffer.size() - 1);
-        StringBuilder sb = new StringBuilder();
-        for (String val : buffer) {
-            sb.append(val + ",");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        return sb.toString();
-    }
-    
-    /**
-     * This method will be invoked second, the argument data is what exactly
-     * you serialized at method "serialize", that means the data is not given by
-     * system, it's given by your own serialize method. So the format of data is
-     * designed by yourself, and deserialize it here as you serialize it in 
-     * "serialize" method.
-     */
-     
-    // 每次根据当前val给当前node建立左右child，然后把child enque，一边建，一边traverse
-    public TreeNode deserialize(String data) {
-        if (data.equals("#")) return null;
-        String[] vals = data.split(",");
-        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
-        Deque<TreeNode> queue = new LinkedList<>();
-        queue.addFirst(root);
-        boolean isLeft = true;
-        for (int i = 1; i < vals.length; ++i) {
-            TreeNode node = queue.peekLast();
-            if (! vals[i].equals("#")) {
-                if (isLeft) {
-                    node.left = new TreeNode(Integer.parseInt(vals[i]));
+    public class Solution {
+        /**
+         * This method will be invoked first, you should design your own algorithm 
+         * to serialize a binary tree which denote by a root node to a string which
+         * can be easily deserialized by your own "deserialize" method later.
+         */
+        public String serialize(TreeNode root) {
+            if (root == null) return "#";
+            Deque<TreeNode> queue = new LinkedList<>();
+            StringBuilder sb = new StringBuilder();
+            queue.addFirst(root);
+            while (! queue.isEmpty()) {
+                TreeNode node = queue.removeLast();
+                if (node == null) sb.append("#,");
+                else {
+                    sb.append(node.val + ",");
                     queue.addFirst(node.left);
-                    isLeft = false;
-                } else {
-                    node.right = new TreeNode(Integer.parseInt(vals[i]));
                     queue.addFirst(node.right);
-                    queue.removeLast();
-                    isLeft = true;
                 }
-            } else {
-                isLeft ^= true;
-                if (isLeft) queue.removeLast();
             }
+            sb.deleteCharAt(sb.length() - 1);
+            return sb.toString();
         }
-        return root;
+    
+        /**
+         * This method will be invoked second, the argument data is what exactly
+         * you serialized at method "serialize", that means the data is not given by
+         * system, it's given by your own serialize method. So the format of data is
+         * designed by yourself, and deserialize it here as you serialize it in 
+         * "serialize" method.
+         */
+        public TreeNode deserialize(String data) {
+            if (data.equals("#")) return null;
+            String[] str = data.split(",");
+            TreeNode root = new TreeNode(Integer.parseInt(str[0]));
+            Deque<TreeNode> queue = new LinkedList<>();
+            queue.addFirst(root);
+            int i = 1;
+            while (! queue.isEmpty()) {
+                TreeNode node = queue.removeLast();
+                if (! str[i].equals("#")) {
+                    node.left = new TreeNode(Integer.parseInt(str[i]));
+                    queue.addFirst(node.left);
+                }
+                i++;
+                if (! str[i].equals("#")) {
+                    node.right = new TreeNode(Integer.parseInt(str[i]));
+                    queue.addFirst(node.right);
+                }
+                i++;
+            }
+            return root;
+        }
     }
-}
 ```
