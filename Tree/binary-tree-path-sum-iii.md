@@ -86,6 +86,26 @@ Give a binary tree, and a target number, find all path that the sum of nodes equ
                     res.append(res[i][::-1])
             return res
 ```    
-      
+<br>
+
+---
+_update Dec 22, 2017  0:27_
+
+### Update 
+之前写这道题目的时候，没有注意到这是一个 parentTree，每个 node 除了 left 和 right 之外还有一个parent指针。这样就保证了
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       
       
