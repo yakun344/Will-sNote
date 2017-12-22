@@ -26,7 +26,7 @@ You can use other method to do serializaiton and deserialization.
 
 1.  首先是serialization，只要按照level order的顺序遍历，遇null则append “#”即可。serialization 的结果为 something like: `"1,2,3,#,#,#,#"`;
 2.  deserialization，可以理解为一个一边建树，一边遍历的过程。从root开始，按照leve order traversal 的顺序遍历，每次从 queue 中取出一个 node 之后，则按照相应的 string 更新其 left 和 right child，完事后再把他的 children enqueue。因为string的顺序和node是从左到右，从上到下一一对应的，所以可以保证正确性。
-
+3.  这里的实现方法没有去掉最后的一连串 `"#,#,#,# ···"`，如有需要可以优化。
 #### Java Code:
 ```java
     public class Solution {
