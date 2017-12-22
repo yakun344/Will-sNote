@@ -99,7 +99,57 @@ _update Dec 22, 2017  0:27_
 我们可以用 dfs 从每个 node 出发，搜索所有其他的 node，记录path，当 `path sum == target` 的时候，将 path 的副本加入 res。
 
 这个做法的**时间复杂度为 O(n^2)**:   
-&emsp; 
+&emsp; 因为在二叉树中任意两点间有且只有一条 path，我们的算法从每个点出发找到其他所有点，故总的时间复杂度为 O(n^2);
+
+这种实现方法比之前的不利用parent的要容易了很多，基本上变成了一个简单的图的dfs。
+
+**Java Code:**
+```java
+    public class Solution {
+        /*
+         * @param root: the root of binary tree
+         * @param target: An integer
+         * @return: all valid paths
+         */
+        public List<List<Integer>> binaryTreePathSum3(ParentTreeNode root, int target) {
+            List<List<Integer>> res = new ArrayList<>();
+            if (root == null) return res;
+            
+            // 先traverse，得到所有的node
+            List<ParentTreeNode> treeNodeList = new ArrayList<>();
+            Deque<ParentTreeNode> stack = new LinkedList<>();
+            stack.addLast(root);
+            while (! stack.isEmpty()) {
+                ParentTreeNode node = stack.removeLast();
+                treeNodeList.add(node);
+                if (node.left != null) stack.addLast(node.left);
+                if (node.right != null) stack.addLast(node.right);
+            }
+            
+            // 对每个node，dfs考虑所有从该node出发的所有路径
+            for (ParentTreeNode node : treeNodeList) {
+                dfs(node, target, new HashSet<ParentTreeNode>(), 
+                    new ArrayList<Integer>(), 0, res);
+            }
+            
+            return res;
+        }
+        
+        // 从一点出发，dfs，检查其到其他所有点的路径和
+        private void dfs(ParentTreeNode root, int target, Set<ParentTreeNode> visited, 
+                         List<Integer> path, int pathSum, List<List<Integer>> res) {
+            if (root == null || ! visited.add(root)) return; // if already visited root, return
+            path.add(root.val);
+            pathSum += root.val;
+            if (pathSum == target) res.add(new ArrayList<>(path));
+            // keep search left, right, parent
+            dfs(root.left, target, visited, path, pathSum, res);
+            dfs(root.right, target, visited, path, pathSum, res);
+            dfs(root.parent, target, visited, path, pathSum, res);
+            path.remove(path.size() - 1);
+        }
+    }
+```
 
 
 
