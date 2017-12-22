@@ -86,3 +86,60 @@ Your are given a binary tree in which each node contains a value. Design an algo
             helper(root, [], res, target)
             return res
 ```
+<br>
+
+---
+_update Dec 21, 2017  23:36_
+
+### Update
+时隔数月，发现之前的写法其实并没有领会九章算法所授的**分治法**的道理。在这里重新写了一个新方法的 Java solution。
+
+在这次的写法中，严格按照九章分治法的思路，对于一个关于root的问题，我们将其化解为一个关于 `root.left` 和 `root.right` 的同样的问题，再利用左右的返回值求出关于 root 的解。具体地，我们通过左右子树递归的返回值得到从 左右节点 出发向下的所有路径，然后在每个这种路径的前面都加上 `root.val`，再加上一个只含有 `root.val` 的路径，我们就得到了从 root 开始向下的所有路径。这样就完成了一个分治算法。在得到从root开始向下的所有路径之后，我们循环判断这些路径中是否有满足条件的，若有，则将其副本加入 res;
+
+```java
+    public class Solution {
+        /*
+         * @param root: the root of binary tree
+         * @param target: An integer
+         * @return: all valid paths
+         */
+        // 从下往上
+        public List<List<Integer>> binaryTreePathSum2(TreeNode root, int target) {
+            List<List<Integer>> res = new ArrayList<>();
+            if (root == null) return res;
+            helper(root, target, res);
+            return res;
+        }
+        
+        // return all paths go down from this node, 每次检查从该 root 开始有无满足要求的path
+        private List<List<Integer>> helper(TreeNode root, int target, List<List<Integer>> res) {
+            List<List<Integer>> paths = new ArrayList<>();
+            if (root == null) return paths;
+            List<List<Integer>> leftPaths = helper(root.left, target, res);
+            List<List<Integer>> rightPaths = helper(root.right, target, res);
+            paths.addAll(leftPaths);
+            paths.addAll(rightPaths);
+            // 插入一个空链表，这样将root加在每个路径前面之后，这个链表就表示一条只有
+            // root一个node的路径。这也是递归最先开始有记录的地方，就是left和right都是
+            // 空，然后插入一个空链表，再其头部加上root，成为第一条路径.        
+            paths.add(new LinkedList<Integer>());
+            for (List<Integer> path : paths)  path.add(0, root.val);
+            // 此时 paths 中就包含了所有从当前 root 开始向下的路径, 然后我们开始检查每
+            // 条路径的和，如果满足要求，则把次path的副本加入res（之所以是副本，是因为随着
+            // 递归的进行，该path还会被修改）
+            for (List<Integer> path : paths) {
+                int sum = 0;
+                for (int n : path) sum += n;
+                if (sum == target) res.add(new ArrayList<>(path));
+            }
+            return paths;
+        }
+    }
+```
+
+
+
+
+
+
+
