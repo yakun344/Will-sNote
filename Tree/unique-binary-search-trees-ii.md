@@ -62,56 +62,38 @@ Given n = 3, your program should return all 5 unique BST's shown below.
 ```
 
 #### Java Code:
-[出处](https://github.com/yuzhangcmu/LeetCode/blob/master/tree/GenerateTree2.java) 在这里，这段代码不是我原创。
 ```java
-    /**
-     * Definition for binary tree
-     * public class TreeNode {
-     *     int val;
-     *     TreeNode left;
-     *     TreeNode right;
-     *     TreeNode(int x) { val = x; left = null; right = null; }
-     * }
-     */
-    public class GenerateTree2 {
+    class Solution {
         public List<TreeNode> generateTrees(int n) {
-            return generateTreesHelp(1, n);
+            if (n == 0) return new ArrayList<TreeNode>();
+            return helper(1, n);
         }
         
-        /*
-          使用递归来完成，我们可以分解为2个步骤：
-          完成左子树，完成右子树。
-          如果说左子树有n种组合，右子树有m种组合，那最终的组合数就是n*m. 把这所有的组合组装起来即可
-        */    
-        public List<TreeNode> generateTreesHelp(int start, int end) {
-            ArrayList<TreeNode> ret = new ArrayList<TreeNode>();
-    
-            // null也是一种解，也需要把它加上去。这样在组装左右子树的时候，不会出现左边没有解的情况，或
-            // 是右边没有解的情况
+        // 返回所有start到end部分的BST的root
+        private List<TreeNode> helper(int start, int end) {
+            List<TreeNode> ret = new ArrayList<>(); 
             if (start > end) {
                 ret.add(null);
                 return ret;
             }
-    
-            for (int i = start; i <= end; i++) {
-                // 求出左右子树的所有的可能。
-                List<TreeNode> left = generateTreesHelp(start, i - 1);
-                List<TreeNode> right =  generateTreesHelp(i + 1, end);
-    
-                // 将左右子树的所有的可能性全部组装起来
-                for (TreeNode l: left) {
-                    for(TreeNode r: right) {
-                        // 先创建根节点 
+            if (start == end) {
+                ret.add(new TreeNode(start));
+                return ret;
+            }
+            // 考虑 start到end 之间每个数字做root的情况
+            for (int i = start; i <= end; ++i) {
+                List<TreeNode> leftRoots = helper(start, i - 1);
+                List<TreeNode> rightRoots = helper(i + 1, end);
+                // 将左右的树穷举配对，以 i 为root 组成新的 tree，把 i 加入 ret
+                for (TreeNode leftRoot : leftRoots) {
+                    for (TreeNode rightRoot : rightRoots) {
                         TreeNode root = new TreeNode(i);
-                        root.left = l;
-                        root.right = r;
-    
-                        // 将组合出来的树加到结果集合中。
+                        root.left = leftRoot;
+                        root.right = rightRoot;
                         ret.add(root);
                     }
                 }
             }
-    
             return ret;
         }
     }
