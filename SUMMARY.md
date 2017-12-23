@@ -45,6 +45,7 @@
   * [Binary Tree Maximum Path Sum](Tree/binary-tree-maximum-path-sum.md)
   * [Binary Tree Path Sum III](Tree/binary-tree-path-sum-iii.md)
   * [Binary Tree Serialization](Tree/binary-tree-serialization.md)
+  * [Verify Preorder Serialization of a Binary Tree](Tree/Verify-Preorder-Serialization-of-a-Binary-Tree.md)
   * [Unique Binary Search Trees II](Tree/unique-binary-search-trees-ii.md)
   * [Two Sum IV - Input is a BST](Tree/two-sum-iv-input-is-a-bst.md)
   * [Balanced Binary Tree](Tree/balanced-binary-tree.md)
