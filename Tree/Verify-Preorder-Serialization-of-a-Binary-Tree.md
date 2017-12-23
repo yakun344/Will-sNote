@@ -34,7 +34,7 @@ You may assume that the input format is always valid, for example it could never
 #### Basic Idea:
 先看 **[这里](https://www.hrwhisper.me/leetcode-verify-preorder-serialization-of-a-binary-tree/)** 有两种最好方法的讲解。
 
-##### 思路 1 （stack，一次去掉叶子节点）：
+##### 思路 1 （stack，依次去掉叶子节点）：
 我们每次去掉叶子节点，即 `“\d##”`，将其换成一个空节点`“#”`，那么如果所给string是valid的，最终我们应该只剩下 `“#”`。实现的过程就是使用一个stack，每次当有三个以上元素的时候检查倒数三个元素是否表示一个叶子节点，若是的话将其换成 `"#"`，最后检查是否只剩 `"#"`；
 
 &emsp; **Python Code:**
