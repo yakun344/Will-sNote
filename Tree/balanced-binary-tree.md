@@ -2,7 +2,7 @@
 _update Aug 27,2017  15:26_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/balanced-binary-tree/)
+[LintCode](http://www.lintcode.com/en/problem/balanced-binary-tree/)   
 [LeetCode](https://leetcode.com/problems/balanced-binary-tree/description/)
 
 Given a binary tree, determine if it is height-balanced.
