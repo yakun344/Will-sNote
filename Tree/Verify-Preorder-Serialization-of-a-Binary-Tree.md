@@ -37,9 +37,24 @@ You may assume that the input format is always valid, for example it could never
 ##### 思路 1 （stack，一次去掉叶子节点）：
 我们每次去掉叶子节点，即 `“\d##”`，将其换成一个空节点`“#”`，那么如果所给string是valid的，最终我们应该只剩下 `“#”`。实现的过程就是使用一个stack，每次当有三个以上元素的时候检查倒数三个元素是否表示一个叶子节点，若是的话将其换成 `"#"`，最后检查是否只剩 `"#"`；
 
-&emsp; **Java Code:**
-```java
-s
+&emsp; **Python Code:**
+```python
+    class Solution:
+        def isValidSerialization(self, preorder):
+            """
+            :type preorder: str
+            :rtype: bool
+            """
+            lst = preorder.split(",")
+            stack = []
+            for val in lst:
+                stack.append(val)
+                while len(stack) >= 3 and stack[-2:] == ["#", "#"] and stack[-3] != "#":
+                    stack = stack[:-3] + ["#"]
+                
+            if len(stack) == 1 and stack[0] == "#": 
+                return True
+            else: return False
 ```
 
 ##### 思路 2 （统计 indegree and outdegree):
@@ -47,6 +62,10 @@ s
 
 这个性质的物理意义可以这样描述：<sp>
 &emsp; outdegree 大于 indegree 表示仍有空余的 outdegree 可以被用于连接更多的node，如果入度大于出度，就说明出现了来源不明的入度（每个入度一定是连接在另一个 node 的出边上，抵消一个出度），此时就可以判断为 invalid;
+
+&emsp; **Python Code:**
+```python
+
 
 ##### 思路3 (不符合题意)：
 recursively 重建整个树，检查是否刚好用完所给 string 中的所有元素，如果提前用完或者建树之后仍有剩余，则说明所给string有问题。
