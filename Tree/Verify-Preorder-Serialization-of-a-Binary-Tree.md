@@ -62,10 +62,29 @@ You may assume that the input format is always valid, for example it could never
 
 这个性质的物理意义可以这样描述：<sp>
 &emsp; outdegree 大于 indegree 表示仍有空余的 outdegree 可以被用于连接更多的node，如果入度大于出度，就说明出现了来源不明的入度（每个入度一定是连接在另一个 node 的出边上，抵消一个出度），此时就可以判断为 invalid;
+&emsp; 具体的，定义`diff = outdegree - indegree`，初始化为2，跳过root，对于每个node，先将 `diff--`，因为消耗一个 outdegree，如果这个node不是 nil，再令 `diff+=2`。过程中如果 `diff < 0`，则 `return false`；
 
 &emsp; **Java Code:**
 ```java
-
+    class Solution {
+        public boolean isValidSerialization(String preorder) {
+            String[] arr = preorder.split(",");
+            if (arr[0].equals("#")) {
+                if (arr.length == 1) return true;
+                else return false;
+            }
+            int diff = 2; // diff = outdegree - indegree;
+            // diff 初始化为2，因为root贡献2个outdegree
+            for (int i = 1; i < arr.length; ++i) {
+                String node = arr[i];
+                diff--;
+                if (diff < 0) return false;
+                if (! node.equals("#")) diff += 2;
+            }
+            return diff == 0;
+        }
+    }
+```
 
 
 ##### 思路3 (不符合题意)：
