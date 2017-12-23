@@ -89,3 +89,34 @@ Given a Binary Search Tree and a target number, return true if there exist two e
                     left += 1
             return False
 ```
+<br>
+
+---
+_udpate Dec23, 2017  0:57_
+
+### Update 
+#### Java Code:
+```java
+    class Solution {
+        public boolean findTarget(TreeNode root, int k) {
+            if (root == null) return false;
+            Set<Integer> set = new HashSet<>();
+            Deque<TreeNode> stack = new LinkedList<>();
+            while (root != null) {
+                stack.addLast(root);
+                root = root.left;
+            }
+            while (! stack.isEmpty()) {
+                TreeNode node = stack.removeLast();
+                if (set.contains(k - node.val)) return true;
+                set.add(node.val);
+                node = node.right;
+                while (node != null) {
+                    stack.addLast(node);
+                    node = node.left;
+                }
+            }
+            return false;
+        }
+    }
+```
