@@ -84,3 +84,75 @@ You can use other method to do serializaiton and deserialization.
         }
     }
 ```
+<br>
+
+---
+_update Dec 22, 2017  18:49_
+
+### Update: Preorder Serialization
+更新一种新的 serilization 的方法，preorder serilization。和之前使用BFS（level order traversal）序列化的方法有所区别，但思想上又异曲同工：BFS的序列化和还原都是类似的方法，同样的，preorder 的序列化和还原也可以用 recursive 的 preorder 的方法来实现。
+
+这里用 iterator 来代替原本的 String 数组，如果使用数组，则需要多传入一个index参数。
+
+**Java Code:**
+```java
+    public class Solution {
+        /**
+         * This method will be invoked first, you should design your own algorithm 
+         * to serialize a binary tree which denote by a root node to a string which
+         * can be easily deserialized by your own "deserialize" method later.
+         */
+        public String serialize(TreeNode root) {
+            if (root == null) return "#";
+            StringBuilder sb = new StringBuilder();
+            preOrder(root, sb);
+            sb.deleteCharAt(sb.length() - 1);
+            System.out.println(sb.toString());
+            return sb.toString();
+        }
+        
+        private void preOrder(TreeNode root, StringBuilder sb) {
+            if (root == null) {
+                sb.append("#,");
+            } else {
+                sb.append(root.val + ",");
+                preOrder(root.left, sb);
+                preOrder(root.right, sb);
+            }
+        }
+    
+        /**
+         * This method will be invoked second, the argument data is what exactly
+         * you serialized at method "serialize", that means the data is not given by
+         * system, it's given by your own serialize method. So the format of data is
+         * designed by yourself, and deserialize it here as you serialize it in 
+         * "serialize" method.
+         */
+        public TreeNode deserialize(String data) {
+            String[] arr = data.split(",");
+            Iterator<String> iter = Arrays.asList(arr).iterator();
+            return helper(iter);
+        }
+        
+        private TreeNode helper(Iterator<String> iter) {
+            if (! iter.hasNext()) return null;
+            String str = iter.next();
+            if (str.equals("#")) return null;
+            TreeNode node = new TreeNode(Integer.parseInt(str));
+            node.left = helper(iter);
+            node.right = helper(iter);
+            return node;
+        }
+    }
+```
+
+
+
+
+
+
+
+
+
+
+
