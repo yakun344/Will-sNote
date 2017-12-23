@@ -63,8 +63,9 @@ You may assume that the input format is always valid, for example it could never
 这个性质的物理意义可以这样描述：<sp>
 &emsp; outdegree 大于 indegree 表示仍有空余的 outdegree 可以被用于连接更多的node，如果入度大于出度，就说明出现了来源不明的入度（每个入度一定是连接在另一个 node 的出边上，抵消一个出度），此时就可以判断为 invalid;
 
-&emsp; **Python Code:**
-```python
+&emsp; **Java Code:**
+```java
+
 
 
 ##### 思路3 (不符合题意)：
