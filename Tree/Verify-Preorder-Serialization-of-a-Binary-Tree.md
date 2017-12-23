@@ -60,7 +60,7 @@ You may assume that the input format is always valid, for example it could never
 ##### 思路 2 （统计 indegree and outdegree):
 &emsp;在一个二叉树中，首先我们把叶子的左右孩子 nil 视为一个节点。一个正常节点提供一个 indegree 和 两个 outdegree，根节点 root 提供两个 outdegree，一个 nil 提供一个 indegree。那么在任何时候，**二叉树的 indegree 必须小于等于 outdegree，并且最终两者必须相等**。
 
-这个性质的物理意义可以这样描述：<sp>
+这个性质的物理意义可以这样描述：<sp>  
 &emsp; outdegree 大于 indegree 表示仍有空余的 outdegree 可以被用于连接更多的node，如果入度大于出度，就说明出现了来源不明的入度（每个入度一定是连接在另一个 node 的出边上，抵消一个出度），此时就可以判断为 invalid;
 &emsp; 具体的，定义`diff = outdegree - indegree`，初始化为2，跳过root，对于每个node，先将 `diff--`，因为消耗一个 outdegree，如果这个node不是 nil，再令 `diff+=2`。过程中如果 `diff < 0`，则 `return false`；
 
