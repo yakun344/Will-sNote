@@ -90,7 +90,7 @@ You may assume that the input format is always valid, for example it could never
 ##### 思路3 (不符合题意)：
 recursively 重建整个树，检查是否刚好用完所给 string 中的所有元素，如果提前用完或者建树之后仍有剩余，则说明所给string有问题。
 
-**Python Code:**
+&emsp; **Python Code:**
 ```python
     class Solution:
         def isValidSerialization(self, preorder):
