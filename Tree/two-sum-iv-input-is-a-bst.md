@@ -99,24 +99,15 @@ _udpate Dec23, 2017  0:57_
 ```java
     class Solution {
         public boolean findTarget(TreeNode root, int k) {
+            Set<Integer> st = new HashSet<>();
+            return dfs(root, k, st);
+        }
+        
+        private boolean dfs(TreeNode root, int k, Set<Integer> st) {
             if (root == null) return false;
-            Set<Integer> set = new HashSet<>();
-            Deque<TreeNode> stack = new LinkedList<>();
-            while (root != null) {
-                stack.addLast(root);
-                root = root.left;
-            }
-            while (! stack.isEmpty()) {
-                TreeNode node = stack.removeLast();
-                if (set.contains(k - node.val)) return true;
-                set.add(node.val);
-                node = node.right;
-                while (node != null) {
-                    stack.addLast(node);
-                    node = node.left;
-                }
-            }
-            return false;
+            if (st.contains(k - root.val)) return true;
+            st.add(root.val);
+            return dfs(root.left, k, st) || dfs(root.right, k, st);
         }
     }
 ```
