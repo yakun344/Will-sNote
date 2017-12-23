@@ -43,7 +43,10 @@ s
 ```
 
 ##### 思路 2 （统计 indegree and outdegree):
-在一个二叉树中，首先我们把叶子的左右孩子 nil 视为一个节点。一个正常节点提供一个 indegree 和 两个 outdegree，根节点 root 提供两个 outdegree，一个 nil 提供一个 indegree。那么在任何时候，**二叉树的 indegree 必须小于 outdegree**。
+&emsp;在一个二叉树中，首先我们把叶子的左右孩子 nil 视为一个节点。一个正常节点提供一个 indegree 和 两个 outdegree，根节点 root 提供两个 outdegree，一个 nil 提供一个 indegree。那么在任何时候，**二叉树的 indegree 必须小于等于 outdegree，并且最终两者必须相等**。
+
+这个性质的物理意义可以这样描述：<sp>
+&emsp; outdegree 大于 indegree 表示仍有空余的 outdegree 可以被用于连接更多的node，如果入度大于出度，就说明出现了来源不明的入度（每个入度一定是连接在另一个 node 的出边上，抵消一个出度），此时就可以判断为 invalid;
 
 ##### 思路3 (不符合题意)：
 recursively 重建整个树，检查是否刚好用完所给 string 中的所有元素，如果提前用完或者建树之后仍有剩余，则说明所给string有问题。
