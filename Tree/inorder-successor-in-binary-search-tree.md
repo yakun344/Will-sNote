@@ -2,7 +2,7 @@
 _update Aug 28, 2017  17:50_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/inorder-successor-in-binary-search-tree/)
+[LintCode](http://www.lintcode.com/en/problem/inorder-successor-in-binary-search-tree/)  
 [LeetCode](https://leetcode.com/problems/inorder-successor-in-bst/description/)
 
 Given a binary search tree (See Definition) and a node in it, find the in-order successor of that node in the BST.
