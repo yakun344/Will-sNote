@@ -8,6 +8,7 @@ _update Aug 29, 2017  19:28_
 Given a binary tree with n nodes, your task is to check if it's possible to partition the tree to two trees which have the equal sum of values after removing exactly one edge on the original tree.
 
 **Example 1:**
+
         Input:     
             5
            / \
@@ -52,10 +53,10 @@ You can't split the tree into two trees with equal sum after removing exactly on
 
 #### Basic Idea:
 
-通过观察我们注意到，只要有子树的sum等于sum\_total的一半，我们就可以切断该子树与其他部分相连的边而达到目的。但是，还要考虑两种特殊情况：
+通过观察我们注意到，只要有子树的sum等于`sum_total` 的一半，我们就可以切断该子树与其他部分相连的边而达到目的。但是，还要考虑两种特殊情况：
 
-* total\_sum 是负数：这种情况其实也并非特殊，无需特别处理；
-* total\_sum 是 0： 这种情况需要特别注意。当总sum为0时，只有存在sum为0的子树才可以，这意味着我们不可以因为其他原因把0加入sums set，例如接触到null结点；
+* `total_sum` 是负数：这种情况其实也并非特殊，无需特别处理；
+* `total_sum` 是 0： 这种情况需要特别注意。当总sum为0时，只有存在sum为0的子树才可以，这意味着我们不可以因为其他原因把0加入sums set，例如接触到null结点；
 
 #### Java Code:
 
