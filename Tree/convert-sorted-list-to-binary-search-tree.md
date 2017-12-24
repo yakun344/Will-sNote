@@ -42,38 +42,31 @@ Given a singly linked list where elements are sorted in ascending order, convert
 
 #### Python Code:
 ```python
-    class Solution(object):
+    class Solution:
         def sortedListToBST(self, head):
             """
             :type head: ListNode
             :rtype: TreeNode
             """
             def getMid(head):
-                slow = head
-                fast = head.next
+                if not head or not head.next: return None
+                fast, slow, prev = head, head, None
                 while fast and fast.next:
+                    prev = slow
                     slow = slow.next
                     fast = fast.next.next
+                prev.next = None
                 return slow
             
-            if not head:
-                return None
+            
+            if not head: return None
+            if not head.next: return TreeNode(head.val)
             mid = getMid(head)
-            root = TreeNode(mid.val)
-            left_head = head
-            right_head = mid.next
-            
-            # 断掉右半段开头相连部分，mid之后
+            rightHead = mid.next
             mid.next = None
-            # 断掉mid之前
-            temp = head
-            while temp.next and temp.next != mid:
-                temp = temp.next
-            temp.next = None
-            
-            if head != mid:
-                root.left = self.sortedListToBST(left_head)
-            root.right = self.sortedListToBST(right_head)
+            root = TreeNode(mid.val)
+            root.left = self.sortedListToBST(head)
+            root.right = self.sortedListToBST(rightHead)
             return root
 ```            
             
