@@ -10,20 +10,24 @@ Two trees are duplicate if they have the same structure with same node values.
 
 **Example 1: **
 
-            1
-           / \
-          2   3
-         /   / \
-        4   2   4
-           /
-          4
+                1
+               / \
+              2   3
+             /   / \
+            4   2   4
+               /
+              4
     The following are two duplicate subtrees:
-          2
-         /
-        4
+    
+              2
+             /
+            4
+    
     and
-        4
-    Therefore, you need to return above trees' root in the form of a list.
+    
+            4
+   
+     Therefore, you need to return above trees' root in the form of a list.
     
 #### Basic Idea:
 用dfs对tree进行 serialization，沿途把完结的子树的序列化字符串存入hashmap，key 是字符串，value 是 treeNode list；最终只要返回长度大于 1 的list中的某个node即可（都是相等子树的root）；
