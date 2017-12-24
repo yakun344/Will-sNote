@@ -112,4 +112,49 @@ If two nodes are in the same row and column, the order should be from left to ri
         }
     }
 ```
+<br>
+
+---
+_update Dec 24, 2017  14:43_
+
+### Update
+```python
+    class Solution:
+        def verticalOrder(self, root):
+            """
+            :type root: TreeNode
+            :rtype: List[List[int]]
+            """
+            ret = []
+            if not root: return ret
+            colMap = collections.defaultdict(list)
+            queue = collections.deque()
+            queue.appendleft((0, root))
+            minCol = float('inf')
+            while queue:
+                col, node = queue.pop()
+                minCol = min(minCol, col)
+                colMap[col].append(node.val)
+                if node.left:
+                    queue.appendleft((col - 1, node.left))
+                if node.right:
+                    queue.appendleft((col + 1, node.right))
+            for i in range(minCol, minCol + len(colMap)):
+                ret.append(colMap[i])
+            return ret
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
