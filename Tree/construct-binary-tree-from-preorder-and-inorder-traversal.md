@@ -106,7 +106,30 @@ _update Dec 24, 2017  3:01_
 **更新一个优化了时间复杂度的 Java 实现：**
 
 ```java
-
+    class Solution {
+        private Map<Integer, Integer> map;
+        public TreeNode buildTree(int[] preorder, int[] inorder) {
+            this.map = new HashMap<>();
+            for (int idx = 0; idx < inorder.length; ++idx) {
+                map.put(inorder[idx], idx);
+            }
+            return helper(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+        }
+        
+        // return 为建成的tree的root，parameter是用来模拟传入了两个subarray`
+        private TreeNode helper(int[] preorder, int[] inorder, int pstart, int pend, int istart, int iend) {
+            if (pstart > pend) return null;
+            TreeNode root = new TreeNode(preorder[pstart]);
+            if (pstart == pend) return root;
+            int rootIndex = map.get(root.val);
+            int leftSize = rootIndex - istart;
+            // 这里主要是index各种计算，看不懂的话可以画图举例理解
+            root.left = helper(preorder, inorder, pstart + 1, pstart + leftSize, istart, rootIndex - 1);
+            root.right = helper(preorder, inorder, pstart + leftSize + 1, pend, rootIndex + 1, iend);
+            return root;
+        }
+    }
+```
 
 
 
