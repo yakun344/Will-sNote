@@ -36,51 +36,7 @@ The path refers to any sequence of nodes from some starting node to any node in 
 从上向下遍历每一条路径，传给下层当前连续序列长度和parent val，在下层判断，如果 root.val == parentVal + 1, 则 length+=1；
 
 Java Code:
-```java
-    public class Solution {
-        /**
-         * @param root the root of binary tree
-         * @return the length of the longest consecutive sequence path
-         */
-        private int maxLength = 0;
-         
-        public int longestConsecutive(TreeNode root) {
-            if (root == null) return 0;
-            helper(root);
-            return maxLength;
-        }
-        private int helper(TreeNode node) {
-            if (node == null) return 0;
-            int left = helper(node.left);
-            int right = helper(node.right);
-            int length;
-            if (left == 0 && right == 0) {
-                length = 1;
-            } else if (left == 0 || right == 0) {
-                if (left != 0) {
-                    length = node.val == node.left.val - 1 ? left + 1 : 1;
-                } else {
-                    length = node.val == node.right.val - 1 ? right + 1 : 1;
-                }
-            } else {
-                length = Math.max(
-                    node.val == node.left.val - 1 ? left + 1 : 1, 
-                    node.val == node.right.val - 1 ? right + 1 : 1
-                );
-            }
-            if (length > maxLength) {
-                maxLength = length;
-            }
-            return length;
-        }
-    }
-```
-
-**思路2：分治法**
-先看左右两子树的当前连续序列长度，如果可以延长，则延长。和上一种思路其实类似；
-
-Java
-```java
+```java    
     class Solution {
         private int maxLength;
         public int longestConsecutive(TreeNode root) {
@@ -98,6 +54,37 @@ Java
             maxLength = Math.max(maxLength, currLength);
             helper(root.left, currLength, root.val);
             helper(root.right, currLength, root.val);
+        }
+    }
+```
+
+**思路2：分治法**
+先看左右两子树的当前连续序列长度，如果可以延长，则延长。和上一种思路其实类似；
+
+Java
+```java
+    class Solution {
+        private int currMaxLength;
+        public int longestConsecutive(TreeNode root) {
+            if (root == null) return 0;
+            this.currMaxLength = Integer.MIN_VALUE;
+            helper(root);
+            return this.currMaxLength;
+        }
+        
+        // return the length of consecutive sequence start from this node
+        // update the global variable along the way
+        private int helper(TreeNode root) {
+            if (root == null) return 0;
+            int leftLength = helper(root.left);
+            int rightLength = helper(root.right);
+            int ret = 1;
+            if (root.left != null && root.val == root.left.val - 1) ret = leftLength + 1;
+            if (root.right != null && root.val == root.right.val - 1) ret = Math.max(ret, rightLength + 1);
+            if (ret > this.currMaxLength) {
+                this.currMaxLength = ret;
+            }
+            return ret;
         }
     }
 ```
