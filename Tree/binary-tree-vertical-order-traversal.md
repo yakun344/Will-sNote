@@ -71,42 +71,43 @@ If two nodes are in the same row and column, the order should be from left to ri
 -  每次出队元素之后，将其val加入对应的col的list中，再把左右两子树更新过col之后加入queue；
 -  最终，按照从左到右的顺序遍历 HashMap，将所有的list放入res中返回；
 
+另外，python中可以直接在queue中存tuple，所以不需要定义内部类。Java的方法，使用两个queue速度更快；
+
 #### Java Code:
 ```java
     class Solution {
-        private class QElement {
+        private class Tuple {
             int col;
             TreeNode node;
-            public QElement(int col, TreeNode node) {
+            Tuple(int col, TreeNode node) {
                 this.col = col;
                 this.node = node;
             }
         }
+        
         public List<List<Integer>> verticalOrder(TreeNode root) {
-            Deque<QElement> queue = new LinkedList<>();
-            int minCol = Integer.MAX_VALUE;
-            int maxCol = Integer.MIN_VALUE;
             List<List<Integer>> res = new ArrayList<>();
             if (root == null) return res;
-            // 以root所在的col为0，左边为负数，右边为正数，作为key，每个value为一个list，跟踪col的范围
-            Map<Integer, List<Integer>> map = new HashMap<>();
+            Map<Integer, List<Integer>> colMap = new HashMap<>();
+            Deque<Tuple> queue = new LinkedList<>();
+            int minCol = Integer.MAX_VALUE;
             
-            // BFS，每次将node.val放入相应col的list中
-            queue.addFirst(new QElement(0, root));
+            queue.addFirst(new Tuple(0, root));
             while (! queue.isEmpty()) {
-                QElement qe = queue.removeLast();
-                if (! map.containsKey(qe.col)) map.put(qe.col, new ArrayList<Integer>());
-                map.get(qe.col).add(qe.node.val);
-                minCol = Math.min(minCol, qe.col);
-                maxCol = Math.max(maxCol, qe.col);
-                if (qe.node.left != null) queue.addFirst(new QElement(qe.col - 1, qe.node.left));
-                if (qe.node.right != null) queue.addFirst(new QElement(qe.col + 1, qe.node.right));
+                Tuple tuple = queue.removeLast();
+                int col = tuple.col;
+                TreeNode node = tuple.node;
+                minCol = Math.min(minCol, col);
+                
+                if (! colMap.containsKey(col)) colMap.put(col, new ArrayList<>());
+                colMap.get(col).add(node.val);
+                
+                if (node.left != null) queue.addFirst(new Tuple(col - 1, node.left));
+                if (node.right != null) queue.addFirst(new Tuple(col + 1, node.right));
             }
             
-            // 把所有col的list从左到右放入res；
-            for (int i = minCol; i <= maxCol; ++i) {
-                if (! map.containsKey(i)) continue;
-                res.add(map.get(i));
+            for (int col = minCol; col < minCol + colMap.size(); ++col) {
+                res.add(colMap.get(col));
             }
             return res;
         }
