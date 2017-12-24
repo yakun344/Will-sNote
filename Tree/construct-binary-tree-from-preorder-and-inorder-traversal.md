@@ -4,7 +4,7 @@ _update Aug 29, 2017  23:07_
 
 ---
 
-\[LeetCode\]\(https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/\)
+[Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description//)
 
 
 
