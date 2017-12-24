@@ -37,9 +37,7 @@ left:                        right:
     inorder   [4,2,7,5]            inorder:  [3,6]
 ```
 
-**时间复杂度：** 因为我们每次在inorder list中找root位置时候都要线性搜索，时间复杂度为 O(n^2)，可以预处理一下，用一个 map 存放所有 node 在 inorder list 中的 index，这样时间复杂度变为 O(n)，但空间复杂度从 O(1) 变为 O(n);
-
-
+<sp>
 #### Java Code:
 
 ```java
@@ -96,6 +94,26 @@ left:                        right:
                 root.right = self.buildTree(preorder[left_size + 1 :], inorder[root_idx + 1 :])
             return root
 ```
+
+<sp>
+
+___
+_update Dec 24, 2017  3:01_
+
+### Update:
+**时间复杂度：** 因为我们每次在inorder list中找root位置时候都要线性搜索，时间复杂度为 O(n^2)，可以预处理一下，用一个 map 存放所有 node 在 inorder list 中的 index，这样时间复杂度变为 O(n)，但空间复杂度从 O(1) 变为 O(n);
+
+**更新一个优化了时间复杂度的 Java 实现：**
+
+```java
+
+
+
+
+
+
+
+
 
 
 
