@@ -139,6 +139,38 @@ _update Dec 24, 2017  0:20_
 1.  因为在每次recursion中更新当前 increase length 和 decrease length 的过程都是对于左右子树独立（分别用 `max(inc, child.inc + 1)` 更新），这种方法把左右子树的递归压缩到一个 for loop 中 (`for child in (root.left, root.right)`)；
 2.  在更新全局变量的时候我们考虑三种情况，分别是 `increase length, decrease length 和倒 v 字型路线`，而事实上这三种情况之间是有关联的，可以用 `maxLength = max(maxLength, inc + dec - 1)` 来实现三种情况的更新。原因如下：
     * 如果increase匹配，decrease不匹配，则 dec==1，此时 inc+dec-1=inc；
+    * 如果dec匹配，inc不匹配，同上类似；
+    * 如果都匹配，则 inc + dec 将 root 加了两次，减去 1 后则是正确结果；
+    
+**Python Code：**
+```python
+    class Solution:
+        def longestConsecutive(self, root):
+            """
+            :type root: TreeNode
+            :rtype: int
+            """
+            # return (increase length, decrease length)
+            def helper(root):
+                if not root: return (0, 0)
+                inc, dec = 1, 1
+                
+                for child in (root.left, root.right):
+                    child_inc, child_dec = helper(child)
+                    if child and child.val == root.val + 1:
+                        inc = max(inc, child_inc + 1)
+                    elif child and child.val == root.val - 1:
+                        dec = max(dec, child_dec + 1)
+                # 这样写就足以解决更新全局变量的问题，
+                self.maxLength = max(self.maxLength, inc + dec - 1)
+                return (inc, dec)
+                
+                
+            self.maxLength = 0
+            helper(root)
+            return self.maxLength
+```
+        
 
 
 
