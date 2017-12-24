@@ -128,3 +128,30 @@ The path could be start and end at any node in the tree
             helper(root)
             return self.maxLength
 ```
+<br>
+
+---
+_update Dec 24, 2017  0:20_
+
+### Update
+重做此题的时候发现了一种非常简短的答案，其简短的精髓主要有以下两点：
+
+1.  因为在每次recursion中更新当前 increase length 和 decrease length 的过程都是对于左右子树独立（分别用 `max(inc, child.inc + 1)` 更新），这种方法把左右子树的递归压缩到一个 for loop 中 (`for child in (root.left, root.right)`)；
+2.  在更新全局变量的时候我们考虑三种情况，分别是 `increase length, decrease length 和倒 v 字型路线`，而事实上这三种情况之间是有关联的，可以用 `maxLength = max(maxLength, inc + dec - 1)` 来实现三种情况的更新。原因如下：
+    * 如果increase匹配，decrease不匹配，则 dec==1，此时 inc+dec-1=inc；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
