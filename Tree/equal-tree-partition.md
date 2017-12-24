@@ -16,19 +16,23 @@ Given a binary tree with n nodes, your task is to check if it's possible to part
             /  \
            2   3
         
-        Output: True
-        Explanation: 
-            5
-           / 
-          10
-              
-        Sum: 15
+&emsp;**Output**: 
+
+            True
+&emsp; **Explanation:**
+ 
+                5
+               / 
+              10
+                  
+            Sum: 15
+            
+               10
+              /  \
+             2    3
+            
+            Sum: 15
         
-           10
-          /  \
-         2    3
-        
-        Sum: 15
 **Example 2:**
 
         Input:     
@@ -38,13 +42,14 @@ Given a binary tree with n nodes, your task is to check if it's possible to part
             /  \
            2   20
 
-**Output**: 
+&emsp;**Output**: 
 
-        False
+            False
 
-**Explanation:** 
+&emsp;**Explanation:** 
 
-You can't split the tree into two trees with equal sum after removing exactly one edge on the tree.
+            You can't split the tree into two trees with equal sum after 
+            removing exactly one edge on the tree.
 
 **Note:**
 
