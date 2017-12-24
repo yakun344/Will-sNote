@@ -2,7 +2,7 @@
 _update Aug 27, 2017  21:12_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/binary-tree-longest-consecutive-sequence/)
+[LintCode](http://www.lintcode.com/en/problem/binary-tree-longest-consecutive-sequence/)   
 [LeetCode](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/description/)
 
 Given a binary tree, find the length of the longest consecutive sequence path.
