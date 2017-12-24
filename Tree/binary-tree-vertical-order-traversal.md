@@ -119,6 +119,7 @@ If two nodes are in the same row and column, the order should be from left to ri
 _update Dec 24, 2017  14:43_
 
 ### Update
+**Python Code:**
 ```python
     class Solution:
         def verticalOrder(self, root):
