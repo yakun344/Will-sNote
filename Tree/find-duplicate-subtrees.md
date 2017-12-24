@@ -55,6 +55,32 @@ Two trees are duplicate if they have the same structure with same node values.
             dfs(root)
             return [table[elem][0] for elem in table if len(table[elem]) > 1]
 ```
+
+#### Java Code:
+```java
+    class Solution {
+        public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+            List<TreeNode> res = new ArrayList<>();
+            Map<String, List<TreeNode>> map = new HashMap<>();
+            helper(root, map, res);
+            for (Map.Entry<String, List<TreeNode>> entry : map.entrySet()) {
+                List<TreeNode> nodeList = entry.getValue();
+                if (nodeList.size() > 1) res.add(nodeList.get(0));
+            }
+            return res;
+        }
+        
+        private String helper(TreeNode root, Map<String, List<TreeNode>> map, List<TreeNode> res) {
+            if (root == null) return "#";
+            String left = helper(root.left, map, res);
+            String right = helper(root.right, map, res);
+            String ret = root.val + "," + left + "," + right;
+            if (! map.containsKey(ret)) map.put(ret, new ArrayList<>());
+            map.get(ret).add(root);
+            return ret;
+        }
+    }
+```
 <br>
 
 ---
