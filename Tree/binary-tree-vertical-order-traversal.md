@@ -11,56 +11,56 @@ If two nodes are in the same row and column, the order should be from left to ri
 **Examples:**
 
       Given binary tree [3,9,20,null,null,15,7],
-         3
-        /\
-       /  \
-       9  20
-          /\
-         /  \
-        15   7
+             3
+            /\
+           /  \
+           9  20
+              /\
+             /  \
+            15   7
       return its vertical order traversal as:
-      [
-        [9],
-        [3,15],
-        [20],
-        [7]
-      ]
+          [
+            [9],
+            [3,15],
+            [20],
+            [7]
+          ]
       Given binary tree [3,9,8,4,0,1,7],
-           3
-          /\
-         /  \
-         9   8
-        /\  /\
-       /  \/  \
-       4  01   7
+               3
+              /\
+             /  \
+             9   8
+            /\  /\
+           /  \/  \
+           4  01   7
       return its vertical order traversal as:
-      [
-        [4],
-        [9],
-        [3,0,1],
-        [8],
-        [7]
-      ]
+          [
+            [4],
+            [9],
+            [3,0,1],
+            [8],
+            [7]
+          ]
       Given binary tree [3,9,8,4,0,1,7,null,null,null,2,5] 
       (0's right child is 2 and 1's left child is 5),
-           3
-          /\
-         /  \
-         9   8
-        /\  /\
-       /  \/  \
-       4  01   7
-          /\
-         /  \
-         5   2
+               3
+              /\
+             /  \
+             9   8
+            /\  /\
+           /  \/  \
+           4  01   7
+              /\
+             /  \
+             5   2
       return its vertical order traversal as:
-      [
-        [4],
-        [9,5],
-        [3,0,1],
-        [8,2],
-        [7]
-      ]
+          [
+            [4],
+            [9,5],
+            [3,0,1],
+            [8,2],
+            [7]
+          ]
       
 #### Basic Idea:
 根据题目所给条件，我们需要跟踪每个node在垂直方向上的index，但是我们一开始只能接触到接近中心col位置的root，要向左右两边扩展，我首先想到了用LinkedList，因为array向左扩展不方便。事实证明用链表加DFS也不好做，因为无法保证右子树较高的元素在同样col的list中先出现。
