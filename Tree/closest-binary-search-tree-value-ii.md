@@ -155,129 +155,117 @@ Java Code:
 
 优化之后的Code：
 ```java
-    class Solution {
-        private Deque<TreeNode> succStack;
-        private Deque<TreeNode> predStack;
-        public List<Integer> closestKValues(TreeNode root, double target, int k) {
-            // 先找到距离target最近的
-            TreeNode target_node = root;
-            TreeNode temp = root;
-            while (temp != null) {
-                if (target < temp.val) {
-                    temp = temp.left;
-                } else {
-                    temp = temp.right;
-                }
-                if (temp != null && Math.abs(target_node.val - target) > Math.abs(temp.val - target)) {
-                    target_node = temp;
-                }
-            }        
-            
-            // 得到predecessor 和 successor stack
-            this.succStack = initSuccStack(root, target_node);
-            this.predStack = initPredStack(root, target_node);
-            
-            // 用类似 2 pointers 的方法找k个最近的
-            List<Integer> res = new ArrayList<>();
-            int count = 1;
-            res.add(target_node.val);
-            Integer succ = getSucc();
-            Integer pred = getPred();
-            while (count < k) {
-                if (succ == null) {
-                    res.add(pred);
-                    pred = getPred();
-                } else if (pred == null){
-                    res.add(succ);
-                    succ = getSucc();
-                } else if (Math.abs(succ - target) < Math.abs(pred - target)) {
-                    res.add(succ);
-                    succ = getSucc();
-                } else {
-                    res.add(pred);
-                    pred = getPred();
-                }
-                count++;
+class Solution {
+    Deque<TreeNode> sucStack;
+    Deque<TreeNode> predStack;
+    TreeNode root;
+    public List<Integer> closestKValues(TreeNode root, double target, int k) {
+        this.root = root;
+        // find closest node first
+        TreeNode temp = root, closest = root; 
+        for (;;) {
+            if (temp.val < target) {
+                if (temp.right == null) break;
+                temp = temp.right;
+            } else {
+                if (temp.left == null) break;
+                temp = temp.left;
             }
-            return res;
+            if (Math.abs(temp.val - target) < Math.abs(closest.val - target)) {
+                closest = temp;
+            }
         }
         
-        private Deque<TreeNode> initSuccStack(TreeNode root, TreeNode target) {
-            // 从root开始向下, 把右祖先加入stack
-            Deque<TreeNode> stack = new LinkedList<>();
-            TreeNode curr = root;
-            while (curr != target) {
-                if (target.val < curr.val) {
-                    stack.addLast(curr);
-                    curr = curr.left;
-                } else {
-                    curr = curr.right;
-                }
+        // init sucStack and predStack for closest node
+        initSucStack(closest);
+        initPredStack(closest);
+        
+        // two pointers find k closest
+        List<Integer> ret = new ArrayList<>();
+        ret.add(closest.val);
+        k--;
+        Integer suc = getNextSuc(), pred = getNextPred();
+        while (k > 0) {
+            if (suc == null) {
+                ret.add(pred);
+                pred = getNextPred();
+            } else if (pred == null) {
+                ret.add(suc);
+                suc = getNextSuc();
+            } else if (Math.abs(target - suc) < Math.abs(target - pred)) {
+                ret.add(suc);
+                suc = getNextSuc();
+            } else {
+                ret.add(pred);
+                pred = getNextPred();
             }
-            // 接下来要注意，和单纯的找successor不同，因为在找右子树最左端的过程中经过的路径都是最左端
-            // node 的右祖先，我们需要把它们都压栈
-            if (target.right != null) {
-                curr = target.right;
-                stack.addLast(curr);
-                while (curr.left != null) {
-                    curr = curr.left;
-                    stack.addLast(curr);
-                }
-            }
-            return stack;
+            k--;
         }
-        private Deque<TreeNode> initPredStack(TreeNode root, TreeNode target) {
-            // 从root向下，把左祖先加入stack
-            Deque<TreeNode> stack = new LinkedList<>();
-            TreeNode curr = root;
-            while (curr != target) {
-                if (target.val < curr.val) curr = curr.left;
-                else {
-                    stack.addLast(curr);
-                    curr = curr.right;
-                }
+        return ret;
+    }
+    
+    private void initSucStack(TreeNode node) {
+        this.sucStack = new LinkedList<>();
+        // add right parents
+        TreeNode temp = root;
+        while (temp != node) {
+            if (temp.val < node.val) {
+                temp = temp.right;
+            } else {
+                sucStack.addLast(temp);
+                temp = temp.left;
             }
-            // 因为在找左子树最右端的过程中经过的路径都是最右端
-            // node 的左祖先，我们需要把它们都压栈
-            if (target.left != null) {
-                curr = target.left;
-                stack.addLast(curr);
-                while (curr.right != null) {
-                    curr = curr.right;
-                    stack.addLast(curr);
-                }
-            }
-            return stack;
         }
-        private Integer getSucc() {
-            if (succStack.isEmpty()) return null;
-            TreeNode succ = succStack.removeLast();
-            int ret = succ.val;
-            if (succ.right != null) {
-                succ = succ.right;
-                succStack.addLast(succ);
-                while (succ.left != null) {
-                    succ = succ.left;
-                    succStack.addLast(succ);
-                }
-            }
-            return ret;
-        }
-        private Integer getPred() {
-            if (predStack.isEmpty()) return null;
-            TreeNode pred = predStack.removeLast();
-            int ret = pred.val;
-            if (pred.left != null) {
-                pred = pred.left;
-                predStack.addLast(pred);
-                while (pred.right != null) {
-                    pred = pred.right;
-                    predStack.addLast(pred);
-                }
-            }
-            return ret;
+        // add node's right child, then left all the way
+        temp = node.right;
+        while (temp != null) {
+            sucStack.addLast(temp);
+            temp = temp.left;
         }
     }
+    
+    private void initPredStack(TreeNode node) {
+        this.predStack = new LinkedList<>();
+        // add left parents
+        TreeNode temp = root;
+        while (temp != node) {
+            if (temp.val < node.val) {
+                predStack.addLast(temp);
+                temp = temp.right;
+            } else {
+                temp = temp.left;
+            }
+        }
+        // add node's left child, and all the way right
+        temp = node.left;
+        while (temp != null) {
+            predStack.addLast(temp);
+            temp = temp.right;
+        }
+    }
+    
+    private Integer getNextSuc() {
+        if (sucStack.isEmpty()) return null;
+        TreeNode ret = sucStack.removeLast();
+        TreeNode temp = ret.right;
+        while (temp != null) {
+            sucStack.addLast(temp);
+            temp = temp.left;
+        }
+        return ret.val;
+    }
+    
+    private Integer getNextPred() {
+        if (predStack.isEmpty()) return null;
+        TreeNode ret = predStack.removeLast();
+        TreeNode temp = ret.left;
+        while (temp != null) {
+            predStack.addLast(temp);
+            temp = temp.right;
+        }
+        return ret.val;
+    }
+}
 ```
 <br>
 
