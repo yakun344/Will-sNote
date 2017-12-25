@@ -279,9 +279,120 @@ Java Code:
         }
     }
 ```
+<br>
 
+---
+_update Dec 25, 2017  4:14_
 
+**Python Code:**
+```python
+class Solution:
+    def closestKValues(self, root, target, k):
+        """
+        :type root: TreeNode
+        :type target: float
+        :type k: int
+        :rtype: List[int]
+        """
+        def initSucStack(node):
+            stack = []
+            temp = root
+            # add right parent
+            while temp is not node:
+                if temp.val < node.val:
+                    temp = temp.right
+                else:
+                    stack.append(temp)
+                    temp = temp.left
+            # add node's right child and left all the way
+            temp = node.right
+            while temp:
+                stack.append(temp)
+                temp = temp.left
+            return stack
+            
+        
+        def initPredStack(node):
+            stack = []
+            temp = root
+            # add left parent
+            while temp is not node:
+                if temp.val < node.val:
+                    stack.append(temp)
+                    temp = temp.right
+                else:
+                    temp = temp.left
+            # add node's left child and all the way right
+            temp = node.left
+            while temp:
+                stack.append(temp)
+                temp = temp.right
+            return stack
+            
+        
+        def getNextSuc():
+            if not sucStack:
+                return None
+            ret = sucStack.pop()
+            temp = ret.right
+            while temp:
+                sucStack.append(temp)
+                temp = temp.left
+            return ret.val
+            
+            
+        def getNextPred():
+            if not predStack:
+                return None
+            ret = predStack.pop()
+            temp = ret.left
+            while temp:
+                predStack.append(temp)
+                temp = temp.right
+            print(ret.val)
+            return ret.val
+            
+        
+        
+        # find closest first
+        temp = root
+        node = root
+        while True:
+            if temp.val < target:
+                if not temp.right: break
+                temp = temp.right
+            else:
+                if not temp.left: break
+                temp = temp.left
+            if abs(temp.val - target) < abs(node.val - target):
+                node = temp
 
+        # initialize sucstack and predstack for node
+        sucStack = initSucStack(node)
+        predStack = initPredStack(node)
+        
+        # two pointers
+        ret = []
+        ret.append(node.val)
+        k -= 1
+        suc, pred = getNextSuc(), getNextPred()
+        while k > 0:
+            if suc is None:
+                ret.append(pred)
+                pred = getNextPred()
+            elif pred is None:
+                ret.append(suc)
+                suc = getNextSuc()
+            elif abs(target - suc) < abs(target - pred):
+                ret.append(suc)
+                suc = getNextSuc()
+            else:
+                ret.append(pred)
+                pred = getNextPred()
+            k -= 1
+        
+        return ret
+```
 
 
 
