@@ -22,35 +22,24 @@ In a complete binary tree every level, except possibly the last, is completely f
 
 #### Python Code:
 ```python
-    class Solution(object):
+    class Solution:
         def countNodes(self, root):
             """
             :type root: TreeNode
             :rtype: int
             """
+            def getHight(root):
+                if not root: return 0
+                leftHight = getHight(root.left)
+                return leftHight + 1
+                
+            
             if not root: return 0
-            if not root.left and not root.right: return 1
-            left_num = 0
-            right_num = 0
-            l_hight = self.getHeight(root.left)
-            r_hight = self.getHeight(root.right)
-            if l_hight == r_hight:
-                left_num = pow(2, l_hight) - 1
+            leftHight = getHight(root.left)
+            rightHight = getHight(root.right)
+            if leftHight == rightHight:
+                return 2 ** (leftHight) + self.countNodes(root.right)
             else:
-                left_num = self.countNodes(root.left)
-            right_num = self.countNodes(root.right)
-            return left_num + right_num + 1
-            
-            
-            
-        # left down to leaf
-        def getHeight(self, root):
-            if not root:
-                return 0
-            ret = 0
-            while root:
-                root = root.left
-                ret += 1
-            return ret
+                return self.countNodes(root.left) + self.countNodes(root.right) + 1
 ```
             
