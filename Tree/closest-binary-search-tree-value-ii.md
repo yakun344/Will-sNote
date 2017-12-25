@@ -272,6 +272,12 @@ class Solution {
 ---
 _update Dec 25, 2017  4:14_
 
+#### 一点感想
+&emsp; 这道题可以说是非常复杂了，但是如果将其分为几个部分，分别实现起来其实并不复杂;   
+&emsp; 首先我们想到的就是 binary search + 2 pointers 的在数组中找 k closest elements 的 O(logn + k) 的算法，并且想把它用在BST中，于是我们必须要解决找到 1st closest 之后如何向左右遍历的问题;   
+&emsp; 接下来自然会想到写两个函数：`getSuccessor(), getPredecessor()`，但是这样的话总时间复杂度为O(logn + klogn);   
+&emsp; 为了优化之前的方法，我们建了两个 stack：`sucStack, predStack`，用来加速对于 `successor 和 predecessor` 查找的速度，这样一来每找一次的时间复杂度从 `O(logN)` 降到 `O(1)`，总时间复杂度降为 `O(k + logN)`;   
+
 **Python Code:**
 ```python
 class Solution:
