@@ -27,6 +27,7 @@ A Uni-value subtree means all nodes of the subtree have the same value.
 利用这个思路，可以轻松写出recursive function；
 
 #### Python Code:
+注意判断逻辑，这道题中排除不符合条件的情况比较简便；
 ```python
     class Solution(object):
         def countUnivalSubtrees(self, root):
@@ -41,6 +42,7 @@ A Uni-value subtree means all nodes of the subtree have the same value.
                     return True
                 left = helper(root.left)
                 right = helper(root.right)
+                # 接下来的判断逻辑很关键，这样写最简单，排除不满足情况的，剩下就是True
                 if left and right:
                     if root.left and root.left.val != root.val:
                         return False
