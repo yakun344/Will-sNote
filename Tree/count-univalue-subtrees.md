@@ -57,5 +57,40 @@ A Uni-value subtree means all nodes of the subtree have the same value.
             helper(root)
             return self.count
 ```
+如果列举满足条件的情况，见下方python code，注意对比：
+```python
+class Solution:
+    def countUnivalSubtrees(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def helper(root):
+            if not root: return True
+            left = helper(root.left)
+            right = helper(root.right)
+            if left and right:
+            # 这样写就冗杂很多
+                if root.left and root.right:
+                    if root.left.val == root.right.val == root.val:
+                        self.ret += 1
+                        return True
+                elif not root.left and not root.right:
+                    self.ret += 1
+                    return True
+                elif root.left:
+                    if root.left.val == root.val:
+                        self.ret += 1
+                        return True
+                else:
+                    if root.right.val == root.val:
+                        self.ret += 1
+                        return True
+            return False
             
+        
+        self.ret = 0
+        helper(root)
+        return self.ret
+```          
             
