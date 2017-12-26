@@ -52,75 +52,83 @@ Basically, the deletion can be divided into two stages:
 
 具体实现的时候，因为没有parent指针，需要另外写一个函数 remove(targetNode, parentNode)，返回替换掉target的新node，用来应付root被移除的情况；
 
-#### Python Code:
+#### Python Code （新写法，模块化）:
 ```python
-    class Solution(object):
-        def deleteNode(self, root, key):
-            """
-            :type root: TreeNode
-            :type key: int
-            :rtype: TreeNode
-            """
-            # remove target节点，给定parent, return 位置上的新node
-            def remove(parent, target):
-                # 第一种情况，target 没有子树
-                if not target.left and not target.right:
-                    if parent.left == target: parent.left = None
-                    else: parent.right = None
-                    return None
-                # 第二种情况，target 只有一个子树
-                elif not (target.left and target.right):
-                    child = target.left if target.left else target.right
-                    if parent.left == target: 
-                        parent.left = child 
-                    else: 
-                        parent.right = child
-                    return child
-                # 第三种情况，target 有两个子树，需要递归
+class Solution:
+    def deleteNode(self, root, key):
+        """
+        :type root: TreeNode
+        :type key: int
+        :rtype: TreeNode
+        """
+        def remove(parent, target):
+            # if target has no child
+            if not target.left and not target.right:
+                if parent.left == target: parent.left = None
+                else: parent.right = None
+                return
+            # if target has two child
+            # 从右子树中找到最小的，复制到之前位置，递归删除该最小node
+            elif target.left and target.right:
+                minParent, minNode = findRightMin(target)
+                newTarget = TreeNode(minNode.val)
+                newTarget.left = target.left
+                newTarget.right = target.right
+                if parent.left == target: parent.left = newTarget
+                else: parent.right = newTarget
+                if minParent.val == target.val:
+                    remove(newTarget, minNode)
                 else:
-                    # 先找到target右子树最小node, 也就是target的successor
-                    next_parent = target
-                    next_target = target.right
-                    while next_target.left:
-                        next_parent = next_target
-                        next_target = next_target.left
-                        
-                    # 新建和next_target值相同的node，替换target
-                    temp = TreeNode(next_target.val)
-                    temp.left = target.left
-                    temp.right = target.right
-                    if parent.left == target:
-                        parent.left = temp
-                    else:
-                        parent.right = temp
-                    
-                    # 递归删除next_target
-                    if next_parent == target:
-                        next_parent = temp
-                    remove(next_parent, next_target)
-                    return temp
-                    
-            # 先找到target与其parent
-            target = root
-            parent = root
-            while target and target.val != key:
-                parent = target
-                if key < target.val:
-                    target = target.left
-                else:
-                    target = target.right
-                    
-            if not target:
-                return root
+                    remove(minParent, minNode)
             
-            # 删除target
-            node = remove(parent, target)
-            if target == root:
-                return node
-            return root
+            # if target has only left child
+            elif target.left:
+                if parent.left == target: parent.left = target.left
+                else: parent.right = target.left
+            
+            # if target has only right child
+            else:
+                if parent.left == target: parent.left = target.right
+                else: parent.right = target.right
+            
+        
+        # return parent, minNode in right sub tree
+        def findRightMin(root):
+            parent, node = root, root
+            node = node.right
+            while node.left:
+                parent = node
+                node = node.left
+            return parent, node
+        
+        
+        # return target's parent, targetNode
+        def findNode(key):
+            parent, target = root, root
+            while target and target.val != key:
+                if target.val < key:
+                    parent = target
+                    target = target.right
+                else:
+                    parent = target
+                    target = target.left
+            return parent, target
+        
+        # 如果 target 是 root，另外建一个
+        if not root: return None
+        if root.val == key:
+            dummy = TreeNode(0)
+            dummy.right = root
+            remove(dummy, root)
+            root = dummy.right
+        else:
+            parent, target = findNode(key)
+            if not target: return root
+            remove(parent, target)
+        return root
 ```
 
-#### Java Code:
+#### Java Code （最初的写法）:
 ```java
     class Solution {
         public TreeNode deleteNode(TreeNode root, int key) {
@@ -178,3 +186,31 @@ Basically, the deletion can be divided into two stages:
         }
     }
 ```
+<br>
+
+---
+_update Dec 25, 2017  20:28_
+
+### Update
+还是要建立分模块设计的思想。比如这道题，另外写两个函数 `findRightMin(), findNode()`，可以令主函数 `remove()` 更加易读，写的时候也方便。
+
+实现的时候，先考虑target node没有孩子的情况，再考虑有两个孩子的情况，再考虑只有一个孩子的情况，这样写逻辑最简单。
+
+Python实现见前面。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
