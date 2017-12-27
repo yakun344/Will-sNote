@@ -12,7 +12,7 @@ Recover the tree without changing its structure.
 A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
 
 #### Basic Idea:
-**思路1：**
+**思路1：**   
 虽然是一个比较简单的思路，但一开始我竟没有想出来。就是直接 inorder traverse，把node和val分别存入两个list，对val从小到大排序，然后依次对node list中的node赋值即可。
 
 Python Code：
@@ -38,7 +38,7 @@ Python Code：
                 inorder_nodes[i].val = inorder_vals[i]
 ```
 
-**思路2：**
+**思路2：**   
 还是那句话，面对一道 hard 难度的题目，给出如上那么 “straight forward” 的解自然交不了差。要做到follow up的要求，我们需要知道一种叫做 Morris-Traversal 算法，这种算法可以实现 O(n) time and O(1) Space 的 Binary Tree Traversing；
 
 [这里](http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html) 有个关于Morris-Traversal Alg 的介绍；
