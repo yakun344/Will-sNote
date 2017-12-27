@@ -98,6 +98,19 @@ Java Code:
         }
     }
 ```
-关于在便利过程中找first和second的方法，灵感来自 [这里](http://fisherlei.blogspot.com/2012/12/leetcode-recover-binary-search-tree.html);
+关于在便利过程中找first和second的方法，灵感来自 [这里](http://fisherlei.blogspot.com/2012/12/leetcode-recover-binary-search-tree.html);  
+关键步骤：  
+>Inorder traverse, keep the previous tree node,
+Find first misplaced node by
+```java
+if ( current.val < prev.val )
+   Node first = prev;
+```
+>Find second by
+```java
+if ( current.val < prev.val )
+   Node second = current;
+```
+>After traversal, swap the values of first and second node. Only need two pointers, prev and current node. O(1) space.
 
 
