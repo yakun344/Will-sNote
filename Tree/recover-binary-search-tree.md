@@ -48,55 +48,63 @@ Python Code：
 
 精髓就是每到一个节点，通过把它左子树中predecessor的右指针指向自己来实现向上的跟踪；
 
-Java Code:
-```java
-    class Solution {
-        public void recoverTree(TreeNode root) {
-            TreeNode First = null;
-            TreeNode Second = null;
-            TreeNode curr = root;
-            TreeNode prev = null;
-            // mirrors traverse， inorder traverse
-            while (curr != null) {
-                TreeNode pred = null;
-                if (curr.left != null) pred = getPred(curr);
-                // 如果pred存在且无右孩子，则令其指向curr，curr=curr.left
-                if (pred != null && pred.right == null) {
-                    pred.right = curr;
-                    curr = curr.left;
-                }
-                // 如果pred有右孩子(右孩子一定就是curr)，或者curr没有左孩子，则visit curr
+**Python Code:**
+```python
+class Solution:
+    def recoverTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: void Do not return anything, modify root in-place instead.
+        """
+        # 找到左子树中最大的，也就是当前node的predecessor
+        def getPred(node):
+            temp = node.left
+            while temp and temp.right:
+                if temp.right is node: # 说明pred.right == curr, 返回null，并恢复pred.right
+                    temp.right = None
+                    return None
+                temp = temp.right
+            return temp
+        
+        
+        # visit given node, find two swiched nodes
+        def visit(prev, node):
+            if prev and prev.val > node.val:
+                print(str(prev.val) + " " + str(node.val))
+                if self.first is None:
+                    self.first = prev
+                    self.second = node # 这里是为了解决tree中只有两个node的情况
+                else:
+                    self.second = node
+                    
+        
+        # morris inorder traversal, find target nodes along the way
+        self.first, self.second = None, None
+        prev = None
+        curr = root
+        while curr:
+            # 如果当前node没有左孩子，visit当前node，并让curr右移
+            if not curr.left:
+                visit(prev, curr)
+                prev = curr
+                curr = curr.right
+            else:
+                pred = getPred(curr)
+                # 如果curr左边的predecessor.right == curr (即 pred is None), 说明左边已经全部visited，
+                # visit curr, curr右移, 恢复pred.right(在getPred() 中做了)
+                if not pred:
+                    visit(prev, curr)
+                    prev = curr
+                    curr = curr.right
+                # 剩下的情况就是pred.right == None，此时令其指向curr，然后curr左移
+                else:
+                    pred.right = curr
+                    curr = curr.left
                 
-                // else if (pred == null || pred.right != null) {
-                else {
-                    // 找出两个互换的点
-                    if (prev != null && curr.val < prev.val) {
-                        if (First == null) {
-                            First = prev;
-                            Second = curr;
-                        } else {
-                            Second = curr;
-                        }
-                    }
-                    // 继续进行
-                    prev = curr;
-                    if (pred != null) pred.right = null;
-                    curr = curr.right;
-                }
-            }
-            // 交换First和second的val
-            int t = First.val;
-            First.val = Second.val;
-            Second.val = t;
-        }
-        private TreeNode getPred(TreeNode node) {
-            TreeNode curr = node.left;
-            while (curr.right != null && curr.right != node) {
-                curr = curr.right;
-            }
-            return curr;
-        }
-    }
+        
+        t = self.first.val
+        self.first.val = self.second.val
+        self.second.val = t
 ```
 关于在便利过程中找first和second的方法，灵感来自 [这里](http://fisherlei.blogspot.com/2012/12/leetcode-recover-binary-search-tree.html);  
 关键步骤：  
