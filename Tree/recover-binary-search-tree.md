@@ -106,6 +106,14 @@ class Solution:
         self.first.val = self.second.val
         self.second.val = t
 ```
+
+**Java Code:**
+```java
+
+```
+
+
+### Note
 关于在便利过程中找first和second的方法，灵感来自 [这里](http://fisherlei.blogspot.com/2012/12/leetcode-recover-binary-search-tree.html);  
 关键步骤：  
 >Inorder traverse, keep the previous tree node,
