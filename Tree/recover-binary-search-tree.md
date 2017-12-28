@@ -179,3 +179,28 @@ if ( current.val < prev.val )
 #### 思路3 (fastest, O(n) time/space)
 这种思路最简单，就是直接 inorder 整个树，用**方法2中的方法记录fist和second**，然后互换值。
 ```java
+class Solution {
+    private TreeNode first, second, prev;
+    public void recoverTree(TreeNode root) {
+        inorder(root);
+        int t = first.val;
+        first.val = second.val;
+        second.val = t;
+    }
+    
+    private void inorder(TreeNode curr) {
+        if (curr == null) return;
+        inorder(curr.left);
+        if (prev != null && prev.val > curr.val) {
+            if (first == null) {
+                first = prev;
+                second = curr;
+            } else {
+                second = curr;
+            }
+        }
+        prev = curr;
+        inorder(curr.right);
+    }
+}
+```
