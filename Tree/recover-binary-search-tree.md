@@ -49,6 +49,8 @@ Python Code：
 精髓就是每到一个节点，通过把它左子树中predecessor的右指针指向自己来实现向上的跟踪；
 
 **Python Code:**
+在实现的过程中，注意对不同的功能部分进行模块化，比如这里，我另外写了一个 `visit(prev, node)` 函数，这样可以让主要逻辑部分更加简洁易懂。
+
 ```python
 class Solution:
     def recoverTree(self, root):
