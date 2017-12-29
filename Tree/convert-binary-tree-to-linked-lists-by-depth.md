@@ -53,3 +53,38 @@ Given a binary tree, design an algorithm which creates a linked list of all the 
                 ret.append(dummy.next)
             return ret
 ```
+<br>
+
+---
+_update Dec 29, 2017 1:09_
+
+#### Update
+更新一个 Java solution，和之前一样的方法，分层BFS；
+```java
+public class Solution {
+    /**
+     * @param root the root of binary tree
+     * @return a lists of linked list
+     */
+    public List<ListNode> binaryTreeToLists(TreeNode root) {
+        List<ListNode> res = new ArrayList<>();
+        if (root == null) return res;
+        Deque<TreeNode> queue = new LinkedList<>();
+        queue.addFirst(root);
+        while (! queue.isEmpty()) {
+            int size = queue.size();
+            ListNode dummy = new ListNode(0);
+            ListNode prev = dummy;
+            for (int i = 0; i < size; ++i) {
+                TreeNode node = queue.removeLast();
+                prev.next = new ListNode(node.val);
+                prev = prev.next;
+                if (node.left != null) queue.addFirst(node.left);
+                if (node.right != null) queue.addFirst(node.right);
+            }
+            res.add(dummy.next);
+        }
+        return res;
+    }
+}
+```
