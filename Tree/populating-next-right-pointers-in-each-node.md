@@ -2,7 +2,7 @@
 _update Sep 1, 2017  23:10_
 
 ---
-[LeetCode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/)
+[LeetCode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/)  
 
 Given a binary tree
 ```c
