@@ -39,34 +39,22 @@ Explanation: The smallest value is 2, but there isn't any second smallest value.
 
 #### Python Code：
 ```python
-    class Solution(object):
-        def findSecondMinimumValue(self, root):
-            """
-            :type root: TreeNode
-            :rtype: int
-            """
-            def helper(root):
-                # 如果root和 minVal 相等，则继续向下，不相等则返回
-                if not root:
-                    return -1
-                if root.val != self.minVal:
-                    return root.val
-                else:
-                    left = helper(root.left)
-                    right = helper(root.right)
-                    if left == -1 and right == -1:
-                        return -1
-                    if left != -1 and right != -1:
-                        return min(left, right)
-                    if left != -1:
-                        return left
-                    if right != -1:
-                        return right
-                    
-            if not root:
-                return -1
-            self.minVal = root.val
-            return helper(root)
+class Solution:
+    def findSecondMinimumValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def helper(root, minimum):
+            if not root: return float('inf')
+            if root.val > minimum:
+                return root.val
+            else:
+                return min(helper(root.left, minimum), helper(root.right, minimum))
+        
+        ret = helper(root, root.val)
+        if ret == float('inf'): return -1
+        else: return ret
 ```    
 
 
