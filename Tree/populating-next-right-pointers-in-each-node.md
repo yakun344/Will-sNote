@@ -5,12 +5,13 @@ _update Sep 1, 2017  23:10_
 [LeetCode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node/description/)
 
 Given a binary tree
-
+```c
     struct TreeLinkNode {
       TreeLinkNode *left;
       TreeLinkNode *right;
       TreeLinkNode *next;
     }
+```
 Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.
 
 Initially, all next pointers are set to NULL.
