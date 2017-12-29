@@ -46,22 +46,25 @@ You may assume that it is a perfect binary tree (ie, all leaves are at the same 
     node.right.next = node.next.left
 ```
 
-#### Python Code:
-```python
-    class Solution:
-        # @param root, a tree link node
-        # @return nothing
-        def connect(self, root):
-            first = root
-            while first:
-                upper = first
-                while upper:
-                    if not upper.left:
-                        break
-                    upper.left.next = upper.right
-                    upper.right.next = upper.next.left if upper.next else None
-                    upper = upper.next
-                first = first.left
+#### Java Code:
+```java
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        TreeLinkNode first = root;
+        // 用一个first沿着左边边线向下遍历
+        while (first != null) {
+            // 用curr和一个内层循环，横向遍历每层
+            TreeLinkNode curr = first;
+            while (curr.left != null) {
+                curr.left.next = curr.right;
+                if (curr.next == null) break;
+                curr.right.next = curr.next.left;
+                curr = curr.next;
+            }
+            first = first.left;
+        }
+    }
+}
 ```
 
 ---
