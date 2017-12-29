@@ -103,52 +103,34 @@ You may only use constant extra space.
     node.left.next = node.right
     node.right.next = node.next.left
 ```
-我们还需要加入判断；
+我们还需要加入判断。对于first，不再无脑往left走，而是每层循环之前将下一层的first设为null，用本层第一个child更新下一层的first。用变量lastNode跟踪之前一个visit过的node，即当前需要为其设置next的node。
 
-#### Python Code：
-```python
-    class Solution:
-        # @param root, a tree link node
-        # @return nothing
-        def connect(self, root):
-            first = root
-            while first:
-                upper = first
-                lower = upper.left
-                while upper and not lower:
-                    if upper.left:
-                        lower = upper.left
-                    elif upper.right:
-                        lower = upper.right
-                    else:
-                        upper = upper.next
-    
-                if not lower:
-                    return
-                else:
-                    first = lower # first of next level
-                    
-                while upper:
-                    print str(upper.val) + " " + str(lower.val)
-                    if lower == upper.left:
-                        if upper.right:
-                            lower.next = upper.right
-                            lower = lower.next
-                            upper = upper.next
-                        else:
-                            upper = upper.next
-                    elif lower == upper.right:
-                        upper = upper.next
-                    else:
-                        if upper.left:
-                            lower.next = upper.left
-                            lower = lower.next
-                        elif upper.right:
-                            lower.next = upper.right
-                            lower = lower.next
-                            upper = upper.next
-                        else:
-                            upper = upper.next
+**Java Code:**  
+```java
+public class Solution {
+    public void connect(TreeLinkNode root) {
+        TreeLinkNode first = root;
+        while (first != null) {
+            TreeLinkNode curr = first;
+            first = null; // 先将first置空，方便判断下一个first是否被设置
+            TreeLinkNode lastNode = null; // 用 lastNode 跟踪当前最近需要被设置next的node
+            while (curr != null) {
+                TreeLinkNode[] children = new TreeLinkNode[] {curr.left, curr.right};
+                for (TreeLinkNode child : children) {
+                    if (child != null) {
+                        if (first == null) first = child; // 如果下一层的first没设置，则当前child一定是第一个
+                        if (lastNode == null) lastNode = child; // 当前child是本层第一个，设为lastNode等待设置其next
+                        else {
+                            lastNode.next = child;
+                            lastNode = child;
+                        }
+                    }
+                }
+                curr = curr.next;
+            }
+        }
+    }
+}
 ```
 
 
