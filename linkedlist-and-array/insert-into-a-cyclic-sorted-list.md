@@ -102,12 +102,12 @@ _update 2017-11-21 01:59:08_
             curr = node
             
             while True:
-            // *****************************************************
+            # *****************************************************
 
                 if (curr.next is node) or (curr.val <= x and curr.next.val >=x) or \
                    (curr.val > curr.next.val and \ 
                     (curr.val > x and curr.next.val > x or curr.val < x and curr.next.val < x)):
-            // *****************************************************
+            # *****************************************************
                     target.next = curr.next
                     curr.next = target
                     return target
