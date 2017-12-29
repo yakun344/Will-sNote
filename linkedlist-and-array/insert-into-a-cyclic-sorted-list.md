@@ -43,13 +43,13 @@ _update 2017-11-21 01:59:08_
 #### 综上所述
 正确的做法其实是使用多个判断语句分情况讨论：
 
-1. 如果 `curr is node`，说明已经一圈结束，且所有元素都相同，可以插入；
-2. `curr.val <= x <= curr.next.val`，即恰好有位置插入；
-3. 如果已经到 tail： `curr.val > curr.next.val`，继续判断 首位两元素是否都大于或者都小于 x，如果是，则可以插入；
+1.  如果 `curr is node`，说明已经一圈结束，且所有元素都相同，可以插入；
+2.  `curr.val <= x <= curr.next.val`，即恰好有位置插入；
+3.  如果已经到 tail： `curr.val > curr.next.val`，继续判断 首位两元素是否都大于或者都小于 x，如果是，则可以插入；
 
 ---
 #### Java Code:
-    ```java
+```java
     public class Solution {
         /*
          * @param node: a list node in the list
