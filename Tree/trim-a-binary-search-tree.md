@@ -51,8 +51,8 @@ Given a binary search tree and the lowest and highest boundaries as L and R, tri
 于是，我们的思路就是:  
 
 1.  当`root==null` 时，返回`null`；
-2.  当`root.val>R` 时，抛弃`root`及其右子树，返回 `trim(root.left)`
-3.  当`root.val<L` 时，抛弃`root`及其左子树，返回 `trim(root.right)`
+2.  当`root.val > R` 时，抛弃`root`及其右子树，返回 `trim(root.left)`；
+3.  当`root.val < L` 时，抛弃`root`及其左子树，返回 `trim(root.right)`；
 4.  然后递归 trim root 的 左右子树；
 
 #### Java Code: 
@@ -73,8 +73,14 @@ class Solution {
     }
 }
 ```
-     
-     
+
+<br>
+
+---
+_update Dec 29, 2017 1:00_
+
+### Update
+几个月后又见到这道题，起初竟没有想到递归的解法，看得出此题还是很有迷惑性的。这道题如果用iterative的方法会比较麻烦，因为要根据 L 和 R 写两套逻辑，整个代码会比较长，但是用递归就很简洁。     
      
      
      
