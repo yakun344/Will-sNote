@@ -321,7 +321,7 @@ _update Nov 26, 2017_
         
         // 找到中间偏右的node作为mid，例如 1->2->null，should return 2, 同时断开 1->2
         // 精髓就是令fast的起始位置为 slow->next, 这样停止时的 slow 偏左，其右是应该
-        // 返回的 mid，保存mid.next, 先断开当前mid，然后返回其右即可。
+        // 返回的 mid，保存slow.next, 先断开当前slow和next，然后返回其右即可。
         private ListNode split(ListNode head) {
             if (head == null || head.next == null) return null;
             ListNode slow = head;
