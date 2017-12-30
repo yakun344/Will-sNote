@@ -115,7 +115,7 @@ Given [-3, 1, 1, -3, 5], return [0, 2], [1, 3], [1, 1], [2, 2] or [0, 4].
         preSum = [[0, 0] for i in range(len(nums) + 1)]
         for i in range(len(nums)):
             preSum[i + 1][0] = preSum[i][0] + nums[i]
-            preSum[i + 1][1] = i + 1
+            preSum[i + 1][1] = i + 1 # 这里用i+1是为了区分preSum[0][1]所存储的index：0
         preSum.sort(key = lambda a : a[0])
         minDiff = float('INF')
         ret = None
