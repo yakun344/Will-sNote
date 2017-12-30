@@ -17,6 +17,7 @@ ii. Recursion 要注意当`reverse(head.next)`之后，head仍然指向之前指
 
 ### Java Code:
 **Iterative:**
+**一定要特别注意：** 在reverse完成之后，要断开之前的head.next，否则返回的链表会有环；
 ```java
     class Solution {
         public ListNode reverseList(ListNode head) {
