@@ -19,6 +19,8 @@ Given n = 3, there are a total of 5 unique BST's.
 #### Basic Idea:
 [这里](https://discuss.leetcode.com/topic/8398/dp-solution-in-6-lines-with-explanation-f-i-n-g-i-1-g-n-i) 是dp思路的分析。
 
+[卡特兰数的Wiki](https://en.wikipedia.org/wiki/Catalan_number) 这里比较重要，涉及到不少问题都可以用卡特兰数来计算组合的个数。
+
 基本思路就是利用dp的思想，把长度为n的序列的BST个数转化为关于它的子问题的结果的推导公式。即对于长度为n的序列，BST的个数就是以每个元素为root时的bst个数的和。而当某元素k为root时，左边有 k-1 个元素，共有 dp[k-1] 个 BST，右边有 n-k 个元素，共有 dp[n-k] 个BST，则一共为 dp[k-1] + dp[n-k]
 
 例如：
