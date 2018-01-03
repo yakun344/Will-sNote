@@ -14,3 +14,4 @@ You must do this in-place without altering the nodes' values.
 Given {1,2,3,4}, reorder it to {1,4,2,3}.
 
 #### Basic  Idea:
+这道题目非常典型地综合了许多 linked list 题目的知识点。
