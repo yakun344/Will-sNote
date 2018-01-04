@@ -180,7 +180,7 @@ _update Jan,4 2017  15:36_
 2.  每次进入当前node，判断当前 node.val 是否在 alpha 和 beta 之间；
 3.  每次对于当前 node，进入下层递归时，如果进入 node.left, 则更新 beta 为 `node.val`，若进入 node.right, 则更新 alpha 为 `node.val`；
 
-这种解法的 code 最为简单，逻辑也很清晰，个人认为目前而言这种方法是最好的；
+**总结：** 这种解法的 code 最为简单，逻辑也很清晰，个人认为目前而言这种方法是最好的, 其次是iteratively的inorder traversal 沿途判断递增，再其次是递归函数返回 boolean 和 子树的min/max value；
 
 **Java Code:**  
 ```java
