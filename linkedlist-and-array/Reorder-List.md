@@ -26,6 +26,8 @@ Given {1,2,3,4}, reorder it to {1,4,2,3}.
 2.  reverse 后半部分；
 3.  merge 前半部分和reversed后半部分；
 
+**注意：** reverse 不可以使用递归，因为如果input list 太长，会 StackOverFlow;
+
 #### Java Code:
 ```java
 class Solution {
