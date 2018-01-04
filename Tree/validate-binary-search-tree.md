@@ -167,6 +167,55 @@ _update Dec 20, 2017 15:30_
                     node = node.left
             return True
 ```
+<br>
+
+---
+_update Jan,4 2017  15:36_
+
+### Update
+#### 更新一种解法，每次递归时传入两个边界
+这种解法有些像 alpha-beta pruning：
+
+1.  递归传入两个另外参数，alpha 为 lower bound，beta 为 upper bound，初始化分别为 `-inf` 和 `inf`；
+2.  每次进入当前node，判断当前 node.val 是否在 alpha 和 beta 之间；
+3.  每次对于当前 node，进入下层递归时，如果进入 node.left, 则更新 beta 为 `node.val`，若进入 node.right, 则更新 alpha 为 `node.val`；
+
+这种解法的 code 最为简单，逻辑也很清晰，个人认为目前而言这种方法是最好的；
+
+**Java Code:**  
+```java
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return helper(root, (long)Integer.MIN_VALUE - 1, (long)Integer.MAX_VALUE + 1);
+    }
+    
+    // 每次检查当前root.val是否在 alpha和beta之间，alpha为lower bound， beta 为 upper bound
+    private boolean helper(TreeNode root, long alpha, long beta) {
+        if (root == null) return true;
+        if (root.val <= alpha || root.val >= beta) return false;
+        return helper(root.left, alpha, root.val) && helper(root.right, root.val, beta);
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
