@@ -190,10 +190,14 @@ _update Dec 2, 2017  22:58_
 ---
 _update Jan 6, 2018 12:28_
 
-### Update
+### Update 一种新思路 （BFS-2）（最优）
+Laioffer 课程中又提供了一种新的思路，和 Dijkstra 算法的思路相关。我们知道在 Dijkstra SSSP 算法中有一个性质，就是每次从 priority queue 中 poll 出来的元素都是单调非递减的，利用这条性质，我们就得到了解决此题的最优方案：
 
-
-
+1.  首先我们观察到左上角的元素`（0，0）`是整个 matrix 中最小的元素，而我们可以从这个元素出发，generate 两个最接近它的比它大的元素 `(0,1), (1,0)`，将它们 enqueue;
+2.  每次从 priority queue 中 poll 出一个元素，这个元素就是当前最小，操作 poll 出 k-1
+ 次，此时的 peek 就是 k-th smallest 了；
+ 
+整个时间复杂度为 O(k * logk), 因为每次 poll 出一个元素，同时至多 generate 2 个元素入队，所以总时间复杂度小于 `O(3klogk) == O(klogk)`;
 
 
 
