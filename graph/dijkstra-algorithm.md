@@ -4,7 +4,15 @@ _update Sep 4, 2017  0:16_
 ---
 Dijkstra Algorithm 是一种贪心算法实现的单源最短路径（SSSP）算法，可以同时找到从单一起点 S 出发，到其他任意点的最短路径。
 
-时间复杂度：O(n^2) for (Matrix), O(ElogV) for (adj list + heap queue);
+**时间复杂度：** 
+
+&emsp; O(n^2) for (Matrix), O(ElogV) for (adj list + heap queue);  
+
+&emsp; Dijkstra 算法的空间复杂度是O(n), 我们只需要存储 n 个最短路径的上限, 对其更新即可. 时间复杂度分析牵扯到一些相对复杂的数据结构, 我们先分析一下它的开销, 之后解释这个事情.设图 G 中的边数是 E , 点数是 V , 则这个算法的开销总共有两个地方: 第一, 对于每一个 G' 的拓展, 我们都需要寻找一个 G' 之外路径长度最小的节点, 假定它的时间代价是O(find_min) 或 O(extract_min) ; 第二, 我们拿到一个新的节点之后需要利用它的所有临边进行松弛操作, 它的时间代价记为 O(update) . 对于后者来说, 我们考虑 Dijkstra 的整体过程, 每一条边都会被用来做一次松弛操作, 因此总共只会执行 E 次的松弛操作. 因此, Dijkstra 算法的时间复杂度 C 如下.
+```python
+    O(V * findMin + E * update)
+```
+即我们至多需要 `poll` V 次，`update` E 次，而每次`poll`或者`update`，耗时都是`O(logV)`, 故总时间复杂度为 `O((V+E)logV)`；
 
 #### Basic Idea
 Dijkstra 的基本思想是将图中所有的 V 分成两组：visited 和 not visited，同时维持一个 distance array 记录每个 v 到 S 的 距离，distance[s]=0；
