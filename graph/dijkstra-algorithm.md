@@ -79,7 +79,11 @@ _update Sep 6,2017  19:50_
 
 做过了 **[The Maze II](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/the-maze-ii.html)** 后，发现其实不需要visited，只需在新node出队的时候判断 `if (distance[node] < node.dist) continue`， 这样就可以排除因为`dist`更新而被重复加入pq的node。而在更新`currNode` 所有 `neighbor` 的时候也无需判断是否在`visited`中，因为检查 `distance[neighbor] > newDistance` 的过程也是 O(1) 的，已经完成的 node 不会通过判断，也就不会被重复处理。
 
+---
+_update Jan 6, 2018 0:57_
 
+#### 关于 Dijkstra 处理 negative weight edge 的问题
+来自知乎的答案：[这里](https://www.zhihu.com/question/21620069);
 
 
 
