@@ -17,6 +17,9 @@ SPFA(Shortest Path Faster Algorithm) 是由西南交大的段凡丁在上世纪�
 
 &emsp; 判断一个 vertex 是否在 queue 中，可以另外维护一个 `boolean[] visited`，每次 poll 出队首之后令其 visited 中对应值变为 false，enqueue 后则变为 true；
 
+**如何处理负权回路：**  
+&emsp; 如果一个 vertex 的总入队次数超过 `|V|`，则说明有负权回路；
+
 **优化：**  
 另外，SPFA 算法有两个优化策略：SLF 和 LLL。
 
