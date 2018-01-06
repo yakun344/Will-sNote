@@ -7,8 +7,8 @@ _update Jan 6, 2018  0:20_
 #### 关于 Bellman-Ford Algorithm
 Bellman-Ford 算法是执行 `relax all edges for |V|-1 times`，时间复杂度为 O(|VE|)。它的效率低下主要由于以下两个问题：
 
-1.  只有对于其与 start vertex 的最小距离已经确定的起始点的出边的 relax 是有意义的，而其余的 relax 注定还需要被再次 relax；
-2.  对于已经确定了最小距离的 vertex，所有对它的入边的 relax 都没有意义，因为它们不会改变该 vertex 的距离（已经最小了）；
+1.  对于已经确定了最小距离的 vertex，所有对它的入边的 relax 都没有意义，因为它们不会改变该 vertex 的距离（已经最小了）；
+2.  只有对于其与 start vertex 的最小距离已经确定的起始点的出边的 relax 是有意义的，而其余的 relax 注定还需要被再次 relax；
 
 如图：  
 ![](/assets/Screen Shot 2018-01-06 at 5.35.41 PM.png)  
