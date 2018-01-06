@@ -5,7 +5,8 @@ _update Jan 6, 2018  0:20_
 **首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 这里的很多观点会来自这个博客。**
 
 #### 关于 Bellman-Ford Algorithm
-Bellman-Ford 算法是执行 `relax all edges for |V|-1 times`，时间复杂度为 O(|VE|)。它的效率低下主要由于以下两个问题：
+**Bellman-Ford 的局限：**  
+&emsp; Bellman-Ford 算法是执行 `relax all edges for |V|-1 times`，时间复杂度为 O(|VE|)。它的效率低下主要由于以下两个问题：
 
 1.  对于已经确定了最小距离的 vertex，所有对它的入边的 relax 都没有意义，因为它们不会改变该 vertex 的距离（已经最小了）；
 2.  只有对于其与 start vertex 的最小距离已经确定的起始点的出边的 relax 是有意义的，而其余的 relax 注定还需要被再次 relax；
