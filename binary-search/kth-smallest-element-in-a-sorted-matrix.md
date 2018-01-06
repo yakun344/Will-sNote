@@ -204,7 +204,45 @@ Laioffer 课程中又提供了一种新的思路，和 Dijkstra 算法的思路�
 
 #### Java Code:
 ```java
-
+class Solution {
+    // implement Comparable, 为了实现可以按照val排序
+    class Element implements Comparable<Element> {
+        public int r, c;
+        public int val;
+        public Element(int r, int c, int val) {
+            this.r = r;
+            this.c = c;
+            this.val = val;
+        }
+        
+        @Override
+        public int compareTo(Element e) {
+            return Integer.compare(this.val, e.val);
+        }
+    }
+    
+    public int kthSmallest(int[][] matrix, int k) {
+        boolean[][] visited = new boolean[matrix.length][matrix[0].length]; // 建一个visited数组，记录已经enqueue的元素，避免重复入队
+        PriorityQueue<Element> pq = new PriorityQueue<>();
+        Element start = new Element(0, 0, matrix[0][0]);
+        pq.offer(start);
+        visited[0][0] = true;
+        for (int i = 0; i < k - 1; ++i) { // 执行 poll k-1 次，可以保证 peek 是 k-th
+            Element curr = pq.poll();
+            // 分别判断当前元素之右以及之下两个元素是否需要入队
+            if (curr.r + 1 < matrix.length && ! visited[curr.r + 1][curr.c]) {
+                pq.offer(new Element(curr.r + 1, curr.c, matrix[curr.r + 1][curr.c]));
+                visited[curr.r + 1][curr.c] = true;
+            }
+            if (curr.c + 1 < matrix[0].length && ! visited[curr.r][curr.c + 1]) {
+                pq.offer(new Element(curr.r, curr.c + 1, matrix[curr.r][curr.c + 1]));
+                visited[curr.r][curr.c + 1] = true;
+            }
+        }
+        return pq.peek().val;
+    }
+}
+```
 
 
 
