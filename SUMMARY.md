@@ -9,7 +9,7 @@
 * [Graph](graph.md)
   * [关于最短路径算法的一些想法](graph/guan-yu-zui-duan-lu-jing-suan-fa-de-yi-xie-xiang-fa.md)
   * [Floyd Algorithm](graph/floyd-algorithm.md)
-  * [Dijkstra Algorithm](graph/dijkstra-algorithm.md)
+  * [Dijkstra Algorithm \(BFS-2\)](graph/dijkstra-algorithm.md)
   * [Union Find \(Disjoint Sets\) Algorithm](graph/union-find-disjoint-sets-algorithm.md)
   * [Clone Graph ](graph/clone-graph.md)
   * [Friend Circles](graph/friend-circles.md)
