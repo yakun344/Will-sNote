@@ -197,7 +197,10 @@ Laioffer 课程中又提供了一种新的思路，和 Dijkstra 算法的思路�
 2.  每次从 priority queue 中 poll 出一个元素，这个元素就是当前最小，操作 poll 出 k-1
  次，此时的 peek 就是 k-th smallest 了；
  
-整个时间复杂度为 O(k * logk), 因为每次 poll 出一个元素，同时至多 generate 2 个元素入队，所以总时间复杂度小于 `O(3klogk) == O(klogk)`;
+整个时间复杂度为`O(k * logk)`, 因为每次 poll 出一个元素，同时至多 generate 2 个元素入队，所以总时间复杂度小于 `O(3klogk) == O(klogk)`;
+
+**Correctness:**  
+&emsp; 可以把整个计算的顺序想象成从左上角到右下角的扇形辐射路径，每次 poll 出当前最小值之后会 generate 右方和下方的两个 node （但是注意去重），可以保证每一时刻在该扇形区域之外的 node 没有小于当前 peek 元素的 node。于是，我们只要进行 k-1 次 poll 的操作，就一定可以保证得到 k-th smallest element;
 
 
 
