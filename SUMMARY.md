@@ -155,7 +155,7 @@
   * [Contains Duplicate III](datastructure-problems/contains-duplicate-iii.md)
   * [Design Hit Counter](datastructure-problems/design-hit-counter.md)
 * [DFS](dfs/dfs.md)
-    * [DFS notes](dfs/DFS-notes.md)
+  * [DFS notes](dfs/DFS-notes.md)
   * [Permutation & Combination & Subsets](dfs/permutation-and-combination/permutation-and-combination.md)
     * [Subsets](dfs/permutation-and-combination/subsets.md)
     * [Beautiful Arrangement](dfs/permutation-and-combination/beautiful-arrangement.md)
