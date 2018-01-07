@@ -130,7 +130,7 @@
 * [Random](random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
-* [DataStructure Problems](datastructure-problems.md)
+* [DataStructure Problems](datastructure-problems/datastructure-problems.md)
   * [High Five](datastructure-problems/high-five.md)
   * [K Closest Points](datastructure-problems/k-closest-points.md)
   * [Kth Largest Element II](linkedlist-and-array/kth-largest-element-ii.md)
