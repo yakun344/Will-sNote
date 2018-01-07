@@ -63,6 +63,12 @@ SPFA(Shortest Path Faster Algorithm) 是由西南交大的段凡丁在上世纪�
 
 SLF 可使速度提高 15 ~ 20%，SLF + LLL 可提高约 50%。 但这两个优化本身是需要额外的复杂度的，甚至可能需要重新设计一套数据结构，来高效完成队首与队尾的插入。
 
+<br>
+
+### 总结：
+1. 如果是 non-negative weight，可以采用 Dijkstra，时间复杂度比较好 (O(ElogV));
+2. 如果可能存在负权回路，可以用优化版Bellman-Ford进行判断；
+3. 如果有 negative edge 而没有负权回路，可以用 SPFA;
 
 
 
