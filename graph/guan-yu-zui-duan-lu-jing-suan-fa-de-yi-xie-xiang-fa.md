@@ -2,7 +2,10 @@
 _update Jan 6, 2018  0:20_
 
 ---
-**首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 这里的很多观点会来自这个博客。**
+**首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 这里的很多观点会来自这个博客。**  
+**还有这个：[here](http://www.cnblogs.com/AndreMouche/archive/2011/03/29/1998824.html)**
+
+<br>
 
 #### 关于 Bellman-Ford Algorithm
 **Bellman-Ford 的局限：**  
@@ -12,7 +15,7 @@ _update Jan 6, 2018  0:20_
 2.  只有对于其与 start vertex 的最小距离已经确定的起始点的出边的 relax 是有意义的，而其余的 relax 注定还需要被再次 relax；
 
 如图：  
-![](/assets/Screen Shot 2018-01-06 at 5.35.41 PM.png)  
+&emsp; ![](/assets/Screen Shot 2018-01-06 at 5.35.41 PM.png)  
 分割线以左为已经确定最短距离的点。我们可以看到，左上方红色部分表示因为 `原因 1` 所带来的无用功，右下方的红色部分为 `原因 2` 带来的无用功。
 
 事实上，Dijkstra 算法同时解决了这两个问题，原因如下：
@@ -25,6 +28,8 @@ _update Jan 6, 2018  0:20_
 
 **关于负权边和负权回路：**  
 &emsp; Bellman-Ford 的优点是可以处理负权重边，以及判断图中是否有负权回路，判断方法是执行过n-1次之后，再多执行一次，如果发现仍然有边可以被 relax，则说明有负权回路，并且该边就是负权的入口。
+
+<br>
 
 #### SPFA 算法，Queue Based Bellman-Ford Algorithm
 SPFA(Shortest Path Faster Algorithm) 是由西南交大的段凡丁在上世纪九十年代提出的，它旨在通过使用一个 FIFO 的 queue 来对 Bellman Ford 算法进行优化，最终将时间复杂度控制在 `O(k * E)`, 其中 k 是每个vertex的平均入队次数，在 sparse graph 中一般小于 2，而在 dense graph 中不稳定。
