@@ -168,7 +168,7 @@
     * [Generate Parentheses](dfs/permutation-and-combination/generate-parentheses.md)
   * [Array Nesting](dfs/array-nesting.md)
   * [Lexicographical Numbers](dfs/lexicographical-numbers.md)
-* [Two Pointers Problem](two-pointers-problem.md)
+* [Two Pointers Problem](two-pointers-problem/two-pointers-problem.md)
   * [Two Sum - Unique pairs](two-pointers-problem/two-sum-unique-pairs.md)
   * [3Sum](two-pointers-problem/3sum.md)
   * [4Sum](two-pointers-problem/4sum.md)
