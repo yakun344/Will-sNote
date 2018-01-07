@@ -6,7 +6,7 @@
 
 ## Algorithm Problems
 
-* [Graph](graph.md)
+* [Graph](graph/graph.md)
   * [关于最短路径算法的一些想法](graph/guan-yu-zui-duan-lu-jing-suan-fa-de-yi-xie-xiang-fa.md)
   * [Floyd Algorithm](graph/floyd-algorithm.md)
   * [Dijkstra Algorithm \(BFS-2\)](graph/dijkstra-algorithm.md)
@@ -212,7 +212,7 @@
   * [Paint House II](dynamic-programming/paint-house-ii.md)
   * [Longest Increasing Subsequence](dynamic-programming/longest-increasing-subsequence.md)
   * [Number of Longest Increasing Subsequence](dynamic-programming/number-of-longest-increasing-subsequence.md)
-* [Bit Manipulation](bit-manipulation.md)
+* [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
   * [Single Number II](chapter1/single-number-ii.md)
