@@ -57,6 +57,11 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 至于其与上面 subsets 的区别就是这道题目每次进入下层dfs之前需要做额外判断。
 **时间复杂度** 为： O(2^2n), n 为括号的对数。
 
+#### 3. [Print all combinations of coins that can sum up to a total value k](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum.html)
+
+
+
+
 
 
 
