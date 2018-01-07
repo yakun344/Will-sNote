@@ -30,7 +30,7 @@
   * [The Maze II](graph/the-maze-ii.md)
   * [The Maze III](graph/the-maze-iii.md)
   * [Remove Substrings](chapter1/remove-substrings.md)
-* [Tree](Tree.md)
+* [Tree](Tree/Tree.md)
   * [Symmetric Tree](Tree/symmetric-tree.md)
   * [Two Sum IV - Input is a BST](Tree/two-sum-iv-input-is-a-bst.md)
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
