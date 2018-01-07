@@ -14,12 +14,17 @@ Dijkstra Algorithm 是一种贪心算法实现的单源最短路径（SSSP）算
 ```
 即我们至多需要 `poll` V 次，`update` E 次，而每次`poll`或者`update`，耗时都是`O(logV)`, 故总时间复杂度为 `O((V+E)logV)`；
 
+<br>
+
 #### Basic Idea
-Dijkstra 的基本思想是将图中所有的 V 分成两组：visited 和 not visited，同时维持一个 distance array 记录每个 v 到 S 的 距离，distance[s]=0；
+Dijkstra 的基本思路如下：
 
-每次从 not visited 中选择 distance 最小的 v，将其加入 visited，对所有 v 的 neighbor，release `edge[v][neighbor]`；
+1.  将 `distance[start]` 初始化为 0，其余初始化为 `inf`;
+2.  维持一个priority queue，先将 start enqueue；
+3.  每次 poll 出 pq 中的当前最小距离的 vertex，该 vertex 的最小距离就已经确定，generate 它的所有neighbor，relax 每个边。如果有 neighbor 的 distance 被 update 了，则 update distance 数组中该 neighbor 的 distance，以及对应 pq 中的 vertex.distance （具体实现时候，其实是将被 update 了的 neighbor 重新 enqueue，不需要理会其之前的版本是否已经在 pq 中，而是通过检查每次出队 vertex 的 distance 是否等于其实际 distance 来判断，这种方法叫做 lazy deletion）；
+4.  执行之前步骤，直到 pq 为空，我们就得到了 SSSP。如果只需要求两点之间最短路径，只需要将终止条件改为当 destination 出队时候返回；
 
-直到所有 v 都加入了 visited；
+<br>
 
 #### 在 Matrix 表示的 Graph 中的实现方法：
 Variables：
