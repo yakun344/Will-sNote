@@ -2,8 +2,8 @@
 _update Jan 6, 2018  0:20_
 
 ---
-**首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 这里的很多观点会来自这个博客。**  
-**还有这个：[here](http://www.cnblogs.com/AndreMouche/archive/2011/03/29/1998824.html)**
+**首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 其中系统比较了几种SSSP算法, 这里的很多观点会来自这个博客。**  
+**还有这个：[here](http://www.cnblogs.com/AndreMouche/archive/2011/03/29/1998824.html)，其中描述了一种非常简单但是很有效的 Bellman-Ford 算法的优化方法；**
 
 <br>
 
