@@ -17,13 +17,16 @@ _update Jan 6, 2018  0:20_
 
 事实上，Dijkstra 算法同时解决了这两个问题，原因如下：
 > &emsp; Dijkstra 算法中，每次 pq 中 poll 出的元素都是最终确定最短路径后的元素。接下来考虑 relax 的边都是已经确定最短路径的 vertex 的出边，所以上图中右下方红色部分不会出现；  
-&emsp; 
+&emsp; 另外，因为已经确定了最小距离的 vertex 会被出队，基本上避免了左上方红色部分。所以 Dijkstra 真的是很优秀的算法。
 
+而下面提到的 SPFA 算法也在这两点上进行了优化：
+> &emsp; 首先，queue 中的 vertex 都是刚刚被更新过 distance 的点。已经获得最小距离的 vertex 在出队之后不会再次 enqueue，因此避免了图中左上的红色部分；  
+&emsp; 其次，
 
 **关于负权边和负权回路：**  
 &emsp; Bellman-Ford 的优点是可以处理负权重边，以及判断图中是否有负权回路，判断方法是执行过n-1次之后，再多执行一次，如果发现仍然有边可以被 relax，则说明有负权回路，并且该边就是负权的入口。
 
-#### SPFA 算法，Bellman-Ford 的优化
+#### SPFA 算法，Queue Based Bellman-Ford Algorithm
 SPFA(Shortest Path Faster Algorithm) 是由西南交大的段凡丁在上世纪九十年代提出的，它旨在通过使用一个 FIFO 的 queue 来对 Bellman Ford 算法进行优化，最终将时间复杂度控制在 `O(k * E)`, 其中 k 是每个vertex的平均入队次数，在 sparse graph 中一般小于 2，而在 dense graph 中不稳定。
 
 **实现方法：**   
