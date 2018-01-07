@@ -58,7 +58,10 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 **时间复杂度** 为： O(2^2n), n 为括号的对数。
 
 #### 3. [Print all combinations of coins that can sum up to a total value k](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum.html)
+例如，对于 input：`{1，5，10，25}`，要求得到所有 sum 为 99 的组合。
 
+**思路 1：（bad idea）** ：  
+&emsp; 
 
 
 
