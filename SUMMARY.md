@@ -155,7 +155,7 @@
   * [Contains Duplicate III](datastructure-problems/contains-duplicate-iii.md)
   * [Design Hit Counter](datastructure-problems/design-hit-counter.md)
 * [DFS](dfs.md)
-  * [Permutation & Combination & Subsets](permutation-and-combination.md)
+  * [Permutation & Combination & Subsets](dfs/permutation-and-combination.md)
     * [Subsets](dfs/permutation-and-combination/subsets.md)
     * [Beautiful Arrangement](dfs/permutation-and-combination/beautiful-arrangement.md)
     * [Palindrome Partitioning](dfs/permutation-and-combination/palindrome-partitioning.md)
