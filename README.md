@@ -11,7 +11,7 @@ This book is for people who want to learn some basic Algorithms and Datastructur
 &emsp; _Xiaozheng_ &emsp;_E\_mail: xguo.tufts@gmail.com_
 
 ---
-## [Index](SUMMARY.md)
+
 
 
 
