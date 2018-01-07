@@ -52,7 +52,8 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
                 "(("         "()"_______
                 /   \       /   | \    |
             "((("  "(()"  "()(" | "())"| 被剪枝
-                  ...           --------
+                                --------
+                    ...
 ```
 至于其与上面 subsets 的区别就是这道题目每次进入下层dfs之前需要做额外判断。
 **时间复杂度** 为： O(2^2n), n 为括号的对数。
@@ -60,9 +61,11 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 #### 3. [Print all combinations of coins that can sum up to a total value k](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum.html)
 例如，对于 input：`{1，5，10，25}`，要求得到所有 sum 为 99 的组合。
 
-**思路 1：（bad idea）** ：  
-&emsp; 每层有四个分支，分别表示该层使用
+**思路 1：（bad idea）**   
+&emsp; 每层有四个分支，分别表示该层使用第几个数，层数则为 `targetSum / min{input}` 层。这种方法之所以不好，是因为递归深度和 input 的 targetSum 有关，如果 sum 很大，递归会非常深。
 
+**思路 2：**  
+&emsp; 层数只有 4 层，每层中分别考虑一个数字选取的次数，即每层有 `remainingSum / currNumber` 个分支。这种方法递归深度浅，比较好。
 
 
 
