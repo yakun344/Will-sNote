@@ -40,7 +40,14 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 ```
 即对于 `'b'` 来说，有四个分支，分别对应不选择 `'b'`，选第一个，第二个和选第三个；
           
-          
+#### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
+
+
+
+
+
+
+
 
 
 
