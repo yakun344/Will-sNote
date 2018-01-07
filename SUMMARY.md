@@ -137,7 +137,7 @@
   * [Rehashing](datastructure-problems/rehashing.md)
   * [Ugly Number II ](datastructure-problems/ugly-number-ii.md)
   * [Insert Delete GetRandom O\(1\)](datastructure-problems/insert-delete-getrandom-o1.md)
-  * [Min Stack](min-stack.md)
+  * [Min Stack](datastructure-problems/min-stack.md)
   * [Implement Stack by Two Queues](datastructure-problems/implement-stack-by-two-queues.md)
   * [LRU Cache](datastructure-problems/lru-cache.md)
   * [LFU Cache](datastructure-problems/lfu-cache.md)
