@@ -2,8 +2,8 @@
 _update Jan 6, 2018  0:20_
 
 ---
-**首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 其中系统比较了几种SSSP算法, 这里的很多观点会来自这个博客。**  
-**还有这个：[here](http://www.cnblogs.com/AndreMouche/archive/2011/03/29/1998824.html)，其中描述了一种非常简单但是很有效的 Bellman-Ford 算法的优化方法；**
+【1】 **首先贴一个非常好的博客：[here](https://61mon.com/index.php/archives/195/), 其中系统比较了几种SSSP算法, 这里的很多观点会来自这个博客。**  
+【2】 **还有这个：[here](http://www.cnblogs.com/AndreMouche/archive/2011/03/29/1998824.html)，其中描述了一种非常简单但是很有效的 Bellman-Ford 算法的优化方法；**
 
 <br>
 
@@ -13,6 +13,7 @@ _update Jan 6, 2018  0:20_
 
 1.  对于已经确定了最小距离的 vertex，所有对它的入边的 relax 都没有意义，因为它们不会改变该 vertex 的距离（已经最小了）；
 2.  只有对于其与 start vertex 的最小距离已经确定的起始点的出边的 relax 是有意义的，而其余的 relax 注定还需要被再次 relax；
+3.  当某次外层循环(`for i in range(number of V)`)中没有一条边被 relax时，我们就可以认为整个Bellman-Ford已经结束，可以提前退出，而不必要做满 `|v|-1` 次；
 
 如图：  
 &emsp; ![](/assets/Screen Shot 2018-01-06 at 5.35.41 PM.png)  
@@ -28,6 +29,11 @@ _update Jan 6, 2018  0:20_
 
 **关于负权边和负权回路：**  
 &emsp; Bellman-Ford 的优点是可以处理负权重边，以及判断图中是否有负权回路，判断方法是执行过n-1次之后，再多执行一次，如果发现仍然有边可以被 relax，则说明有负权回路，并且该边就是负权的入口。
+
+<br>
+
+#### 基于上面 `局限 3` 的简单优化
+这个优化方案来自
 
 <br>
 
