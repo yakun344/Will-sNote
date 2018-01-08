@@ -102,14 +102,14 @@ L3:   123     132       213        231      312       321
 ```python
 # list<char> input, int pos
 def dfs(input, pos):
-  if pos == len(input):
-    # store this input as a result
-    return
-  for i in range(pos, len(input)):
-    swap(input, pos, i) # 将选定的换到第pos位
-    dfs(input, pos + 1) # 向后进行，因为第pos位已经确定
-    swap(input, pos, i) # back tracking
-
+    if pos == len(input):
+        # store this input as a result
+        return
+    for i in range(pos, len(input)):
+        swap(input, pos, i) # 将选定的换到第pos位
+        dfs(input, pos + 1) # 向后进行，因为第pos位已经确定
+        swap(input, pos, i) # back tracking
+```
 
 
 
