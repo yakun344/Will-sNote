@@ -39,6 +39,18 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
           3
 ```
 即对于 `'b'` 来说，有四个分支，分别对应不选择 `'b'`，选第一个，第二个和选第三个；
+
+##### 讨论：
+但是个人认为还有另一种思路，在这种思路中，每一层代表在尚未考察过的元素中选择一个元素（或者一个都不选），而每一层的分支个数为剩余的尚未考虑过的元素个数加一（因为可能不选）。recursion tree 如下图：
+```
+    input: {1,2,3,4}
+    
+                                              root {}
+                    /                     /                  |           \          \
+             {1}(2,3,4)              {2}(3,4)              {3}(4)        {4}()       {}()
+         /    |      \      \        /       \     \       /
+ {1,2}(3,4) {1,3}(4) {1,4}() {1}() {2,3}(4) {2,4}() {2}()
+                
           
 #### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
 对于这道题，相当于在每次dfs之前需要加入判断，加右括号之前需要判断是否有与之对应的左括号。从 recursion tree 的角度上看，相当于对 recursion tree 进行 pruning：

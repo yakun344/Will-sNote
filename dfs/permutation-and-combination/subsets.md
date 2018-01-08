@@ -136,3 +136,25 @@ java：
         res.add(subset);
     }
 ```
+
+<br>
+
+---
+_update Jan 7,2017  22:20_
+
+### Update
+依照 [DFS notes](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/DFS-notes.html) 中的理论，我们考虑dfs思路的时候考虑两件事情：
+
+  1. 一共有
+
+
+
+
+
+
+
+
+
+
+
+
