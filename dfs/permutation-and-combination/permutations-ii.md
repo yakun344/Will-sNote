@@ -86,3 +86,28 @@ Given a list of numbers with duplicate number in it. Find all unique permutation
                 used[i] = False
                 del path[-1]
 ```
+
+<br>
+
+---
+_update Jan 8,2017  12:24_
+
+### Upate：使用 Swap-Swap 方法处理，降低了时间复杂度
+参考前面的 《DFS notes》;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
