@@ -143,9 +143,8 @@ java：
 _update Jan 7,2017  22:20_
 
 ### Update
-依照 [DFS notes](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/DFS-notes.html) 中的理论，我们考虑dfs思路的时候考虑两件事情：
+新的思路参考 [DFS notes](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/DFS-notes.html);
 
-  1. 一共有
 
 
 
