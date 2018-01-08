@@ -98,6 +98,17 @@ L3:   123     132       213        231      312       321
 **实现技巧：**  
 不再像之前那样使用一个selected数组，每次循环遍历，而是采用一种每次 swap 当前选择元素到最前面的方法，这样做可以很大程度上提高时间复杂度以及空间复杂度。
 
+框架如下：
+```python
+# list<char> input, int pos
+def dfs(input, pos):
+  if pos == len(input):
+    # store this input as a result
+    return
+  for i in range(pos, len(input)):
+    swap(input, pos, i) # 将选定的换到第pos位
+    dfs(input, pos + 1) # 向后进行，因为第pos位已经确定
+    swap(input, pos, i) # back tacking
 
 
 
