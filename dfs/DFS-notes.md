@@ -111,7 +111,7 @@ def dfs(input, pos):
         swap(input, pos, i) # back tracking
 ```
 
-
+**时间复杂度：** `O(n!)`
 
 
 
