@@ -115,7 +115,8 @@ def dfs(input, pos):
 
 **时间复杂度：** `O(n!)`
 
-
+##### Follow up：为什么不用BFS来做permutation问题？
+答：因为如果用BFS的话，queue.size 会指数型增长，空间复杂度太高。
 
 
 
