@@ -52,9 +52,11 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
  {1,2}(3,4) {1,3}(4) {1,4}() {1}() {2,3}(4) {2,4}() {2}() {3,4}() {3}()  
  
  ...
- ```
- 但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。          
-          
+```
+但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。          
+
+<br>
+
 #### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
 对于这道题，相当于在每次dfs之前需要加入判断，加右括号之前需要判断是否有与之对应的左括号。从 recursion tree 的角度上看，相当于对 recursion tree 进行 pruning：
 ```
@@ -72,6 +74,8 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 ```
 至于其与上面 subsets 的区别就是这道题目每次进入下层dfs之前需要做额外判断。
 **时间复杂度** 为： O(2^2n), n 为括号的对数。
+
+<br>
 
 #### 3. [Print all combinations of coins that can sum up to a total value k](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum.html)
 例如，对于 input：`{1，5，10，25}`，要求得到所有 sum 为 99 的组合。
@@ -94,6 +98,8 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
       99
 ```
 图中所示，一共有四层，每层的分支数各不相同，依照剩余的 remainingSum 和当前数字的大小而定，但最多为 99。
+
+<br>
 
 #### 4. [Permutations](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/permutations-ii.html)
 首先思考每层代表什么，一共有多少层。在这道题目的情况下，例如input为 `{1,2,3}`，则 dfs 共有 3 层，每层代表一个位置（0，1，2）。每层的分支数量为当前剩余候选数字的个数。recursion 如下图所示：
@@ -129,6 +135,8 @@ def dfs(input, pos):
 ```
 
 **时间复杂度：** `O(n!)`
+
+<>br
 
 ##### Follow up：为什么不用BFS来做permutation问题？
 答：因为如果用BFS的话，queue.size 会指数型增长，空间复杂度太高。
