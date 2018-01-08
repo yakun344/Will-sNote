@@ -48,8 +48,11 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
                                               root {}
                     /                     /                  |           \          \
              {1}(2,3,4)              {2}(3,4)              {3}(4)        {4}()       {}()
-         /    |      \      \        /       \     \       /
- {1,2}(3,4) {1,3}(4) {1,4}() {1}() {2,3}(4) {2,4}() {2}()
+         /    |      \      \        /       \     \       /      \       
+ {1,2}(3,4) {1,3}(4) {1,4}() {1}() {2,3}(4) {2,4}() {2}() {3,4}() {3}()  
+ 
+ ...
+ ```
                 
           
 #### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
