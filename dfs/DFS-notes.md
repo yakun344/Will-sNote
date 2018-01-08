@@ -80,6 +80,7 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 ```
 图中所示，一共有四层，每层的分支数各不相同，依照剩余的 remainingSum 和当前数字的大小而定，但最多为 99。
 
+#### 4. [Permutations](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/permutations-ii.html)
 
 
 
