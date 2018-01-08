@@ -30,4 +30,34 @@ Given a collection of distinct numbers, return all possible permutations.
 **时间复杂度为：** `O(n!)`, 根据数学方法分析，答案的规模为 `n!`；根据递归树分析，共有 n 层，每层每点分支个数从 n 递减到 0，为 `n * (n-1) * (n-2) * ... * 1 = n!`
 
 #### Java Code:
-
+```java
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null || nums.length == 0) return res;
+        dfs(nums, res, 0);
+        return res;
+    }
+    
+    private void dfs(int[] nums, List<List<Integer>> res, int pos) {
+        if (pos == nums.length) { // 所有位都已经确定
+            List<Integer> lst = new ArrayList<>();
+            for (int num : nums) lst.add(num);
+            res.add(lst);
+            return;
+        }
+        // 循环考虑每个候选数字，将其换到当前pos之后继续向后递归
+        for (int i = pos; i < nums.length; ++i) {
+            swap(nums, pos, i);
+            dfs(nums, res, pos + 1);
+            swap(nums, pos, i); // backtracking
+        }
+    }
+    
+    private void swap(int[] nums, int a, int b) {
+        int t = nums[a];
+        nums[a] = nums[b];
+        nums[b] = t;
+    }
+}
+```
