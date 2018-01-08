@@ -108,7 +108,7 @@ def dfs(input, pos):
   for i in range(pos, len(input)):
     swap(input, pos, i) # 将选定的换到第pos位
     dfs(input, pos + 1) # 向后进行，因为第pos位已经确定
-    swap(input, pos, i) # back tacking
+    swap(input, pos, i) # back tracking
 
 
 
