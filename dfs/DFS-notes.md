@@ -53,7 +53,7 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
  
  ...
  ```
-                
+ 但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。          
           
 #### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
 对于这道题，相当于在每次dfs之前需要加入判断，加右括号之前需要判断是否有与之对应的左括号。从 recursion tree 的角度上看，相当于对 recursion tree 进行 pruning：
