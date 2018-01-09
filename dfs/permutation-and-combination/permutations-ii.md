@@ -95,6 +95,8 @@ _update Jan 8,2017  12:24_
 ### Upate：使用 Swap-Swap 方法处理，降低了时间复杂度
 参考前面的 《DFS notes》;
 
+这道题不同的地方是加入了去重的要求，因为输入数组中有重复。去重的手法是每次考虑候选数字的时候，保证只会选择一组相同元素中的第一个，也就是代码中 for loop 中的 第一句判断：`if i > pos and nums[i-1] == nums[i]`，此时就跳过该次循环。要特别注意之前的判断为 `i>pos` 而不是 `i>0`，至于如何理解，可以用 `input: {1,1,2}` 去想象。
+
 **Python Code:**
 ```python
 class Solution:
