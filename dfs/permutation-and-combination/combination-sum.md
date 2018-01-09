@@ -99,6 +99,8 @@ _update Jan 9, 2017  15:35_
     }
 ```
 
+**Java Code: (LintCode version)**
+
 
 
 
