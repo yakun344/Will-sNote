@@ -97,7 +97,37 @@ _update Jan 8,2017  12:24_
 
 **Python Code:**
 ```python
-
+class Solution:
+    def permuteUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        def dfs(nums, pos, res):
+            if pos == len(nums): 
+                res.append(nums[:])
+                return
+            # 对每个候选数字，将其换到pos位，向后继续dfs，之后再换回来做backtracking
+            # 如何去重： 只选第一个换，即如果numsi[i]和其之前一个元素相同, 我们就跳过i
+            for i in range(pos, len(nums)):
+                if i > pos and nums[i-1] == nums[i]: # 注意，这里去重的时候一定要判断为 i>pos
+                    continue
+                swap(nums, pos, i)
+                dfs(nums, pos + 1, res)
+                swap(nums, pos, i)
+        
+        
+        def swap(nums, a, b):
+            t = nums[a]
+            nums[a] = nums[b]
+            nums[b] = t
+            
+        
+        res = []
+        if not nums: return res
+        dfs(nums, 0, res)
+        return res
+```
 
 
 
