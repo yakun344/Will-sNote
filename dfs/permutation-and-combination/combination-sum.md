@@ -2,7 +2,8 @@
 _update Jul 21, 2017 17:58_
 
 ---
-[lintcode](http://www.lintcode.com/en/problem/combination-sum/)
+[lintcode](http://www.lintcode.com/en/problem/combination-sum/)  
+[LeetCode](https://leetcode.com/problems/combination-sum/description/)
 
 Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
@@ -69,3 +70,25 @@ The same repeated number may be chosen from C unlimited number of times.
             return arr[: i + 1]
                 
 ``` 
+
+<br>
+
+---
+_update Jan 9, 2017  15:35_
+
+### Update: 新的思考
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
