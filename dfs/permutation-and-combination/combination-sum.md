@@ -97,6 +97,8 @@ _update Jan 9, 2017  15:35_
         dfs(pos + 1, remainSum - i * candidates[pos], ...);
     }
 ```
+基础版本的写法，最终的结果就保存在了 `int[] times` 中，每个元素对应 `candidates` 相应元素的次数；
+
 
 **Java Code: (LintCode version)**
 ```java
