@@ -90,16 +90,16 @@ _update Jan 9, 2017  15:35_
 <br>
 
 #### 实现思路：
-这种方法实现的时候和之前有了较大的不同，但是只要理解了 dfs 具体在每层做了什么就不难写了。因为我们对于每个数考虑不同次数选用它，在dfs中一定会有一个 for loop 来进行这件事情，框架为:  
+这种方法实现的时候和之前有了较大的不同，但是只要理解了 dfs 具体在每层做了什么就不难写了。因为我们对于每个数考虑不同次数选用它，在dfs中一定会有一个 for loop 来进行这件事情，同时因为candidates的长度固定，我们可以传入一个`int[len(candidates)] times` 来记录选取每个 candidates 的次数，框架为:  
 ```java
     for (int i = 0; candidates[pos] * i <= remainSum; ++i) {
-        path.add(candidates[pos]);
+        times[pos] = i;
         dfs(pos + 1, remainSum - i * candidates[pos], ...);
-        path.remove(candidates.length - 1);
     }
 ```
 
 **Java Code: (LintCode version)**
+```java
 
 
 
