@@ -76,7 +76,7 @@ The same repeated number may be chosen from C unlimited number of times.
 ---
 _update Jan 9, 2017  15:35_
 
-### Update: 新的思考
+### Update: 新的思考(better solution)
 首先我们分析一下之前这种方法的时间空间复杂度。之前的dfs算法中，一共会有 `target / min(candidates)` 层，每一层会有 `len(candidates)` 个分支，如果 input 的 target sum 非常大，会有很深的递归深度，同时也会有很高的时间复杂度（如果input: `{1,5,10,25}`, `target=99`, 则最大递归深度为 `99 / 1 = 99` 层，总时间复杂度 `O(4^99)`）；
 
 接下来，我们换一种方法考虑（详见 **DFS notes**）。这次我们如下定义 DFS：
