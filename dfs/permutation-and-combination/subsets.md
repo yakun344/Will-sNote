@@ -143,9 +143,9 @@ java：
 _update Jan 7,2017  22:20_
 
 ### Update
-之前的几种思路没有抓住精髓，而且有些实现华而不实。
-
 新的思路参考 [DFS notes](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/DFS-notes.html);
+
+其实和之前的决策树的思路非常接近。
 
 
 
