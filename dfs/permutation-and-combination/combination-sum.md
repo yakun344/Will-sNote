@@ -28,7 +28,7 @@ The same repeated number may be chosen from C unlimited number of times.
 2.  如何实现多次使用某个元素呢？只要在dfs传递参数时传递 i 而不是 i + 1 即可。
 
 #### Python Code:
-    ```python
+```python
     class Solution:
         # @param candidates, a list of integers
         # @param target, integer
