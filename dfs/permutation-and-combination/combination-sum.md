@@ -102,7 +102,43 @@ _update Jan 9, 2017  15:35_
 
 **Java Code: (LintCode version)**
 ```java
-
+public class Solution {
+    /*
+     * @param candidates: A list of integers
+     * @param target: An integer
+     * @return: A list of lists of integers
+     */
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(candidates);
+        dfs(candidates, target, 0, new int[candidates.length], res);    
+        return res;
+    }
+    
+    private void dfs(int[] candidates, int remainSum, int pos, int[] times, 
+                     List<List<Integer>> res) {
+        if (remainSum == 0 || pos == candidates.length) {
+            if (remainSum == 0) {
+                // convert times array to the appearence of each element
+                List<Integer> lst = new ArrayList<>();
+                for (int i = 0; i < times.length; ++i) {
+                    for (int k = 0; k < times[i]; ++k) {
+                        lst.add(candidates[i]);
+                    }
+                }
+                res.add(lst);
+            }
+            return;
+        }
+        // for the pos-th candidate, 检查选择它不同次数 i 的情况，继续向下一个数递归
+        for (int i = 0; i * candidates[pos] <= remainSum; ++i) {
+            times[pos] = i;
+            dfs(candidates, remainSum - i * candidates[pos], pos + 1, times, res);
+            times[pos] = 0;
+        }
+    }
+}
+```
 
 
 
