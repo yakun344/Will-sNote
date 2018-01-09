@@ -95,8 +95,7 @@ _update Jan 8,2017  12:24_
 ### Upate：使用 Swap-Swap 方法处理，降低了时间复杂度
 参考前面的 《DFS notes》;
 
-这道题不同的地方是加入了去重的要求，因为输入数组中有重复。去重的手法是每次考虑候选数字的时候，保证只会选择一组相同元素中的第一个，也就是代码中 for loop 中的 第一句判断：`if i > pos and nums[i-1] == nums[i]`，此时就跳过该次循环。要特别注意之前的判断为 `i>pos` 而不是 `i>0`，至于如何理解，可以用 `input: {1,1,2}` 去想象：
-> 第一次选择了第一个 1，进入下一层递归，pos为1。此时我们首先应该选择第二个 1 作为 pos==1 的元素，但是如果判断条件为 `if i>0 and nums[i-1] == nums[i]`, 这个 1 就会被跳过，就不对了。
+与普通permutation问题不同的地方就在于这里需要去重，我们只需要在每层循环中用一个 HashSet 记录当前已经选择的 element 就可以了。
 
 **Python Code:**
 ```python
@@ -111,10 +110,11 @@ class Solution:
                 res.append(nums[:])
                 return
             # 对每个候选数字，将其换到pos位，向后继续dfs，之后再换回来做backtracking
-            # 如何去重： 只选第一个换，即如果numsi[i]和其之前一个元素相同, 我们就跳过i
+            # 去重：因为换位之后先前的顺序会被打乱，我们只能每层维持一个HashSet记录已经选择过的element
+            used = set()
             for i in range(pos, len(nums)):
-                if i > pos and nums[i-1] == nums[i]: # 注意，这里去重的时候一定要判断为 i>pos
-                    continue
+                if nums[i] in used: continue
+                used.add(nums[i])
                 swap(nums, pos, i)
                 dfs(nums, pos + 1, res)
                 swap(nums, pos, i)
