@@ -95,7 +95,7 @@ _update Jan 8,2017  12:24_
 ### Upate：使用 Swap-Swap 方法处理，降低了时间复杂度
 参考前面的 《DFS notes》;
 
-与普通permutation问题不同的地方就在于这里需要去重，我们只需要在每层循环中用一个 HashSet 记录当前已经选择的 element 就可以了。
+与普通permutation问题不同的地方就在于这里需要去重，我们只需要在每层循环中用一个 HashSet 记录当前已经选择过的 element 就可以了。
 
 **Python Code:**
 ```python
