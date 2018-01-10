@@ -48,7 +48,7 @@ class Solution {
 }
 ```
 
-#### 思路 2，优化，memorized search (TLE)：
+#### 思路 2，优化，memorized search (AC)：
 接下来考虑之前之所以 TLE 了，是因为有很多重复情况被重复考虑，例如：
 ```python
     input: [1,5,20], amount = 100
@@ -64,33 +64,34 @@ class Solution {
 
 **Java Code：**  
 ```java
+// 用一个hashmap 存储之前已经计算出最小 coin number 的 amount
+//  dfs的方法是，在每层中分别考虑使用每个coin
 class Solution {
     private HashMap<Integer, Integer> map;
     public int coinChange(int[] coins, int amount) {
         map = new HashMap<>();
-        int ret = dfs(coins, amount);
-        return ret == Integer.MAX_VALUE ? -1 : ret;
+        return dfs(coins, amount);
     }
     
-    private int dfs(int[] coins, int remainSum) {
-        if (remainSum == 0) return 0;
-        if (map.containsKey(remainSum)) return map.get(remainSum);
+    private int dfs(int[] coins, int remain) {
+        if (remain == 0) return 0;
+        if (map.containsKey(remain)) return map.get(remain);
         int minCount = Integer.MAX_VALUE;
-        // consider each coin in each level
         for (int coin : coins) {
-            if (remainSum < coin) continue;
-            int count = dfs(coins, remainSum - coin);
-            minCount = Math.min(count, minCount);
+            if (coin > remain) continue;
+            int count = dfs(coins, remain - coin);
+            if (count >= 0 && count < minCount) minCount = count;
         }
-        if (minCount == Integer.MAX_VALUE) return minCount;
-        map.put(remainSum, minCount + 1);
-        return minCount + 1;
+        // 如果全部返回-1，说明此remain不可能产生，则将其匹配值-1，表示不可能
+        if (minCount == Integer.MAX_VALUE) map.put(remain, -1);
+        else map.put(remain, minCount + 1);
+        return map.get(remain);
     }
 }
 ```
 
 #### 思路 3，DP, bottom up（ AC ）：
-前面的dfs都挂了，就只有dp了。首先我们可以有递推式：
+首先我们可以有递推式：
 ```python
     input coins: {1,2,5}
     则我们有：
@@ -134,9 +135,39 @@ class Solution {
 #### 思路 4： DP，top-down （AC）
 仍然是前面的递推式，只是我们用recursion从上至下求解。
 
+**Java Code:**
+```java
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        // dpArray 的每个元素dpArray[i]表示金额为 i 所需要的最少 coin 数量
+        // 有三种状态，INF 为未计算，-1 为不可能，其余正数为最少 coin 数量
+        int[] dpArray = new int[amount + 1]; 
+        Arrays.fill(dpArray, Integer.MAX_VALUE);
+        dpArray[0] = 0;
+        return dp(coins, amount, dpArray);
+    }
+    
+    private int dp(int[] coins, int amount, int[] dpArray) {
+        if (amount < 0) return Integer.MAX_VALUE; // shouldn't be here
+        if (dpArray[amount] != Integer.MAX_VALUE) return dpArray[amount];
+        int minCount = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            if (amount < coin) continue;
+            int count = dp(coins, amount - coin, dpArray);
+            if (count >= 0 && count < minCount) {
+                minCount = count;
+            }
+        }
+        if (minCount == Integer.MAX_VALUE) dpArray[amount] = -1;
+        else dpArray[amount] = minCount + 1;
+        return dpArray[amount];
+    }
+}
+```
 
+<br>
 
-
+### 总结：
 
 
 
