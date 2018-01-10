@@ -154,6 +154,7 @@ class Solution {
         for (int coin : coins) {
             if (amount < coin) continue;
             int count = dp(coins, amount - coin, dpArray);
+            // 注意这里判断条件是 count >= 0
             if (count >= 0 && count < minCount) {
                 minCount = count;
             }
@@ -168,6 +169,8 @@ class Solution {
 <br>
 
 ### 总结：
+这道题目用dp做和用 memorized search 的时间复杂度其实是差不多的，因为问题的规模是 `O(amount * len(coins))`。用dfs直接做的话，因为会计算很多重复情况，会TLE。这也印证了那句话：_求解的数量用dp，如果求解的空间则必须用dfs，因为即使两个问题的子问题相同，他们也是不同的两个解_。
+
 
 
 
