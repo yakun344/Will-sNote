@@ -47,7 +47,9 @@ You can assume that
           (dp[i] 表示金额为 i 对应的最多组合个数)
 
 ```
-和之前的题目 **Coin Change** 类似，我们只要维持一个长度为 `amount + 1` 的数组 `dp[]`，然后 bottom-up 地计算直到得到 `dp[amout]` 为止， dp数组初始化为 inf，unreachable 的 amount 对应为 -1；
+和之前的题目 **Coin Change** 类似，我们只要维持一个长度为 `amount + 1` 的数组 `dp[]`，然后 bottom-up 地计算直到得到 `dp[amout]` 为止， dp数组初始化为0, 从左到右直接计算即可，0 可以直接表示不可以生成的amount；Base case `dp[0] == 1` 表示当amount为0的时候只有唯一的一种情况，但是当输入为0的时候可以按照不同的题目要求进行特判。
+
+<br>
 
 ### Implementation：
 作为一道经典dp问题，实现的方法有 bottom-up 和 top-down 两种思路，时间空间复杂度类似。
