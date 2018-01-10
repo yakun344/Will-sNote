@@ -90,8 +90,14 @@ class Solution {
 ```
 
 #### 思路 3，DP（ AC ）：
-前面的dfs都挂了，就只有dp了。
-
+前面的dfs都挂了，就只有dp了。首先我们可以有递推式：
+```python
+    for example: input coins: {1,2,5}
+    则我们有：
+    
+                       dp[i - 1]
+        dp[i] = min(   dp[i - 2]   ) + 1 
+                       dp[i - 5] 
 
 
 
