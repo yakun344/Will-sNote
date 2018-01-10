@@ -58,8 +58,9 @@ class Solution {
                {1,1,1,1,1,5,5,5}, remain: 80
    这三种情况的时候，后面的 80 所需要的最小 coin 数量其实只需要被计算一次；
 ```
-根据这种思路，我们可以用一个 `HashMap<remain, coinNum>` 来做记忆化搜索，java 实现如下：
+根据这种思路，我们可以用一个 `HashMap<remain, coinNum>` 来做记忆化搜索。但是要注意，如果按照之前在 **DFS notes** 中缩写的那种写法（即之前的dfs写法），因为每层除了remainSum之外，可选的coins也是不同的，所以不能直接使用。如果要用 HashMap 辅助，我们必须使用那种 naive 的每层分别考虑使用每个数的做法：
 
+**Java Code：**  
 ```java
 
 
