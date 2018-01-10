@@ -49,6 +49,15 @@ You can assume that
 ```
 和之前的题目 **Coin Change** 类似，我们只要维持一个长度为 `amount + 1` 的数组 `dp[]`，然后 bottom-up 地计算直到得到 `dp[amout]` 为止， dp数组初始化为 inf，unreachable 的 amount 对应为 -1；
 
+### Implementation：
+作为一道经典dp问题，实现的方法有 bottom-up 和 top-down 两种思路，时间空间复杂度类似。
+
+#### Java Code (Bottom-up)
+
+
+
+#### Java Code (Top-down)
+
 
 
 
