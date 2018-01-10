@@ -89,7 +89,7 @@ class Solution {
 }
 ```
 
-#### 思路 3，DP（ AC ）：
+#### 思路 3，DP, bottom up（ AC ）：
 前面的dfs都挂了，就只有dp了。首先我们可以有递推式：
 ```python
     input coins: {1,2,5}
@@ -105,6 +105,33 @@ class Solution {
 ```
 
 没什么神奇的，直接用 `O(amount * len(coins))` 时间从前到后递推直到得到 `dp[amount]`，空间复杂度 `O(amount)`;
+
+**Java Code:**
+```java
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if (amount == 0) return 0;
+        int[] dp = new int[amount + 1];
+        // dp[i] 表示 i 元需要的最小coin数量
+        Arrays.fill(dp, Integer.MAX_VALUE); 
+        dp[0] = 0;
+        // i 为当前需要递推的金额数，dp[i] 应该是 i 金额所需要的最少coin数量
+        for (int i = 1; i < amount + 1; ++i) {
+            int minCount = Integer.MAX_VALUE;
+            for (int coin : coins) {
+                if (i - coin >= 0 && dp[i - coin] < Integer.MAX_VALUE) {
+                    minCount = Math.min(minCount, dp[i - coin]);
+                }
+            }
+            dp[i] = minCount < Integer.MAX_VALUE ? minCount + 1 : Integer.MAX_VALUE;
+        }
+        if (dp[amount] == Integer.MAX_VALUE) return -1;
+        return dp[amount];
+    }
+}
+```
+
+#### 思路 4： DP，top-down （AC）
 
 
 
