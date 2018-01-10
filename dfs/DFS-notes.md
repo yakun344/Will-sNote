@@ -55,7 +55,7 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
     /     \                      ----------------- 这一支可以剪掉
 {1,1,2}() {1,1}()                                 结果必然重复 
  
- ...
+ 每次进入下层递归会先check当前路径，这个操作相当于是在该层一个数字都不选，即为上图中每层的空元素。
 ```
 但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。但是在做 [CombinationSum II](https://leetcode.com/problems/combination-sum-ii/description/)的时候，我发现这种方法在去重的时候更加容易。如果用之前那种每层代表一个元素是否选取的方法，去重就很不方便。但是用这种方法，我们只需要保证每层中都只选择一组重复元素中的第一位就可以了。（[CombinationSum II 的笔记](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum-ii.html)）
 
