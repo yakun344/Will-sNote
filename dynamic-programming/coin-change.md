@@ -48,7 +48,7 @@ class Solution {
 }
 ```
 
-#### 思路 2，优化，memorized search：
+#### 思路 2，优化，memorized search (TLE)：
 接下来考虑之前之所以 TLE 了，是因为有很多重复情况被重复考虑，例如：
 ```python
     input: [1,5,20], amount = 100
@@ -64,7 +64,33 @@ class Solution {
 
 **Java Code：**  
 ```java
+class Solution {
+    private HashMap<Integer, Integer> map;
+    public int coinChange(int[] coins, int amount) {
+        map = new HashMap<>();
+        int ret = dfs(coins, amount);
+        return ret == Integer.MAX_VALUE ? -1 : ret;
+    }
+    
+    private int dfs(int[] coins, int remainSum) {
+        if (remainSum == 0) return 0;
+        if (map.containsKey(remainSum)) return map.get(remainSum);
+        int minCount = Integer.MAX_VALUE;
+        // consider each coin in each level
+        for (int coin : coins) {
+            if (remainSum < coin) continue;
+            int count = dfs(coins, remainSum - coin);
+            minCount = Math.min(count, minCount);
+        }
+        if (minCount == Integer.MAX_VALUE) return minCount;
+        map.put(remainSum, minCount + 1);
+        return minCount + 1;
+    }
+}
+```
 
+#### 思路 3，DP（ AC ）：
+前面的dfs都挂了，就只有dp了。
 
 
 
