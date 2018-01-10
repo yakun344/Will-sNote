@@ -87,6 +87,35 @@ class Solution {
 
 #### Python Code:
 ```python
-
+class Solution:
+    def checkInclusion(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        charMap = [0] * 26
+        for c in s1:
+            charMap[ord(c) - ord('a')] += 1
+        count = len(s1)
+        
+        left, right = 0, -1
+        while right < len(s2):
+            while right - left + 1 < len(s1):
+                right += 1
+                if right >= len(s2): 
+                    return False
+                charMap[ord(s2[right]) - ord('a')] -= 1
+                if charMap[ord(s2[right]) - ord('a')] >= 0:
+                    count -= 1
+            if count == 0:
+                return True
+            charMap[ord(s2[left]) - ord('a')] += 1
+            if charMap[ord(s2[left]) - ord('a')] > 0:
+                count += 1
+            left += 1
+            
+        return False
+```
 
 
