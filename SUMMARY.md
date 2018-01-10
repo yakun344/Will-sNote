@@ -1,4 +1,4 @@
-# SUMMARY
+# Summary
 
 ## Index
 
@@ -214,6 +214,7 @@
   * [Paint House II](dynamic-programming/paint-house-ii.md)
   * [Longest Increasing Subsequence](dynamic-programming/longest-increasing-subsequence.md)
   * [Number of Longest Increasing Subsequence](dynamic-programming/number-of-longest-increasing-subsequence.md)
+  * [Coin Change](dynamic-programming/coin-change.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
