@@ -37,7 +37,17 @@ You can assume that
 
 <br>
 
-#### 
+### Basic Idea:
+这道题目很明显是一道 dp 问题，我们有如下递推式：
+```python
+
+    例如 input: coins=[1,2,5], amount = 20
+    
+    递推式： dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 5] + 1
+          (dp[i] 表示金额为 i 对应的最多组合个数)
+
+```
+和之前的题目 **Coin Change** 类似，我们只要维持一个长度为 `amount + 1` 的数组 `dp[]`，然后 bottom-up 地计算直到得到 `dp[amout]` 为止， dp数组初始化为 inf，unreachable 的 amount 对应为 -1；
 
 
 
