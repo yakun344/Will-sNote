@@ -60,6 +60,8 @@ class Solution {
 ```
 根据这种思路，我们可以用一个 `HashMap<remain, coinNum>` 来做记忆化搜索。但是要注意，如果按照之前在 **DFS notes** 中缩写的那种写法（即之前的dfs写法），因为每层除了remainSum之外，可选的coins也是不同的，所以不能直接使用。如果要用 HashMap 辅助，我们必须使用那种 naive 的每层分别考虑使用每个数的做法：
 
+另外，在dfs的过程中，我们的dfs函数需要自下而上地返回每个remainSum的所需coin个数，这样才能进行记忆化搜索。
+
 **Java Code：**  
 ```java
 
