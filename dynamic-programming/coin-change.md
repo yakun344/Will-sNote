@@ -92,16 +92,19 @@ class Solution {
 #### 思路 3，DP（ AC ）：
 前面的dfs都挂了，就只有dp了。首先我们可以有递推式：
 ```python
-    for example: input coins: {1,2,5}
+    input coins: {1,2,5}
     则我们有：
     
                        dp[i - 1]
         dp[i] = min(   dp[i - 2]   ) + 1 
                        dp[i - 5] 
 
+    Base case: 
+    
+        dp[0] = 0, dp[others] = inf
+```
 
-
-
+没什么神奇的，直接用 `O(amount * len(coins))` 时间从前到后递推直到得到 `dp[amount]`，空间复杂度 `O(amount)`;
 
 
 
