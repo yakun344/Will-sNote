@@ -54,5 +54,41 @@ String 的常见问题可以归纳为如下几类：
     }
 ```
 <br>
-#### 2. 
+#### 2. De-duplicate
+```  
+      input:  aaa_bb_cc
+      return: a_b_c
+```
+还是two pointers。
+
+```
+      input:  abbacd
+      output: cd
+      
+      即重复串消除之后，如果左右部分合并生成了新的重复串，继续消除
+```
+用 stack。
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
