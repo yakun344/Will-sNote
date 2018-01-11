@@ -26,32 +26,32 @@ String 的常见问题可以归纳为如下几类：
 基本思想是使用 two-pointers 的方法，i 和 j 分别对应左右指针。维持已经筛选过的部分在 i 的左边(i指向最后一个位置)，用 j 一路向右扫描，需要更新的时候就把需要的字符赋值给 ++i；<br>
 **Java Code:**   
 ```java
-public class Solution {
-  public String removeSpaces(String input) {
-    char[] arr = input.toCharArray();
-    int i = -1, j = 0;
-    // 如果见到单词，则设为true，如果见到空格且flag为true，表示刚离开单词，补空格
-    boolean flag = false; 
-    for (j = 0; j < arr.length; ++j) {
-      if (arr[j] != ' ') {
-        flag = true;
-        arr[++i] = arr[j];
-      } else if (flag) {
-        // 刚离开一个单词 
-        arr[++i] = ' ';
-        flag = false;
+    public class Solution {
+      public String removeSpaces(String input) {
+        char[] arr = input.toCharArray();
+        int i = -1, j = 0;
+        // 如果见到单词，则设为true，如果见到空格且flag为true，表示刚离开单词，补空格
+        boolean flag = false; 
+        for (j = 0; j < arr.length; ++j) {
+          if (arr[j] != ' ') {
+            flag = true;
+            arr[++i] = arr[j];
+          } else if (flag) {
+            // 刚离开一个单词 
+            arr[++i] = ' ';
+            flag = false;
+          }
+        }
+        if (i == -1) return "";
+        StringBuilder sb = new StringBuilder();
+        // 如果input以空格结尾，此时 i 指向最后一个多余空格，否则指向最后一个字母
+        for (int k = 0; k <= i; ++k) {
+          sb.append(arr[k]);
+        }
+        if (sb.charAt(sb.length() - 1) == ' ') sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
       }
     }
-    if (i == -1) return "";
-    StringBuilder sb = new StringBuilder();
-    // 如果input以空格结尾，此时 i 指向最后一个多余空格，否则指向最后一个字母
-    for (int k = 0; k <= i; ++k) {
-      sb.append(arr[k]);
-    }
-    if (sb.charAt(sb.length() - 1) == ' ') sb.deleteCharAt(sb.length() - 1);
-    return sb.toString();
-  }
-}
 ```
 <br>
 #### 2.
