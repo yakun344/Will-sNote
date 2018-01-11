@@ -232,7 +232,7 @@
   * [Implement Sqrt\(x\)](math-problems/implement-sqrtx.md)
   * [Count Primes](math-problems/count-primes.md)
   * [Divide Two Integers](math-problems/divide-two-integers.md)
-  * [2 Keys Keyboard](other-problems/2-keys-keyboard.md)
+  * [2 Keys Keyboard](math-problems/2-keys-keyboard.md)
   * [Gray Code](math-problems/gray-code.md)
   * [Add Binary](math-problems/add-binary.md)
 * [Brainteaser](brainteaser/brainteaser.md)
