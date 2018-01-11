@@ -152,7 +152,7 @@ String 的常见问题可以归纳为如下几类：
             for (int i = 0; i < numString.length(); ++i) {
                 chars[start + i] = numString.charAt(i);
             }
-            return start + numString.length();
+            return start + numString.length() - 1;
         }
         
         // 返回连续出现的个数
