@@ -71,6 +71,7 @@
   * [Recover Binary Search Tree](Tree/recover-binary-search-tree.md)
   * [Populating Next Right Pointers in Each Node](Tree/populating-next-right-pointers-in-each-node.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
+  * [Next Greater Element II](linkedlist-and-array/next-greater-element-ii.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](linkedlist-and-array/maximum-distance-in-arrays.md)
   * [Insert into a Cyclic Sorted List](linkedlist-and-array/insert-into-a-cyclic-sorted-list.md)
