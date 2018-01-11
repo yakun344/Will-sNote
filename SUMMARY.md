@@ -85,7 +85,7 @@
   * [Sort List](linkedlist-and-array/sort-list.md)
   * [Reverse Nodes in k-Group](linkedlist-and-array/reverse-nodes-in-k-group.md)
   * [Add Two Numbers II](linkedlist-and-array/add-two-numbers-ii.md)
-  * [Remove Duplicates from Sorted Array](other-problems/remove-duplicates-from-sorted-array.md)
+  * [Remove Duplicates from Sorted Array](linkedlist-and-array/remove-duplicates-from-sorted-array.md)
   * [Remove Duplicates from Sorted Array II](linkedlist-and-array/remove-duplicates-from-sorted-array-ii.md)
   * [Remove Duplicates from Sorted List II](linkedlist-and-array/remove-duplicates-from-sorted-list-ii.md)
   * [Palindrome Linked List](linkedlist-and-array/palindrome-linked-list.md)
