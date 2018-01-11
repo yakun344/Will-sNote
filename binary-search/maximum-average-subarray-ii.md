@@ -17,10 +17,11 @@ when length is 5, maximum average value is 10.8,
 when length is 6, maximum average value is 9.16667.
 Thus return 12.75.
 
-**Note:**
-1 <= k <= n <= 10,000.
-Elements of the given array will be in range [-10,000, 10,000].
-The answer with the calculation error less than 10-5 will be accepted.
+**Note:**    
+
+  1.  `1 <= k <= n <= 10,000.`
+  2.  Elements of the given array will be in range [-10,000, 10,000].
+  3.  The answer with the calculation error less than 10-5 will be accepted.
 
 #### Basic Idea:
 因为题目要求是长度不小于k的连续子序列的最大平均值，这个问题直接解的话只能是O(n^2)的时间，需要遍历每个子序列。为了加快速度，我们选择使用对答案进行二分，猜测答案然后验证的算法。
