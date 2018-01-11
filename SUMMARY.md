@@ -128,6 +128,7 @@
   * [Decode String](string-manipulation/decode-string.md)
   * [Palindromic Substrings](string-manipulation/palindromic-substrings.md)
   * [Palindrome Permutation](string-manipulation/palindrome-permutation.md)
+  * [String Notes](string-manipulation/string-notes.md)
 * [Random](random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
