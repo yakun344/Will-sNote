@@ -2,10 +2,12 @@
 _update Jun 27, 2017_
 
 ---
-[leetcode](https://leetcode.com/problems/merge-two-sorted-lists/#/description)
+[leetcode](https://leetcode.com/problems/merge-two-sorted-lists/#/description) 
+
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 
-**思路：**
+**思路：**  
+
 这道题目使用recursion比较简单，因为recursion可以很简单的做到先处理后面的nodes再链接前面的nodes，即可以不让前面的nodes丢失后面的部分，而使用iteration就会复杂一些。
 
 Iteration 的方法可以先使用一个无意义的 dummy node 作为头指针，然后用一个curr跟踪当前新链表的最后一个node
