@@ -18,10 +18,10 @@ begin to intersect at node c1.
 
 **Notes:**
 
-If the two linked lists have no intersection at all, return null.
-The linked lists must retain their original structure after the function returns.
-You may assume there are no cycles anywhere in the entire linked structure.
-Your code should preferably run in O(n) time and use only O(1) memory.
+  1.  If the two linked lists have no intersection at all, return null.
+  2.  The linked lists must retain their original structure after the function returns.
+  3.  You may assume there are no cycles anywhere in the entire linked structure.
+  4.  Your code should preferably run in O(n) time and use only O(1) memory.
 
 #### 注意：
 基本的思想是很简单的，就是先找到两个head node所对应的链表长度，然后取相同长度，开始同步向后走，检查是否相同。关键是code要漂亮。
