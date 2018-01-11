@@ -56,18 +56,24 @@ String 的常见问题可以归纳为如下几类：
 <br>
 #### 2. De-duplicate
 ```  
+    (1)
       input:  aaa_bb_cc
       return: a_b_c
 ```
 还是two pointers。
-
 ```
+    (2)
       input:  abbacd
       output: cd
       
       即重复串消除之后，如果左右部分合并生成了新的重复串，继续消除
 ```
 用 stack。
+<br>
+#### 3. Str-str
+经典题目，求一个string是否是另一个string的substring。基本方法是 `O(len(small string)^2)` 的时间复杂度，还有 KMP 和 Robin Karp 两个常见的 `O(n)` 时间的实现，但是一般来说不会考实现。
+```java
+
 
   
   
