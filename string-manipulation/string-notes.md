@@ -73,8 +73,21 @@ String 的常见问题可以归纳为如下几类：
 #### 3. Str-str
 经典题目，求一个string是否是另一个string的substring。基本方法是 `O(len(small string)^2)` 的时间复杂度，还有 KMP 和 Robin Karp 两个常见的 `O(n)` 时间的实现，但是一般来说不会考实现。
 ```java
-
-
+    public class Solution {
+      public int strstr(String large, String small) {
+        if ("".equals(small)) return 0;
+        for (int k = 0; k < large.length(); ++k) {
+          int i = 0;
+          while (i < small.length() && k + i < large.length()) {
+            if (large.charAt(k + i) != small.charAt(i)) break;
+            i++;
+          }
+          if (i == small.length()) return k;
+        }
+        return -1;
+      }
+    }
+```
   
   
   
