@@ -138,7 +138,8 @@ String 的常见问题可以归纳为如下几类：
                 int num = count(chars, r);
                 chars[++l] = chars[r]; // 先复制字母，然后添加数字
                 if (num > 1) {
-                    l = insertNumber(chars, ++l, num);
+                    // 从 l+1 开始添加数字，并且更新l的值，为数字最后一位的index
+                    l = insertNumber(chars, l + 1, num);
                 }
                 r += num;
             }
@@ -151,7 +152,7 @@ String 的常见问题可以归纳为如下几类：
             for (int i = 0; i < numString.length(); ++i) {
                 chars[start + i] = numString.charAt(i);
             }
-            return start + numString.length() - 1;
+            return start + numString.length();
         }
         
         // 返回连续出现的个数
