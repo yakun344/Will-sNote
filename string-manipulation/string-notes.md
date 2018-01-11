@@ -88,7 +88,46 @@ String 的常见问题可以归纳为如下几类：
       }
     }
 ```
-  
+<br>
+#### 4. Replacement
+```
+    Assumptions
+    
+    input, S and T are not null, S is not empty string
+    Examples
+    
+    input = "appledogapple", S = "apple", T = "cat", input becomes "catdogcat"
+    input = "dodododo", S = "dod", T = "a", input becomes "aoao"
+```
+用一个指针扫描input string，用一个StringBuilder保存结果， 每次发现接下来的部分和 S match后，就append T，指针跳过len(S)个位置，否则的话就append当前字符，指针右移一位。
+```java
+    public class Solution {
+      public String replace(String input, String s, String t) {
+        int r = 0;
+        StringBuilder sb = new StringBuilder();
+        while (r < input.length()) {
+          if (match(input, s, r)) {
+            sb.append(t);
+            r += s.length();
+          } else {
+            sb.append(input.charAt(r++));
+          }
+        }
+        return sb.toString();
+      }
+      private boolean match(String input, String s, int start) {
+        if (start + s.length() - 1 >= input.length()) return false;
+        int i = 0;
+        while (i < s.length()) {
+          if (input.charAt(start + i) != s.charAt(i)) return false;
+          i++;
+        }
+        return true;
+      }
+    }
+```
+<br>
+
   
   
   
