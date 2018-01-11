@@ -127,7 +127,48 @@ String 的常见问题可以归纳为如下几类：
     }
 ```
 <br>
+#### 5. Decoding-Encoding, Compress
+[LeetCode: String Compression](https://leetcode.com/problems/string-compression/description/)  
+整体思路是扫描input string，每次检查当前字母连续重复个数，然后相应inplace地去重新赋值。具体地，维持 l 和 r 两个指针，l 指向要返回的结果的最后一个位置，r 作为探测指针向右扫描。详见下面的comments。
+```java
+    class Solution {
+        public int compress(char[] chars) {
+            int l = -1, r = 0;
+            while (r < chars.length) {
+                int num = count(chars, r);
+                chars[++l] = chars[r]; // 先复制字母，然后添加数字
+                if (num > 1) {
+                    l = insertNumber(chars, ++l, num);
+                }
+                r += num;
+            }
+            return l + 1;
+        }
+        
+        // insert given number in chars at start, return new left pointer
+        private int insertNumber(char[] chars, int start, int num) {
+            String numString = String.valueOf(num);
+            for (int i = 0; i < numString.length(); ++i) {
+                chars[start + i] = numString.charAt(i);
+            }
+            return start + numString.length() - 1;
+        }
+        
+        // 返回连续出现的个数
+        private int count(char[] chars, int start) {
+            int ret = 1;
+            char c = chars[start];
+            start += 1;
+            while (start < chars.length) {
+                if (chars[start++] == c) ret++;
+                else break;
+            }
+            return ret;
+        }
+    }
+```
 
+ 
   
   
   
