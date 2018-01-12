@@ -198,6 +198,65 @@ _update Dec 25, 2017  20:28_
 
 Python实现见前面。
 
+#### Java 实现示意：
+    ```java
+    /**
+     * public class TreeNode {
+     *   public int key;
+     *   public TreeNode left;
+     *   public TreeNode right;
+     *   public TreeNode(int key) {
+     *     this.key = key;
+     *   }
+     * }
+     */
+    public class Solution {
+      public TreeNode delete(TreeNode root, int key) {
+        TreeNode dummy = new TreeNode(Integer.MAX_VALUE);
+        dummy.right = root;
+        // find target node first
+        TreeNode target = root, parent = dummy;
+        while (target != null) {
+          if (target.key == key) break;
+          parent = target;
+          if (target.key < key) target = target.right;
+          else target = target.left;
+        }
+        if (target == null) return root;
+        
+        // delete target
+        // if target has no child
+        if (target.left == null && target.right == null) {
+          if (parent.left == target) {
+            parent.left = null;
+          } else {
+            parent.right = null;
+          }
+        }
+        // if target has only one child
+        else if (target.left == null || target.right == null) {
+          TreeNode child = target.left == null ? target.right : target.left;
+          if (parent.left == target) parent.left = child;
+          else parent.right = child;
+        } 
+        // if target has two children, use target's right min as new target, and recursively delete it
+        else {
+          // find rightMin node of target
+          TreeNode rightMin = target.right;
+          while (rightMin.left != null) {
+            rightMin = rightMin.left;
+          }
+          // put rightMin at the position of target
+          TreeNode newNode = new TreeNode(rightMin.key);
+          newNode.left = target.left;
+          newNode.right = delete(target.right, newNode.key);
+          if (parent.left == target) parent.left = newNode;
+          else parent.right = newNode;
+        }
+        return dummy.right;
+      }
+    }
+```
 
 
 
