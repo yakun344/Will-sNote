@@ -174,6 +174,12 @@ String 的常见问题可以归纳为如下几类：
 两种方法，iterative 或者 recursion。
 2, [LeetCode: Reverse Words in a String](https://leetcode.com/problems/reverse-words-in-a-string/description/)  
 稍微复杂，解答见 [笔记](https://will-gxz.gitbooks.io/xiaozheng_algo/content/string-manipulation/reverse-words-in-a-string.html)
+<br>
+#### 7. Shuffling
+```
+    input:  ABCDE12345
+    output: A1B2C3D4E5
+```
 
 
  
