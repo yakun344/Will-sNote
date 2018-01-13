@@ -25,5 +25,8 @@ showing the four bits relevant in this case). So the answer will be:
 2. Length of the array will not exceed 10^4.
 
 #### Basic Idea:
-&emsp; 首先，用两层 for loop 对每一对 Integer, 计算他们的 Hamming Distance 然后加起来，但是这样做的时间复杂度会是 `O(31 * n^2)`.    
-&emsp; 经过观察，我们可以进行优化：对每一位，我们检查所有Integer在该位是 0 还是 1，统计 1 和 0 的个数，然后对于这一位，产生的 Hamming Distance 就是 `0 的个数 * 1 的个数`，这样，总的时间复杂度就成为了 `O(31 * n)`;
+&emsp; 首先，用两层 for loop 对每一对 Integer, 计算他们的 Hamming Distance 然后加起来，但是这样做的时间复杂度会是 `O(32 * n^2)`.    
+&emsp; 经过观察，我们可以进行优化：对每一位，我们检查所有Integer在该位是 0 还是 1，统计 1 和 0 的个数，然后对于这一位，产生的 Hamming Distance 就是 `0 的个数 * 1 的个数`，这样，总的时间复杂度就成为了 `O(32 * n)`;
+
+##### Java Code:
+```java
