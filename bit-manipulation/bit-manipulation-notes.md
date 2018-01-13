@@ -55,6 +55,18 @@ class Solution(object):
       }
     }
 ```
+<br>
+#### 4. Reverse Integer
+[LeetCode: Reverse Integer](https://leetcode.com/problems/reverse-integer/description/)   
+两种思路，一种是用两个指针指向左右，如果左右不同则建一个只有这两位为 1 的 mask，然后与其 xor，例如：
+```
+    input:                1001 0110
+    对于第 0 位和 -1 位:    l->   <-r
+    两位不同，生成mask：     1000 0001
+    XOR:                  0001 0111
+    然后 l 和 r 向中间逼近
+```
+
 
 
 
