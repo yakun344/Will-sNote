@@ -229,6 +229,7 @@
   * [Maximum XOR of Two Numbers in an Array](bit-manipulation/maximum-xor-of-two-numbers-in-an-array.md)
   * [Single Number II](chapter1/single-number-ii.md)
   * [Single Number III](bit-manipulation/single-number-iii.md)
+  * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](math-problems/implement-sqrtx.md)
