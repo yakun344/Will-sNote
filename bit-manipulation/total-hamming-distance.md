@@ -30,3 +30,21 @@ showing the four bits relevant in this case). So the answer will be:
 
 ##### Java Code:
 ```java
+class Solution {
+    public int totalHammingDistance(int[] nums) {
+        int distance = 0;
+        for (int i = 0; i < 32; ++i) {
+            int num0 = 0, num1 = 0;
+            for (int num : nums) {
+                if (((1<<i) & num) == 0) {
+                    num0++;
+                } else {
+                    num1++;
+                }
+            }
+            distance += num0 * num1;
+        }
+        return distance;
+    }
+}
+```
