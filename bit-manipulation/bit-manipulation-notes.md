@@ -42,8 +42,19 @@ class Solution(object):
 #### 3. Determine If a String Contains Unique Characters
 之前的思路是用一个HashSet，或者用一个 `int[26]`。用 bit manipulation 的思路，也可以直接用一个 int 的每个 bit 来表示一个字母。  
 ```java
-
-
+    public class Solution {
+      public boolean allUnique(String word) {
+        int[] bitVector = new int[8];
+        for (char c : word.toCharArray()) {
+          int group = c / 32;
+          int index = c % 32;
+          if ((bitVector[group] >> index & 1) == 1) return false;
+          else bitVector[group] |= (1 << index);
+        }
+        return true;
+      }
+    }
+```
 
 
 
