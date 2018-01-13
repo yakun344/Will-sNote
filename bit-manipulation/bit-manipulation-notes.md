@@ -40,7 +40,9 @@ class Solution(object):
 只要 `countBit(a ^ b)` 就可以了。xor 可以得到所有两个数不同的位都为 1 的一个数，然后计算这个数中 1 的个数。
 <br>
 #### 3. Determine If a String Contains Unique Characters
-之前的思路是用一个HashSet，或者用一个 `int[26]`。用 bit manipulation 的思路，也可以直接用一个 int 的每个 bit 来表示一个字母。
+之前的思路是用一个HashSet，或者用一个 `int[26]`。用 bit manipulation 的思路，也可以直接用一个 int 的每个 bit 来表示一个字母。  
+```java
+
 
 
 
