@@ -35,4 +35,6 @@ class Solution(object):
         return False if n <= 0 else n & (n - 1) == 0
 ```
 <br>
-#### 2.
+#### 2. Count the Number of Bits That Are Different
+[leetcode: Hamming Distance](https://leetcode.com/problems/hamming-distance/description/)  
+只要 `countBit(a ^ b)` 就可以了。xor 可以得到所有两个数不同的位都为 1 的一个数，然后计算这个数中 1 的个数。
