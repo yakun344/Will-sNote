@@ -42,6 +42,7 @@ class Solution(object):
 #### 3. Determine If a String Contains Unique Characters
 之前的思路是用一个HashSet，或者用一个 `int[26]`。用 bit manipulation 的思路，也可以直接用一个 int 的每个 bit 来表示一个字母。如果所面对的不只是26长度的字母，而是长度为256的ASCII码，则可以用一个 `int[8] bitVector`, 相当于把 256 个 bit 分成 8 个 group，每个 integer 代表 32 个 bits；
 ```java
+    // 判断输入 word 是否只包含 unique 的 ASCII 字符。
     public class Solution {
       public boolean allUnique(String word) {
         int[] bitVector = new int[8];
