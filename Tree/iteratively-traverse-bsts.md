@@ -102,7 +102,29 @@ Postorder 是最复杂的，有两种实现方法，一种用两个stack，另�
 ___
 _update Jan 14,2018  0:59_
 
-### Update
+### Update 
+**Postorder traversal, two stacks solution**  
+
+代码比较简单，但是不太好描述，可以画图理解。
+```java
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        Deque<TreeNode> stack1 = new LinkedList<>();
+        Deque<TreeNode> stack2 = new LinkedList<>();
+        List<Integer> res = new ArrayList<>();
+        if (root == null) return res;
+        stack1.offerFirst(root);
+        while (! stack1.isEmpty()) {
+            TreeNode curr = stack1.pollFirst(); // 这里是关键，每次将当前1栈顶移到2栈
+            stack2.offerFirst(curr);
+            if (curr.left != null) stack1.offerFirst(curr.left);
+            if (curr.right != null) stack1.offerFirst(curr.right);
+        }
+        while (! stack2.isEmpty()) res.add(stack2.pollFirst().val);
+        return res;
+    }
+}
+```
 
 
 
