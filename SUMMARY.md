@@ -232,6 +232,7 @@
   * [Single Number III](bit-manipulation/single-number-iii.md)
   * [Total Hamming Distance](bit-manipulation/total-hamming-distance.md)
   * [Reverse Integer](bit-manipulation/reverse-integer.md)
+  * [Convert a Number to Hexadecimal](bit-manipulation/convert-a-number-to-hexadecimal.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](math-problems/implement-sqrtx.md)
