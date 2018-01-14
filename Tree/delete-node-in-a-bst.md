@@ -192,7 +192,7 @@ class Solution:
 _update Dec 25, 2017  20:28_
 
 ### Update
-还是要建立分模块设计的思想。比如这道题，另外写两个函数 `findRightMin(), findNode()`，可以令主函数 `remove()` 更加易读，写的时候也方便。
+还是要建立分模块设计的思想。比如这道题，另外写两个函数 `findRightMin(), findNode()`，可以令主函数 `remove()` 更加易读，写的时候也方便。另外注意一点，当待删除节点左右都有孩子的时候，选择用 leftMax 或者 rightMin 替换都可以。
 
 实现的时候，先考虑target node没有孩子的情况，再考虑有两个孩子的情况，再考虑只有一个孩子的情况，这样写逻辑最简单。另外写一个 `remove(parent, node)` 是为了处理待删除点是 root 的情况。
 
