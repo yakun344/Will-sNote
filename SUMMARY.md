@@ -231,6 +231,7 @@
   * [Single Number II](chapter1/single-number-ii.md)
   * [Single Number III](bit-manipulation/single-number-iii.md)
   * [Total Hamming Distance](bit-manipulation/total-hamming-distance.md)
+  * [Reverse Integer](bit-manipulation/reverse-integer.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Implement Sqrt\(x\)](math-problems/implement-sqrtx.md)
