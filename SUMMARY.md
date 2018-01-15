@@ -162,6 +162,7 @@
   * [Task Scheduler](datastructure-problems/task-scheduler.md)
   * [Contains Duplicate III](datastructure-problems/contains-duplicate-iii.md)
   * [Design Hit Counter](datastructure-problems/design-hit-counter.md)
+  * [Find K Pairs with Smallest Sums](datastructure-problems/find-k-pairs-with-smallest-sums.md)
 * [DFS](dfs/dfs.md)
   * [DFS notes](dfs/DFS-notes.md)
   * [Permutation & Combination & Subsets](dfs/permutation-and-combination/permutation-and-combination.md)
