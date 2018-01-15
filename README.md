@@ -6,7 +6,7 @@ This book is for people who want to learn some basic Algorithms and Datastructur
 
 <br>
 
-&emsp; _Language: Java 8 / Python 2.7_
+&emsp; _Language: Java 8 / Python (2 or 3)_
 
 &emsp; _Xiaozheng_ &emsp;_E\_mail: xguo.tufts@gmail.com_
 
