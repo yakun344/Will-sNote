@@ -38,3 +38,14 @@ Find the k pairs (u1,v1),(u2,v2) ...(uk,vk) with the smallest sums.
 <br>
 
 ### Basic Idea
+基本思想就是
+
+
+
+
+
+
+
+
+
+
