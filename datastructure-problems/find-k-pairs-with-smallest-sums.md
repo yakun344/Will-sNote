@@ -44,44 +44,38 @@ Find the `k` pairs `(u1,v1),(u2,v2) ...(uk,vk)` with the smallest sums.
 #### Java Code:
 ```java
 class Solution {
-    // 定义一个 inner class Pair 表示存入 PriorityQueue 的元素格式
     private class Pair {
-        int[] index;
-        long sum;
-        Pair(int index1, int index2, long sum) {
-            this.sum = sum;
-            this.index = new int[] {index1, index2};
+        int x, y;
+        Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
     }
-    
+
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> res = new ArrayList<>();
-        if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) {
-            return res;
-        }
-        // matain a minHeap, BFS2 algorithm
+        if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) return res;
+        PriorityQueue<Pair> pq = new PriorityQueue<>((p1, p2) -> 
+                                                  Integer.compare(nums1[p1.x] + nums2[p1.y], nums1[p2.x] + nums2[p2.y]));
         boolean[][] visited = new boolean[nums1.length][nums2.length];
-        PriorityQueue<Pair> pq = new PriorityQueue<>((Pair p1, Pair p2) -> Long.compare(p1.sum, p2.sum));
-        pq.offer(new Pair(0, 0, nums1[0] + nums2[0]));
-        visited[0][0] = true;
-        while (! pq.isEmpty() && res.size() < k) {
+        pq.offer(new Pair(0, 0));
+        while (res.size() < k && ! pq.isEmpty()) {
             Pair currMin = pq.poll();
-            int i1 = currMin.index[0], i2 = currMin.index[1];
-            res.add(new int[] {nums1[i1], nums2[i2]});
-            if (i1 < nums1.length - 1 && ! visited[i1 + 1][i2]) {
-                pq.offer(new Pair(i1 + 1, i2, nums1[i1 + 1] + nums2[i2]));
-                visited[i1 + 1][i2] = true;
+            int x = currMin.x, y = currMin.y;
+            res.add(new int[] {nums1[x], nums2[y]});
+            if (x + 1 < nums1.length && ! visited[x + 1][y]) {
+                pq.offer(new Pair(x + 1, y));
+                visited[x + 1][y] = true;
             }
-            if (i2 < nums2.length - 1 && ! visited[i1][i2 + 1]) {
-                pq.offer(new Pair(i1, i2 + 1, nums1[i1] + nums2[i2 + 1]));
-                visited[i1][i2 + 1] = true;
+            if (y + 1 < nums2.length && ! visited[x][y + 1]) {
+                pq.offer(new Pair(x, y + 1));
+                visited[x][y + 1] = true;
             }
         }
         return res;
     }
 }
 ```
-
 
 
 
