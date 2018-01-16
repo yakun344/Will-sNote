@@ -20,7 +20,7 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
   *  一共有三层 dfs，每层考虑该位置的元素是否包含；
   *  每层有两个分支，即包含或者不包含；
 
-**时间复杂度** 为 `O(2^n)`, 因为一共有 n 层，每层每次拓展出 2 个分支；
+**时间复杂度** 为 `O(2 * 2^n) = O(2^n)`, 因为一共有 n 层，每层每次拓展出 2 个分支， 即这种方法所搜索的隐式图中共有 `2 * 2^n` 个节点；
 
 以上的两种情况可以由如下方式来表示：
 ```
@@ -30,7 +30,7 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 ```
 即有三层dfs，分别对应 `'a', 'b', 'c'`，每层中又有两个分支，分别对应 `0, 1` 即包含或者不包含当前字符。
 
-于是，根据之前的表示法，我们可以对有重复元素的 input set 进行表示, 例如input：{'a', 'b', 'b', 'b', 'c'}：
+于是，根据之前的表示法，我们可以对有重复元素的 input set 进行表示, 例如input：`{'a', 'b', 'b', 'b', 'c'}`：
 ```
      'a' 'b' 'c'
       0   0   0
@@ -57,7 +57,10 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
  
  每次进入下层递归会先check当前路径，这个操作相当于是在该层一个数字都不选，即为上图中每层的空元素。
 ```
-但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。但是在做 [CombinationSum II](https://leetcode.com/problems/combination-sum-ii/description/)的时候，我发现这种方法在去重的时候更加容易。如果用之前那种每层代表一个元素是否选取的方法，去重就很不方便。但是用这种方法，我们只需要保证每层中都只选择一组重复元素中的第一位就可以了。（[CombinationSum II 的笔记](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum-ii.html)）
+&emsp; **时间复杂度分析：**  
+&emsp; 这种思路时间复杂度就是 `O(2^n)`，因为这种方法所搜索的隐式图中只有 `2^n` 个节点，比之前一种要快。
+
+&emsp; 但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。但是在做 [CombinationSum II](https://leetcode.com/problems/combination-sum-ii/description/)的时候，我发现这种方法在去重的时候更加容易。如果用之前那种每层代表一个元素是否选取的方法，去重就很不方便。但是用这种方法，我们只需要保证每层中都只选择一组重复元素中的第一位就可以了。（[CombinationSum II 的笔记](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum-ii.html)）
 
 <br>
 
