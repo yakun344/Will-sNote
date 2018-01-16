@@ -51,7 +51,6 @@ class Solution {
             this.y = y;
         }
     }
-
     public List<int[]> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         List<int[]> res = new ArrayList<>();
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length == 0) return res;
