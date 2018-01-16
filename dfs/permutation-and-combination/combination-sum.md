@@ -119,7 +119,7 @@ public class Solution {
                      List<List<Integer>> res) {
         if (remainSum == 0 || pos == candidates.length) {
             if (remainSum == 0) {
-                // convert times array to the appearence of each element
+                // convert times array to the occurrence of each element
                 List<Integer> lst = new ArrayList<>();
                 for (int i = 0; i < times.length; ++i) {
                     for (int k = 0; k < times[i]; ++k) {
