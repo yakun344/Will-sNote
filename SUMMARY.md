@@ -101,6 +101,7 @@
   * [Shortest Word Distance II](linkedlist-and-array/shortest-word-distance-ii.md)
   * [Reorder List](linkedlist-and-array/Reorder-List.md)
   * [Permutation in String](linkedlist-and-array/permutation-in-string.md)
+  * [Reverse Linked List in Pairs](linkedlist-and-array/reverse-linked-list-in-pairs.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
   * [Find Right Interval](binary-search/find-right-interval.md)
