@@ -24,6 +24,8 @@ Find the contiguous subarray within an array (containing at least one number) wh
     Base Case:
         maxProduct[0] = nums[0];
         minProduct[0] = nums[0];
+        
+    其中 maxProduct, minProduct 两个数组中的element i 表示包含 nums[i] 在内的最大（小）乘积；
 ```
 
 &emsp; 时间复杂度为 `O(n)`, 空间复杂度 `O(n)`； 空间可以被优化为 `O(1)`，因为每次都只会用到 `i-1` 位置的元素;
