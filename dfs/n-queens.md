@@ -51,6 +51,7 @@ class Solution {
     }
     
     // 对于每个row，考虑每个col能否放queen，如果可以，继续向下一个row dfs
+    // path 中存放的是每个 row 放置queen的 col 的值 (0 to n-1) 
     private void dfs(List<List<Integer>> res, int row, List<Integer> path, int n) {
         if (row == n) {
             res.add(new ArrayList<>(path));
