@@ -228,6 +228,7 @@
   * [Number of Longest Increasing Subsequence](dynamic-programming/number-of-longest-increasing-subsequence.md)
   * [Coin Change](dynamic-programming/coin-change.md)
   * [Coin Change 2](dynamic-programming/coin-change-2.md)
+  * [Climbing Stairs](dynamic-programming/climbing-stairs.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
