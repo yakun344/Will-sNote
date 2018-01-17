@@ -28,3 +28,29 @@ Once you pay the cost, you can either climb one or two steps. You need to find m
 <br>
 
 ### Basic Idea:
+&emsp; 这道题可以算作是 [Climbing Stairs](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dynamic-programming/climbing-stairs.html) 的 follow up，虽然同属于 easy，但难度的确要高一些，考虑的内容也略有不同。
+
+&emsp; 思路上自然也是使用 DP，因为问题所涉及到的是一个一维input array的最大最小值问题，优先考虑DP。我们注意到对于到达某个位置 i 所需要的 cost：`dp[i]` 可以用到达它之前一步或者两步位置的最小cost来表示，即我们可以有如下 induction rule:
+```java
+    Induction Rule:
+        dp[i] = min{ dp[i-2]+cost[i-2], dp[i-1]+cost[i-1] }
+    Base Case:
+        dp[0] = 0, dp[1] = 0, 因为可以从 0-th 或者 1-th 出发
+```
+时间复杂度也是 `O(n)`, 因为只需要一次 linear scan，空间复杂度 `O(n)`, 可以优化为 `O(1)`;
+
+### Java Code:
+```java
+
+
+
+
+
+
+
+
+
+
+
+
+        
