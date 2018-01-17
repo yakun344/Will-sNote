@@ -11,4 +11,16 @@ Reverse pairs of elements in a singly-linked list.
     L = 1 -> 2 -> null, after reverse is 2 -> 1 -> null
     L = 1 -> 2 -> 3 -> null, after reverse is 2 -> 1 -> 3 -> null
     
-### 
+### Basic Idea:
+利用递归的思路可以比较轻易的完成，如下图所示：
+```
+    input：
+      1 -> 2 -> 3 -> 4 -> 5 -> 6 -> ... -> null
+    将第三个node及其之后看做子问题：
+               |____________________________|
+      1-> 2 -> | 3 -> 4 -> 5 -> ... -> null |
+               |----------------------------|
+```
+
+### Java Code:
+```java
