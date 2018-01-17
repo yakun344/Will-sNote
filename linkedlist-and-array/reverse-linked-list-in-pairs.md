@@ -24,13 +24,14 @@ Your algorithm should use only constant space. You may not modify the values in 
 
 ### Java Code:
 ```java
-public class Solution {
-  public ListNode reverseInPairs(ListNode head) {
-    if (head == null || head.next == null) return head;
-    ListNode newHead = head.next;
-    head.next = reverseInPairs(newHead.next);
-    newHead.next = head;
-    return newHead;
-  }
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode nextHead = head.next.next;
+        ListNode newHead = head.next;
+        newHead.next = head;
+        head.next = swapPairs(nextHead);
+        return newHead;
+    }
 }
 ```
