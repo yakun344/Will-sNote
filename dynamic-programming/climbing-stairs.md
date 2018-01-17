@@ -31,7 +31,20 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
         3. 2 steps + 1 step
         
 ### Basic Idea:
-使用 DP 的思路考虑，到达第 i 阶的可能步数 `dp[i] = dp[i - 1] + dp[i - 2]`, 即等于这次通过一步或者两步到达这里的起始点的最多步数和；
+使用 DP 的思路考虑，到达第 i 阶的可能步数 `dp[i] = dp[i - 1] + dp[i - 2]`, 即等于这次通过一步或者两步到达这里的起始点的最多步数和；时间复杂度 `O(n)`, 因为只是一次 linear scan，空间复杂度 `O(n)`, 可以优化到 `O(1)`;
 
 #### Pyhton3 Code:
 ```python
+class Solution:
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
+        return dp[n]
+```
