@@ -250,6 +250,7 @@
   * [Drop Eggs](other-problems/drop-eggs.md)
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
+  * [Spiral Matrix II](other-problems/spiral-matrix-ii.md)
 
 ## Operating System
 
