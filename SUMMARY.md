@@ -84,7 +84,7 @@
   * [Reverse Linked List II](linkedlist-and-array/reverse-linked-list-ii.md)
   * [Partition List](linkedlist-and-array/partition-list.md)
   * [Sort List](linkedlist-and-array/sort-list.md)
-  * [Reverse Linked List in Pairs](linkedlist-and-array/reverse-linked-list-in-pairs.md)
+  * [Swap Nodes in Pairs \(reverse Linked List in Pairs\) ](linkedlist-and-array/reverse-linked-list-in-pairs.md)
   * [Reverse Nodes in k-Group](linkedlist-and-array/reverse-nodes-in-k-group.md)
   * [Add Two Numbers II](linkedlist-and-array/add-two-numbers-ii.md)
   * [Remove Duplicates from Sorted Array](linkedlist-and-array/remove-duplicates-from-sorted-array.md)

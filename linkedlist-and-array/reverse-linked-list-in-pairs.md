@@ -1,15 +1,14 @@
-## Reverse Linked List in Pairs
+## Swap Nodes in Pairs
 _update Jan 17,2018 1:15_
 
 ---
-Reverse pairs of elements in a singly-linked list.
+Given a linked list, swap every two adjacent nodes and return its head.
 
-**Examples**
+**For example,**
 
-    L = null, after reverse is null
-    L = 1 -> null, after reverse is 1 -> null
-    L = 1 -> 2 -> null, after reverse is 2 -> 1 -> null
-    L = 1 -> 2 -> 3 -> null, after reverse is 2 -> 1 -> 3 -> null
+    Given 1->2->3->4, you should return the list as 2->1->4->3.
+
+Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
     
 ### Basic Idea:
 利用递归的思路可以比较轻易的完成，如下图所示：
@@ -21,6 +20,7 @@ Reverse pairs of elements in a singly-linked list.
       1-> 2 -> | 3 -> 4 -> 5 -> ... -> null |
                |----------------------------|
 ```
+但是这种写法会消耗`O(n)`space，因为 call stack 的问题，执行顺序最先被reverse的其实是最右端的两个，然后逐层返回。
 
 ### Java Code:
 ```java
