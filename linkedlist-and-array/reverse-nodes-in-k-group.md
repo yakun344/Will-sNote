@@ -136,3 +136,59 @@ class Solution:
         }
     }
 ```
+
+<br>
+
+---
+_udpate Jan 17,2018  11:54_
+
+### Update (Recursion Solution)
+严格上讲，这种 recursion 的解法是不符合 constant space 的要求的，但是这种写法更为简单，所以也提供一下。基本思路就是每次reverse完一组 k 个 nodes 之后，将其后的部分视作一个子问题，然后递归求解。
+<br>
+#### Java Code:
+```java
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode kth = getKth(head, k);
+        if (kth == null) return head;
+        ListNode nextHead = kth.next;
+        kth.next = null;
+        reverse(head); 
+        // kth is the new head, head is now the tail
+        head.next = reverseKGroup(nextHead, k);
+        return kth;
+    }
+    
+    // get the k-th node, include head
+    private ListNode getKth(ListNode head, int k) {
+        int count = 1;
+        ListNode curr = head;
+        while (count < k && curr != null) {
+            curr = curr.next;
+            count++;
+        }
+        return curr;
+    }
+    
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+}
+```
+
+
+
+
+
+
+
+
