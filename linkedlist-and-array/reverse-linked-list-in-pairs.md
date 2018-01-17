@@ -24,3 +24,13 @@ Reverse pairs of elements in a singly-linked list.
 
 ### Java Code:
 ```java
+public class Solution {
+  public ListNode reverseInPairs(ListNode head) {
+    if (head == null || head.next == null) return head;
+    ListNode newHead = head.next;
+    head.next = reverseInPairs(newHead.next);
+    newHead.next = head;
+    return newHead;
+  }
+}
+```
