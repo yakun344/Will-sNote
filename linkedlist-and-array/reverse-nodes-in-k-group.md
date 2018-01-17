@@ -86,55 +86,56 @@ class Solution:
 ```
 
 #### Java Code:
+这种写法和之前的python写法不同。这里每次先将当前段的 k 个nodes与之后部分断开，然后调用reverse，再将其和前后重新连接，逻辑更加清晰；
 ```java
-    public class Solution {
-        /*
-         * @param head: a ListNode
-         * @param k: An integer
-         * @return: a ListNode
-         */
-        public ListNode reverseKGroup(ListNode head, int k) {
-            ListNode dummy = new ListNode(0);
-            dummy.next = head;
-            ListNode preHead = dummy;
-            while (true) {
-                ListNode nextPreHead = preHead.next;
-                ListNode kth = getKth(preHead.next, k);
-                if (kth == null) break;
-                reverse(preHead, kth);
-                preHead = nextPreHead;
-            }
-            return dummy.next;
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode start = head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prevStart = dummy;
+
+        while (true) {
+            ListNode kth = getKth(start, k);
+            if (kth == null) break;
+            // 记录下一段的head，断开kth.next
+            ListNode nextStart = kth.next;
+            kth.next = null;
+            // 链接上一段和这一段reverse之后的新head，新head是kth
+            prevStart.next = kth;
+            reverse(start);
+            // reverse 之后，kth为新head，之前的start为tail
+            prevStart = start;
+            start.next = nextStart;
+            start = nextStart;
         }
-        
-        private ListNode getKth(ListNode head, int k) {
-            if (head == null) return head;
-            for (int i = 1; i < k; ++i) {
-                head = head.next;
-                if (head == null) return null;
-            }
-            return head;
-        }
-        
-        private void reverse(ListNode preHead, ListNode tail) {
-            if (preHead.next == tail) return;
-            ListNode tailNext = tail.next;
-            ListNode head = preHead.next;
-            
-            ListNode prev = head;
-            ListNode curr = head.next;
-            ListNode next = null;
-            while (curr != tailNext) {
-                next = curr.next;
-                curr.next = prev;
-                prev = curr;
-                curr = next;
-            }
-            
-            head.next = tailNext;
-            preHead.next = tail;
-        }
+        return dummy.next;
     }
+    
+    // get the k-th node, include head
+    private ListNode getKth(ListNode head, int k) {
+        int count = 1;
+        ListNode curr = head;
+        while (count < k && curr != null) {
+            curr = curr.next;
+            count++;
+        }
+        return curr;
+    }
+    
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        ListNode next = null;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+}
 ```
 
 <br>
