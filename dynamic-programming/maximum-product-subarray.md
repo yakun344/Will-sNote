@@ -18,9 +18,15 @@ Find the contiguous subarray within an array (containing at least one number) wh
 &emsp; 我们有如下 induction rule：
 ```java
     Induction Rule:
-        maxProduct[i] = max{ maxProduct[i-1] * nums[i], minProduct[i-1] * nums[i] };
-        minProduct[i] = min{ maxProduct[i-1] * nums[i], minProduct[i-1] * nums[i] };
+        maxProduct[i] = max{ maxProduct[i-1] * nums[i], minProduct[i-1] * nums[i], nums[i] };
+        minProduct[i] = min{ maxProduct[i-1] * nums[i], minProduct[i-1] * nums[i], nums[i] };
     
     Base Case:
-        
+        maxProduct[0] = nums[0];
+        minProduct[0] = nums[0];
 ```
+
+&emsp; 时间复杂度为 `O(n)`, 空间复杂度 `O(n)`； 空间可以被优化为 `O(1)`，因为每次都只会用到 `i-1` 位置的元素;
+
+#### Java Code:
+```java
