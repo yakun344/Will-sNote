@@ -136,7 +136,7 @@
   * [Palindrome Permutation](string-manipulation/palindrome-permutation.md)
   * [Remove Duplicate Letters （hard）](string-manipulation/remove-duplicate-letters-hard.md)
   * [Reverse Words in a String](string-manipulation/reverse-words-in-a-string.md)
-* [Random](random.md)
+* [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
