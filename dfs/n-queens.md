@@ -39,8 +39,63 @@ Each solution contains a distinct board configuration of the n-queens' placement
 &emsp; 空间的话，recursion 的 call stack 最大深度为 N，如果不考虑储存和处理解集的空间，整个空间复杂度应该是 `O(N)`;
 
 #### Java Code:
-```java
+由于题目要求的返回值是一个 `List<List<String>>` ，而对于每一个棋盘，我们认为 `List<Integer>` 更加容易进行判断当前col放queen是否会影响到之前，所以我们的dfs只会将结果存储在一个 `List<List<Integer>>` 中，然后另外用一个 `drawChessboard()` 来将解转化为所需要的return value;
 
+```java
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<Integer>> lst = new ArrayList<>();
+        dfs(lst, 0, new ArrayList<>(), n);
+        List<List<String>> res = drawChessboard(lst, n);
+        return res;
+    }
+    
+    // 对于每个row，考虑每个col能否放queen，如果可以，继续向下一个row dfs
+    private void dfs(List<List<Integer>> res, int row, List<Integer> path, int n) {
+        if (row == n) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        // consider each col
+        for (int col = 0; col < n; ++col) {
+            if (isValid(path, row, col, n)) {
+                path.add(col);
+                dfs(res, row + 1, path, n);
+                path.remove(path.size() - 1);
+            }
+        }
+    }
+    
+    // 判断当前 row，col 位置放 queen 的话会不会影响到之前的 row
+    private boolean isValid(List<Integer> path, int row, int col, int n) {
+        int k = 1;
+        while (k <= row) {
+            int queen = path.get(row - k);
+            if (queen == col || queen == col - k || queen == col + k) return false;
+            k++;
+        }
+        return true;
+    }
+    
+    // 将用数字表示每行queen位置的所有解转化为string的二维list形式
+    private List<List<String>> drawChessboard(List<List<Integer>> lst, int n) {
+        List<List<String>> ret = new ArrayList<>();
+        for (List<Integer> intList : lst) {
+            List<String> stringList = new ArrayList<>();
+            for (int queenPos : intList) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < n; ++i) {
+                    if (i != queenPos) sb.append(".");
+                    else sb.append("Q");
+                }
+                stringList.add(sb.toString());
+            }
+            ret.add(stringList);
+        }
+        return ret;
+    } 
+}
+```
 
 
 
