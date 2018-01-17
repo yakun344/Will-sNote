@@ -13,7 +13,7 @@ Reverse pairs of elements in a singly-linked list.
     
 ### Basic Idea:
 利用递归的思路可以比较轻易的完成，如下图所示：
-```
+```java
     input：
       1 -> 2 -> 3 -> 4 -> 5 -> 6 -> ... -> null
     将第三个node及其之后看做子问题：
