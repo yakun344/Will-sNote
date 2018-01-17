@@ -38,6 +38,9 @@ Each solution contains a distinct board configuration of the n-queens' placement
 &emsp; 整个算法如果是 brute force 解，求出所有可能的组合再判断是否 valid，需要 `O(N^N)` 的时间复杂度，因为在每一个 row，都需要考虑 N 个 col 的情况。但是因为我们可以每次判断当前 col 能否放置 queen，相当于在搜索的过程中进行了剪枝，所以我们至少可以将时间复杂度优化为 `O(N!)` (即不考虑之前放置过queen的col，所以每次可选col数量递减1)； 因为我们还剪掉了斜线上的情况，所以最后的时间复杂度应该是优于 `O(N!)`；  
 &emsp; 空间的话，recursion 的 call stack 最大深度为 N，如果不考虑储存和处理解集的空间，整个空间复杂度应该是 `O(N)`;
 
+#### Java Code:
+```java
+
 
 
 
