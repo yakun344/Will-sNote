@@ -28,7 +28,7 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
 另一种思路是跟踪左边最小值，沿途记录最大差。**这种思路更通用。**
 
 **DP 思路的思考：**
-假设dp[i]为第 i 天的最大利润，则在第 i 天有两种选择，即卖掉股票和已经卖掉股票，由此我们可以得到状态转移方程：`dp[i] = max{ dp[i-1], prices[i]-minPrices }`，其中minPrices为第 i 天之前的买点。之前的方法可以视为对dp的优化。
+假设dp[i]为第 i 天的最大利润，则在第 i 天有两种选择，即在当天卖掉之前所有天中最低价买入的股票和在这之前已经卖掉股票(`dp[i-1]`)，由此我们可以得到状态转移方程：`dp[i] = max{ dp[i-1], prices[i]-minPrices }`，其中minPrices为第 i 天之前的买点。之前的方法可以视为对dp的优化。
 
 代码如下：
 ```java
