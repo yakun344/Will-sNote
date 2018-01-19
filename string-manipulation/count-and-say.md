@@ -33,3 +33,4 @@ Each term of the sequence of integers will be represented as a string.
 <br>
 
 ### Basic Idea:
+解法就是按照之前一次的结果，从左到右数相同元素的个数，生成新的结果，再往复继续。
