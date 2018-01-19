@@ -20,4 +20,24 @@ The minimum number of jumps to reach the last index is 2. (Jump 1 step from inde
 
 You can assume that you can always reach the last index.
 
+<br>
+
 ### Basic Idea:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
