@@ -16,48 +16,50 @@ HashCode 计算方法：
 
 #### Java Code:
 ```java
-    public class Solution {
-        /**
-         * @param source a source string
-         * @param target a target string
-         * @return an integer as index
-         */
-        public int strStr2(String source, String target) {
-            if (source == null || target == null) return -1;
-            if (target.length() == 0) return 0;
-            int BASE = (int)10e6;
-            // 计算target的hashCode
-            int pattern = 0;
-            for (int i = 0; i < target.length(); ++i) {
-                pattern = (pattern * 31 + target.charAt(i)) % BASE;
-            }
-            // 用sliding window的思路更新window内string的hashcode，和pattern比较
-            int left = 0, right = 0;
-            int window = 0; // window hashcode
-            // 计算移除left时要减去的字符所乘系数
-            int fact = 1;
-            for (int i = 0; i < target.length(); ++i) {
-                fact = (fact * 31) % BASE;
-            }
-            while (right < source.length()) {
-                // 更新right
-                window = (window * 31 + source.charAt(right)) % BASE;
-                // 如有必要，移动left，维持window size
-                if (right - left + 1 > target.length()) {
-                    window = window - (source.charAt(left) * fact) % BASE;
-                    if (window < 0) window += BASE;
-                    left++;
-                }
-                // 判断
-                if (window == pattern) {
-                    if (source.substring(left, right + 1).equals(target)) {
-                        return left;
-                    }
-                }
-                // 移动right
+class Solution {
+    private final int BASE = 1000000;
+    public int strStr(String haystack, String needle) {
+        if (haystack == null || needle == null) return -1;
+        else if (needle.length() == 0) return 0;
+        
+        int targetCode = getHashCode(needle);
+        int factor = getFactor(needle.length());
+        
+        // sliding window
+        int left = 0, right = -1, windowCode = 0;
+        while (right < haystack.length()) {
+            while (right - left + 1 < needle.length()) {
                 right++;
+                if (right == haystack.length()) return -1;
+                windowCode = (windowCode * 31 + haystack.charAt(right) % 31) % BASE;
             }
-            return -1;
+            if (windowCode == targetCode) {
+                if (haystack.substring(left, right + 1).equals(needle)) return left;
+            }
+            // move left pointer
+            windowCode = windowCode - (haystack.charAt(left) % 31 * factor) % BASE;
+            if (windowCode < 0) windowCode += BASE;
+            left++;
         }
-    }  
+        return -1;
+    }
+    
+    // calculate the hashcode of needle
+    private int getHashCode(String target) {
+        int code = 0;
+        for (int i = 0; i < target.length(); ++i) {
+            code = (code * 31 + target.charAt(i) % 31) % BASE;
+        }
+        return code;
+    }
+    
+    // calculate the factor of the leftmost character in the window
+    private int getFactor(int windowSize) {
+        int factor = 1;
+        for (int i = 0; i < windowSize - 1; ++i) {
+            factor = factor * 31 % BASE;
+        }
+        return factor;
+    }
+}
 ```
