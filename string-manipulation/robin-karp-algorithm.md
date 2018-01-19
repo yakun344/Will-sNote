@@ -63,3 +63,19 @@ class Solution {
     }
 }
 ```
+
+<br>
+
+#### Addendum
+要特别注意右移 left pointer 缩小了 window 之后，将最左边字符产生的影响移出 windowCode 的方式：
+```java
+    windowCode = windowCode - (leftChar % 31 * factor) % BASE;
+    if (windowCode < 0) windowCode += BASE;
+```
+
+
+
+
+
+
+
