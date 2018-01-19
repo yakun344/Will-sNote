@@ -231,6 +231,7 @@
   * [Climbing Stairs](dynamic-programming/climbing-stairs.md)
   * [Min Cost Climbing Stairs](dynamic-programming/min-cost-climbing-stairs.md)
   * [Jump Game](dynamic-programming/jump-game.md)
+  * [Jump Game II](dynamic-programming/jump-game-ii.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
