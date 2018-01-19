@@ -38,10 +38,3 @@ Given a circular array (the next element of the last element is the first elemen
             return res
 ```
 
-<br>
-
-___
-_update Jan 19, 2018  9;49_
-
-### Update 
-#### Follow Up: Next Greater Element I
