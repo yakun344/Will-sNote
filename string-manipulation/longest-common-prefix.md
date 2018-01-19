@@ -5,7 +5,7 @@ _update Jun 29, 2017, 22:42:43_
 [leetcode](https://leetcode.com/problems/longest-common-prefix/#/solutions)
 Write a function to find the longest common prefix string amongst an array of strings.
 
-#### 思路：
+#### 思路 (排序比首尾)：
 首先想到的是用BFS解决 shortest path 的方法，即每次比较每个string的同一位置的character看是否相同，不同则返回当前res。但是这样还是比较慢，更好的方法是先按字典顺序排序各String,然后每次只要比较首末两个string。
 
 ##### BFS 的java code：
