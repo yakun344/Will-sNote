@@ -47,7 +47,7 @@ class Solution {
 ```
 <br>
 * #### Greedy Algorithm (AC):
-从左到右线性扫描，维持一个变量 right，表示当前可以 reach 的最右端的 index；如果当前遍历到的点 `i > right`, 说明当前位置 i 已经不可达，可以直接返回 false；如果任何时候 `right >= len(nums)`，说明已经可以到达终点，返回true；   
+从左到右线性扫描，维持一个变量 right 沿途更新，表示当前可以 reach 的最右端的 index；如果当前遍历到的点 `i > right`, 说明当前位置 i 已经不可达，可以直接返回 false；如果任何时候 `right >= len(nums)`，说明已经可以到达终点，返回true；   
 **Java Code:**  
 ```java
 class Solution {
