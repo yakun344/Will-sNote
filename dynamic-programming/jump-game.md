@@ -26,8 +26,7 @@ Determine if you are able to reach the last index.
     Base Case:
         dp[-1] = true, 即终点一定为true
 ```
-这种做法的时间复杂度为`O(n * k)`, k 为可能的步数，worst case 为 `O(n^2)`;  
-<br>
+这种做法的时间复杂度为`O(n * k)`, k 为可能的步数，worst case 为 `O(n^2)`;    
 **Java Code：**  
 ```java
 class Solution {
@@ -53,8 +52,7 @@ class Solution {
     if (i + nums[i] >= leftMostReachable)
         leftMostReachable = i;
 ```
-整体时间复杂度为 `O(n)`, 因为只做了因 linear scan；
-<br>
+整体时间复杂度为 `O(n)`, 因为只做了因 linear scan；  
 **Java Code:**  
 ```java
 class Solution {
