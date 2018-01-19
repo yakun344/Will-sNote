@@ -30,7 +30,7 @@ You can assume that you can always reach the last index.
         dp[i] = min{ dp[i + step] for step in (1 to nums[i]) } + 1;
     Base Case:
         dp[-1] = 0;
-```
+```  
 **Java Code:**
 ```java
 class Solution {
@@ -53,7 +53,7 @@ class Solution {
 ```
 <br>
 * #### BFS (TLE, MLE):
-我们可以把所有路径看做一个有向简单图，那么找最少步数的路径相当于找最短路径，所以我们可以使用一个BFS来做。但是由于BFS需要考虑每一条路径，而且还需要储存中间节点，导致时间和空间双双爆炸。  
+我们可以把所有路径看做一个有向简单图，那么找最少步数的路径相当于找最短路径，所以我们可以使用一个BFS来做。但是由于BFS需要考虑每一条路径，而且还需要储存中间节点，导致时间和空间双双爆炸。    
 **Java Code:**
 ```java
 class Solution {
