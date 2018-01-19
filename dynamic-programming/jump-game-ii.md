@@ -23,7 +23,11 @@ You can assume that you can always reach the last index.
 <br>
 
 ### Basic Idea:
-
+* #### DP Solution (TLE):
+从右往左进行dp，对于每个格子 `dp[i]`，考虑 `step from 1 to nums[i]` 的步数所到达的格子中步数最少的(minStep)，则  `dp[i] = minStep + 1`；
+```java
+    Induction Rule:
+        
 
 
 
