@@ -37,3 +37,33 @@ class Solution {
 }
 ```
 
+<br>
+
+---
+_update Jan 19,2018  11:07_
+
+### Update: Next Greater Element I
+这道题目和 II 相比，少了可以 search circularly，多了需要第二步用 HashMap 进行查找。 解法就是先对 nums2 求 NextGreaterElement，结果存入 HashMap, 然后对于每个 nums1 中元素，在map中查找其对应的 nextGreaterElement。
+
+**Java Code**:
+```java
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        Deque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < nums2.length; ++i) {
+            while (! stack.isEmpty() && nums2[stack.peekFirst()] < nums2[i]) {
+                map.put(nums2[stack.pollFirst()], nums2[i]);
+            }
+            stack.offerFirst(i);
+        }
+        int[] ret = new int[nums1.length];
+        for (int i = 0; i < nums1.length; ++i) {
+            Integer nge = map.get(nums1[i]);
+            ret[i] = nge == null ? -1 : nge;
+        }
+        return ret;
+    }
+}
+```
+
