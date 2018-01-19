@@ -15,7 +15,7 @@ Given a circular array (the next element of the last element is the first elemen
 **Note:** The length of given array won't exceed 10000.
 
 #### Basic Idea:
-利用 stack 来加速，实现O(n)的复杂度。先把第一个元素的下标加入stack，从左往右查看，如果遇到比当前peek所对应元素大的元素，则当前peek所对应位置的next greater element为当前遇到的元素，pop之后再和新的peek比较。直到当前element < nums[stack.peek()]，把当前element的下标push。
+利用 `stack` 来加速，实现`O(n)`的复杂度。先把第一个元素的下标加入`stack`，从左往右查看，如果遇到比当前`peek`所对应元素大的元素，则当前`peek`所对应位置的`next greater element`为当前遇到的元素，`pop`之后再和新的`peek`比较。直到当前`element < nums[stack.peek()]`，把当前`element`的下标`push`。
 
 #### Python Code:
 ```python
