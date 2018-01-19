@@ -47,23 +47,21 @@ class Solution {
 ```
 <br>
 * #### Greedy Algorithm (AC):
-可以使用 Greedy Algorithm，从右向左看，只要维持一个 leftMostReachable 变量表示当前确定的最左端的可以到达 end 的格子。从右向左逐一扫描，对每个格子做判断：
-```
-    if (i + nums[i] >= leftMostReachable)
-        leftMostReachable = i;
-```
-整体时间复杂度为 `O(n)`, 因为只做了因 linear scan；   
+从左到右线性扫描，维持一个变量 right，表示当前可以 reach 的最右端的 index；如果当前遍历到的点 `i > right`, 说明当前位置 i 已经不可达，可以直接返回 false；如果任何时候 `right >= len(nums)`，说明已经可以到达终点，返回true；   
 **Java Code:**  
 ```java
 class Solution {
     public boolean canJump(int[] nums) {
-        int leftMostReachable = nums.length - 1;
-        for (int i = nums.length - 2; i >= 0; --i) {
-            if (i + nums[i] >= leftMostReachable) {
-                leftMostReachable = i;
-            }
+        if (nums.length == 1) return true;
+        int right = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            if (i > right) return false;
+            if (i + nums[i] > right) {
+                right = i + nums[i];
+                if (right >= nums.length - 1) return true;    
+            };
         }
-        return leftMostReachable == 0;
+        return false;
     }
 }
 ```
