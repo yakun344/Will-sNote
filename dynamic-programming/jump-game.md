@@ -52,7 +52,7 @@ class Solution {
     if (i + nums[i] >= leftMostReachable)
         leftMostReachable = i;
 ```
-整体时间复杂度为 `O(n)`, 因为只做了因 linear scan；  
+整体时间复杂度为 `O(n)`, 因为只做了因 linear scan；   
 **Java Code:**  
 ```java
 class Solution {
