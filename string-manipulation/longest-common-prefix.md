@@ -9,6 +9,7 @@ Write a function to find the longest common prefix string amongst an array of st
 首先想到的是用BFS解决 shortest path 的方法，即每次比较每个string的同一位置的character看是否相同，不同则返回当前res。但是这样还是比较慢，更好的方法是先按字典顺序排序各String,然后每次只要比较首末两个string。
 
 ##### BFS 的java code：
+从左往右，比较每个string在同一个位置的字符是否相等, `O(L*N)` 时间复杂度，其中 L 为 Common Prefix 的长度，N 为 String 的数量。
 ```java
     public class Solution {
         public String longestCommonPrefix(String[] strs) {
@@ -32,6 +33,8 @@ Write a function to find the longest common prefix string amongst an array of st
 ```
 
 ##### sort 的 python code：
+先对所有 String 排序，然后每次从左到右比较首末两个string相应index的char是否相等。 时间复杂度 `O(L + NlogN)`。
+
 ```python
     class Solution(object):
         def longestCommonPrefix(self, strs):
