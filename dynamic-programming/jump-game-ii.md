@@ -81,6 +81,37 @@ class Solution {
 ```
 <br>
 * #### Greedy Algorithm (AC):
+&emsp; 因为DP都不行，就只能考虑greedy了。考虑到此题中所给的 `nums[i]` 表示从 i 格子开始能跳的最大距离，所以我们其实没有必要逐一尝试这些距离，我们只需要跟踪之前最远可以跳到的位置，这样向右遍历的时候，只要当前位置在最大距
+离之前，就可以保证当前位置是可以reach的。  
+&emsp; 对于这道题，我们要计算到达终点的最小step数量，我们仍然采用从左往右遍历每个点，并且根据每个点更新最远当前可以reach点的办法。为了追踪step，我们需要额外维持一个变量，就是之前一次的最远可以reach的点(prevRight)。当我们遍历的位置超过了 prevRight 的时候，说明我们已经开始了下一步，则令 `prevRight = right; step++;`.
+```java
+    例如，对于input：nums [2,3,1,1,4]
+        首先初始化 prevRight = 0, right = 0, step = 0
+        第一个点是 nums[0], 更新 right = 0+nums[0] = 2;
+        下一个是 nums[1], 因为 1>prevRight, step++, prevRight = right；
+            然后更新 right = 1+nums[1] = 4
+            此时 step=1，prevRight=2, right = 4， 已经到达end，返回 step=2
+```
+**Java Code:**
+```java
+class Solution {
+    public int jump(int[] nums) {
+        int prevRight = 0, right = 0;
+        int step = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            if (i > prevRight) {
+                step++;
+                prevRight = right;
+            }
+            if (i + nums[i] > right) {
+                right = i + nums[i];
+            }
+        }
+        return step;
+    }
+}
+```
+        
 
 
 
