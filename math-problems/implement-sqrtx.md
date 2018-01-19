@@ -10,25 +10,22 @@ Compute and return the square root of x.
 #### 思路：
 最简单的思路是使用二分法从 1 开始到 x / 2 + 1 进行尝试，更高级一点的思路是用牛顿迭代 Newton's method 。 
 
-##### 二分法 python code：
-```python
-     class Solution(object):
-         def mySqrt(self, x):
-             """
-             :type x: int
-             :rtype: int
-             """
-             p = 1
-             r = x // 2 + 1
-             while p <= r:
-                 q = (p + r) // 2
-                 if q * q <= x < (q + 1) * (q + 1):
-                     return q
-                 elif q * q < x:
-                     p = q + 1
-                 else:
-                     r = q - 1
-             return 0
+##### 二分法 Java code：
+```java
+class Solution {
+    public int mySqrt(int x) {
+        if (x <= 1) return x;
+        long l = 1, r = x / 2 + 1;
+        while (l + 1 < r) {
+            long mid = l + (r - l) / 2;
+            if (mid * mid == x) return (int)mid;
+            else if (mid * mid < x) l = mid;
+            else r = mid;
+        }
+        if (r * r <= x) return (int)r;
+        else return (int)l;
+    }
+}
 ```
 
 ##### Newton's Method Python:

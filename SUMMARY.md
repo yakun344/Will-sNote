@@ -245,7 +245,7 @@
   * [Convert a Number to Hexadecimal](bit-manipulation/convert-a-number-to-hexadecimal.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
-  * [Implement Sqrt\(x\)](math-problems/implement-sqrtx.md)
+  * [Sqrt\(x\)](math-problems/implement-sqrtx.md)
   * [Count Primes](math-problems/count-primes.md)
   * [Divide Two Integers](math-problems/divide-two-integers.md)
   * [2 Keys Keyboard](math-problems/2-keys-keyboard.md)
