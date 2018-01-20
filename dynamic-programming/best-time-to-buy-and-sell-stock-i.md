@@ -30,7 +30,7 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
 **DP 思路的思考：**
 假设dp[i]为第 i 天的最大利润，则在第 i 天有两种选择，即在当天卖掉之前所有天中最低价买入的股票和在这之前已经卖掉股票(`dp[i-1]`)，由此我们可以得到状态转移方程：`dp[i] = max{ dp[i-1], prices[i]-minPrices }`，其中minPrices为第 i 天之前的买点，即我们沿途跟踪的最低价格。之前的方法可以视为对dp的优化。
 
-代码如下：
+**Java Code, DP：**  
 ```java
     // dp
     public class Solution {
@@ -48,36 +48,18 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
     }
 ```
 
-#### Code:
-思路1：
-```python
-    class Solution(object):
-        def maxProfit(self, prices):
-            """
-            :type prices: List[int]
-            :rtype: int
-            """
-            maxProfit = 0
-            curr = 0
-            for i in range(1, len(prices)):
-                curr += prices[i] - prices[i - 1]
-                curr = curr if curr > 0 else 0
-                maxProfit = maxProfit if maxProfit >= curr else curr
-            return maxProfit   
-```
-
-思路2：
+**Java Code: DP 优化空间 O(1)**
 ```java
-    public class Solution {
-        public int maxProfit(int[] prices) {
-            if (prices == null || prices.length == 0) return 0;
-            int minPrice = Integer.MAX_VALUE;
-            int maxProfit = Integer.MIN_VALUE;
-            for (int i = 0; i < prices.length; ++i) {
-                minPrice = Math.min(prices[i], minPrice);
-                maxProfit = Math.max(maxProfit, prices[i] - minPrice);
-            }
-            return maxProfit;
+class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) return 0;
+        int minPrice = prices[0];
+        int maxProfit = 0;
+        for (int i = 1; i < prices.length; ++i) {
+            maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+            minPrice = Math.min(minPrice, prices[i]);
         }
+        return maxProfit;
     }
+}
 ```
