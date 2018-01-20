@@ -23,7 +23,18 @@ Given a positive integer, return its corresponding column title as appear in an 
 
 ### Java Code:
 ```java
-
+class Solution {
+    public String convertToTitle(int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            char digit = (char)((n - 1) % 26 + 'A');
+            sb.append(digit);
+            n = (n - 1) / 26;
+        }
+        return sb.reverse().toString();
+    }
+}
+```
     
     
     
