@@ -254,6 +254,7 @@
   * [Gray Code](math-problems/gray-code.md)
   * [Add Binary](math-problems/add-binary.md)
   * [Excel Sheet Column Title](math-problems/excel-sheet-column-title.md)
+  * [Majority Element II](math-problems/majority-element-ii.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
