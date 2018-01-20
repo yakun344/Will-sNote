@@ -253,6 +253,7 @@
   * [2 Keys Keyboard](math-problems/2-keys-keyboard.md)
   * [Gray Code](math-problems/gray-code.md)
   * [Add Binary](math-problems/add-binary.md)
+  * [Excel Sheet Column Title](math-problems/excel-sheet-column-title.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
