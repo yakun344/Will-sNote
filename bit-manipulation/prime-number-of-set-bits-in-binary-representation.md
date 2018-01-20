@@ -40,7 +40,31 @@ R - L will be at most 10000.
 <br>
 
 #### Basic Idea:
-这道题考察基本的
+这道题考察基本的**位操作**能力和对于**int 性质**的理解。这道题中要求计数每个数字中 1 的个数是否是质数，因为这里提到的数字都是 int，我们只需要穷举 `[0-32]` 内的所有质数存入set，然后用每个数字中 1 的个数去 set 中查询。
+
+#### Java Code:
+```java
+class Solution {
+    public int countPrimeSetBits(int L, int R) {
+        Integer[] primeArray = new Integer[] {2,3,5,7,11,13,17,19,23,29,31};
+        Set<Integer> primeSet = new HashSet<>(Arrays.asList(primeArray));
+        int ret = 0;
+        for (int i = L; i <= R; ++i) {
+            if (primeSet.contains(countBits(i))) ret++;
+        }
+        return ret;
+    }
+    
+    private int countBits(int n) {
+        int ret = 0;
+        while (n != 0) {
+            ret += n & 1;
+            n >>>= 1;
+        }
+        return ret;
+    }
+}
+```
 
 
 
