@@ -244,6 +244,7 @@
   * [Total Hamming Distance](bit-manipulation/total-hamming-distance.md)
   * [Reverse Integer](bit-manipulation/reverse-integer.md)
   * [Convert a Number to Hexadecimal](bit-manipulation/convert-a-number-to-hexadecimal.md)
+  * [Prime Number of Set Bits in Binary Representation](bit-manipulation/prime-number-of-set-bits-in-binary-representation.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Count Primes](math-problems/count-primes.md)
