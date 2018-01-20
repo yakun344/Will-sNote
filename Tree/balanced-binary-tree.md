@@ -13,11 +13,11 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
 
          Given binary tree A = {3,9,20,#,#,15,7}, B = {3,#,20,15,7}
          
-         A)  3            B)    3 
-            / \                  \
-           9  20                 20
-             /  \                / \
-            15   7              15  7
+             A)  3                B)     3 
+                /  \                      \
+               9   20                     20
+                  /  \                   /   \
+                15    7                 15    7
             
          The binary tree A is a height-balanced binary tree, but B is not.
          
@@ -43,4 +43,24 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
                 
             return helper(root) != -1
 ```
-            
+
+#### Java Code:
+```java
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        return helper(root) != -1;
+    }
+    
+    private int helper(TreeNode root) {
+        if (root == null) return 0;
+        int leftMaxHeight = helper(root.left);
+        int rightMaxHeight = helper(root.right);
+        if (leftMaxHeight == -1 || rightMaxHeight == -1 || 
+            Math.abs(leftMaxHeight - rightMaxHeight) > 1) {
+            return -1;
+        } else {
+            return Math.max(leftMaxHeight, rightMaxHeight) + 1;
+        }
+    }
+}
+```          
