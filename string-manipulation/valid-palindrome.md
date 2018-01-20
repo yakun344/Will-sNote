@@ -83,4 +83,45 @@ In Java7，we cannot use Stream（）：
                 right -= 1
             return True
 ```
+
+<br>
+
+___
+_update Jan 20, 2018  13:12_
+
+### Update 手动写法
+这里通过手动实现了 `isAlphanumeric()` 和 `toUpperCase()`, 过滤出纯字母数字之后存入一个 Stringbuilder，然后比较 `sb.toString() 和 sb.reverse().toString()`;
+```java
+class Solution {
+    public boolean isPalindrome(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); ++i) {
+            if (isValid(s.charAt(i))) {
+                sb.append(toUpperCase(s.charAt(i)));
+            }
+        }
+        return sb.toString().equals(sb.reverse().toString());
+    }
+    
+    private char toUpperCase(char c) {
+        if (c > 'Z') return (char)(c - 'a' + 'A');
+        else return c;
+    }
+    
+    private boolean isValid(char c) {
+        if ('0' <= c && c <= '9' || 'a' <= c && c <= 'z' || 'A' <= c && c <= 'Z') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+```
+
+
+
+
+
+
+
             
