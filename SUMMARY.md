@@ -263,6 +263,7 @@
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
   * [Spiral Matrix II](other-problems/spiral-matrix-ii.md)
+  * [Two Sum III - Data structure design](other-problems/two-sum-iii-data-structure-design.md)
 
 ## Operating System
 
