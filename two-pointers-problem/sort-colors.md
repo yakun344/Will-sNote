@@ -31,17 +31,15 @@ counting sort，这个比较简单；
 
 假设已经完成到如下所示的状态：
 
-              0......0   1......1  x1 x2 .... xm   2.....2
-                            |           |               |
-                          left        cur          right
+              0......0   1......1  x1 x2 .... xm    2.....2
+                                    |         |     |
+                                  left       cur   right
 
-(1) A[cur] = 1：已经就位，cur++即可
+(1). `A[cur]` = 1：已经就位，cur++即可;
 
-(2) A[cur] = 0：交换A[cur]和A[left]。由于A[left]=1或left=cur，所以交换以后A[cur]已经就位，cur++，left++
+(2). `A[cur]` = 0：交换`A[cur]`和`A[left]`。由于`A[left]=1`或`left=cur`，所以交换以后`A[cur]`已经就位，`cur++`，`left++`;
 
-(3) A[cur] = 2：交换A[cur]和A[right]，right--。由于xm的值未知，cur不能增加，继续判断xm。
-
-cur > right扫描结束。
+(3). A[cur] = 2：交换A[cur]和A[right]，right--。由于xm的值未知，cur不能增加，继续判断xm，cur > right扫描结束；
 
 #### Java Code:
 ```java
