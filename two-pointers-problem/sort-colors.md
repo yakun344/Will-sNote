@@ -39,11 +39,11 @@ counting sort，这个比较简单；
                                   left       cur   right
 ```
 
-1.  `A[cur]` = 1：已经就位，cur++即可; 
+1.  `A[cur] = 1`：已经就位，`cur++`即可; 
 
-2.  `A[cur]` = 0：交换`A[cur]`和`A[left]`。由于`A[left]=1`或`left=cur`，所以交换以后`A[cur]`已经就位，`cur++`，`left++`; 
+2.  `A[cur] = 0`：交换`A[cur]`和`A[left]`。由于`A[left]=1`或`left=cur`，所以交换以后`A[cur]`已经就位，`cur++`，`left++`; 
 
-3.  A[cur] = 2：交换A[cur]和A[right]，right--。由于xm的值未知，cur不能增加，继续判断xm，cur > right扫描结束；
+3.  `A[cur] = 2`：交换`A[cur]`和`A[right]`，`right--`。由于`xm`的值未知，`cur`不能增加，继续判断`xm`，`cur > right`扫描结束；
 
 <br>
 
