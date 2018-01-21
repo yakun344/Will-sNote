@@ -18,3 +18,7 @@ find - Find if there exists any pair of numbers which sum is equal to the value.
 <br>
 
 ### Basic Idea:
+使用一个 list 存储 all unique numbers，另外用一个 HashMap 存储每个数字出现的个数。在query的时候，遍历 list，找每个 value-number 是否存在。另外要注意，如果一个数字加上其本身等于 value，就需要判断该数字的数量是否超过 1。
+
+### Java Code:
+```java
