@@ -25,10 +25,10 @@ Could you come up with an one-pass algorithm using only constant space?
 #### Basic Idea:
 [这里](http://bangbingsyb.blogspot.com/2014/11/leetcode-sort-colors.html) 有一个非常好的分析。
 
-**思路1：**
+**思路1：**   
 counting sort，这个比较简单；
 
-**思路2：**
+**思路2：**   
 维持左右两个指针，从最左端和最右开始，分表表示 0 的最右边和 2 的最左边位置。用另一个指针扫描数组，然后做相应的交换。下面的分析摘自上面ref的文章：
 
 假设已经完成到如下所示的状态：
@@ -39,9 +39,9 @@ counting sort，这个比较简单；
                                   left       cur   right
 ```
 
-1.  `A[cur]` = 1：已经就位，cur++即可;
+1.  `A[cur]` = 1：已经就位，cur++即可; 
 
-2.  `A[cur]` = 0：交换`A[cur]`和`A[left]`。由于`A[left]=1`或`left=cur`，所以交换以后`A[cur]`已经就位，`cur++`，`left++`;
+2.  `A[cur]` = 0：交换`A[cur]`和`A[left]`。由于`A[left]=1`或`left=cur`，所以交换以后`A[cur]`已经就位，`cur++`，`left++`; 
 
 3.  A[cur] = 2：交换A[cur]和A[right]，right--。由于xm的值未知，cur不能增加，继续判断xm，cur > right扫描结束；
 
