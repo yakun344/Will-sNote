@@ -2,7 +2,7 @@
 _update Aug 19,2017  23:36_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/sort-colors/)
+[LintCode](http://www.lintcode.com/en/problem/sort-colors/)   
 [LeetCode](https://leetcode.com/problems/sort-colors/description/)
 
 
@@ -34,36 +34,39 @@ counting sort，这个比较简单；
 假设已经完成到如下所示的状态：
 ```
 
-              0......0   1......1  x1 x2 .... xm    2.....2
-                                    |         |     |
-                                  left       cur   right
+              0......0   1......1  ..1. xm..   2.....2
+                     |                   |     |
+                   left                 cur   right
 ```
 
 1.  `A[cur] = 1`：已经就位，`cur++`即可; 
 
-2.  `A[cur] = 0`：交换`A[cur]`和`A[left]`。由于`A[left]=1`或`left=cur`，所以交换以后`A[cur]`已经就位，`cur++`，`left++`; 
+2.  `A[cur] = 0`：交换`A[cur]`和`A[++left]`, 因为 `A[++left]`在left和cur之间，只能是 1 或者 curr，所以交换之后 cur 所指位置已经没问题，可以 cur++ 了；
 
-3.  `A[cur] = 2`：交换`A[cur]`和`A[right]`，`right--`。由于`xm`的值未知，`cur`不能增加，继续判断`xm`，`cur > right`扫描结束；
+3.  `A[cur] = 2`：交换`A[cur]`和`A[--right]`。由于`xm`的值未知，`cur`不能增加，继续判断`xm`，`cur > right`扫描结束；
 
 <br>
 
 #### Java Code:
 ```java
-    class Solution {
-        public void sortColors(int[] nums) {
-            int i0 = 0, i2 = nums.length - 1;
-            int i = 0;
-            while (i <= i2 && i0 < i2) {
-                if (nums[i] == 0) swap(nums, i0++, i++);
-                else if (nums[i] == 2) swap(nums, i2--, i);
-                else i++;
+class Solution {
+    public void sortColors(int[] nums) {
+        int i0 = -1, i2 = nums.length, j = 0;
+        while (j < i2) {
+            if (nums[j] == 0) {
+                swap(nums, ++i0, j++);
+            } else if (nums[j] == 2) {
+                swap(nums, --i2, j);
+            } else {
+                j++;
             }
         }
-        private void swap(int[] nums, int i, int j) {
-            int t = nums[i];
-            nums[i] = nums[j];
-            nums[j] = t;
-        }
     }
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+}
 ```
     
