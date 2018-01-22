@@ -37,3 +37,18 @@ You may assume both s and t have the same length.
 
 ### Java Code:
 ```java
+class Solution {
+    public boolean isIsomorphic(String s, String t) {
+        char[] smap = new char[256];
+        char[] tmap = new char[256];
+        for (int i = 0; i < s.length(); ++i) {
+            char sc = s.charAt(i), tc = t.charAt(i);
+            if (smap[sc] != 0 && smap[sc] != tc) return false;
+            if (tmap[tc] != 0 && tmap[tc] != sc) return false;
+            smap[sc] = tc;
+            tmap[tc] = sc;
+        }
+        return true;
+    }
+}
+```
