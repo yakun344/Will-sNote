@@ -33,6 +33,7 @@ You may assume both s and t have the same length.
                   这里出错，o已经map
                   到a
 ```
+可以用两个256长度的数组代替hashmap进行优化，时间复杂度 `O(n)`;
 
 ### Java Code:
 ```java
