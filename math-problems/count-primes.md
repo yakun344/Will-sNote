@@ -9,7 +9,7 @@ _update Jul 2, 2017 18:15_
 Count the number of prime numbers less than a non-negative number, n.
 
 #### Idea：
-Using  [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) to get primes in some given range. 
+Using  [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) to get primes in some given range. 时间复杂度 `O(n log log n)`，一篇论文中证明。
 
 #### Java Code：
 ```java
