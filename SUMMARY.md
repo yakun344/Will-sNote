@@ -71,6 +71,7 @@
   * [Recover Binary Search Tree](Tree/recover-binary-search-tree.md)
   * [Populating Next Right Pointers in Each Node](Tree/populating-next-right-pointers-in-each-node.md)
   * [Minimum Depth of Binary Tree](Tree/minimum-depth-of-binary-tree.md)
+  * [Invert Binary Tree \(easy\)](Tree/invert-binary-tree-easy.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](linkedlist-and-array/maximum-distance-in-arrays.md)
