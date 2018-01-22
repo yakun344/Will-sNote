@@ -7,9 +7,10 @@ Given a list of non-negative integers representing the amount of money of each h
 
 ---
 
-这是leetcode上的一道easy题目，涉及到基础的dp。对于输入数组v[ ]，求其子序列的最大和，这个子序列必须满足其中不存在在v中相邻的两个元素。
-根据dp的思想，我们可以归纳 sub problem： `dp[i] = index <= i 的最大和`，且`dp[i] = max{dp[i - 1], dp[i - 2] + v[i]}`。即对于每个房子，我们要考虑是否抢劫，如果抢，那么就是`dp[i - 2]`加当前房子价值，如果不抢，则收益就等于`dp[i - 1]`。
-除了subproblem的递推公式之外，我们还需要写出基本起始条件，详情见下面的code:
+&emsp; 这是leetcode上的一道easy题目，涉及到基础的dp。对于输入数组 `v[ ]`，求其子序列的最大和，这个子序列必须满足其中不存在在 v 中相邻的两个元素。  
+&emsp; 根据dp的思想，我们可以归纳 sub problem： `dp[i] = index <= i 的最大和`，且`dp[i] = max{dp[i - 1], dp[i - 2] + v[i]}`。即对于每个房子，我们要考虑是否抢劫，如果抢，那么就是`dp[i - 2] + 当前房子价值`，如果不抢，则收益就等于`dp[i - 1]`。
+除了subproblem的递推公式之外，我们还需要写出基本起始条件, 即 `dp[0] = v[0], dp[1] = max( v[0], v[1] )`，详情见下面的code:
+
 ```java
     // java
     public int rob(int[] nums) {
@@ -41,6 +42,8 @@ Given a list of non-negative integers representing the amount of money of each h
     }
 ```
 _Jun 9, 2017_
+
+<br>
 
 ---
 
