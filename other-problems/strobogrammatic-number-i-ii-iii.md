@@ -13,4 +13,49 @@ the numbers "69", "88", and "818" are all strobogrammatic.
 符合条件的数一定只包含 `[0, 1, 6, 8, 9]` 这几个数，而且一定左右成对出现，可以先把每一对存入 HashMap，然后用双指针从左右向中间检查。
   * #### Java Code：
   ```java
+    class Solution {
+        public boolean isStrobogrammatic(String num) {
+            Map<Character, Character> map = new HashMap<>();
+            map.put('0', '0');
+            map.put('1', '1');
+            map.put('8', '8');
+            map.put('6', '9');
+            map.put('9', '6');
+            int l = 0, r = num.length() - 1;
+            while (l <= r) {
+                Character value = map.get(num.charAt(l));
+                if (value == null || num.charAt(r) != value) return false;
+                l++;
+                r--;
+            }
+            return true;
+        }
+    }
+  ```
   
+<br>
+
+## Strobogrammatic Number II
+[LeetCode](https://leetcode.com/problems/strobogrammatic-number-ii/description/)
+
+A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
+
+Find all strobogrammatic numbers that are of length = n.
+
+**For example,**  
+
+    Given n = 2, return ["11","69","88","96"].
+    
+* ### Solution
+
+
+
+
+
+
+
+
+
+
+
+
