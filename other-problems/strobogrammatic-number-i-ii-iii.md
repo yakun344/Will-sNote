@@ -85,7 +85,7 @@ Find all strobogrammatic numbers that are of length = n.
             }
         }
         
-        // 在target正中间
+        // 在 target 正中间插入 pair string
         private String insertPair(String target, String pair) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < target.length() / 2; ++i) {
