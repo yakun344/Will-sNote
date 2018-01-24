@@ -102,7 +102,39 @@ Find all strobogrammatic numbers that are of length = n.
   ```
   <br>
   * #### Java Code (recursion)
-    
+  ```java
+    class Solution {
+        private List<String> res = new ArrayList<>();
+        // 预先在res中加入初始字符串，然后调用helper，如果 n 为偶数，则从 2 开始，否则从 3 开始
+        public List<String> findStrobogrammatic(int n) {
+            if ((n & 1) == 0) { // even
+                res.add("");
+                helper(2, n);
+            } else { // odd
+                res.addAll(Arrays.asList(new String[]{"0", "1", "8"}));
+                helper(3, n);
+            }
+            return res;
+        }
+        
+        // 在lst中每个元素左右分别添加几种pair的组合，直到字符串长度 m=n，最后一次不加 0
+        private void helper(int curr, int n) {
+            if (curr > n) return;
+            List<String> newRes = new ArrayList<>();
+            for (String s : res) {
+                if (curr != n) {
+                    newRes.add("0" + s + "0");
+                }
+                newRes.add("1" + s + "1");
+                newRes.add("8" + s + "8");
+                newRes.add("6" + s + "9");
+                newRes.add("9" + s + "6");
+            }
+            res = newRes;
+            helper(curr + 2, n);
+        }
+    }
+  ```
 
 
 
