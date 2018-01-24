@@ -51,8 +51,55 @@ Find all strobogrammatic numbers that are of length = n.
 <br>
 &emsp; 具体实现的时候可以使用 iteration 和 recursion 两种实现方法。
   * #### Java Code (iteration):
-  
-
+  ```java
+    class Solution {
+        public List<String> findStrobogrammatic(int n) {
+            List<String> res = new ArrayList<>();
+            if (n == 0) {
+                return res;
+            }
+            
+            // 先生成偶数长度，如果n是奇数，之后要再在中间另外插入一个数
+            res.add("");
+            for (int i = 0; i < n / 2; ++i) {
+                List<String> currLevel = new ArrayList<>();
+                for (String s : res) {
+                    for (String pair : new String[]{"00", "11", "88", "69", "96"}) {
+                        if (i == 0 && pair.equals("00")) continue; // 首尾不能为 0
+                        currLevel.add(insertPair(s, pair));
+                    }
+                }
+                res = currLevel;
+            }
+            // 如果n是奇数，之后要再在中间另外插入一个数
+            if ((n & 1) != 0) {
+                List<String> newRes = new ArrayList<>();
+                for (String s : res) {
+                    for (String mid : new String[]{"0", "1", "8"}) {
+                        newRes.add(insertPair(s, mid));
+                    }
+                }
+                return newRes;
+            } else {
+                return res;
+            }
+        }
+        
+        // 在target正中间
+        private String insertPair(String target, String pair) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < target.length() / 2; ++i) {
+                sb.append(target.charAt(i));
+            }
+            sb.append(pair);
+            for (int i = target.length() / 2; i < target.length(); ++i) {
+                sb.append(target.charAt(i));
+            }
+            // System.out.println(sb.toString());
+            return sb.toString();
+        }
+    }
+```
 
 
 
