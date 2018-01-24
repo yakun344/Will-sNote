@@ -10,3 +10,7 @@ A strobogrammatic number is a number that looks the same when rotated 180 degree
 the numbers "69", "88", and "818" are all strobogrammatic.
 <br>
 * ### Solution
+符合条件的数一定只包含 `[0, 1, 6, 8, 9]` 这几个数，而且一定左右成对出现，可以先把每一对存入 HashMap，然后用双指针从左右向中间检查。
+  * #### Java Code：
+  ```java
+  
