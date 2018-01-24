@@ -47,6 +47,11 @@ Find all strobogrammatic numbers that are of length = n.
     Given n = 2, return ["11","69","88","96"].
     
 * ### Solution
+&emsp; 有两种思路，在中间插入和两边插入。如果选择每次在中间插入，就要注意当 n 为奇数的时候，当每个数字长度到达n-1后，最后一次只插入一个字符，而且是 `[0,1,8]` 中的一个。而如果选择两遍插入，则是对于技术情况不是从 `""` 空字符串开始，而是从 `[0, 1,8]` 开始，每次两边插入一对组合。
+<br>
+&emsp; 具体实现的时候可以使用 iteration 和 recursion 两种实现方法。
+  * #### Java Code (iteration):
+  
 
 
 
