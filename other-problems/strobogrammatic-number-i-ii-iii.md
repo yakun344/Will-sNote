@@ -102,6 +102,7 @@ Find all strobogrammatic numbers that are of length = n.
   ```
   <br>
   * #### Java Code (recursion)
+  这里的思路是，如果n为奇数，则将res list 初始化为 `[0,1,8]`，然后每次在每个数两侧添加各个pair; 如果是偶数，则直接在`[""]`的基础上开始；
   ```java
     class Solution {
         private List<String> res = new ArrayList<>();
@@ -135,6 +136,11 @@ Find all strobogrammatic numbers that are of length = n.
         }
     }
   ```
+  
+<br>
+
+## Strobogrammatic Number III
+[LeetCode]()
 
 
 
