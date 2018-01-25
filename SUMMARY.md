@@ -243,6 +243,7 @@
   * [Jump Game](dynamic-programming/jump-game.md)
   * [Jump Game II](dynamic-programming/jump-game-ii.md)
   * [Paint Fence](dynamic-programming/paint-fence.md)
+  * [Edit Distance \(hard\)](dynamic-programming/edit-distance.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
