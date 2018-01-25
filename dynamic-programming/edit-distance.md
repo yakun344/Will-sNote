@@ -38,7 +38,7 @@ You have the following 3 operations permitted on a word:
 ```
 
   * ### Java Code 
-  左边竖轴对应 word1，上边横轴对应 word2，填格子的顺序为从左到右，从上到下，最终右下角是解，时间复杂度和空间复杂度 `O(n^2)`, 其中空间可以被优化为 `O(n)`。
+  左边竖轴对应 word1，上边横轴对应 word2，填格子的顺序为从左到右，从上到下，最终右下角是解，时间复杂度和空间复杂度 `O(n^2)`, 其中空间可以被优化为 `O(short length)`。
   ```java
     class Solution {
         public int minDistance(String word1, String word2) {
