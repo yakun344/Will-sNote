@@ -72,7 +72,44 @@ double findMedian() - Return the median of all elements so far.
         }
     }
   ```
+<br>
+* #### Python Code:
+python 实现的时候，对于这道题，可以直接把每个key取反来实现 maxHeap:
+```python
+class MedianFinder(object):
 
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.leftmax = []
+        self.rightmin = []
+
+    def addNum(self, num):
+        """
+        :type num: int
+        :rtype: void
+        """
+        # 先插入
+        if len(self.leftmax) == 0 or num <= -self.leftmax[0]:
+            heapq.heappush(self.leftmax, -num)
+        else:
+            heapq.heappush(self.rightmin, num)
+        # 再 rebalance
+        if len(self.leftmax) - len(self.rightmin) > 1:
+            heapq.heappush(self.rightmin, -heapq.heappop(self.leftmax))
+        elif len(self.rightmin) > len(self.leftmax):
+            heapq.heappush(self.leftmax, -heapq.heappop(self.rightmin))
+
+    def findMedian(self):
+        """
+        :rtype: float
+        """
+        if len(self.leftmax) == len(self.rightmin):
+            return (-self.leftmax[0] + self.rightmin[0]) / 2.0
+        else:
+            return -self.leftmax[0]
+```
 
 
 
