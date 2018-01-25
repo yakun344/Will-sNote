@@ -23,3 +23,28 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 使用 HashMap，但是注意要对 `<pattern, str>, <str, pattern>` 进行双向map，因为有可能出现两个 pattern 对应着同样一个string的情况，要注意。
   * ### Java Code：
   ```java
+    class Solution {
+        public boolean wordPattern(String pattern, String str) {
+            String[] arr = str.split("\\s");
+            if (pattern.length() != arr.length) return false;
+            
+            Map<Character, String> patternMap = new HashMap<>();
+            Map<String, Character> stringMap = new HashMap<>();
+            
+            for (int i = 0; i < pattern.length(); ++i) {
+                String sval = patternMap.get(pattern.charAt(i));
+                Character pval = stringMap.get(arr[i]);
+                // 如果两者map值等于对方，则通过，否则不通过
+                if (sval == null && pval == null) {
+                    patternMap.put(pattern.charAt(i), arr[i]);
+                    stringMap.put(arr[i], pattern.charAt(i));
+                } else if (arr[i].equals(sval) && new Character(pattern.charAt(i)).equals(pval)) {
+                    continue;
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+  ```
