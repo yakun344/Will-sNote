@@ -27,3 +27,19 @@ double findMedian() - Return the median of all elements so far.
 <br>
 
 ### Basic Idea:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
