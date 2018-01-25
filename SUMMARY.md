@@ -120,6 +120,7 @@
   * [Search in Rotated Sorted Array](binary-search/search-in-rotated-sorted-array.md)
   * [Median of two Sorted Arrays](binary-search/median-of-two-sorted-arrays.md)
 * [Trie](Trie/Trie.md)
+  * [Longest Word in Dictionary](Trie/Trie/longest-word-in-dictionary.md)
 * [String Manipulation](string-manipulation/string-manipulation.md)
   * [String Notes](string-manipulation/string-notes.md)
   * [Regular Expressions](string-manipulation/regular-expressions.md)
