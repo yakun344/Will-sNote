@@ -27,7 +27,8 @@ You have the following 3 operations permitted on a word:
         
         当 A[i] != B[j] 时，我们有对A进行 insert, delete, replace 三种选择：
             1. 进行 insert，在A[i]位置插入B[j]，抵消了B[j], 使得 dp[i][j] = dp[i][j-1] + 1;
-            2. 进行 delete，删掉A[i], 使得 dp[i][j] = dp[i-1][j] + 1;
+            2. 进行 delete，删掉A[i], 使得此时的问题看上去和 {A[:i-1],B[:j]} 是一样的，
+              使得 dp[i][j] = dp[i-1][j] + 1;
             3. 进行 replace, 将 A[i] 换成 B[j], 使得 dp[i][j] = dp[i-1][j-1] + 1;
         最终 dp[i][j] 的值就是如上三种操作产生的值中最小的。
         
