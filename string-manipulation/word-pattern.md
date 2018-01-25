@@ -20,3 +20,6 @@ Here follow means a full match, such that there is a bijection between a letter 
 You may assume pattern contains only lowercase letters, and str contains lowercase letters separated by a single space.
 
 ## Basic Idea:
+使用 HashMap，但是注意要对 `<pattern, str>, <str, pattern>` 进行双向map，因为有可能出现两个 pattern 对应着同样一个string的情况，要注意。
+  * ### Java Code：
+  ```java
