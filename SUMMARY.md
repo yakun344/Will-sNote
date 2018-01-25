@@ -119,6 +119,7 @@
   * [Find the Duplicate Number](binary-search/find-the-duplicate-number.md)
   * [Search in Rotated Sorted Array](binary-search/search-in-rotated-sorted-array.md)
   * [Median of two Sorted Arrays](binary-search/median-of-two-sorted-arrays.md)
+* [Trie](Trie/Trie.md)
 * [String Manipulation](string-manipulation/string-manipulation.md)
   * [String Notes](string-manipulation/string-notes.md)
   * [Regular Expressions](string-manipulation/regular-expressions.md)
