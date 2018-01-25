@@ -38,4 +38,28 @@ You have the following 3 operations permitted on a word:
 ```
 
   * ### Java Code 
+  左边竖轴对应 word1，上边横轴对应 word2，填格子的顺序为从左到右，从上到下，最终右下角是解。
   ```java
+    class Solution {
+        public int minDistance(String word1, String word2) {
+            int[][] dp = new int[word1.length() + 1][word2.length() + 1];
+            for (int i = 1; i < word2.length() + 1; ++i) {
+                dp[0][i] = i;
+            }
+            for (int i = 1; i < word1.length() + 1; ++i) {
+                dp[i][0] = i;
+            }
+            for (int i = 1; i <= word1.length(); ++i) {
+                for (int j = 1; j <= word2.length(); ++j) {
+                    char c1 = word1.charAt(i - 1), c2 = word2.charAt(j - 1);
+                    if (c1 == c2) {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    } else {
+                        dp[i][j] = Math.min(Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1), dp[i - 1][j - 1] + 1);
+                    }
+                }
+            }
+            return dp[word1.length()][word2.length()];
+        }
+    }
+  ```
