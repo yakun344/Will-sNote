@@ -388,6 +388,90 @@ class Solution:
         return ret
 ```
 
+<br>
+
+---
+_udpate Jan 25,2018  10:23_
+
+### Update: 270. Closest Binary Search Tree Value
+[LeetCode](https://leetcode.com/problems/closest-binary-search-tree-value/description/)
+
+Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
+
+**Note:**    
+Given target value is a floating point.
+You are guaranteed to have only one unique value in the BST that is closest to the target.
+
+* #### Basic Idea:
+这是前一道题的 easy 版本。首先我们要明确，如果一个BST中的元素 E 有左右孩子，距离它最近的元素一定在其孩子子树中，如果没有左孩子，则距离其最近的比它小的元素为其最近一个左祖先，如果没有右孩子，则距离其最近的比它大的元素一定是其最近一个右祖先。所以我们可以肯定只要沿着搜索路径向下搜索，一定可以经过距离target最近的元素。  
+**时间复杂度：** `O(height)`
+ *  #### Java Code:
+ ```java
+    class Solution {
+        public int closestValue(TreeNode root, double target) {
+            int ret = Integer.MAX_VALUE;
+            double minDiff = (double)Integer.MAX_VALUE * 100;
+            TreeNode curr = root;
+            while (curr != null) {
+                double diff = Math.abs((double)curr.val - target);
+                if (diff < minDiff) {
+                    ret = curr.val;
+                    minDiff = diff;
+                }
+                if (curr.val < target) {
+                    curr = curr.right;
+                } else {
+                    curr = curr.left;
+                }
+            }
+            return ret;
+        }
+    }
+ ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
