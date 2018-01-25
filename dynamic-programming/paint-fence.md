@@ -16,3 +16,15 @@ n and k are non-negative integers.
 <br>
 
 ### Basic Idea
+题目要求不超过两个相邻的fence涂相同颜色，所以相当于第三个fence要么和前面二个不同色，要么和前面一个不同色，所以我们可以有如下 induction rule：
+```
+    dp[i] 表示到第 i 个 fence 为止的所有可能数量；
+    induction rule:
+        dp[i] = (k-1) * dp[i-1] + (k-1) * dp[i-2]
+    base case:
+        dp[0] = k;
+        dp[1] = k^2;
+```
+
+* #### Java Code:
+ ```java
