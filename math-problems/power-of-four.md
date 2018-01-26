@@ -40,7 +40,16 @@ Given an integer (signed 32 bits), write a function to check whether it is a pow
 ```     
   * #### Java Code:
   ```java
-
+    class Solution {
+        public boolean isPowerOfFour(int num) {
+            if ((num & (num - 1)) == 0 && (num & 0x55555555) != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+  ```
   
   
   
