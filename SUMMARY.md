@@ -147,6 +147,7 @@
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
+  * [Shuffle an Array](random/shuffle-an-array.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
