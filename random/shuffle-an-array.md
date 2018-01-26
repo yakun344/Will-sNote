@@ -24,3 +24,38 @@ Shuffle a set of numbers without duplicates.
 <br>
 
 ## Basic Idea:
+基本思路就是维持一个挡板，从右侧开始，选择每个数字，每次从挡板左边的数字中随机选择，然后swap，挡板左移。
+
+* ### Java Code:
+```java
+    class Solution {
+        private int[] original;
+        public Solution(int[] nums) {
+            original = nums;
+        }
+        
+        /** Resets the array to its original configuration and return it. */
+        public int[] reset() {
+            return original;
+        }
+        
+        /** Returns a random shuffling of the array. */
+        public int[] shuffle() {
+            int spliter = original.length - 1;
+            int[] ret = Arrays.copyOf(original, original.length);
+            while (spliter > 0) {
+                // 隔板左边数字个数为 spliter + 1, 生成 (0-, spliter) 的随机数
+                int indexToSwap = (int)(Math.random() * (spliter + 1));
+                swap(ret, indexToSwap, spliter);
+                spliter--;
+            }
+            return ret;
+        }
+        
+        private void swap(int[] arr, int i, int j) {
+            int t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
+    }
+```
