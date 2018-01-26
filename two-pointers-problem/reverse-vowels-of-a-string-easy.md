@@ -24,3 +24,27 @@ The vowels does not include the letter "y".
 
 * ### Java Code:
 ```java
+class Solution {
+    public String reverseVowels(String s) {
+        Character[] vowels = new Character[]{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        Set<Character> set = new HashSet(Arrays.asList(vowels));
+        char[] arr = s.toCharArray();
+        int i = 0, j = arr.length - 1;
+        while (i < j) {
+            if (set.contains(arr[i]) && set.contains(arr[j])) {
+                swap(arr, i++, j--);
+            } else {
+                if (! set.contains(arr[i])) i++;
+                if (! set.contains(arr[j])) j--;
+            }
+        }
+        return new StringBuilder().append(arr).toString();
+    }
+    
+    private void swap(char[] arr, int i, int j) {
+        char t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+}
+```
