@@ -47,5 +47,34 @@ Given two arrays, write a function to compute their intersection.
     }
   ```
   
-* ### 思路2：
+* ### 思路2：Set
+将其中一个数组的元素加入set，然后扫描另一个数组，如果数字存在于set中，则将其加入res，同时删去set中该元素（去重）；
+  * #### Java Code：
+  注意 Java8 stream 的运用
+  ```java
+    class Solution {
+        public int[] intersection(int[] nums1, int[] nums2) {
+            if (nums1.length == 0 || nums2.length == 0) return new int[0];
+            Set<Integer> set = Arrays.stream(nums1).boxed().collect(Collectors.toCollection(HashSet::new));
+            List<Integer> list = new ArrayList<>();
+            for (int num : nums2) {
+                if (set.contains(num)) {
+                    list.add(num);
+                    set.remove(num);
+                }
+            }
+            return list.stream().mapToInt(Integer::intValue).toArray();
+        }
+    }
+  ```
+
+
+
+
+
+
+
+
+
+
   
