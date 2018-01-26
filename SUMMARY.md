@@ -194,6 +194,7 @@
   * [Array Nesting](dfs/array-nesting.md)
   * [Lexicographical Numbers](dfs/lexicographical-numbers.md)
   * [N-Queens](dfs/n-queens.md)
+  * [Nested List Weight Sum \(easy\)](dfs/nested-list-weight-sum-easy.md)
 * [Two Pointers Problem](two-pointers-problem/two-pointers-problem.md)
   * [Two Sum - Unique pairs](two-pointers-problem/two-sum-unique-pairs.md)
   * [3Sum](two-pointers-problem/3sum.md)
