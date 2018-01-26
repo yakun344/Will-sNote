@@ -41,7 +41,33 @@ The number of people is less than 1,100.
 
 * Java Code:
 ```java
-
+    public class Solution {
+        public int[][] reconstructQueue(int[][] people) {
+            Arrays.sort(people, (new Comparator<int[]>() {
+                @Override
+                public int compare(int[] a1, int[] a2) {
+                    if (a1[0] == a2[0]) {
+                        return Integer.compare(a1[1], a2[1]);
+                    } else {
+                        return Integer.compare(a2[0], a1[0]);
+                    }
+                }
+            }));
+            List<int[]> resultList = new LinkedList<>();
+            for(int[] cur : people){
+                resultList.add(cur[1], cur);
+                // print(resultList); // to see what's going on
+            }
+            return resultList.toArray(new int[people.length][]);
+        }
+        
+        // print the input 2d array
+        private void print(List<int[]> lst) {
+            lst.forEach(a->System.out.print("[" + a[0] + ", " + a[1] + "] , "));
+            System.out.println();
+        }
+    }
+```
     
     
     
