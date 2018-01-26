@@ -33,6 +33,9 @@ What if the linked list is extremely large and its length is unknown to you? Cou
     For k+i, pick it with a probability of k/(k+i), and randomly replace a number in the reservoir.
     Repeat until k+i reaches n
     
+    解释：当我们要随机选择 k 个元素的时候，例如当前所visit的元素是第n个，我们需要保证它被选择的概率是 `k / n`，
+      这也就是之前公式中 `k / (k + i)` 的来源。至于正确性，可以递推找规律，归纳证明。
+    
 具体地，在这里，k = 1. 所以每次我们只需要以 `1/(i+1)` 的概率选择是否将当前element替换已选择的元素即可。
 
 *  另：当然也可以遍历一遍，存好所有元素，然后用随机数生成index选择，只是说如果不可以使用extra space 这种方法就不可以了。
