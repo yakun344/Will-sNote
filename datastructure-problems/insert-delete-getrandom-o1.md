@@ -42,11 +42,13 @@ getRandom: Returns a random element from current set of elements. Each element m
 
 提到O(1) 时间 getRandom，我们就想到使用数组（或者Java中的List），但是使用数组无法满足插入和删除O(1)时间，于是我们就想到把HashMap和List进行结合：
 
-*  插入时候先在list中append，然后把index作为value，val作为key存入map；
-*  删除的时候先从map中找到list中val的index，然后将其与最后一个元素换位，然后删除。并且更新刚刚换过来的元素在map中登记的index。
+1.  插入时候先在list中append，然后把index作为value，val作为key存入map；
+2.  删除的时候先从map中找到list中val的index，然后将其与最后一个元素换位，然后删除。并且更新刚刚换过来的元素在map中登记的index。
 
-#### Java Code:
-```java
+<br>
+
+* #### Java Code:
+  ```java
     class RandomizedSet {
         Map<Integer, Integer> map = new HashMap<>();
         List<Integer> list = new ArrayList<>();
@@ -83,7 +85,7 @@ getRandom: Returns a random element from current set of elements. Each element m
             return list.get(randIndex);
         }
     }
-```
+  ```
 
 
 
