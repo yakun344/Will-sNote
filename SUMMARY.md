@@ -103,6 +103,7 @@
   * [Shortest Word Distance II](linkedlist-and-array/shortest-word-distance-ii.md)
   * [Reorder List](linkedlist-and-array/Reorder-List.md)
   * [Permutation in String](linkedlist-and-array/permutation-in-string.md)
+  * [Queue Reconstruction by Height （Medium）](linkedlist-and-array/queue-reconstruction-by-height-medium.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
