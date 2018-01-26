@@ -23,4 +23,4 @@ Shuffle a set of numbers without duplicates.
     
 <br>
 
-## 
+## Basic Idea:
