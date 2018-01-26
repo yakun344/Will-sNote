@@ -268,6 +268,7 @@
   * [Excel Sheet Column Title](math-problems/excel-sheet-column-title.md)
   * [Majority Element II](math-problems/majority-element-ii.md)
   * [Factorial Trailing Zeroes](math-problems/factorial-trailing-zeroes.md)
+  * [Power of Four](math-problems/power-of-four.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
