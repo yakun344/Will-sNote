@@ -47,56 +47,46 @@ getRandom: Returns a random element from current set of elements. Each element m
 
 #### Java Code:
 ```java
-    public class RandomizedSet {
-    
-        Map<Integer, Integer> map = null;
-        List<Integer> lst = null;
+    class RandomizedSet {
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
         /** Initialize your data structure here. */
-        public RandomizedSet() {
-            map = new HashMap<>();
-            lst = new ArrayList<>();
-        }
+        public RandomizedSet() {}
         
         /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
         public boolean insert(int val) {
             if (map.containsKey(val)) return false;
-            lst.add(val);
-            map.put(val, lst.size() - 1);
+            list.add(val);
+            map.put(val, list.size() - 1);
             return true;
         }
         
         /** Removes a value from the set. Returns true if the set contained the specified element. */
         public boolean remove(int val) {
-            if (! map.containsKey(val)) return false;
-            // 先得到在lst中的index 
-            int index = map.get(val);
-            // 和list中最后一个元素换位, 删除最后一个
-            if (index == lst.size() - 1) {
-                lst.remove(index);
-            } else {
-                lst.set(index, lst.remove(lst.size() - 1));
-                // 更新刚换到index的元素map中对应的index
-                map.put(lst.get(index), index);
+            // 现在map中找到val的index，和list中最后一个换位，更新换位元素在map中对应index，删掉需要删除的元素
+            Integer index = map.get(val);
+            if (index == null) return false;
+            // 如果index就是最后一个元素，则可以直接删除最后一个元素
+            if (index != list.size() - 1) {
+                // 将最后一个元素放入index，并更新map
+                list.set(index, list.get(list.size() - 1));
+                map.put(list.get(list.size() - 1), index);
             }
-            // remove map 中的 val
+            list.remove(list.size() - 1);
             map.remove(val);
             return true;
         }
         
         /** Get a random element from the set. */
         public int getRandom() {
-            return lst.get((int)(lst.size() * Math.random()));
+            int randIndex = (int)(Math.random() * (list.size()));
+            return list.get(randIndex);
         }
     }
-    
-    /**
-     * Your RandomizedSet object will be instantiated and called as such:
-     * RandomizedSet obj = new RandomizedSet();
-     * boolean param_1 = obj.insert(val);
-     * boolean param_2 = obj.remove(val);
-     * int param_3 = obj.getRandom();
-     */
 ```
+
+
+
 
 
 
