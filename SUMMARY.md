@@ -176,6 +176,7 @@
   * [Design Hit Counter](datastructure-problems/design-hit-counter.md)
   * [Find K Pairs with Smallest Sums](datastructure-problems/find-k-pairs-with-smallest-sums.md)
   * [Find Median from Data Stream](datastructure-problems/find-median-from-data-stream.md)
+  * [Insert Delete GetRandom O\(1\) - Duplicates allowed （hard）](datastructure-problems/insert-delete-getrandom-o1-duplicates-allowed.md)
 * [DFS](dfs/dfs.md)
   * [DFS notes](dfs/DFS-notes.md)
   * [Permutation & Combination & Subsets](dfs/permutation-and-combination/permutation-and-combination.md)
