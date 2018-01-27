@@ -67,7 +67,53 @@ Given two arrays, write a function to compute their intersection.
         }
     }
   ```
+<br>
 
+---
+
+# Intersection of Two Arrays II
+[leetCode](https://leetcode.com/problems/intersection-of-two-arrays-ii/description/)
+
+Given two arrays, write a function to compute their intersection.
+
+**Example:**
+
+    Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2, 2].
+
+**Note:**
+
+1. Each element in the result should appear as many times as it shows in both arrays.
+2. The result can be in any order.
+
+**Follow up:**
+
+1. What if the given array is already sorted? How would you optimize your algorithm?
+2. What if nums1's size is small compared to nums2's size? Which algorithm is better?
+3. What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+
+## Solution
+Basically，只要用一个HashMap记录一个array中每个数字的出现次数，然后扫描另一个array，检查其在map中对应个数，并每次将个数减去1，同时将存在的元素加入res list 即可。
+
+* #### Java Code：
+```java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums1) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        List<Integer> list = new ArrayList<>();
+        for (int num : nums2) {
+            int times = map.getOrDefault(num, 0);
+            if (times > 0) {
+                list.add(num);
+                map.put(num, times - 1);
+            }
+        }
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+}
+```
 
 
 
