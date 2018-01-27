@@ -260,6 +260,7 @@
   * [Reverse Integer](bit-manipulation/reverse-integer.md)
   * [Convert a Number to Hexadecimal](bit-manipulation/convert-a-number-to-hexadecimal.md)
   * [Prime Number of Set Bits in Binary Representation](bit-manipulation/prime-number-of-set-bits-in-binary-representation.md)
+  * [Sum of Two Integers](bit-manipulation/sum-of-two-integers.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Count Primes](math-problems/count-primes.md)
