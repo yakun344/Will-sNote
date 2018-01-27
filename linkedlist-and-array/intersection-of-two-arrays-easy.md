@@ -115,6 +115,29 @@ class Solution {
 }
 ```
 
+* ### Follow up:
+  * ##### What if the given array is already sorted? How would you optimize your algorithm?
+  如果已经sorted，直接用双指针法比较，每次相同元素加入res，否则谁小移谁；
+  
+  * ##### What if nums1's size is small compared to nums2's size? Which algorithm is better?
+  把 nums1 放入 HashTable，节省space；
+  
+  * ##### What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
+  如果 nums1 可以 fit in memory，把 nums1 全部放入 memory 做 hash，然后 block by block 地从磁盘中读出 nums2 进行验证。如果两个array都非常大无法放入内存，可以对他们分别 external sort，然后按顺序合并。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
