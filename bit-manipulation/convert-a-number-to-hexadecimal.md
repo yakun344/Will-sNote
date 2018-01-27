@@ -34,18 +34,18 @@ Given an integer, write an algorithm to convert it to hexadecimal. For negative 
 
 #### Java Code:
 ```java
-public class Solution {
-    public String toHex(int num) {
-        if (num == 0) return "0";
-        StringBuilder sb = new StringBuilder();
-        int mask = 0xf;
-        String s = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";
-        String[] arr = s.split(",");
-        while (num != 0) {
-            sb.append(arr[num & mask]);
-            num >>>= 4;
+    class Solution {
+        public String toHex(int num) {
+            if (num == 0) return "0";
+            char[] hex = "0123456789abcdef".toCharArray();
+            int mask = 0b1111;
+            StringBuilder sb = new StringBuilder();
+            while (num != 0) {
+                int digit = num & mask;
+                num >>>= 4;
+                sb.append(hex[digit]);
+            }
+            return sb.reverse().toString();
         }
-        return sb.reverse().toString();
     }
-}
 ```
