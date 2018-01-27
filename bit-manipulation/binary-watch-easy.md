@@ -27,3 +27,31 @@ Given a non-negative integer n which represents the number of LEDs that are curr
 <br>
 
 ### Basic Idea:
+按顺序枚举每个时刻，计数该时刻二进制表示中的 1 的个数，如果和input相等，将其 format 成相应格式的 string 加入 result list 中；
+
+* #### Java Code:
+```java
+    class Solution {
+        public List<String> readBinaryWatch(int num) {
+            List<String> res = new ArrayList<>();
+            for (int hour = 0; hour < 12; ++hour) {
+                for (int minute = 0; minute < 60; ++minute) {
+                    int bitNum = countBits(hour) + countBits(minute);
+                    if (bitNum == num) {
+                        res.add(String.format("%d:%02d", hour, minute));
+                    }
+                }
+            }
+            return res;
+        }
+        
+        private int countBits(int n) {
+            int ret = 0;
+            while (n > 0) {
+                ret += n & 1;
+                n >>>= 1;
+            }
+            return ret;
+        }
+    }
+```
