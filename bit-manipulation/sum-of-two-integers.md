@@ -16,3 +16,4 @@ Calculate the sum of two integers a and b, but you are **not** allowed to use th
 每次用 `a & b << 1` 计算出进位，用 `a ^ b` 算出每一位相加后 mod 2 的值，再把这两个值相加，直到进位为 0；
 
 * ### Java Code:
+```java
