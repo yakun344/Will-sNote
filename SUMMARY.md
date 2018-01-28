@@ -105,6 +105,7 @@
   * [Permutation in String](linkedlist-and-array/permutation-in-string.md)
   * [Queue Reconstruction by Height （Medium）](linkedlist-and-array/queue-reconstruction-by-height-medium.md)
   * [Intersection of Two Arrays \(easy\)](linkedlist-and-array/intersection-of-two-arrays-easy.md)
+  * [Valid Word Square \(easy\)](linkedlist-and-array/valid-word-square.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
