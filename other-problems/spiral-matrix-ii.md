@@ -97,7 +97,7 @@ Given an integer n, generate a square matrix filled with elements from 1 to n2 i
 _update Jan 28,2018  17:51_
 
 ### Update: Follow Up, what if input is `<M, N>` represent for width and height?
-如果width和height不同，用recursion比较方便。需要在每次开始填上右下左四个边之前进行判断，看当前width或height是否是 1，如果是，则特别处理，填好该（行、列 或者仅仅正中间一个元素）之后直接返回；
+如果width和height不同，用recursion比较方便。需要在每次开始填上右下左四个边之前进行判断，看当前width或height是否是 1，如果是，则特别处理，填好该（行、列 或者仅仅正中间一个元素）之后直接返回；另外要注意递归出口，只要有 width 或者 height 之一变成 0 就说明已经完成了，即可返回。
 
 * #### Java Code
 ```java
