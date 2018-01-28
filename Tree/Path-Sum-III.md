@@ -81,5 +81,46 @@ Java code:
     }
 ```
 
+<br>
+
+---
+_update Jan 27,2018 19:58_
+
+## Update PreSum 数组 解法
+还是利用 dfs，逐层向下构建当前path，不同的是path中存储的是之前每个node.val组成的数组的preSum数组，如此一来每层我们都可以用 `O(path.size)` 的时间查看目前为止有多少以该节点为终点的路径其 sum 为给定值，优化了时间复杂度。
+
+* #### Java Code:
+```java
+    class Solution {
+        public int pathSum(TreeNode root, int sum) {
+            List<Integer> preSum = new ArrayList<>();
+            preSum.add(0);
+            return helper(root, preSum, sum);
+        }
+        
+        private int helper(TreeNode root, List<Integer> preSum, int sum) {
+            if (root == null) return 0;
+            int ret = 0;
+            preSum.add(preSum.get(preSum.size() - 1) + root.val);
+            for (int i = 0; i < preSum.size() - 1; ++i) {
+                if (preSum.get(preSum.size() - 1) - preSum.get(i) == sum) {
+                    ret++;
+                }
+            }
+            int left = helper(root.left, preSum, sum);
+            int right = helper(root.right, preSum, sum); 
+            preSum.remove(preSum.size() - 1);
+            return ret + left + right;
+        }
+    }
+```
+
+
+
+
+
+
+
+
 
 
