@@ -90,8 +90,62 @@ Given an integer n, generate a square matrix filled with elements from 1 to n2 i
       }
     }
   ```
+  
+<br>
 
+---
+_update Jan 28,2018  17:51_
 
+### Update: Follow Up, what if input is `<M, N>` represent for width and height?
+如果width和height不同，用recursion比较方便。需要在每次开始填上右下左四个边之前进行判断，看当前width或height是否是 1，如果是，则特别处理，填好该（行、列 或者仅仅正中间一个元素）之后直接返回；
+
+* #### Java Code
+```java
+      public class Solution {
+        public int[][] spiralGenerate(int m, int n) {
+          int[][] matrix = new int[m][n];
+          if (m == 0 || n == 0) return matrix;
+          helper(matrix, 1, 0, n, m);
+          return matrix;
+        }
+        
+        private void helper(int[][] matrix, int count, int offset, int width, int height) {
+          // 每次先判断是否有width或者height == 1
+          if (width == 0 || height == 0) return;
+          else if (width == 1 && height == 1) {
+            matrix[offset][offset] = count;
+            return;
+          } else if (width == 1) {
+            for (int i = offset; i < offset + height; ++i) {
+              matrix[i][offset] = count++;
+            }
+            return;
+          } else if (height == 1) {
+            for (int i = offset; i < offset + width; ++i) {
+              matrix[offset][i] = count++;
+            }
+            return;
+          }
+          // up
+          for (int i = offset; i < offset + width - 1; ++i) {
+            matrix[offset][i] = count++;
+          }
+          // right
+          for (int i = offset; i < offset + height - 1; ++i) {
+            matrix[i][offset + width - 1] = count++;
+          }
+          // bottom
+          for (int i = offset + width - 1; i > offset; --i) {
+            matrix[offset + height - 1][i] = count++;
+          }
+          // left
+          for (int i = offset + height - 1; i > offset; --i) {
+            matrix[i][offset] = count++;
+          }
+          helper(matrix, count, offset + 1, width - 2, height - 2);
+        }
+      }
+```
 
 
 
