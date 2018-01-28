@@ -89,6 +89,8 @@ _update Jan 27,2018 19:58_
 ## Update PreSum 数组 解法
 还是利用 dfs，逐层向下构建当前path，不同的是path中存储的是之前每个node.val组成的数组的preSum数组，如此一来每层我们都可以用 `O(path.size)` 的时间查看目前为止有多少以该节点为终点的路径其 sum 为给定值，优化了时间复杂度。
 
+**时间复杂度:** 时间应该为 `O(NlogN)` 因为每次需要 `O(当前depth)` 的时间来遍历presum数组，而depth最高为 `logN` ，一共有 N 个节点，所以上界应该为 `O(NlogN)`; 空间复杂度为 `O(height)`;
+
 * #### Java Code:
 ```java
     class Solution {
