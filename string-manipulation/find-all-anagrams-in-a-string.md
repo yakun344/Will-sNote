@@ -122,3 +122,29 @@ The order of output does not matter.
 
 ---
 [Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/#/description)这道题也可以用window sliding的方法做，可以结合在一起。
+
+<br>
+
+---
+_update Jan 27,2018 20:08_
+## Update: 更新最新的 sliding window 写法
+每层外循环开始时，先用一个while循环判断是否需要移动right，保证该循环结束之后，window size 是符合要求的
+，然后做事情，最后右移left；
+* ### Java Code:
+```java
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
