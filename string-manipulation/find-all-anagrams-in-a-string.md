@@ -132,7 +132,38 @@ _update Jan 27,2018 20:08_
 ，然后做事情，最后右移left；另外，为了一开始的时候可以初始化第一个位置，可以令 right 初始化为 -1;
 * ### Java Code:
 ```java
-
+    class Solution {
+        public List<Integer> findAnagrams(String s, String p) {
+            List<Integer> res = new ArrayList<>();
+            // 记录p中各字母个数，用 count 跟踪剩余字母个数，当count==0时，说明我们找到一个结果
+            int[] counter = new int[256];
+            for (int i = 0; i < p.length(); ++i) {
+                counter[p.charAt(i)]++;
+            }
+            int count = p.length();
+            
+            // sliding window
+            int left = 0, right = -1;
+            final int WINDOWSIZE = p.length();
+            while (true) {
+                while (right - left + 1 < WINDOWSIZE) {
+                    right++;
+                    if (right == s.length()) break; 
+                    counter[s.charAt(right)]--;
+                    if (counter[s.charAt(right)] >= 0) count--;
+                }
+                if (right == s.length()) break; // 这行限制整个循环结束
+                // now window size must be p.length()
+                if (count == 0) res.add(left);
+                // move left pointer to right
+                counter[s.charAt(left)]++;
+                if (counter[s.charAt(left)] > 0) count++;
+                left++;
+            }
+            return res;
+        }
+    }
+```
 
 
 
