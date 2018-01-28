@@ -78,7 +78,39 @@ A sequence of words forms a valid word square if the kth row and column read the
 <br>
 
 ## Basic Idea:
+基本思想就是用两层for循环，逐行逐列去比较每个字符是否相等，另外要注意长度问题；
 
+* #### Java Code:
+在实现中，用一个helper function: get() 来负责处理查看某坐标元素的问题，在主程序中则可以专注比较每行每列。
+```java
+    class Solution {
+        public boolean validWordSquare(List<String> words) {
+            if (words.size() == 0) return true;
+            int R = words.size();
+            for (int r = 0; r < R; ++r) {
+                for (int c = 0; c < words.get(r).length(); ++c) {
+                    Character c1 = get(words, r, c);
+                    Character c2 = get(words, c, r);
+                    if (c1 == null && c2 == null) {
+                        continue;
+                    } else if (c1 == null || c2 == null) {
+                        return false;
+                    } else if (! c1.equals(c2)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        
+        private Character get(List<String> words, int r, int c) {
+            if (words.size() <= r) return null;
+            String row = words.get(r);
+            if (row.length() <= c) return null;
+            else return row.charAt(c);
+        }
+    }
+```
 
 
 
