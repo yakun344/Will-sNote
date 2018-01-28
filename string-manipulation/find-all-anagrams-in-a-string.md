@@ -129,7 +129,7 @@ The order of output does not matter.
 _update Jan 27,2018 20:08_
 ## Update: 更新最新的 sliding window 写法
 每层外循环开始时，先用一个while循环判断是否需要移动right，保证该循环结束之后，window size 是符合要求的
-，然后做事情，最后右移left；
+，然后做事情，最后右移left；另外，为了一开始的时候可以初始化第一个位置，可以令 right 初始化为 -1;
 * ### Java Code:
 ```java
 
