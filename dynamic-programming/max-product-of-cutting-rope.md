@@ -19,6 +19,7 @@ Given a rope with positive integer-length n, how to cut the rope into m integer-
 这道题要求切绳子，使得所有段长度的乘积最大，至少切一刀。使用dp的思路考虑，对于长度为 m 的绳子，我们有如下分析：
 ```c
     input: m
+    
     Induction Rule：
       dp[i] 表示长度为 i 的绳子可被切割的最大乘积，即子问题的解；
       dp[i] = max{ left * (i-left), dp[left] * (i-left) } // 由于dp[i]表示的是至少切一刀的最大乘积，
