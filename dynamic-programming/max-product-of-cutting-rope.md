@@ -21,10 +21,13 @@ Given a rope with positive integer-length n, how to cut the rope into m integer-
     input: m
     Induction Rule：
       dp[i] 表示长度为 i 的绳子可被切割的最大乘积，即子问题的解；
-      dp[i] = max{ left * (i-left), dp[left] * (i-left) } 
-              for left from 1 to i;
+      dp[i] = max{ left * (i-left), dp[left] * (i-left) } // 由于dp[i]表示的是至少切一刀的最大乘积，
+              for left from 1 to i;               // 所以再递推的时候要另外考虑之前段一刀不切的情况
+
     Base Case:
       dp[1] = 0
+      
+    
 ```
 
 * #### Java Code:
