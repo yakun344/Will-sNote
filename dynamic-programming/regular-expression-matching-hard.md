@@ -55,6 +55,34 @@ isMatch("aab", "c*a*b") → true
      dp[0][j] = dp[0][j-2] && B[j]=='*'; （这里需要特别注意，有可能是B很长，但都是 '*'，一次都没选用）
 ```
 
+* #### Java Code:
+```java
+    class Solution {
+        public boolean isMatch(String s, String p) {
+            if (s.length() == 0 && p.length() == 0) return true;
+            else if (p.length() == 0) return false;
+            boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+            dp[0][0] = true;
+            // fill in dp[0][j]
+            for (int j = 2; j <= p.length(); ++j) {
+                dp[0][j] = dp[0][j - 2] && p.charAt(j - 1) == '*';
+            }
+            // induction
+            for (int i = 1; i <= s.length(); ++i) {
+                for (int j = 1; j <= p.length(); ++j) {
+                    dp[i][j] = dp[i-1][j-1] && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '.' || 
+                                                (p.charAt(j-1) == '*' && (p.charAt(j-2) == '.' || s.charAt(i-1) == p.charAt(j-2))))
+                        || dp[i-1][j] && (p.charAt(j-1) == '*' && i > 1 && (s.charAt(i-1) == s.charAt(i-2) && 
+                                                                            s.charAt(i-1) == p.charAt(j-2) || p.charAt(j-2) == '.'))
+                        || dp[i][j-1] && p.charAt(j-1) == '*'
+                        || j > 1 && dp[i][j-2] && p.charAt(j-1) == '*';
+                }
+            }
+            return dp[s.length()][p.length()];
+        }
+    }
+```
+
 
 
 
