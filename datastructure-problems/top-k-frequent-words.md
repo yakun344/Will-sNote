@@ -31,7 +31,9 @@ for k = 4, return ["code", "lint", "baby", "yes"],
 
 >Extra points if you can do it in O(n) time with O(k) extra space approximation algorithms.
 
-#### Basic Idea:
+<br>
+
+### Basic Idea:
 **思路1：bucket sort**
 先统计词频，然后建一个数组，大小为 max-min，每个bucket存放该词频的单词，然后从右往左遍历。最终得到的list可能数量大于k，排序后取较大的k个返回即可。
 
@@ -42,8 +44,32 @@ for k = 4, return ["code", "lint", "baby", "yes"],
 
 >时间复杂度：统计词频O(n) + 维持pq的操作O(nlogk) + 最终k次poll的O(klogk) = O(nlogk)；
 
+* #### Java Code (思路1)：
+```java
+    public class Solution {
+      public String[] topKFrequent(String[] combo, int k) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String s : combo) {
+        	map.put(s, map.getOrDefault(s, 0) + 1);
+        }
+        String[] buckets = new String[combo.length + 1];
+        Iterator<Map.Entry<String, Integer>> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+        	Map.Entry<String, Integer> entry = it.next();
+          buckets[entry.getValue()] = entry.getKey();
+        }
+    		List<String> res = new ArrayList<>();
+        for (int i = buckets.length - 1; i > 0; --i) {
+        	if (res.size() < k && buckets[i] != null) {
+          	res.add(buckets[i]);
+          }
+        }
+        return res.toArray(new String[res.size()]);
+      }
+    }
+```
 
-#### Python Code （思路1）：
+* #### Python Code （思路1）：
 Bucket sort solution：
 ```python
     class Solution:
@@ -83,7 +109,8 @@ for k = 4, return ["code", "lint", "baby", "yes"],
             # 截取k个返回
             return res[:k]
 ```
-#### Java Code (思路2):
+
+* #### Java Code (思路2):
 Heap q solution:
 ```java
     public class Solution {
