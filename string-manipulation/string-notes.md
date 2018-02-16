@@ -16,6 +16,7 @@ String 的常见问题可以归纳为如下几类：
 9.  DP, longest substring
 10. matching
 <br>
+
 #### 1. Char Removal
 ```
     input：  ____aaa___bb_cc__
@@ -54,6 +55,7 @@ String 的常见问题可以归纳为如下几类：
     }
 ```
 <br>
+
 #### 2. De-duplicate
 ```  
     (1)
@@ -69,7 +71,7 @@ String 的常见问题可以归纳为如下几类：
       即重复串消除之后，如果左右部分合并生成了新的重复串，继续消除
 ```
 用 stack。
-  * #### Java Code:
+  * ##### Java Code:
   ```java
       public class Solution {
         public String deDup(String input) {
@@ -102,24 +104,63 @@ String 的常见问题可以归纳为如下几类：
         }
       } 
   ```
+  
+```
+  (3). Remove Spaces, delete leading/trailing/duplicated spaces
+       “  a” --> “a”
+       “   I     love MTV   ” --> “I love MTV”
+```
+基本思路是在每个单词结束之后插入一个space，跳过所有space，最后再检查删除头尾的space；
+* ##### Java Code：
+    ```java
+    public class Solution {
+      public String removeSpaces(String input) {
+        StringBuilder sb = new StringBuilder();
+        boolean space = false;
+        char[] arr = input.toCharArray();
+        // pass all spaces, add a space after each word
+        for (char c : arr) {
+          if (c == ' ') {
+            space = true;
+            continue;
+          } else {
+            if (space) {
+              sb.append(" ");
+              space = false;
+            }
+            sb.append(c);
+          }
+        }
+        // delete leading/trailing space
+        if (sb.length() == 0) return "";
+        if (sb.charAt(0) == ' ') {
+          sb.deleteCharAt(0);
+        }
+        if (sb.charAt(sb.length() - 1) == ' ') {
+          sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+      }
+    }
+```
 <br>
 #### 3. Str-str
 经典题目，求一个string是否是另一个string的substring。基本方法是 `O(len(small string)^2)` 的时间复杂度，还有 KMP 和 Robin Karp 两个常见的 `O(n)` 时间的实现，但是一般来说不会考实现。
 ```java
-    public class Solution {
-      public int strstr(String large, String small) {
-        if ("".equals(small)) return 0;
-        for (int k = 0; k < large.length(); ++k) {
-          int i = 0;
-          while (i < small.length() && k + i < large.length()) {
-            if (large.charAt(k + i) != small.charAt(i)) break;
-            i++;
+      public class Solution {
+        public int strstr(String large, String small) {
+          if ("".equals(small)) return 0;
+          for (int k = 0; k < large.length(); ++k) {
+            int i = 0;
+            while (i < small.length() && k + i < large.length()) {
+              if (large.charAt(k + i) != small.charAt(i)) break;
+              i++;
+            }
+            if (i == small.length()) return k;
           }
-          if (i == small.length()) return k;
+          return -1;
         }
-        return -1;
       }
-    }
 ```
 <br>
 #### 4. Replacement
