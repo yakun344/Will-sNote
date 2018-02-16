@@ -49,35 +49,34 @@ Given a string which contains only lowercase letters, remove duplicate letters s
 ```
 
 * #### Java Code:
-
 ```java
     class Solution {
         public String removeDuplicateLetters(String s) {
             int[] count = new int[256];
             boolean[] inStack = new boolean[256];
+            Deque<Character> stack = new ArrayDeque<>();
             char[] arr = s.toCharArray();
             
-            for (int i = 0; i < s.length(); ++i) {
-                count[s.charAt(i)]++;
+            for (char c : arr) {
+                count[c]++;
             }
             
-            // stack
-            StringBuilder sb = new StringBuilder();
             for (char c : arr) {
-                while (! inStack[c] && sb.length() > 0 
-                       && sb.charAt(sb.length() - 1) > c 
-                       && count[sb.charAt(sb.length() - 1)] > 0) {
-                       
-                    inStack[sb.charAt(sb.length() - 1)] = false;
-                    sb.deleteCharAt(sb.length() - 1);
+                if (inStack[c]) {
+                    count[c]--;
+                    continue;
                 }
-                if (! inStack[c]) {
-                    sb.append(c);
-                    inStack[c] = true;
+                while (! stack.isEmpty() && stack.peekFirst() > c && count[stack.peekFirst()] > 0) {
+                    inStack[stack.pollFirst()] = false;
                 }
+                stack.offerFirst(c);
                 count[c]--;
+                inStack[c] = true;
             }
-            return sb.toString();
+            
+            StringBuilder sb = new StringBuilder();
+            for (char c : stack) sb.append(c);
+            return sb.reverse().toString();
         }
     }
 ```
