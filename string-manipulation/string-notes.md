@@ -71,35 +71,36 @@ String 的常见问题可以归纳为如下几类：
 用 stack。
   * #### Java Code:
   ```java
-        public class Solution {
-          public String deDup(String input) {
-            if (input == null || input.length() < 2) return input;
-            Deque<Character> deque = new ArrayDeque<>();
-            boolean dup = false; // 用以标记是否刚刚结束重复串，需要删除当前peek
-            int i = 0;
-            
-            while (i < input.length()) {
-              if (deque.isEmpty() || deque.peekFirst() != input.charAt(i)) {
-                if (! dup) {
-                  deque.offerFirst(input.charAt(i++)); 
-                } else { // dup刚刚结束，删除栈顶，dup为false，不改变i，下次for循环会处理
-                  deque.pollFirst();
-                  dup = false;
-                }
-              } else { // 如果和peek相同，直接i++跳过，并将dup设为true
-                i++;
-                dup = true;
+      public class Solution {
+        public String deDup(String input) {
+          Deque<Character> stack = new ArrayDeque<>();
+          int idx = 0;
+          boolean dup = false;
+          while (idx < input.length()) {
+            if (stack.isEmpty()) {
+              stack.offerLast(input.charAt(idx++));
+            } else if (stack.peekLast() == input.charAt(idx)) {
+              idx++;
+              dup = true;
+            } else {
+            	if (dup) {
+                stack.pollLast();
+                dup = false;
+              } else {
+                stack.offerLast(input.charAt(idx++));
               }
             }
-            if (dup) deque.pollFirst();
-            
-            StringBuilder sb = new StringBuilder();
-            for (char c : deque) {
-              sb.append(c);
-            }
-            return sb.reverse().toString();
           }
+          if (dup) {
+            stack.pollLast();
+          }
+          StringBuilder sb = new StringBuilder();
+          for (char c : stack) {
+            sb.append(c);
+          }
+          return sb.toString();
         }
+      } 
   ```
 <br>
 #### 3. Str-str
