@@ -122,7 +122,8 @@ String 的常见问题可以归纳为如下几类：
 ```
 <br>
 #### 4. Replacement
-```
+
+```java
     Assumptions
     
     input, S and T are not null, S is not empty string
@@ -131,7 +132,9 @@ String 的常见问题可以归纳为如下几类：
     input = "appledogapple", S = "apple", T = "cat", input becomes "catdogcat"
     input = "dodododo", S = "dod", T = "a", input becomes "aoao"
 ```
+
 用一个指针扫描input string，用一个StringBuilder保存结果， 每次发现接下来的部分和 S match后，就append T，指针跳过len(S)个位置，否则的话就append当前字符，指针右移一位。
+
 ```java
     public class Solution {
       public String replace(String input, String s, String t) {
