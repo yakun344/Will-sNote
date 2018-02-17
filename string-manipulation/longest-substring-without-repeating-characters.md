@@ -25,3 +25,33 @@ Note that the answer must be a substring, "pwke" is a subsequence and not a subs
 
 * ### Java Code:
 ```java
+    class Solution {
+        public int lengthOfLongestSubstring(String s) {
+            if (s == null) return 0;
+            else if (s.length() < 2) return s.length();
+            int[] count = new int[256];
+            int left = 0, right = -1, ret = 0;
+            boolean dup = false;
+            
+            while (right < s.length()) {
+                while (dup) {
+                    if (--count[s.charAt(left)] == 1) {
+                        // means before this step, it is 2, which means has duplicate
+                        dup = false;
+                    }
+                    left++;
+                }
+                // must have no duplicate now
+                ret = Math.max(ret, right - left + 1);
+                // right shift right pointer
+                right++;
+                if (right == s.length()) break;
+                else if (++count[s.charAt(right)] > 1) {
+                    // means has duplicate now
+                    dup = true;
+                }
+            }
+            return ret;
+        }
+    }
+```
