@@ -30,11 +30,12 @@ For now, the judge is able to judge based on one instance of gray code sequence.
 Gray Code的定义可以在wiki上找到，其实并非如题意所说有其他形式，而是有固定顺序的。
 
 **方法1：（找规律）**
+
 如图：
 ![](/assets/WechatIMG16.jpg)
 
 Python Code:
-    ```python
+```python
     # 解法 1，找规律
     class Solution(object):
         def grayCode(self, n):
@@ -53,6 +54,7 @@ Python Code:
 ```
 
 **方法2：（数学公式）**
+
 事实上，第 i 个grayCode（0 based）就是 `(i >> 1) ^ i`，而 k 位共有 `1<<k` 个grayCode （1 based）. 所以gray code就是从 `(0>>1)^0 到 ((k-1)>>1)^(k-1)`。
 
 Python Code:
