@@ -19,7 +19,7 @@ Furthermore, you may assume that the original data does not contain any digits a
     s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
     
 #### Basic Idea:
-使用两个stack，一个存数字，一个存string。对于每个 '[' 先在stack2中插入一个空串作为这组括号最终的结果。遇到 ']' 时计算当前括号的结果。开始之前，在栈底放一个空串，作为最终结果的位置。
+使用两个stack，一个存数字，一个存string。对于每个 '[' 先在stack2中插入一个空串作为这组括号最终的结果。遇到 ']' 时计算当前括号的结果。**开始之前，在栈底放一个空串，作为最终结果的位置。**
 
 #### Code:
 ```java
