@@ -8,7 +8,7 @@ Given a digit string, return all possible letter combinations that the number co
 
 A mapping of digit to letters (just like on the telephone buttons) is given below.
 
-![](http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png)
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png">
 
 
     Input:Digit string "23"
@@ -17,3 +17,49 @@ A mapping of digit to letters (just like on the telephone buttons) is given belo
 **Note:**
 
 Although the above answer is in lexicographical order, your answer could be in any order you want.
+
+<br>
+
+## Basic Idea:
+* ###思路 1： DFS
+使用dfs求解，整个递归分为 `len(digits)` 层，每层考虑一个 input 的数字，每层有当前层数次对应字母个数个分支，时间复杂度大约为 `O(每个数字对应字母个数 ^ len(digits))`，空间复杂度如果不考虑解集占用空间，为递归栈所占，`O(len(digits))`;
+  * #### Java Code：
+  ```java
+        class Solution {
+            public List<String> letterCombinations(String digits) {
+                String[] arr = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+                List<String> res = new ArrayList<>();
+                if (digits == null || digits.length() < 1) return res;
+                dfs(res, 0, digits, arr, new StringBuilder());
+                return res;
+            }
+            
+            private void dfs(List<String> res, int pos, String digits, String[] arr, StringBuilder path) {
+                if (pos == digits.length()) {
+                    res.add(path.toString());
+                    return;
+                }
+                int digit = digits.charAt(pos) - '0';
+                String chars = arr[digit];
+                for (int i = 0; i < chars.length(); ++i) {
+                    path.append(chars.charAt(i));
+                    dfs(res, pos + 1, digits, arr, path);
+                    path.deleteCharAt(path.length() - 1);
+                }
+            }
+        }
+   ```
+   
+* ### 思路 2：BFS，iterative
+利用一个 queue，每次讲之前的生成的path扩展一层，例如input为 `23`, 对应字母分别为 `abc, def`。则我们第一层生成 `a,b,c` ，第二层分别针对候选的 `d,e,f` 进行扩展，生成最后结果：`ad,ae,af,bd,be,bf,cd,ce,cf`；
+  * #### Java Code:
+  ```java
+  
+   
+   
+   
+   
+   
+   
+   
+   
