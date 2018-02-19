@@ -54,7 +54,28 @@ Although the above answer is in lexicographical order, your answer could be in a
 利用一个 queue，每次讲之前的生成的path扩展一层，例如input为 `23`, 对应字母分别为 `abc, def`。则我们第一层生成 `a,b,c` ，第二层分别针对候选的 `d,e,f` 进行扩展，生成最后结果：`ad,ae,af,bd,be,bf,cd,ce,cf`；
   * #### Java Code:
   ```java
-  
+    class Solution {
+        public List<String> letterCombinations(String digits) {
+            List<String> res = new ArrayList<>();
+            String[] arr = {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+            if (digits == null || digits.length() < 1) return res;
+            Deque<String> queue = new ArrayDeque<>();
+            queue.offerFirst("");
+            for (int i = 0; i < digits.length(); ++i) {
+                int size = queue.size();
+                String chars = arr[digits.charAt(i) - '0'];
+                for (int n = 0; n < size; ++n) {
+                    String node = queue.pollLast();
+                    for (char c : chars.toCharArray()) {
+                        queue.offerFirst(node + c);
+                    }
+                }
+            }
+            res.addAll(queue);
+            return res;
+        }
+    }
+  ```
    
    
    
