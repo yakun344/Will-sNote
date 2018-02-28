@@ -48,7 +48,28 @@ Implement pow(x, n).
 
 * ### Iterative Solution (Java):
 ```java
-
+    class Solution {
+        public double myPow(double x, int n) {
+            if (x == 0 || x == 1) return x;
+            else if (n == 0) return 1;
+            
+            long N = n;
+            if (n < 0) {
+                x = 1 / x;
+                N = -(long)n;
+            }
+            
+            double ret = 1, curr = x;
+            for (long i = N; i > 0; i /= 2) {
+                if (i % 2 == 1) {
+                    ret = ret * curr;
+                } 
+                curr *= curr;
+            }
+            return ret;
+        }
+    }
+```
 
 
 
