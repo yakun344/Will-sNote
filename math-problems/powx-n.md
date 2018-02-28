@@ -59,14 +59,16 @@ Implement pow(x, n).
                 N = -(long)n;
             }
             
-            double ret = 1, curr = x;
-            for (long i = N; i > 0; i /= 2) {
-                if (i % 2 == 1) {
-                    ret = ret * curr;
-                } 
+            double res = 1;
+            double curr = x;
+            while (N > 0) {
+                if (N % 2 == 1) {
+                    res = res * curr;
+                }
                 curr *= curr;
+                N /= 2;
             }
-            return ret;
+            return res;
         }
     }
 ```
