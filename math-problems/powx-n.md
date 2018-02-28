@@ -22,7 +22,44 @@ Implement pow(x, n).
 
 * ### Recursive Solution (Java):
 ```java
-
+    class Solution {
+        public double myPow(double x, int n) {
+            if (x == 0 || x == 1) return x;
+            else if (n == 0) return 1;
+            
+            if (n < 0) {
+                return helper(1 / x, -(long)n); // 这里用long是为了处理当n为 -2147483648 的情况，避免overflow
+            } else {
+                return helper(x, n);
+            }
+        }
+        
+        private double helper(double x, long n) {
+            if (n == 1) return x;
+            double pow = helper(x, n / 2);
+            if (n % 2 != 0) {
+                return x * pow * pow;
+            } else {
+                return pow * pow;   
+            }
+        }
+    }
+```
 
 * ### Iterative Solution (Java):
 ```java
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
