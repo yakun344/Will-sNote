@@ -113,46 +113,39 @@ _update Dec 3, 2017 20:20_
 ### Update
 优化了一下 left，right 双指针左右扩展筛选的 code 逻辑。优化后的写法和 merge sort 中 merge aux数组时候的逻辑类似，先考虑两指针的edge case的情况，再考虑普遍情况。
 
-**Python Code**
-```python
-    class Solution:
-        """
-        @param: A: an integer array
-        @param: target: An integer
-        @param: k: An integer
-        @return: an integer array
-        """
-        def kClosestNumbers(self, A, target, k):
-            # 二分法找到距离target最接近的index
-            def findClosest(target):
-                p, r = 0, len(A) - 1
-                while p + 1 < r:
-                    q = p + (r - p) // 2
-                    if A[q] >= target: r = q
-                    else: p = q
-                if A[p] == target: return p
-                elif A[r] == target: return r
-                else: 
-                    # 这里一定要用 <= ，因为当两者相等的时候，我们优先选择左边更小的数
-                    return p if abs(target - A[p]) <= abs(target - A[r]) else r
-                
-            index = findClosest(target)
-            ret = [A[index]]
-            left, right = index - 1, index + 1
-            for i in range(k - 1):
-                if left < 0: 
-                    ret.append(A[right])
-                    right += 1
-                elif right >= len(A):
-                    ret.append(A[left])
-                    left -= 1
-                elif abs(A[left] - target) <= abs(A[right] - target):
-                    ret.append(A[left])
-                    left -= 1
-                else:
-                    ret.append(A[right])
-                    right += 1
-            return ret
+**Java Code**
+```java
+    class Solution {
+        public List<Integer> findClosestElements(int[] arr, int k, int x) {
+            int target = binarySearch(arr, x);
+            List<Integer> res = new ArrayList<>();
+            res.add(arr[target]);
+            k--;
+            int left = target - 1, right = target + 1;
+            while (k > 0) {
+                if (left < 0) res.add(arr[right++]);
+                else if (right >= arr.length) res.add(arr[left--]);
+                else if (Math.abs(arr[left] - x) <= Math.abs(arr[right] - x)) res.add(arr[left--]);
+                else res.add(arr[right++]);
+                k--;
+            }
+            Collections.sort(res);
+            return res;
+        }
+        
+        // if target not exist, return left, if no left, return right
+        private int binarySearch(int[] arr, int target) {
+            int p = 0, r = arr.length - 1;
+            while (p + 1 < r) {
+                int q = p + (r - p) / 2;
+                if (arr[q] < target) p = q;
+                else r = q;
+            }
+            if (arr[p] == target) return p;
+            else if (arr[r] == target) return r;
+            else return p;
+        }
+    }
 ```
 
 
