@@ -14,7 +14,7 @@ Given a target number, a non-negative integer k and an integer array A sorted in
     Given A = [1, 4, 6, 8], target = 3 and k = 3, return [4, 1, 6].
 
 **Challenge **
-O(logn + k) time complexity.
+`O(logn + k)` time complexity.  
 
 #### Basic Idea:
 先用二分法找到target，或者距离target最近的元素，然后向两侧扩展找k-1个最接近target的。
