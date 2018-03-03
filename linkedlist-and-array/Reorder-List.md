@@ -49,6 +49,7 @@ class Solution {
     }
     
     // split the linked list from mid, return the head of the 2nd part
+    // 注意特殊处理，需要让slow停在中点之前
     private ListNode getMid(ListNode head) {
         ListNode slow = head, fast = head;
         while (fast.next != null && fast.next.next != null) {
