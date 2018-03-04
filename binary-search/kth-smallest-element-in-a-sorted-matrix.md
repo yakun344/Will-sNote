@@ -202,7 +202,7 @@ Laioffer 课程中又提供了一种新的思路，和 Dijkstra 算法的思路�
 **Correctness:**  
 &emsp; 可以把整个计算的顺序想象成从左上角到右下角的扇形辐射路径，每次 poll 出当前最小值之后会 generate 右方和下方的两个 node （但是注意去重），可以保证每一时刻在该扇形区域之外的 node 没有小于当前 peek 元素的 node。于是，我们只要进行 k-1 次 poll 的操作，就一定可以保证得到 k-th smallest element;
 
-#### Java Code:
+* #### Java Code:
 ```java
 class Solution {
     // implement Comparable, 为了实现可以按照val排序
