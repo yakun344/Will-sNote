@@ -40,3 +40,37 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
 1. `graph` will have length in range `[1, 100]`.
 2. `graph[i]` will contain integers in range `[0, graph.length - 1]`.
 3. `graph[i]` will not contain `i` or duplicate values.
+
+<br>
+
+## Basic Idea:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
