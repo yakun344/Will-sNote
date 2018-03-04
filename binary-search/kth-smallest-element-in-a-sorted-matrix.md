@@ -130,7 +130,7 @@ You may assume k is always valid, 1 ? k ? n2.
 ---
 _update Dec 2, 2017  22:58_
 #### O(n) 时间得到这种 sorted matrix 中某元素的 rank 的方法：
-类似 [这道题](https://will-gxz.gitbooks.io/xiaozheng_algo/content/other-problems/search-a-2d-matrix-ii.html), 我们从 matrix 的做下角出发，如果当前元素比 target 大，说明右边都比它大，则往上移动一行。如果当前元素比target小，说明这个元素及其上面一列都比 target 小，则右移一列。因为我们目的不是找到 target，而是确定target的rank，所以找到target之后要 keep going，沿途统计小于它元素的个数。
+类似 [这道题](https://will-gxz.gitbooks.io/xiaozheng_algo/content/other-problems/search-a-2d-matrix-ii.html), 我们从 matrix 的左下角出发，如果当前元素比 target 大，说明右边都比它大，则往上移动一行。如果当前元素比target小，说明这个元素及其上面一列都比 target 小，则右移一列。因为我们目的不是找到 target，而是确定target的rank，所以找到target之后要 keep going，沿途统计小于它元素的个数。
 
 #### Update Binary Search Solution
 之前写的 binary search 手法太过稚嫩，一定是经过了很多次尝试才最终把 base case 设定好，虽然看上去简短，实则不易复现。写 binary search 一定要注意 base case： `while p + 1 < r:` 
