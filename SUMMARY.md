@@ -73,6 +73,7 @@
   * [Minimum Depth of Binary Tree](Tree/minimum-depth-of-binary-tree.md)
   * [Invert Binary Tree \(easy\)](Tree/invert-binary-tree-easy.md)
   * [Tweaked Identical Binary Trees](Tree/tweaked-identical-binary-trees.md)
+  * [Check If Binary Tree Is Completed](Tree/check-if-binary-tree-is-completed.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](linkedlist-and-array/maximum-distance-in-arrays.md)

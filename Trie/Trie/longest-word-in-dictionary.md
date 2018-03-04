@@ -41,8 +41,8 @@ If there is no answer, return the empty string.
 
 
 * ### 方法 2 （sort）：
-&emsp; 先对 input list 排序，这样可以保证短的都在前面，然后维持一个 `Set<String>` ，遍历input list，如果遇到长度为 1 的 string s，直接加入 set，否则检查 `s[:-1] 是否在 set 中， 如果在则将其加入 set`，于此同时，维持全局变量记录s长度，以及全局变量记录最长的字典顺序小的 string 作为 ret 进行更新；  
-&emsp; 这种方法时间复杂度为 `O(NlogN)`
+&emsp; 先对 input list 排序，这样可以保证短的都在前面，然后维持一个 `Set<String>` ，遍历input list，如果遇到长度为 1 的 string s，直接加入 set，否则检查 `s[:-1] 是否在 set 中， 如果在则将其加入 set`，于此同时，维持全局变量记录s长度，以及全局变量记录最长的字典顺序小的 string 作为 ret 进行更新;       
+&emsp;这种方法时间复杂度为 `O(NlogN)`
   * #### Java Code:
   ```java
     class Solution {
