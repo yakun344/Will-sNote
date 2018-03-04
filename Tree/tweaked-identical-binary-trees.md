@@ -33,3 +33,17 @@ the two binary trees are tweaked identical.
 <br>
 
 ## Basic Idea:
+递归求解，对于每对node，考虑 1左2左 1右2右，1左2右 1右2左 两种情况。
+
+* ### Java Code:
+```java
+  public class Solution {
+    public boolean isTweakedIdentical(TreeNode one, TreeNode two) {
+      if (one == null && two == null) return true;
+      else if (one == null || two == null) return false;
+      else if (one.key != two.key) return false;
+      return isTweakedIdentical(one.left, two.left) && isTweakedIdentical(one.right, two.right)
+        || isTweakedIdentical(one.left, two.right) && isTweakedIdentical(one.right, two.left);
+    }
+  }
+```
