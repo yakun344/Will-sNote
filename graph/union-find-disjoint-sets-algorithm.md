@@ -64,7 +64,8 @@ Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wi
             nodex.parent = find(nodex.parent);
             return nodex.parent;
         }
-    
+        
+        // union同时，用union by rank（height） 进行优化
         public void union(int x, int y) {
             Node rootx = find(x);
             Node rooty = find(y);
