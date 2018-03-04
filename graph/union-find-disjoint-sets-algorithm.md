@@ -29,18 +29,19 @@ Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wi
 
 这种实现方式和CLRS或WIKI中完全一致，定义新的Node class，然后依照wiki中的伪代码实现。
 ```java
-    import java.util.*;    
+    import java.util.*;
+    
+    // traditional Tree implementation
     class UnionFind {
         private class Node {
             int val, rank;
             Node parent;
             public Node(int val) {
                 this.val = val;
-                this.rank = 0;  // 高度，一般来说只有root的rank有意义
+                this.rank = 0;
                 this.parent = this;
             }
         }
-        // 用以存放 int 和 node 的对应关系
         private Map<Integer, Node> disjointSet;
     
         // if x is not already in the set, add x
@@ -59,11 +60,9 @@ Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wi
         // find the root of x, do path compression along recursion
         private Node find(Node nodex) {
             // path compression
-            while (nodex.parent != nodex) {
-                nodex.parent = find(nodex.parent);
-                nodex = nodex.parent;
-            }
-            return nodex;
+            if (nodex.parent == nodex) return nodex;
+            nodex.parent = find(nodex.parent);
+            return nodex.parent;
         }
     
         public void union(int x, int y) {
