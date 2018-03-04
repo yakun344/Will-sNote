@@ -44,7 +44,47 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
 <br>
 
 ## Basic Idea:
+* ### 思路 1：（BFS + 2 sets）
+用两个set `U and V` 表示两个 subset，确保一个set中的node的neighbor都在另一个set中，当发现有两个相连的node在同一个set中时，返回false；
+  * #### Java Code:
+```java
+    class Solution {
+        public boolean isBipartite(int[][] graph) {
+            if (graph == null || graph.length == 0) return true;
+            Set<Integer> U = new HashSet<>();
+            Set<Integer> V = new HashSet<>();
+            Deque<Integer> queue = new ArrayDeque<>();
+            for (int node = 0; node < graph.length; ++node) {
+                if (! U.contains(node) && ! V.contains(node)) {
+                    queue.offerFirst(node);
+                    while (! queue.isEmpty()) {
+                        int curr = queue.pollLast();
+                        for (int neighbor : graph[curr]) {
+                            if (U.contains(curr) && U.contains(neighbor)
+                               || V.contains(curr) && V.contains(neighbor)) {
+                                return false;
+                            } else if (U.contains(curr)) {
+                                if (V.add(neighbor)) {
+                                    queue.offerFirst(neighbor);
+                                }
+                            } else {
+                                if (U.add(neighbor)) {
+                                    queue.offerFirst(neighbor);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+    }
+```
 
+* ### 思路 2：（DFS + 2 sets）
+和之前的BFS思路类似，也是用两个set表示不同部分，然后再dfs的过程中将相连node放入不同的set，同时检查当前node和其neighbor是否在同一个set中；时间复杂度都是 `O(|E|)`，因为都遍历了所有的边；
+  * #### Java Code:
+```java
 
 
 
