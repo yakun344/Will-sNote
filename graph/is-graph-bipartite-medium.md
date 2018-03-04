@@ -121,10 +121,8 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
     }
 ```
 
-* ### 思路 3： （Union Find 并查集）
-既然是将图分成两个部分，并且需要随时检查两个node是否属于同一部分，我们可以使用并查集求解。只是这道题用并查集并没有太大的优势，直接用set可能会更加简单，所以并查集的解法就当做一个练习吧；
-  * #### Java Code:
-```java
+
+
 
 
 
