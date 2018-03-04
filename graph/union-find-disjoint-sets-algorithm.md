@@ -132,12 +132,11 @@ Java Code:
         }
     
         public int find(int x) {
-            while (ids[x] != x) {
-                // path compress
-                ids[x] = find(ids[x]); // 等价于 x.parent = find(x.parent)
-                x = ids[x];
+            if (ids[x] == x) return x;
+            else {
+                ids[x] = find(ids[x]); // path compression
             }
-            return x;
+            return dis[x];
         }
     
         public void union(int x, int y) {
