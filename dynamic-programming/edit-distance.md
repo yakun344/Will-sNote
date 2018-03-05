@@ -15,7 +15,7 @@ You have the following 3 operations permitted on a word:
     
 ## Basic Idea:
 使用二维dp，bottom-up 递推求解。Induction rule 和 base case 如下图：
-```python
+```c
     Input: string: A, B
 
     Induction rule:
