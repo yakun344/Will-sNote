@@ -51,9 +51,13 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
             for (int r = 0; r < R; ++r) {
                 for (int c = 0; c < C; ++c) {
                     if (r > 0 && c > 0) {
+                        // 在周围三个正方形中选择边长最小的，然后新的正方形就是其边长加一
+
+
                         dp[r][c] = matrix[r][c] == '1' ? 
                             Math.min(Math.min(dp[r - 1][c], dp[r][c - 1]), dp[r - 1][c - 1]) + 1 : 0;
                     } else {
+                        // 考虑上边界和左边界的情况，最大边长为 1
                         dp[r][c] = matrix[r][c] == '1' ? 1 : 0;
                     }
                     maxArea = Math.max(maxArea, dp[r][c] * dp[r][c]);
