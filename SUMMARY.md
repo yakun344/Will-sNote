@@ -263,6 +263,7 @@
   * [Edit Distance \(hard\)](dynamic-programming/edit-distance.md)
   * [Max Product Of Cutting Rope](dynamic-programming/max-product-of-cutting-rope.md)
   * [Regular Expression Matching \(Hard\)](dynamic-programming/regular-expression-matching-hard.md)
+  * [Maximal Square \(Largest Square of 1's\)](dynamic-programming/maximal-square-largest-square-of-1s.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
