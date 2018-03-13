@@ -27,6 +27,8 @@ The given matrix is not null, has size of `N * M, N >= 0` and `M >= 0`.
 ### Basic Idea:
 为了获得最大的十字形，我们可以预处理matrix，生成四个dp table，`dp[r][c]` 分别表示到点 `[r, c]` 为止，来自左右上下四个方向的连续 1 的长度。如此一来，为了获得最大十字，我们只需要检查每个点的左右上下四个方向连续 1 的长度，取四个长度的最小值作为当前位置十字的arm length;
 
+时间复杂度: `O(5n^2)`;
+
 * #### Java Code:
 ```java
   public class Solution {
