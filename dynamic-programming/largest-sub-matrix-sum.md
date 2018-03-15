@@ -42,10 +42,55 @@ The given matrix is not null and has size of M * N, where M >= 1 and N >= 1
 
 * #### 依然用一维 prefix sum 数组优化，结合 Kadane 求 max subarray sum 的算法 `O(n^3)`:
 与之前的几种方法不同，这次不再遍历每一个 submatrix，而是枚举所有的左右边界对，在每一对左右边界之间，求不同上下边界组成的 submatrix 的最大和，全局最大就是解。
-<br>
+<br><br>
 具体地，我们可以先用 `O(N^2)` 的时间求所有 row 的 prefix sum 数组，如此一来，对于任意给定左右边界的某一行，我们可以用 `O(1)` 时间求和。那么，我们可以把任意左右边界之间的部分视为一个竖着的一维数组，其中的值就是某一行的和。于是，我们就可以使用 Kadane 算法求它的 max subarray sum，该过程耗时 `O(N)`，而因为共有 `O(N^2)` 个左右边界组合，一共要进行该过程 `O(N^2)` 次，所以总时间复杂度为 `O(N^3)`。
 
+<br>
 ## Java Code:
 * ### O(n^4) 解法，2D prefix sum：
 ```java
-
+  public class Solution {
+    public int largest(int[][] matrix) {
+      int R = matrix.length, C = matrix[0].length;
+  
+      // 先获取 2D prefix sum, sums[i][j] 表示从 [0,0] 到 [i,j] submatrix 的和
+      int[][] sums = new int[R][C];
+      for (int r = 0; r < R; ++r) {
+        for (int c = 0; c < C; ++c) {
+          if (c == 0) {
+            if (r == 0) { // 左上角
+              sums[r][c] = matrix[r][c];
+            } else { // 第一行
+              sums[r][c] = matrix[r][c] + sums[r - 1][c];
+            }
+          } else {
+            if (r == 0) { // 第一列
+              sums[r][c] = matrix[r][c] + sums[r][c - 1];
+            } else { // 右下方普通部分
+              sums[r][c] = matrix[r][c] + sums[r][c - 1] - sums[r - 1][c - 1] + sums[r - 1][c];
+            }
+          }
+        }
+      }
+  
+      // 四重 for loop 遍历所有 submatrix
+      int globalMaxSum = Integer.MIN_VALUE;
+      for (int r = 0; r < R; ++r) {
+        for (int c = 0; c < C; ++c) {
+          // 对每个 upper left corner point, 循环遍历其开始的submatrix
+          for (int i = r; i < R; ++i) {
+            for (int j = c; j < C; ++j) {
+              int currMatrixSum = sums[i][j];
+              if (r > 0) currMatrixSum -= sums[r - 1][j];
+              if (c > 0) currMatrixSum -= sums[i][c - 1];
+              if (r > 0 && c > 0) currMatrixSum += sums[r - 1][c - 1];
+  
+              globalMaxSum = Math.max(globalMaxSum, currMatrixSum);
+            }
+          }
+        }
+      }
+      return globalMaxSum;
+    }
+  }
+```
