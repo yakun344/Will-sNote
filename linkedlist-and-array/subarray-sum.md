@@ -62,3 +62,27 @@ There is at least one subarray that it's sum equals to zero.
                 preSum[currSum] = i + 1
             return []
 ```
+
+---
+_update Mar 15,2018  1:01_
+
+## Update: 一个写 prefix-sum 数组问题的技巧
+`sums[i]` 表示 `nums[0] + ... + nums[i]`，则求 `nums[i] + ... + nums[j]` 的时候，只需要求 `sums[j] - sums[i] + nums[i]` 即可，例如下面的例子：
+```c
+      index :  0  1  2  3
+       nums :  3  4  5  6
+       sums :  3  7  12 18
+       
+    若要求 nums[1] + ... + nums[3], 则为 sums[3]-sums[1]+nums[1] = 18 - 7 + 4 = 15 ;
+``` 
+
+
+
+
+
+
+
+
+
+
+
