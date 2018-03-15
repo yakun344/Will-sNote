@@ -265,6 +265,7 @@
   * [Regular Expression Matching \(Hard\)](dynamic-programming/regular-expression-matching-hard.md)
   * [Maximal Square \(Largest Square of 1's\)](dynamic-programming/maximal-square-largest-square-of-1s.md)
   * [Longest Cross of 1's](dynamic-programming/longest-cross-of-1s.md)
+  * [Largest Sub-Matrix Sum](dynamic-programming/largest-sub-matrix-sum.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
