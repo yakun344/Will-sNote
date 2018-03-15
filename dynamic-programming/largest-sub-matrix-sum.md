@@ -47,7 +47,7 @@ The given matrix is not null and has size of M * N, where M >= 1 and N >= 1
 
 <br>
 ## Java Code:
-* ### O(n^4) 解法，2D prefix sum：
+* ### `O(n^4)` 解法，2D prefix sum：
 ```java
   public class Solution {
     public int largest(int[][] matrix) {
@@ -94,3 +94,7 @@ The given matrix is not null and has size of M * N, where M >= 1 and N >= 1
     }
   }
 ```
+
+* ### `O(n^3)` 解法，prefix sum + Kadane 算法：
+```java
+
