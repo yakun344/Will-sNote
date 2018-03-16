@@ -1,4 +1,4 @@
-# Max Sum of Rectangle No Larger Than K
+# Max Sum of Rectangle No Larger Than K (Hard)
 _update Mar 15, 2018 23:03_
 
 ---
