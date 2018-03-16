@@ -36,6 +36,51 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
 
 最后，我们可以知道总的时间复杂度为 `O(N^2 * MlogM)`;
 
+* ### 对于Follow Up：
+如果rows远多于cols，我们就枚举cols而不是rows（也就是之前所说的枚举所有左右边界），其目的就是让时间复杂度 `O(N^2 * MlogM)` 中的 N 是更小的那个边长就可以。
 
 ## Java Code:
+* ### Solution 1，利用BST：
+```java
+  class Solution {
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+      int R = matrix.length, C = matrix[0].length;
+      
+      // 先求所有row的 prefix sum
+      int[][] sums = new int[R][C];
+      for (int r = 0; r < R; ++r) {
+        for (int c = 0; c < C; ++c) {
+          if (c == 0) {
+            sums[r][c] = matrix[r][c];
+          } else {
+            sums[r][c] = matrix[r][c] + sums[r][c - 1];
+          }
+        }
+      }
+      
+      // 枚举所有左右边界，对其内部部分视为一个纵向一维数组，利用BST求其max subarray sum 不大于 k
+      int globalMaxSum = Integer.MIN_VALUE;
+      for (int left = 0; left < C; ++left) {
+        for (int right = left; right < C; ++right) {
+          // 开始处理一维数组的子问题
+          TreeSet<Integer> bst = new TreeSet<>();
+          bst.add(0); // add 0, 这样就可以考虑到只有一个元素的情况
+          int currPrefixSum = 0;
+          for (int r = 0; r < R; ++r) {
+            int currRowSum = sums[r][right] - sums[r][left] + matrix[r][left]; // 注意这里的技巧
+            currPrefixSum += currRowSum;
+            Integer prev = bst.ceiling(currPrefixSum - k); // 找到之前出现过的使得 currPrefixSum-prev<k 的最小prev
+            if (prev != null) {
+              globalMaxSum = Math.max(globalMaxSum, currPrefixSum - prev);
+            }
+            bst.add(currPrefixSum);
+          }
+        }
+      }
+      return globalMaxSum;
+    }
+  }
+```
+
+* ### Solution 2，利用排序和双指针：
 ```java
