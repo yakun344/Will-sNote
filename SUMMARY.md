@@ -266,6 +266,7 @@
   * [Maximal Square \(Largest Square of 1's\)](dynamic-programming/maximal-square-largest-square-of-1s.md)
   * [Longest Cross of 1's](dynamic-programming/longest-cross-of-1s.md)
   * [Largest Sub-Matrix Sum](dynamic-programming/largest-sub-matrix-sum.md)
+  * [Max Sum of Rectangle No Larger Than K \(Hard\)](dynamic-programming/max-sum-of-rectangle-no-larger-than-k-hard.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
