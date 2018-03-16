@@ -20,8 +20,8 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
 
 所以我们只要用一个counting map记录之前每个前缀和出现的数量，然后对每个新的前缀和，累加 `count += map[sums[i] - k]`，最终 count 就是解。**另外，**要注意初始的时候要 `map[0] = 1`, 否则无法统计到长度为 1 的满足要求的sequence （即num本身等于k）。
 
- #### Python Code:
- ```python
+#### Python Code:
+```python
      class Solution(object):
         def subarraySum(self, nums, k):
             """
@@ -40,10 +40,10 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
             return count
  ``` 
  
- ---
- _update Nov 11, 2017 09:39:41_
- #### Java Code:
- ```Java
+---
+_update Nov 11, 2017 09:39:41_
+#### Java Code:
+```Java
      class Solution {
         public int subarraySum(int[] nums, int k) {
             Map<Integer, Integer> preSum = new HashMap<>();
