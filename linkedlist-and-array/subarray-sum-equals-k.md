@@ -18,7 +18,7 @@ The range of numbers in the array is [-1000, 1000] and the range of the integer 
 #### Basic Idea:
 利用前缀和数组的特性，保存之前算出的前缀和。每到一个新的位置，例如当前前缀和为 sums[i], 如果之前有过前缀和等于 `sums[i] - k`, 则当前前缀和该前缀和只差为k，符合要求。
 
-所以我们只要用一个counting map记录之前每个前缀和出现的数量，然后对每个新的前缀和，累加 `count += map[sums[i] - k]`，最终 count 就是解。**另外，**要注意初始的时候要 `map[0] = 1`, 否则无法统计到长度为 1 的满足要求的sequence （即num本身等于k）。
+所以我们只要用一个counting map记录之前每个前缀和出现的数量，然后对每个新的前缀和，累加 `count += map[sums[i] - k]`，最终 count 就是解。**另外，**要注意初始的时候要 `map[0] = 1`, 否则无法统计到从 `nums[0]` 开始的subarray。
 
 #### Python Code:
 ```python
