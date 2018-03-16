@@ -97,4 +97,39 @@ The given matrix is not null and has size of M * N, where M >= 1 and N >= 1
 
 * ### `O(n^3)` 解法，prefix sum + Kadane 算法：
 ```java
-
+  public class Solution {
+    public int largest(int[][] matrix) {
+      int R = matrix.length, C = matrix[0].length;
+  
+      // 先求每行的 prefix sum
+      int[][] sums = new int[R][C];
+      for (int r = 0; r < R; ++r) {
+        for (int c = 0; c < C; ++c) {
+          if (c == 0) {
+            sums[r][c] = matrix[r][c];
+          } else {
+            sums[r][c] = matrix[r][c] + sums[r][c - 1];
+          }
+        }
+      }
+  
+      // 遍历每一对左右边界，在边界内考虑不同上下边界求最大和submatrix，Kadane 算法
+      int globalMaxSum = Integer.MIN_VALUE;
+      for (int left = 0; left < C; ++left) {
+        for (int right = left; right < C; ++right) {
+          int currSum = 0; // 当前左右边界间，某上下边界决定的submatrix的sum
+          for (int r = 0; r < R; ++r) {
+            int currRowSum = sums[r][right] - sums[r][left] + matrix[r][left];
+            if (currSum < 0) {
+              currSum = currRowSum;
+            } else {
+              currSum += currRowSum;
+            }
+            globalMaxSum = Math.max(globalMaxSum, currSum);
+          }
+        }
+      }
+      return globalMaxSum;
+    }
+  }
+```
