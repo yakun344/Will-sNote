@@ -31,8 +31,11 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
 下面着重说一下一维数组求最大不超过 k 的 subarray sum 的解法。解法有两种，都要利用 prefix sum 的技巧：
 > **1. 利用 TreeMap（BST)：**   
 先求出 prefix sum 数组，然后逐个将 prefix sum 数组中的元素 `sums[i]` 加入 BST，每次加入之前检查BST中之前的使得 `sums[i] - prev < k` 的最小 prev，并用 `sums[i] - prev` 和全局最大值对比，更新全局最大值。每次操作 BST 耗时 `O(logM)`，共需要操作 N 次，所以时间复杂度 `O(MlogM)`;
-> **2. 利用排序，双指针：**  
-先求出 prefix sum 数组 sums，然后将 sums 排序，利用双指针法从左右两端点向内逼近，沿途更新全局最大差值，时间复杂度为 `O(MlogM + M) = O(MlogM)`;
+> ~~**2. 利用排序，双指针：**  
+先求出 prefix sum 数组 sums，然后将 sums 排序，利用双指针法从左右两端点向内逼近，沿途更新全局最大差值，时间复杂度为 O(MlogM + M) = O(MlogM);~~  
+ 
+**特别注意，这种方法是行不通的。这种从两端向中间逼近的双指针算法只适合处理需要给定和的大小，而不能用来处理差的大小。因为事实上当right-left太小时，无论左移right还是右移left都会令其变得更小。相反，右移left和以让left+right变大，左移right则可以让left+right变小。**
+
 
 最后，我们可以知道总的时间复杂度为 `O(N^2 * MlogM)`;
 
@@ -40,7 +43,6 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
 如果rows远多于cols，我们就枚举cols而不是rows（也就是之前所说的枚举所有左右边界），其目的就是让时间复杂度 `O(N^2 * MlogM)` 中的 N 是更小的那个边长就可以。
 
 ## Java Code:
-* ### Solution 1，利用BST：
 ```java
   class Solution {
     public int maxSumSubmatrix(int[][] matrix, int k) {
@@ -81,6 +83,3 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
     }
   }
 ```
-
-* ### Solution 2，利用排序和双指针：
-```java
