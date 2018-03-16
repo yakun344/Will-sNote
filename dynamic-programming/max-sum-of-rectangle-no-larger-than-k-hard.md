@@ -35,3 +35,7 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
 先求出 prefix sum 数组 sums，然后将 sums 排序，利用双指针法从左右两端点向内逼近，第一个小于等于 k 的差值就是最终解，时间复杂度为 `O(MlogM + M) = O(MlogM)`;
 
 最后，我们可以知道总的时间复杂度为 `O(N^2 * MlogM)`;
+
+
+## Java Code:
+```java
