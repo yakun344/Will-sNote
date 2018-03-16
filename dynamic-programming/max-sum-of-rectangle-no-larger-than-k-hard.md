@@ -42,7 +42,7 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
 * ### 对于Follow Up：
 如果rows远多于cols，我们就枚举cols而不是rows（也就是之前所说的枚举所有左右边界），其目的就是让时间复杂度 `O(N^2 * MlogM)` 中的 N 是更小的那个边长就可以。
 
-## Java Code:
+## Java Code （只能用BST）:
 ```java
   class Solution {
     public int maxSumSubmatrix(int[][] matrix, int k) {
