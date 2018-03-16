@@ -30,6 +30,8 @@ The answer is 2. Because the sum of rectangle `[[0, 1], [-2, 3]]` is 2 and 2 is 
 
 下面着重说一下一维数组求最大不超过 k 的 subarray sum 的解法。解法有两种，都要利用 prefix sum 的技巧：
 > **1. 利用 TreeMap（BST)：**   
-先求出 prefix sum 数组，然后逐个将 prefix sum 数组中的元素 `sums[i]` 加入 BST，每次加入之前检查BST中之前的使得 `sums[i] - prev < k` 的最小 prev，并用 `sums[i] - prev` 和全局最大值对比，更新全局最大值。每次操作 BST 耗时 `O(logN)`，共需要操作 N 次，所以时间复杂度 `O(NlogN)`;
+先求出 prefix sum 数组，然后逐个将 prefix sum 数组中的元素 `sums[i]` 加入 BST，每次加入之前检查BST中之前的使得 `sums[i] - prev < k` 的最小 prev，并用 `sums[i] - prev` 和全局最大值对比，更新全局最大值。每次操作 BST 耗时 `O(logM)`，共需要操作 N 次，所以时间复杂度 `O(MlogM)`;
 > **2. 利用排序，双指针：**  
-先求出 prefix sum 数组 sums，然后将 sums 排序，利用双指针法从左右两端点向内逼近，第一个小于等于 k 的差值就是最终解，时间复杂度为 `O(NlogN + N) = O(NlogN)`;
+先求出 prefix sum 数组 sums，然后将 sums 排序，利用双指针法从左右两端点向内逼近，第一个小于等于 k 的差值就是最终解，时间复杂度为 `O(MlogM + M) = O(MlogM)`;
+
+最后，我们可以知道总的时间复杂度为 `O(N^2 * MlogM)`;
