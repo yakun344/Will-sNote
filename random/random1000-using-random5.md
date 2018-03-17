@@ -9,3 +9,18 @@ Given a random generator `random5()`, the return value of `random5()` is `0 - 4`
 
 * ### Java Code:
 ```java
+  public class Solution {
+    public int random1000() {
+      // Write your solution here.
+      // you can use RandomFive.random5() for generating
+      // 0 - 4 with equal probability.
+      while (true) {
+        int rand = 0;
+        for (int digit = 4; digit >= 0; --digit) {
+          rand += RandomFive.random5() * Math.pow(5, digit);
+        }
+        if (rand < 3000) return rand % 1000;
+      }
+    }
+  }
+```
