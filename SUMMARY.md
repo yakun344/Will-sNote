@@ -160,6 +160,7 @@
   * [Random Pick Index](random/random-pick-index.md)
   * [Shuffle an Array](random/shuffle-an-array.md)
   * [Random7 Using Random5](random/random7-using-random5.md)
+  * [Random1000 Using Random5](random/random1000-using-random5.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
