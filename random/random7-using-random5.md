@@ -11,3 +11,15 @@ Given a random generator `random5()`, the return value of `random5()` is `0 - 4`
 
 * ### Java Code:
 ```java
+  public class Solution {
+    public int random7() {
+      // write your solution here
+      // you can use RandomFive.random5() for generating
+      // 0 - 4 with equal probability.
+      while (true) {
+        int rand = (int)(RandomFive.random5() * 5 + RandomFive.random5());
+        if (rand < 21) return rand % 7;
+      }
+    }
+  }
+```
