@@ -34,6 +34,7 @@ The list is not null and is not empty and does not contain null
       }
       
       // create buckets for each distinct length
+      // buckets 从 min 开始
       int[] buckets = new int[max - min + 1];
       for (int len : lengths) {
         buckets[len - min]++;
