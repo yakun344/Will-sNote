@@ -22,5 +22,34 @@ The list is not null and is not empty and does not contain null
 
 * ### Java Code:
 ```java
-
+  public class Solution {
+    public int percentile95(List<Integer> lengths) {
+      int min = lengths.get(0), max = lengths.get(0);
+      for (int len : lengths) {
+        if (len < min) {
+          min = len;
+        } else if (len > max) {
+          max = len;
+        }
+      }
+      
+      // create buckets for each distinct length
+      int[] buckets = new int[max - min + 1];
+      for (int len : lengths) {
+        buckets[len - min]++;
+      }
+      
+      // scan buckets from left to right, 
+      // count number until larger or equal to 0.95 * size
+      int count = 0;
+      for (int i = 0; i < buckets.length; ++i) {
+        count += buckets[i];
+        if (count >= 0.95 * lengths.size()) {
+          return i + min;
+        }
+      }
+      return -1;
+    }
+  }
+```
 
