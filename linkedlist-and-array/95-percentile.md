@@ -18,4 +18,9 @@ The list is not null and is not empty and does not contain null
 <br>
 
 ## Basic Idea:
+利用 Bucket Sort 的思路，先为所有 distinct 的 length 建一个 buckets array，然后统计每个长度对应的 url 的个数。最后从左到右 count url 的个数，直到超过 `0.95 size`，返回当前长度。
+
+* ### Java Code:
+```java
+
 
