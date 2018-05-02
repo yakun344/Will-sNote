@@ -321,3 +321,7 @@
 * [Virtual Memory](operating-system/virtual-memory.md)
 * [Memory Addressing](operating-system/memory-addressing.md)
 
+## C++ Notes
+
+* [cpp\_note1](c++-notes/cppnote1.md)
+
