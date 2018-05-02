@@ -6,7 +6,7 @@ _update May,1, 2018 22:38_
 
 以下列出一些在学习过程中觉得重要的内容，记录一些找到的不错的资料，也可能会写一点我自己学习过程中的感悟，希望可以加深记忆。
 
-### 右值引用（rvalue reference）与移动语意（move semantic）
+### 1. 右值引用（rvalue reference）与移动语意（move semantic）
 关于这部分，[这篇文章](https://codinfox.github.io/dev/2014/06/03/move-semantic-perfect-forward/) 讲的非常好，下面写一些关于这部分的笔记或摘要：
 
 ##### 左值和右值
@@ -53,6 +53,7 @@ Move：
 
 #### 一点个人感悟
 和Java中操作变量全部是引用的世界观不同，c++中操作变量有三种方式，指针、引用和变量本身。Java中如果我们想要在参数中传入一个object或者在函数中返回一个object，我们实际上按值专递了这个object的引用。而在C++中，如果我们以指针或引用的方式将一个object传入或者返回，和Java中是类似的，但是如果我们以变量名直接传入或者返回，就会造成调用该object的 copy constructor，然后实际传入或返回的是该object的副本。有些时候我们确实需要进行这样的操作，例如在Java中，如果我想将一个 `List<Integer> path` 放入一个 `List<List<Integer>> res` 中，而且我希望保存当前 path 的状态，之后继续对 path 进行操作，我就需要手动对 path 进行 copy：`res.add(new ArrayList<>(path));`。那么在C++中，就不需要这一步了，对于 `vector<vector<int>> res`，将 `vector<int> path` 加入其中：`res.push_back(path);`，这一步会自动将 path 的副本放入 res，之后对 path 进行任何操作都不再影响 res 中 path 的副本。而 java 中的 `res.add(path)` 更像是c++中在res中存放指针： `res.push_back(&path);`。
+
 
 
 
