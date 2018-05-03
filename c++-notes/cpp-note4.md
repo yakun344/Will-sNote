@@ -40,6 +40,10 @@ _update May 3,2018  3:33_
     
     v.push_back(Test(2)); // call 一次 constructor，一次move
     
+    v.emplace_back(2.5); // no warning, create object of Test with a == 2
+    
+    v.push_back(2.5); // 如果构造函数非explicit，会有warning，"implicit conversion from 'double' to 'int'"
+                      // 如果构造函数explicit，同样会报错。
     
     return 0;
   }
