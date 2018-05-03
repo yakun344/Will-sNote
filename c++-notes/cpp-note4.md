@@ -64,6 +64,11 @@ _update May 3,2018  3:33_
 <br>
 
 ## 2. Integer Literal Type
+#### 问题产生
+在Java中，如果我判断 `if (a < 0x80000000)`，this is equivalent to `if (a < Integer.MIN_VALUE)` and `if (a < -2147483648)`。但在 c++ 中，`0x80000000` 却被当做了 usigned int，等于 `2147483648`，如果需要实现和Java中一样的效果，需要手动转换为int：`(int)0x80000000`。
+
+#### 问题解决
+[官方解释](http://en.cppreference.com/w/cpp/language/integer_literal)，摘要如下：
 
 
 
