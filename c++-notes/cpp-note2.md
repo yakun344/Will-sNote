@@ -1,4 +1,4 @@
-## Cpp Note2: 运算符重载，容器使用，Function Object
+## Cpp Note2: 运算符重载，容器使用，Function Object，virtual method
 _update May 2, 2018  20:10_
 
 ---
@@ -32,5 +32,7 @@ _update May 2, 2018  20:10_
 
 在 Java 中是没有重载运算符的，在Java中 override `compare() method` 相当于c++中重载 `< operator`.
 
-### Function Object
-在C++中可以通过重载 `()` 运算符使一个Object具有类似function的效果。 
+### Function Object 与容器的使用
+[这篇文章](http://www.cnblogs.com/waytofall/archive/2012/06/04/2534386.html) 很好的分析了 `unorded_map` 的用法；
+
+在C++中可以通过重载 `()` 运算符使一个Object具有类似function的效果。 在使用 `std::set` 或者 `std::unordered_set` 的时候，我们就需要重载 `<` 或者提供自定义的 `hash()` 以及 `equal_to()`。实现自定义的方法就是利用重载 `operator()` 的方法定义 function object, 然后将定义好的 function object 传入例如 `unordered_set` 的模板参数。另外，对于 `equal_to()`，也可以通过重载 `operator==` 解决。

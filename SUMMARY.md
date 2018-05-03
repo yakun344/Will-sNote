@@ -324,5 +324,5 @@
 ## C++ Notes
 
 * [Cpp Note1: 右值引用于移动语意](c++-notes/cppnote1.md)
-* [Cpp Note2: 运算符重载，容器使用，Function Object](c++-notes/cpp-note2.md)
+* [Cpp Note2: 运算符重载，容器使用，Function Object，virtual method](c++-notes/cpp-note2.md)
 
