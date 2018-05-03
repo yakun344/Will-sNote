@@ -44,3 +44,29 @@ public class Solution {
     }
 }
 ```
+
+#### C++ Code:
+```cpp
+typedef long long ll;
+
+class Solution {
+public:
+    int reverse(int x) {
+        int sign = x > 0 ? 1 : -1;
+        ll n = abs((ll)x);
+        ll res = 0;
+        while (n > 0) {
+            res = res * 10 + n % 10;
+            n /= 10;
+        }
+        res *= sign;
+        
+        // 0x80000000 会被认为是 ul 类型，所以要转换为int才是 Integer.MIN_VALUE
+        if (res < int(0x80000000) || res > 0x7fffffff) {
+            return 0;
+        } else {
+            return (int)res;
+        }
+    }
+};
+```
