@@ -51,7 +51,39 @@ Given a roman numeral, convert it to an integer. Input is guaranteed to be withi
 ### Basic Idea:
 根据罗马数字"小数左减右加"的规律: 例如对于 4 ，`IV`，I 小于 V，I 在左边，则值是 `5-1=4`, 而对于 `VII`, I 小于 V，在右边，则是 `5+1+1 = 7`。所以我们只要从左到右遍历 string，将相应的字母对应的数字存入一个数组中，然后从左到右遍历该数组，如果`num[i+1]>num[i]`, 则 `sum-=num[i]`, 否则 `sum+=num[i]`;
 
-### Java：
+### Java Code：
+```java
+class Solution {
+    public int romanToInt(String s) {
+        if (s.length() == 0) return 0;
+        int[] num = new int[s.length()];
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            switch (c) {
+                case ('I'): num[i] = 1; break; 
+                case ('V'): num[i] = 5; break; 
+                case ('X'): num[i] = 10; break; 
+                case ('L'): num[i] = 50; break;
+                case ('C'): num[i] = 100; break;
+                case ('D'): num[i] = 500; break;
+                case ('M'): num[i] = 1000; break;
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < num.length - 1; ++i) {
+            if (num[i] < num[i + 1]) {
+                sum -= num[i];
+            } else {
+                sum += num[i];
+            }
+        }
+        return sum + num[num.length - 1];
+    }
+}
+```
+
+### C++ Code:
+```cpp
 
 
 
