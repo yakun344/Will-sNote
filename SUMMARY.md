@@ -324,4 +324,5 @@
 ## C++ Notes
 
 * [Cpp Note1: 右值引用于移动语意](c++-notes/cppnote1.md)
+* [Cpp Note2:](c++-notes/cpp-note2.md)
 
