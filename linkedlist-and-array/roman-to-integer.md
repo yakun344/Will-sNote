@@ -84,7 +84,34 @@ class Solution {
 
 ### C++ Code:
 ```cpp
-
+class Solution {
+public:
+    int romanToInt(string s) {
+        if (s.size() == 0) return 0;
+        vector<int> num(s.size());
+        for (char c : s) {
+            switch (c) {
+                case ('I'): num.push_back(1); break;
+                case ('V'): num.push_back(5); break;
+                case ('X'): num.push_back(10); break;
+                case ('L'): num.push_back(50); break;
+                case ('C'): num.push_back(100); break;
+                case ('D'): num.push_back(500); break;
+                case ('M'): num.push_back(1000); break;
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < num.size() - 1; ++i) {
+            if (num[i] < num[i + 1]) {
+                sum -= num[i];
+            } else {
+                sum += num[i];
+            }
+        }
+        return sum + num.back();
+    }
+};
+```
 
 
 
