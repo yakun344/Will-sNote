@@ -63,7 +63,8 @@ _update May 3,2018  3:33_
 
 <br>
 
-## 2. 默认整数的type
+## 2. Integer Literal Type
+
 
 
 
