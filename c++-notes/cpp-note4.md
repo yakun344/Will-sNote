@@ -67,8 +67,14 @@ _update May 3,2018  3:33_
 #### 问题产生
 在Java中，如果我判断 `if (a < 0x80000000)`，this is equivalent to `if (a < Integer.MIN_VALUE)` and `if (a < -2147483648)`。但在 c++ 中，`0x80000000` 却被当做了 usigned int，等于 `2147483648`，如果需要实现和Java中一样的效果，需要手动转换为int：`(int)0x80000000`。
 
-#### 问题解决
+#### 问题解释
 [官方解释](http://en.cppreference.com/w/cpp/language/integer_literal)，摘要如下：
+
+1. 十进制，十六进制，八进制，二进制的 integer literal 所自动fit的type是从int开始顺序匹配的，例如这里出现的问题就是因为 `0x80000000` 被 fit 到了 ul 类型.
+2. 在 Integer Literal 中使用 `负号 -` 的时候需要特别注意，可能会带来 implicit type conversions.
+
+#### 解决
+使用 `(int)0x80000000` 或者 `int(0x80000000)` 进行 type conversion，这是 c++ 中两种 type conversion 的格式。
 
 
 
