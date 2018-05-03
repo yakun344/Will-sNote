@@ -325,5 +325,5 @@
 
 * [Cpp Note1: 右值引用于移动语意](c++-notes/cppnote1.md)
 * [Cpp Note2: 运算符重载，容器使用，Function Object，virtual method](c++-notes/cpp-note2.md)
-* [Cpp Note3: 函数指针，函数对象，Lambda](c++-notes/cpp-note3-han-shu-zhi-zhen-ff0c-han-shu-dui-xiang-ff0c-lambda.md)
+* [Cpp Note3: 函数指针，函数对象，Lambda]()
 
