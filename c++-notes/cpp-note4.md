@@ -46,3 +46,4 @@ _update May 3,2018  3:33_
   
 ```
 
+从上面的例子可以看出，通过直接传入构造参数的方法调用 `emplace_back()`，只需要调用一次 constructor，不需要调用 move constructor，这是一个优势。
