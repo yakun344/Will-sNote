@@ -51,6 +51,36 @@ All given inputs are in lowercase letters a-z.
     }
 ```
 
+##### BFS CPP Code:
+```cpp
+    class Solution {
+    public:
+        string longestCommonPrefix(vector<string>& strs) {
+            if (strs.empty()) {
+                return "";
+            }
+            string prefix;
+            int curr_idx{0};
+            while (true) {
+                char curr_char{0};
+                for (const string& s : strs) {
+                    if (s.size() == curr_idx) {
+                        goto endLoop;
+                    } else if (curr_char == 0) {
+                        curr_char = s[curr_idx];
+                    } else if (curr_char != s[curr_idx]) {
+                        goto endLoop;
+                    }
+                }
+                prefix += curr_char;
+                curr_idx++;
+            }
+    endLoop:
+            return prefix;
+        }
+    };
+```
+
 ##### sort 的 python code：
 先对所有 String 排序，然后每次从左到右比较首末两个string相应index的char是否相等。 时间复杂度 `O(L + NlogN)`。
 
