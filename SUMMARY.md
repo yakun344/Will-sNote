@@ -112,6 +112,7 @@
   * [Product of Array Except Self \(Medium\)](linkedlist-and-array/product-of-array-except-self-medium.md)
   * [ReOrder Array](linkedlist-and-array/reorder-array.md)
   * [95 Percentile](linkedlist-and-array/95-percentile.md)
+  * [Roman to Integer](linkedlist-and-array/roman-to-integer.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
