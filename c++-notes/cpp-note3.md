@@ -29,3 +29,4 @@ _update May 3,2018  2:38_
 [这篇文章](https://stackoverflow.com/questions/356950/c-functors-and-their-uses?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa) 详细讲了有关内容。另外需要注意，function object 有一个好处，可以通过 struct 中的 field 实现类似闭包的作用。
 
 ### Lambda Expression
+[这篇文章](https://stackoverflow.com/questions/7627098/what-is-a-lambda-expression-in-c11?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa) 讲的很好。
