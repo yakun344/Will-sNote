@@ -2,7 +2,7 @@
 _update Aug 19,2017  17:25_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/two-sum-unique-pairs/)
+[LintCode](http://www.lintcode.com/en/problem/two-sum-unique-pairs/)  
 
 Given an array of integers, find how many unique pairs in the array such that their sum is equal to a specific target number. Please return the number of pairs.
 
@@ -51,8 +51,21 @@ Given an array of integers, find how many unique pairs in the array such that th
     }
 ```
 
-#### C++ Code:
-（这段code对应 LeetCode 版本）；
+#### C++ Code（这段code对应 LeetCode 版本）:
+[leetcode](https://leetcode.com/problems/two-sum/description/)
+
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+**Example:**
+
+`Given nums = [2, 7, 11, 15], target = 9,`
+
+`Because nums[0] + nums[1] = 2 + 7 = 9,`
+`return [0, 1].`
+
+
 ```cpp
     // two pointers
     class Solution {
