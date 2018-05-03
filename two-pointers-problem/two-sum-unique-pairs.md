@@ -50,5 +50,32 @@ Given an array of integers, find how many unique pairs in the array such that th
         }
     }
 ```
+
+#### C++ Code:
+```cpp
+    // two pointers
+    class Solution {
+    public:
+      vector<int> twoSum(vector<int>& nums, int target) {
+        vector< vector<int> > arr;
+        for (int i = 0; i < nums.size(); ++i) {
+          arr.emplace_back(vector<int>{nums[i], i});
+        }
+        // using lambda to provide a comparator
+        sort(arr.begin(), arr.end(), [](const vector<int>& v1, const vector<int>& v2) {return v1[0] < v2[0]; });
+        
+        // two pointers
+        int i = 0, j = arr.size() - 1;
+        while (i < j && arr[i][0] + arr[j][0] != target) {
+          if (arr[i][0] + arr[j][0] < target) {
+            i++;
+          } else {
+            j--;
+          }
+        }
+        return vector<int>{arr[i][1], arr[j][1]};
+      }
+    };
+```
     
     
