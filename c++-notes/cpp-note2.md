@@ -36,3 +36,7 @@ _update May 2, 2018  20:10_
 [这篇文章](http://www.cnblogs.com/waytofall/archive/2012/06/04/2534386.html) 很好的分析了 `unorded_map` 的用法；
 
 在C++中可以通过重载 `()` 运算符使一个Object具有类似function的效果。 在使用 `std::set` 或者 `std::unordered_set` 的时候，我们就需要重载 `<` 或者提供自定义的 `hash()` 以及 `equal_to()`。实现自定义的方法就是利用重载 `operator()` 的方法定义 function object, 然后将定义好的 function object 传入例如 `unordered_set` 的模板参数。另外，对于 `equal_to()`，也可以通过重载 `operator==` 解决。
+
+**deque**: C++ stl 中的 deque 和 Java 中的 deque 完全不同，c++中的deque可以实现接近 `O(1)` 的随机读写；
+
+**priority_queue**: C++ 中的 priority_queue 默认为最大堆，而 Java 中默认最小堆；
