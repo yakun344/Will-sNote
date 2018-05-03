@@ -52,6 +52,7 @@ Given an array of integers, find how many unique pairs in the array such that th
 ```
 
 #### C++ Code:
+（这段code对应 LeetCode 版本）；
 ```cpp
     // two pointers
     class Solution {
