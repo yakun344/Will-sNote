@@ -132,6 +132,32 @@ _update 2017-11-21 14:44:35_
 1. 使用 dummy node 时，从 curr = dummy 开始可以节省很多code，因为第一步操作的一定是改变 curr.next；
 2. 还是要提前考虑 edge case，有了通盘考虑之后写起code更加精准；
 
+---
+_update May 3,2018  17:42_
+
+#### C++ Code
+```cpp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
