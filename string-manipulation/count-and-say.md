@@ -74,10 +74,12 @@ _update May 4, 2018  0:58_
     public:
         string countAndSay(int n) {
             string last{"1"};
+            // 运行 n-1 次
             for (int i = 1; i < n; ++i) {
                 string curr;
                 char prev = last[0];
                 int count = 1;
+                // 数之前string每个数字的个数，生成curr string
                 for (int j = 1; j < last.size(); ++j) {
                     if (last[j] == prev) {
                         count++;
