@@ -66,12 +66,57 @@ class Solution {
 
 <br>
 
+#### C++ Code
+```cpp
+    #define BASE 1000000;
+    
+    class Solution {
+    public:
+        int strStr(string haystack, string needle) {
+            if (needle.size() == 0) return 0;
+            // get hash code for needle first
+            int needle_hash = 0;
+            for (auto& c : needle) {
+                needle_hash = (needle_hash * 31 + c % 31) % BASE;
+            }
+            cout << needle_hash << endl;
+            int factor = 1;
+            for (int i = 0; i < needle.size() - 1; ++i) {
+                factor = factor * 31 % BASE;
+            }
+            
+            // sliding window
+            int window_hash = 0;
+            int left = 0, right = -1;
+            while (true) {
+                while (right - left + 1 < needle.size()) {
+                    right++;
+                    if (right == haystack.size()) {
+                        return -1;
+                    }
+                    window_hash = (window_hash * 31 + haystack[right] % 31) % BASE; 
+                }
+                cout << window_hash << endl;
+                
+                if (window_hash == needle_hash && needle == haystack.substr(left, needle.size())) {
+                    return left;
+                }
+                // move left 
+                window_hash = window_hash - (haystack[left] % 31 * factor) % BASE;
+                if (window_hash < 0) window_hash += BASE;
+                left++;
+            }
+        }
+    };
+```
+
 #### Addendum
-要特别注意右移 left pointer 缩小了 window 之后，将最左边字符产生的影响移出 windowCode 的方式：
+1. 要特别注意右移 left pointer 缩小了 window 之后，将最左边字符产生的影响移出 windowCode 的方式：
 ```java
     windowCode = windowCode - (leftChar % 31 * factor) % BASE;
     if (windowCode < 0) windowCode += BASE;
 ```
+2. 注意求 factor 的时候，循环次数为 window size - 1，因为第一个字符不需要 `* 31`;
 
 
 
