@@ -63,6 +63,39 @@ class Solution {
 }
 ```
 
+<br>
+
+---
+_update May 4, 2018  0:58_
+
+### C++ Code:
+```cpp
+    class Solution {
+    public:
+        string countAndSay(int n) {
+            string last{"1"};
+            for (int i = 1; i < n; ++i) {
+                string curr;
+                char prev = last[0];
+                int count = 1;
+                for (int j = 1; j < last.size(); ++j) {
+                    if (last[j] == prev) {
+                        count++;
+                    } else {
+                        curr.append(to_string(count) + prev);
+                        prev = last[j];
+                        count = 1;
+                    }
+                }
+                curr.append(to_string(count) + prev);
+                last = curr;
+            }
+            return last;
+        }
+    };
+```
+
+
 
 
 
