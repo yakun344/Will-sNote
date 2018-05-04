@@ -69,6 +69,7 @@ class Solution {
 _update May 4, 2018  0:58_
 
 ### C++ Code:
+感觉之前写的Java版本的思路更好理解。
 ```cpp
     class Solution {
     public:
