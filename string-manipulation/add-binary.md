@@ -36,3 +36,28 @@ class Solution {
     }
 }
 ```
+
+* #### C++ Code:
+```cpp
+    class Solution {
+    public:
+        string addBinary(string a, string b) {
+            string ret;
+            int i{a.size() - 1};
+            int j{b.size() - 1};
+            int last = 0;
+            while (i >= 0 || j >= 0 || last > 0) {
+                int add1 = i >=0 ? a[i] - '0' : 0;
+                int add2 = j >=0 ? b[j] - '0' : 0;
+                int curr = add1 + add2 + last;
+                last = curr / 2;
+                ret.append(string(1, curr % 2 + '0'));
+                i--;
+                j--;
+                
+            } 
+            reverse(ret.begin(), ret.end());
+            return ret;
+        }
+    };
+```
