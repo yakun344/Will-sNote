@@ -29,6 +29,13 @@ class Solution {
 ```
 
 ##### Newton's Method Python:
+牛顿迭代公式：
+```python
+    求 x 的平方根：
+    z = (z + x / z) / 2;
+    执行多次，z 逐步逼近sqrt(x)。
+```
+
 如下代码计算的是double type的精确sqrt(x).
 ```java
     public class Solution {
