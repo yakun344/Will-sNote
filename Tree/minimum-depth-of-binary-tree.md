@@ -59,12 +59,39 @@ class Solution {
                 }
             }
         }
-        return depth;
+        return depth; // 不可以没有： missing return statement
     }
 }
 ```
 
 * #### C++
 ```cpp
-
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if (root == nullptr) return 0;
+        deque<TreeNode*> dq;
+        dq.push_back(root);
+        int depth{0};
+        while (! dq.empty()) {
+            ++depth;
+            int size = dq.size();
+            for (int i = 0; i < size; ++i) {
+                TreeNode* node = dq.front();
+                dq.pop_front();
+                if (node->left == nullptr && node->right == nullptr) {
+                    return depth;
+                }
+                if (node->left) {
+                    dq.push_back(node->left);
+                } 
+                if (node->right) {
+                    dq.push_back(node->right);
+                }
+            }
+        }
+        // return depth; // 可以有，可以没有
+    }
+};
+```
 
