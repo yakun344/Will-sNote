@@ -289,7 +289,6 @@
   * [Divide Two Integers](math-problems/divide-two-integers.md)
   * [2 Keys Keyboard](math-problems/2-keys-keyboard.md)
   * [Gray Code](math-problems/gray-code.md)
-  * [Add Binary](math-problems/add-binary.md)
   * [Excel Sheet Column Title](math-problems/excel-sheet-column-title.md)
   * [Majority Element II](math-problems/majority-element-ii.md)
   * [Factorial Trailing Zeroes](math-problems/factorial-trailing-zeroes.md)
