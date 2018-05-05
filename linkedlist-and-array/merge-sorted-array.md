@@ -26,3 +26,17 @@ You may assume that nums1 has enough space (size that is greater or equal to m +
 
 * #### C++ Code：
 ```cpp
+    class Solution {
+    public:
+        void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+            int i{m - 1}, j{n - 1};
+            // k 从右向左扫描 nums1，每次填入当前位置的数字
+            for (int k = m + n - 1; k >= 0; --k) {
+                if (i < 0) nums1[k] = nums2[j--];
+                else if (j < 0) nums1[k] = nums1[i--];
+                else if (nums1[i] > nums2[j]) nums1[k] = nums1[i--];
+                else nums1[k] = nums2[j--];
+            }
+        }
+    };
+```
