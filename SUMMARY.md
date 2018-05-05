@@ -114,6 +114,7 @@
   * [95 Percentile](linkedlist-and-array/95-percentile.md)
   * [Roman to Integer](linkedlist-and-array/roman-to-integer.md)
   * [Remove Duplicates from Sorted List](linkedlist-and-array/remove-duplicates-from-sorted-list.md)
+  * [Merge Sorted Array](linkedlist-and-array/merge-sorted-array.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
