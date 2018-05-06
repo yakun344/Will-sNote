@@ -22,38 +22,31 @@ find - Find if there exists any pair of numbers which sum is equal to the value.
 
 ### Java Code:
 ```java
-class TwoSum {
-    Map<Integer, Integer> map = new HashMap<>();
-    List<Integer> list = new ArrayList<>();
-    /** Initialize your data structure here. */
-    public TwoSum() {
+    class TwoSum {
+        private Map<Integer, Integer> map = new HashMap<>();
+        /** Initialize your data structure here. */
+        public TwoSum() {
+            
+        }
         
-    }
-    
-    /** Add the number to an internal data structure.. */
-    public void add(int number) {
-        Integer count = map.get(number);
-        if (count == null) {
-            list.add(number);
-            map.put(number, 1);
-        } else {
-            map.put(number, count + 1);
+        /** Add the number to an internal data structure.. */
+        public void add(int number) {
+            map.put(number, map.getOrDefault(number, 0) + 1);
         }
-    }
-    
-    /** Find if there exists any pair of numbers which sum is equal to the value. */
-    public boolean find(int value) {
-        for (int num : list) {
-            int temp = value - num;
-            if (temp == num) {
-                if (map.get(temp) > 1) return true;
-            } else {
-                if (map.containsKey(temp)) return true;
+        
+        /** Find if there exists any pair of numbers which sum is equal to the value. */
+        public boolean find(int value) {
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                int diff = value - entry.getKey();
+                if (entry.getKey() == diff) {
+                    if (entry.getValue() > 1) return true;
+                } else if (map.containsKey(diff)) {
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
     }
-}
 ```
 
 <br>
