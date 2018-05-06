@@ -62,3 +62,44 @@ For example, the following two linked lists:
         }
     }
 ```
+
+<br>
+
+---
+_update May 5,2018  20:49_
+
+#### C++ Code:
+```cpp
+    class Solution {
+        int getLen(ListNode* head) {
+            if (head == nullptr) return 0;
+            int len = 0;
+            while (head != nullptr) {
+                head = head->next;
+                ++len;
+            }
+            return len;
+        }
+    public:
+        ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+            int len1 = getLen(headA);
+            int len2 = getLen(headB);
+            
+            // make headA be the head of the longer list
+            if (len1 < len2) {
+                ListNode* t = headA;
+                headA = headB;
+                headB = t;
+            }
+            for (int i = 0; i < abs(len1 - len2); ++i) {
+                headA = headA->next;
+            }
+            while (headA != headB) {
+                headA = headA->next;
+                headB = headB->next;
+            }
+            if (headA == nullptr || headB == nullptr) return nullptr;
+            else return headA;
+        }
+    };
+```
