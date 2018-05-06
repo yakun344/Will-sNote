@@ -55,3 +55,38 @@ class TwoSum {
     }
 }
 ```
+
+<br>
+
+---
+_update May 6,2018  1:39_
+
+### C++ Code
+```cpp
+    class TwoSum {
+        unordered_map<int, int> _map;
+    public:
+        /** Initialize your data structure here. */
+        TwoSum() {
+            
+        }
+        
+        /** Add the number to an internal data structure.. */
+        void add(int number) {
+            _map[number]++;
+        }
+        
+        /** Find if there exists any pair of numbers which sum is equal to the value. */
+        bool find(int value) {
+            for (auto pair : _map) {
+                int diff = value - pair.first;
+                if (diff == pair.first) {
+                    if (pair.second > 1) return true;
+                } else if (_map.count(diff)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
+```
