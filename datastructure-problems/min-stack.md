@@ -82,3 +82,66 @@ Design a stack that supports push, pop, top, and retrieving the minimum element 
     # param_3 = obj.top()
     # param_4 = obj.getMin()
 ```
+
+<br>
+
+---
+_update May 5,2018 20:03_
+
+#### C++ Code:
+```cpp
+    class MinStack {
+        deque<pair<int, int>> _stack;
+    public:
+        /** initialize your data structure here. */
+        MinStack() {
+            
+        }
+        
+        void push(int x) {
+            int curr_min;
+            if (_stack.empty() || x < _stack.back().second) {
+                curr_min = x;
+            } else {
+                curr_min = _stack.back().second;
+            }
+            _stack.emplace_back(x, curr_min);
+        }
+        
+        void pop() {
+            if (! _stack.empty()) {
+                _stack.pop_back();
+            }
+        }
+        
+        int top() {
+            return _stack.back().first;
+        }
+        
+        int getMin() {
+            return _stack.back().second;
+        }
+    };
+    
+    /**
+     * Your MinStack object will be instantiated and called as such:
+     * MinStack obj = new MinStack();
+     * obj.push(x);
+     * obj.pop();
+     * int param_3 = obj.top();
+     * int param_4 = obj.getMin();
+     */
+ ```
+
+
+
+
+
+
+
+
+
+
+
+
+
