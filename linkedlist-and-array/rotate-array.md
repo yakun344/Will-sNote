@@ -18,6 +18,18 @@ Could you do it in-place with O(1) extra space?
 **方法1：**  
 最简单的思路就是把nums复制一遍，然后分两段复制回去。
 
+**Java Code:**
+```java
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length; 
+        int[] arr = Arrays.copyOf(nums, nums.length);
+        System.arraycopy(arr, 0, nums, k, nums.length - k);
+        System.arraycopy(arr, nums.length - k, nums, 0, k);
+    }
+}
+```
+
 **方法2：**  
 例如对于 [1,2,3,4,5,6,7], k=3, rotate 之后为 [5,6,7,1,2,3,4].   
 仔细观察上面的两个数组，我们就会发现一个规律，将结果reverse之后是 [4,3,2,1,7,6,5]，其实就是对于长度为n的数组，先将前 n-k 个reverse，然后将后 k 个reverse，然后整体 reverse，就得到了最终结果。
@@ -68,3 +80,44 @@ Could you do it in-place with O(1) extra space?
             rotate(len(nums) - k, len(nums) - 1)
             rotate(0, len(nums) - 1)
 ```
+
+<br>
+
+---
+_update May 6,2018  2:37_
+
+#### C++ Code
+C++ 中 stl 内置了 reverse 函数，就不需要再自己写reverse函数了。
+```cpp
+    class Solution {
+    public:
+        void rotate(vector<int>& nums, int k) {
+            k %= nums.size();
+            reverse(nums.begin(), nums.begin() + nums.size() - k);
+            reverse(nums.begin() + nums.size() - k, nums.end());
+            reverse(nums.begin(), nums.end());
+        }
+    };
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
