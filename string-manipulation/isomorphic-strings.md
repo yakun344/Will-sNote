@@ -52,3 +52,35 @@ class Solution {
     }
 }
 ```
+
+<br>
+
+---
+_update May 6,2018  15:40_
+
+### C++ Code
+注意数组需要初始化。
+```cpp
+    class Solution {
+    public:
+        bool isIsomorphic(string s, string t) {
+            if (s.size() != t.size()) return false;
+            char maps[256] = {0};
+            char mapt[256] = {0};
+            for (int i = 0; i < s.size(); ++i) {
+                if (maps[s[i]] != 0 && maps[s[i]] != t[i]) return false;
+                if (mapt[t[i]] != 0 && mapt[t[i]] != s[i]) return false;
+                maps[s[i]] = t[i];
+                mapt[t[i]] = s[i];
+            }
+            return true;
+        }
+    };
+```
+
+
+
+
+
+
+
