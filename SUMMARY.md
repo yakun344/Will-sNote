@@ -185,6 +185,7 @@
   * [Task Scheduler](datastructure-problems/task-scheduler.md)
   * [Contains Duplicate III](datastructure-problems/contains-duplicate-iii.md)
   * [Design Hit Counter](datastructure-problems/design-hit-counter.md)
+  * [Two Sum III - Data structure design](datastructure-problems/two-sum-iii-data-structure-design.md)
   * [Find K Pairs with Smallest Sums](datastructure-problems/find-k-pairs-with-smallest-sums.md)
   * [Find Median from Data Stream](datastructure-problems/find-median-from-data-stream.md)
   * [Design Log Storage System](datastructure-problems/design-log-storage-system.md)
@@ -304,7 +305,6 @@
   * [Diagonal Traverse](other-problems/diagonal-traverse.md)
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
   * [Spiral Matrix II](other-problems/spiral-matrix-ii.md)
-  * [Two Sum III - Data structure design](other-problems/two-sum-iii-data-structure-design.md)
   * [Strobogrammatic Number （I, II, III）](other-problems/strobogrammatic-number-i-ii-iii.md)
 
 ## Operating System
