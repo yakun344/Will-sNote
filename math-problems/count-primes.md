@@ -32,3 +32,31 @@ Using  [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthen
         }
     }
 ```
+
+<br>
+
+---
+_update May 6,2018  15:03_
+
+#### C++ Code
+相比之前的写法，这种写法会更加简洁明了，如果需要优化，可以将`vector<int>` 换成 `bitset`
+```cpp
+    class Solution {
+    public:
+        int countPrimes(int n) {
+            vector<int> arr(n);
+            int ret = 0;
+            for (int i = 2; i < n; ++i) {
+                if (arr[i] != 1) {
+                    ret++;
+                } 
+                int t = i;
+                while (t < n) {
+                    arr[t] = 1;
+                    t += i;
+                }
+            }
+            return ret;
+        }
+    };
+```
