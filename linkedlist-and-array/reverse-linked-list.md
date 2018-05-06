@@ -49,6 +49,32 @@ ii. Recursion 要注意当`reverse(head.next)`之后，head仍然指向之前指
     }
 ```
 
+<br>
+
+---
+_update May 6,2018  15:45_
+
+### C++ Code:
+令 prev 从 nullptr 开始，可以使code更简单，因为可以一开始就令 `head->next = nullptr`；
+```cpp
+    class Solution {
+    public:
+        ListNode* reverseList(ListNode* head) {
+            if (head == nullptr || head->next == nullptr) return head;
+            ListNode* prev = nullptr;
+            ListNode* curr = head;
+            ListNode* next = nullptr;
+            while (curr != nullptr) {
+                next = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = next;
+            }
+            return prev;
+        }
+    };
+```
+
 
 
 
