@@ -82,6 +82,38 @@ _update May 3,2018  3:33_
 
 ---
 
+### 3. HashSet in Java and unordered_set in C++
+Java HashSet 中的 `add()` 对应了 C++ 中 unordered_set 的 `insert()`。
+
+它们的返回值也有相似的设计思路。`add()` 返回一个boolean，如果成功插入，则返回 true，如果所插入的key之前已经存在，则返回 false；
+
+而 `insert()` 中的返回值是一个 `pair<iterator, bool>`，其第二个返回值有着和Java中一样的规则。
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
