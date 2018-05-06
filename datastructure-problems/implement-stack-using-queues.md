@@ -24,47 +24,84 @@ You may assume that all operations are valid (for example, no pop or top operati
 
 * #### 优化push：
 只需要一个queue，每次push的时候直接offer进queue，而在pop的时候，将 size-1 个元素poll后再offer，露出需要pop的元素，然后将其poll后再return。top的操作时可以先pop，然后再将其offer入queue。
-#### C++Code
+##### C++Code
 ```cpp
-
+    class MyStack {
+        deque<int> _queue;
+    public:
+        /** Initialize your data structure here. */
+        MyStack() {
+            
+        }
+        
+        /** Push element x onto stack. */
+        void push(int x) {
+            _queue.push_back(x);
+        }
+        
+        /** Removes the element on top of the stack and returns that element. */
+        int pop() {
+            int size = _queue.size();
+            for (int i = 0; i < size - 1; ++i) {
+                _queue.push_back(_queue.front());
+                _queue.pop_front();
+            }
+            int ret = _queue.front();
+            _queue.pop_front();
+            return ret;
+        }
+        
+        /** Get the top element. */
+        int top() {
+            int ret = pop();
+            _queue.push_back(ret);
+            return ret;
+        }
+        
+        /** Returns whether the stack is empty. */
+        bool empty() {
+            return _queue.empty();
+        }
+    };
+```
 
 * #### 优化pop：
 只需要一个queue，每次push的时候都将之前的所有元素依次poll，然后offer到后端，令刚插入的元素在peek的位置。例如如果之前的queue中有 `->[1,2,3]->`, 插入 4 之后，变为 `->[4,1,2,3]->`, 然后依次poll后offer，得到 `->[1,2,3,4]->`. 这样在 pop 操作的时候可以直接poll， O(1) 时间。
 ##### C++ Code
 ```cpp
-class MyStack {
-    deque<int> _queue;
-public:
-    /** Initialize your data structure here. */
-    MyStack() {
-        
-    }
-    
-    /** Push element x onto stack. */
-    void push(int x) {
-        _queue.push_back(x);
-        int size = _queue.size();
-        for (int i = 0; i < size - 1; ++i) {
-            _queue.push_back(_queue.front());
-            _queue.pop_front();
+    class MyStack {
+        deque<int> _queue;
+    public:
+        /** Initialize your data structure here. */
+        MyStack() {
+            
         }
-    }
-    
-    /** Removes the element on top of the stack and returns that element. */
-    int pop() {
-        int ret = _queue.front();
-        _queue.pop_front();
-        return ret;
-    }
-    
-    /** Get the top element. */
-    int top() {
-        return _queue.front();
-    }
-    
-    /** Returns whether the stack is empty. */
-    bool empty() {
-        return _queue.empty();
-    }
-};
+        
+        /** Push element x onto stack. */
+        void push(int x) {
+            _queue.push_back(x);
+            int size = _queue.size();
+            for (int i = 0; i < size - 1; ++i) {
+                _queue.push_back(_queue.front());
+                _queue.pop_front();
+            }
+        }
+        
+        /** Removes the element on top of the stack and returns that element. */
+        int pop() {
+            int ret = _queue.front();
+            _queue.pop_front();
+            return ret;
+        }
+        
+        /** Get the top element. */
+        int top() {
+            return _queue.front();
+        }
+        
+        /** Returns whether the stack is empty. */
+        bool empty() {
+            return _queue.empty();
+        }
+    };
 ```
