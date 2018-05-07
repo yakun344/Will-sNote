@@ -105,7 +105,7 @@ Java HashSet 中的 `add()` 对应了 C++ 中 unordered_set 的 `insert()`。
 ### 5. 函数返回对象，内容为乱码
 * #### 问题
 ```cpp
-  const Test& f1() {
+  Test& f1() {
     Test t = *(new Test(2));
     return t; // 原因就是这里，返回了一个临时变量的引用
   }
