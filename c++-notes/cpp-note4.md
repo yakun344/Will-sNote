@@ -118,7 +118,7 @@ in main:
 * #### 解决
 不要返回临时变量的引用，需要将 `Test t = *(new Test(2));` 改为 `Test& t = *(new Test(2));` 即可。
 
-这里有一个知乎上的讨论，感觉有帮助：[https://www.zhihu.com/question/41137408](https://www.zhihu.com/question/41137408)
+这里有一个知乎上的讨论，感觉有帮助：[https://www.zhihu.com/question/41137408](https://www.zhihu.com/question/41137408)，在实际使用中，尽量避免返回引用。
 
 
 
