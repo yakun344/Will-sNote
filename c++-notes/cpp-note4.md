@@ -102,6 +102,20 @@ Java HashSet 中的 `add()` 对应了 C++ 中 unordered_set 的 `insert()`。
 需要自定义 copy assignment，或者将其定义为 `Test& operator=(Test&)=default;`. 详见官方文档，讲的还比较清楚：  
 [https://en.cppreference.com/w/cpp/language/copy_assignment](https://en.cppreference.com/w/cpp/language/copy_assignment)
 
+### 5. 函数返回对象，内容为乱码
+* #### 问题
+```cpp
+  const Test& f1() {
+    Test t = *(new Test(2));
+    return t; // 原因就是这里，返回了一个临时变量的引用
+  }
+...
+in main:
+  ...
+    Test t = f1();
+    cout << t.a << endl; // 打印出为乱码
+```
+
 
 
 
