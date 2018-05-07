@@ -115,6 +115,8 @@ in main:
     Test t = f1();
     cout << t.a << endl; // 打印出为乱码
 ```
+* #### 解决
+不要返回临时变量的引用，需要将 `Test t = *(new Test(2));` 改为 `Test& t = *(new Test(2));` 即可。
 
 
 
