@@ -92,6 +92,15 @@ Java HashSet 中的 `add()` 对应了 C++ 中 unordered_set 的 `insert()`。
 ---
 
 ### 4. Copy Assignment (=) and Move Constructor
+* #### 问题
+如果自定义了 move constructor, 默认 copy assignment 就会被禁用，导致 = 赋值的失败：
+```cpp
+  Test t = Test(1);
+  t = Test(2); // 报错
+```
+* #### 解决方法
+需要自定义 copy assignment，或者将其定义为 `Test& operator=(Test&)=default;`. 详见官方文档，讲的还比较清楚：  
+[https://en.cppreference.com/w/cpp/language/copy_assignment](https://en.cppreference.com/w/cpp/language/copy_assignment)
 
 
 
