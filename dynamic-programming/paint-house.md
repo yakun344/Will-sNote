@@ -65,7 +65,35 @@ Java Code:
     }
 ```
 
+<br>
 
+---
+_update May 7,2018  15:39_
+
+### C++ DP solution:
+和之前的Java dp 解法同样的原理，只是这里的 dp 数组使用了 2D Vector；
+```cpp
+    class Solution {
+    public:
+        int minCost(vector<vector<int>>& costs) {
+            int houseNum = costs.size();
+            if (houseNum == 0) return 0;
+            vector<vector<int>> dp(houseNum);
+            for (vector<int>& v : dp) {
+                v.resize(3);
+            }
+            dp[0][0] = costs[0][0];
+            dp[0][1] = costs[0][1];
+            dp[0][2] = costs[0][2];
+            for (int house = 1; house < houseNum; ++house) {
+                dp[house][0] = min(dp[house - 1][1], dp[house - 1][2]) + costs[house][0];
+                dp[house][1] = min(dp[house - 1][0], dp[house - 1][2]) + costs[house][1];
+                dp[house][2] = min(dp[house - 1][0], dp[house - 1][1]) + costs[house][2];
+            }
+            return min(dp[houseNum - 1][0], min(dp[houseNum - 1][1], dp[houseNum - 1][2]));
+        }
+    };
+```
 
 
 
