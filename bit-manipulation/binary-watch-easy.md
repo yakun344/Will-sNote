@@ -55,3 +55,36 @@ Given a non-negative integer n which represents the number of LEDs that are curr
         }
     }
 ```
+
+---
+_update May 8,2018 16:24_
+
+#### C++ Code:
+注意 c++ 中string format 需要使用字符数组和 sprintf() 配合, 然后可以用 string(char[]) 直接生成string。 
+```cpp
+    class Solution {
+    public:
+        vector<string> readBinaryWatch(int num) {
+            vector<string> res;
+            for (int h = 0; h < 12; ++h) {
+                for (int m = 0; m < 60; ++m) {
+                    if (countBit(h) + countBit(m) == num) {
+                        char buffer[20];
+                        sprintf(buffer, "%d:%02d", h, m);
+                        res.push_back(string(buffer));
+                    }
+                }
+            }
+            return res;
+        }
+        
+        int countBit(int num) {
+            int ret = 0;
+            while (num > 0) {
+                ret += num & 1;
+                num >>= 1;
+            }
+            return ret;
+        }
+    };
+```
