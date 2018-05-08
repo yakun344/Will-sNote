@@ -60,12 +60,14 @@ _update May 7,2018 23:00_
     class Solution {
     public:
         bool wordPattern(string pattern, string str) {
+            // split string
             stringstream ss(str);
             string buffer;
             vector<string> arr;
             while (getline(ss, buffer, ' ')) {
                 arr.push_back(buffer);
             }
+            
             if (pattern.size() != arr.size()) return false;
             unordered_map<char, string> map1;
             unordered_map<string, char> map2;
