@@ -48,3 +48,32 @@ class Solution {
     }
 }
 ```
+
+<br>
+
+---
+_update May 8,2018 1:09_
+
+### C++ Code:
+使用c++内置swap进行swap操作，无需另外写helper function；
+```cpp
+    class Solution {
+    public:
+        string reverseVowels(string s) {
+            unordered_set<char> _set{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+            int i = 0, j = s.size() - 1;
+            while (i < j) {
+                if (_set.count(s[i]) && _set.count(s[j])) {
+                    swap(s[i++], s[j--]);
+                } 
+                if (! _set.count(s[i])) {
+                    i++;
+                } 
+                if (! _set.count(s[j])) {
+                    j--;
+                }
+            }
+            return s;
+        }
+    };
+```
