@@ -102,6 +102,8 @@ Java HashSet 中的 `add()` 对应了 C++ 中 unordered_set 的 `insert()`。
 需要自定义 copy assignment，或者将其定义为 `Test& operator=(Test&)=default;`. 详见官方文档，讲的还比较清楚：  
 [https://en.cppreference.com/w/cpp/language/copy_assignment](https://en.cppreference.com/w/cpp/language/copy_assignment)
 
+---
+
 ### 5. 函数返回对象，内容为乱码
 * #### 问题
 ```cpp
@@ -120,6 +122,24 @@ in main:
 
 这里有一个知乎上的讨论，感觉有帮助：[https://www.zhihu.com/question/41137408](https://www.zhihu.com/question/41137408)，在实际使用中，尽量避免返回引用。
 
+---
+### 6. C++ 如何split string
+这篇文章中介绍了几种方法：[http://ysonggit.github.io/coding/2014/12/16/split-a-string-using-c.html](http://ysonggit.github.io/coding/2014/12/16/split-a-string-using-c.html)，个人认为第一种利用 stringstream 的最容易记忆和应用。
+
+**For Example:** 
+```cpp
+// Signature istream& getline (istream&& is, string& str, char delim)
+
+vector<string> split(const string &s, char delim) {
+    stringstream ss(s);
+    string buffer;
+    vector<string> tokens;
+    while (getline(ss, buffer, delim)) {
+        tokens.push_back(buffer);
+    }
+    return tokens;
+}
+```
 
 
 
