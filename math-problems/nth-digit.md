@@ -51,3 +51,38 @@ The 11th digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0, wh
         }
     }
 ```
+
+---
+_update May 8,2018_
+
+### 新思路
+
+和之前的想法其实类似，都是先算出之前的数字个数，然后算该第n个数字所出现在的那个数，然后找到第n个数。
+
+* #### Java
+```java
+class Solution {
+    public int findNthDigit(int n) {
+        if (n <= 9) return n;
+        int step = 0;
+        int count = 0;
+        int prevCount = 0;
+        while (count < n) {
+            prevCount = count;
+            count += (Math.pow(10, step + 1) - Math.pow(10, step)) * (step + 1);
+            step++;
+        }
+        
+        // 例如 1-9 有9个，10-99 有90*2个，100-999有900*3个...
+                                
+        int numPos = (n - prevCount + 1) / step;   
+        
+        int num = (int)Math.pow(10, step - 1) + numPos - 1;
+        
+        System.out.println(num);
+        
+        int pos = (n - 1 - prevCount) % step;
+        return String.valueOf(num).charAt(pos) - '0';
+    }
+}
+```
