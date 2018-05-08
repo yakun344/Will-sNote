@@ -61,6 +61,43 @@ Java Code:
             return len([counter[c] for c in counter if counter[c] % 2 != 0]) <= 1
 ```
 
+<br>
+
+---
+_update May 7,2018 21:05_
+
+#### C++ Code
+仍然是记录每个字母出现个数，然后计数单数字母个数，如果有不止一个字母是单数，就返回false。这里进行另外一个优化，就是使用bitset, 每一个字母只对应 1 bit，偶数会抵消为0，留下是 1 的都是 odd。
+```cpp
+    class Solution {
+    public:
+        bool canPermutePalindrome(string s) {
+            bitset<256> count;
+            for (char c : s) {
+                count.flip(c);
+            }
+            int odd = 0;
+            for (int i = 0; i < 256; ++i) {
+                if (count[i]) {
+                    if (++odd > 1) return false;
+                }
+            }
+            return true;
+        }
+    };
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
