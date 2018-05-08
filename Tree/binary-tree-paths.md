@@ -177,3 +177,57 @@ _update Jul 14, 2017 14:17_
         }
     }
 ```
+
+** C++ 实现： **
+```cpp
+// traverse
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> res;
+        dfs(root, "", res);
+        return res;
+    }
+    
+    void dfs(TreeNode* root, string path, vector<string>& res) {
+        if (root == nullptr) return;
+        else if (root->left == nullptr && root->right == nullptr) {
+            res.push_back(path + to_string(root->val));
+            return;
+        }
+        path += to_string(root->val) + "->" ;
+        dfs(root->left, path, res);
+        dfs(root->right, path, res);
+    }
+};
+
+// 分治法
+class Solution {
+public:
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> res;
+        if (root == nullptr) return res;
+        vector<string> left = binaryTreePaths(root->left);
+        vector<string> right = binaryTreePaths(root->right);
+        if (left.empty() && right.empty()) {
+            res.push_back(to_string(root->val));
+        }
+        for (string path : left) {
+            res.push_back(to_string(root->val) + "->" + path);
+        }
+        for (string path : right) {
+            res.push_back(to_string(root->val) + "->" + path);
+        }
+        return res;
+    }
+};
+```
+
+
+
+
+
+
+
+
+
