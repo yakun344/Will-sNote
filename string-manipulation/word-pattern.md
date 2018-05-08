@@ -21,8 +21,8 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 
 ## Basic Idea:
 使用 HashMap，但是注意要对 `<pattern, str>, <str, pattern>` 进行双向map，因为有可能出现两个 pattern 对应着同样一个string的情况，要注意。
-  * ### Java Code：
-  ```java
+* ### Java Code：
+```java
     class Solution {
         public boolean wordPattern(String pattern, String str) {
             String[] arr = str.split("\\s");
@@ -47,4 +47,60 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
             return true;
         }
     }
-  ```
+```
+
+<br>
+
+---
+_update May 7,2018 23:00_
+
+### C++ Code
+注意c++ split string的方法，用stringstream 和 getline 函数，传入 一个char 做分隔符。
+```cpp
+    class Solution {
+    public:
+        bool wordPattern(string pattern, string str) {
+            stringstream ss(str);
+            string buffer;
+            vector<string> arr;
+            while (getline(ss, buffer, ' ')) {
+                arr.push_back(buffer);
+            }
+            if (pattern.size() != arr.size()) return false;
+            unordered_map<char, string> map1;
+            unordered_map<string, char> map2;
+            int i = 0;
+            for (char c : pattern) {
+                if (map1.count(c) && map1.find(c)->second != arr[i]
+                   || map2.count(arr[i]) && map2.find(arr[i])->second != c) {
+                    return false;
+                }
+                map1.insert(pair<char, string>{c, arr[i]});
+                map2.insert(pair<string, char>{arr[i], c});
+                ++i;
+            }
+            return true;
+        }
+    };
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
