@@ -13,7 +13,7 @@ Given a non-empty string check if it can be constructed by taking a substring of
     3 利用KMP的最长公共前后缀table，O(n);
     4 利用regex
     
-Regex code:
+* ##### Regex code:
 ```java
     // java
      public boolean repeatedSubstringPattern(String s) {
@@ -23,6 +23,20 @@ Regex code:
      }
      // 或者直接用 return s.matches("regex"); 这样就是java one line。
 ``` 
+* ##### 常规解法（前面的方法2）
+**C++ Code：**
+```cpp
+    class Solution {
+    public:
+        bool repeatedSubstringPattern(string s) {
+            string t = (s + s).substr(1, s.size() * 2 - 2);
+            return int(t.find(s)) >= 0;
+        }
+    };
+```
+
+---
+
 ### [520, Detect Capital](https://leetcode.com/problems/detect-capital/#/description)
 Given a word, you need to judge whether the usage of capitals in it is right or not.
 
