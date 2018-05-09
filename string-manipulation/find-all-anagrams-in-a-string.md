@@ -165,6 +165,43 @@ _update Jan 27,2018 20:08_
     }
 ```
 
+<br>
+
+---
+_update May 8,2018 23:24_
+
+### C++ Code
+更新一个C++的解法，和上面的Java解法基本思路是一致的，不同之处在于采用直接return的方法跳出循环。
+
+```cpp
+    class Solution {
+    public:
+        vector<int> findAnagrams(string s, string p) {
+            int _map[256] = {0};
+            for (char c : p) {
+                ++_map[c];
+            }
+                
+            vector<int> res;
+            int windowSize = p.size();
+            int remain = p.size();
+            int left = 0, right = -1;
+            while (true) {
+                while (right - left + 1 < windowSize) {
+                    ++right;
+                    if (right >= s.size()) return res;
+                    if (--_map[s[right]] >= 0) --remain;
+                }
+                // 此时window size 一定是p.size
+                if (remain == 0) res.push_back(left);
+                
+                // move left pointer to right by 1
+                if (++_map[s[left++]] > 0) ++remain;
+            }
+        }
+    };
+```
+
 
 
 
