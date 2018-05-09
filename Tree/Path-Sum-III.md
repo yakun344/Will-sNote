@@ -117,6 +117,30 @@ _update Jan 27,2018 19:58_
     }
 ```
 
+* #### C++ Code:
+```cpp
+    class Solution {
+        int helper(TreeNode* root, vector<int>& path, int sum) {
+            if (root == nullptr) return 0;
+            path.push_back(path.back() + root->val);
+            int ret = 0;
+            for (int i = 0; i < path.size() - 1; ++i) { // 注意这里，避免相同节点相减出现sum==0的假象
+                if (path.back() - path[i] == sum) {
+                    ret++;
+                }
+            }
+            int left = helper(root->left, path, sum);
+            int right = helper(root->right, path, sum);
+            path.pop_back();
+            return left + right + ret;
+        }
+    public:
+        int pathSum(TreeNode* root, int sum) {
+            vector<int> path{0};
+            return helper(root, path, sum);
+        }
+    };
+```
 
 
 
