@@ -308,6 +308,7 @@
   * [Reconstruct Original Digits from English](other-problems/reconstruct-original-digits-from-english.md)
   * [Spiral Matrix II](other-problems/spiral-matrix-ii.md)
   * [Strobogrammatic Number （I, II, III）](other-problems/strobogrammatic-number-i-ii-iii.md)
+  * [Number of Boomerangs](other-problems/number-of-boomerangs.md)
 
 ## Operating System
 
