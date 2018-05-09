@@ -116,6 +116,7 @@
   * [Remove Duplicates from Sorted List](linkedlist-and-array/remove-duplicates-from-sorted-list.md)
   * [Merge Sorted Array](linkedlist-and-array/merge-sorted-array.md)
   * [Find All Numbers Disappeared in an Array \(easy\)](linkedlist-and-array/find-all-numbers-disappeared-in-an-array-easy.md)
+  * [Heaters \(Easy Google\)](linkedlist-and-array/heaters-easy-google.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
