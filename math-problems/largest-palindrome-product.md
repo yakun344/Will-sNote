@@ -30,7 +30,7 @@ Brute force 解法，穷举可能的回文数乘积candidate，对每个可能�
     typedef long long ll;
     
     class Solution {
-        // 检验从最小n位数_min开始，到最大的_max，
+        // 检验从最小n位数_min开始，到最大的_max为止，看能否乘出prod
         bool isValid(int _min, int _max, ll prod, ll maxProd) {
             if (prod > maxProd) return false;
             for (int i = _max; i >= sqrt(prod); --i) {
