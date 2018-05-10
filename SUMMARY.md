@@ -301,6 +301,7 @@
   * [Power of Four](math-problems/power-of-four.md)
   * [Pow\(x, n\)](math-problems/powx-n.md)
   * [Happy Number](math-problems/happy-number.md)
+  * [Largest Palindrome Product](math-problems/largest-palindrome-product.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
