@@ -134,6 +134,7 @@
   * [Find the Duplicate Number](binary-search/find-the-duplicate-number.md)
   * [Search in Rotated Sorted Array](binary-search/search-in-rotated-sorted-array.md)
   * [Median of two Sorted Arrays](binary-search/median-of-two-sorted-arrays.md)
+  * [K-diff Pairs in an Array \(Easy Amazon\)](binary-search/k-diff-pairs-in-an-array-easy-amazon.md)
 * [Trie](Trie/Trie.md)
   * [Longest Word in Dictionary](Trie/Trie/longest-word-in-dictionary.md)
 * [String Manipulation](string-manipulation/string-manipulation.md)
