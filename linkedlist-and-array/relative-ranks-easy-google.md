@@ -29,7 +29,7 @@ For the left two athletes, you just need to output their relative ranks accordin
 class Solution {
 public:
     vector<string> findRelativeRanks(vector<int>& nums) {
-        vector<vector<int>> arr;
+        vector<vector<int>> arr; // n*2 array, store index for each score
         for (int i = 0; i < nums.size(); ++i) {
             arr.push_back({nums[i], i});
         }
