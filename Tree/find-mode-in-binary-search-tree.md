@@ -149,8 +149,47 @@ public:
 ```
 
 **Iterative Solution:**
-
-
+```cpp
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        deque<TreeNode*> _stack;
+        vector<int> res;
+        int prev = 0, count = 0, maxCount = 0;
+        if (root == nullptr) return res;
+        
+        TreeNode* node = root;
+        while (node) {
+            _stack.push_back(node);
+            node = node->left;
+        }
+        
+        while (! _stack.empty()) {
+            node = _stack.back();
+            _stack.pop_back();
+            if (prev == node->val) {
+                count++;
+            } else {
+                prev = node->val;
+                count = 1;
+            }
+            if (count > maxCount) {
+                res.clear();
+                res.push_back(node->val);
+                maxCount = count;
+            } else if (count == maxCount) {
+                res.push_back(node->val);
+            }
+            node = node->right;
+            while (node) {
+                _stack.push_back(node);
+                node = node->left;
+            }
+        }
+        return res;
+    }
+};
+```
 
 
 
