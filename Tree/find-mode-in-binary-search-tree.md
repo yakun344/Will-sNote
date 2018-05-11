@@ -106,3 +106,62 @@ _update Dec 19, 2017  16:42_
             helper(root)
             return self.res
 ```
+
+---
+_update May 10,2018 22:19_
+
+#### C++ Code:
+**Recursive Solution:**
+```cpp
+class Solution {
+    vector<int> res;
+    int prev = 0x7fffffff;
+    int count = 0;
+    int maxCount = 0;
+    
+    void helper(TreeNode* root) {
+        if (root == nullptr) return;
+        
+        helper(root->left);
+        
+        if (root->val == prev) {
+            ++count;
+        } else {
+            prev = root->val;
+            count = 1;
+        }
+        if (count == maxCount) {
+            res.push_back(root->val);
+        } else if (count > maxCount) {
+            res.clear();
+            res.push_back(root->val);
+            maxCount = count;
+        }
+        
+        helper(root->right);
+    }
+public:
+    vector<int> findMode(TreeNode* root) {
+        helper(root);
+        return res;
+    }
+};
+```
+
+**Iterative Solution:**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
