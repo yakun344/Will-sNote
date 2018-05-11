@@ -67,3 +67,32 @@ class Solution {
 }
 ```
 
+**C++ Code:**
+```cpp
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& findNums, vector<int>& nums) {
+        deque<int> _stack;
+        unordered_map<int, int> _map;
+        for (int num : nums) {
+            while (! _stack.empty() && _stack.back() < num) {
+                _map.insert(pair<int, int>{_stack.back(), num});
+                _stack.pop_back();
+            }
+            _stack.push_back(num);
+        }
+        
+        vector<int> res;
+        for (int num : findNums) {
+            if (! _map.count(num)) {
+                res.push_back(-1);
+            } else {
+                res.push_back(_map.find(num)->second);
+            }
+        }
+        return res;
+    }
+};
+```
+
+
