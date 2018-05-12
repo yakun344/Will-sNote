@@ -121,7 +121,31 @@ _update Nov 30, 2017 16:35_
             return rightBd - leftBd + 1 if rightBd > leftBd else 0
 ```
 
+<br>
 
+---
+_update May 12, 2018_
+
+#### C++ Code:
+时隔半年，又想不出最优解的细节了，只有一个大概的轮廓。这里补上C++的最优解Code：
+```cpp
+    class Solution {
+    public:
+        int findUnsortedSubarray(vector<int>& nums) {
+            if (nums.empty()) return 0;
+            int min = nums[nums.size() - 1], max = nums[0], left{0}, right{0};
+            for (int i = 1; i < nums.size(); ++i) {
+                if (nums[i] > max) max = nums[i];
+                else if (nums[i] < max) right = i;
+            }
+            for (int i = nums.size() - 2; i >= 0; --i) {
+                if (nums[i] < min) min = nums[i];
+                else if (nums[i] > min) left = i;
+            }
+            return left == right ? 0 : right - left + 1;
+        }
+    };
+```
 
 
 
