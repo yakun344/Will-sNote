@@ -45,7 +45,6 @@ Given two non-empty binary trees s and t, check whether tree t has exactly the s
 写一个 isSame 的 helper function，判断两个node所代表的是否是同样的树，然后递归调用。两层递归嵌套。
 
 * #### C++ Code：
-
 ```cpp
 class Solution {
     bool isSame(TreeNode* node1, TreeNode* node2) {
