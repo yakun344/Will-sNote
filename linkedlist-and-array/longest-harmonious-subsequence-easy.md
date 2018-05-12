@@ -20,3 +20,24 @@ Now, given an integer array, you need to find the length of its longest harmonio
 <br>
 
 ### Basic Idea:
+利用HashMap统计每个数字出现的次数，然后遍历hashmap，计算每个数字的个数与其减一的个数的和，最大的和就是解。
+
+* #### C++ Code:
+```cpp
+    class Solution {
+    public:
+        int findLHS(vector<int>& nums) {
+            unordered_map<int, int> _map;
+            for (int num : nums) {
+                ++_map[num];
+            }
+            int res = 0;
+            for (auto pair : _map) {
+                if (_map.count(pair.first - 1)) {
+                    res = max(res, pair.second + _map[pair.first - 1]);
+                }
+            }
+            return res;
+        }
+    };
+```
