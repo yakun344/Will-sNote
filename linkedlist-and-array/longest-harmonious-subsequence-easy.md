@@ -41,3 +41,20 @@ Now, given an integer array, you need to find the length of its longest harmonio
         }
     };
 ```
+
+* #### Java Code:
+```java
+    class Solution {
+        public int findLHS(int[] nums) {
+            Map<Integer, Integer> map = new HashMap<>();
+            for (int num : nums) map.put(num, map.getOrDefault(num, 0) + 1);
+            int res = 0;
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                if (map.containsKey(entry.getKey() - 1)) {
+                    res = Math.max(res, entry.getValue() + map.get(entry.getKey() - 1));
+                }
+            }
+            return res;
+        }
+    }
+```
