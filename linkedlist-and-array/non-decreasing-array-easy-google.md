@@ -27,6 +27,8 @@ We define an array is non-decreasing if `array[i] <= array[i + 1]` holds for eve
 ### Basic Idea:
 这道题的重点是判断什么样的局部断点是可以通过改变一个元素来恢复有序性的。只有两种可能，要么断点处比两端都高，要么断点处比两端都低。第一种情况，当我们出现 `nums[i] > nums[i + 1]` 时，如果 `nums[i-1]<=nums[i+1]`，则说明断点处 i 比两边都高。第二种，如果 `nums[i]<=nums[i+2]`，则说明断点处 i+1 比两端都低。另外注意处理极左和极右的情况。除了这些情况之外，遇到断点可以直接返回false，否则当遇到超过一次断点时返回false。
 
+另外一个方法是当遇到 `nums[i] > nums[i+1]` 时，分别判断去掉 i 和去掉 i+1 后原数组是否是不降低序列，这种方法比较好理解，只要另外写一个helper function 判断是否不降低序列就好。
+
 * #### C++ Code:
 ```cpp
     class Solution {
