@@ -169,6 +169,7 @@
   * [Longest Substring Without Repeating Characters \(Medium\)](string-manipulation/longest-substring-without-repeating-characters.md)
   * [Longest Palindromic Substring \(Medium\)](string-manipulation/longest-palindromic-substring-medium.md)
   * [Reverse String II \(Easy Google\)](string-manipulation/reverse-string-ii-easy-google.md)
+  * [Valid Palindrome II \(Easy LinkedIn\)](string-manipulation/valid-palindrome-ii-easy-linkedin.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
