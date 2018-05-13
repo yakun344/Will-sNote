@@ -50,7 +50,24 @@ We define an array is non-decreasing if `array[i] <= array[i + 1]` holds for eve
 ```
 
 * ####
-```cpp
+```java
+    class Solution {
+        public boolean checkPossibility(int[] nums) {
+            boolean breaked = false;
+            for (int i = 0; i < nums.length - 1; ++i) {
+                if (nums[i] > nums[i + 1]) {
+                    if (i == 0 || i == nums.length - 2 || nums[i + 2] >= nums[i] || nums[i - 1] <= nums[i + 1]) {
+                        if (breaked) return false;
+                        else breaked = true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+```
 
 
 
