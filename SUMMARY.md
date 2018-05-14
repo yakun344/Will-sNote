@@ -300,6 +300,7 @@
   * [Prime Number of Set Bits in Binary Representation](bit-manipulation/prime-number-of-set-bits-in-binary-representation.md)
   * [Sum of Two Integers](bit-manipulation/sum-of-two-integers.md)
   * [Binary Watch \(easy\)](bit-manipulation/binary-watch-easy.md)
+  * [Binary Number with Alternating Bits \(Easy Yahoo\)](bit-manipulation/binary-number-with-alternating-bits-easy-yahoo.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Count Primes](math-problems/count-primes.md)
