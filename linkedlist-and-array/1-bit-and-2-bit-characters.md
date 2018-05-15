@@ -31,3 +31,21 @@ Now given a string represented by several bits. Return whether the last characte
 <br>
 
 ### Basic Idea:
+可以先随便写几个序列进行观察，发现我们可以直接从左向右推算。用一个指针 i 跟踪当前需要开始检测的 element，保证 i 之前已经完成匹配，则如果 i 指向 0，那么就是 0，`i+=1`; 如果是 1， 则若不是11 就是 10，这两种情况，都可以令 `i += 2`，然后继续匹配。出口就是如果 i 停在 `nums.size() - 1`，则一定可以匹配最后一个 `0`。
+
+* #### C++ Code:
+```cpp
+    class Solution {
+    public:
+        bool isOneBitCharacter(vector<int>& bits) {
+            if (bits.size() == 1) return true;
+            int i = 0;
+            while (i < bits.size()) {
+                if (bits[i] == 0) ++i;
+                else i += 2;
+                if (i == bits.size() - 1) return true;
+            }
+            return false;
+        }
+    };
+```
