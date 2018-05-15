@@ -125,6 +125,7 @@
   * [Longest Harmonious Subsequence \(Easy\)](linkedlist-and-array/longest-harmonious-subsequence-easy.md)
   * [Non-decreasing Array \(Easy Google\)](linkedlist-and-array/non-decreasing-array-easy-google.md)
   * [Degree of an Array](linkedlist-and-array/degree-of-an-array.md)
+  * [1-bit and 2-bit Characters](linkedlist-and-array/1-bit-and-2-bit-characters.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
