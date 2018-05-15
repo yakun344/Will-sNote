@@ -38,7 +38,44 @@ If there is no answer, return the empty string.
 &emsp; 这种方法时间复杂度略高，因为每次要检查26个字母，总时间复杂度 `O(26n)`，n 为解的长度；
   * #### C++ Code：
 ```cpp
-
+    class Solution {
+        struct TrieNode {
+            string word;
+            TrieNode* child[26] = {nullptr};
+        };
+        
+        string dfs(TrieNode* root) {
+            string ret = root->word;
+            for (int i = 0; i < 26; ++i) {
+                if (root->child[i] && root->child[i]->word != "") {
+                    string t = dfs(root->child[i]);
+                    ret = t.size() > ret.size() ? t : ret;
+                }
+            }
+            return ret;
+        }
+        
+        TrieNode* constructTrie(vector<string>& words) {
+            TrieNode* root = new TrieNode();
+            for (string word : words) {
+                TrieNode* curr = root;
+                for (char c : word) {
+                    if (curr->child[c - 'a'] == nullptr) {
+                        curr->child[c - 'a'] = new TrieNode();
+                    }
+                    curr = curr->child[c - 'a'];
+                }
+                curr->word = word;
+            }
+            return root;
+        }
+    public:
+        string longestWord(vector<string>& words) {
+            TrieNode* root = constructTrie(words);
+            return dfs(root);
+        }
+    };
+```
 
 * ### 方法 2 （sort）：
 &emsp; 先对 input list 排序，这样可以保证短的都在前面，然后维持一个 `Set<String>` ，遍历input list，如果遇到长度为 1 的 string s，直接加入 set，否则检查 `s[:-1] 是否在 set 中， 如果在则将其加入 set`，于此同时，维持全局变量记录s长度，以及全局变量记录最长的字典顺序小的 string 作为 ret 进行更新;       
