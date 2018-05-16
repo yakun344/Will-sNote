@@ -50,6 +50,7 @@ Given the color `"#ABCDEF"`, return a 7 character color that is most similar to 
             return ret;
         }
         
+        // 算 十六进制数 string 之间的绝对值差
         int diff(string c, string c1) {
             int num1 = parseInt(c);
             int num2 = parseInt(c1);
@@ -70,6 +71,7 @@ Given the color `"#ABCDEF"`, return a 7 character color that is most similar to 
             else return string(2, c[0] - 1);
         }
         
+        // 生成距离两位十六进制数 c 最近的 两位数字相等的十六进制数string
         string helper(string c) {
             if (c[0] == c[1]) return c;
             string c1 = string(2, c[0]);
