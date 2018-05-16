@@ -25,3 +25,56 @@ Finally, sentences can only be similar if they have the same number of words. So
 <br>
 
 ### Basic Idea:
+既然有很多个pair需要进行query，我们可以使用HashMap来存储每个pair，由于每个 key 可以对应多个 value，我们使用的数据结构是 `HashMap<String, Set<String>>`。
+
+* #### C++ Code:
+```cpp
+    class Solution {
+    public:
+        bool areSentencesSimilar(vector<string>& words1, vector<string>& words2, vector<pair<string, string>> pairs) {
+            if (words1.size() != words2.size()) return false;
+            else if (words1.size() == 0) return true;
+            else if (words1 == words2) return true;
+            
+            unordered_map<string, unordered_set<string>> _map;
+            for (pair<string, string>& pair : pairs) _map[pair.first].insert(pair.second);
+            
+            for (int i = 0; i < words1.size(); ++i) {
+                if (words1[i] == words2[i]) continue;
+                auto it = _map.find(words1[i]);
+                if (it != _map.end() && it->second.count(words2[i])) continue;
+                it = _map.find(words2[i]);
+                if (it != _map.end() && it->second.count(words1[i])) continue;
+                return false;
+            }
+            return true;
+        }
+    };
+```
+
+* #### Java Code:
+```java
+    class Solution {
+        public boolean areSentencesSimilar(String[] words1, String[] words2, String[][] pairs) {
+            if (words1.length != words2.length) return false;
+            
+            Map<String, Set<String>> map = new HashMap<>();
+            for (String[] pair : pairs) {
+                if (! map.containsKey(pair[0])) map.put(pair[0], new HashSet<>());
+                map.get(pair[0]).add(pair[1]);
+            }
+            
+            for (int i = 0; i < words1.length; ++i) {
+                if (words1[i].equals(words2[i])) continue;
+                Set<String> set = map.get(words1[i]);
+                if (set != null && set.contains(words2[i])) continue;
+                set = map.get(words2[i]);
+                if (set != null && set.contains(words1[i])) continue;
+                return false;
+            }
+            return true;
+        }
+    }
+```
+
+
