@@ -234,6 +234,7 @@
   * [N-Queens](dfs/n-queens.md)
   * [Nested List Weight Sum \(easy\)](dfs/nested-list-weight-sum-easy.md)
   * [Letter Combinations of a Phone Number \(Medium\)](dfs/letter-combinations-of-a-phone-number-medium.md)
+  * [Letter Case Permutation \(Easy Facebook\)](dfs/letter-case-permutation-easy-facebook.md)
 * [Two Pointers Problem](two-pointers-problem/two-pointers-problem.md)
   * [Two Sum - Unique pairs](two-pointers-problem/two-sum-unique-pairs.md)
   * [3Sum](two-pointers-problem/3sum.md)
