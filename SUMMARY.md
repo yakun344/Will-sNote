@@ -177,6 +177,7 @@
   * [Count Binary Substrings \(Easy\)](string-manipulation/count-binary-substrings-easy.md)
   * [Bold Words in String \(Easy Google\)](string-manipulation/bold-words-in-string-easy-google.md)
   * [Similar RGB Color \(Ease Google\)](string-manipulation/similar-rgb-color.md)
+  * [Subdomain Visit Count \(Easy\)](string-manipulation/subdomain-visit-count-easy.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
