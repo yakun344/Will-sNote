@@ -207,6 +207,7 @@
   * [Design Log Storage System](datastructure-problems/design-log-storage-system.md)
   * [Implement Stack using Queues](datastructure-problems/implement-stack-using-queues.md)
   * [Design Compressed String Iterator \(Easy Google\)](datastructure-problems/design-compressed-string-iterator-easy-google.md)
+  * [Sentence Similarity \(Easy Google\)](datastructure-problems/sentence-similarity-easy-google.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
