@@ -176,6 +176,7 @@
   * [Valid Palindrome II \(Easy LinkedIn\)](string-manipulation/valid-palindrome-ii-easy-linkedin.md)
   * [Count Binary Substrings \(Easy\)](string-manipulation/count-binary-substrings-easy.md)
   * [Bold Words in String \(Easy Google\)](string-manipulation/bold-words-in-string-easy-google.md)
+  * [Similar RGB Color \(Ease Google\)](string-manipulation/similar-rgb-color.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
