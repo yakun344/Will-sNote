@@ -33,3 +33,30 @@ At the end, return the modified image.
 <br>
 
 ### Basic Idea:
+典型的在矩阵图中DFS的题目，需要注意在 helper function 中传入 oldColor 参数来记录原本需要被染色的颜色。
+
+* #### C++ Code:
+```cpp
+    class Solution {
+        int dr[4] = {-1, 0, 1, 0};
+        int dc[4] = {0, 1, 0, -1};
+        
+        void dfs(vector<vector<int>>& image, int sr, int sc, int oldColor, int newColor) {
+            if (sr < 0 || sr >= image.size() || sc < 0 || sc >=image[0].size()) return;
+            if (image[sr][sc] == oldColor) {
+                image[sr][sc] = newColor;
+                for (int i = 0; i < 4; ++i) {
+                    int r = sr + dr[i];
+                    int c = sc + dc[i];
+                    dfs(image, r, c, oldColor, newColor);
+                }
+            }
+        }
+    public:
+        vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+            if (newColor == image[sr][sc]) return image;
+            dfs(image, sr, sc, image[sr][sc], newColor);
+            return image;
+        }
+    };
+```
