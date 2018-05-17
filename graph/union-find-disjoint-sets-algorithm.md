@@ -108,7 +108,7 @@ Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wi
 [普林斯顿](http://algs4.cs.princeton.edu/15uf/)  
 这种实现方式更加简短，但是需要预先设定 disjoint set 的 maxSize。
 
-这种实现方式的本质是维持一个长度和 n 相同的 `ids[]` 数组，数组的 index 表示 id 本身，而其对应的 value 则表示其 parent。这样就形成了一种一一对应，环环相套的映射关系。每个元素（index）对应的 value 正式它的parent，而其parent对应到又是parent的parent，直到root，其对应的就是自己，这也是为什么一开始要将所有value都等于index；
+这种实现方式的本质是维持一个长度和 n 相同的 `ids[]` 数组，数组的 index 表示 id 本身，而其对应的 value 则表示其 parent。这样就形成了一种一一对应，环环相套的映射关系。每个元素（index）对应的 value 正是它的parent，而其parent对应到又是parent的parent，直到root，其对应的就是自己，这也是为什么一开始要将所有value都等于index；
 
 当我们需要做path compression 的时候，只需要令 `ids[x] = find(ids[x])`，这一步的意义就相当于 `x.parent = find(x.parent)`；
 
@@ -134,7 +134,7 @@ Java Code:
             else {
                 ids[x] = find(ids[x]); // path compression
             }
-            return dis[x];
+            return ids[x];
         }
     
         public void union(int x, int y) {
