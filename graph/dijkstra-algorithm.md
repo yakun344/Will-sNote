@@ -27,7 +27,7 @@ Dijkstra 的基本思路如下：
 #### BFS-2 的性质
 1.  每个 vertex 只能被 expand 一次，即只能进入 priority queue 一次；
 2.  每个 vertex 可以被 generate 多次，即多次检查是否需要更新；
-3.  **每个从 pq 中 poll 出的元素都是单调飞递减的；**
+3.  **每个从 pq 中 poll 出的元素都是单调非递减的；**
 4.  当一个 vertex 从 pq 中 poll 出来的时候，其最短距离就已经确定了；
 
 <br>
