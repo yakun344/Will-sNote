@@ -23,8 +23,6 @@ Disjoint-set Forests 的实现思路, 参考 wiki：[Disjoint Set](https://en.wi
 
 [这里](https://www.youtube.com/watch?v=ID00PMy0-vE) 还有一个图杀老师讲并查集的视频。
 
-[这里](https://neo1218.github.io/unionfind/) 也有一个中文实现的教程；
-
 **基础版本的实现（使用传统的tree node结构）：**
 
 这种实现方式和CLRS或WIKI中完全一致，定义新的Node class，然后依照wiki中的伪代码实现。
