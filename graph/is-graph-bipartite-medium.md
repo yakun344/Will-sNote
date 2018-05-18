@@ -120,32 +120,32 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
         }
     }
 ```
-  * #### C++ Code:
+  * #### Java Code:
   不用 set，而是使用一个vector来记录两种颜色，0 表示未见，1 2 分别表示两个set。
-  ```cpp
-      class Solution {
-        bool dfs(vector<vector<int>>& graph, vector<int>& colors, vector<int>& visited, int v) {
-            if (visited[v]) return true;
-            visited[v] = true;
-            for (int neighbor : graph[v]) {
-                if (colors[v] == colors[neighbor]) return false;
-                colors[neighbor] = colors[v] == 1 ? 2 : 1;
-                if (! dfs(graph, colors, visited, neighbor)) return false;
+  ```java
+        class Solution {
+            public boolean isBipartite(int[][] graph) {
+                int[] colors = new int[graph.length];
+                for (int i = 0; i < graph.length; ++i) {
+                    if (colors[i] != 0) continue;
+                    colors[i] = 1;
+                    if (! dfs(graph, colors, i)) return false;
+                }
+                return true;
             }
-            return true;
-        }
-    public:
-        bool isBipartite(vector<vector<int>>& graph) {
-            vector<int> colors(graph.size());
-            vector<int> visited(graph.size());
-            for (int i = 0; i < graph.size(); ++i) {
-                if (colors[i] != 0) continue;
-                colors[i] = 1;
-                if (! dfs(graph, colors, visited, i)) return false;
+            
+            private boolean dfs(int[][] graph, int[] colors, int v) {
+                for (int neighbor : graph[v]) {
+                    if (colors[neighbor] == 0) {
+                        colors[neighbor] = colors[v] == 1 ? 2 : 1;
+                        if (! dfs(graph, colors, neighbor)) return false;
+                    } else if (colors[neighbor] == colors[v]) {
+                        return false;
+                    }
+                }
+                return true;
             }
-            return true;
         }
-    };
   ```
   
   
