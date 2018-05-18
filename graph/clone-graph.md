@@ -120,3 +120,38 @@ return a deep copied graph.
         }
     }
 ```
+
+---
+_update 2018-05-18 17:25:32_
+
+#### C++ Code:
+```cpp
+    class Solution {
+    public:
+        UndirectedGraphNode *cloneGraph(UndirectedGraphNode *node) {
+            if (node == nullptr) return node;
+            unordered_map<UndirectedGraphNode*, UndirectedGraphNode*> _map;
+            deque<UndirectedGraphNode*> _queue;
+            _queue.push_back(node);
+            while (! _queue.empty()) {
+                UndirectedGraphNode* oldNode = _queue.front();
+                _queue.pop_front();
+                _map.insert(make_pair(oldNode, new UndirectedGraphNode(oldNode->label)));
+                for (auto* neighbor : oldNode->neighbors) {
+                    if (_map.count(neighbor)) continue;
+                    _queue.push_back(neighbor);
+                }
+            }
+            
+            for (auto& pair : _map) {
+                auto* oldNode = pair.first;
+                auto* newNode = pair.second;
+                for (auto* oldNeighbor : oldNode->neighbors) {
+                    newNode->neighbors.push_back(_map[oldNeighbor]);
+                }
+            }
+            
+            return _map[node];
+        }
+    };
+```
