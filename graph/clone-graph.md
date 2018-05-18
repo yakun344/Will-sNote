@@ -2,7 +2,8 @@
 _update Jul 17, 2017 23:09_
 
 ---
-[lintcode](http://www.lintcode.com/en/problem/clone-graph/#)
+[lintcode](http://www.lintcode.com/en/problem/clone-graph/#)   
+[LeetCode](https://leetcode.com/problems/clone-graph/description/)  
 
 Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
 
