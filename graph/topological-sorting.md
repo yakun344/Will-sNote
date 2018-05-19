@@ -129,3 +129,37 @@ Can you do it in both BFS and DFS?
             
             return res
 ```
+
+<br>
+
+---
+_update 2018-05-19 15:36:48_
+
+#### C++ DFS Solution
+因为topological sort 顺序中考前的node一定最后结束dfs，所以只要进行一次dfs，将每个结束dfs的node顺序插入list尾部，最后将list反向再返回就好了。
+```cpp
+    public class Solution {
+        /*
+         * @param graph: A list of Directed graph node
+         * @return: Any topological order for the given graph.
+         */
+        public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
+            ArrayList<DirectedGraphNode> res = new ArrayList<>();
+            Set<Integer> visited = new HashSet<>();
+            for (DirectedGraphNode node : graph) {
+                dfs(node, res, visited);
+            }
+            Collections.reverse(res);
+            return res;
+        }
+        
+        private void dfs(DirectedGraphNode node, List<DirectedGraphNode> res, Set<Integer> visited) {
+            if (visited.contains(node.label)) return;
+            visited.add(node.label);
+            for (DirectedGraphNode neighbor : node.neighbors) {
+                dfs(neighbor, res, visited);
+            }
+            res.add(node);
+        }
+    }
+```
