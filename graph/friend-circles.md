@@ -173,6 +173,57 @@ Java Code:
     }
 ```
 
+___
+_update 2018-05-18 20:36:22_
+
+#### C++ Union Find Solution
+```cpp
+    class Solution {
+    private:
+        vector<int>* ids;
+        vector<int>* ranks;
+        int count = 0;
+        void makeSet(int size) {
+            count = size;
+            ranks = new vector<int>(size);
+            ids = new vector<int>(size);
+            for (int i = 0; i < size; ++i) {
+                (*ids)[i] = i;
+            }
+        }
+        int find(int id) {
+            if ((*ids)[id] == id) return id;
+            while ((*ids)[id] != id) {
+                id = (*ids)[id];
+            }
+            return id;
+        }
+        void _union(int x, int y) {
+            int rootx = find(x);
+            int rooty = find(y);
+            if (rootx == rooty) return;
+            if ((*ranks)[rootx] < (*ranks)[rooty]) {
+                (*ids)[rootx] = rooty;
+            } else if ((*ranks)[rootx] > (*ranks)[rooty]) {
+                (*ids)[rooty] = rootx;
+            } else {
+                (*ids)[rootx] = rooty;
+                ++(*ranks)[rooty];
+            }
+            --count;
+        }
+    public:
+        int findCircleNum(vector<vector<int>>& M) {
+            makeSet(M.size());
+            for (int i = 0; i < M.size(); ++i) {
+                for (int j = 0; j < M[0].size(); ++j) {
+                    if (M[i][j]) _union(i, j);
+                }
+            }
+            return count;
+        }
+    };
+```
 
 
 
