@@ -112,3 +112,44 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
             
             return not [node for node in graph if count[node] > 0]
 ```
+
+---
+_update 2018-05-19 19:16:11_
+
+#### C++ DFS Solution
+如果在dfs中发现有环，则表示不可以，返回 false；
+
+```cpp
+class Solution {
+    vector<vector<int>>& initGraph(int size, vector<pair<int, int>>& edges) {
+        vector<vector<int>>& graph = *(new vector<vector<int>>(size));
+        for (auto _pair : edges) {
+            graph[_pair.first].push_back(_pair.second);
+        }
+        return graph;
+    }
+    
+    bool dfs(vector<vector<int>>& graph, int curr, unordered_set<int>& visited, unordered_set<int>& path) {
+        if (path.count(curr)) return false;
+        else if (visited.count(curr)) return true;
+        visited.insert(curr);
+        path.insert(curr);
+        for (int neighbor : graph[curr]) {
+            if (! dfs(graph, neighbor, visited, path)) return false;
+        }
+        path.erase(curr);
+        return true;
+    }
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<vector<int>>& graph = initGraph(numCourses, prerequisites);
+        unordered_set<int> visited;
+        for (int i = 0; i < numCourses; ++i) {
+            if (visited.count(i)) continue;
+            unordered_set<int> path;
+            if (! dfs(graph, i, visited, path)) return false;
+        }
+        return true;
+    }
+};
+```
