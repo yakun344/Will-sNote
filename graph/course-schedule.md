@@ -113,6 +113,8 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
             return not [node for node in graph if count[node] > 0]
 ```
 
+<br>
+
 ---
 _update 2018-05-19 19:16:11_
 
