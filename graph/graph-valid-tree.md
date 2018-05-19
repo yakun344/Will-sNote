@@ -160,7 +160,55 @@ TimeComplexity: 这么做的时间复杂度虽然和之前的算法相同，但�
     }
 ```
 
+----
+_update 2018-05-19 15:13:53_
 
+#### C++ Union Find Solution
+```cpp
+    class Solution {
+        vector<int> ids;
+        vector<int> ranks;
+        int count;
+        void makeSet(int size) {
+            ids.resize(size);
+            ranks.resize(size);
+            count = size;
+            for (int i = 0; i < size; ++i) {
+                ids[i] = i;
+            }
+        }
+        
+        int find(int id) {
+            if (ids[id] == id) return id;
+            while (ids[id] != id) {
+                id = ids[id];
+            }
+            return id;
+        }
+        
+        void _union(int x, int y) {
+            int rootx = find(x);
+            int rooty = find(y);
+            if (rootx == rooty) return;
+            if (ranks[rootx] < ranks[rooty]) ids[rootx] = rooty;
+            else if (ranks[rootx] > ranks[rooty]) ids[rooty] = rootx;
+            else {
+                ids[rootx] = rooty;
+                ranks[rooty]++;
+            }
+            count--;
+        }
+    public:
+        bool validTree(int n, vector<pair<int, int>>& edges) {
+            if (edges.size() != n - 1) return false;
+            makeSet(n);
+            for (auto& _pair : edges) {
+                _union(_pair.first, _pair.second);
+            }
+            return count == 1;
+        }
+    };
+```
 
 
 
