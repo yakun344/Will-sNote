@@ -31,15 +31,18 @@ Can you do it in both BFS and DFS?
 使用Kahn's Algorithm, 因为直接dfs会由于递归栈的关系存在很多隐患，而Kahn算法可以使用BFS。
 
 具体地，说一下大体思路：
+
 1.  首先统计每个node的indegree，存在map或者dict里面。
 2.  把indegree为0的node加入res和queue，开始bfs
 3.  在bfs的过程中，每次把node的neighbors的indegree都减一（相当于去掉这个node以及其发出的路径），把indegree为0的neighbor加入res和queue，继续bfs。
 4.  类似地，dfs的方法就是在遇到neighbor的indegree减一之后变为0时，马上跟进进行dfs。
 
 **Follow up:** 如何判断能否进行 topological sort 呢（即是否有环）？
+
 1.  如果bfs结束之后，仍有indegree > 0的node，则说明至少有一个环。
 2.  如果采用下面python dfs的类似方法也是一样，如果仍存在大于0的indegree的node，则有环。
 3.  (待续)
+
 #### Java Code:
 ```java
     /**
