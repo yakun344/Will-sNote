@@ -166,3 +166,45 @@ _update 2018-05-19 15:36:48_
         }
     }
 ```
+
+#### C++ Kahn's Algorithm Solution
+```cpp
+    class Solution {
+    public:
+        /*
+         * @param graph: A list of Directed graph node
+         * @return: Any topological order for the given graph.
+         */
+        vector<DirectedGraphNode*> topSort(vector<DirectedGraphNode*>& graph) {
+            // 统计每个node的 indegree
+            unordered_map<DirectedGraphNode*, int> _count;
+            for (auto* node : graph) {
+                _count[node];
+                for (auto* neighbor : node->neighbors) {
+                    ++_count[neighbor];
+                }
+            }
+            
+            // 将 indegree==0 的 node 放入 queue
+            deque<DirectedGraphNode*> _queue;
+            for (auto _pair : _count) {
+                if (_pair.second == 0) _queue.push_back(_pair.first);
+            }
+            
+            // BFS，每次将当前indegree为0的node的所有neighbors indegree -1，如果为0，
+            // 加入 queue
+            vector<DirectedGraphNode*> res;
+            while (! _queue.empty()) {
+                auto* node = _queue.front();
+                _queue.pop_front();
+                for (auto* neighbor : node->neighbors) {
+                    if (--_count[neighbor] == 0) {
+                        _queue.push_back(neighbor);
+                    }
+                }
+                res.push_back(node);
+            }
+            return res;
+        }
+    };
+```
