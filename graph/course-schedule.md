@@ -116,6 +116,50 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
 ---
 _update 2018-05-19 19:16:11_
 
+#### C++ Kahn's Algorithm, BFS Solution
+```cpp
+class Solution {
+    vector<vector<int>>& initGraph(int size, vector<pair<int, int>>& edges) {
+        vector<vector<int>>& graph = *(new vector<vector<int>>(size));
+        for (auto& _pair : edges) {
+            graph[_pair.first].push_back(_pair.second);
+        }
+        return graph;
+    }
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        auto& graph = initGraph(numCourses, prerequisites);
+        unordered_map<int, int> _inDegree;
+        for (int i = 0; i < numCourses; ++i) {
+            _inDegree[i];
+            for (int neighbor : graph[i]) {
+                ++_inDegree[neighbor];
+            }
+        }
+        
+        deque<int> _queue;
+        for (auto& _pair : _inDegree) {
+            if (_pair.second == 0) _queue.push_back(_pair.first);
+        }
+        
+        while (! _queue.empty()) {
+            int node = _queue.front();
+            _queue.pop_front();
+            for (int neighbor : graph[node]) {
+                if (--_inDegree[neighbor] == 0) {
+                    _queue.push_back(neighbor);
+                }
+            }
+        }
+        
+        for (auto& _pair : _inDegree) {
+            if (_pair.second > 0) return false;
+        }
+        return true;
+    }
+};
+```
+
 #### C++ DFS Solution
 如果在dfs中发现有环，则表示不可以，返回 false；
 
