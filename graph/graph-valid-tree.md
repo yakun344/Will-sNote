@@ -23,7 +23,7 @@ You can assume that no duplicate edges will appear in edges. Since all edges are
 
 于是我们从这两个性质出发，先判断node和edge的个数是否符合要求，然后用一个BFS来判断是否connected。
 
-题目中给的是node个数以及edges，我们需要先把图转换为adjacent list的形式，即Java中的：`List<Set<Integer>>`的形式，然后再做bfs。为了应对`back edge`，我们需要用一个`HashSet visited` 记录已经`visited` 的 `node`。
+题目中给的是node个数以及edges，我们需要先把图转换为adjacent list的形式，即Java中的：`List<Set<Integer>>`的形式，然后再做bfs。为了应对`back edge`，我们需要用一个`HashSet visited` 记录已经`visited` 的 `node`。**另外要注意，所给的边都是directed的，我们需要将图转化为 undirected 的。**
 
 #### Java Code：
 ```java
