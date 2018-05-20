@@ -184,3 +184,47 @@ public:
 
 #### Java Naive DFS Solution
 ```java
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> graph = initGraph(numCourses, prerequisites);
+        List<Integer> res = new ArrayList<>();
+        Set<Integer> visited = new HashSet<>();
+        for (int i = 0; i < numCourses; ++i) {
+            if (! dfs(graph, new HashSet<>(), visited, res, i)) {
+                return new int[]{};
+            }
+        }
+        int[] ret = new int[res.size()];
+        for (int i = 0; i < ret.length; ++i) {
+            ret[i] = res.get(res.size() - 1 - i);
+        }
+        return ret;
+    }
+    
+    private List<List<Integer>> initGraph(int size, int[][] edges) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < size; ++i) graph.add(new ArrayList<Integer>());
+        for (int[] edge : edges) {
+            graph.get(edge[1]).add(edge[0]);
+        }
+        return graph;
+    }
+    
+    private boolean dfs(List<List<Integer>> graph, Set<Integer> path, Set<Integer> visited, List<Integer> res, int curr) {
+        if (path.contains(curr)) {
+            return false;
+        }
+        else if (visited.contains(curr)) return true;
+        path.add(curr);
+        visited.add(curr);
+        for (int neighbor : graph.get(curr)) {
+            if (! dfs(graph, path, visited, res, neighbor)) {
+                return false;
+            }
+        }
+        path.remove(curr);
+        res.add(curr);
+        return true;
+    }
+}
+```
