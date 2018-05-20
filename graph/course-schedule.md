@@ -2,7 +2,8 @@
 _update Jul 18, 2017 14:11_
 
 ---
-[lintcode](http://www.lintcode.com/en/problem/course-schedule/)
+[lintcode](http://www.lintcode.com/en/problem/course-schedule/)  
+[LeetCode](https://leetcode.com/problems/course-schedule/description/)  
 
 There are a total of n courses you have to take, labeled from 0 to n - 1.
 
