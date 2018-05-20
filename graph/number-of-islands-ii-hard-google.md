@@ -45,3 +45,102 @@ Can you do it in time complexity `O(k log mn)`, where k is the length of the pos
 <br>
 
 ### Basic Idea:
+每次操作在图中增加一个点，要求记录每次操作完成之后独立 island 的个数。可以理解为每次操作后求图中所有联通量的个数，自然就想到了并查集（Union Find or Disjoint Set）。
+
+**定义并查集：**   
+* 将并查集表示为长度为 `m*n` 的数组，并且把每个初始值设为 -1 表示该点为空。
+
+**并查集操作：**  
+* 增加点的时候，先令 `ids[k] = k; count++;`，然后检查上下左右四个点所对应的并查集中是否有不为 -1 的值，若有则做 union 操作。
+* 每次操作完成之后，将 `count` 的值加入 res list 即可。
+
+#### Java Code:
+```java
+class Solution {
+    int[] ids;
+    int[] ranks;
+    int count = 0;
+    void makeSet(int size) {
+        ids = new int[size];
+        Arrays.fill(ids, -1);
+        ranks = new int[size];
+    }
+    
+    int find(int id) {
+        if (ids[id] == id) return id;
+        while (ids[id] != id) {
+            id = ids[id];
+        }
+        return id;
+    }
+    
+    void union(int x, int y) {
+        int rootx = find(x);
+        int rooty = find(y);
+        if (rootx == rooty) return;
+        if (ranks[rootx] < ranks[rooty]) ids[rootx] = rooty;
+        else if (ranks[rooty] < ranks[rootx]) ids[rooty] = rootx;
+        else {
+            ids[rootx] = rooty;
+            ranks[rooty]++;
+        }
+        count--;
+    }
+    
+    public List<Integer> numIslands2(int m, int n, int[][] positions) {
+        int[] dr = new int[]{-1, 0, 1, 0};
+        int[] dc = new int[]{0, -1, 0, 1};
+        List<Integer> res = new ArrayList<>();
+        
+        makeSet(m * n);
+        for (int[] coord : positions) {
+            int r = coord[0], c = coord[1];
+            int k = r * n + c;
+            if (ids[k] != -1) continue;
+            ids[k] = k;
+            count++;
+            for (int i = 0; i < 4; ++i) {
+                int nr = r + dr[i];
+                int nc = c + dc[i];
+                if (nr < 0 || nr >= m || nc < 0 || nc >= n) continue;
+                int nk = nr * n + nc;
+                if (ids[nk] != -1) union(nk, k);
+            }
+            res.add(count);
+        }
+        return res;
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
