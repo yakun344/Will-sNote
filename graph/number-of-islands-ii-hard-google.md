@@ -48,7 +48,7 @@ Can you do it in time complexity `O(k log mn)`, where k is the length of the pos
 每次操作在图中增加一个点，要求记录每次操作完成之后独立 island 的个数。可以理解为每次操作后求图中所有联通量的个数，自然就想到了并查集（Union Find or Disjoint Set）。
 
 **定义并查集：**   
-* 将并查集表示为长度为 `m*n` 的数组，并且把每个初始值设为 -1 表示该点为空。
+* 将并查集表示为长度为 `m*n` 的数组，并且把每个初始值设为 -1 表示该点为空。则矩阵中的点`[r,c]`就对应了 ids 数组中的 `ids[r*n+c]`；
 
 **并查集操作：**  
 * 增加点的时候，先令 `ids[k] = k; count++;`，然后检查上下左右四个点所对应的并查集中是否有不为 -1 的值，若有则做 union 操作。
