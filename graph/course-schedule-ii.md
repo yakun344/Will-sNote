@@ -128,3 +128,59 @@ There may be multiple correct orders, you just need to return one of them. If it
                 graph[u].add(v)
             return graph
 ```
+
+<br>
+
+---
+_update 2018-05-19 19:59:46_
+
+#### C++ Kahn's Algorithm BFS Solution
+```cpp
+class Solution {
+    vector<vector<int>>& initGraph(int size, vector<pair<int, int>>& edges) {
+        vector<vector<int>>& graph = *(new vector<vector<int>>(size));
+        for (auto& _pair : edges) {
+            graph[_pair.second].push_back(_pair.first);
+        }
+        return graph;
+    }
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        auto& graph = initGraph(numCourses, prerequisites);
+        unordered_map<int, int> indegreeCount;
+        for (int i = 0; i < numCourses; ++i) {
+            indegreeCount[i];
+            for (int neighbor : graph[i]) {
+                ++indegreeCount[neighbor];
+            }
+        }
+        
+        deque<int> _queue;
+        for (auto& _pair : indegreeCount) {
+            if (_pair.second == 0) _queue.push_back(_pair.first);
+        }
+        
+        vector<int> res;
+        while (! _queue.empty()) {
+            int node = _queue.front();
+            _queue.pop_front();
+            res.push_back(node);
+            for (int neighbor : graph[node]) {
+                if (--indegreeCount[neighbor] == 0) {
+                    _queue.push_back(neighbor);
+                }
+            }
+        }
+        
+        // 查看是否还有 indegree > 0 的 node
+        for (auto& _pair : indegreeCount) {
+            if (_pair.second > 0) return {};
+        }
+        
+        return res;
+    }
+};
+```
+
+#### Java Naive DFS Solution
+```java
