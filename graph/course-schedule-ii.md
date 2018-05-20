@@ -140,7 +140,7 @@ class Solution {
     vector<vector<int>>& initGraph(int size, vector<pair<int, int>>& edges) {
         vector<vector<int>>& graph = *(new vector<vector<int>>(size));
         for (auto& _pair : edges) {
-            graph[_pair.second].push_back(_pair.first);
+            graph[_pair.second].push_back(_pair.first); // 反过来写是为了让边从先修课指向后修课
         }
         return graph;
     }
