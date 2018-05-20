@@ -54,6 +54,9 @@ Can you do it in time complexity `O(k log mn)`, where k is the length of the pos
 * 增加点的时候，先令 `ids[k] = k; count++;`，然后检查上下左右四个点所对应的并查集中是否有不为 -1 的值，若有则做 union 操作。
 * 每次操作完成之后，将 `count` 的值加入 res list 即可。
 
+**时间复杂度：**  
+这样做的话时间复杂度为 `O(m*n + k)` 其中k为operation的个数，因为并查集的操作amortize之后为 O(1)，前面的 `m*n` 为建 `ids` 数组的时间，如果用 `HashMap` 优化，则可以将时间复杂度优化为 `O(k)`；
+
 #### Java Code:
 ```java
 class Solution {
