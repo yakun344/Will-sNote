@@ -2,7 +2,9 @@
 _update Jul 18, 2017 17:26_
 
 ---
-[lintcode](http://www.lintcode.com/en/problem/number-of-islands/)
+[lintcode](http://www.lintcode.com/en/problem/number-of-islands/)   
+[LeetCode](https://leetcode.com/problems/number-of-islands/description/)   
+
 
 Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
 
@@ -84,4 +86,43 @@ Find the number of islands.
             }
         }
     }
+```
+
+<br>
+
+---
+_update 2018-05-19 23:20:30_
+
+#### C++ DFS Solution:
+```cpp
+class Solution {
+    int dr[4] = {-1, 0, 1, 0};
+    int dc[4] = {0, -1, 0, 1};
+    void dfs(vector<vector<char>>& grid, int r, int c) {
+        grid[r][c] = '0';
+        for (int i = 0; i < 4; ++i) {
+            int nr = r + dr[i];
+            int nc = c + dc[i];
+            if (nr < 0 || nr >= grid.size() || nc < 0 || nc >= grid[0].size()) {
+                continue;
+            }
+            if (grid[nr][nc] == '1') {
+                dfs(grid, nr, nc);
+            }
+        }
+    }
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int ret = 0;
+        for (int r = 0; r < grid.size(); ++r) {
+            for (int c = 0; c < grid[0].size(); ++c) {
+                if (grid[r][c] == '1') {
+                    ret++;
+                    dfs(grid, r, c);
+                }
+            }
+        }
+        return ret;
+    }
+};
 ```
