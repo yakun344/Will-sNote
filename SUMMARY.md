@@ -19,6 +19,7 @@
   * [Course Schedule II ](graph/course-schedule-ii.md)
   * [Sequence Reconstruction](graph/sequence-reconstruction.md)
   * [Number of Islands](graph/number-of-islands.md)
+  * [Number of Islands II \(Hard Google\)](graph/number-of-islands-ii-hard-google.md)
   * [Zombie in Matrix](graph/zombie-in-matrix.md)
   * [Knight Shortest Path](graph/knight-shortest-path.md)
   * [Build Post Office II](graph/build-post-office-ii.md)
