@@ -29,70 +29,80 @@ Check whether the original sequence org can be uniquely reconstructed from the s
     Return true
 
 #### Basic Idea:
-这道题其实就是求是否有唯一的topological sort的结果。什么情况下会有不止一种结果呢？就是当某一时刻有不止一个indegree为0的node的时候。所以我们只需要监测`queue.size() > 1`即可。
+这道题其实就是求是否有唯一的topological sort的结果。什么情况下会有不止一种结果呢？就是当某一时刻有不止一个indegree为0的node的时候。所以我们只需要监测`queue.size() > 1`即可。当然，在这之前要根据 seqs 生成 `Map<Integer, List<Integer>>` 形式的 graph；
 
 具体的，有一些非法输入的情况需要handle。
 
 #### Java Code:
 ```java
-    public class Solution {
-        /**
-         * @param org a permutation of the integers from 1 to n
-         * @param seqs a list of sequences
-         * @return true if it can be reconstructed only one or false
-         */
-        public boolean sequenceReconstruction(int[] org, int[][] seqs) {
-            Map<Integer, Set<Integer>> graph = initGraph(org, seqs);
-            if (graph == null) return false;
-            // count indegree
-            Map<Integer, Integer> count = new HashMap<>();
-            for (int node : org) {
-                count.put(node, 0);
+public class Solution {
+    /**
+     * @param org: a permutation of the integers from 1 to n
+     * @param seqs: a list of sequences
+     * @return: true if it can be reconstructed only one or false
+     */
+    public boolean sequenceReconstruction(int[] org, int[][] seqs) {
+        Map<Integer, List<Integer>> graph = initGraph(seqs);
+        Map<Integer, Integer> indegreeCount = new HashMap<>();
+        for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {
+            if (! indegreeCount.containsKey(entry.getKey())) {
+                indegreeCount.put(entry.getKey(), 0);
             }
-            for (int node : org) {
-                for (int neighbor : graph.get(node)) {
-                    count.put(neighbor, count.get(neighbor) + 1);
-                }
+            for (int neighbor : entry.getValue()) {
+                indegreeCount.put(neighbor, indegreeCount.getOrDefault(neighbor, 0) + 1);
             }
-            // bfs, topological sort, check if queue.size() > 1
-            Deque<Integer> queue = new LinkedList<>();
-            for (int node : org) {
-                if (count.get(node) == 0) queue.addFirst(node);
-            }
-            while (! queue.isEmpty()) {
-                if (queue.size() > 1) return false;
-                int node = queue.removeLast();
-                for (int neighbor : graph.get(node)) {
-                    count.put(neighbor, count.get(neighbor) - 1);
-                    if (count.get(neighbor) == 0) queue.addFirst(neighbor);
-                }
-            }
-            for (int node : org) {
-                if (count.get(node) > 0) return false;
-            }
-            return true;
         }
-        private Map<Integer, Set<Integer>> initGraph(int[] nodes, int[][] seqs) {
-            Map<Integer, Set<Integer>> graph = new HashMap<>();
-            int nodeNum = 0;
-            for (int node : nodes) {
-                graph.put(node, new HashSet<Integer>());
-            }
-            for (int[] edges : seqs) {
-                nodeNum += edges.length;
-                if (edges.length == 1 && (edges[0] < 1 || edges[0] > nodes.length)) {
-                    return null;
-                }
-                for (int i = 1; i < edges.length; ++i) {
-                    int u = edges[i - 1], v = edges[i];
-                    if (Math.max(u, v) > nodes.length || Math.min(u, v) < 1) return null;
-                    graph.get(u).add(v);
-                }
-            }
-            if (nodeNum < nodes.length) return null;
-            return graph;
+        Deque<Integer> queue = new ArrayDeque<>();
+        for (Map.Entry<Integer, Integer> entry : indegreeCount.entrySet()) {
+            if (entry.getValue() == 0) queue.offerLast(entry.getKey());
         }
+        
+        List<Integer> sortedList = new ArrayList<>();
+        while (! queue.isEmpty()) {
+            if (queue.size() > 1) return false;
+            int node = queue.pollFirst();
+            sortedList.add(node);
+            for (int neighbor : graph.get(node)) {
+                indegreeCount.put(neighbor, indegreeCount.get(neighbor) - 1);
+                if (indegreeCount.get(neighbor) == 0) queue.offerLast(neighbor);
+            }
+        }
+        
+        // 检查是否有环
+        for (Map.Entry<Integer, Integer> entry : indegreeCount.entrySet()) {
+            if (entry.getValue() != 0) return false;
+        }
+        
+        // 检查 topological sort 之后的 list 是否和 org 相同
+        if (org.length != sortedList.size()) return false;
+        for (int i = 0; i < org.length; ++i) {
+            if (sortedList.get(i) != org[i]) return false;
+        }
+        return true;
     }
+    
+    private Map<Integer, List<Integer>> initGraph(int[][] seqs) {
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for (int[] seq : seqs) {
+            if (seq.length == 1) {
+                if (! graph.containsKey(seq[0])) {
+                    graph.put(seq[0], new ArrayList<>());
+                }
+            }
+            for (int i = 1; i < seq.length; ++i) {
+                int a = seq[i - 1], b = seq[i];
+                if (! graph.containsKey(a)) {
+                    graph.put(a, new ArrayList<Integer>());
+                }
+                if (! graph.containsKey(b)) {
+                    graph.put(b, new ArrayList<Integer>());
+                }
+                graph.get(a).add(b);
+            }
+        }
+        return graph;
+    }
+}
 ```
 
 #### Python Code:
