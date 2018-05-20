@@ -52,6 +52,9 @@ public class Solution {
                 indegreeCount.put(neighbor, indegreeCount.getOrDefault(neighbor, 0) + 1);
             }
         }
+        
+        // 每次将当前node的出边所连接的neighbors的indegree减一，若之后indegree为0，则入队。
+        // 如果有一刻queue的size大于1，说明有不唯一的topological order，之间返回 false
         Deque<Integer> queue = new ArrayDeque<>();
         for (Map.Entry<Integer, Integer> entry : indegreeCount.entrySet()) {
             if (entry.getValue() == 0) queue.offerLast(entry.getKey());
