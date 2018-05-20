@@ -99,9 +99,12 @@ class Solution {
         for (int[] coord : positions) {
             int r = coord[0], c = coord[1];
             int k = r * n + c;
+            
+            // 先将 id=k 的点加入，算作一个island，count++
             if (ids[k] != -1) continue;
             ids[k] = k;
             count++;
+            // 查看四边，如果与其他岛相连，则union，count自然减少
             for (int i = 0; i < 4; ++i) {
                 int nr = r + dr[i];
                 int nc = c + dc[i];
@@ -116,6 +119,60 @@ class Solution {
 }
 ```
 
+### C++ Code (Use HashMap to Optimize):
+```cpp
+    class Solution {
+        unordered_map<int, int> ids;
+        unordered_map<int, int> ranks;
+        int count = 0;
+        
+        int find(int id) {
+            if (! ids.count(id)) return -1;
+            if (ids[id] == id) return id;
+            while (ids[id] != id) {
+                id = ids[id];
+            }
+            return id;
+        }
+        
+        void _union(int x, int y) {
+            int rootx = find(x);
+            int rooty = find(y);
+            if (rootx == -1 || rooty == -1) exit(1);
+            if (rootx == rooty) return;
+            if (ranks[rootx] < ranks[rooty]) ids[rootx] = rooty;
+            else if (ranks[rootx] > ranks[rooty]) ids[rooty] = rootx;
+            else {
+                ids[rootx] = rooty;
+                ++ranks[rooty];
+            }
+            --count;
+        }
+        
+    public:
+        vector<int> numIslands2(int m, int n, vector<pair<int, int>>& positions) {
+            int dr[4] = {-1, 0, 1, 0};
+            int dc[4] = {0, -1, 0, 1};
+            vector<int> res;
+            for (auto& coord : positions) {
+                int r = coord.first, c = coord.second;
+                int k = r * n + c;
+                if (ids.count(k)) continue;
+                ids[k] = k;
+                ++count;
+                for (int i = 0; i < 4; ++i) {
+                    int nr = r + dr[i];
+                    int nc = c + dc[i];
+                    if (nr < 0 || nr >= m || nc < 0 || nc >= n) continue;
+                    int nk = nr * n + nc;
+                    if (ids.count(nk)) _union(nk, k);
+                }
+                res.push_back(count);
+            }
+            return res;
+        }
+    };
+```
 
 
 
