@@ -75,3 +75,45 @@ Count the number of distinct islands. An island is considered to be the same as 
         }
     }
 ```
+
+* #### C++ Code:
+与前面Java的解法不同，这里没有再dfs中直接生成string，而是将所有coord存入一个vector，然后再排序，生成string；
+```cpp
+    class Solution {
+        int dr[4] = {1, 0, -1, 0};
+        int dc[4] = {0, 1, 0, -1};
+        
+        void dfs(vector<vector<int>>& grid, int r0, int c0, int r, int c, vector<vector<int>>& shape) {
+            if (r < 0 || r >= grid.size() || c < 0 || c >= grid[0].size()) return;
+            else if (grid[r][c] == 0) return;
+            grid[r][c] = 0;
+            shape.push_back({r - r0, c - c0});
+            for (int i = 0; i < 4; ++i) {
+                dfs(grid, r0, c0, r + dr[i], c + dc[i], shape);
+            }
+        }
+    public:
+        int numDistinctIslands(vector<vector<int>>& grid) {
+            unordered_set<string> shapes;
+            for (int r = 0; r < grid.size(); ++r) {
+                for (int c = 0; c < grid[0].size(); ++c) {
+                    if (grid[r][c] == 0) continue;
+                    vector<vector<int>> shape;
+                    dfs(grid, r, c, r, c, shape);
+                    
+                    // 对坐标list排序保证顺序，然后生成string
+                    sort(shape.begin(), shape.end(), [](vector<int> v1, vector<int> v2) -> bool {
+                        if (v1[0] != v2[0]) return v1[0] < v2[0];
+                        else return v1[1] < v2[1];
+                    });
+                    string hashCode;
+                    for (vector<int>& coord : shape) {
+                        hashCode.append(to_string(coord[0]) + "#" + to_string(coord[1]) + "#");
+                    }
+                    shapes.insert(hashCode);
+                }
+            }
+            return shapes.size();
+        }
+    };
+```
