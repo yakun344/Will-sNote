@@ -63,11 +63,12 @@ Count the number of distinct islands. An island is considered to be the same as 
             return shapes.size();
         }
         
+        // dfs 函数中，传入左上角的坐标 r0,c0，利用这个坐标对整个岛进行标准化
         private void dfs(int[][] grid, int r0, int c0, int r, int c, StringBuilder shape) {
             if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length) return;
             else if (grid[r][c] == 0) return;
             grid[r][c] = 0;
-            shape.append((r - r0) + "#" + (c - c0) + "#");
+            shape.append((r - r0) + "#" + (c - c0) + "#"); // serialize步骤, 先标准化
             for (int i = 0; i < 4; ++i) {
                 dfs(grid, r0, c0, r + dr[i], c + dc[i], shape);
             }
