@@ -77,7 +77,7 @@ Count the number of distinct islands. An island is considered to be the same as 
 ```
 
 * #### C++ Code:
-与前面Java的解法不同，这里没有再dfs中直接生成string，而是将所有coord存入一个vector，然后再排序，生成string；
+与前面 Java 的解法不同，这里没有再 dfs 中直接生成 string，而是将所有 coord 存入一个 vector，然后再排序，生成 string；
 ```cpp
     class Solution {
         int dr[4] = {1, 0, -1, 0};
