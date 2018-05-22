@@ -141,6 +141,11 @@ vector<string> split(const string &s, char delim) {
 }
 ```
 
+---
+
+### 7. Java 和 C++ 中的 static
+**共同点：** 在 class 中的static都表示该变量由所有instance共享，属于class。需要注意c++中的static class variable 要在类外面显式定义，而且调用的时候 C++ 要用 `className::varName`，Java 只要 `className.varName`;
+
 
 
 
