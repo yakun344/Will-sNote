@@ -224,3 +224,120 @@ Each intermediate word must exist in the dictionary
             del path[-1]
             visited.remove(start)
 ```
+
+<br>
+
+---
+_update 2018-05-23 18:16:44_
+#### C++ Code:
+很长时间没有写比较复杂的搜索类题目，一些细节已经忘记了。
+
+1. 需要跟踪 step 数量的时候用分层 BFS 要记得加上关于 queue.size 的循环。
+2. 在图的DFS中，如果要获取全部路径，需要考虑到两条路径会在某一节点合并的问题，这种情况下就需要对 visited set 也进行 backtrack，保证下级dfs不会影响到上级对其他路径的搜索。
+
+```cpp
+class Solution {
+public:
+    /*
+     * @param start: a string
+     * @param end: a string
+     * @param dict: a set of string
+     * @return: a list of lists of string
+     */
+    vector<vector<string>> findLadders(string &start, string &end, unordered_set<string> &dict) {
+        vector<vector<string>> res;
+        if (start == end) {
+            res.push_back({start});
+            return res;
+        }
+        dict.insert(start);
+        dict.insert(end);
+        unordered_map<string, int> dists;
+        dists[end] = 0;
+        dists[start] = 0x7fffffff;
+        int length = getLength(dict, dists, start, end);
+        vector<string> path;
+        unordered_set<string> visited;
+        dfs(dict, start, end, path, res, visited, length, dists);
+        return res;
+    }
+    
+    int getLength(unordered_set<string>& dict, unordered_map<string, int>& dists, string start, string end) {
+        unordered_set<string> visited;
+        deque<string> _queue;
+        _queue.push_back(end);
+        int step = 1;
+        while (! _queue.empty()) {
+            int size = _queue.size();
+            for (int k = 0; k < size; ++k) {
+                string curr = _queue.front();
+                _queue.pop_front();
+                if (! dict.count(curr) || visited.count(curr)) {
+                    continue;
+                } else if (curr == start) {
+                    cout << step << endl;
+                    return step;
+                } else {
+                    dists[curr] = step;
+                    visited.insert(curr);
+                }
+                vector<string> neighbors = getNeighbors(curr);
+                for (string& neighbor : neighbors) {
+                    _queue.push_back(neighbor);
+                }
+            }
+            ++step;
+        }
+        return -1;
+    } 
+    
+    vector<string> getNeighbors(const string& word) {
+        vector<string> ret;
+        for (int i = 0; i < word.size(); ++i) {
+            string neighbor = word;
+            for (char c = 'a'; c <= 'z'; ++c) {
+                neighbor[i] = c;
+                ret.push_back(neighbor);
+            }
+        }
+        return move(ret);
+    }
+    
+    void dfs(unordered_set<string>& dict, string start, string end, vector<string>& path, 
+      vector<vector<string>>& res, unordered_set<string>& visited, int remainSteps, 
+      unordered_map<string, int>& dists) {
+        if (remainSteps == 1) {
+            if (start == end) {
+                path.push_back(start);
+                res.push_back(path);
+                path.pop_back();
+            }
+            return;
+        }
+        else if (visited.count(start)) return;
+        path.push_back(start);
+        visited.insert(start);
+        for (string neighbor : getNeighbors(start)) {
+            if (! dists.count(neighbor) || dists[neighbor] >= dists[start]) continue;
+            dfs(dict, neighbor, end, path, res, visited, remainSteps - 1, dists);
+        }
+        visited.erase(start);
+        path.pop_back();
+    }
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
