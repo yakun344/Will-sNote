@@ -2,7 +2,8 @@
 _update Jul 19, 2017 17:36_
 
 ---
-[lintCode](http://www.lintcode.com/en/problem/connected-component-in-undirected-graph/)
+[lintCode](http://www.lintcode.com/en/problem/connected-component-in-undirected-graph/)   
+[LeetCode](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/)      
 
 
 Find the number connected component in the undirected graph. Each node in the graph contains a label and a list of its neighbors. (a connected component (or just component) of an undirected graph is a subgraph in which any two vertices are connected to each other by paths, and which is connected to no additional vertices in the supergraph.)
@@ -156,6 +157,59 @@ _update Sep 8, 2017  23:21_
                 key = lambda component : component[0])
 ```
 对比上面做了同样事情的 Java Code， Python 的 concise 真是令人叹为观止。
+
+<br>
+
+---
+_update 2018-05-22 22:01:39_
+
+#### LeetCode 版本 C++ Code:
+```cpp
+class Solution {
+    vector<int> ids;
+    vector<int> ranks;
+    int count;
+    
+    void makeSet(int size) {
+        ids.resize(size);
+        ranks.resize(size);
+        count = size;
+        for (int i = 0; i < size; ++i) {
+            ids[i] = i;
+        }
+    }
+    
+    int find(int id) {
+        if (ids[id] == id) return id;
+        while (ids[id] != id) {
+            id = ids[id];
+        }
+        return id;
+    }
+    
+    void _union(int x, int y) {
+        int rootx = find(x);
+        int rooty = find(y);
+        if (rootx == rooty) return;
+        if (ranks[rootx] < ranks[rooty]) ids[rootx] = rooty;
+        else if (ranks[rootx] > ranks[rooty]) ids[rooty] = rootx;
+        else {
+            ranks[rooty]++;
+            ids[rootx] = rooty;
+        }
+        count--;
+    }
+public:
+    int countComponents(int n, vector<pair<int, int>>& edges) {
+        makeSet(n);
+        for (auto& edge : edges) {
+            int u = edge.first, v = edge.second;
+            _union(u, v);
+        }
+        return count;
+    }
+};
+```
 
 
 
