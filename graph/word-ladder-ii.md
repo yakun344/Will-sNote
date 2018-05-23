@@ -244,6 +244,7 @@ public:
      * @param dict: a set of string
      * @return: a list of lists of string
      */
+    // 主函数
     vector<vector<string>> findLadders(string &start, string &end, unordered_set<string> &dict) {
         vector<vector<string>> res;
         if (start == end) {
@@ -262,6 +263,7 @@ public:
         return res;
     }
     
+    // 获取最短路径长度，从end出发找start，并记录沿途string到end的距离
     int getLength(unordered_set<string>& dict, unordered_map<string, int>& dists, string start, string end) {
         unordered_set<string> visited;
         deque<string> _queue;
@@ -291,6 +293,7 @@ public:
         return -1;
     } 
     
+    // 替换每个字母生成所有距离为1的string
     vector<string> getNeighbors(const string& word) {
         vector<string> ret;
         for (int i = 0; i < word.size(); ++i) {
@@ -303,6 +306,7 @@ public:
         return move(ret);
     }
     
+    // dfs找所有路径，注意在剪枝的时候只考虑有记录距离并且到end距离小于当前点的neighbor
     void dfs(unordered_set<string>& dict, string start, string end, vector<string>& path, 
       vector<vector<string>>& res, unordered_set<string>& visited, int remainSteps, 
       unordered_map<string, int>& dists) {
