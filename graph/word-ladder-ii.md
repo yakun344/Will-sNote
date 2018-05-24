@@ -37,114 +37,89 @@ Each intermediate word must exist in the dictionary
 
 #### Java Code:
 ```java
-    public class Solution {
-        /**
-          * @param start, a string
-          * @param end, a string
-          * @param dict, a set of string
-          * @return a list of lists of string
-          */
-        public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-            List<List<String>> res = new ArrayList<>();
-            if (start.equals(end)) {
-                res.add(new ArrayList<String>());
-                res.get(0).add(start);
-                return res;
-            }
-            
-            dict.add(start);
-            dict.add(end);
-            Map<String, Integer> distances = new HashMap<>();
-            for (String node : dict) {
-                distances.put(node, Integer.MAX_VALUE);
-            }
-            distances.put(end, 1); // 令自身距离为1
-            
-            // bfs
-            int minStep = bfs(end, start, dict, distances);
-    
-            // dfs
-            Set<String> visited = new HashSet<>();
-            dfs(start, end, new ArrayList<String>(), res, visited, distances, dict, minStep);
+public class Solution {
+    /*
+     * @param start: a string
+     * @param end: a string
+     * @param dict: a set of string
+     * @return: a list of lists of string
+     */
+    public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+        List<List<String>> res = new ArrayList<>();
+        if (start.equals(end)) {
+            res.add(new ArrayList<>());
+            res.get(0).add(start);
             return res;
         }
+        dict.add(start);
+        dict.add(end);
+        Map<String, Integer> dists = new HashMap<>();
+        dists.put(start, Integer.MAX_VALUE);
+        dists.put(end, 0);
         
-        // 从start开始dfs搜索end，每次只选择距离end更近的点深入
-        private void dfs(String node,
-                        String target,
-                        List<String> path, 
-                        List<List<String>> res,
-                        Set<String> visited, 
-                        Map<String, Integer> distances,
-                        Set<String > dict, 
-                        int remainSteps) {
-        // 这里用 1 做终点是因为题目的定义是路径长度，当start == end的时候，长度是1
-        // 当一步就可以从start到end时，长度是2，所以定1为终点。
-            if (remainSteps < 1) return;
-            if (remainSteps == 1) {
-                if (node.equals(target)) {
-                    path.add(node);
-                    res.add(new ArrayList<String>(path));
-                    path.remove(path.size() - 1);
-                    return;
-                } else {
-                    return;
-                }
-            }
-            
-            visited.add(node);
-            path.add(node);
-            for (String neighbor : getNeighbors(node, dict, visited)) {
-                if (distances.get(neighbor) >= distances.get(node)) continue;
-                dfs(neighbor, target, path, res, visited, distances, dict, remainSteps - 1);
-            }
-            visited.remove(node);
-            path.remove(path.size() - 1);
-        }
-        
-        // 用BFS从end开始搜索start，标记各点到end的距离
-        private int bfs(String node, String target, Set<String> dict, Map<String, Integer> distances) {
-            Deque<String> queue = new LinkedList<>();
-            Set<String> visited = new HashSet<>();
-            queue.addFirst(node);
-            visited.add(node);
-            int step = 1;
-            while (! queue.isEmpty()) {
-                int size = queue.size();
-                step++;
-                for (int i = 0; i < size; ++i) {
-                    node = queue.removeLast();
-                    for (String neighbor : getNeighbors(node, dict, visited)) {
-                        distances.put(neighbor, step);
-                        if (neighbor.equals(target)) return step;
-                        queue.addFirst(neighbor);
-                        visited.add(neighbor);
-                    }
-                }
-            }
-            return -1; // fail
-        }
-        
-        // 求所有相邻一个编辑距离在dict中不在visited中的neighbor
-        private List<String> getNeighbors(String node, Set<String> dict, Set<String> visited) {
-            List<String> neighbors = new ArrayList<>();
-            for (int i = 0; i < node.length(); ++i) {
-                for (int c = 'a'; c <= 'z'; ++c) {
-                    String neighbor = replace(node, i, (char)c);
-                    if (! dict.contains(neighbor)) continue;
-                    if (visited.contains(neighbor)) continue;
-                    neighbors.add(neighbor);
-                }
-            }
-            return neighbors;
-        }
-        
-        private String replace(String str, int index, char c) {
-            char[] arr = str.toCharArray();
-            arr[index] = c;
-            return String.valueOf(arr);
-        }
+        int length = getLength(start, end, dict, dists);
+        dfs(start, end, new HashSet<String>(), new ArrayList<String>(), res, length, dists);
+        return res;
     }
+    
+    private int getLength(String start, String end, Set<String> dict, Map<String, Integer> dists) {
+        int length = 1;
+        Deque<String> queue = new ArrayDeque<>();
+        Set<String> visited = new HashSet<>();
+        queue.offerLast(end);
+        while (! queue.isEmpty()) {
+            int size = queue.size();
+            for (int k = 0; k < size; ++k) {
+                String curr = queue.pollFirst();
+                if (! dict.contains(curr) || visited.contains(curr)) continue;
+                else if (curr.equals(start)) return length;
+                visited.add(curr);
+                dists.put(curr, length);
+                for (String neighbor : getNeighbors(curr)) {
+                    queue.offerLast(neighbor);
+                }
+            }
+            length++;
+        }
+        return -1;
+    }
+    
+    private List<String> getNeighbors(String word) {
+        List<String> ret = new ArrayList<>();
+        char[] arr = word.toCharArray();
+        for (int i = 0; i < arr.length; ++i) {
+            char t = arr[i];
+            for (char c = 'a'; c <= 'z'; ++c) {
+                arr[i] = c;
+                ret.add(new String(arr));
+            }
+            arr[i] = t;
+        }
+        return ret;
+    }
+    
+    private void dfs(String start, String end, Set<String> visited, List<String> path, 
+      List<List<String>> res, int remainSteps, Map<String, Integer> dists) {
+        if (remainSteps == 1) {
+            if (start.equals(end)) {
+                path.add(start);
+                res.add(new ArrayList<>(path));
+                path.remove(path.size() - 1);
+            }
+            return;
+        }
+        path.add(start);
+        visited.add(start);
+        for (String neighbor : getNeighbors(start)) {
+            if (visited.contains(neighbor)) continue;
+            if (dists.getOrDefault(neighbor, Integer.MAX_VALUE) < dists.get(start)) {
+                dfs(neighbor, end, visited, path, res, remainSteps - 1, dists);
+            }
+        }
+        visited.remove(start);
+        path.remove(path.size() - 1);
+    }
+}
 ```
 
 #### Python Code:
