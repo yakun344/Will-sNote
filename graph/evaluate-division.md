@@ -199,6 +199,54 @@ public:
 };
 ```
 
+#### C++ DFS Solution:
+C++ 版本的建图的解法，和之前Java的实现相比有一些优化：
+
+1. 图的形式不必是两层HashMap，外层其实可以直接用vector（list）；
+2. 在dfs的过程中，只要出现一次 childRet 不为 -1，就可以终止余下部分的dfs，这一步剪枝可以减少很多工作；
+
+```cpp
+class Solution {
+public:
+    vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries) {
+        vector<double> res;
+        auto& graph = *(initGraph(equations, values));
+        for (auto& query : queries) {
+            unordered_set<string> visited;
+            res.push_back(dfs(graph, query.first, query.second, 1.0, visited));
+        }
+        return res;
+    }
+    
+    unordered_map<string, vector<pair<string, double>>>* initGraph(const vector<pair<string, string>>& equations,
+                                                                   const vector<double>& values) {
+        auto* graph = new unordered_map<string, vector<pair<string, double>>>();
+        for (int i = 0; i < equations.size(); ++i) {
+            string a = equations[i].first, b = equations[i].second;
+            double val = values[i];
+            (*graph)[a].push_back(make_pair(b, val));
+            (*graph)[b].push_back(make_pair(a, 1.0 / val));
+        }
+        return graph;
+    }
+    
+    double dfs(unordered_map<string, vector<pair<string, double>>>& graph, string start, string end, double product, 
+               unordered_set<string>& visited) {
+        if (visited.count(start) || ! graph.count(start)) return -1;
+        else if (start == end) return product;
+        visited.insert(start);
+        double ret = -1.0;
+        for (const pair<string, double>& neighbor : graph[start]) {
+            double childRet = dfs(graph, neighbor.first, end, product * neighbor.second, visited);
+            if (childRet != -1) {
+                ret = childRet;
+                break;
+            }
+        }
+        return ret;
+    }
+};
+```
 
 
 
