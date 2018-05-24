@@ -130,3 +130,82 @@ The input is: `vector<pair<string, string>> equations, vector<double>& values, v
                 Graph[d2][d1] = 1 / ans
             return Graph
 ```
+
+<br>
+
+---
+_update 2018-05-24 00:21:10_
+
+#### 更新 C++ BFS Solution:
+使用BFS可以更加节省时间，也不需要提前显示建图，但是需要将所有equation的两项互换位置后添加进equations中用来处理倒数的问题。另外query两项相同的情况也要另外处理。
+
+```cpp
+class Solution {
+    struct Node {
+        string end;
+        double val;
+        Node(string end, double val) {
+            this->end = end;
+            this->val = val;
+        }
+    };
+public:
+    vector<double> calcEquation(vector<pair<string, string>> equations, vector<double>& values, 
+                                vector<pair<string, string>> queries) {
+        vector<double> res;
+        
+        int size = equations.size();
+        for (int i = 0; i < size; ++i) {
+            auto& equation = equations[i];
+            equations.push_back(make_pair(equation.second, equation.first));
+            values.push_back(1 / values[i]);
+        }
+        
+        for (auto& query : queries) {
+            res.push_back(bfs(equations, values, query));
+        }
+        return res;
+    }
+    
+    // bfs 搜索一个query的解
+    double bfs(const vector<pair<string, string>>& equations, const vector<double>& values, 
+               pair<string, string> query) {
+        deque<Node> _queue;
+        unordered_set<string> visited;
+        
+        _queue.push_back(Node(query.first, 1.0));
+        bool seenQueryFirst = false; // 标记query.first是否在euqation中出现过，如果没出现过，则不可以返回
+        while (! _queue.empty()) {
+            Node node = _queue.front();
+            _queue.pop_front();
+            if (query.first == query.second) {
+              if (seenQueryFirst) return 1.0;  
+            } else if (node.end == query.second) {
+                return node.val;
+            }
+            for (int i = 0; i < equations.size(); ++i) {
+                auto& equation = equations[i];
+                if (equation.first == query.first) seenQueryFirst = true;
+                if (equation.first == node.end && ! visited.count(equation.first + "," + equation.second)) {
+                    visited.insert(equation.first + "," + equation.second);
+                    _queue.push_back(Node(equation.second, node.val * values[i]));
+                }
+            }
+        }
+        return -1.0;
+    }
+};
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
