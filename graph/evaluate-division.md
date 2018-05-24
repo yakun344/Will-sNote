@@ -139,6 +139,8 @@ _update 2018-05-24 00:21:10_
 #### 更新 C++ BFS Solution:
 使用BFS可以更加节省时间，也不需要提前显示建图，但是需要将所有equation的两项互换位置后添加进equations中用来处理倒数的问题。另外query两项相同的情况也要另外处理。
 
+另外，为了记录每个节点的累乘数值，需要建一个inner class(or struct)；
+
 ```cpp
 class Solution {
     struct Node {
