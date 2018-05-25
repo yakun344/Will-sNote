@@ -171,6 +171,44 @@ Python Code:
             return False
 ```
 
+<br>
+
+---
+_udpate 2018-05-24 21:30:14_
+
+#### C++ Code
+```cpp
+class Solution {
+    const int dr[4]{0, -1, 0, 1};
+    const int dc[4]{-1, 0, 1, 0};
+    bool dfs(const vector<vector<int>>& maze, vector<int> start, vector<int>& destination,
+             unordered_set<string>& visited) {
+        if (visited.count(to_string(start[0]) + "," + to_string(start[1]))) return false;
+        else if (start == destination) return true;
+        visited.insert(to_string(start[0]) + "," + to_string(start[1]));
+        for (int i = 0; i < 4; ++i) {
+            int r = start[0], c = start[1];
+            while (isValid(maze, r + dr[i], c + dc[i])) {
+                r += dr[i];
+                c += dc[i];
+            }
+            if (dfs(maze, vector<int>{r, c}, destination, visited)) return true;
+        }
+        return false;
+    }
+    
+    bool isValid(const vector<vector<int>>& maze, int r, int c) {
+        if (r < 0 || r >= maze.size() || c < 0 || c >= maze[0].size()) return false;
+        else if (maze[r][c] == 1) return false;
+        return true;
+    }
+public:
+    bool hasPath(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
+        unordered_set<string> visited;
+        return dfs(maze, start, destination, visited);
+    }
+};
+```
 
 
 
