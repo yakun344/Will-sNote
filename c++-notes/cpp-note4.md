@@ -164,7 +164,6 @@ Java 中的 PriorityQueue 默认为 min heap，而 c++ 中的 priority_queue �
     }
   });
 ```
-
 **C++**  
 ```cpp
   auto comp = [](int a, int b){ return b - a; };
@@ -172,15 +171,11 @@ Java 中的 PriorityQueue 默认为 min heap，而 c++ 中的 priority_queue �
 ```
 
 * #### Access 方法对比
-
 **Java**  
-
 * `boolean offer(E e)`
 * `E peek()`
 * `E poll()`
-
 **C++**
-
 * `const_reference top() const`
 * `void push (const value_type& val);` `void push (value_type&& val);`
 * `void pop()`
