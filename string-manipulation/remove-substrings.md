@@ -11,9 +11,9 @@ Given a string s and a set of n substrings. You are supposed to remove every ins
     Given s = ccdaabcdbb, substrs = ["ab", "cd"]
     Return 2
 
-**Explanation: **
+**Explanation:**
 
-ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
+    ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
 
 #### Basic Idea:
 因为移除 substring 的顺序会对结果造成影响，我们需要使用 bfs 搜索所有可能的删除顺序，输出最短的最终string长度。
@@ -37,7 +37,7 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
             queue.addFirst(s);
             visited.add(s);
             int minLen = s.length();
-            
+
             while (! queue.isEmpty()) {
                 String curr = queue.removeLast();
                 for (String pattern : dict) {
@@ -46,7 +46,7 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
                     // 考虑每个pattern的所有出现位置，分别把删除相应位置之后的string加入queue
                         pos = curr.indexOf(pattern, pos + 1);
                         if (pos == -1) break;
-                        String out = curr.substring(0, pos) 
+                        String out = curr.substring(0, pos)
                                      + curr.substring(pos + pattern.length(), curr.length());
                         if (visited.contains(out)) continue;
                         visited.add(out);
@@ -72,7 +72,7 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
             queue = collections.deque()
             visited = set()
             minLen = len(s)
-            
+
             queue.appendleft(s)
             visited.add(s)
             while queue:
@@ -89,7 +89,7 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
                         visited.add(out)
                         queue.appendleft(out)
                 minLen = min(minLen, len(curr))
-            
+
             return minLen
 ```
 
@@ -99,10 +99,3 @@ ccdaabcdbb -> ccdacdbb -> cabb -> cb (length = 2)
 最终的思路可以这么理解：对于input s，BFS 的第一层考虑了所有只删除一个 pattern 的情况，第二层再深入一层，考虑所有删除 两个 pattern 的情况，以此类推。
 > 例如，对于 s=‘ababcc’，pattern={‘a’，‘b’}；  
 第一层为删除一个 ‘a’ 或者删除一个 ‘b’ 的结果，即 ‘babcc’，‘abbcc’，‘aabcc’，’abacc‘；
-
-
-
-
-
-
-

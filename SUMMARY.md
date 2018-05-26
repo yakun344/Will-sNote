@@ -32,7 +32,7 @@
   * [The Maze](graph/the-maze.md)
   * [The Maze II](graph/the-maze-ii.md)
   * [The Maze III](graph/the-maze-iii.md)
-  * [Remove Substrings](chapter1/remove-substrings.md)
+  * [Remove Substrings](string-manipulation/remove-substrings.md)
   * [Is Graph Bipartite? \(Medium\)](graph/is-graph-bipartite-medium.md)
   * [Flood Fill \(Easy Uber\)](graph/flood-fill-easy-uber.md)
 * [Tree](Tree/Tree.md)
@@ -361,4 +361,3 @@
 * [Cpp Note2: 运算符重载，容器使用，Function Object，virtual method](c++-notes/cpp-note2.md)
 * [Cpp Note3: 函数指针，函数对象，Lambda](c++-notes/cpp-note3.md)
 * [Cpp Note4: 细节](c++-notes/cpp-note4.md)
-
