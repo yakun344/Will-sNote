@@ -13,16 +13,16 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 **Example 1**
 
     Input 1: a maze represented by a 2D array
-             
+
              0 0 1 0 0
              0 0 0 0 0
              0 0 0 1 0
              1 1 0 1 1
              0 0 0 0 0
-             
+
     Input 2: start coordinate (rowStart, colStart) = (0, 4)
     Input 3: destination coordinate (rowDest, colDest) = (4, 4)
-             
+
     Output: 12
     Explanation: One shortest way is : left -> down -> left -> down -> right -> down -> right.
                           The total distance is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
@@ -30,16 +30,16 @@ The maze is represented by a binary 2D array. 1 means the wall and 0 means the e
 **Example 2**
 
     Input 1: a maze represented by a 2D array
-             
+
              0 0 1 0 0
              0 0 0 0 0
              0 0 0 1 0
              1 1 0 1 1
              0 0 0 0 0
-             
+
     Input 2: start coordinate (rowStart, colStart) = (0, 4)
     Input 3: destination coordinate (rowDest, colDest) = (3, 2)
-             
+
     Output: -1
     Explanation: There is no way for the ball to stop at the destination.
 
@@ -79,7 +79,7 @@ JavaCode:
         private int R;
         private int C;
         private int[][] MAZE;
-        
+
         public int shortestDistance(int[][] maze, int[] start, int[] destination) {
             // define variables
             R = maze.length;
@@ -93,12 +93,12 @@ JavaCode:
                     return v1.weight - v2.weight;
                 }
             });
-            boolean[][] visited = new boolean[R][C]; 
+            boolean[][] visited = new boolean[R][C];
             int[][] distance = new int[R][C]; // 存放每个可以停止点的当前最短距离
             for (int[] row : distance) {
                 Arrays.fill(row, 99999); // 初始distance都设为 INF
             }
-            
+
             // Dijkstra algo, 找start到所有可以停止点的最短距离，如果途中发现dest已经完成，则返回
             pq.offer(new Vertex(start[0], start[1], 0)); // 先把起点放入 pq
             distance[start[0]][start[1]] = 0;
@@ -113,7 +113,7 @@ JavaCode:
                 if (destination[0] == r && destination[1] == c) {
                     return distance[r][c];
                 }
-                
+
                 // 向四方向搜索，如果在visited中，跳过，否则尝试更新，若更新成功则入队
                 for (int i = 0; i < 4; ++i) {
                     int x = r, y = c;
@@ -134,7 +134,7 @@ JavaCode:
             }
             return -1;
         }
-        
+
         // 如果maze[r][c]==0，return true
         private boolean isValid(int r, int c) {
             if (r < 0 || r >= R || c < 0 || c >= C) return false;
@@ -161,14 +161,14 @@ JavaCode:
                 if maze[r][c] == 1:
                     return False
                 return True
-            
+
             # 先定义变量
             R, C = len(maze), len(maze[0])
             dr = [-1, 1, 0, 0]
             dc = [0, 0, -1, 1]
             distance = [[99999 for i in range(C)] for j in range(R)]
             pq = []
-            
+
             # Dijkstra
             heapq.heappush(pq, (0, start[0], start[1]))
             distance[start[0]][start[1]] = 0
@@ -194,10 +194,61 @@ JavaCode:
             return -1
 ```
 
+---
+_update 2018-05-25 14:03:204_
 
+#### C++ Solution
+和之前相比进行了一些简化，由于Dijkstra算法可以保证每次出队的vertex都是当前queue中距离start最近的点，所以当destination出队的时候，就可以直接返回其对应的weight。（这里每个点的weight实际是指其到start的距离）
+```cpp
+// dijkstra algorithm
+class Solution {
+    struct Node {
+        int r, c, weight;
+        Node(int r, int c, int weight) {
+            this->r = r;
+            this->c = c;
+            this->weight = weight;
+        }
+    };
 
+    bool isValid(const vector<vector<int>>& maze, int r, int c) {
+        if (r < 0 || r >= maze.size() || c < 0 || c >= maze[0].size()) return false;
+        else if (maze[r][c] == 1) return false;
+        else return true;
+    }
+public:
+    int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
+        const int dr[4]{-1, 0, 1, 0};
+        const int dc[4]{0, -1, 0, 1};
 
+        auto comp = [](Node a, Node b){ return a.weight > b.weight; };
+        priority_queue<Node, vector<Node>, decltype(comp)> pq(comp); // min heap
+        pq.push(Node(start[0], start[1], 0));
+        unordered_set<string> visited;
 
-
-
-
+        while (! pq.empty()) {
+            Node curr = pq.top();
+            pq.pop();
+            if (curr.r == destination[0] && curr.c == destination[1]) {
+                return curr.weight;
+            }
+            string key = to_string(curr.r) + "," + to_string(curr.c);
+            if (visited.count(key)) {
+                continue;
+            }
+            visited.insert(key);
+            for (int i = 0; i < 4; ++i) {
+                int r = curr.r, c = curr.c;
+                int weight = curr.weight;
+                while (isValid(maze, r + dr[i], c + dc[i])) {
+                    r = r + dr[i];
+                    c = c + dc[i];
+                    ++weight;
+                }
+                pq.push(Node(r, c, weight));
+            }
+        }
+        return -1;
+    }
+};
+```

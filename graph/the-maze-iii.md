@@ -63,7 +63,7 @@ Explanation: The ball cannot reach the hole.
 
 这道题目困扰了很长时间。第一次见到这道题目，自己只会简单的dfs和bfs，尝试之后发现都不是很好的方法，于是打开Greg的课件开始复习，经过两天学习背景知识之后，开始尝试用 Dijkstra 算法来切入。
 
-**算法思想**概述：
+**算法思想** 概述：
 
 * 将节点的坐标、距离以及path封装进 Vertex class，做为保存在 `distance[][]` table 中和 pq 中的元素类型；
 * 在每次沿着四个方向分别搜索的时候，更新后需要加入 pq 和 distance table 的 Vertex 中要同时更新path （在后面 append 一个方向 char）；
@@ -133,7 +133,7 @@ Explanation: The ball cannot reach the hole.
                 // 用以解决更新之后，之前的旧节点仍在pq中的问题
                 if (distance[v.r][v.c] != null && v.compareTo(distance[v.r][v.c]) > 0) continue;
                 for (int i = 0; i < 4; ++i) {
-                    r = v.r; 
+                    r = v.r;
                     c = v.c;
                     int count = 0;
                     while (isValid(r + dr[i], c + dc[i])) {
@@ -239,5 +239,82 @@ Explanation: The ball cannot reach the hole.
             return 'impossible'
 ```
 
+<br>
 
+---
+_update 2018-05-25 21:53:35_
 
+#### C++ Solution
+时隔几个月，又复习了一下写 Dijkstra 的细节，也犯了一些细节上的错误，耽误了很长时间。  
+* 记录已经 generate 过的点的当前最短 dist 是必须的，因为在 generate 一个点后，我们需要比较其当前dist和之前dist来确定其是否需要重新入队（即lazy deletion 地更新pq中的该点的dist）；
+* 每次从pq中拿出当前 pq 中最近点之后，要判断之前是否已经给该点确定了更短的 dist，因为该点可能是之前已经被更新过的 （lazy deletion）；
+* 掉入 hole 的时候可以直接 break，就会在之后被直接加入 pq 中。
+
+```cpp
+class Solution {
+private:
+    struct Node {
+        int r, c, dist;
+        string path;
+        Node(int r, int c, int dist, string path): r(r), c(c), dist(dist), path(path) {}
+    };
+
+    bool isValid(const vector<vector<int>>& maze, int r, int c) {
+        if (r < 0 || r >= maze.size() || c < 0 || c >= maze[0].size()) return false;
+        else if (maze[r][c] == 1) return false;
+        return true;
+    }
+public:
+    string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {
+        const int dr[4]{-1, 0, 1, 0};
+        const int dc[4]{0, -1, 0, 1};
+        const string dir[4]{"u", "l", "d", "r"};
+
+        auto comp = [](Node a, Node b){ return a.dist == b.dist ? a.path > b.path : a.dist > b.dist; };
+        priority_queue<Node, vector<Node>, decltype(comp)> pq(comp);
+        unordered_map<string, int> dists;
+
+        int minDist = 0x7fffffff;
+        string retPath = "impossible";
+
+        pq.emplace(ball[0], ball[1], 0, "");
+        dists[to_string(ball[0]) + "," + to_string(ball[1])] = 0;
+        while (! pq.empty()) {
+            Node curr = pq.top();
+            pq.pop();
+            // cout << curr.r << "," << curr.c << "," << curr.dist << "," << curr.path << endl;
+            string currKey = to_string(curr.r) + "," + to_string(curr.c);
+            if (curr.dist > minDist) break;
+            // 这是release边之后更新了Node的dist之后，lazy deletion导致留在pq中的之前的node
+            if (dists.count(currKey) && dists[currKey] < curr.dist) continue;
+            if (curr.r == hole[0] && curr.c == hole[1]) {
+                if (curr.dist < minDist) {
+                    minDist = curr.dist;
+                    retPath = curr.path;
+                } else if (curr.dist == minDist && curr.path < retPath) {
+                    retPath = curr.path;
+                }
+                continue;
+            }
+
+            // generate 相邻节点，release每个边，把可以更新dist的节点重新入队
+            for (int i = 0; i < 4; ++i) {
+                int r = curr.r, c = curr.c, dist = curr.dist;
+                while (isValid(maze, r + dr[i], c + dc[i])) {
+                    r += dr[i];
+                    c += dc[i];
+                    ++dist;
+                    if (r == hole[0] && c == hole[1]) break; // 遇到孔就break，不继续走
+                }
+                if (r == curr.r && c == curr.c) continue; // 如果根本没有动，则考虑其他方向
+                string key = to_string(r) + "," + to_string(c);
+                if (dists.count(key) && dists[key] < dist) continue; // 该node的距离不可以更新为更小值
+                dists[key] = dist;
+                pq.emplace(r, c, dist, curr.path + dir[i]);
+            }
+        }
+
+        return retPath;
+    }
+};
+```
