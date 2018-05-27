@@ -337,6 +337,7 @@
   * [Strobogrammatic Number （I, II, III）](other-problems/strobogrammatic-number-i-ii-iii.md)
   * [Number of Boomerangs](other-problems/number-of-boomerangs.md)
   * [Rotated Digits \(Easy Google\)](other-problems/rotated-digits-easy-google.md)
+  * [Magic Squares In Grid \(Easy Google\)](other-problems/magic-squares-in-grid.md)
 
 ## Operating System
 
