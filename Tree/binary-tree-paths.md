@@ -3,23 +3,25 @@ _update Jun 28, 2017_
 
 ---
 
-[leetcode](https://leetcode.com/problems/binary-tree-paths/#/description)
+[leetcode](https://leetcode.com/problems/binary-tree-paths/#/description)  
+
 Given a binary tree, return all root-to-leaf paths.
 
-**For example**, 
+**For example**,
 
     given the following binary tree:
-      
+
          1
        /   \
       2     3
        \
         5
-All root-to-leaf paths are:
+        
+    All root-to-leaf paths are:
 
-    ["1->2->5", "1->3"]
-   
-   
+        ["1->2->5", "1->3"]
+
+
 #### 分析
 这道题目应该很经典，要输出所有的path，我们就需要在每层recursion中传入当前node之前的路径，也就是path。明白了这一点之后，这个问题几乎就变成了简单的dfs或者bfs。在这里，我记录三种实现，分别是recursive dfs，dfs with stack and bfs with queue。
 
@@ -43,7 +45,7 @@ Python Code：
                     dfs(root.left, path + str(root.val) + '->')
                 if root.right:
                     dfs(root.right, path + str(root.val) + '->')
-                    
+
             res = []
             dfs(root, '')
             return res
@@ -62,7 +64,7 @@ Python Code：
             """
             if not root:
                 return []
-            res, stack = [], [(root, '')] 
+            res, stack = [], [(root, '')]
             # python 的list可以轻松存放tuple，如果是java则需要使用两个stack,
             # 或者用内部类
             while stack:
@@ -158,7 +160,7 @@ _update Jul 14, 2017 14:17_
             dfs(root.right, path + root.val + "->", res);
         }
     }
-    
+
     // 分治 法
     class Solution {
         public List<String> binaryTreePaths(TreeNode root) {
@@ -188,7 +190,7 @@ public:
         dfs(root, "", res);
         return res;
     }
-    
+
     void dfs(TreeNode* root, string path, vector<string>& res) {
         if (root == nullptr) return;
         else if (root->left == nullptr && root->right == nullptr) {
@@ -222,12 +224,3 @@ public:
     }
 };
 ```
-
-
-
-
-
-
-
-
-

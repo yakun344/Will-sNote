@@ -2,7 +2,8 @@
 _update Jun 27, 2017_
 
 ---
-[leetcode](https://leetcode.com/problems/find-mode-in-binary-search-tree/#/description)
+[leetcode](https://leetcode.com/problems/find-mode-in-binary-search-tree/#/description)  
+
 Given a binary search tree (BST) with duplicates, find all the mode(s) (the most frequently occurred element) in the given BST.
 
 Assume a BST is defined as follows:
@@ -12,7 +13,7 @@ The right subtree of a node contains only nodes with keys greater than or equal 
 Both the left and right subtrees must also be binary search trees.
 For example:
  Given BST [1,null,2,2]
- 
+
          1
            \
              2
@@ -26,7 +27,7 @@ Note: If a tree has more than one mode, you can return them in any order.
 _Follow up_: Could you do that without using any extra space? (Assume that the implicit stack space incurred due to recursion does not count).
 
 #### 思路
-这道题的难点是不可以使用 counting map 暴力统计每个数字的频数，所以我们只有利用BST的性质，用 inorder traverse 把问题化简为一个求 sorted array 中最大频数的 element 的问题。我们可以 maintain 一个 `count`和一个`max`，同时跟踪`prev node`，如果`curr node.val == prev node.val`，我们另`count++`，如果`count == max`或者 `count > max`，我们再做出相应的操作。结果存在一个`list`中。
+这道题的难点是不可以使用 counting map 暴力统计每个数字的频数，所以我们只有利用BST的性质，用 inorder traverse 把问题化简为一个求 sorted array 中最大频数的 element 的问题。我们可以 maintain 一个 `count`和一个`max`，同时跟踪`prev node`，如果`curr node.val == prev node.val`，我们令`count++`，如果`count == max`或者 `count > max`，我们再做出相应的操作。结果存在一个`list`中。
 
 Java recursive code：
 ```java
@@ -97,8 +98,8 @@ _update Dec 19, 2017  16:42_
                 elif self.count == self.currMaxCount:
                     self.res.append(root.val)
                 helper(root.right)
-                
-            
+
+
             self.count = 0
             self.prev = float('INF')
             self.currMaxCount = float('-inf')
@@ -118,12 +119,12 @@ class Solution {
     int prev = 0x7fffffff;
     int count = 0;
     int maxCount = 0;
-    
+
     void helper(TreeNode* root) {
         if (root == nullptr) return;
-        
+
         helper(root->left);
-        
+
         if (root->val == prev) {
             ++count;
         } else {
@@ -137,7 +138,7 @@ class Solution {
             res.push_back(root->val);
             maxCount = count;
         }
-        
+
         helper(root->right);
     }
 public:
@@ -157,13 +158,13 @@ public:
         vector<int> res;
         int prev = 0, count = 0, maxCount = 0;
         if (root == nullptr) return res;
-        
+
         TreeNode* node = root;
         while (node) {
             _stack.push_back(node);
             node = node->left;
         }
-        
+
         while (! _stack.empty()) {
             node = _stack.back();
             _stack.pop_back();
@@ -190,17 +191,3 @@ public:
     }
 };
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
