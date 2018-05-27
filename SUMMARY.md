@@ -42,7 +42,6 @@
   * [Iteratively Traverse BSTs](Tree/iteratively-traverse-bsts.md)
   * [Trim a Binary Search Tree](Tree/trim-a-binary-search-tree.md)
   * [Convert Binary Tree to Linked Lists by Depth ](Tree/convert-binary-tree-to-linked-lists-by-depth.md)
-  * [Second Minimum Node In a Binary Tree](Tree/second-minimum-node-in-a-binary-tree.md)
   * [Find Mode in Binary Search Tree](Tree/find-mode-in-binary-search-tree.md)
   * [Binary Tree Paths](Tree/binary-tree-paths.md)
   * [Subtree with Maximum Average](Tree/subtree-with-maximum-average.md)
