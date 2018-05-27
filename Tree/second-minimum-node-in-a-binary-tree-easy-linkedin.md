@@ -12,26 +12,26 @@ If no such second minimum value exists, output -1 instead.
 
 **Example 1:**
 
-    Input: 
+    Input:
         2
        / \
       2   5
          / \
         5   7
-    
+
     Output: 5
     Explanation: The smallest value is 2, the second smallest value is 5.
-    
+
 **Example 2:**
 
-    Input: 
+    Input:
         2
        / \
       2   2
-    
+
     Output: -1
     Explanation: The smallest value is 2, but there isn't any second smallest value.
-    
+
 <br>
 
 ### Basic Idea:
@@ -41,25 +41,19 @@ If no such second minimum value exists, output -1 instead.
 
 * #### C++ Code:
 ```cpp
-    class Solution {
-        public int findSecondMinimumValue(TreeNode root) {
-            if (root == null) return -1;
-            else if (root.left == null && root.right == null) return -1;
-            int left, right;
-            
-            // 确定左边候选值
-            if (root.left.val != root.val) left = root.left.val;
-            else left = findSecondMinimumValue(root.left);
-            // 确定右边候选值
-            if (root.right.val != root.val) right = root.right.val;
-            else right = findSecondMinimumValue(root.right);
-            
-            if (left == -1 && right == -1) return -1;
-            else if (left == -1 || right == -1) {
-                return left == -1 ? right : left;
-            } else {
-                return Math.min(left, right);
-            }
+class Solution {
+public:
+    int findSecondMinimumValue(TreeNode* root) {
+        if (root->left == nullptr && root->right == nullptr) {
+            return -1;
         }
+        int left = root->left->val == root->val ? findSecondMinimumValue(root->left) : root->left->val;
+        int right = root->right->val == root->val ? findSecondMinimumValue(root->right) : root->right->val;
+        // 只有当左或者右val等于parent的时候，才可能会出现left或right为-1的情况
+        if (left == -1 && right == -1) return -1;
+        else if (left == -1) return right;
+        else if (right == -1) return left;
+        else return min(left, right);
     }
+};
 ```
