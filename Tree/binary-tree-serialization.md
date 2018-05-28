@@ -2,7 +2,8 @@
 _update Jul 15, 2017 16:46_
 
 ---
-[lintcode](http://www.lintcode.com/en/problem/binary-tree-serialization/#)
+[lintcode](http://www.lintcode.com/en/problem/binary-tree-serialization/#)   
+[LeetCode](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/description/)  
 
 Design an algorithm and write code to serialize and deserialize a binary tree. Writing the tree to a file is called 'serialization' and reading back from the file to reconstruct the exact same binary tree is 'deserialization'.
 
@@ -12,7 +13,7 @@ There is no limit of how you deserialize or serialize a binary tree, LintCode wi
 
     Example
     An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure:
-    
+
       3
      / \
     9  20
@@ -31,7 +32,7 @@ You can use other method to do serializaiton and deserialization.
 ```java
     public class Solution {
         /**
-         * This method will be invoked first, you should design your own algorithm 
+         * This method will be invoked first, you should design your own algorithm
          * to serialize a binary tree which denote by a root node to a string which
          * can be easily deserialized by your own "deserialize" method later.
          */
@@ -52,12 +53,12 @@ You can use other method to do serializaiton and deserialization.
             sb.deleteCharAt(sb.length() - 1);
             return sb.toString();
         }
-    
+
         /**
          * This method will be invoked second, the argument data is what exactly
          * you serialized at method "serialize", that means the data is not given by
          * system, it's given by your own serialize method. So the format of data is
-         * designed by yourself, and deserialize it here as you serialize it in 
+         * designed by yourself, and deserialize it here as you serialize it in
          * "serialize" method.
          */
         public TreeNode deserialize(String data) {
@@ -98,7 +99,7 @@ _update Dec 22, 2017  18:49_
 ```java
     public class Solution {
         /**
-         * This method will be invoked first, you should design your own algorithm 
+         * This method will be invoked first, you should design your own algorithm
          * to serialize a binary tree which denote by a root node to a string which
          * can be easily deserialized by your own "deserialize" method later.
          */
@@ -110,7 +111,7 @@ _update Dec 22, 2017  18:49_
             System.out.println(sb.toString());
             return sb.toString();
         }
-        
+
         private void preOrder(TreeNode root, StringBuilder sb) {
             if (root == null) {
                 sb.append("#,");
@@ -120,12 +121,12 @@ _update Dec 22, 2017  18:49_
                 preOrder(root.right, sb);
             }
         }
-    
+
         /**
          * This method will be invoked second, the argument data is what exactly
          * you serialized at method "serialize", that means the data is not given by
          * system, it's given by your own serialize method. So the format of data is
-         * designed by yourself, and deserialize it here as you serialize it in 
+         * designed by yourself, and deserialize it here as you serialize it in
          * "serialize" method.
          */
         public TreeNode deserialize(String data) {
@@ -133,7 +134,7 @@ _update Dec 22, 2017  18:49_
             Iterator<String> iter = Arrays.asList(arr).iterator();
             return helper(iter);
         }
-        
+
         private TreeNode helper(Iterator<String> iter) {
             if (! iter.hasNext()) return null;
             String str = iter.next();
@@ -145,14 +146,3 @@ _update Dec 22, 2017  18:49_
         }
     }
 ```
-
-
-
-
-
-
-
-
-
-
-
