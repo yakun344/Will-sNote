@@ -146,3 +146,68 @@ _update Dec 22, 2017  18:49_
         }
     }
 ```
+
+---
+_update 2018-05-27 23:30:07_
+
+### Update: C++ BFS Solution
+C++的实现和前面的Java实现大同小异，不同点在于：
+
+1. C++ 中如何 split string： 使用 stringstream;
+2. C++ 中如何从 string 中 parse int： 使用 std::stoi(string);
+
+```cpp
+  class Codec {
+  public:
+      // Encodes a tree to a single string.
+      string serialize(TreeNode* root) {
+          if (root == nullptr) return "#";
+          string res;
+          deque<TreeNode*> _queue;
+          _queue.push_back(root);
+          while (! _queue.empty()) {
+              TreeNode* node = _queue.front();
+              _queue.pop_front();
+              if (node == nullptr) {
+                  res.append("#,");
+              } else {
+                  res.append(to_string(node->val) + ",");
+                  _queue.push_back(node->left);
+                  _queue.push_back(node->right);
+              }
+          }
+          cout << res;
+          return res.substr(0, res.size() - 1);
+      }
+
+      // Decodes your encoded data to tree.
+      TreeNode* deserialize(string data) {
+          if (data == "#") return nullptr;
+          stringstream ss(data);
+          string buffer;
+          vector<string> token;
+          while (getline(ss, buffer, ',')) {
+              token.push_back(buffer);
+          }
+          deque<TreeNode*> _queue;
+          TreeNode* root = new TreeNode(stoi(token[0]));
+          _queue.push_back(root);
+          int i = 1;
+          while (! _queue.empty()) {
+              TreeNode* node = _queue.front();
+              _queue.pop_front();
+              string leftString = token[i++];
+              string rightString = token[i++];
+              if (leftString != "#") {
+                  node->left = new TreeNode(stoi(leftString));
+                  _queue.push_back(node->left);
+              }
+              if (rightString != "#") {
+                  node->right = new TreeNode(stoi(rightString));
+                  _queue.push_back(node->right);
+              }
+          }
+          return root;
+      }
+  };
+```
