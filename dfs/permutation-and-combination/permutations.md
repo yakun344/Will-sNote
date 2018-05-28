@@ -20,7 +20,7 @@ Given a collection of distinct numbers, return all possible permutations.
 
 <br>
 
-#### Basic Idea (Swap-Swap):
+#### Basic Idea (Swap-Swap):  
 首先思路一定是使用dfs，根据之前 DFS-notes 中所述的思路，我们考虑该dfs共有几层，每层代表什么，有几个分支：
 
  *  该 dfs 可以分为 n 层；
@@ -42,7 +42,7 @@ class Solution {
         dfs(nums, res, 0);
         return res;
     }
-    
+
     private void dfs(int[] nums, List<List<Integer>> res, int pos) {
         if (pos == nums.length) { // 所有位都已经确定
             List<Integer> lst = new ArrayList<>();
@@ -57,7 +57,7 @@ class Solution {
             swap(nums, pos, i); // backtracking
         }
     }
-    
+
     private void swap(int[] nums, int a, int b) {
         int t = nums[a];
         nums[a] = nums[b];
@@ -65,6 +65,3 @@ class Solution {
     }
 }
 ```
-
-
-
