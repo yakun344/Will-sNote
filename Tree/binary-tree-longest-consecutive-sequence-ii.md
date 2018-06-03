@@ -16,9 +16,9 @@ The path could be start and end at any node in the tree
               2   0
              /
             3
-         
+
          Return 4 // 0-1-2-3
-         
+
 #### Basic Idea:
 考虑到这道题目除了普通的从上到下的path之外，还考虑到了可以拐弯的倒“v”型path，我们使用分治法比较容易理解；
 
@@ -41,9 +41,9 @@ The path could be start and end at any node in the tree
                 this.asc = asc;
             }
         }
-        
+
         private int maxLength;
-        
+
         public int longestConsecutive2(TreeNode root) {
             maxLength = 0;
             helper(root);
@@ -58,7 +58,7 @@ The path could be start and end at any node in the tree
             RetType right = helper(root.right);
             int desc = 1;
             int asc = 1;
-        
+
             // 更新当前node开始向下的递增和递减path的长度
             if (root.left != null && root.val == root.left.val + 1) {
                 desc = left.desc + 1;
@@ -68,11 +68,11 @@ The path could be start and end at any node in the tree
             }
             if (root.right != null && root.val == root.right.val + 1) {
                 desc = Math.max(desc, right.desc + 1);
-            } 
+            }
             if (root.right != null && root.val == root.right.val - 1) {
                 asc = Math.max(asc, right.asc + 1);
             }
-            
+
             // 判断是否有满足条件的倒“v”path，并更新全局变量maxLength；
             if (left != null && right != null) {
                 if (root.val == root.left.val - 1 && root.val == root.right.val + 1) {
@@ -105,7 +105,7 @@ The path could be start and end at any node in the tree
                 right = helper(root.right)
                 asc = 1
                 desc = 1
-                
+
                 if root.left and root.val == root.left.val + 1:
                     desc = left[0] + 1
                 if root.left and root.val == root.left.val - 1:
@@ -114,16 +114,16 @@ The path could be start and end at any node in the tree
                     desc = max(desc, right[0] + 1)
                 if root.right and root.val == root.right.val - 1:
                     asc = max(asc, right[1] + 1)
-                    
+
                 if root.left and root.right:
                     if root.val == root.left.val + 1 and root.val == root.right.val - 1:
                         self.maxLength = max(self.maxLength, left[0] + 1 + right[1])
                     elif root.val == root.left.val - 1 and root.val == root.right.val + 1:
                         self.maxLength = max(self.maxLength, left[1] + 1 + right[0])
-                
+
                 self.maxLength = max(self.maxLength, asc, desc)
                 return (desc, asc)
-            
+
             self.maxLength = 0
             helper(root)
             return self.maxLength
@@ -141,7 +141,7 @@ _update Dec 24, 2017  0:20_
     * 如果increase匹配，decrease不匹配，则 dec==1，此时 inc+dec-1=inc；
     * 如果dec匹配，inc不匹配，同上类似；
     * 如果都匹配，则 inc + dec 将 root 加了两次，减去 1 后则是正确结果；
-    
+
 **Python Code：**
 ```python
     class Solution:
@@ -154,7 +154,7 @@ _update Dec 24, 2017  0:20_
             def helper(root):
                 if not root: return (0, 0)
                 inc, dec = 1, 1
-                
+
                 for child in (root.left, root.right):
                     child_inc, child_dec = helper(child)
                     if child and child.val == root.val + 1:
@@ -164,26 +164,48 @@ _update Dec 24, 2017  0:20_
                 # 这样写就足以解决更新全局变量的问题，
                 self.maxLength = max(self.maxLength, inc + dec - 1)
                 return (inc, dec)
-                
-                
+
+
             self.maxLength = 0
             helper(root)
             return self.maxLength
 ```
-        
 
+---
+_update 2018-06-03 15:03:46_
 
+#### C++ Code:
+注意实现的时候的细节，分成左右子树存在的情况分别讨论。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+```cpp
+    class Solution {
+        int maxLen = 0;
+        pair<int, int> helper(TreeNode* root) {
+            pair<int, int> ret{1, 1};
+            if (root->left) {
+                auto leftPair = helper(root->left);
+                if (root->left->val == root->val - 1) {
+                    ret.first = 1 + leftPair.first;
+                } else if (root->left->val == root->val + 1) {
+                    ret.second = 1 + leftPair.second;
+                }
+            }
+            if (root->right) {
+                auto rightPair = helper(root->right);
+                if (root->right->val == root->val - 1) {
+                    ret.first = max(ret.first, 1 + rightPair.first);
+                } else if (root->right->val == root->val + 1) {
+                    ret.second = max(ret.second, 1 + rightPair.second);
+                }
+            }
+            maxLen = max(maxLen, ret.first + ret.second - 1);
+            return ret;
+        }
+    public:
+        int longestConsecutive(TreeNode* root) {
+            if (root == nullptr) return 0;
+            helper(root);
+            return maxLen;
+        }
+    };
+```
