@@ -16,18 +16,18 @@ Given n = 3, your program should return all 5 unique BST's shown below.
        3     2     1      1   3      2
       /     /       \                 \
      2     1         2                 3
-     
+
 #### Basic Idea:
 **首先明确一点**，很多时候求解的数量时用dp，但是求所有解的时候一定要用dfs。(用dp求此题解的数量的题目笔记在 [这里](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dynamic-programming/unique-binary-search-trees.html))
 
 &emsp; 所以这里首先考虑dfs的解法。我们可以定义一个`list<TreeNode> helper(int start, int end)`函数，这个函数的定义是：**返回一个list，包含[start, end]这个序列组成的所有BST**。我们利用这个函数，对于一个输入 n 即 [1,n]，我们可以令其内每个元素为root，然后生成其左右两子序列的所有BST，然后只要以其本身为root，将生成的左右子树们两两配对组装即可。
 
 **时间复杂度分析：**   
-&emsp; 
+&emsp;
 
 
 **空间复杂度分析：**
-&emsp; 
+&emsp;
 
 #### Python Code:
 ```python
@@ -37,7 +37,7 @@ Given n = 3, your program should return all 5 unique BST's shown below.
     #         self.val = x
     #         self.left = None
     #         self.right = None
-    
+
     class Solution(object):
         def generateTrees(self, n):
             """
@@ -62,7 +62,7 @@ Given n = 3, your program should return all 5 unique BST's shown below.
                             root.right = r
                             ret.append(root)
                 return ret
-            
+
             if n == 0:
                 return []
             return helper(1, n)
@@ -75,10 +75,10 @@ Given n = 3, your program should return all 5 unique BST's shown below.
             if (n == 0) return new ArrayList<TreeNode>();
             return helper(1, n);
         }
-        
+
         // 返回所有start到end部分的BST的root
         private List<TreeNode> helper(int start, int end) {
-            List<TreeNode> ret = new ArrayList<>(); 
+            List<TreeNode> ret = new ArrayList<>();
             if (start > end) {
                 ret.add(null);
                 return ret;
@@ -104,4 +104,41 @@ Given n = 3, your program should return all 5 unique BST's shown below.
             return ret;
         }
     }
+```
+
+---
+_update 2018-06-03 11:43:40_
+
+#### C++ Code:
+```cpp
+class Solution {
+    vector<TreeNode*> helper(int left, int right) {
+        vector<TreeNode*> ret;
+        if (left > right) return ret;
+        else if (left == right) {
+            ret.push_back(new TreeNode(left));
+            return ret;
+        }
+        for (int i = left; i <= right; ++i) {
+            vector<TreeNode*> leftRoots = helper(left, i - 1);
+            vector<TreeNode*> rightRoots = helper(i + 1, right);
+            // 如果一边为空，为让循环继续，需要插入一个null
+            if (leftRoots.empty()) leftRoots.push_back(nullptr);
+            if (rightRoots.empty()) rightRoots.push_back(nullptr);
+            for (TreeNode* leftRoot : leftRoots) {
+                for (TreeNode* rightRoot : rightRoots) {
+                    TreeNode* root = new TreeNode(i);
+                    root->left = leftRoot;
+                    root->right = rightRoot;
+                    ret.push_back(root);
+                }
+            }
+        }
+        return ret;
+    }
+public:
+    vector<TreeNode*> generateTrees(int n) {
+        return helper(1, n);
+    }
+};
 ```
