@@ -179,3 +179,17 @@ Java 中的 PriorityQueue 默认为 min heap，而 c++ 中的 priority_queue �
 * `const_reference top() const`
 * `void push (const value_type& val);` `void push (value_type&& val);`
 * `void pop()`
+
+---
+
+### 9. C++ 中使用 `const unordered_map<K, V> &` 需要注意的地方
+
+unordered_map 的 `[]` 操作会在给定 key 不存在的时候插入一个对应 key 的值，所以这个操作不是const的，要想访问 const 引用的 unordered_map, 需要这么做：   
+
+```cpp
+  z ==> const unordered_map<int, int>&;
+
+  int val = 0;
+  auto it = z.find(5);
+  if (it != z.end()) val = it->second;
+```
