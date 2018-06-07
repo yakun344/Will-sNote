@@ -56,7 +56,7 @@ left:                        right:
                 root.left = helper(Arrays.copyOfRange(preorder, 1, l_subtree_size + 1), Arrays.copyOfRange(inorder, 0, root_idx));
             }
             if (r_subtree_size > 0) {
-                root.right = helper(Arrays.copyOfRange(preorder, l_subtree_size + 1, preorder.length), 
+                root.right = helper(Arrays.copyOfRange(preorder, l_subtree_size + 1, preorder.length),
                                     Arrays.copyOfRange(inorder, root_idx + 1, inorder.length));
             }
             return root;
@@ -115,7 +115,7 @@ _update Dec 24, 2017  3:01_
             }
             return helper(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
         }
-        
+
         // return 为建成的tree的root，parameter是用来模拟传入了两个subarray`
         private TreeNode helper(int[] preorder, int[] inorder, int pstart, int pend, int istart, int iend) {
             if (pstart > pend) return null;
@@ -131,12 +131,38 @@ _update Dec 24, 2017  3:01_
     }
 ```
 
+---
 
+_update 2018-06-06 22:41:13_
 
+### Update C++ Solution
+运用之前的思路，用C++写了一个解法：
 
+```cpp
+class Solution {
+    TreeNode* helper(unordered_map<int, int>& idxs, const vector<int>& preorder,
+                     const vector<int>& inorder, int pre_start, int pre_end, int in_start, int in_end) {
+        if (pre_start > pre_end || in_start > in_end) return nullptr;
+        int root_val = preorder[pre_start];
+        int root_inorder_idx = idxs[root_val];
+        int leftSize = root_inorder_idx - in_start;
+        int rightSize = in_end - root_inorder_idx;
 
+        TreeNode* root = new TreeNode(root_val);
+        root->left = helper(idxs, preorder, inorder, pre_start + 1, pre_start + leftSize, in_start, root_inorder_idx - 1);
+        root->right = helper(idxs, preorder, inorder, pre_start + leftSize + 1, pre_end, root_inorder_idx + 1, in_end);
 
-
-
-
-
+        return root;
+    }
+public:
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        if (preorder.empty()) return nullptr;
+        unordered_map<int, int> idxs;
+        for (int i = 0; i < inorder.size(); ++i) {
+            idxs.insert(make_pair(inorder[i], i));
+        }
+        int size = preorder.size();
+        return helper(idxs, preorder, inorder, 0, size - 1, 0, size - 1);
+    }
+};
+```
