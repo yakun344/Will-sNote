@@ -8,7 +8,7 @@ Given a binary tree, return all duplicate subtrees. For each kind of duplicate s
 
 Two trees are duplicate if they have the same structure with same node values.
 
-**Example 1: **
+**Example 1:**
 
                 1
                / \
@@ -18,17 +18,17 @@ Two trees are duplicate if they have the same structure with same node values.
                /
               4
     The following are two duplicate subtrees:
-    
+
               2
              /
             4
-    
+
     and
-    
+
             4
-   
+
      Therefore, you need to return above trees' root in the form of a list.
-    
+
 #### Basic Idea:
 用dfs对tree进行 serialization，沿途把完结的子树的序列化字符串存入hashmap，key 是字符串，value 是 treeNode list；最终只要返回长度大于 1 的list中的某个node即可（都是相等子树的root）；
 
@@ -40,7 +40,7 @@ Two trees are duplicate if they have the same structure with same node values.
             :type root: TreeNode
             :rtype: List[TreeNode]
             """
-    
+
             def dfs(root):
                 if not root: return ''
                 ans = ''
@@ -50,7 +50,7 @@ Two trees are duplicate if they have the same structure with same node values.
                     ans = str(root.val) + "(" + dfs(root.left) + "," + dfs(root.right) + ")"
                 table[ans].append(root)
                 return ans
-            
+
             table = collections.defaultdict(list)
             dfs(root)
             return [table[elem][0] for elem in table if len(table[elem]) > 1]
@@ -69,7 +69,7 @@ Two trees are duplicate if they have the same structure with same node values.
             }
             return res;
         }
-        
+
         private String helper(TreeNode root, Map<String, List<TreeNode>> map, List<TreeNode> res) {
             if (root == null) return "#";
             String left = helper(root.left, map, res);
@@ -114,18 +114,35 @@ class Solution {
 }
 ```
 
+---
 
+_update 2018-06-07 21:56:57_
 
+### Update C++ Solution
 
-
-
-
-
-
-
-
-
-
-
-
-
+利用两个 hashSet 的解法， C++ code:
+```cpp
+class Solution {
+    // post-order traverse, serialize, store string in hashSet, if found a string already in set,
+    // means we have found a dup tree
+    string helper(TreeNode* root, unordered_set<string>& count_set, vector<TreeNode*>& res, unordered_set<string>& res_set) {
+        if (root == nullptr) return "#";
+        string left_str = helper(root->left, count_set, res, res_set);
+        string right_str = helper(root->right, count_set, res, res_set);
+        string curr_str = left_str + "," + right_str + "," + to_string(root->val);
+        if (count_set.insert(curr_str).second == false) {
+            if (res_set.insert(curr_str).second == true) res.push_back(root);
+        }
+        return curr_str;
+    }
+public:
+    vector<TreeNode*> findDuplicateSubtrees(TreeNode* root) {
+        unordered_set<string> count_set;
+        unordered_set<string> res_set;
+        vector<TreeNode*> res;
+        if (root == nullptr) return res;
+        helper(root, count_set, res, res_set);
+        return res;
+    }
+};
+```
