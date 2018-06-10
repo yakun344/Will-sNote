@@ -35,7 +35,7 @@ Assume that the BST is balanced, could you solve it in less than O(n) runtime (w
                 if len(pq) > k:
                     heapq.heappop(pq)
                 inorder(root.right)
-            
+
             pq = []
             inorder(root)
             return [t[1] for t in pq]
@@ -55,7 +55,7 @@ Java Code:
             // 先找到距离target最近的
             TreeNode target_node = root;
             TreeNode temp = root;
-            
+
             for (;;) {
                 if (target < temp.val && temp.left != null) {
                     temp = temp.left;
@@ -66,7 +66,7 @@ Java Code:
                 }
                 if (Math.abs(temp.val - target) < Math.abs(target_node.val - target)) target_node = temp;
             }
-            
+
             List<Integer> res = new ArrayList<>();
             // 用类似于 2 pointers 的算法
             int count = 1;
@@ -95,7 +95,7 @@ Java Code:
             }
             return res;
         }
-            
+
         private TreeNode getPred(TreeNode root, TreeNode target) {
             // 有左子树，则predecessor在左子树，最大的
             if (target.left != null) {
@@ -140,7 +140,7 @@ Java Code:
             }
             return ret;
         }
-    } 
+    }
 ```
 
 **优化：**
@@ -162,7 +162,7 @@ class Solution {
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
         this.root = root;
         // find closest node first
-        TreeNode temp = root, closest = root; 
+        TreeNode temp = root, closest = root;
         for (;;) {
             if (temp.val < target) {
                 if (temp.right == null) break;
@@ -175,11 +175,11 @@ class Solution {
                 closest = temp;
             }
         }
-        
+
         // init sucStack and predStack for closest node
         initSucStack(closest);
         initPredStack(closest);
-        
+
         // two pointers find k closest
         List<Integer> ret = new ArrayList<>();
         ret.add(closest.val);
@@ -203,7 +203,7 @@ class Solution {
         }
         return ret;
     }
-    
+
     private void initSucStack(TreeNode node) {
         this.sucStack = new LinkedList<>();
         // add right parents
@@ -223,7 +223,7 @@ class Solution {
             temp = temp.left;
         }
     }
-    
+
     private void initPredStack(TreeNode node) {
         this.predStack = new LinkedList<>();
         // add left parents
@@ -243,7 +243,7 @@ class Solution {
             temp = temp.right;
         }
     }
-    
+
     private Integer getNextSuc() {
         if (sucStack.isEmpty()) return null;
         TreeNode ret = sucStack.removeLast();
@@ -254,7 +254,7 @@ class Solution {
         }
         return ret.val;
     }
-    
+
     private Integer getNextPred() {
         if (predStack.isEmpty()) return null;
         TreeNode ret = predStack.removeLast();
@@ -304,8 +304,8 @@ class Solution:
                 stack.append(temp)
                 temp = temp.left
             return stack
-            
-        
+
+
         def initPredStack(node):
             stack = []
             temp = root
@@ -322,8 +322,8 @@ class Solution:
                 stack.append(temp)
                 temp = temp.right
             return stack
-            
-        
+
+
         def getNextSuc():
             if not sucStack:
                 return None
@@ -333,8 +333,8 @@ class Solution:
                 sucStack.append(temp)
                 temp = temp.left
             return ret.val
-            
-            
+
+
         def getNextPred():
             if not predStack:
                 return None
@@ -345,9 +345,9 @@ class Solution:
                 temp = temp.right
             print(ret.val)
             return ret.val
-            
-        
-        
+
+
+
         # find closest first
         temp = root
         node = root
@@ -364,7 +364,7 @@ class Solution:
         # initialize sucstack and predstack for node
         sucStack = initSucStack(node)
         predStack = initPredStack(node)
-        
+
         # two pointers
         ret = []
         ret.append(node.val)
@@ -384,7 +384,7 @@ class Solution:
                 ret.append(pred)
                 pred = getNextPred()
             k -= 1
-        
+
         return ret
 ```
 
@@ -429,49 +429,65 @@ You are guaranteed to have only one unique value in the BST that is closest to t
     }
  ```
 
+---
 
+_update 2018-06-10 11:48:294_
 
+### Update C++ Solution
 
+* #### C++ PriorityQueue Solution
+```cpp
+  class Solution {
+      template<class T>
+      void helper(TreeNode* root, T& pq, double target, int k) {
+          if (root == nullptr) return;
+          helper(root->left, pq, target, k);
+          pq.push(make_pair(abs(root->val - target), root->val));
+          if (pq.size() > k) pq.pop();
+          helper(root->right, pq, target, k);
+      }
+  public:
+      vector<int> closestKValues(TreeNode* root, double target, int k) {
+          auto comp = [](pair<double, int> a, pair<double, int> b)->bool{ return a.first < b.first; };
+          priority_queue<pair<double, int>, vector<pair<double, int>>, decltype(comp)> pq(comp);
+          helper(root, pq, target, k);
 
+          vector<int> res;
+          while (! pq.empty()) {
+              pair<double, int> _pair = pq.top();
+              pq.pop();
+              cout << _pair.second << endl;
+              res.push_back(_pair.second);
+          }
+          return res;
+      }
+  };
+```
 
+* #### 一种更快的方法
+这是已知最快的方法，达到了 `O(n)` 的时间复杂度。（虽然对于给定排序数组找距离target最近k个数的问题可以用 binary search 做到 `O(logN + k)`， 但由于这里我们需要 `O(n)` 的时间遍历整个 BST，所以我们可以直接进行一个 inorder traversal，然后同时获取答案）
 
+**基本思路：**  
+inorder traversal，相当于从小到大遍历 sorted array。维持一个 deque，每次遇到新的数的时候，看 `deque[0]` 和 当前数字 curr 谁距离target更近，如果 curr 更近，则 移除 deque 最左边的数字，将 curr 插入到 deque 最右。这样，最终就可以得到距离 target 最近的 k 个数。这种方法其实相当于利用已经排序数组的性质手动维持了一个 priority queue，而这个 priority queue 一定是已经排序的。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```cpp
+class Solution {
+    void inorder(TreeNode* root, deque<int>& q, int k, double target) {
+        if (root == nullptr) return;
+        inorder(root->left, q, k, target);
+        if (q.empty() || q.size() < k || abs(q.front() - target) > abs(root->val - target)) {
+            q.push_back(root->val);
+        }
+        if (q.size() > k) q.pop_front();
+        inorder(root->right, q, k, target);
+    }
+public:
+    vector<int> closestKValues(TreeNode* root, double target, int k) {
+        deque<int> q;
+        inorder(root, q, k, target);
+        vector<int> res;
+        for (int n : q) res.push_back(n);
+        return res;
+    }
+};
+```
