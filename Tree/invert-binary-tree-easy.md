@@ -2,6 +2,8 @@
 _update Jan 22, 2018  16:51_
 
 ---
+[LeetCode](https://leetcode.com/problems/invert-binary-tree/description/)
+
 Invert a binary tree.
 
           4
@@ -37,7 +39,3 @@ class Solution {
     }
 }
 ```
-
-
-
-
