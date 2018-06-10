@@ -17,31 +17,31 @@ Basically, the deletion can be divided into two stages:
 
         root = [5,3,6,2,4,null,7]
         key = 3
-        
+
             5
            / \
           3   6
          / \   \
         2   4   7
-        
+
         Given key to delete is 3. So we find the node with value 3 and delete it.
-        
+
         One valid answer is [5,4,6,2,null,null,7], shown in the following BST.
-        
+
             5
            / \
           4   6
          /     \
         2       7
-        
+
         Another valid answer is [5,2,6,null,4,null,7].
-        
+
             5
            / \
           2   6
            \   \
             4   7
-            
+
 #### Basic Idea:
 [这里](http://www.algolist.net/Data_structures/Binary_search_tree/Removal) 有一个关于在BST中删除节点算法的介绍；
 
@@ -80,18 +80,18 @@ class Solution:
                     remove(newTarget, minNode)
                 else:
                     remove(minParent, minNode)
-            
+
             # if target has only left child
             elif target.left:
                 if parent.left == target: parent.left = target.left
                 else: parent.right = target.left
-            
+
             # if target has only right child
             else:
                 if parent.left == target: parent.left = target.right
                 else: parent.right = target.right
-            
-        
+
+
         # return parent, minNode in right sub tree
         def findRightMin(root):
             parent, node = root, root
@@ -100,8 +100,8 @@ class Solution:
                 parent = node
                 node = node.left
             return parent, node
-        
-        
+
+
         # return target's parent, targetNode
         def findNode(key):
             parent, target = root, root
@@ -113,7 +113,7 @@ class Solution:
                     parent = target
                     target = target.left
             return parent, target
-        
+
         # 如果 target 是 root，另外建一个
         if not root: return None
         if root.val == key:
@@ -223,7 +223,7 @@ Python实现见前面。
           else target = target.left;
         }
         if (target == null) return root;
-        
+
         // delete target
         // if target has no child
         if (target.left == null && target.right == null) {
@@ -238,7 +238,7 @@ Python实现见前面。
           TreeNode child = target.left == null ? target.right : target.left;
           if (parent.left == target) parent.left = child;
           else parent.right = child;
-        } 
+        }
         // if target has two children, use target's right min as new target, and recursively delete it
         else {
           // find rightMin node of target
@@ -258,18 +258,60 @@ Python实现见前面。
     }
 ```
 
+---
+_update 2018-06-10 14:16:39_
 
+#### C++ Solution
+```cpp
+class Solution {
+    void removeNode(TreeNode* root, int key) {
+        TreeNode* parent = root;
+        TreeNode* curr = root->left; // real root
+        bool left = true;
+        while (curr && curr->val != key) {
+            if (curr->val < key) {
+                parent = curr;
+                left =  false;
+                curr = curr->right;
+            } else if (curr->val > key) {
+                parent = curr;
+                left = true;
+                curr = curr->left;
+            }
+        }
+        if (! curr) return;
+        if (curr->left == nullptr && curr->right == nullptr) {
+            if (left) parent->left = nullptr;
+            else parent->right = nullptr;
+        } else if (curr->left == nullptr || curr->right == nullptr) {
+            if (curr->left == nullptr) {
+                if (left) parent->left = curr->right;
+                else parent->right = curr->right;
+            } else {
+                if (left)  parent->left = curr->left;
+                else parent->right = curr->left;
+            }
+        } else {
+            TreeNode* rightMin = findMin(curr->right);
+            TreeNode* newCurr = new TreeNode(rightMin->val);
+            removeNode(root, rightMin->val);
+            newCurr->left = curr->left;
+            newCurr->right = curr->right;
+            if (left) parent->left = newCurr;
+            else parent->right = newCurr;
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    TreeNode* findMin(TreeNode* node) {
+        while (node->left) node = node->left;
+        return node;
+    }
+public:
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        TreeNode* dummy = new TreeNode(0);
+        dummy->left = root;
+        removeNode(dummy, key);
+        return dummy->left;
+    }
+};
+```
