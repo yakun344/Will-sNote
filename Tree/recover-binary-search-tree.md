@@ -29,7 +29,7 @@ Python Code：
                 inorder_nodes.append(root)
                 inorder_vals.append(root.val)
                 inorder(root.right)
-            
+
             inorder_nodes = []
             inorder_vals = []
             inorder(root)
@@ -67,8 +67,8 @@ class Solution:
                     return None
                 temp = temp.right
             return temp
-        
-        
+
+
         # visit given node, find two swiched nodes
         def visit(prev, node):
             if prev and prev.val > node.val:
@@ -78,8 +78,8 @@ class Solution:
                     self.second = node # 这里是为了解决tree中只有两个node的情况
                 else:
                     self.second = node
-                    
-        
+
+
         # morris inorder traversal, find target nodes along the way
         self.first, self.second = None, None
         prev = None
@@ -98,8 +98,8 @@ class Solution:
             else:
                 pred.right = curr
                 curr = curr.left
-                
-        
+
+
         t = self.first.val
         self.first.val = self.second.val
         self.second.val = t
@@ -110,7 +110,7 @@ class Solution:
 class Solution {
     private TreeNode FIRST;
     private TreeNode SECOND;
-    
+
     public void recoverTree(TreeNode root) {
         TreeNode curr = root;
         TreeNode prev = null;
@@ -125,12 +125,12 @@ class Solution {
                 curr = curr.left;
             }
         }
-        
+
         int temp = FIRST.val;
         FIRST.val = SECOND.val;
         SECOND.val = temp;
     }
-    
+
     private void visit(TreeNode prev, TreeNode node) {
         if (prev != null && prev.val > node.val) {
             if (FIRST == null) {
@@ -141,7 +141,7 @@ class Solution {
             }
         }
     }
-    
+
     private TreeNode getPred(TreeNode node) {
         TreeNode temp = node.left;
         while (temp != null && temp.right != null) {
@@ -187,7 +187,7 @@ class Solution {
         first.val = second.val;
         second.val = t;
     }
-    
+
     private void inorder(TreeNode curr) {
         if (curr == null) return;
         inorder(curr.left);
@@ -203,4 +203,37 @@ class Solution {
         inorder(curr.right);
     }
 }
+```
+
+---
+_update 2018-06-10 15:36:20_
+
+### Update C++ Solution
+增加一种 `O(n)` 时间，`O(logN)` 空间的解法，直接inorder遍历，维持一个全局变量prev，和全局变量first and second，其他部分和之前的方法类似，在inorder traversal 的过程中更新 first 和 second，最后 swap。
+
+```cpp
+class Solution {
+    TreeNode* first = nullptr;
+    TreeNode* second = nullptr;
+    TreeNode* prev = nullptr;
+    void inorder(TreeNode* curr) {
+        if (curr == nullptr) return;
+        inorder(curr->left);
+        if (prev && prev->val > curr->val) {
+            if (! first) {
+                first = prev;
+                second = curr;
+            } else second = curr;
+        }
+        prev = curr;
+        inorder(curr->right);
+    }
+public:
+    void recoverTree(TreeNode* root) {
+        inorder(root);
+        int t = first->val;
+        first->val = second->val;
+        second->val = t;
+    }
+};
 ```
