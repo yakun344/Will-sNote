@@ -32,8 +32,8 @@ In a complete binary tree every level, except possibly the last, is completely f
                 if not root: return 0
                 leftHight = getHight(root.left)
                 return leftHight + 1
-                
-            
+
+
             if not root: return 0
             leftHight = getHight(root.left)
             rightHight = getHight(root.right)
@@ -42,4 +42,32 @@ In a complete binary tree every level, except possibly the last, is completely f
             else:
                 return self.countNodes(root.left) + self.countNodes(root.right) + 1
 ```
-            
+
+---
+
+_update 2018-06-10 00:15:26_     
+
+### Update C++ Solution
+更快的做法是每次都 explore 极左和极右两条 path 的 depth，如果两者相同，则可以直接返回 `2 ^ (depth + 1) - 1`，否则的话说明当前root不是满二叉树，则需要继续向下explore，则返回 `1 + count(root->left) + count(root->right)`；
+
+```cpp
+class Solution {
+public:
+    int countNodes(TreeNode* root) {
+        if (! root) return 0;
+        int left = 0, right = 0;
+        TreeNode* curr = root;
+        while (curr->left) {
+            ++left;
+            curr = curr->left;
+        }
+        curr = root;
+        while (curr->right) {
+            ++right;
+            curr = curr->right;
+        }
+        if (left == right) return pow(2, left + 1) - 1;
+        else return 1 + countNodes(root->left) + countNodes(root->right);
+    }
+};
+```
