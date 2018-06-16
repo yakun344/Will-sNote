@@ -35,7 +35,7 @@ You may assume that it is a perfect binary tree (ie, all leaves are at the same 
           2 -> 3 -> NULL
          / \  / \
         4->5->6->7 -> NULL
-        
+
 #### Basic Idea:
 [这里](https://siddontang.gitbooks.io/leetcode-solution/content/tree/populating_next_right_pointers_in_each_node.html) 有一个不错的分析。
 
@@ -95,7 +95,7 @@ You may only use constant extra space.
           2 -> 3 -> NULL
          / \    \
         4-> 5 -> 7 -> NULL)
-    
+
 #### Basic Idea:
 推广到任意二叉树后，前面的解法就不成立了，需要进行修正。这道题目中，任务变成了已知上层的next关系，推导下层的next关系；
 
@@ -134,6 +134,40 @@ public class Solution {
 }
 ```
 
+---
+_update 2018-06-16 01:42:31_
 
-
-
+#### Update C++ Code for the Follow Up Question:
+用C++实现，优化了判断的逻辑，更好理解。
+```cpp
+  class Solution {
+  public:
+      void connect(TreeLinkNode *root) {
+          TreeLinkNode* head = root;
+          while (head) {
+              TreeLinkNode* node = head;
+              head = nullptr;
+              TreeLinkNode* prev = nullptr;
+              while (node) {
+                  if (node->left) {
+                      if (! head) head = node->left;
+                      if (! prev) prev = node->left;
+                      else {
+                          prev->next = node->left;
+                          prev = node->left;
+                      }
+                  }
+                  if (node->right) {
+                      if (! head) head = node->right;
+                      if (! prev) prev = node->right;
+                      else {
+                          prev->next = node->right;
+                          prev = node->right;
+                      }
+                  }
+                  node = node->next;
+              }
+          }
+      }
+  };
+```
