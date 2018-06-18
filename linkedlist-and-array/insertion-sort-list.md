@@ -2,7 +2,7 @@
 _update Sep 10, 2017  14:24_
 
 ---
-[LeetCode](https://leetcode.com/problems/insertion-sort-list/description/)
+[LeetCode](https://leetcode.com/problems/insertion-sort-list/description/)  
 
 Sort a linked list using insertion sort.
 
@@ -39,7 +39,7 @@ Sort a linked list using insertion sort.
         }
     }
 ```
---- 
+---
 _update Dec 1, 2017  19:21_
 
 #### Update
@@ -101,12 +101,3 @@ _update Dec 1, 2017  19:21_
                     right = right.next
             return dummy.next
 ```
-
-
-
-
-
-
-
-
-

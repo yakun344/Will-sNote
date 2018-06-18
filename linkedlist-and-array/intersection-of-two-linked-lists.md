@@ -3,6 +3,7 @@ _update Jun 30, 2017 09:41_
 
 ---
 [leetcode](https://leetcode.com/problems/intersection-of-two-linked-lists/#/description)
+
 Write a program to find the node at which the intersection of two singly linked lists begins.
 
 
@@ -13,7 +14,7 @@ For example, the following two linked lists:
                            c1 → c2 → c3
                          ↗            
       B:     b1 → b2 → b3
-      
+
     begin to intersect at node c1.
 
 
@@ -35,9 +36,9 @@ For example, the following two linked lists:
             if (headA == null || headB == null) return null;
             int len1 = lenMeasure(headA);
             int len2 = lenMeasure(headB);
-            
+
             // 注意接下来的部分，非常concise but makes sense.
-            
+
             while (len1 > len2) {
                 headA = headA.next;
                 len1--;
@@ -84,7 +85,7 @@ _update May 5,2018  20:49_
         ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
             int len1 = getLen(headA);
             int len2 = getLen(headB);
-            
+
             // make headA be the head of the longer list
             if (len1 < len2) {
                 ListNode* t = headA;

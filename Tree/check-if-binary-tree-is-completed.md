@@ -7,27 +7,27 @@ Check if a given binary tree is completed. A complete binary tree is one in whic
 **Examples**
 
                 5
-        
+
               /    \
-        
+
             3        8
-        
+
           /   \
-        
+
         1      4
-        
+
         is completed.
-        
+
                 5
-        
+
               /    \
-        
+
             3        8
-        
+
           /   \        \
-        
+
         1      4        11
-        
+
         is not completed.
 
 **Corner Cases**
@@ -67,3 +67,9 @@ Completed tree 就是除了最后一层，每层都满，并且最后一层的 n
       }
     }
 ```
+
+---
+_update 2018-06-17 16:59:05_
+
+#### Update，之前解法有误
+出现左孩子不为空，右孩子为空，或者两个孩子都为空，就应该将 finished 设为 true。之前的解法漏掉了两个 child 都为 null 的情况。
