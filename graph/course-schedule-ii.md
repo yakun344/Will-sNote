@@ -1,9 +1,9 @@
-## Course Schedule II 
+## Course Schedule II
 _update Jul 20, 2017 12:10_
 
 ---
 [lintcode](http://www.lintcode.com/en/problem/course-schedule-ii/)    
-[LeetCode](https://leetcode.com/problems/course-schedule/description/)   
+[LeetCode](https://leetcode.com/problems/course-schedule-ii/description/)   
 
 There are a total of n courses you have to take, labeled from 0 to n - 1.
 Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
@@ -13,13 +13,13 @@ Given the total number of courses and a list of prerequisite pairs, return the o
 There may be multiple correct orders, you just need to return one of them. If it is impossible to finish all courses, return an empty array.
 
 **Example**
-  
+
     Given n = 2, prerequisites = [[1,0]]
     Return [0,1]
-    
+
     Given n = 4, prerequisites = [1,0],[2,0],[3,1],[3,2]]
     Return [0,1,2,3] or [0,2,1,3]
-    
+
 #### Basic Idea:
 其实就是求topological sort，如果无法sort，返回空列表。注意实现细节，python code is more concise than Java.
 
@@ -31,7 +31,7 @@ There may be multiple correct orders, you just need to return one of them. If it
          * @param prerequisites a list of prerequisite pairs
          * @return the course order
          */
-         
+
         // 其实就是求topological sort的结果，如果不能，则返回空数组
         public int[] findOrder(int numCourses, int[][] prerequisites) {
             if (numCourses == 0) {
@@ -118,8 +118,8 @@ There may be multiple correct orders, you just need to return one of them. If it
                 return []
             res.reverse()
             return res
-            
-        
+
+
         def initGraph(self, n, edges):
             graph = {}
             for i in range(n):
@@ -155,12 +155,12 @@ public:
                 ++indegreeCount[neighbor];
             }
         }
-        
+
         deque<int> _queue;
         for (auto& _pair : indegreeCount) {
             if (_pair.second == 0) _queue.push_back(_pair.first);
         }
-        
+
         vector<int> res;
         while (! _queue.empty()) {
             int node = _queue.front();
@@ -172,12 +172,12 @@ public:
                 }
             }
         }
-        
+
         // 查看是否还有 indegree > 0 的 node
         for (auto& _pair : indegreeCount) {
             if (_pair.second > 0) return {};
         }
-        
+
         return res;
     }
 };
@@ -201,7 +201,7 @@ class Solution {
         }
         return ret;
     }
-    
+
     private List<List<Integer>> initGraph(int size, int[][] edges) {
         List<List<Integer>> graph = new ArrayList<>();
         for (int i = 0; i < size; ++i) graph.add(new ArrayList<Integer>());
@@ -210,7 +210,7 @@ class Solution {
         }
         return graph;
     }
-    
+
     private boolean dfs(List<List<Integer>> graph, Set<Integer> path, Set<Integer> visited, List<Integer> res, int curr) {
         if (path.contains(curr)) {
             return false;
@@ -228,4 +228,40 @@ class Solution {
         return true;
     }
 }
+```
+
+---
+_update 2018-06-19 22:40:53_
+
+#### Update: 精简版 C++ Count Indegree Solution
+```cpp
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<int> res;
+        // 建图，统计入度indegree
+        unordered_map<int, int> indegrees;
+        vector<vector<int>> graph(numCourses);
+        for (auto edge : prerequisites) {
+            graph[edge.second].push_back(edge.first);
+            indegrees[edge.first]++;
+        }
+
+        deque<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (! indegrees.count(i)) q.push_back(i);
+        }
+        int count = 0;
+        while (! q.empty()) {
+            int curr = q.front(); q.pop_front();
+            res.push_back(curr);
+            for (int neighbor : graph[curr]) {
+                if (--indegrees[neighbor] == 0) q.push_back(neighbor);
+            }
+            count++;
+        }
+        if (count != numCourses) return {};
+        return res;
+    }
+};
 ```

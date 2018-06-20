@@ -14,7 +14,7 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
     Example
     Given n = 2, prerequisites = [[1,0]]
     Return true
-    
+
     Given n = 2, prerequisites = [[1,0],[0,1]]
     Return false
 
@@ -77,7 +77,7 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
         # @param {int} numCourses a total of n courses
         # @param {int[][]} prerequisites a list of prerequisite pairs
         # @return {boolean} true if can finish all courses or false
-        
+
         # 这就是一个问图能否topological sort的问题，但是所给信息的形式是node + edges
         # 的形式，我们还需要先将其转换为adjacent list的形式，即（Map<node, Set<neighbor>>）
         def canFinish(self, numCourses, prerequisites):
@@ -89,7 +89,7 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
                     u, v = edge[0], edge[1]
                     graph[u].add(v)
                 return graph
-                
+
             if numCourses < 2: return True
             graph = initGraph(numCourses, prerequisites)
             # count indegree
@@ -110,7 +110,7 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
                     count[neighbor] -= 1
                     if count[neighbor] == 0:
                         queue.appendleft(neighbor)
-            
+
             return not [node for node in graph if count[node] > 0]
 ```
 
@@ -139,12 +139,12 @@ public:
                 ++_inDegree[neighbor];
             }
         }
-        
+
         deque<int> _queue;
         for (auto& _pair : _inDegree) {
             if (_pair.second == 0) _queue.push_back(_pair.first);
         }
-        
+
         while (! _queue.empty()) {
             int node = _queue.front();
             _queue.pop_front();
@@ -154,7 +154,7 @@ public:
                 }
             }
         }
-        
+
         for (auto& _pair : _inDegree) {
             if (_pair.second > 0) return false;
         }
@@ -175,7 +175,7 @@ class Solution {
         }
         return graph;
     }
-    
+
     bool dfs(vector<vector<int>>& graph, int curr, unordered_set<int>& visited, unordered_set<int>& path) {
         if (path.count(curr)) return false;
         else if (visited.count(curr)) return true;
@@ -197,6 +197,43 @@ public:
             if (! dfs(graph, i, visited, path)) return false;
         }
         return true;
+    }
+};
+```
+
+---
+_update 2018-06-19 21:29:29_
+
+#### Update 精简的C++，count indegree solution
+```cpp
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+        // 生成图的同时统计 indegree
+        unordered_map<int, int> indegrees;
+        vector<vector<int>> graph(numCourses);
+        for (auto edge : prerequisites) {
+            graph[edge.second].push_back(edge.first);
+            indegrees[edge.first]++;
+        }
+
+        // BFS，降低neighbor的indegree，把降为0的node入队
+        deque<int> q;
+        for (int i = 0; i < numCourses; ++i) {
+            if (! indegrees.count(i)) q.push_back(i);
+        }
+            // 计数总入队node的个数，如果可以finish，必须所有node都入队，count需要等于numCourses
+        int count = 0;
+        while (! q.empty()) {
+            int curr = q.front(); q.pop_front();
+            for (int neighbor : graph[curr]) {
+                if (--indegrees[neighbor] == 0) {
+                    q.push_back(neighbor);
+                }
+            }
+            ++count;
+        }
+        return count == numCourses;
     }
 };
 ```
