@@ -15,15 +15,15 @@ Each connected component should sort by label.
 **Example**
 
     Given graph:
-    
+
     A------B  C
-     \     |  | 
+     \     |  |
       \    |  |
        \   |  |
         \  |  |
           D   E
     Return {A,B,D}, {C,E}. Since there are two connected component which is {A,B,D}, {C,E}
-    
+
 #### Basic Idea:
 对每一个node进行bfs，每次bfs得到的结果就是一个component，同时在visited中标记即可
 
@@ -62,7 +62,7 @@ Each connected component should sort by label.
             });
             return res;
         }
-        private void bfs(UndirectedGraphNode node, Set<UndirectedGraphNode> visited, 
+        private void bfs(UndirectedGraphNode node, Set<UndirectedGraphNode> visited,
                         List<List<Integer>> res) {
             if (visited.contains(node)) return;
             Deque<UndirectedGraphNode> queue = new LinkedList<>();
@@ -108,7 +108,7 @@ _update Sep 8, 2017  23:21_
                     ids[x] = find(ids[x])
                     x = ids[x]
                 return x
-                
+
             def union(x, y):
                 rootx = find(x)
                 rooty = find(y)
@@ -121,39 +121,39 @@ _update Sep 8, 2017  23:21_
                 else:
                     ids[rootx] = rooty
                     rank[rooty] += 1
-            
+
             # initialize Union-Find        
             ids = [i for i in range(len(nodes))]
             rank = [0 for i in range(len(nodes))]
-            
+
             # 将node和id 一一对应
             # 只需要存储node：id的对应，id：node的对应在nodes中是原生的
             # 因为id就是node在nodes中的index
             nodeId = {}
             for i in range(len(nodes)):
                 nodeId[nodes[i]] = i
-            
+
             # do union find
             for node in nodes:
                 for neighbor in node.neighbors:
                     union(nodeId[node], nodeId[neighbor])
-                    
+
             # 将每个set中的node进行存储
             components = collections.defaultdict(list)
             for node in nodes:
                 id = find(nodeId[node])
                 components[id].append(node.label)
-                
+
             # 将components从map中移到list中, 并排序
             ret = [sorted(components[i]) for i in components]
             ret.sort(key = lambda component : component[0])
-            
+
             return ret
 ```
 
 我们看到，最后的排序部分甚至可以写成一行：
 ```python
-    ret = sorted([sorted(components[i]) for i in components], 
+    ret = sorted([sorted(components[i]) for i in components],
                 key = lambda component : component[0])
 ```
 对比上面做了同样事情的 Java Code， Python 的 concise 真是令人叹为观止。
@@ -165,62 +165,48 @@ _update 2018-05-22 22:01:39_
 
 #### LeetCode 版本 C++ Code:
 ```cpp
-class Solution {
-    vector<int> ids;
-    vector<int> ranks;
-    int count;
-    
-    void makeSet(int size) {
-        ids.resize(size);
-        ranks.resize(size);
-        count = size;
-        for (int i = 0; i < size; ++i) {
-            ids[i] = i;
+    class Solution {
+        private int[] idxs;
+        private int[] ranks;
+        private int count;
+
+        private void makeSet(int size) {
+            idxs = new int[size];
+            for (int i = 0; i < size; ++i) {
+                idxs[i] = i;
+            }
+            ranks = new int[size];
+            count = size;
+        }
+
+        private int find(int x) {
+            while (idxs[x] != x) {
+                idxs[x] = idxs[idxs[x]];
+                x = idxs[x];
+            }
+            return x;
+        }
+
+        private void union(int x, int y) {
+            int rootx = find(x);
+            int rooty = find(y);
+            if (rootx == rooty) return;
+            if (ranks[rootx] > ranks[rooty]) idxs[rooty] = x;
+            else if (ranks[rooty] > ranks[rootx]) idxs[rootx] = y;
+            else {
+                idxs[rooty] = x;
+                ranks[x]++;
+            }
+            count--;
+        }
+
+        public int countComponents(int n, int[][] edges) {
+            if (n < 2) return n;
+            makeSet(n);
+            for (int[] edge : edges) {
+                union(edge[0], edge[1]);
+            }
+            return count;
         }
     }
-    
-    int find(int id) {
-        if (ids[id] == id) return id;
-        while (ids[id] != id) {
-            id = ids[id];
-        }
-        return id;
-    }
-    
-    void _union(int x, int y) {
-        int rootx = find(x);
-        int rooty = find(y);
-        if (rootx == rooty) return;
-        if (ranks[rootx] < ranks[rooty]) ids[rootx] = rooty;
-        else if (ranks[rootx] > ranks[rooty]) ids[rooty] = rootx;
-        else {
-            ranks[rooty]++;
-            ids[rootx] = rooty;
-        }
-        count--;
-    }
-public:
-    int countComponents(int n, vector<pair<int, int>>& edges) {
-        makeSet(n);
-        for (auto& edge : edges) {
-            int u = edge.first, v = edge.second;
-            _union(u, v);
-        }
-        return count;
-    }
-};
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
