@@ -4,7 +4,7 @@ _update Jul 19, 2017 10:50_
 ---
 [liintcode](http://www.lintcode.com/en/problem/knight-shortest-path/)
 
-Given a knight in a chessboard (a binary matrix with 0 as empty and 1 as barrier) with a source position, find the shortest path to a destination position, return the length of the route. 
+Given a knight in a chessboard (a binary matrix with 0 as empty and 1 as barrier) with a source position, find the shortest path to a destination position, return the length of the route.
 Return -1 if knight can not reached.
 
 ** Notice**
@@ -30,17 +30,17 @@ If the knight is at (x, y), he can get to the following positions in one step:
       [0,0,0],
       [0,0,0]]
      source = [2, 0] destination = [2, 2] return 2
-     
+
      [[0,1,0],
       [0,0,0],
       [0,0,0]]
      source = [2, 0] destination = [2, 2] return 6
-     
+
      [[0,1,0],
       [0,0,1],
       [0,0,0]]
      source = [2, 0] destination = [2, 2] return -1
-     
+
 #### Basic Idea:
 基本思想就是做分层BFS，每层就是每步。值得注意的是对dx dy坐标变换数组的进一步应用。
 
@@ -77,7 +77,7 @@ If the knight is at (x, y), he can get to the following positions in one step:
                     if (m < 0 || m >= grid.length || n < 0 || n >= grid[0].length) {
                         continue;
                     }
-                    if (m == destination.x && n == destination.y) return ret; 
+                    if (m == destination.x && n == destination.y) return ret;
                     if (! grid[m][n]) {
                         grid[m][n] = true;
                         queue.addFirst(new Point(m, n));
@@ -100,7 +100,7 @@ If the knight is at (x, y), he can get to the following positions in one step:
         int[] dy = new int[]{2, -2, 2, -2, 1, -1, 1, -1};
         if (grid[source.x][source.y] || grid[destination.x][destination.y]) {
             return -1;
-        } 
+        }
         // 把grid改为int[][]，把两边bfs visited的点分别标记为 2 和 3。
         int[][] graph = new int[R][C];
         for (int i = 0; i < R; ++i) {
@@ -118,9 +118,9 @@ If the knight is at (x, y), he can get to the following positions in one step:
         int step = 0;
             // 若一方队列为空，则fail
         while (! q1.isEmpty() && ! q2.isEmpty()) {
-           
+
             int smallStep = 0; // ！！！这里很关键！！！！
-            
+
             // bfs1, 进行一层
             int size1 = q1.size();
             smallStep++;
@@ -163,4 +163,54 @@ If the knight is at (x, y), he can get to the following positions in one step:
         }
         return -1;
     }
+```
+
+---
+#### Update C++ Solution
+要记得在入队之后马上标记，不可以等到出队时再标记，否则会出现多次入队的情况。
+```cpp
+    class Solution {
+        bool isValid(const vector<vector<bool>>& grid, Point& point) {
+            int r = point.x, c = point.y;
+            if (r < 0 || r >= grid.size() || c < 0 || c >= grid[0].size() || grid[r][c])
+                return false;
+            else
+                return true;
+        }
+    public:
+        /**
+         * @param grid: a chessboard included 0 (false) and 1 (true)
+         * @param source: a point
+         * @param destination: a point
+         * @return: the shortest path
+         */
+        int shortestPath(vector<vector<bool>> &grid, Point &source, Point &destination) {
+            int dr[8]{1, 1, -1, -1, 2, 2, -2, -2};
+            int dc[8]{2, -2, 2, -2, 1, -1, 1, -1};
+
+            int R = grid.size(), C = grid[0].size();
+            deque<Point> q;
+            int stepCount = 0;
+            q.push_back(source);
+            grid[source.x][source.y] = 1;
+            while (! q.empty()) {
+                int size = q.size();
+                for (int i = 0; i < size; ++i) {
+                    Point curr = q.front(); q.pop_front();
+                    for (int k = 0; k < 8; ++k) {
+                        Point next{curr.x + dr[k], curr.y + dc[k]};
+                        if (isValid(grid, next)) {
+                            if (next.x == destination.x && next.y == destination.y) {
+                                return stepCount + 1;
+                            }
+                            q.push_back(next);
+                            grid[next.x][next.y] = 1;
+                        }
+                    }
+                }
+                ++stepCount;
+            }
+            return -1;
+        }
+    };
 ```
