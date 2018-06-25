@@ -202,50 +202,52 @@ _update 2018-05-25 14:03:204_
 ```cpp
 // dijkstra algorithm
 class Solution {
-    struct Node {
-        int r, c, weight;
-        Node(int r, int c, int weight) {
-            this->r = r;
-            this->c = c;
-            this->weight = weight;
-        }
+    struct Vertex {
+        int r, c, dist;
+        Vertex(int r, int c, int dist): r(r), c(c), dist(dist) {}
     };
 
-    bool isValid(const vector<vector<int>>& maze, int r, int c) {
-        if (r < 0 || r >= maze.size() || c < 0 || c >= maze[0].size()) return false;
+    bool isValid(vector<vector<int>>& maze, int r, int c) {
+        if (r < 0 || c < 0 || r >= maze.size() || c >= maze[0].size()) return false;
         else if (maze[r][c] == 1) return false;
         else return true;
     }
 public:
     int shortestDistance(vector<vector<int>>& maze, vector<int>& start, vector<int>& destination) {
-        const int dr[4]{-1, 0, 1, 0};
-        const int dc[4]{0, -1, 0, 1};
+        vector<int> dr{0, -1, 0, 1};
+        vector<int> dc{-1, 0, 1, 0};
 
-        auto comp = [](Node a, Node b){ return a.weight > b.weight; };
-        priority_queue<Node, vector<Node>, decltype(comp)> pq(comp); // min heap
-        pq.push(Node(start[0], start[1], 0));
-        unordered_set<string> visited;
+        auto comp = [](Vertex v1, Vertex v2)->bool{ return v1.dist > v2.dist; };
+        priority_queue<Vertex, vector<Vertex>, decltype(comp)> pq(comp);
+        pq.emplace(start[0], start[1], 0);
+        // 用一个map记录dists，用来决定每条边是否需要松弛
+        unordered_map<string, int> dists;
+        dists[to_string(start[0]) + "," + to_string(start[1])] = 0;
 
         while (! pq.empty()) {
-            Node curr = pq.top();
-            pq.pop();
+            Vertex curr = pq.top(); pq.pop();
             if (curr.r == destination[0] && curr.c == destination[1]) {
-                return curr.weight;
+                return curr.dist;
             }
-            string key = to_string(curr.r) + "," + to_string(curr.c);
-            if (visited.count(key)) {
-                continue;
-            }
-            visited.insert(key);
             for (int i = 0; i < 4; ++i) {
                 int r = curr.r, c = curr.c;
-                int weight = curr.weight;
+                int dist = curr.dist;
                 while (isValid(maze, r + dr[i], c + dc[i])) {
-                    r = r + dr[i];
-                    c = c + dc[i];
-                    ++weight;
+                    r += dr[i];
+                    c += dc[i];
+                    dist += 1;
                 }
-                pq.push(Node(r, c, weight));
+                string newKey = to_string(r) + "," + to_string(c);
+
+                // 用这种方法检查map中是否包含当前点，减少访问map次数
+                auto it = dists.find(newKey);
+                if (it != dists.end() && it->second > dist) { // 松弛已经见过的节点距离
+                    it->second = dist;
+                    pq.emplace(r, c, dist);
+                } else if (it == dists.end()) { // 发现新的节点，将距离加入dists map
+                    dists.insert(make_pair(newKey, dist));
+                    pq.emplace(r, c, dist);
+                }
             }
         }
         return -1;
