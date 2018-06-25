@@ -23,7 +23,7 @@ Given two words (start and end), and a dictionary, find the length of shortest t
     dict = ["hot","dot","dog","lot","log"]
     As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
     return its length 5.
-    
+
 #### Basic Idea:
 这道题目其实是一个隐式图搜索的题目，要求的是最短的变化路径长度，所以首选BFS。
 ![](/assets/Screen Shot 2017-07-21 at 4.49.42 PM.png)
@@ -40,12 +40,12 @@ Given two words (start and end), and a dictionary, find the length of shortest t
         # @return an integer
         def __init__(self):
             self.visited = set()
-        
+
         def ladderLength(self, start, end, dict):
             if start == end:
                 return 1
             dict.add(end)
-    
+
             # bfs
             queue = collections.deque()
             queue.appendleft(start)
@@ -60,12 +60,12 @@ Given two words (start and end), and a dictionary, find the length of shortest t
                         queue.appendleft(neighbor)
                         self.visited.add(neighbor)
             return 0
-        
+
         def replace(self, str, index, c):
             lst = list(str)
             lst[index] = c
             return ''.join(lst)
-        
+
         def getNeighbors(self, str, dict):
             ret = []
             for i in range(len(str)):
@@ -88,7 +88,7 @@ Given two words (start and end), and a dictionary, find the length of shortest t
           * @return an integer
           */
         private Set<String> visited;
-        
+
         public int ladderLength(String start, String end, Set<String> dict) {
             if (start.equals(end)) return 1;
             dict.add(end); // 先把end加入dict，否则无法直接判断终点
@@ -111,13 +111,13 @@ Given two words (start and end), and a dictionary, find the length of shortest t
             }
             return 0;
         }
-        
+
         private String replace(String str, int index, char c) {
             char[] arr = str.toCharArray();
             arr[index] = c;
             return String.valueOf(arr);
         }
-        
+
         private List<String> getNeighbors(String node, Set<String> dict) {
             List<String> ret = new ArrayList<>();
             for (int i = 0; i < node.length(); ++i) {
@@ -133,4 +133,52 @@ Given two words (start and end), and a dictionary, find the length of shortest t
             return ret;
         }
     }
+```
+
+---
+_update 2018-06-23 22:07:35_
+
+#### Update C++ BFS Solution
+```cpp
+class Solution {
+public:
+    int ladderLength(string &start, string &end, unordered_set<string> &dict) {
+        if (start == end) return 1;
+        dict.insert(start);
+        dict.insert(end);
+        deque<string> q;
+        q.push_back(start);
+        unordered_set<string> visited;
+        visited.insert(start);
+        int step = 1;
+        while (! q.empty()) {
+            int size = q.size();
+            for (int i = 0; i < size; ++i) {
+                string curr = q.front(); q.pop_front();
+                vector<string> nextWords;
+                getNextWord(curr, dict, nextWords);
+                for (string nextWord : nextWords) {
+                    // visit 当前word，检查其是否已经visited，如果不是，将其加入visited set
+                    if (! visited.insert(nextWord).second) continue;
+                    if (nextWord == end) return step + 1;
+                    q.push_back(nextWord);
+                }
+            }
+            ++step;
+        }
+        return -1;
+    }
+private:
+    void getNextWord(const string& curr, const unordered_set<string>& dict, vector<string>& res) {
+        for (int i = 0; i < curr.size(); ++i) {
+            for (int j = 0; j < 25; ++j) {
+                string s = curr;
+                s[i] = 'a' + j;
+                if (s != curr && dict.count(s)) {
+                    res.push_back(s);
+                }
+            }
+        }
+    }
+};
 ```

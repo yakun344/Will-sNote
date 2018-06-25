@@ -25,7 +25,7 @@ Each intermediate word must exist in the dictionary
         ["hit","hot","dot","dog","cog"],
         ["hit","hot","lot","log","cog"]
       ]
-      
+
 #### Basic Idea:
 这道题目的难点是要求出所有最短路径。之前的 **[Word Ladder I](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/word-ladder.html)**只要求输出最短路径的长度，我们只需要做一次BFS即可，但是现在要求所有的最短路径，我们就需要结合DFS。因为BFS得到的结果是一个一个分层的点，我们所能知道的只有起点到达某个状态需要几步，
 
@@ -56,12 +56,12 @@ public class Solution {
         Map<String, Integer> dists = new HashMap<>();
         dists.put(start, Integer.MAX_VALUE);
         dists.put(end, 0);
-        
+
         int length = getLength(start, end, dict, dists);
         dfs(start, end, new HashSet<String>(), new ArrayList<String>(), res, length, dists);
         return res;
     }
-    
+
     private int getLength(String start, String end, Set<String> dict, Map<String, Integer> dists) {
         int length = 1;
         Deque<String> queue = new ArrayDeque<>();
@@ -83,7 +83,7 @@ public class Solution {
         }
         return -1;
     }
-    
+
     private List<String> getNeighbors(String word) {
         List<String> ret = new ArrayList<>();
         char[] arr = word.toCharArray();
@@ -97,8 +97,8 @@ public class Solution {
         }
         return ret;
     }
-    
-    private void dfs(String start, String end, Set<String> visited, List<String> path, 
+
+    private void dfs(String start, String end, Set<String> visited, List<String> path,
       List<List<String>> res, int remainSteps, Map<String, Integer> dists) {
         if (remainSteps == 1) {
             if (start.equals(end)) {
@@ -135,17 +135,17 @@ public class Solution {
             dict = set(dict)
             dict.add(start)
             dict.add(end)
-            
+
             # bfs找从end到start最短路径, 并沿途记录各点距离end的路径长度
             distances = {node : float('INF') for node in dict}
             distances[end] = 1
             minStep = self.bfs(end, start, dict, distances)
-            
+
             # dfs
             res = []
             self.dfs(start, end, dict, set(), distances, minStep, res, [])
             return res
-            
+
         # 使用BFS找到从end到start的最短路径长度
         # str start, str target, set<str> dict
         def bfs(self, start, target, dict, distances):
@@ -164,8 +164,8 @@ public class Solution {
                         visited.add(neighbor)
                         queue.appendleft(neighbor)
                         distances[neighbor] = step
-                                    
-        
+
+
         # str node, set<str> dict, set<str> visited
         def getNeighbors(self, node, dict, visited):
             neighbors = []
@@ -175,8 +175,8 @@ public class Solution {
                     if neighbor in dict and neighbor not in visited:
                         neighbors.append(neighbor)
             return neighbors
-            
-        
+
+
         # 使用DFS找到所有长度等于最短路径的从start到end的路径
         def dfs(self, start, target, dict, visited, distances, remainSteps, res, path):
             # 出口
@@ -188,12 +188,12 @@ public class Solution {
                     del path[-1]
                 else:
                     return
-            
+
             visited.add(start)
             path.append(start)
             for neighbor in self.getNeighbors(start, dict, visited):
                 # 只选择距离end更近的点
-                if distances[start] <= distances[neighbor]: 
+                if distances[start] <= distances[neighbor]:
                     continue
                 self.dfs(neighbor, target, dict, visited, distances, remainSteps - 1, res, path)
             del path[-1]
@@ -213,12 +213,6 @@ _update 2018-05-23 18:16:44_
 ```cpp
 class Solution {
 public:
-    /*
-     * @param start: a string
-     * @param end: a string
-     * @param dict: a set of string
-     * @return: a list of lists of string
-     */
     // 主函数
     vector<vector<string>> findLadders(string &start, string &end, unordered_set<string> &dict) {
         vector<vector<string>> res;
@@ -237,7 +231,7 @@ public:
         dfs(dict, start, end, path, res, visited, length, dists);
         return res;
     }
-    
+
     // 获取最短路径长度，从end出发找start，并记录沿途string到end的距离
     int getLength(unordered_set<string>& dict, unordered_map<string, int>& dists, string start, string end) {
         unordered_set<string> visited;
@@ -266,8 +260,8 @@ public:
             ++step;
         }
         return -1;
-    } 
-    
+    }
+
     // 替换每个字母生成所有距离为1的string
     vector<string> getNeighbors(const string& word) {
         vector<string> ret;
@@ -280,10 +274,10 @@ public:
         }
         return move(ret);
     }
-    
+
     // dfs找所有路径，注意在剪枝的时候只考虑有记录距离并且到end距离小于当前点的neighbor
-    void dfs(unordered_set<string>& dict, string start, string end, vector<string>& path, 
-      vector<vector<string>>& res, unordered_set<string>& visited, int remainSteps, 
+    void dfs(unordered_set<string>& dict, string start, string end, vector<string>& path,
+      vector<vector<string>>& res, unordered_set<string>& visited, int remainSteps,
       unordered_map<string, int>& dists) {
         if (remainSteps == 1) {
             if (start == end) {
@@ -306,17 +300,8 @@ public:
 };
 ```
 
+---
+_update 2018-06-23 22:32:38_
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### Update, 一些思路缕清
+先进行一次 BFS，利用其结果优化DFS。首先，我们选择从 end 出发 bfs 搜索 start，并将沿途经过的 word 加入一个 set 中。当开始DFS的时候，只选择在之前 BFS 时候遇到过的 word 继续搜索。这么做的理论依据是当我们从 end 出发 dfs 找到 start 时，其经过的 vertices 一定包含了所有从start出发到end的最短路径中的节点。
