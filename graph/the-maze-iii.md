@@ -252,69 +252,68 @@ _update 2018-05-25 21:53:35_
 
 ```cpp
 class Solution {
-private:
-    struct Node {
+    struct Vertex {
         int r, c, dist;
         string path;
-        Node(int r, int c, int dist, string path): r(r), c(c), dist(dist), path(path) {}
+        Vertex(int r, int c, int dist, string path): r(r), c(c), dist(dist), path(path) {}
     };
 
-    bool isValid(const vector<vector<int>>& maze, int r, int c) {
+    bool isValid(vector<vector<int>>& maze, int r, int c) {
         if (r < 0 || r >= maze.size() || c < 0 || c >= maze[0].size()) return false;
-        else if (maze[r][c] == 1) return false;
-        return true;
+        else if (maze[r][c]) return false;
+        else return true;
     }
+
 public:
     string findShortestWay(vector<vector<int>>& maze, vector<int>& ball, vector<int>& hole) {
-        const int dr[4]{-1, 0, 1, 0};
-        const int dc[4]{0, -1, 0, 1};
-        const string dir[4]{"u", "l", "d", "r"};
-
-        auto comp = [](Node a, Node b){ return a.dist == b.dist ? a.path > b.path : a.dist > b.dist; };
-        priority_queue<Node, vector<Node>, decltype(comp)> pq(comp);
+        vector<int> dr{1, 0, 0, -1};
+        vector<int> dc{0, -1, 1, 0};
+        vector<string> dir{"d", "l", "r", "u"};
+        auto comp = [](Vertex v1, Vertex v2)->bool{
+            if (v1.dist != v2.dist) return v1.dist > v2.dist;
+            else return v1.path > v2.path;
+        };
+        // 以dist，path为主副key的 min heap
+        priority_queue<Vertex, vector<Vertex>, decltype(comp)> pq(comp);
+        // 用hashmap来存放dists
         unordered_map<string, int> dists;
-
-        int minDist = 0x7fffffff;
-        string retPath = "impossible";
-
         pq.emplace(ball[0], ball[1], 0, "");
         dists[to_string(ball[0]) + "," + to_string(ball[1])] = 0;
-        while (! pq.empty()) {
-            Node curr = pq.top();
-            pq.pop();
-            // cout << curr.r << "," << curr.c << "," << curr.dist << "," << curr.path << endl;
-            string currKey = to_string(curr.r) + "," + to_string(curr.c);
-            if (curr.dist > minDist) break;
-            // 这是release边之后更新了Node的dist之后，lazy deletion导致留在pq中的之前的node
-            if (dists.count(currKey) && dists[currKey] < curr.dist) continue;
-            if (curr.r == hole[0] && curr.c == hole[1]) {
-                if (curr.dist < minDist) {
-                    minDist = curr.dist;
-                    retPath = curr.path;
-                } else if (curr.dist == minDist && curr.path < retPath) {
-                    retPath = curr.path;
-                }
-                continue;
-            }
 
-            // generate 相邻节点，release每个边，把可以更新dist的节点重新入队
+        while (! pq.empty()) {
+            Vertex curr = pq.top(); pq.pop();
+            // 处理 lazy deletion 的 vertex
+            if (dists[to_string(curr.r) + "," + to_string(curr.c)] < curr.dist) continue;
+            else if (curr.r == hole[0] && curr.c == hole[1]) {
+                return curr.path; // 出队说明已经计算出到该点的最小距离
+            }
             for (int i = 0; i < 4; ++i) {
                 int r = curr.r, c = curr.c, dist = curr.dist;
+                string path = curr.path;
                 while (isValid(maze, r + dr[i], c + dc[i])) {
                     r += dr[i];
                     c += dc[i];
                     ++dist;
-                    if (r == hole[0] && c == hole[1]) break; // 遇到孔就break，不继续走
+                    if (r == hole[0] && c == hole[1]) {
+                        cout << dist << " " << path + dir[i] << endl;
+                        break;
+                    }
                 }
-                if (r == curr.r && c == curr.c) continue; // 如果根本没有动，则考虑其他方向
+                if (r == curr.r && c == curr.c) continue;
+                path += dir[i];
                 string key = to_string(r) + "," + to_string(c);
-                if (dists.count(key) && dists[key] < dist) continue; // 该node的距离不可以更新为更小值
-                dists[key] = dist;
-                pq.emplace(r, c, dist, curr.path + dir[i]);
+                // 判断是否需要更新，使用iterator减少访问hashmap的次数
+                auto it = dists.find(key);
+                if (it != dists.end() && it->second >= dist) {
+                    it->second = dist;
+                    pq.emplace(r, c, dist, path);
+                } else if (it == dists.end()) {
+                    dists[key] = dist;
+                    pq.emplace(r, c, dist, path);
+                }
             }
         }
-
-        return retPath;
+        return "impossible";
     }
 };
 ```
