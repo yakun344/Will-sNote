@@ -14,7 +14,7 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
 
     Input: [[1,3], [0,2], [1,3], [0,2]]
     Output: true
-    Explanation: 
+    Explanation:
     The graph looks like this:
     0----1
     |    |
@@ -26,14 +26,14 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
 
     Input: [[1,2,3], [0,2], [0,1,3], [0,2]]
     Output: false
-    Explanation: 
+    Explanation:
     The graph looks like this:
     0----1
     | \  |
     |  \ |
     3----2
     We cannot find a way to divide the set of nodes into two independent subsets.
- 
+
 
 **Note:**
 
@@ -100,10 +100,10 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
             }
             return true;
         }
-    
+
         private boolean dfs(int[][] graph, int curr, Set<Integer> U, Set<Integer> V) {
             for (int neighbor : graph[curr]) {
-                if (U.contains(curr) && U.contains(neighbor) 
+                if (U.contains(curr) && U.contains(neighbor)
                    || V.contains(curr) && V.contains(neighbor)) {
                     return false;
                 } else if (U.contains(curr)) {
@@ -133,7 +133,7 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
                 }
                 return true;
             }
-            
+
             private boolean dfs(int[][] graph, int[] colors, int v) {
                 for (int neighbor : graph[v]) {
                     if (colors[neighbor] == 0) {
@@ -147,37 +147,40 @@ The graph is given in the following form: `graph[i]` is a list of indexes `j` fo
             }
         }
   ```
-  
-  
-    
 
+---
+_update 2018-06-27 22:50:08_
 
+#### Update C++ BFS 染色解法
 
+```cpp
+  class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        vector<int> colors(graph.size());
+        deque<int> q;
+        // 0=not visited, 1=group1, 2=group2
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // BFS, 每次bfs完成之后将其余不相连的node加入queue中继续BFS
+        for (int i = 0; i < graph.size(); ++i) {
+            if (colors[i] == 0) {
+                q.push_back(i);
+                colors[i] = 1;
+            }
+            while (! q.empty()) {
+                int curr = q.front(); q.pop_front();
+                int currColor = colors[curr];
+                for (int neighbor : graph[curr]) {
+                    if (colors[neighbor] == 0) {
+                        colors[neighbor] = currColor == 1 ? 2 : 1;
+                        q.push_back(neighbor);
+                    } else if (colors[neighbor] == currColor) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+};
+```
