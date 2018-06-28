@@ -99,3 +99,46 @@ Given a string s and a set of n substrings. You are supposed to remove every ins
 最终的思路可以这么理解：对于input s，BFS 的第一层考虑了所有只删除一个 pattern 的情况，第二层再深入一层，考虑所有删除 两个 pattern 的情况，以此类推。
 > 例如，对于 s=‘ababcc’，pattern={‘a’，‘b’}；  
 第一层为删除一个 ‘a’ 或者删除一个 ‘b’ 的结果，即 ‘babcc’，‘abbcc’，‘aabcc’，’abacc‘；
+
+---
+_update 2018-06-27 20:41:45_
+
+#### Update C++ Solution
+时隔数月，没有第一时间回忆起这道题目，思路还是很直接的 brute force 加去重，但是一定要注意去重。
+
+```cpp
+class Solution {
+public:
+    /*
+     * @param s: a string
+     * @param dict: a set of n substrings
+     * @return: the minimum length
+     */
+    int minLength(string &s, unordered_set<string> &dict) {
+        deque<string> q;
+        q.push_back(s);
+        unordered_set<string> visited;
+        visited.insert(s);
+        int ret = 0x7ffffff;
+        while (! q.empty()) {
+            string curr = q.front(); q.pop_front();
+            cout << curr << endl;
+            ret = min(ret, (int)curr.size());
+            if (ret == 0) return 0;
+            for (string pattern : dict) {
+                int startPos = 0;
+                while (true) {
+                    int pos = curr.find(pattern, startPos);
+                    if (pos == -1) break;
+                    string next = curr.substr(0, pos) + curr.substr(pos + pattern.size());
+                    startPos = pos + 1;
+                    if (visited.insert(next).second) {
+                        q.push_back(next);
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+};
+```
