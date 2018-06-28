@@ -32,7 +32,7 @@
   * [The Maze](graph/the-maze.md)
   * [The Maze II](graph/the-maze-ii.md)
   * [The Maze III](graph/the-maze-iii.md)
-  * [Remove Substrings](string-manipulation/remove-substrings.md)
+  * [Remove Substrings](graph/remove-substrings.md)
   * [Is Graph Bipartite? \(Medium\)](graph/is-graph-bipartite-medium.md)
   * [Flood Fill \(Easy Uber\)](graph/flood-fill-easy-uber.md)
 * [Tree](Tree/Tree.md)
