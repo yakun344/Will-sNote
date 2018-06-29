@@ -12,21 +12,21 @@ Return null if LCA does not exist.
 ** Notice**  
 
 node A or node B may not exist in tree.  
-  
+
 **Example**  
 
         For the following binary tree:
-          
+
             4
            / \
           3   7
              / \
             5   6
-            
+
         LCA(3, 5) = 4
-          
+
         LCA(5, 6) = 7
-          
+
         LCA(6, 7) = 7
 
 #### Basic Idea:
@@ -48,7 +48,7 @@ node A or node B may not exist in tree.
             if (A_appear && B_appear) return ret;
             else return null;
         }
-        
+
         private TreeNode helper(TreeNode root, TreeNode A, TreeNode B) {
             if (root == null) return null;
             TreeNode left = helper(root.left, A, B);
@@ -104,8 +104,8 @@ _update Aug 27, 2017  16:08_
                     return root
                 # 否则的话返回左右中不为空的
                 return left if left else right
-                
-                
+
+
             self.flag = [False] * 2
             ret = helper(root, A, B)
             if self.flag[0] and self.flag[1]:
@@ -134,7 +134,7 @@ _update Dec 20,2017  1:31_
             helper(root, p, q);
             return ret;
         }
-        
+
         private TreeNode helper(TreeNode root, TreeNode p, TreeNode q) {
             if (root == null) return null;
             TreeNode left = helper(root.left, p, q);
@@ -158,4 +158,33 @@ _update Dec 20,2017  1:31_
             }
         }
     }
+```
+
+---
+_update 2018-06-29 16:33:14_
+
+#### Update, Leetcode 版本简便解法
+如果不考虑comment ancestor不存在的情况，其实只要保证如下规则就可以：
+1. 如果当前root为 p 或者 q，直接返回；
+2. 如果左右返回都不为null，则返回当前 root，说明当前root即为所求的ancestor；
+3. 如果左右返回值都为null，则返回null；
+4. 否则，返回两者中不为null的；
+
+```java
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        else if (root == p) return p;
+        else if (root == q) return q;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
+            return root;
+        } else if (left == null && right == null) {
+            return null;
+        } else {
+            return left != null ? left : right;
+        }
+    }
+}
 ```
