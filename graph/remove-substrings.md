@@ -142,3 +142,40 @@ public:
     }
 };
 ```
+
+---
+_update 2018-06-28 22:30:30_
+
+#### Update C++ DFS Solution
+```cpp
+public class Solution {
+    /*
+     * @param s: a string
+     * @param dict: a set of n substrings
+     * @return: the minimum length
+     */
+    public int minLength(String s, Set<String> dict) {
+        return dfs(s, dict, new HashSet<String>());
+    }
+
+    private int dfs(String curr, Set<String> dict, Set<String> visited) {
+        if (! visited.add(curr)) return Integer.MAX_VALUE;
+        int ret = curr.length();
+        for (String pattern : dict) {
+            int startPos = 0;
+            for (;;) {
+                int pos = curr.indexOf(pattern, startPos);
+                if (pos != -1) {
+                    String next = curr.substring(0, pos) + curr.substring(pos + pattern.length());
+                    int len = dfs(next, dict, visited);
+                    ret = Math.min(ret, len);
+                } else {
+                    break;
+                }
+                startPos = pos + 1;
+            }
+        }
+        return ret;
+    }
+}
+```
