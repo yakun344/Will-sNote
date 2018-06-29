@@ -9,21 +9,21 @@ Your are given a binary tree in which each node contains a value. Design an algo
 **Example**
 
           Given a binary tree:
-              
+
                   1
                  / \
                 2   3
                /   /
               4   2
           for target = 6, return
-              
+
               [
                 [2, 4],
                 [1, 3, 2]
               ]
-      
+
 #### Basic Idea:
-这道题和leetcode上的 **[Path Sum III](https://will-gxz.gitbooks.io/xiaozheng_algo/content/Tree/Path%20Sum%20III.html)** 其实很接近，但是这道题更加要求输出所有的路径。在前面的那篇文章中我们使用了两个函数两层递归的方式，但是这样的方法相对复杂。学习了九章算法之后，我发现我们可以使用一种**更加通用而且易于理解**的方法：  
+这道题和leetcode上的 **[Path Sum III](https://willguo-private.gitbook.io/xiaozheng-algo/algorithm-problems/tree/path-sum-iii)** 其实很接近，但是这道题更加要求输出所有的路径。在前面的那篇文章中我们使用了两个函数两层递归的方式，但是这样的方法相对复杂。学习了九章算法之后，我发现我们可以使用一种**更加通用而且易于理解**的方法：  
 
 整个代码的框架是一个求所有path并返回的程序，只是在我们到达每个node之后，对当前的path进行一次循环，考虑所有在当前位置结束的path，如果 sum == target ，则将这一段path加入res。具体地，对于Java，我们可以用 `res.add(new ArrayList<Integer>(path.subList(i, path.size())))` , 在Python中更加方便，直接`res.append(path[i:])`。
 
@@ -35,7 +35,7 @@ Your are given a binary tree in which each node contains a value. Design an algo
          * @param target an integer
          * @return all valid paths
          */
-        
+
         // 先按照正常方法traverse，在path中跟踪路径，只是每次到新的node，for循环当前
         // path，找以此node结尾的path中是否有满足要求的，若有，加入res
         public List<List<Integer>> binaryTreePathSum2(TreeNode root, int target) {
@@ -81,7 +81,7 @@ Your are given a binary tree in which each node contains a value. Design an algo
                 helper(root.left, path, res, target)
                 helper(root.right, path, res, target)
                 del path[-1]
-                
+
             res = []
             helper(root, [], res, target)
             return res
@@ -112,7 +112,7 @@ _update Dec 21, 2017  23:36_
             helper(root, target, res);
             return res;
         }
-        
+
         // return all paths go down from this node, 每次检查从该 root 开始有无满足要求的path
         private List<List<Integer>> helper(TreeNode root, int target, List<List<Integer>> res) {
             List<List<Integer>> paths = new ArrayList<>();
@@ -138,10 +138,3 @@ _update Dec 21, 2017  23:36_
         }
     }
 ```
-
-
-
-
-
-
-
