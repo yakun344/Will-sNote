@@ -37,3 +37,25 @@ Java Code：
         }  
     }
 ```
+
+---
+_update 2018-06-29 16:08:42_
+
+#### Iterative Java Solution
+```java
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (p.val > q.val) {
+            TreeNode t = p;
+            p = q;
+            q = t;
+        }
+        TreeNode node = root;
+        while (! (p.val <= node.val && q.val >= node.val)) {
+            if (node.val < p.val) node = node.right;
+            else node = node.left;
+        }
+        return node;
+    }
+}
+```
