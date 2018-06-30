@@ -51,15 +51,15 @@ Python Code：
             """
             if not root:
                 return 0
-            return self.dfs(root, sum) + 
-                   self.pathSum(root.left, sum) + 
+            return self.dfs(root, sum) +
+                   self.pathSum(root.left, sum) +
                    self.pathSum(root.right, sum)
 
         def dfs(self, node, target):
-            if not node: 
+            if not node:
                 return 0
-            return (node.val == target) + 
-                   self.dfs(node.left, target - node.val) + 
+            return (node.val == target) +
+                   self.dfs(node.left, target - node.val) +
                    self.dfs(node.right, target - node.val)
 ```
 
@@ -99,7 +99,7 @@ _update Jan 27,2018 19:58_
             preSum.add(0);
             return helper(root, preSum, sum);
         }
-        
+
         private int helper(TreeNode root, List<Integer> preSum, int sum) {
             if (root == null) return 0;
             int ret = 0;
@@ -110,7 +110,7 @@ _update Jan 27,2018 19:58_
                 }
             }
             int left = helper(root.left, preSum, sum);
-            int right = helper(root.right, preSum, sum); 
+            int right = helper(root.right, preSum, sum);
             preSum.remove(preSum.size() - 1);
             return ret + left + right;
         }
@@ -142,11 +142,33 @@ _update Jan 27,2018 19:58_
     };
 ```
 
+---
+_update 2018-06-29 20:31:55_
 
+#### Update: 使用 prefix sum + HashMap，最快解法
+最初的解法是维持一个path，每到一个新的node，就向上遍历path，看有无 `sum==target` 的情况，这种做法的时间复杂度为 `O(N*(logN^2))`。
 
+进一步优化，把path改成 prefix sum array，这样时间复杂度就变为了 `O(NlogN)`。
 
+接下来，我们可以继续优化，使用 HashMap 来存储 prefix sums，即在 map 中存当前path中的 prefix sums 以及其个数，每次到了新node，向上query的时间变为 `O(1)`，总时间复杂度降为 `O(N)`;
 
-
-
-
-
+```java
+class Solution {
+    private int ret = 0;
+    public int pathSum(TreeNode root, int sum) {
+        Map<Integer, Integer> path = new HashMap<>();
+        path.put(0, 1);
+        dfs(root, path, 0, sum);
+        return ret;
+    }
+    private void dfs(TreeNode root, Map<Integer, Integer> path, int lastSum, int sum) {
+        if (root == null) return;
+        int currSum = lastSum + root.val;
+        ret += path.getOrDefault(currSum - sum, 0);
+        path.put(currSum, path.getOrDefault(currSum, 0) + 1);
+        dfs(root.left, path, currSum, sum);
+        dfs(root.right, path, currSum, sum);
+        path.put(currSum, path.get(currSum) - 1);
+    }
+}
+```
