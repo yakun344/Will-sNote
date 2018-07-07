@@ -48,7 +48,7 @@ _update Nov 30, 2017_
             double currSum = 0;
             int left = 0, right = -1; // right 初始值为 -1 是为了令 nums[0] 被考虑在内
             while (true) {
-                if (right - left + 1 < k) { 
+                if (right - left + 1 < k) {
                     right++;
                     if (right >= nums.length) break;
                     currSum += nums[right];
@@ -82,16 +82,30 @@ _update Nov 30, 2017_
             return maxAvg
 ```
 
+---
+_update 2018-07-07 10:54:54_
 
+#### Update: Sliding window 最终框架
+这是一直觉得比较好的 sliding window 的框架写法：
 
-
-
-
-
-
-
-
-
-
-
-
+用一层while循环通过移动right指针维持window size。
+```java
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        int left = 0, right = -1;
+        long max = Integer.MIN_VALUE;
+        long window = 0;
+        while (true) {
+            while (right - left + 1 < k) {
+                ++right;
+                if (right >= nums.length) break;
+                window += nums[right];
+            }
+            if (right >= nums.length) break;
+            max = Math.max(max, window);
+            window -= nums[left++];
+        }
+        return (double)max / k;
+    }
+}
+```
