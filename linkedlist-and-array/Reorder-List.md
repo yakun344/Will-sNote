@@ -5,13 +5,19 @@ _update Jan 3,2018 1:28_
 [LeetCode](https://leetcode.com/problems/reorder-list/description/)
 
 
-Given a singly linked list `L: L0→L1→…→Ln-1→Ln`,   
-reorder it to: `L0→Ln→L1→Ln-1→L2→Ln-2→…`  
+Given a singly linked list L: L0→L1→…→Ln-1→Ln,
+reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
 
-You must do this in-place without altering the nodes' values.
+You may not modify the values in the list's nodes, only nodes itself may be changed.
 
-**For example,**  
-Given {1,2,3,4}, reorder it to {1,4,2,3}.
+**Example 1:**
+
+    Given 1->2->3->4, reorder it to 1->4->2->3.
+
+**Example 2:**
+
+    Given 1->2->3->4->5, reorder it to 1->5->2->4->3.
+
 
 #### Basic  Idea:
 这道题目非常典型地综合了许多 linked list 题目的知识点:
@@ -47,7 +53,7 @@ class Solution {
         if (curr1 != null) curr.next = curr1;
         else if (curr2 != null) curr.next = curr2;
     }
-    
+
     // split the linked list from mid, return the head of the 2nd part
     // 注意特殊处理，需要让slow停在中点之前
     private ListNode getMid(ListNode head) {
@@ -60,7 +66,7 @@ class Solution {
         slow.next = null;
         return ret;
     }
-    
+
     // reverse the input linked list, return its new head
     private ListNode reverse(ListNode head) {
         if (head == null || head.next == null) return head;
