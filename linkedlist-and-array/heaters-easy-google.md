@@ -28,7 +28,7 @@ All the heaters follow your radius standard and the warm radius will the same.
 
     Input: [1,2,3,4],[1,4]
     Output: 1
-    
+
 * **Explanation:** The two heater was placed in the position 1 and 4. We need to use radius 1 standard, then all the houses can be warmed.
 
 <br>
@@ -63,4 +63,31 @@ public:
         return ret;
     }
 };
+```
+
+---
+_update 2018-07-08 11:47:45_
+
+#### Update: Java
+仍然是之前的思路，更简便的写法
+```java
+class Solution {
+    public int findRadius(int[] houses, int[] heaters) {
+        Arrays.sort(houses);   
+        Arrays.sort(heaters);
+        int i = 0, j = 0;
+        long ret = 0;
+        while (i < houses.length) {
+            if (j == heaters.length || heaters[j] > houses[i]) {
+                long heaterLeft = j == 0 ? Integer.MIN_VALUE : heaters[j - 1];
+                long heaterRight = j == heaters.length ? Integer.MAX_VALUE : heaters[j];
+                ret = Math.max(ret, Math.min(houses[i] - heaterLeft, heaterRight - houses[i]));
+                i++;
+            } else {
+                j++;
+            }
+        }
+        return (int)ret;
+    }
+}
 ```
