@@ -2,7 +2,7 @@
 _update Jul 11, 2017 12:09_
 
 ---
-[Lintcode](http://www.lintcode.com/en/problem/maximum-average-subarray/)
+[Lintcode](https://www.lintcode.com/problem/maximum-average-subarray-ii/description)
 
 Given an array with positive and negative numbers, find the maximum average subarray which length should be greater or equal to given length k.
 
@@ -12,7 +12,7 @@ It's guaranteed that the size of the array is greater or equal to k.
 
     Example
     Given nums = [1, 12, -5, -6, 50, 3], k = 3
-    
+
     Return 15.667 // (-6 + 50 + 3) / 3 = 15.667
 
 #### Basic Idea:
@@ -44,8 +44,8 @@ It's guaranteed that the size of the array is greater or equal to k.
                         if sums[i] - min_pre >= 0:
                             return True
                 return False
-            
-            
+
+
             # use min and max as bounds to do binary search
             p = min(nums)
             r = max(nums)
@@ -56,4 +56,46 @@ It's guaranteed that the size of the array is greater or equal to k.
                 else:
                     r = q
             return p
+```
+---
+_update 2018-07-11 12:55:33_
+
+#### Update，Java Solution
+还是相同的思路，但是要注意限定长度不小于k时候i的取值范围限定。
+```java
+public class Solution {
+    /*
+     * @param nums: an array with positive and negative numbers
+     * @param k: an integer
+     * @return: the maximum average
+     */
+    public double maxAverage(int[] nums, int k) {
+        int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+        }
+        double left = min, right = max;
+        while (right - left > 1e-7) {
+            double mid = (left + right) / 2;
+            if (isValid(nums, k, mid)) {
+                left = mid;
+            } else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+
+    private boolean isValid(int[] nums, int k, double avg) {
+        double[] prefix = new double[nums.length + 1];
+        double preMin = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length; ++i) {
+            prefix[i + 1] = prefix[i] + nums[i] - avg;
+            if (i >= k - 1) preMin = Math.min(preMin, prefix[i - k + 1]);
+            if (prefix[i + 1] - preMin > 0) return true;
+        }
+        return false;
+    }
+}
 ```
