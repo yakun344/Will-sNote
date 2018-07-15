@@ -7,7 +7,7 @@ _update May 11,2018 15:17_
 Given an array of integers and an integer k, you need to find the number of unique k-diff pairs in the array. Here a k-diff pair is defined as an integer pair (i, j), where i and j are both numbers in the array and their absolute difference is k.
 
 **Example 1:**
-    
+
     Input: [3, 1, 4, 1, 5], k = 2
     Output: 2
     Explanation: There are two 2-diff pairs in the array, (1, 3) and (3, 5).
@@ -67,4 +67,35 @@ Given an array of integers and an integer k, you need to find the number of uniq
             return ret;
         }
     };
+```
+
+---
+_update 2018-07-15 10:17:42_
+#### Update: Two pointers
+更快的解法是使用双指针法。假定当前nums已经排序，只要维持 i，j 两个指针从左向右扫描，遇到 `nums[j] - nums[i] == k` 时就令 `ret++`；具体地：
+
+* 对每个i，找到相应j的位置，那么对于下一个i，j的起始位置就是 `max(i+1, j)`，因为j之前的数字一定比 `nums[i-1]` 小，所以一定比 `nums[i]` 小。
+* 每次检查完一个i之后，继续判断，跳过所有重复的i，即保证每个i都只被检查一次。
+
+##### Java Code
+```java
+class Solution {
+    public int findPairs(int[] nums, int k) {
+        Arrays.sort(nums);
+        int j = 0, ret = 0;
+        // O(n) time from now
+        for (int i = 0; i < nums.length; ++i) {
+            j = Math.max(i + 1, j);
+            while (j < nums.length && nums[j] < nums[i] + k) {
+                j++;
+            }
+            if (j >= nums.length) break;
+            if (nums[j] == nums[i] + k) ret++;
+            while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
+                i++;
+            }
+        }
+        return ret;
+    }
+}
 ```

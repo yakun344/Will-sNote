@@ -10,18 +10,18 @@ If there is no answer, return the empty string.
 
 **Example 1:**  
 
-    Input: 
+    Input:
     words = ["w","wo","wor","worl", "world"]
     Output: "world"
-    Explanation: 
+    Explanation:
     The word "world" can be built one character at a time by "w", "wo", "wor", and "worl".
 
 **Example 2:**  
-    
-    Input: 
+
+    Input:
     words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]
     Output: "apple"
-    Explanation: 
+    Explanation:
     Both "apply" and "apple" can be built from other words in the dictionary. However, "apple" is lexicographically smaller than "apply".
 
 **Note:**
@@ -29,13 +29,13 @@ If there is no answer, return the empty string.
   1. All the strings in the input will only contain lowercase letters.
   2. The length of words will be in the range [1, 1000].
   3. The length of words[i] will be in the range [1, 30].
-  
+
 <br>
 
 ## Basic Idea:
 * ### 方法 1 （Trie + bfs）：
 &emsp; 比较直观的方法就是建一个trie，然后从长度为 1 的 26 个字母开始搜索，逐层进行 bfs，例如如果 input 中有 `[a, b, ap, app, ba, ban, bana]`，第一层搜索会找到 `[a, b]`, 第二层会找到 `[ap, ba]`, 第三层 `[app, ban]`, 第四层 `[bana]`, 则 “bana” 最长，输出 “bana”；   
-&emsp; 这种方法时间复杂度略高，因为每次要检查26个字母，总时间复杂度 `O(26n)`，n 为解的长度；
+&emsp; 这种方法时间复杂度略高，因为每次要检查26个字母，总时间复杂度 `O(26^n)`，n 为解的长度(worst case, 每层每个node都有26个结果generated)；
   * #### C++ Code：
 ```cpp
     class Solution {
@@ -43,7 +43,7 @@ If there is no answer, return the empty string.
             string word;
             TrieNode* child[26] = {nullptr};
         };
-        
+
         string dfs(TrieNode* root) {
             string ret = root->word;
             for (int i = 0; i < 26; ++i) {
@@ -54,7 +54,7 @@ If there is no answer, return the empty string.
             }
             return ret;
         }
-        
+
         TrieNode* constructTrie(vector<string>& words) {
             TrieNode* root = new TrieNode();
             for (string word : words) {
@@ -122,26 +122,3 @@ class Solution {
         }
     };
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
