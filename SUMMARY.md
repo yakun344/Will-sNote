@@ -240,6 +240,7 @@
   * [Letter Combinations of a Phone Number \(Medium\)](dfs/letter-combinations-of-a-phone-number-medium.md)
   * [Letter Case Permutation \(Easy Facebook\)](dfs/letter-case-permutation-easy-facebook.md)
 * [Two Pointers Problem](two-pointers-problem/two-pointers-problem.md)
+  * [K-diff Pairs in an Array \(Easy Amazon\)](binary-search/k-diff-pairs-in-an-array-easy-amazon.md)
   * [Two Sum - Unique pairs](two-pointers-problem/two-sum-unique-pairs.md)
   * [3Sum](two-pointers-problem/3sum.md)
   * [4Sum](two-pointers-problem/4sum.md)

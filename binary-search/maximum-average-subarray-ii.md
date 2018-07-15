@@ -2,7 +2,8 @@
 _update Aug 17, 2017 18:55_
 
 ---
-[LeetCode](https://leetcode.com/problems/maximum-average-subarray-ii/description/)
+[LeetCode](https://leetcode.com/problems/maximum-average-subarray-ii/description/)   
+[Lintcode](https://www.lintcode.com/problem/maximum-average-subarray-ii/description)
 
 Given an array consisting of n integers, find the contiguous subarray whose length is greater than or equal to k that has the maximum average value. And you need to output the maximum average value.
 
@@ -93,9 +94,9 @@ _update Dec 1, 2017 12:58_
                 else:
                     r = q
             return p
-        
-        
-        
+
+
+
         def isValid(self, nums, k, targetAvg):
             preSum = [0] * (len(nums) + 1)
             minSum = float('inf')

@@ -10,7 +10,7 @@ There are two sorted arrays A and B of size m and n respectively. Find the media
 **Example**
 
     Given A=[1,2,3,4,5,6] and B=[2,3,4,5], the median is 3.5.
-    
+
     Given A=[1,2,3] and B=[4,5], the median is 3.
 
 **Challenge **
@@ -41,7 +41,7 @@ The overall run time complexity should be O(log (m+n)).
                 return findKth(A, 0, B, 0, (A.length + B.length) / 2 + 1);
             } else {
                 // 如果是偶数，则是(m+n)/2 和 (m+n)/2+1 的平均值
-                return (findKth(A, 0, B, 0, (A.length + B.length) / 2) + 
+                return (findKth(A, 0, B, 0, (A.length + B.length) / 2) +
                        findKth(A, 0, B, 0, (A.length + B.length) / 2 + 1)) / 2;
             }
         }
@@ -85,13 +85,13 @@ _update Dec 18, 2017_
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
             int M = nums1.length, N = nums2.length;
             if ((M + N) % 2 == 0) {// even
-                return (findKth(nums1, nums2, 0, 0, (M + N) / 2) + 
+                return (findKth(nums1, nums2, 0, 0, (M + N) / 2) +
                         findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1)) / 2.0;
             } else { // odd
                 return findKth(nums1, nums2, 0, 0, (M + N) / 2 + 1);
             }
         }
-        
+
         // return the kth number, 1 based
         private int findKth(int[] nums1, int[] nums2, int l, int r, int k) {
             while (k > 1) {
@@ -134,8 +134,8 @@ _update Dec 18, 2017_
                     n2 = nums2[r + mid - 1] if r + mid - 1 < self.N else float('inf')
                     if n1 <= n2: return findKth(l + mid, r, k - mid)
                     else: return findKth(l, r + mid, k - mid)
-                
-            
+
+
             self.M = len(nums1)
             self.N = len(nums2)
             if (self.M + self.N) % 2 == 0: # even
@@ -145,5 +145,8 @@ _update Dec 18, 2017_
                 return findKth(0, 0, (self.M + self.N) // 2 + 1);
 ```
 
+---
+_update 2018-07-13 18:59:52_
 
-
+#### Update: 时间复杂度分析
+如果我们需要得到两个 sorted array 中第k个数字，由于每次iteration我们都会丢掉上次丢掉数字一半的数字 `(第一次 k/2, 然后 k/4, k/8 ...)`，这样的时间复杂度应该是 `log(k)`。然后因为我们最终的 `k == (lenA + lenB) / 2`，所以总的时间复杂度为 `O(log((lenA + lenB)/2)) == O(log(lenA + lenB))`。
