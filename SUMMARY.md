@@ -184,7 +184,7 @@
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
   * [K Closest Points](datastructure-problems/k-closest-points.md)
-  * [Kth Largest Element II](linkedlist-and-array/kth-largest-element-ii.md)
+  * [Kth Largest Element II](datastructure-problems/kth-largest-element-ii.md)
   * [Rehashing](datastructure-problems/rehashing.md)
   * [Ugly Number II ](datastructure-problems/ugly-number-ii.md)
   * [Insert Delete GetRandom O\(1\)](datastructure-problems/insert-delete-getrandom-o1.md)
