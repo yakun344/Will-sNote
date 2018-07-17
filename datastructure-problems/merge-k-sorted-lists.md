@@ -12,14 +12,14 @@ Analyze and describe its complexity.
 **Example**
 
       Given lists:
-      
+
       [
          2->4->null,
          null,
          -1->null
       ],
       return -1->2->4->null.
-      
+
 #### Basic Idea:
 **思路1：heap**
 利用 min heap，先把每个 list 的 head 加入 heap，每次拿出当前 heap 的 peek 作为当前最小值，放入 res，再把该最小node 的 next 加入heap。这样一来，就可以保证当前 heap 的顶一定为剩余所有node中最小的。
@@ -29,7 +29,7 @@ Analyze and describe its complexity.
 **思路2：merge sort 分治法**
 类似于merge sort 的思路，我们先把 k 组 head 分为 2 组，再继续划分，直到每组尺度不大于2，开始merge。
 
-时间复杂度同样为O(nklogk), 因为 `T(n) = 2T(n/2) + O(nk)`；
+时间复杂度同样为 `O(nklogk)`, 因为 `T(k) = 2T(k/2) + O(nk)`；即每次merge耗时 `O(nk)`, 共有 `log(k)` 层，所以总时间为 `O(nklogk)`.
 
 #### Java Code：
     ```java
@@ -43,7 +43,7 @@ Analyze and describe its complexity.
      *         this.next = null;
      *     }
      * }
-     */ 
+     */
     public class Solution {
         /**
          * @param lists: a list of ListNode
@@ -86,7 +86,7 @@ This code got AC in LeetCode;
     #     def __init__(self, x):
     #         self.val = x
     #         self.next = None
-    
+
     class Solution(object):
         def mergeKLists(self, lists):
             """
@@ -100,7 +100,7 @@ This code got AC in LeetCode;
             for head in lists:
                 if head:
                     heapq.heappush(pq, (head.val, head))
-                
+
             while pq:
                 node = heapq.heappop(pq)[1]
                 if node.next:
@@ -109,9 +109,3 @@ This code got AC in LeetCode;
                 curr = curr.next
             return dummy.next
 ```
-
-
-
-
-
-
