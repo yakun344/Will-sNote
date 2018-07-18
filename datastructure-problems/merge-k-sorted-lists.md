@@ -109,3 +109,49 @@ This code got AC in LeetCode;
                 curr = curr.next
             return dummy.next
 ```
+
+---
+_update 2018-07-17 20:47:59_
+
+#### Update: Java 分治法 solution
+```java
+class Solution {
+    public ListNode mergeKLists(ListNode[] lists) {
+        if (lists.length == 0) return null;
+        return mergeSort(lists, 0, lists.length - 1);
+    }
+
+    private ListNode mergeSort(ListNode[] lists, int start, int end) {
+        if (start == end) return lists[start];
+        int mid = (start + end) / 2;
+        ListNode head1 = mergeSort(lists, start, mid);
+        ListNode head2 = mergeSort(lists, mid + 1, end);
+        return merge(head1, head2);
+    }
+
+    private ListNode merge(ListNode head1, ListNode head2) {
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+        while (head1 != null || head2 != null) {
+            if (head1 == null) {
+                curr.next = head2;
+                return dummy.next;
+            } else if (head2 == null) {
+                curr.next = head1;
+                return dummy.next;
+            } else if (head1.val < head2.val) {
+                curr.next = head1;
+                head1 = head1.next;
+                curr.next.next = null;
+                curr = curr.next;
+            } else {
+                curr.next = head2;
+                head2 = head2.next;
+                curr.next.next = null;
+                curr = curr.next;
+            }
+        }
+        return dummy.next;
+    }
+}
+```
