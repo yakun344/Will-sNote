@@ -14,7 +14,7 @@ Given a list of words and an integer k, return the top k frequent words in the l
 **Example**
 
     Given
-    
+
     [
         "yes", "lint", "code",
         "yes", "code", "baby",
@@ -37,7 +37,7 @@ for k = 4, return ["code", "lint", "baby", "yes"],
 **思路1：bucket sort**
 先统计词频，然后建一个数组，大小为 max-min，每个bucket存放该词频的单词，然后从右往左遍历。最终得到的list可能数量大于k，排序后取较大的k个返回即可。
 
->时间复杂度：如果忽略最后一次按照字母顺序的排序，时间复杂度为O(n);
+>时间复杂度：如果忽略最后一次按照字母顺序的排序，时间复杂度为O(maxCount-minCount);
 
 **思路2：**
 同样先用hashmap统计词频，然后维持一个size为k的最小堆，来存放最大词频的k个string。但是这种方法有局限，因为我们除了跟踪词频之外还需要考虑同样词频时按照字母顺序进行取舍。在Java中，我们自然可以通过传入一个comparator解决问题，但是在python中，我暂时还没想到好的办法，因为如果key是string，无法直接取反。
@@ -98,9 +98,9 @@ for k = 4, return ["code", "lint", "baby", "yes"],
             res = []
             for i in range(len(buckets) - 1, -1, -1):
                 if buckets[i] is None: continue
-                
-                # 关键，对每组相同词频的words，按字母顺序进行排序再extend到res 
-                
+
+                # 关键，对每组相同词频的words，按字母顺序进行排序再extend到res
+
                 temp = list(buckets[i])
                 temp.sort()
                 res.extend(temp)
