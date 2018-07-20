@@ -1,4 +1,4 @@
-## Expression Expand
+## Expression Expand （Decode String）
 _update Aug 24,2017  17:43_
 
 ---
@@ -91,21 +91,21 @@ python
                         dig += s[i]
                         i += 1
                     factor = int(dig) # 系数得到了
-                    
+
                     # 接下来获取之后括号内的内容
-                    i += 1  # 跳过'[' 
+                    i += 1  # 跳过'['
                     right = -1
                     inner = []
                     while right != 0:
-                        if s[i] == '[': 
+                        if s[i] == '[':
                             right -= 1
-                        elif s[i] == ']': 
+                        elif s[i] == ']':
                             right += 1
-                        if right == 0: 
+                        if right == 0:
                             break
                         inner.append(s[i])
                         i += 1
-                    
+
                     #  处理inner
                     inner_expanded = self.expressionExpand(inner)
                     res += list(inner_expanded * factor)
@@ -113,7 +113,7 @@ python
                     i += 1
             return ''.join(res)
 ```
-            
+
 **思路2：using stack**
 使用stack可以模拟recursion的过程，但是要特别注意实现细节，跟踪好每一步之后指针 i 的位置。
 
@@ -128,7 +128,7 @@ Java:
         public String expressionExpand(String s) {
             Deque<Object> stack = new LinkedList<>();
             StringBuilder sb = new StringBuilder();
-            
+
             for (int i = 0; i < s.length(); ++i) {
                 Character c = s.charAt(i);
                 // 如果是数字，则找到完整数字，并压栈
@@ -141,10 +141,10 @@ Java:
                     } // 此时i指向数字之后的'['
                     factor = Integer.valueOf(dig);
                     stack.addLast(factor);
-                } 
+                }
                 else if (Character.isLetter(c)) {
                     stack.addLast(c);
-                } 
+                }
                 if (c == ']' || i == s.length() - 1) {
                     // 在stack中拿出最近的直到数字的字符串，处理之后放回stack中
                     // 便于后面的处理
@@ -175,6 +175,63 @@ Java:
     }
 ```
 
+---
+_update 2018-07-19 22:20:02_
 
+#### Update: recursion 模块化解法 java
+注意模块化的思路，很多逻辑看似复杂，可以交给一个helper function 稍后实现，这样可以专注核心逻辑。
+```java
+public class Solution {
+    /**
+     * @param s: an expression includes numbers, letters and brackets
+     * @return: a string
+     */
+    public String expressionExpand(String s) {
+        char[] arr = s.toCharArray();
+        return expand(arr, 0, arr.length - 1);
+    }
 
+    private int getNumber(char[] arr, int start) {
+        int ret = 0;
+        int i = start;
+        while (arr[i] >= '0' && arr[i] <= '9') {
+            ret = ret * 10 + arr[i++] - '0';
+        }
+        return ret;
+    }
 
+    // 从当前‘【’出发，找到与之匹配的‘】’
+    private int getNextPos(char[] arr, int start) {
+        int left = 0, right = 0;
+        for (int i = start; i < arr.length; ++i) {
+            if (arr[i] == '[') left++;
+            else if (arr[i] == ']') right++;
+            if (left == right) return i;
+        }
+        return -1;
+    }
+
+    private String expand(char[] arr, int start, int end) {
+        StringBuilder sb = new StringBuilder();
+        int i = start;
+        while (i <= end) {
+            if (arr[i] >= 'a' && arr[i] <= 'z' ||
+                arr[i] >= 'A' && arr[i] <= 'Z') {
+                sb.append(arr[i++]);
+            } else if (arr[i] >= '0' && arr[i] <= '9') {
+                int num = getNumber(arr, i);
+                // 跳过数字
+                while (arr[i] != '[') i++;
+                // 得到对应‘]’ 的index
+                int nextPos = getNextPos(arr, i);
+                String str = expand(arr, i + 1, nextPos - 1);
+                for (int k = 0; k < num; ++k) sb.append(str);
+                i = nextPos + 1;
+            } else {
+                return "error,";
+            }
+        }
+        return sb.toString();
+    }
+}
+```
