@@ -25,9 +25,9 @@ Java Code:
                     treeset.remove(nums[i]); // 窗口 left 右移，删去出去的num
                     i++;
                 }
-                if (treeset.ceiling(nums[j]) != null && Math.abs((long)treeset.ceiling(nums[j]) - (long)nums[j]) <= t) 
+                if (treeset.ceiling(nums[j]) != null && Math.abs((long)treeset.ceiling(nums[j]) - (long)nums[j]) <= t)
                     return true;  //  check successor
-                if (treeset.floor(nums[j]) != null && Math.abs((long)treeset.floor(nums[j]) - (long)nums[j]) <= t) 
+                if (treeset.floor(nums[j]) != null && Math.abs((long)treeset.floor(nums[j]) - (long)nums[j]) <= t)
                     return true;  //  check predecessor
                 treeset.add(nums[j]);
                 j++;
@@ -54,10 +54,10 @@ Python Code:
             def getIndex(num):
                 if t == 0: return num - t
                 return (num - t) // t
-            
+
             if not nums or len(nums) < 2 or k < 1 or t < 0:
                 return False
-            
+
             buckets = {} # Map<index, num> 因为每个bucket只能有一个数字（出现两个就返回true了）
             buckets[getIndex(nums[0])] = nums[0]
             i, j = 0, 1
@@ -77,6 +77,43 @@ Python Code:
             return False
 ```
 
+---
+_update 2018-07-21 17:27:05_
 
+#### Update Bucket sort solution
+思路如下：
 
+1. 先将input array normalize 为 最小值为 0 的数组；
+2. 用一个hashMap来存放buckets，`bucket index = num / (t + 1)`；
+3. 保持 window size 为 `k + 1`，每次查看当前数字对应 bucket index 是否已有元素，若有，则该元素与当前数字的绝对值差一定小于等于 t，直接返回true；否则的话，查看 index - 1 和 index + 1 两个buckets，看其中的元素和当前数字的距离是否小于等于 t；
 
+```java
+class Solution {
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        if (t < 0) return false;
+        // normalize first
+        long[] longNums = new long[nums.length];
+        long min = Integer.MAX_VALUE;
+        for (int num : nums) {
+            min = Math.min(min, num);
+        }
+        for (int i = 0; i < nums.length; ++i) longNums[i] = (long)nums[i] - min;
+        Map<Long, Long> buckets = new HashMap<>();
+        int left = 0, right = -1;
+        while (true) {
+            while (right - left + 1 < k + 1) {
+                if (right == nums.length - 1) return false;
+                long num = longNums[++right];
+                long index = num / (t + 1);
+                if (buckets.containsKey(index)) return true;
+                Long prev = buckets.get(index - 1);
+                Long next = buckets.get(index + 1);
+                if (prev != null && Math.abs(num - prev) <= t) return true;
+                if (next != null && Math.abs(num - next) <= t) return true;
+                buckets.put(index, num);
+            }
+            buckets.remove(longNums[left++] / (t + 1));
+        }
+    }
+}
+```
