@@ -7,7 +7,7 @@ _update Jan 24,2018  21:02_
 Median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle value.
 
 **Examples: **
-    
+
     [2,3,4] , the median is 3
     [2,3], the median is (2 + 3) / 2 = 2.5
 
@@ -17,13 +17,13 @@ void addNum(int num) - Add a integer number from the data stream to the data str
 double findMedian() - Return the median of all elements so far.
 
 **For example:**
-    
+
     addNum(1)
     addNum(2)
     findMedian() -> 1.5
-    addNum(3) 
+    addNum(3)
     findMedian() -> 2
-    
+
 <br>
 
 ### Basic Idea:
@@ -40,13 +40,13 @@ double findMedian() - Return the median of all elements so far.
     class MedianFinder {
         private PriorityQueue<Integer> leftMaxHeap;
         private PriorityQueue<Integer> rightMinHeap;
-        
+
         /** initialize your data structure here. */
         public MedianFinder() {
             leftMaxHeap = new PriorityQueue<>((a, b)->Integer.compare(b, a));
             rightMinHeap = new PriorityQueue<>();
         }
-        
+
         // 逻辑是先添加num，然后再做 rebalance
         public void addNum(int num) {
             // 判断 num 和左右两个 peek 的大小关系，然后add
@@ -62,7 +62,7 @@ double findMedian() - Return the median of all elements so far.
                 leftMaxHeap.offer(rightMinHeap.poll());
             }
         }
-        
+
         public double findMedian() {
             if (leftMaxHeap.size() == rightMinHeap.size()) {
                 return (double)(leftMaxHeap.peek() + rightMinHeap.peek()) / 2;
@@ -111,17 +111,46 @@ class MedianFinder(object):
             return -self.leftmax[0]
 ```
 
+---
+_update 2018-07-21 21:16:02_
 
+#### Update Java Solution
+这一次的写法应该更好。
 
+1. 先检查两heap的大小，如果 `left.size <= right.size`，则插入左边，否则插入右边。
+2. 然后检查左边max会不会大于右边min，如果是，则将两数互换。这样就可以维持两个pq的性质。
 
+```java
+class MedianFinder {
+    PriorityQueue<Integer> left, right;
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        this.left = new PriorityQueue<>((a, b)->Integer.compare(b, a));
+        this.right = new PriorityQueue<>();
+    }
 
+    public void addNum(int num) {
+        if (left.size() <= right.size()) {
+            left.offer(num);
+        } else {
+            right.offer(num);
+        }
+        // 检查如果左边最大值比右边最小值更大，则交换两个数
+        if (! left.isEmpty() && ! right.isEmpty() && left.peek() > right.peek()) {
+            int leftMax = left.poll();
+            int rightMin = right.poll();
+            left.offer(rightMin);
+            right.offer(leftMax);
+        }
+    }
 
-
-
-
-
-
-
-
-
-
+    public double findMedian() {
+        int size = left.size() + right.size();
+        if (size % 2 == 0) {
+            return ((double)left.peek() + right.peek()) / 2;
+        } else {
+            return left.peek();
+        }
+    }
+}
+```
