@@ -6,8 +6,8 @@ _update Aug,2 2017, 11:47_
 
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
-**For example** 
-    
+**For example**
+
     given n = 3, a solution set is:
     [
       "((()))",
@@ -16,7 +16,7 @@ Given n pairs of parentheses, write a function to generate all combinations of w
       "()(())",
       "()()()"
     ]
-    
+
 #### Basic Idea:
 首先会有一个思路：生成所有的组合，再判断是否valid，但是这种思路显然是太慢了，弃之。
 
@@ -52,7 +52,7 @@ Given n pairs of parentheses, write a function to generate all combinations of w
 ```
 
 #### Python Code:
-    ```python
+```python
     class Solution(object):
         def generateParenthesis(self, n):
             """
@@ -70,7 +70,7 @@ Given n pairs of parentheses, write a function to generate all combinations of w
                     path.append(")")
                     dfs(left, right + 1)
                     del path[-1]
-            
+
             path = []
             res = []
             dfs(0, 0)
