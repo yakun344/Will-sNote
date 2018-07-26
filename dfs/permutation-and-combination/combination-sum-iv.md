@@ -57,10 +57,33 @@ Therefore the output is 7.
                     ret += dfs(nums, remainSum - n)
                 dp[remainSum] = ret
                 return ret
-            
+
             dp = {}
             return dfs(nums, target)
 ```
 
+---
+_update 2018-07-25 22:14:52_
 
+#### Update：DP，bottom-up solution
+我们可以用DP的思路来做，首先我们有如下状态转移：
+```java
+  dp[target] = sum{ dp[target - num] } for num in nums;
+  base case: dp[0] = 1;
+```
+于是，我们只要i从 1 开始向右直到 target，每次检查nums中每个数字，如果`target-num >= 0`，生成i的组合个数就加上 `dp[target - num]`；
 
+```java
+class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        int[] dp = new int[target + 1];
+        dp[0] = 1;
+        for (int i = 0; i < dp.length; ++i) {
+            for (int num : nums) {
+                if (i - num >= 0) dp[i] += dp[i - num];
+            }
+        }
+        return dp[target];
+    }
+}
+```
