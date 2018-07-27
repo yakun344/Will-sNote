@@ -317,3 +317,69 @@ public:
     }
 };
 ```
+
+---
+_update 2018-07-27 00:08:03_
+### Update Java
+这次实现中，记录visited使用了hashmap而不是之前的2d array，执行速度有所下降。
+
+```java
+class Solution {
+    int[] dr = {0, 1, -1, 0};
+    int[] dc = {1, 0, 0, -1};
+    char[] dir = {'r', 'd', 'u', 'l'};
+
+    private class Node {
+        int r, c, dist;
+        String path;
+        public Node(int r, int c, int dist, String path) {
+            this.r = r; this.c = c; this.dist = dist; this.path = path;
+        }
+    }
+
+    public String findShortestWay(int[][] maze, int[] ball, int[] hole) {
+        PriorityQueue<Node> pq = new PriorityQueue<>((a, b)->{
+            if (a.dist != b.dist) return Integer.compare(a.dist, b.dist);
+            else return a.path.compareTo(b.path);
+        });
+        Map<String, Integer> dists = new HashMap<>();
+        pq.offer(new Node(ball[0], ball[1], 0, ""));
+        while (! pq.isEmpty()) {
+            Node curr = pq.poll();
+            String currKey = curr.r + "," + curr.c;
+            if (dists.getOrDefault(currKey, Integer.MAX_VALUE) <= curr.dist) continue; // 表示该node被lazy delete，直接跳过
+            else if (curr.r == hole[0] && curr.c == hole[1]) {
+                return curr.path; // 出口
+            } else {
+                dists.put(currKey, curr.dist); // 每次pq中poll出的都是该节点最终最小路径
+            }
+            // expand 该节点，四个方向
+            for (int i = 0; i < 4; ++i) {
+                int r = curr.r, c = curr.c, dist = curr.dist;
+                String path = curr.path;
+                while (isValid(maze, r + dr[i], c + dc[i])) {
+                    r += dr[i];
+                    c += dc[i];
+                    dist++;
+                    if (r == hole[0] && c == hole[1]) {
+                        break;
+                    }
+                }
+                if (r == curr.r && c == curr.c) continue; // 该方向无法移动，跳过
+                path += dir[i];
+                String thisKey = r + "," + c;
+                if (dist <= dists.getOrDefault(thisKey, Integer.MAX_VALUE)) {
+                    pq.offer(new Node(r, c, dist, path));
+                }
+            }
+        }
+        return "impossible";
+    }
+
+    private boolean isValid(int[][] maze, int r, int c) {
+        if (r < 0 || r >= maze.length || c < 0 || c >= maze[0].length) return false;
+        else if (maze[r][c] == 1) return false;
+        else return true;
+    }
+}
+```
