@@ -8,7 +8,7 @@ _update Jul 7, 2017 15:24_
 A zero-indexed array A consisting of N different integers is given. The array contains all integers in the range [0, N - 1].
 
 Sets S[K] for 0 <= K < N are defined as follows:
-    
+
     S[K] = { A[K], A[A[K]], A[A[A[K]]], ... }.
 
 Sets S[K] are finite for each K and should NOT contain duplicates.
@@ -18,9 +18,9 @@ Write a function that given an array A consisting of N integers, return the size
     Example 1:
         Input: A = [5,4,0,3,1,6,2]
         Output: 4
-        Explanation: 
+        Explanation:
         A[0] = 5, A[1] = 4, A[2] = 0, A[3] = 3, A[4] = 1, A[5] = 6, A[6] = 2.
-        
+
         One of the longest S[K]:
         S[0] = {A[0], A[5], A[6], A[2]} = {5, 6, 2, 0}
 **Note:**
@@ -49,6 +49,30 @@ public class Solution {
             maxLength = Math.max(maxLength, length);
         }
         return maxLength;
+    }
+}
+```
+
+---
+Update 2018-07-29 13:28:18
+
+#### Java Solution, shorter
+更短一些的实现方法，思路和上面的Java一样
+```java
+class Solution {
+    public int arrayNesting(int[] nums) {
+        int ret = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            int len = 0;
+            while (nums[i] >= 0) {
+                int t = nums[i];
+                nums[i] = -1;
+                i = t;
+                len++;
+            }
+            ret = Math.max(ret, len);
+        }
+        return ret;
     }
 }
 ```
