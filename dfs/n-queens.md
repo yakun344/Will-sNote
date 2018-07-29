@@ -15,19 +15,19 @@ Each solution contains a distinct board configuration of the n-queens' placement
 **For example,**
 
      There exist two distinct solutions to the 4-queens puzzle:
- 
+
      [
       [".Q..",  // Solution 1
        "...Q",
        "Q...",
        "..Q."],
-     
+
       ["..Q.",  // Solution 2
        "Q...",
        "...Q",
        ".Q.."]
      ]
-   
+
 <br>
 
 ### Basic Idea:
@@ -49,9 +49,9 @@ class Solution {
         List<List<String>> res = drawChessboard(lst, n);
         return res;
     }
-    
+
     // 对于每个row，考虑每个col能否放queen，如果可以，继续向下一个row dfs
-    // path 中存放的是每个 row 放置queen的 col 的值 (0 to n-1) 
+    // path 中存放的是每个 row 放置queen的 col 的值 (0 to n-1)
     private void dfs(List<List<Integer>> res, int row, List<Integer> path, int n) {
         if (row == n) {
             res.add(new ArrayList<>(path));
@@ -66,7 +66,7 @@ class Solution {
             }
         }
     }
-    
+
     // 判断当前 row，col 位置放 queen 的话会不会影响到之前的 row
     private boolean isValid(List<Integer> path, int row, int col, int n) {
         int k = 1;
@@ -77,7 +77,7 @@ class Solution {
         }
         return true;
     }
-    
+
     // 将用数字表示每行queen位置的所有解转化为string的二维list形式
     private List<List<String>> drawChessboard(List<List<Integer>> lst, int n) {
         List<List<String>> ret = new ArrayList<>();
@@ -94,25 +94,55 @@ class Solution {
             ret.add(stringList);
         }
         return ret;
-    } 
+    }
 }
 ```
 
+---
+_update 2018-07-29 17:11:37_
 
+#### Update, 更简洁的写法
+这里的写法更简单，也可以把 `boolean[n][n]` 换成一个 `int[n]`，存放没row的queen的col.
 
+```java
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+        List<List<String>> res = new ArrayList<>();
+        dfs(n, 0, new boolean[n][n], res);
+        return res;
+    }
 
+    private void dfs(int n, int row, boolean[][] board, List<List<String>> res) {
+        if (row == n) {
+            List<String> currBoard = new ArrayList<>();
+            for (boolean[] r : board) {
+                StringBuilder sb = new StringBuilder();
+                for (boolean val : r) {
+                    if (val) sb.append('Q');
+                    else sb.append('.');
+                }
+                currBoard.add(sb.toString());
+            }
+            res.add(currBoard);
+            return ;
+        }
+        for (int col = 0; col < n; ++col) {
+            if (isValid(board, row, col)) {
+                board[row][col] = true;
+                dfs(n, row + 1, board, res);
+                board[row][col] = false;
+            }
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private boolean isValid(boolean[][] board, int r, int c) {
+        if (r < 0 || r >= board.length || c < 0 || c >= board[0].length) return false;
+        for (int i = 1; r - i >= 0; ++i) {
+            if (c - i >= 0 && board[r - i][c - i]) return false;
+            if (c + i < board[0].length && board[r - i][c + i]) return false;
+            if (board[r - i][c]) return false;
+        }
+        return true;
+    }
+}
+```
