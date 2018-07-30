@@ -99,3 +99,34 @@ class Solution {
     }
 }
 ```
+
+---
+_update 2018-07-29 21:03:17_
+
+#### Update, HashMap Solution
+可以利用HashMap来解决，先排序，然后每次检查num-k是否在之前出现过，另外要跳过重复数字。还有就是需要注意，当k==0的时候，要特殊处理。
+```java
+class Solution {
+    public int findPairs(int[] nums, int k) {
+        Arrays.sort(nums);
+        Map<Integer, Integer> map = new HashMap<>();
+        int ret = 0;
+        int last = Integer.MAX_VALUE;
+        for (int num : nums) {
+            if (num == last) {
+                map.put(num, 2);
+                continue;
+            }
+            last = num;
+            if (map.containsKey(num - k)) ret ++;
+            map.put(num, 1);
+        }
+        if (k == 0) {
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+                if (entry.getValue() > 1) ret++;
+            }
+        }
+        return ret;
+    }
+}
+```
