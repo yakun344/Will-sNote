@@ -15,7 +15,7 @@ To make problem a bit easier, all A, B, C, D have same length of N where 0 ≤ N
     B = [-2,-1]
     C = [-1, 2]
     D = [ 0, 2]
-    
+
     Output:
     2
 
@@ -47,4 +47,35 @@ The two tuples are:
             return ret;
         }
     }
+```
+
+---
+_update 2018-08-05 13:27:03_
+
+#### Update C++ Solution
+要特别注意unordered_map的用法，`[]`有可能会导致插入一个元素，所以要用find。
+```cpp
+  class Solution {
+  public:
+      int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D) {
+          unordered_map<int, int> table;
+          for (int a : A) {
+              for (int b : B) {
+                  int sum = a + b;
+                  table[sum]++;
+              }
+          }
+          int ret = 0;
+          for (int c : C) {
+              for (int d : D) {
+                  int sum = c + d;
+                  unordered_map<int, int>::iterator it = table.find(-sum);
+                  if (it != table.end()) {
+                      ret += it->second;
+                  }
+              }
+          }
+          return ret;
+      }
+  };
 ```
