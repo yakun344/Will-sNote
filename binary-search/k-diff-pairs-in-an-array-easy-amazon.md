@@ -81,18 +81,22 @@ _update 2018-07-15 10:17:42_
 ```java
 class Solution {
     public int findPairs(int[] nums, int k) {
+        int i = 0, j = 1, ret = 0;
+        if (nums == null || nums.length == 0) return ret;
         Arrays.sort(nums);
-        int j = 0, ret = 0;
-        // O(n) time from now
-        for (int i = 0; i < nums.length; ++i) {
-            j = Math.max(i + 1, j);
-            while (j < nums.length && nums[j] < nums[i] + k) {
-                j++;
-            }
-            if (j >= nums.length) break;
-            if (nums[j] == nums[i] + k) ret++;
-            while (i + 1 < nums.length && nums[i] == nums[i + 1]) {
+        while (j < nums.length && i < nums.length - 1) {
+            j = j > i ? j : i + 1; // 避免 i 和 j 相等
+            if (nums[j] - nums[i] == k) {
+                ret++;
                 i++;
+                j++;
+                // 去重
+                while (i < nums.length && nums[i] == nums[i - 1]) i++;
+                while (j < nums.length && nums[j] == nums[j - 1]) j++;
+            } else if (nums[j] - nums[i] > k) {
+                i++;
+            } else {
+                j++;
             }
         }
         return ret;
