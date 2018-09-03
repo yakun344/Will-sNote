@@ -181,6 +181,7 @@
   * [Similar RGB Color \(Ease Google\)](string-manipulation/similar-rgb-color.md)
   * [Subdomain Visit Count \(Easy\)](string-manipulation/subdomain-visit-count-easy.md)
 * [DataStructure Problems](datastructure-problems/datastructure-problems.md)
+  * [Maximum Product of Three Numbers](datastructure-problems/maximum-product-of-three-numbers.md)
   * [Next Greater Element II](datastructure-problems/next-greater-element-ii.md)
   * [High Five](datastructure-problems/high-five.md)
   * [K Closest Points](datastructure-problems/k-closest-points.md)
