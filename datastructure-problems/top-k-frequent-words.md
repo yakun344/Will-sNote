@@ -2,7 +2,8 @@
 _update Aug 23, 2017  16:33_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/top-k-frequent-words/)
+[LintCode](http://www.lintcode.com/en/problem/top-k-frequent-words/)   
+[LeetCode](https://leetcode.com/problems/top-k-frequent-words/description/)
 
 Given a list of words and an integer k, return the top k frequent words in the list.
 
@@ -165,3 +166,48 @@ Heap q solution:
 _update Sep 7, 17:15_
 
 更新，关于python局限的问题，我们可以把 queue element 封装入一个 inner class，重写其 `__lt__` 方法，以实现功能。详见 [The Maze III](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/the-maze-iii.html) 中的python 解法之前内容；
+
+---
+_update Sep 3 2018, 12:45_
+
+### Update, LeetCode version, Java PQ Solution
+```java
+class Solution {
+    private class Node implements Comparable<Node> {
+        String str;
+        int num;
+        public Node(String str, int num) {
+            this.str = str;
+            this.num = num;
+        }
+
+        @Override
+        public int compareTo(Node that) {
+            if (this.num != that.num) {
+                return Integer.compare(this.num, that.num);
+            } else {
+                return that.str.compareTo(this.str);
+            }
+        }
+    }
+    public List<String> topKFrequent(String[] words, int k) {
+        Map<String, Integer> counter = new HashMap<>();
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        List<String> res = new ArrayList<>();
+
+        for (String str : words) {
+            counter.put(str, counter.getOrDefault(str, 0) + 1);
+        }
+        for (Map.Entry<String, Integer> entry : counter.entrySet()) {
+            Node currNode = new Node(entry.getKey(), entry.getValue());
+            pq.add(currNode);
+            if (pq.size() > k) pq.poll();
+        }
+        while (pq.size() > 0) {
+            res.add(pq.poll().str);
+        }
+        Collections.reverse(res);
+        return res;
+    }
+}
+```
