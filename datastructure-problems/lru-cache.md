@@ -16,7 +16,7 @@ Could you do both operations in O(1) time complexity?
 **Example:**
 
         LRUCache cache = new LRUCache( 2 /* capacity */ );
-        
+
         cache.put(1, 1);
         cache.put(2, 2);
         cache.get(1);       // returns 1
@@ -45,9 +45,9 @@ Could you do both operations in O(1) time complexity?
             self.key = key
             self.prev = None
             self.next = None
-    
+
     class LRUCache:
-    
+
         # @param capacity, an integer
         def __init__(self, capacity):
             self.CAPACITY = capacity
@@ -56,8 +56,8 @@ Could you do both operations in O(1) time complexity?
             self.head.next = self.tail
             self.tail.prev = self.head
             self.table = {}
-            
-    
+
+
         # @return an integer
         def get(self, key):
             if key not in self.table:
@@ -67,7 +67,7 @@ Could you do both operations in O(1) time complexity?
                 self.removeNode(node)
                 self.insertAtTail(node)
                 return node.val
-            
+
         # @param key, an integer
         # @param value, an integer
         # @return nothing
@@ -84,14 +84,14 @@ Could you do both operations in O(1) time complexity?
                 node.val = value
                 self.removeNode(node)
                 self.insertAtTail(node)
-                
-            
+
+
         def insertAtTail(self, node):
             node.prev = self.tail.prev
             node.next = self.tail
             node.prev.next = node
             self.tail.prev = node
-            
+
         def removeNode(self, node):
             node.prev.next = node.next
             node.next.prev = node.prev
@@ -99,6 +99,7 @@ Could you do both operations in O(1) time complexity?
 
 #### Java Code:
 This code got AC in LeetCode;
+
 ```java
     class LRUCache {
         private class LinkedNode {
@@ -115,7 +116,7 @@ This code got AC in LeetCode;
                 this.val = val;
             }
         }
-        
+
         private LinkedNode head;
         private LinkedNode tail;
         private Map<Integer, LinkedNode> map = null;
@@ -128,7 +129,7 @@ This code got AC in LeetCode;
             this.map = new HashMap<>();
             this.CAPACITY = capacity;
         }
-        
+
         public int get(int key) {
             if (! map.containsKey(key)) return -1;
             LinkedNode node = map.get(key);
@@ -136,7 +137,7 @@ This code got AC in LeetCode;
             insertAtTail(node);
             return node.val;
         }
-        
+
         public void put(int key, int value) {
             if (! map.containsKey(key)) {
                 if (map.size() == CAPACITY) {
@@ -157,12 +158,12 @@ This code got AC in LeetCode;
                 insertAtTail(node);
             }
         }
-        
+
         private void removeNode(LinkedNode node) {
             node.prev.next = node.next;
             node.next.prev = node.prev;
         }
-        
+
         private void insertAtTail(LinkedNode node) {
             node.next = tail;
             node.prev = tail.prev;
@@ -171,4 +172,88 @@ This code got AC in LeetCode;
         }
     }
 ```
-    
+
+---
+_update Sep 4, 2018 15:29_
+
+#### Upadte: Java Code
+这次写好的Java Code 感觉逻辑更加易于理解
+
+```java
+class LRUCache {
+    private class ListNode {
+        int key, val;
+        ListNode prev, next;
+        public ListNode(int key, int val) {
+            this.key = key;
+            this.val = val;
+        }
+    }
+
+    private ListNode head;
+    private ListNode tail;
+    private final Map<Integer, ListNode> map;
+    private final int CAPACITY;
+    private int size;
+
+    private void removeLast() {
+        ListNode node = tail.prev;
+        node.prev.next = tail;
+        tail.prev = node.prev;
+        map.remove(node.key);
+    }
+
+    private void addFirst(int key, int val) {
+        ListNode node = new ListNode(key, val);
+        map.put(key, node);
+        node.next = head.next;
+        node.prev = head;
+        head.next = node;
+        node.next.prev = node;
+    }
+
+    private void moveToFirst(ListNode node) {
+        if (head.next == node) return;
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        node.next = head.next;
+        node.prev = head;
+        head.next = node;
+        node.next.prev = node;
+    }
+
+    public LRUCache(int capacity) {
+        CAPACITY = capacity;
+        head = new ListNode(0, 0);
+        tail = new ListNode(0, 0);
+        head.next = tail;
+        tail.prev = head;
+        size = 0;
+        map = new HashMap<Integer, ListNode>();
+    }
+
+    public int get(int key) {
+        ListNode node = map.get(key);
+        if (node == null) return -1;
+        moveToFirst(node);
+        return node.val;
+    }
+
+    public void put(int key, int value) {
+        ListNode node = map.get(key);
+        if (node != null) {
+            // already exist key
+            node.val = value;
+            moveToFirst(node);
+        } else {
+            // need to add new node
+            if (size == CAPACITY) {
+                removeLast();
+                size--;
+            }
+            addFirst(key, value);
+            size++;
+        }
+    }
+}
+```
