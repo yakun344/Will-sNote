@@ -257,6 +257,7 @@
   * [Partition Array II ](two-pointers-problem/partition-array-ii.md)
   * [Max Consecutive Ones II](two-pointers-problem/max-consecutive-ones-ii.md)
   * [Reverse Vowels of a String （easy）](two-pointers-problem/reverse-vowels-of-a-string-easy.md)
+  * [Trapping Rain Water](two-pointers-problem/trapping-rain-water.md)
 * [Interval Problems](interval-problems/interval-problems.md)
   * [Non-overlapping Intervals](interval-problems/non-overlapping-intervals.md)
   * [Merge Intervals](interval-problems/merge-intervals.md)
