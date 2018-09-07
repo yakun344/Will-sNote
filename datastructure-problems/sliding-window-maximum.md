@@ -11,7 +11,7 @@ Given an array nums, there is a sliding window of size k which is moving from th
     Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
     Output: [3,3,5,5,6,7]
 
-**Explanation: **
+**Explanation:**
 
     Window position                Max
     ---------------               -----
@@ -22,7 +22,7 @@ Given an array nums, there is a sliding window of size k which is moving from th
      1  3  -1  -3 [5  3  6] 7       6
      1  3  -1  -3  5 [3  6  7]      7
 
-**Note: **
+**Note:**
 
 You may assume k is always valid, 1 ≤ k ≤ input array's size for non-empty array.
 
