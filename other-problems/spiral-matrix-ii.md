@@ -9,14 +9,14 @@ Given an integer n, generate a square matrix filled with elements from 1 to n2 i
 **For example,**  
 
     Given n = 3,
-    
+
     You should return the following matrix:
     [
      [ 1, 2, 3 ],
      [ 8, 9, 4 ],
      [ 7, 6, 5 ]
     ]
-    
+
 <br>
 
 ### Basic Idea:
@@ -31,7 +31,7 @@ Given an integer n, generate a square matrix filled with elements from 1 to n2 i
             helper(matrix, 0, n, 1);
             return matrix;
         }
-        
+
         // 用来做递归，offset为向中间偏移的层数, width 是当前层的宽和高
         // count 为当前层第一个需要填的数字(左上角)
         private void helper(int[][] matrix, int offset, int width, int count) {
@@ -46,7 +46,7 @@ Given an integer n, generate a square matrix filled with elements from 1 to n2 i
             for (int i = 0; i < width - 1; ++i) matrix[i + offset][matrix.length - offset - 1] = count++;
             for (int i = 0; i < width - 1; ++i) matrix[matrix.length - offset - 1][matrix.length - offset - 1 - i] = count++;
             for (int i = 0; i < width - 1; ++i) matrix[matrix.length - offset - 1 - i][offset] = count++;
-            
+
             helper(matrix, offset + 1, width - 2, count);
         }
     }
@@ -90,7 +90,7 @@ Given an integer n, generate a square matrix filled with elements from 1 to n2 i
       }
     }
   ```
-  
+
 <br>
 
 ---
@@ -108,7 +108,7 @@ _update Jan 28,2018  17:51_
           helper(matrix, 1, 0, n, m);
           return matrix;
         }
-        
+
         private void helper(int[][] matrix, int count, int offset, int width, int height) {
           // 每次先判断是否有width或者height == 1
           if (width == 0 || height == 0) return;
@@ -147,12 +147,38 @@ _update Jan 28,2018  17:51_
       }
 ```
 
+---
+_update Sep 6 2018, 14:05_
 
+#### Update Java Code
+```java
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> res = new ArrayList<>();
+        if (matrix.length == 0 || matrix[0].length == 0) return res;
 
-
-
-
-
-
-
-
+        int R = matrix.length, C = matrix[0].length;
+        int width = C, height = R, offset = 0;
+        while (true) {
+            if (width == 0 || height == 0) return res;
+            else if (width == 1 && height == 1) {
+                res.add(matrix[offset][offset]);
+                return res;
+            } else if (width == 1) {
+                for (int i = offset; i < R - offset; ++i) res.add(matrix[i][offset]);
+                return res;
+            } else if (height == 1) {
+                for (int i = offset; i < C - offset; ++i) res.add(matrix[offset][i]);
+                return res;
+            } else if (width < 0 || height < 0) return res;
+            for (int i = offset; i < C - 1 - offset; ++i) res.add(matrix[offset][i]);
+            for (int i = offset; i < R - 1 - offset; ++i) res.add(matrix[i][C - 1 - offset]);
+            for (int i = C - offset - 1; i > offset; --i) res.add(matrix[R - offset - 1][i]);
+            for (int i = R - offset - 1; i > offset; --i) res.add(matrix[i][offset]);
+            offset++;
+            width -= 2;
+            height -= 2;
+        }
+    }
+}
+```
