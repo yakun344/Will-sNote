@@ -83,6 +83,7 @@
   * [Subtree of Another Tree \(Easy Facebook\)](Tree/subtree-of-another-tree-easy-facebook.md)
   * [Second Minimum Node In a Binary Tree \(Easy LinkedIn\)](Tree/second-minimum-node-in-a-binary-tree-easy-linkedin.md)
   * [Longest Univalue Path \(Easy Google\)](Tree/longest-univalue-path-easy-google.md)
+  * [Maximum Width of Binary Tree](Tree/maximum-width-of-binary-tree.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
