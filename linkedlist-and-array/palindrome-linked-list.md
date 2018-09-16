@@ -78,7 +78,7 @@ _update Nov 29, 2017_
             }
             return true;
         }
-        
+
         private ListNode reverse(ListNode head) {
             if (head == null || head.next == null) return head;
             ListNode node = reverse(head.next);
@@ -86,7 +86,7 @@ _update Nov 29, 2017_
             head.next = null;
             return node;
         }
-        
+
         // 将list分成两组，中间断开，返回值为后半段起点。
         // 利用循环结束时 fast的位置来判断list中node个数的奇偶，如果fast在最右边则list中有偶数个node，
         // 否则的话，则需要手动删去中心的node。
@@ -105,7 +105,7 @@ _update Nov 29, 2017_
             }
             ListNode ret = slow.next;
             slow.next = null;
-            
+
             return ret;
         }
     }
@@ -124,7 +124,7 @@ _update Nov 29, 2017_
             while head:
                 nums.append(head.val)
                 head = head.next
-            
+
             mid = len(nums) // 2
             left, right = -1, -1
             if len(nums) % 2 == 0:
@@ -133,7 +133,7 @@ _update Nov 29, 2017_
             else:
                 left = mid - 1
                 right = mid + 1
-            
+
             while left >= 0 or right < len(nums):
                 if left < 0 or right == len(nums):
                     return False
@@ -144,12 +144,48 @@ _update Nov 29, 2017_
             return True
 ```
 
+<br/>
 
+---
+_update Sep 16 2018, 14:40_
 
+### Update: 更简洁的写法
+时隔大半年，写这道题目的code更加简洁而且一次bug free。需要注意的点如下：  
 
+1. fast的起点为head.next, 这样最终slow会指向中间偏左的位置;
+2. reverse之后比较两个list是否相等的时候不需要考虑其长度不同的问题，因为可能多出来的node并不会影响，所以只有当对应node的val不同时返回false即可。
 
+#### Java Code:
+```java
+class Solution {
+   public boolean isPalindrome(ListNode head) {
+       if (head == null || head.next == null) return true;
+       ListNode slow = head, fast = head.next;
+       while (fast.next != null && fast.next.next != null) {
+           slow = slow.next;
+           fast = fast.next.next;
+       }
+       // slow 指向中间偏左
+       ListNode mid = slow.next;
+       slow.next = null;
+       ListNode head2 = reverse(mid);
+       while (head != null && head2 != null) {
+           if (head.val != head2.val) return false;
+           head = head.next;
+           head2 = head2.next;
+       }
+       return true;
+   }
 
-
-
-
-
+   private ListNode reverse(ListNode head) {
+       ListNode prev = null, curr = head, next = null;
+       while (curr != null) {
+           next = curr.next;
+           curr.next = prev;
+           prev = curr;
+           curr = next;
+       }
+       return prev;
+   }
+}
+```
