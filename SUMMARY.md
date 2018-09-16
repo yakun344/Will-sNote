@@ -218,6 +218,7 @@
   * [Design Compressed String Iterator \(Easy Google\)](datastructure-problems/design-compressed-string-iterator-easy-google.md)
   * [Sentence Similarity \(Easy Google\)](datastructure-problems/sentence-similarity-easy-google.md)
   * [ Sliding Window Maximum](datastructure-problems/sliding-window-maximum.md)
+  * [Largest Rectangle in Histogram](datastructure-problems/largest-rectangle-in-histogram.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
