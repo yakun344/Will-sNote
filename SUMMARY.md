@@ -238,6 +238,7 @@
     * [Permutations II](dfs/permutation-and-combination/permutations-ii.md)
     * [Next Permutation](dfs/permutation-and-combination/next-permutation.md)
     * [Generate Parentheses](dfs/permutation-and-combination/generate-parentheses.md)
+    * [Remove Invalid Parentheses](dfs/permutation-and-combination/remove-invalid-parentheses.md)
   * [Array Nesting](dfs/array-nesting.md)
   * [Lexicographical Numbers](dfs/lexicographical-numbers.md)
   * [N-Queens](dfs/n-queens.md)

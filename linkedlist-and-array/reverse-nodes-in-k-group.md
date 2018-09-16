@@ -13,13 +13,13 @@ You may not alter the values in the nodes, only nodes itself may be changed.
 Only constant memory is allowed.
 
 **Example**
-    
+
     Given this linked list: 1->2->3->4->5
-    
+
     For k = 2, you should return: 2->1->4->3->5
-    
+
     For k = 3, you should return: 3->2->1->4->5
-    
+
 #### Basic Idea:
 这道题的难度应该远够不上 hard。
 
@@ -69,8 +69,8 @@ class Solution:
             # 重新连接左右部分和中间部分
             head.next = tailNext
             preHead.next = tail
-            
-            
+
+
         # main part
         dummy = ListNode(0)
         dummy.next = head
@@ -111,7 +111,7 @@ class Solution {
         }
         return dummy.next;
     }
-    
+
     // get the k-th node, include head
     private ListNode getKth(ListNode head, int k) {
         int count = 1;
@@ -122,7 +122,7 @@ class Solution {
         }
         return curr;
     }
-    
+
     private ListNode reverse(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
@@ -154,12 +154,12 @@ class Solution {
         if (kth == null) return head;
         ListNode nextHead = kth.next;
         kth.next = null;
-        reverse(head); 
+        reverse(head);
         // kth is the new head, head is now the tail
         head.next = reverseKGroup(nextHead, k);
         return kth;
     }
-    
+
     // get the k-th node, include head
     private ListNode getKth(ListNode head, int k) {
         int count = 1;
@@ -170,7 +170,7 @@ class Solution {
         }
         return curr;
     }
-    
+
     private ListNode reverse(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
@@ -186,10 +186,50 @@ class Solution {
 }
 ```
 
+---
+_update Sep 15 2018, 18:39_
 
+### Update, 更清晰的写法
+1. 每次reverse之前先将需要reverse的部分和后面断开，保存好这段之前的节点prev，之后的节点nextHead，这段的首位currHead和kth；
+2. reverse之后将之前存好的节点链接起来：`prev.next = kth; currHed.next = next;`, 然后更新下一段的变量：`prev = currHead;`;
 
+```java
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null || head.next == null) return head;
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode prev = dummy;
+        while (true) {
+            ListNode currHead = prev.next;
+            ListNode kth = getKth(currHead, k);
+            if (kth == null) break;
+            ListNode nextHead = kth.next;
+            kth.next = null;
+            reverse(currHead);
+            prev.next = kth;
+            currHead.next = nextHead;
+            prev = currHead;
+        }
+        return dummy.next;
+    }
 
+    private void reverse(ListNode head) {
+        ListNode prev = null, curr = head, next = head.next;
+        while (curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+    }
 
-
-
-
+    private ListNode getKth(ListNode head, int k) {
+        for (int i = 1; i < k; ++i) {
+            if (head == null) return head;
+            head = head.next;
+        }
+        return head;
+    }
+}
+```
