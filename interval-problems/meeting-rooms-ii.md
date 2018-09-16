@@ -60,3 +60,47 @@ Given an array of meeting time intervals consisting of start and end times [[s1,
         }
     }
 ```
+
+---
+_update Sep 16 2018, 13:58_
+
+### Update: 扫描线法
+这个方法的本质和之前是一样的，也是将start和end平等对待，将其当做两种事件。先将每个时间点拿出来，标记为start或者end，然后将他们一起排序。之后从左往右扫描，遇到start就记为overlap+1，遇到end就记为overlap-1，返回值就是历史上最大的overlap数量。但是需要注意的是如果出现一个start和end在同一时间出现，我们需要保证end出现在start的前面，所以需要特别定制comparator的规则。
+
+#### Java Code:
+```java
+class Solution {
+    private class Event {
+        int time;
+        boolean start;
+        public Event(int time, boolean start) {
+            this.time = time;
+            this.start = start;
+        }
+    }
+    public int minMeetingRooms(Interval[] intervals) {
+        Event[] arr = new Event[intervals.length * 2];
+        for (int i = 0; i < intervals.length; ++i) {
+            arr[2 * i] = new Event(intervals[i].start, true);
+            arr[2 * i + 1] = new Event(intervals[i].end, false);
+        }
+        Arrays.sort(arr, (a, b)->{
+                if (a.time != b.time) {
+                    return Integer.compare(a.time, b.time);
+                } else if (a.start) {
+                    return 1;
+                } else return -1;
+            });
+        int maxOverlap = 0, overlap = 0;
+        for (int i = 0; i < arr.length; ++i) {
+            if (arr[i].start) {
+                overlap++;
+                maxOverlap = Math.max(maxOverlap, overlap);
+            } else {
+                overlap--;
+            }
+        }
+        return maxOverlap;
+    }
+}
+```
