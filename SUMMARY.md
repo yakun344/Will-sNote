@@ -222,6 +222,7 @@
   * [ Sliding Window Maximum](datastructure-problems/sliding-window-maximum.md)
   * [Largest Rectangle in Histogram](datastructure-problems/largest-rectangle-in-histogram.md)
   * [Basic Calculator II](datastructure-problems/basic-calculator-ii.md)
+  * [Group Anagrams](datastructure-problems/group-anagrams.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
