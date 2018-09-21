@@ -13,10 +13,10 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 
 #### Basic Idea:
 **思路 1：**
-首先想到既然只允许至多两次交易，我们可以把n天分成两段，然后分别考虑：
-first[i]  表示从第 0 天到第 i 天的最大利润；
-second[i] 表示从第 i 天到第 n-1 天的最大利润；
-然后遍历，找到最大的 first[i]+second[i+1] 即可。
+    首先想到既然只允许至多两次交易，我们可以把n天分成两段，然后分别考虑：
+    first[i]  表示从第 0 天到第 i 天的最大利润；
+    second[i] 表示从第 i 天到第 n-1 天的最大利润；
+    然后遍历，找到最大的 first[i]+second[i] 即可。
 
 具体地，求first的时候，从左向右，maintain一个当前最低价格，每次计算更新maxProfit；
 求second的时候，从右向左，maintain一个当前maxPrice，每次更新maxProfit；
@@ -67,7 +67,7 @@ Python Code：
             :rtype: int
             """
             if not prices: return 0
-            # 初始化 buy 和 sell 
+            # 初始化 buy 和 sell
             buy = []
             sell = []
             for i in range(2):
@@ -75,20 +75,10 @@ Python Code：
                 buy[i][0] = -prices[0]
             for i in range(2 + 1):
                 sell.append([0] * len(prices))
-            
+
             for j in range(1, 2 + 1):
                 for i in range(1, len(prices)):
                     buy[j - 1][i] = max(buy[j - 1][i - 1], sell[j - 1][i - 1] - prices[i])
                     sell[j][i] = max(sell[j][i - 1], buy[j - 1][i - 1] + prices[i])
             return sell[-1][-1]
 ```
-
-
-
-
-
-
-
-
-
-

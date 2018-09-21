@@ -34,7 +34,7 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
             """
             if not prices: return 0
             if k > len(prices) / 2: return self.easySolution(prices)
-            # 初始化 buy 和 sell 
+            # 初始化 buy 和 sell
             buy = []
             sell = []
             for i in range(k):
@@ -48,8 +48,8 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
                     buy[j - 1][i] = max(buy[j - 1][i - 1], sell[j - 1][i - 1] - prices[i])
                     sell[j][i] = max(sell[j][i - 1], buy[j - 1][i - 1] + prices[i])
             return sell[-1][-1]
-            
-            
+
+
         def easySolution(self, prices):
             ret = 0
             for i in range(1, len(prices)):
@@ -59,7 +59,7 @@ You may not engage in multiple transactions at the same time (ie, you must sell 
 ```
 
 #### Java Code (O(n) 空间):
-    ```java
+```java
     public class Solution {
         public int maxProfit(int k, int[] prices) {
             if (prices == null || prices.length == 0) return 0;
