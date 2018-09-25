@@ -66,3 +66,31 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
         }
     }
 ```
+
+---
+_update Sep 24 2018, 21:34_
+
+### Update: 滚动数组优化space
+利用滚动数组将`O(n*m)`空间优化为`O(2n)`。注意 `% 2`的操作可以简化逻辑。
+
+```java
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        if (matrix.length == 0 || matrix[0].length == 0) return 0;
+        int ret = 0;
+        int[][] dp = new int[2][matrix[0].length +1];
+        for (int r = 1; r < matrix.length + 1; ++r) {
+            for (int c = 1; c < matrix[0].length + 1; ++c) {
+                if (matrix[r - 1][c - 1] == '1') {
+                  // 此处利用mod2可以将原本的index转化为0或者1
+                    dp[r % 2][c] = 1 + Math.min(dp[(r - 1) % 2][c -1], Math.min(dp[(r - 1) % 2][c], dp[r % 2][c - 1]));
+                    ret = Math.max(ret, dp[r % 2][c]);
+                } else {
+                    dp[r % 2][c] = 0;
+                }
+            }
+        }
+        return ret * ret;
+    }
+}
+```
