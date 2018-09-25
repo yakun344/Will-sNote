@@ -16,7 +16,7 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
     1 0 0 1 0
     Return 4.
 
-<br>
+<br/>
 
 ## Basic Idea
 一个边长为 N 的 square 中共有多少个正方形呢？答案是 `O(N^3)` 级的，因为我们共有 `O(N^2)` 个左上顶点，对于每个顶点可以选 `O(N)` 个不同边长。所以 brute force 就是查看所有的正方形，从中找到边长最长的那个，耗时 `O(N^5)`，因为需要考虑 `O(N^3)` 个正方形，对于每个正方形又需要 `O(N^2)` 的时间去验证其是否全部都是 `“1”`。
