@@ -7,15 +7,15 @@ _update Mar 7, 2018_
 Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.
 
 **For example:**
-    
+
     given the following matrix:
-    
+
     1 0 1 0 0
     1 0 1 1 1
     1 1 1 1 1
     1 0 0 1 0
     Return 4.
-    
+
 <br>
 
 ## Basic Idea
@@ -26,11 +26,11 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
         1  1  1  
         1  1  1  
         1  1  1
-        
+
         对于如上例子，其中共有4个边长为2的正方形，当我们已经知道右上，左上和左下三个正方形已经valid时，
         只需要保证右下角的数字是 1 就可以了。于是我们就可以得到一个地推关系式，就是包含 dp[i][j] 为
         右下顶点的正方形一定要满足其自身等于 1，然后考虑其左、上、左上方三个位置正方形边长，取最小的加一。
-        
+
         例如：
         matrix:           dp table:
             1  1  0        1  1  0
@@ -40,6 +40,7 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
 ```
 
 * ### Java Code:
+
 ```java
     class Solution {
         public int maximalSquare(char[][] matrix) {
@@ -52,7 +53,7 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest square contai
                 for (int c = 0; c < C; ++c) {
                     if (r > 0 && c > 0) {
                         // 在周围三个正方形中选择边长最小的，然后新的正方形就是其边长加一
-                        dp[r][c] = matrix[r][c] == '1' ? 
+                        dp[r][c] = matrix[r][c] == '1' ?
                             Math.min(Math.min(dp[r - 1][c], dp[r][c - 1]), dp[r - 1][c - 1]) + 1 : 0;
                     } else {
                         // 考虑上边界和左边界的情况，最大边长为 1
