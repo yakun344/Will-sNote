@@ -25,6 +25,7 @@ The largest rectangle is shown in the shaded area, which has area = 10 unit.
 利用单调栈，找出每个元素左边和右边第一个比它小的元素的index，然后扫描array，对每个元素就可以知道包括它在内的矩形的宽度和高度。宽度是其左右小于它的元素之间的距离，高度就是它自身的高度。输出所有面积中的最大值。
 
 #### Java Code：
+
 ```java
 class Solution {
     public int largestRectangleArea(int[] heights) {
