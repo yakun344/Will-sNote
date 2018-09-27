@@ -318,6 +318,7 @@
   * [Max Sum of Rectangle No Larger Than K \(Hard\)](dynamic-programming/max-sum-of-rectangle-no-larger-than-k-hard.md)
   * [Word Break](dynamic-programming/word-break.md)
   * [Wildcard Matching](dynamic-programming/wildcard-matching.md)
+  * [Coins in a Line](dynamic-programming/coins-in-a-line.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
