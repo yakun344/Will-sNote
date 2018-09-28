@@ -132,7 +132,7 @@
   * [Non-decreasing Array \(Easy Google\)](linkedlist-and-array/non-decreasing-array-easy-google.md)
   * [Degree of an Array](linkedlist-and-array/degree-of-an-array.md)
   * [1-bit and 2-bit Characters](linkedlist-and-array/1-bit-and-2-bit-characters.md)
-  * [Odd Even Linked List](linkedlist-and-array/odd Even-linked List.md)
+  * [Odd Even Linked List](linkedlist-and-array/odd-even-linked-list.md)
   * [K Empty Slots](linkedlist-and-array/k-empty-slots.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
