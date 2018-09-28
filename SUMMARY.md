@@ -36,6 +36,7 @@
   * [Is Graph Bipartite? \(Medium\)](graph/is-graph-bipartite-medium.md)
   * [Flood Fill \(Easy Uber\)](graph/flood-fill-easy-uber.md)
   * [Alien Dictionary](graph/alien-dictionary.md)
+  * [Reconstruct Itinerary](graph/reconstruct-itinerary.md)
 * [Tree](Tree/Tree.md)
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Symmetric Tree](Tree/symmetric-tree.md)
