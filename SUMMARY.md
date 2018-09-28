@@ -154,6 +154,7 @@
   * [K-diff Pairs in an Array \(Easy Amazon\)](binary-search/k-diff-pairs-in-an-array-easy-amazon.md)
 * [Trie](Trie/Trie.md)
   * [Longest Word in Dictionary](Trie/Trie/longest-word-in-dictionary.md)
+  * [Implement Trie](Trie/Trie/implement-trie-prefix-tree.md)
 * [String Manipulation](string-manipulation/string-manipulation.md)
   * [String Notes](string-manipulation/string-notes.md)
   * [Regular Expressions](string-manipulation/regular-expressions.md)
