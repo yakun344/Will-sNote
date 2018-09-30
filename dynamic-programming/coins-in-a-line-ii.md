@@ -49,6 +49,7 @@ Could you please decide the first player will win or lose?
 3. `dp[i]`也可以理解为到 i 位置剩下的硬币价值中能获得的最大收益，而另一个玩家的每次选择都会尽量将先拿硬币玩家剩余的价值最小化。
 
 #### Java Code:
+一个细节，可以先将dp数组的长度声明为values.length + 2, 这样可以为后面留出两个0，就不需要特殊判断了。
 ```java
 public class Solution {
     /**
@@ -58,18 +59,13 @@ public class Solution {
     public boolean firstWillWin(int[] values) {
         if (values.length == 0) return false;
         else if (values.length < 3) return true;
-        int[] dp = new int[values.length + 1];
-        dp[values.length] = 0;
-        dp[values.length - 1] = values[values.length - 1];
-        dp[values.length - 2] = values[values.length - 1] + values[values.length - 2];
-        for (int i = values.length - 3; i >= 0; --i) {
+        int N = values.length;
+        int dp[] = new int[values.length + 2];
+        dp[N - 1] = values[N - 1];
+        dp[N - 2] = values[N - 1] + values[N - 2];
+        for (int i = N - 3; i >= 0; --i) {
             int get1 = values[i] + Math.min(dp[i + 2], dp[i + 3]);
-            int get2 = values[i] + values[i + 1];
-            if (i < values.length - 3) {
-                get2 += Math.min(dp[i + 3], dp[i + 4]);
-            } else {
-                get2 += dp[i + 3];
-            }
+            int get2 = values[i] + values[i + 1] + Math.min(dp[i + 3], dp[i + 4]);
             dp[i] = Math.max(get1, get2);
         }
         int sum = 0;
