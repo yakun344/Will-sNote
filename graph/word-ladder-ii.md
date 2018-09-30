@@ -2,7 +2,8 @@
 _update Jul 21, 2017 21:42_
 
 ---
-[LintCode](http://www.lintcode.com/en/problem/word-ladder-ii/)
+[LintCode](http://www.lintcode.com/en/problem/word-ladder-ii/)  
+[LeetCode](https://leetcode.com/problems/word-ladder-ii/description/)
 
 Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
 
@@ -27,7 +28,7 @@ Each intermediate word must exist in the dictionary
       ]
 
 #### Basic Idea:
-这道题目的难点是要求出所有最短路径。之前的 **[Word Ladder I](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/word-ladder.html)**只要求输出最短路径的长度，我们只需要做一次BFS即可，但是现在要求所有的最短路径，我们就需要结合DFS。因为BFS得到的结果是一个一个分层的点，我们所能知道的只有起点到达某个状态需要几步，
+这道题目的难点是要求出所有最短路径。之前的 **[Word Ladder I](https://will-gxz.gitbooks.io/xiaozheng_algo/content/graph/word-ladder.html)** 只要求输出最短路径的长度，我们只需要做一次BFS即可，但是现在要求所有的最短路径，我们就需要结合DFS。因为BFS得到的结果是一个一个分层的点，我们所能知道的只有起点到达某个状态需要几步，
 
 具体地，我们可以先用BFS确定最短路径的长度，然后用DFS找到所有路径。我们还可以利用BFS的结果进行**优化**：
 1.  从 end 开始做 BFS 找 start，记录沿途各点到 end 的距离，找到 start 就可以停止。
@@ -305,3 +306,79 @@ _update 2018-06-23 22:32:38_
 
 #### Update, 一些思路缕清
 先进行一次 BFS，利用其结果优化DFS。首先，我们选择从 end 出发 bfs 搜索 start，并将沿途经过的 word 加入一个 set 中。当开始DFS的时候，只选择在之前 BFS 时候遇到过的 word 继续搜索。这么做的理论依据是当我们从 end 出发 dfs 找到 start 时，其经过的 vertices 一定包含了所有从start出发到end的最短路径中的节点。
+
+---
+_update 2018-09-30 16:42:30_
+
+#### Update， LeetCode版本，优化
+利用BFS标记每个word对应的到end的距离，如果dfs时遇到某个word对应距离和记录的不相同，就可以剪枝。用这种方法也可以直接解决去重问题，所以就不再需要visited set。
+
+```java
+class Solution {
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> res = new ArrayList<>();
+        Set<String> dict = new HashSet<>(wordList);
+        Map<String, Integer> dists = new HashMap<>();
+        int minDist = Integer.MAX_VALUE;
+
+        dict.add(beginWord);
+        minDist = bfs(endWord, beginWord, dict, dists);
+        List<String> path = new ArrayList<>();
+        path.add(beginWord);
+        dfs(beginWord, endWord, dict, dists, minDist, path, res);
+        return res;
+    }
+
+    private void dfs(String begin, String end, Set<String> dict, Map<String, Integer> dists,
+                     int len, List<String> path, List<List<String>> res) {
+        if (len < 0) return;
+        else if (dists.getOrDefault(begin, Integer.MAX_VALUE) != len) return;
+        else if (len == 0) {
+            if (begin.equals(end)) res.add(new ArrayList<>(path));
+            return;
+        }
+        List<String> neighbors = getNeighbors(begin);
+        for (String neighbor : neighbors) {
+            if (dict.contains(neighbor)) {
+                path.add(neighbor);
+                dfs(neighbor, end, dict, dists, len - 1, path, res);
+                path.remove(path.size() - 1);
+            }
+        }
+    }
+
+    private int bfs(String begin, String end, Set<String> dict, Map<String, Integer> dists) {
+        Deque<String> queue = new ArrayDeque<>();
+        queue.offerLast(begin);
+        int level = 0;
+        while (! queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; ++i) {
+                String curr = queue.pollFirst();
+                if (dists.containsKey(curr)) continue; // 去重
+                dists.put(curr, level);
+                if (curr.equals(end)) {
+                    return level; // 已经找到，且之前路径上经过的点都已经加入valid set
+                }
+                List<String> neighbors = getNeighbors(curr);
+                for (String neighbor : neighbors) {
+                    if (dict.contains(neighbor)) queue.offerLast(neighbor);
+                }
+            }
+            level++;
+        }
+        return level;
+    }
+
+    private List<String> getNeighbors(String word) {
+        List<String> ret = new ArrayList<>();
+        for (int i = 0; i < word.length(); ++i) {
+            for (char c = 'a'; c <= 'z'; ++c) {
+                if (c == word.charAt(i)) continue;
+                ret.add(word.substring(0, i) + c + word.substring(i + 1));
+            }
+        }
+        return ret;
+    }
+}
+```
