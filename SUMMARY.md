@@ -246,7 +246,7 @@
     * [Combination Sum II](dfs/permutation-and-combination/combination-sum-ii.md)
     * [Combination Sum III](dfs/permutation-and-combination/combination-sum-iii.md)
     * [Combination Sum IV](dfs/permutation-and-combination/combination-sum-iv.md)
-    * [Permutations](dfs/permutation-and-combination/permutations.md)
+    * [Permutations](dfs/permutation-and-combination/permutations-problem.md)
     * [Permutations II](dfs/permutation-and-combination/permutations-ii.md)
     * [Next Permutation](dfs/permutation-and-combination/next-permutation.md)
     * [Generate Parentheses](dfs/permutation-and-combination/generate-parentheses.md)
