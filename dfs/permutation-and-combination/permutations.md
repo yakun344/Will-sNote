@@ -65,3 +65,40 @@ class Solution {
     }
 }
 ```
+
+---
+_update 2018-10-04 01:33:36_
+
+#### Update：Iterative Solution
+```c
+举例说明，如果input array 为 [1,2,3]
+我们先生成： res = [[1], [2], [3]]
+然后将其中每个list拿出来，在其后append上下一个没有重复过的数字，再放回res，
+  我们得到：res = [[1,2], [1,3], [2,1], [2,3], [3,1], [3,2]]
+重复上面步骤，直到res中每个list的长度等于nums.length, 我们就结束。
+```
+
+* ##### Java Code:
+  ```java
+  class Solution {
+      public List<List<Integer>> permute(int[] nums) {
+          List<List<Integer>> res = new ArrayList<>();
+          if (nums.length == 0) return res;
+          res.add(new ArrayList<>());
+          for (int i = 0; i < nums.length; ++i) {
+              List<List<Integer>> newRes = new ArrayList<>();
+              for (List<Integer> path : res) {
+                  for (int num : nums) {
+                      if (! path.contains(num)) {
+                          List<Integer> newPath = new ArrayList<>(path);
+                          newPath.add(num);
+                          newRes.add(newPath);
+                      }
+                  }
+              }
+              res = newRes;
+          }
+          return res;
+      }
+  }
+  ```
