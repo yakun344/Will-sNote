@@ -78,7 +78,7 @@ class Solution {
         int num = 0;
         char sign = '+';
         Deque<Integer> stack = new ArrayDeque<>();
-        
+
         for (int i = 0; i < s.length() + 1; ++i) {
             char c = i == s.length() ? '+' : s.charAt(i);
             if (c >= '0' && c <= '9') {
