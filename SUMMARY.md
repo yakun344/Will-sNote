@@ -327,6 +327,7 @@
   * [Coins in a Line](dynamic-programming/coins-in-a-line.md)
   * [Coins in a Line II](dynamic-programming/coins-in-a-line-ii.md)
   * [Minimum Path Sum](dynamic-programming/minimum-path-sum.md)
+  * [120 Triangle](dynamic-programming/triangle.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)

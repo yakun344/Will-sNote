@@ -48,7 +48,7 @@ isMatch("aab", "c*a*b") → true
         dp[i][j-1] && B[j]=='*' ；
      4. 由 dp[i][j-2] 递推而来
         dp[i][j-2] && B[j]=='*'；
-  
+
   Base case：
      dp[i][0] = False;
      dp[0][0] = True;
@@ -70,9 +70,9 @@ isMatch("aab", "c*a*b") → true
             // induction
             for (int i = 1; i <= s.length(); ++i) {
                 for (int j = 1; j <= p.length(); ++j) {
-                    dp[i][j] = dp[i-1][j-1] && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '.' || 
+                    dp[i][j] = dp[i-1][j-1] && (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '.' ||
                                                 (p.charAt(j-1) == '*' && (p.charAt(j-2) == '.' || s.charAt(i-1) == p.charAt(j-2))))
-                        || dp[i-1][j] && (p.charAt(j-1) == '*' && i > 1 && (s.charAt(i-1) == s.charAt(i-2) && 
+                        || dp[i-1][j] && (p.charAt(j-1) == '*' && i > 1 && (s.charAt(i-1) == s.charAt(i-2) &&
                                                                             s.charAt(i-1) == p.charAt(j-2) || p.charAt(j-2) == '.'))
                         || dp[i][j-1] && p.charAt(j-1) == '*'
                         || j > 1 && dp[i][j-2] && p.charAt(j-1) == '*';
@@ -83,17 +83,27 @@ isMatch("aab", "c*a*b") → true
     }
 ```
 
+---
+_update 2018-10-08 16:53:50_
 
+### Update: Simpler Java Code:
+更加简洁的写法，仍然从左上、上、左三个方向考虑：
+```java
+class Solution {
+    public boolean isMatch(String s, String p) {
+        if (s.length() == 0 && p.length() == 0) return true;
+        boolean[][] dp = new boolean[p.length() + 1][s.length() + 1];
+        dp[0][0] = true;
+        for (int i = 1; i < dp.length; ++i) dp[i][0] = i > 1 && p.charAt(i - 1) == '*' && dp[i - 2][0];
 
-
-
-
-
-
-
-
-
-
-
-
-
+        for (int i = 1; i < dp.length; ++i) {
+            for (int j = 1; j < dp[0].length; ++j) {
+                dp[i][j] = (dp[i-1][j-1] && (p.charAt(i - 1) == '.' || p.charAt(i - 1) == s.charAt(j - 1))) // 左上角匹配
+                        || (p.charAt(i - 1) == '*' && dp[i - 2][j]) // * 号往上匹配
+                        || (i - 2 >= 0 && p.charAt(i - 1) == '*' && ((p.charAt(i - 2) == '.' || p.charAt(i - 2) == s.charAt(j - 1)) && dp[i][j - 1])); // * 号往左匹配
+            }
+        }
+        return dp[dp.length - 1][dp[0].length - 1];
+    }
+}
+```
