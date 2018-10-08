@@ -10,22 +10,22 @@ Given two non-empty binary trees s and t, check whether tree t has exactly the s
 **Example 1:**
 
       Given tree s:
-      
+
            3
           / \
          4   5
         / \
        1   2
       Given tree t:
-         4 
+         4
         / \
        1   2
       Return true, because t has the same structure and node values with a subtree of s.
 
 **Example 2:**
-      
+
       Given tree s:
-      
+
            3
           / \
          4   5
@@ -64,3 +64,25 @@ public:
     }
 };
 ```
+---
+_update 2018-10-07 21:48:46_
+
+#### Update：Simpler java code
+
+* #### Java Code:
+更加简洁的写法，直接对比s的每个子树和t是否相等，不需要提前判断值是否相同。
+  ```java
+  class Solution {
+      public boolean isSubtree(TreeNode s, TreeNode t) {
+          if (s == null) return false;
+          return helper(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
+      }
+
+      private boolean helper(TreeNode s, TreeNode t) {
+          if (s == null && t == null) return true;
+          else if (s == null || t == null) return false;
+          else if (s.val != t.val) return false;
+          return helper(s.left, t.left) && helper(s.right, t.right);
+      }
+  }
+  ```
