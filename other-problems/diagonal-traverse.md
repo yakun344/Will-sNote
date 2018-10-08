@@ -17,7 +17,7 @@ Given a matrix of M x N elements (M rows, N columns), return all elements of the
     Output:  [1,2,4,7,5,3,6,8,9]
 
 **Explanation:**
-   就是从【0，0】开始，沿右上方向遍历。
+   就是从[0，0]开始，沿右上方向遍历。
 
 **Note:**
 The total number of elements of the given matrix will not exceed 10,000.
