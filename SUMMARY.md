@@ -137,6 +137,7 @@
   * [Odd Even Linked List](linkedlist-and-array/odd-even-linked-list.md)
   * [K Empty Slots](linkedlist-and-array/k-empty-slots.md)
   * [Set Matrix Zeroes](linkedlist-and-array/set-matrix-zeroes.md)
+  * [Third Maximum Number](linkedlist-and-array/third-maximum-number.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
