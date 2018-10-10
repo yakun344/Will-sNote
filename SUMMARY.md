@@ -371,6 +371,7 @@
   * [Number of Boomerangs](other-problems/number-of-boomerangs.md)
   * [Rotated Digits \(Easy Google\)](other-problems/rotated-digits-easy-google.md)
   * [Magic Squares In Grid \(Easy Google\)](other-problems/magic-squares-in-grid.md)
+  * [Rotate Image](other-problems/rotate-image.md)
 
 ## Operating System
 
