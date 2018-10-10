@@ -37,6 +37,7 @@
   * [Flood Fill \(Easy Uber\)](graph/flood-fill-easy-uber.md)
   * [Alien Dictionary](graph/alien-dictionary.md)
   * [Reconstruct Itinerary](graph/reconstruct-itinerary.md)
+  * [All Paths From Source to Target](graph/all-paths-from-source-to-target.md)
 * [Tree](Tree/Tree.md)
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Symmetric Tree](Tree/symmetric-tree.md)
