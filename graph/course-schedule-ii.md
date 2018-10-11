@@ -265,3 +265,47 @@ public:
     }
 };
 ```
+
+---
+_update 2018-10-10 22:24:21_
+
+### Update: Java DFS Solution
+之前的写法都是基于 count indegree 的，这种方法的确是一个更好的做法，也更容易实现，但之前上算法课的时候老师也讲过使用 DFS 来做 topological sort 的方法。
+
+需要注意的有两点：
+
+* 要用 `visited` 和 `finished` 两个set来分别探测是否有环以及当前node是否已经在别的支路中被搜索过，这里 finished 的作用其实就是看当前节点是否已经被加入 res 中；
+* 因为结果被存放在res中，可以利用dfs函数的返回值来标志是否有环。
+
+#### Java Code：
+```java
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < numCourses; ++i) graph.add(new ArrayList<>());
+        for (int[] edge : prerequisites) {
+            graph.get(edge[0]).add(edge[1]);
+        }
+        List<Integer> res = new ArrayList<>();
+        Set<Integer> finished = new HashSet<>();
+        for (int i = 0; i < numCourses; ++i) {
+            if (! finished.contains(i)) {
+                if (! dfs(graph, i, new HashSet<>(), finished, res)) return new int[]{};
+            }
+        }
+        return res.stream().mapToInt(a->{return Integer.valueOf(a);}).toArray();
+    }
+
+    private boolean dfs(List<List<Integer>> graph, int curr, Set<Integer> visited, Set<Integer> finished, List<Integer> res) {
+        if (finished.contains(curr)) return true;
+        else if (! visited.add(curr)) return false;
+        for (int neighbor : graph.get(curr)) {
+            if (! dfs(graph, neighbor, visited, finished, res)) return false;
+        }
+        visited.remove(curr);
+        finished.add(curr);
+        res.add(curr);
+        return true;
+    }
+}
+```
