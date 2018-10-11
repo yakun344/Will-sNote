@@ -263,6 +263,7 @@
   * [Letter Combinations of a Phone Number \(Medium\)](dfs/letter-combinations-of-a-phone-number-medium.md)
   * [Letter Case Permutation \(Easy Facebook\)](dfs/letter-case-permutation-easy-facebook.md)
   * [Next Closest Time](dfs/next-closest-time.md)
+  * [Partition Equal Subset Sum](dfs/partition-equal-subset-sum.md)
   * [Partition to K Equal Sum Subsets](dfs/partition-to-k-equal-sum-subsets.md)
 * [Two Pointers Problem](two-pointers-problem/two-pointers-problem.md)
   * [K-diff Pairs in an Array \(Easy Amazon\)](binary-search/k-diff-pairs-in-an-array-easy-amazon.md)

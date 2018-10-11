@@ -21,6 +21,8 @@ Given an array of integers nums and a positive integer k, find whether it's poss
 <br/>
 
 ### Basic Idea:
+这是 _416. Partition Equal Subset Sum_ 的follow up，方法也和之前的题目类似。
+
 初拿到题目的时候感觉很蒙逼，但是仔细想了一下，发现有如下隐含信息：
 
 1. 要把给定数组分成k个sum相等的subset，可以推出targetSum一定为整数，并且等于 `sum/k`；
@@ -34,6 +36,7 @@ Given an array of integers nums and a positive integer k, find whether it's poss
 * 如果targetSum不为整数直接返回false；
 * 如果存在 `num>targetSum` 直接返回 false；
 * 如果在某一层有几个subset的当前sum相等，则只需要考虑其中一个；
+* 可以对nums排序，然后从大到小考虑每个数字，这样可以提前发现行不通的路；
 
 #### Java Code
 ```java
