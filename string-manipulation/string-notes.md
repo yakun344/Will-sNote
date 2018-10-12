@@ -32,13 +32,13 @@ String 的常见问题可以归纳为如下几类：
         char[] arr = input.toCharArray();
         int i = -1, j = 0;
         // 如果见到单词，则设为true，如果见到空格且flag为true，表示刚离开单词，补空格
-        boolean flag = false; 
+        boolean flag = false;
         for (j = 0; j < arr.length; ++j) {
           if (arr[j] != ' ') {
             flag = true;
             arr[++i] = arr[j];
           } else if (flag) {
-            // 刚离开一个单词 
+            // 刚离开一个单词
             arr[++i] = ' ';
             flag = false;
           }
@@ -67,10 +67,11 @@ String 的常见问题可以归纳为如下几类：
     (2)
       input:  abbacd
       output: cd
-      
+
       即重复串消除之后，如果左右部分合并生成了新的重复串，继续消除
 ```
 用 stack。
+
   * ##### Java Code:
   ```java
       public class Solution {
@@ -102,17 +103,18 @@ String 的常见问题可以归纳为如下几类：
           }
           return sb.toString();
         }
-      } 
+      }
   ```
-  
+
 ```
   (3). Remove Spaces, delete leading/trailing/duplicated spaces
        “  a” --> “a”
        “   I     love MTV   ” --> “I love MTV”
 ```
 基本思路是在每个单词结束之后插入一个space，跳过所有space，最后再检查删除头尾的space；
+
 * ##### Java Code：
-    ```java
+  ```java
     public class Solution {
       public String removeSpaces(String input) {
         StringBuilder sb = new StringBuilder();
@@ -142,7 +144,7 @@ String 的常见问题可以归纳为如下几类：
         return sb.toString();
       }
     }
-```
+  ```
 <br>
 #### 3. Str-str
 经典题目，求一个string是否是另一个string的substring。基本方法是 `O(len(small string)^2)` 的时间复杂度，还有 KMP 和 Robin Karp 两个常见的 `O(n)` 时间的实现，但是一般来说不会考实现。
@@ -167,10 +169,10 @@ String 的常见问题可以归纳为如下几类：
 
 ```java
     Assumptions
-    
+
     input, S and T are not null, S is not empty string
     Examples
-    
+
     input = "appledogapple", S = "apple", T = "cat", input becomes "catdogcat"
     input = "dodododo", S = "dod", T = "a", input becomes "aoao"
 ```
@@ -222,7 +224,7 @@ String 的常见问题可以归纳为如下几类：
             }
             return l + 1;
         }
-        
+
         // insert given number in chars at start, return new left pointer
         private int insertNumber(char[] chars, int start, int num) {
             String numString = String.valueOf(num);
@@ -231,7 +233,7 @@ String 的常见问题可以归纳为如下几类：
             }
             return start + numString.length() - 1;
         }
-        
+
         // 返回连续出现的个数
         private int count(char[] chars, int start) {
             int ret = 1;
@@ -259,33 +261,8 @@ String 的常见问题可以归纳为如下几类：
 ```
 <br>
 #### 8. Sliding window
-解决需要在窗口中维持一种变量，并且这种变量可以根据窗口边界元素的进出进行更新的问题。例如 
+解决需要在窗口中维持一种变量，并且这种变量可以根据窗口边界元素的进出进行更新的问题。例如
 
   1.  找s1中全部的s2的同分异构串；
   2.  找最长的仅包含unique characters 的 substring；
   3.  对于一个只含有 0 和 1 的字符串，最多反转 k 个 0，求可以生成的最长全是 1 的子串；
-
-
- 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
