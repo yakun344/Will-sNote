@@ -34,7 +34,7 @@ If n is the length of array, assume the following constraints are satisfied:
 
 发现youtube上有一个花花酱的视频，个人感觉讲得不错，看这个截图就可以理解了：  
 
-![](assets/Screen Shot 2018-10-12 at 1.49.15 PM.png)
+![](/assets/Screen Shot 2018-10-12 at 1.49.15 PM.png)
 
 * #### Java Code:
   ```java
