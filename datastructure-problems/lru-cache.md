@@ -14,7 +14,7 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
 Could you do both operations in O(1) time complexity?
 
 **Example:**
-
+```c
         LRUCache cache = new LRUCache( 2 /* capacity */ );
 
         cache.put(1, 1);
@@ -26,6 +26,7 @@ Could you do both operations in O(1) time complexity?
         cache.get(1);       // returns -1 (not found)
         cache.get(3);       // returns 3
         cache.get(4);       // returns 4
+```
 
 #### Basic Idea:
 要实现一个O(1)时间完成get和set操作的 LRU cache 数据结构。以下分析摘自[这里](https://aaronice.gitbooks.io/lintcode/content/data_structure/lru_cache.html)。
@@ -174,86 +175,71 @@ This code got AC in LeetCode;
 ```
 
 ---
-_update Sep 4, 2018 15:29_
+_update 2018-10-11 18:24:22_
 
-#### Upadte: Java Code
-这次写好的Java Code 感觉逻辑更加易于理解
-
+#### Update: Java 最终版本
 ```java
 class LRUCache {
-    private class ListNode {
-        int key, val;
-        ListNode prev, next;
-        public ListNode(int key, int val) {
-            this.key = key;
+    private class Node {
+        Node next, prev;
+        int val, key;
+        public Node(int key, int val) {
             this.val = val;
+            this.key = key;
         }
     }
 
-    private ListNode head;
-    private ListNode tail;
-    private final Map<Integer, ListNode> map;
-    private final int CAPACITY;
-    private int size;
-
-    private void removeLast() {
-        ListNode node = tail.prev;
-        node.prev.next = tail;
-        tail.prev = node.prev;
-        map.remove(node.key);
-    }
-
-    private void addFirst(int key, int val) {
-        ListNode node = new ListNode(key, val);
-        map.put(key, node);
-        node.next = head.next;
-        node.prev = head;
-        head.next = node;
-        node.next.prev = node;
-    }
-
-    private void moveToFirst(ListNode node) {
-        if (head.next == node) return;
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-        node.next = head.next;
-        node.prev = head;
-        head.next = node;
-        node.next.prev = node;
-    }
+    private Node head, tail;
+    private Map<Integer, Node> map;
+    private int CAPACITY;
 
     public LRUCache(int capacity) {
-        CAPACITY = capacity;
-        head = new ListNode(0, 0);
-        tail = new ListNode(0, 0);
+        head = new Node(-1, -1);
+        tail = new Node(-1, -1);
         head.next = tail;
         tail.prev = head;
-        size = 0;
-        map = new HashMap<Integer, ListNode>();
+        map = new HashMap<>();
+        CAPACITY = capacity;
     }
 
     public int get(int key) {
-        ListNode node = map.get(key);
-        if (node == null) return -1;
-        moveToFirst(node);
+        if (! map.containsKey(key)) return -1;
+        Node node = map.get(key);
+        moveToTail(node);
         return node.val;
     }
 
     public void put(int key, int value) {
-        ListNode node = map.get(key);
-        if (node != null) {
-            // already exist key
-            node.val = value;
-            moveToFirst(node);
-        } else {
-            // need to add new node
-            if (size == CAPACITY) {
-                removeLast();
-                size--;
+        Node node = map.get(key);
+        if (node == null) {
+            if (map.size() == CAPACITY) {
+                map.remove(head.next.key);
+                remove(head.next);
             }
-            addFirst(key, value);
-            size++;
+            node = new Node(key, value);
+            addToTail(node);    
+            map.put(key, node);
+        } else {
+            moveToTail(node);
+            node.val = value;
         }
+    }
+
+    private void remove(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    private void addToTail(Node node) {
+        node.prev = tail.prev;
+        node.next = tail;
+        tail.prev.next = node;
+        tail.prev = node;
+    }
+
+    private void moveToTail(Node node) {
+        remove(node);
+        addToTail(node);
     }
 }
 ```
