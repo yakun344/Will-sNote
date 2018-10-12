@@ -36,6 +36,8 @@ If n is the length of array, assume the following constraints are satisfied:
 
 ![](/assets/Screen Shot 2018-10-12 at 1.49.15 PM.png)
 
+这个做法的时间复杂度为 `O(m*n^2)`;
+
 * #### Java Code:
   ```java
   class Solution {
