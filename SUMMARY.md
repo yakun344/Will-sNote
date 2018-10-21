@@ -290,6 +290,8 @@
   * [Meeting Rooms II](interval-problems/meeting-rooms-ii.md)
   * [Summary Ranges](interval-problems/summary-ranges.md)
   * [Missing Ranges](interval-problems/missing-ranges.md)
+  * [Rectangle Overlap](interval-problems/rectangle-overlap.md)
+  * [Rectangle Area](interval-problems/rectangle-area.md)
 * [Dynamic Programming](dynamic-programming/dynamic-programming.md)
   * [Unique Paths](dynamic-programming/unique-paths.md)
   * [Unique Paths II](dynamic-programming/unique-paths-ii.md)

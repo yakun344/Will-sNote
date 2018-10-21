@@ -19,7 +19,7 @@ You may assume that duplicates do not exist in the tree.
 
 通过观察，我们可以发现 preorder 遍历的结果的第一个数一定是 root，而在 inorder list 中，root 会把左右两子树一分为二，利用这种性质，我们可以得到一种递归解法：
 
-* 对于输入inorder lst 和 preorder lst，先标记 preorde\[0\] 作为 root，然后在 inorder 中查找 root 的位置；
+* 对于输入inorder lst 和 preorder lst，先标记 preorde[0] 作为 root，然后在 inorder 中查找 root 的位置；
 * 这样就将两个 list 分为了两部分，分表为当前root左右子树的元素，对左右子树递归执行；
 
 例如，对于input：
