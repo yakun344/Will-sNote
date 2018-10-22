@@ -267,6 +267,7 @@
   * [Next Closest Time](dfs/next-closest-time.md)
   * [Partition Equal Subset Sum](dfs/partition-equal-subset-sum.md)
   * [Partition to K Equal Sum Subsets](dfs/partition-to-k-equal-sum-subsets.md)
+  * [Word Search](dfs/word-search.md)
 * [Two Pointers Problem](two-pointers-problem/two-pointers-problem.md)
   * [K-diff Pairs in an Array \(Easy Amazon\)](binary-search/k-diff-pairs-in-an-array-easy-amazon.md)
   * [Two Sum - Unique pairs](two-pointers-problem/two-sum-unique-pairs.md)
