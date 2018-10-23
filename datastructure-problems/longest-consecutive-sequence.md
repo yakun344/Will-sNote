@@ -81,3 +81,32 @@ Your algorithm should run in O(n) complexity.
         }
     }
 ```
+---
+_update 2018-10-22 20:34:35_
+
+### Update: 基于删除元素
+除了上面的方法，我们也可以每次拿到一个数作为中点，像两遍扩展，并且沿途将数字在set中删除。这样做的时间复杂度也是O(n)，因为每个数字都只会被加入set一次，再删除一次。
+```java
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) set.add(num);
+        int ret = 0;
+        for (int num : nums) {
+            int curr = num;
+            int len = 0;
+            while (set.remove(curr)) {
+                len++;
+                curr++;
+            }
+            curr = num - 1;
+            while (set.remove(curr)) {
+                len++;
+                curr--;
+            }
+            ret = Math.max(len, ret);
+        }
+        return ret;
+    }
+}
+```
