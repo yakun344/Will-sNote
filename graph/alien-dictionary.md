@@ -139,3 +139,74 @@ class Solution {
     }
 }
 ```
+
+### Update: Without Node class
+之前的实现没有考虑重复边的问题，导致可能会有同样的边被多次加入，这样会增加时间复杂度。另外，其实也可以不另外定义Node class，可以用一个 `Map<Character, Set<Character>` 和一个 `int[] indegrees` 来表示graph和indegree map。
+
+#### Java Code:
+```java
+class Solution {
+    private Map<Character, Set<Character>> graph;
+    private int[] indegrees; // 长度26
+        
+    public String alienOrder(String[] words) {
+        graph = new HashMap<>();
+        indegrees = new int[26];
+        Arrays.fill(indegrees, -1);
+        getAllNode(words);
+        initGraph(words);
+        return topologicalSort();
+    }
+    
+    private void getAllNode(String[] words) {
+        for (String word : words) {
+            for (int i = 0; i < word.length(); ++i) {
+                if (! graph.containsKey(word.charAt(i))) {
+                    graph.put(word.charAt(i), new HashSet<>());
+                    indegrees[word.charAt(i) - 'a'] = 0; // 初始化为0表示出现过该char
+                }
+            }
+        }
+    }
+    
+    private void initGraph(String[] words) {
+        for (int i = 0; i < words.length - 1; ++i) {
+            String prev = words[i];
+            String next = words[i + 1];
+            for (int j = 0; j < prev.length() && j < next.length(); ++j) {
+                char u = prev.charAt(j);
+                char v = next.charAt(j);
+                if (u != v) {
+                    // 说明产生了边 u-v
+                    if (graph.get(u).add(v)) {
+                        // 如果之前没有考虑过相同的边，则 v 的入度 +1
+                        indegrees[v - 'a']++;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    // 直接返回sort之后的char的string，即所求的解
+    private String topologicalSort() {
+        StringBuilder sb = new StringBuilder();
+        Deque<Character> queue = new ArrayDeque<>();
+        for (int i = 0; i < 26; ++i) {
+            if (indegrees[i] == 0) queue.offerLast((char)(i + 'a'));
+        }
+        while (! queue.isEmpty()) {
+            char c = queue.pollFirst();
+            sb.append(c);
+            for (char neighbor : graph.get(c)) {
+                // 将c的所有neighbor入度 -1
+                if (--indegrees[neighbor - 'a'] == 0) {
+                    queue.offerLast(neighbor);
+                }
+            }
+        }
+        if (sb.length() != graph.size()) return "";
+        else return sb.toString();
+    }
+}
+```

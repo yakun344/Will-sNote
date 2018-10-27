@@ -236,6 +236,7 @@
   * [Group Anagrams](datastructure-problems/group-anagrams.md)
   * [Maximal Rectangle](datastructure-problems/maximal-rectangle.md)
   * [Design Phone Directory](datastructure-problems/design-phone-directory.md)
+  * [Shortest Distance to a Character](datastructure-problems/shortest-distance-to-a-character.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
