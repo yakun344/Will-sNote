@@ -141,6 +141,7 @@
   * [Third Maximum Number](linkedlist-and-array/third-maximum-number.md)
   * [Fruit Into Baskets](linkedlist-and-array/fruit-into-baskets.md)
   * [Longest Substring with At Most K Distinct Characters](linkedlist-and-array/longest-substring-with-at-most-k-distinct-characters.md)
+  * [Longest Mountain in Array](linkedlist-and-array/longest-mountain-in-array.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
