@@ -44,3 +44,26 @@ Characters in given words can only be lower-case letters.
         }
     }
 ```
+
+---
+_update Nov 10, 2018_
+
+#### Update：滚动数组优化方法
+先写好常规解法，然后利用取余进行优化。这样就可以轻易写出滚动数组优化space complexity。
+```java
+class Solution {
+    public int minDistance(String word1, String word2) {
+        int[][] dp = new int[2][word2.length() + 1];
+        for (int i = 1; i < word1.length() + 1; ++i) {
+            for (int j = 1; j < dp[0].length; ++j) {
+                if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
+                } else {
+                    dp[i % 2][j] = Math.max(dp[(i - 1) % 2][j], dp[i % 2][j - 1]);
+                }
+            }
+        }
+        return word1.length() + word2.length() - 2 * dp[word1.length() % 2][dp[0].length - 1];
+    }
+}
+```
