@@ -30,6 +30,11 @@ The graph is given as follows:  the nodes are 0, 1, ..., graph.length - 1.  `gra
 ### Basic Idea:
 因为要求所有的路径，可以使用DFS。但是考虑到从同一个点出发到终点的所有路径可能被重复求解，使用memorization优化时间复杂度。
 
+这里有两点需要注意：
+
+1. 要是用cache，就要得到每个点出发到dest的所有路径，此时只能使用返回值来返回所有path。
+2. 因为我们每次在将结果加入ret的时候都会进行deep copy，所以返回cache中已经有的路径的时候可以直接返回。
+
 * #### Java Code：
   ```java
   class Solution {
