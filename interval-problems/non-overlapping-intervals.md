@@ -8,7 +8,7 @@ Given a collection of intervals, find the minimum number of intervals you need t
 
 **Note:**
 You may assume the interval's end point is always bigger than its start point.
-Intervals like [1,2] and [2,3] have borders "touching" but they don't overlap each other.
+Intervals like `[1,2]` and `[2,3]` have borders "touching" but they don't overlap each other.
 
 **Example 1:**
 
@@ -90,5 +90,27 @@ Explanation: You don't need to remove any of the intervals since they're already
             return count
 ```
 
+---
+_update Nov 18, 2018_
 
-
+### Update: 对start排序的解法
+如果不使用贪心算法，我们仍然有办法。首先仍然是对intervals按照start排序，然后从左到右扫描，每次比较 `prev.end` 和 `curr.start`，看是否有overlap，如果有，则移除end更加靠后的那个。
+```java
+class Solution {
+    public int eraseOverlapIntervals(Interval[] intervals) {
+        if (intervals.length == 0) return 0;
+        Arrays.sort(intervals, (a, b)->Integer.compare(a.start, b.start));
+        Interval prev = intervals[0];
+        int ret = 0;
+        for (int i = 1; i < intervals.length; ++i) {
+            if (intervals[i].start < prev.end) {
+                ret++;
+                if (intervals[i].end < prev.end) prev = intervals[i];
+            } else {
+                prev = intervals[i];
+            }
+        }
+        return ret;
+    }
+}
+```
