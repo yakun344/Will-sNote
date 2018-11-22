@@ -241,6 +241,7 @@
   * [Design Phone Directory](datastructure-problems/design-phone-directory.md)
   * [Shortest Distance to a Character](datastructure-problems/shortest-distance-to-a-character.md)
   * [Longest Valid Parentheses](datastructure-problems/longest-valid-parentheses.md)
+  * [Top K Trade Value Stock](datastructure-problems/top-k-trade-value-stock.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
