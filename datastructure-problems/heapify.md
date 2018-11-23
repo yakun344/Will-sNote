@@ -107,10 +107,54 @@ O(n) time complexity
     }
 ```           
                 
-                
-                
-                
-                
-                
-                
-                
+---
+_update Nov 22, 2018_
+
+#### Update: 略有修改的写法
+这次的实现方法采用了直接换位置的办法，在处理root，left和right三者大小关系的时候。
+
+```java
+public class Solution {
+    /*
+     * @param A: Given an integer array
+     * @return: nothing
+     */
+    public void heapify(int[] A) {
+        for (int i = A.length / 2 - 1; i >= 0; --i) {
+            heapify(A, i);
+        }
+    }
+    
+    private void heapify(int[] nums, int root) {
+        if (root >= nums.length) return;
+        int left = getLeft(root);
+        int right = getRight(root);
+        if (left < nums.length) {
+            if (nums[root] > nums[left]) {
+                swap(nums, root, left);
+                heapify(nums, left);
+            }
+        } 
+        if (right < nums.length) {
+            if (nums[root] > nums[right]) {
+                swap(nums, root, right);
+                heapify(nums, right);
+            }
+        }
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+    
+    private int getLeft(int i) {
+        return i * 2 + 1;
+    }
+    
+    private int getRight(int i) {
+        return i * 2 + 2;
+    }
+}
+```
