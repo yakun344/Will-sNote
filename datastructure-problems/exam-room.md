@@ -85,90 +85,96 @@ Return a class ExamRoom(int N) that exposes two functions: ExamRoom.seat() retur
 因为在刚刚的解法中我们需要 O(N) 的时间才能找到最大的interval，如果要优化时间，就要想办法优化这一步的时间复杂度。我们首先可以想到用TreeSet来存所有的interval。这样每次需要add的时候，我们只需要检查能产生最大dist的interval和左右两边界就可以了。在完成add或者remove操作之后，更新intervals treeSet，整个时间复杂度为 `log(N)`.
 
   ```java
-  class ExamRoom {
-    private class Interval implements Comparable<Interval> {
-        public int left, right, dist;
-        public Interval(int left, int right) {
-            this.left = left;
-            this.right = right;
-            dist = (right - left) / 2; // 关键，要提前/2，否则左右距离为3和4会被认为不同，但其实是相同的
-        }
-
-        public boolean equals(Interval that) {
-            return this.left == that.left && this.right == that.right;
-        }
-        
-        @Override
-        public int compareTo(Interval that) {
-            if (this.dist == that.dist) {
-                return this.left - that.left;
-            } else {
-                return that.dist - this.dist;
+    class ExamRoom {
+        private class Interval implements Comparable<Interval> {
+            int left, right, dist;
+            public Interval(int left, int right) {
+                this.left = left;
+                this.right = right;
+                this.dist = (right - left) / 2;
             }
-        }
-    }
-    
-    private int MIN, MAX;
-    private TreeSet<Integer> seats;
-    private TreeSet<Interval> intervals;
-        
-    public ExamRoom(int N) {
-        seats = new TreeSet<>();
-        intervals = new TreeSet<>();
-        MIN = 0;
-        MAX = N - 1;
-    }
-    
-    public int seat() {
-        int pos = MIN, maxDist = -1; // 默认pos位置为0
-        if (! seats.isEmpty()) {
-            maxDist = seats.first() - MIN;
-            if (! intervals.isEmpty()) {
-                // 先考虑dist最大的interval
-                Interval itv = intervals.first();
-                if (itv.dist > maxDist) {
-                    maxDist = itv.dist;
-                    pos = (itv.right + itv.left) / 2;
+            
+            @Override 
+            public int compareTo(Interval that) {
+                if (this.dist == that.dist) {
+                    return this.left - that.left;
+                } else {
+                    return that.dist - this.dist;
                 }
             }
-            // consider right most position
-            if (MAX - seats.last() > maxDist) {
-                pos = MAX;
+            
+            @Override
+            public boolean equals(Object obj) {
+                if (! (obj instanceof Interval)) return false;
+                else {
+                    Interval that = (Interval)obj;
+                    return this.left == that.left && this.right == that.right;
+                }
             }
         }
-        // update intervals
-        if (seats.isEmpty()) {
-            ; //pass
-        } else if (pos == MIN) {
-            intervals.add(new Interval(MIN, seats.first()));
-        } else if (pos == MAX) {
-            intervals.add(new Interval(seats.last(), MAX));
-        } else {
-            int left = seats.lower(pos);
-            int right = seats.higher(pos);
-            intervals.remove(new Interval(left, right));
-            intervals.add(new Interval(left, pos));
-            intervals.add(new Interval(pos, right));
+        
+        private TreeSet<Integer> seats;
+        private TreeSet<Interval> intervals;
+        private int MIN, MAX;
+        
+        public ExamRoom(int N) {
+            seats = new TreeSet<>();
+            intervals = new TreeSet<>();
+            MIN = 0;
+            MAX = N - 1;
         }
-        seats.add(pos);
-        return pos;
-    }
-    
-    public void leave(int p) {
-        Integer left = seats.lower(p);
-        Integer right = seats.higher(p);
-        if (left != null && right != null) {
-            intervals.remove(new Interval(left, p));
-            intervals.remove(new Interval(p, right));
-            intervals.add(new Interval(left, right));
-        } else if (left == null && right == null) {
-            ; // pass
-        } else if (left == null) {
-            intervals.remove(new Interval(p, right));
-        } else {
-            intervals.remove(new Interval(left, p));
+        
+        public int seat() {
+            int pos = MIN, maxDist = 0;
+            if (! seats.isEmpty()) {
+                maxDist = seats.first() - MIN;
+                // check intervals
+                if (! intervals.isEmpty()) {
+                    Interval itv = intervals.first();
+                    if (itv.dist > maxDist) {
+                        maxDist = itv.dist;
+                        pos = (itv.left + itv.right) / 2; 
+                    }
+                }
+                // check last position
+                if (MAX - seats.last() > maxDist) {
+                    pos = MAX;
+                }
+            }
+            // update intervals
+            Integer prev = seats.lower(pos);
+            Integer next = seats.higher(pos);
+            if (prev != null && next != null) {
+                intervals.remove(new Interval(prev, next));
+                intervals.add(new Interval(prev, pos));
+                intervals.add(new Interval(pos, next));
+            } else if (prev == null && next == null) {
+                ; // pass
+            } else if (prev == null) {
+                intervals.add(new Interval(pos, next));
+            } else {
+                intervals.add(new Interval(prev, pos));
+            }
+            seats.add(pos);
+            return pos;
         }
-        seats.remove(p);
+        
+        public void leave(int p) {
+            Integer prev = seats.lower(p);
+            Integer next = seats.higher(p);
+            seats.remove(p);
+            // update interval
+            if (prev != null && next != null) {
+                intervals.remove(new Interval(prev, p));
+                intervals.remove(new Interval(p, next));
+                intervals.add(new Interval(prev, next));
+            } else if (prev == null && next == null) {
+                ; // pass
+            } else if (prev == null) {
+                intervals.remove(new Interval(p, next));
+            } else {
+                intervals.remove(new Interval(prev, p));
+            }
+        }
     }
-  }
   ```
