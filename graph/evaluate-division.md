@@ -1,4 +1,4 @@
-## Evaluate Division
+`## Evaluate Division
 _update Jul,31 2017 22:43_
 
 ---
@@ -301,4 +301,60 @@ public:
         return res;
     }
 };
+```
+
+---
+_update Nov 25th, 2018_
+
+### Update: Java DFS Solution newest version
+基本思路和之前的dfs是相同的，因为Java中没有pair，使用手写class Node代替。需要注意去重以及对于每个等式，要加入(a,b) (b,a)两个边。
+```java
+class Solution {
+    private class Node {
+        String label;
+        double val;
+        public Node(String label, double val) {
+            this.label = label;
+            this.val = val;
+        }
+    }
+    public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+        // create graph
+        Map<String, Set<Node>> graph = new HashMap<>();
+        for (int i = 0; i < equations.length; ++i) {
+            String a = equations[i][0];
+            String b = equations[i][1];
+            double ans = values[i];
+            Set<Node> nodes = graph.get(a);
+            if (nodes == null) {
+                nodes = new HashSet<>();
+                graph.put(a, nodes);
+            }
+            nodes.add(new Node(b, ans));
+            nodes = graph.get(b);
+            if (nodes == null) {
+                nodes = new HashSet<>();
+                graph.put(b, nodes);
+            }
+            nodes.add(new Node(a, 1 / ans));
+        }
+        // dfs
+        double[] res = new double[queries.length];
+        for (int i = 0; i < queries.length; ++i) {
+            res[i] = dfs(graph, queries[i][0], queries[i][1], 1, new HashSet<>());
+        }
+        return res;
+    }
+
+    private double dfs(Map<String, Set<Node>> graph, String start, String end, 
+                       double currVal, Set<String> visited) {
+        if (! graph.containsKey(start) || ! graph.containsKey(end) || ! visited.add(start)) return -1;
+        if (start.equals(end)) return currVal;
+        for (Node neighbor : graph.get(start)) {
+            double ret = dfs(graph, neighbor.label, end, currVal * neighbor.val, visited);
+            if (ret != -1) return ret;
+        }
+        return -1;
+    }
+}
 ```
