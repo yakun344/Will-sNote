@@ -306,55 +306,59 @@ public:
 ---
 _update Nov 25th, 2018_
 
-### Update: Java DFS Solution newest version
-基本思路和之前的dfs是相同的，因为Java中没有pair，使用手写class Node代替。需要注意去重以及对于每个等式，要加入(a,b) (b,a)两个边。
+### Update: Java Floyd Solution
+利用Floyd算法，先求出每一对variable之间的商，再处理query。时间复杂度为 `O(V^3)`.
 ```java
 class Solution {
-    private class Node {
-        String label;
-        double val;
-        public Node(String label, double val) {
-            this.label = label;
-            this.val = val;
-        }
-    }
     public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
-        // create graph
-        Map<String, Set<Node>> graph = new HashMap<>();
+        Map<String, Map<String, Double>> graph = new HashMap<>();
         for (int i = 0; i < equations.length; ++i) {
             String a = equations[i][0];
             String b = equations[i][1];
             double ans = values[i];
-            Set<Node> nodes = graph.get(a);
-            if (nodes == null) {
-                nodes = new HashSet<>();
-                graph.put(a, nodes);
+            Map<String, Double> neighbors = graph.get(a);
+            if (neighbors == null) {
+                neighbors = new HashMap<>();
+                graph.put(a, neighbors);
             }
-            nodes.add(new Node(b, ans));
-            nodes = graph.get(b);
-            if (nodes == null) {
-                nodes = new HashSet<>();
-                graph.put(b, nodes);
+            neighbors.put(b, ans);
+            neighbors = graph.get(b);
+            if (neighbors == null) {
+                neighbors = new HashMap<>();
+                graph.put(b, neighbors);
             }
-            nodes.add(new Node(a, 1 / ans));
+            neighbors.put(a, 1 / ans);
         }
-        // dfs
+        // floyd algorithm
+        Set<String> vertexs = graph.keySet();
+        for (String s : vertexs) {
+            for (String t : vertexs) {
+                for (String m : vertexs) {
+                    if (s.equals(t) || s.equals(m) || t.equals(m) || s.equals(m)) continue;
+                    if (! graph.get(s).containsKey(t)) {
+                        if (graph.get(s).containsKey(m) && graph.get(m).containsKey(t)) {
+                            graph.get(s).put(t, graph.get(s).get(m) * graph.get(m).get(t));
+                        }
+                    }
+                }
+            }
+        }
+        // process queries
         double[] res = new double[queries.length];
         for (int i = 0; i < queries.length; ++i) {
-            res[i] = dfs(graph, queries[i][0], queries[i][1], 1, new HashSet<>());
+            String a = queries[i][0], b = queries[i][1];
+            if (! graph.containsKey(a) || ! graph.containsKey(b)) res[i] = -1;
+            else if (a.equals(b)) res[i] = 1;
+            else {
+                Double ans = graph.get(a).get(b);
+                if (ans == null) res[i] = -1;
+                else res[i] = ans;
+            }
         }
         return res;
     }
-
-    private double dfs(Map<String, Set<Node>> graph, String start, String end, 
-                       double currVal, Set<String> visited) {
-        if (! graph.containsKey(start) || ! graph.containsKey(end) || ! visited.add(start)) return -1;
-        if (start.equals(end)) return currVal;
-        for (Node neighbor : graph.get(start)) {
-            double ret = dfs(graph, neighbor.label, end, currVal * neighbor.val, visited);
-            if (ret != -1) return ret;
-        }
-        return -1;
-    }
 }
 ```
+
+### Update: Optimal Solution: Union-Find 
+// TODO
