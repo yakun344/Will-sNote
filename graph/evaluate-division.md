@@ -361,4 +361,75 @@ class Solution {
 ```
 
 ### Update: Optimal Solution: Union-Find 
-// TODO
+利用并查集的思路，我们可以把输入equation转换成`child/parent=val` 的形式，然后尽可能统一parent。例如输入`a/b=2, b/c=3`，我们如果令b为parent，则有 `parent[a]={b,2}, parent[c]={b,1/3}`, 这样计算`a/c` 的时候，就可以有 `a/c=(a/b) / (c/b) = 2 / (1/3) = 6`。 具体地，并查集的形式可以是 `Map<String, pair<String, Integer>>`。另外需要注意在find的时候做path compression，在union的时候分类考虑。
+#### Java Code:
+```java
+class Solution {
+    private class Node {
+        String label;
+        double val;
+        public Node(String l, double v) {
+            label = l;
+            val = v;
+        }
+    }
+    
+    private Map<String, Node> map;
+
+    private Node find(String s) {
+        Node node = map.get(s);
+        if (node == null) return null;
+        else if (node.label.equals(s)) return node;
+        else {
+            Node parent = find(node.label);
+            Node ret = new Node(parent.label, parent.val * node.val);
+            map.put(s, ret);
+            return ret;
+        }
+    }
+    
+    private void union(String x, String y, double val) {
+        if (! map.containsKey(x) && ! map.containsKey(y)) {
+            map.put(x, new Node(y, val));
+            map.put(y, new Node(y, 1)); // 注意这里y相当于是一个root
+        } else if (map.containsKey(x) && map.containsKey(y)) {
+            Node nodex = find(x);
+            Node nodey = find(y);
+            if (nodex == nodey) return;
+            map.put(nodex.label, new Node(nodey.label, val * nodey.val / nodex.val));
+        } else if (! map.containsKey(x)) {
+            Node nodey = find(y);
+            map.put(x, new Node(nodey.label, nodey.val * val));
+        } else {
+            Node nodex = find(x);
+            map.put(y, new Node(nodex.label, nodex.val / val));
+        }
+        
+    }
+    
+    public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+        map = new HashMap<>();
+        for (int i = 0; i < equations.length; ++i) {
+            String a = equations[i][0], b = equations[i][1];
+            double ans = values[i];
+            union(a, b, ans);
+        }
+        double[] res = new double[queries.length];
+        for (int i = 0; i < queries.length; ++i) {
+            String a = queries[i][0], b = queries[i][1];
+            Node nodea = find(a), nodeb = find(b);
+            if (nodea == null || nodeb == null) {
+                res[i] = -1;
+            } else if (a.equals(b)) {
+                res[i] = 1;
+            } else if (! nodea.label.equals(nodeb.label)) {
+                System.out.println(a + " " + b + ", " + nodea.label + " " + nodeb.label);
+                res[i] = -1;
+            } else {
+                res[i] = nodea.val / nodeb.val;
+            }
+        }
+        return res;
+    }
+}
+```
