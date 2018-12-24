@@ -58,29 +58,28 @@ Given the initial state of the prison, return the state of the prison after N da
 ```java
 class Solution {
     public int[] prisonAfterNDays(int[] cells, int N) {
-        if (N == 0) return cells;
         int[] first = null;
         int[] prev = cells;
-        int period = -1;
-        int day = 0;
+        int count = 0;
+        int period = 0;
         while (N > 0) {
-            day++;
-            N--;
+            if (count == 1) first = prev;
             int[] next = getNextDay(prev);
-            if (Arrays.equals(next, first)) {
-                period = day - 1;
+            N--;
+            if (Arrays.equals(first, next)) {
+                period = count;
                 N %= period;
             }
-            if (day == 1) first = next;
             prev = next;
+            count++;
         }
         return prev;
     }
     
-    private int[] getNextDay(int[] arr) {
-        int[] ret = new int[8];
-        for (int i = 1; i < 7; ++i) {
-            if (arr[i - 1] == arr[i + 1]) ret[i] = 1;
+    private int[] getNextDay(int[] nums) {
+        int[] ret = new int[nums.length];
+        for (int i = 1; i < nums.length - 1; ++i) {
+            if (nums[i - 1] == nums[i + 1]) ret[i] = 1;
         }
         return ret;
     }
