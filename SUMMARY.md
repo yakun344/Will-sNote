@@ -38,6 +38,7 @@
   * [Alien Dictionary](graph/alien-dictionary.md)
   * [Reconstruct Itinerary](graph/reconstruct-itinerary.md)
   * [All Paths From Source to Target](graph/all-paths-from-source-to-target.md)
+  * [Regions Cut By Slashes](graph/regions-cut-by-slashes.md)
 * [Tree](Tree/Tree.md)
   * [Validate Binary Search Tree](Tree/validate-binary-search-tree.md)
   * [Symmetric Tree](Tree/symmetric-tree.md)
@@ -387,6 +388,7 @@
   * [Rotated Digits \(Easy Google\)](other-problems/rotated-digits-easy-google.md)
   * [Magic Squares In Grid \(Easy Google\)](other-problems/magic-squares-in-grid.md)
   * [Rotate Image](other-problems/rotate-image.md)
+  * [Prison Cells After N Days](other-problems/prison-cells-after-n-days.md)
 
 ## Operating System
 
