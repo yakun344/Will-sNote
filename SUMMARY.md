@@ -88,6 +88,7 @@
   * [Longest Univalue Path \(Easy Google\)](Tree/longest-univalue-path-easy-google.md)
   * [Maximum Width of Binary Tree](Tree/maximum-width-of-binary-tree.md)
   * [Kth Smallest Element in a BST](Tree/kth-smallest-element-in-a-bst.md)
+  * [Check Completeness of a Binary Tree](Tree/check-completeness-of-a-binary-tree.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
