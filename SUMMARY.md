@@ -348,6 +348,7 @@
   * [Minimum Path Sum](dynamic-programming/minimum-path-sum.md)
   * [120 Triangle](dynamic-programming/triangle.md)
   * [410 Split Array Largest Sum](dynamic-programming/split-array-largest-sum.md)
+  * [Delete Columns to Make Sorted III](dynamic-programming/delete-columns-to-make-sorted-iii.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
   * [Bit Manipulation Notes](bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](bit-manipulation/reverse-bits.md)
