@@ -362,6 +362,8 @@
   * [Sum of Two Integers](bit-manipulation/sum-of-two-integers.md)
   * [Binary Watch \(easy\)](bit-manipulation/binary-watch-easy.md)
   * [Binary Number with Alternating Bits \(Easy Yahoo\)](bit-manipulation/binary-number-with-alternating-bits-easy-yahoo.md)
+* [Computer Graphics](computer-graphics/computer-graphics.md)
+  * [Minimum Area Rectangle II](computer-graphics/minimum-area-rectangle-ii.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Count Primes](math-problems/count-primes.md)
