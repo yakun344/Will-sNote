@@ -78,3 +78,28 @@ Return the minimum possible value of D.length.
     ```
 
 * #### `O(N*L)` Solution
+  上面的解法之所以比较慢，是因为我们每次检查插入当前列之后是否有序都需要检查包括前面列在内的部分，导致这一步耗时 `O(N*L)`，如果我们把这一步优化为 `O(N)`，那么总复杂度就会变成 `O(N*L)`。如何优化呢？我们希望只比较当前列。例如输入 `"axx","ayy","bee","bff"`，到了第二列，我们只需要分别比较a开头的xy和b开头的ef。所以我们可以用一个boolean数组标记不相等的row，例如扫描第一列时，到了 `a<b`，我们就标记 `stop[1]=true`，这样等到了第二列，我们就不需要考虑 `y < e ?` 的问题了。
+
+  * ##### Java Code:
+    ```java
+    class Solution {
+        public int minDeletionSize(String[] A) {
+            int ret = 0;
+            boolean[] stop = new boolean[A.length - 1];
+            OUTER:
+            for (int c = 0; c < A[0].length(); ++c) {
+                for (int r = 0; r < A.length - 1; ++r) {
+                    if (! stop[r] && A[r].charAt(c) > A[r + 1].charAt(c)) {
+                        ret++;
+                        continue OUTER;
+                    }
+                }
+                // 更新 stop
+                for (int r = 0; r < A.length - 1; ++r) {
+                    if (A[r].charAt(c) < A[r + 1].charAt(c)) stop[r] = true;
+                }
+            }
+            return ret;
+        }
+    }
+    ```
