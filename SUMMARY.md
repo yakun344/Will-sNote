@@ -89,6 +89,7 @@
   * [Maximum Width of Binary Tree](Tree/maximum-width-of-binary-tree.md)
   * [Kth Smallest Element in a BST](Tree/kth-smallest-element-in-a-bst.md)
   * [Check Completeness of a Binary Tree](Tree/check-completeness-of-a-binary-tree.md)
+  * [Flip Binary Tree To Match Preorder Traversal](Tree/flip-binary-tree-to-match-preorder-traversal.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
