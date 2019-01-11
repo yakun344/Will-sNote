@@ -30,49 +30,32 @@ The largest rectangle is shown in the shaded area, which has area = 10 unit.
 class Solution {
     public int largestRectangleArea(int[] heights) {
         Deque<Integer> stack = new ArrayDeque<>();
-        int[] rightSmaller = new int[heights.length];
-        int[] leftSmaller = new int[heights.length];
-        Arrays.fill(rightSmaller, heights.length);
-        Arrays.fill(leftSmaller, -1);
-        //  先找每个数右边第一个比它小的数的index, 若没有则存 -1
+        int[] rBounds = new int[heights.length];
+        int[] lBounds = new int[heights.length];
+        Arrays.fill(rBounds, heights.length);
+        Arrays.fill(lBounds, -1);
+        // 找每个数字右边第一个比它小的，如果没有则为len
         for (int i = 0; i < heights.length; ++i) {
-            if (stack.isEmpty() || heights[stack.peekLast()] <= heights[i]) {
-                stack.offerLast(i);
-            } else {
-                while (! stack.isEmpty() && heights[stack.peekLast()] > heights[i]) {
-                    rightSmaller[stack.pollLast()] = i;
-                }
-                stack.offerLast(i);
+            while (! stack.isEmpty() && heights[stack.peekLast()] > heights[i]) {
+                rBounds[stack.pollLast()] = i;
             }
+            stack.offerLast(i);
         }
-        stack.clear();
-        // 再找每个数左边第一个比他小的数的index, 没有则存 heights.length
+
+        // 找每个数字左边第一个比它小的，如果没有则为-1
         for (int i = heights.length - 1; i >= 0; --i) {
-            if (stack.isEmpty() || heights[stack.peekLast()] <= heights[i]) {
-                stack.offerLast(i);
-            } else {
-                while (! stack.isEmpty() && heights[stack.peekLast()] > heights[i]) {
-                    leftSmaller[stack.pollLast()] = i;
-                }
-                stack.offerLast(i);
+            while (! stack.isEmpty() && heights[stack.peekLast()] > heights[i]) {
+                lBounds[stack.pollLast()] = i;
             }
+            stack.offerLast(i);
         }
-        for (int i = 0; i < leftSmaller.length; ++i) {
-            System.out.print(leftSmaller[i] + " ");
-        }
-        System.out.println();
-        for (int i = 0; i < leftSmaller.length; ++i) {
-            System.out.print(rightSmaller[i] + " ");
-        }
-        // 检查每个数字，根据其左右比它小的数字的index确定面积，返回最大值
+
+        // 计算最大面积
         int ret = 0;
         for (int i = 0; i < heights.length; ++i) {
-            int left = leftSmaller[i];
-            int right = rightSmaller[i];
-            int area = 0;
-            area = heights[i] * (right - left - 1);
-
-            ret = Math.max(ret, area);
+            int left = lBounds[i];
+            int right = rBounds[i];
+            ret = Math.max(heights[i] * (right - left - 1), ret);
         }
         return ret;
     }
