@@ -59,24 +59,23 @@ class Solution {
     private List<Integer> res = new ArrayList<>();
     
     public List<Integer> flipMatchVoyage(TreeNode root, int[] voyage) {
-        boolean ret = helper(root, voyage);
-        if (ret && curr == voyage.length) return res;
+        if (helper(root, voyage)) return res;
         else {
-            res.clear();
+            res = new ArrayList<>();
             res.add(-1);
             return res;
         }
     }
     
-    private boolean helper(TreeNode node, int[] nums) {
-        if (node == null) return true;
-        if (curr >= nums.length || node.val != nums[curr]) return false;
+    private boolean helper(TreeNode root, int[] arr) {
+        if (root == null) return true;
+        else if (root.val != arr[curr]) return false;
         curr++;
-        if (node.left != null && curr < nums.length && node.left.val != nums[curr]) {
-            res.add(node.val);
-            return helper(node.right, nums) && helper(node.left, nums);
+        if (root.left != null && root.left.val != arr[curr]) {
+            res.add(root.val);
+            return helper(root.right, arr) && helper(root.left, arr);
         } else {
-            return helper(node.left, nums) && helper(node.right, nums);
+            return helper(root.left, arr) && helper(root.right, arr);
         }
     }
 }

@@ -385,6 +385,7 @@
   * [Largest Palindrome Product](math-problems/largest-palindrome-product.md)
   * [Sum of Square Numbers \(Easy LinkedIn\)](math-problems/sum-of-square-numbers-easy-linkedin.md)
   * [Sparse Matrix Multiplication](math-problems/sparse-matrix-multiplication.md)
+  * [Equal Rational Numbers](math-problems/equal-rational-numbers.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
