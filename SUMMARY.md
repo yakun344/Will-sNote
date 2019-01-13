@@ -148,6 +148,7 @@
   * [Reverse Pairs](linkedlist-and-array/reverse-pairs.md)
   * [Split Linked List in Parts](linkedlist-and-array/split-linked-list-in-parts.md)
   * [Pancake Sorting](linkedlist-and-array/pancake-sorting.md)
+  * [Largest Perimeter Triangle](linkedlist-and-array/largest-perimeter-triangle.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
