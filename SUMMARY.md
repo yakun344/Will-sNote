@@ -248,6 +248,7 @@
   * [Longest Valid Parentheses](datastructure-problems/longest-valid-parentheses.md)
   * [Top K Trade Value Stock](datastructure-problems/top-k-trade-value-stock.md)
   * [Exam Room](datastructure-problems/exam-room.md)
+  * [Odd Even Jump](datastructure-problems/odd-even-jump.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
