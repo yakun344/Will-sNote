@@ -197,3 +197,26 @@ Return the number of good starting indexes.
   <br/>
 
 * #### Solution 2: TreeMap + DP (`O(NlogN)`)
+  利用TreeMap可以动态维持一个有序序列。我们只要从右向左扫描，就可以保证对于每个元素，当前在treemap中的其他元素都在该元素右边。我们以val为key，就可以 `O(logN)` 时间得到当前元素右边最近的大于它的最小值或者小于它的最大值（因为同样的key，后进入map的会覆盖之前的，自然就保证了相同的值只保留最左边的）。同时我们进行DP的步骤，更新 odd 和 even 数组，总时间复杂度为 `O(NlogN)`, 和之前的单调栈相同。
+
+  ```java
+    class Solution {
+        public int oddEvenJumps(int[] A) {
+            TreeMap<Integer, Integer> treeMap = new TreeMap<>(); // <val, index>
+            boolean[] odd = new boolean[A.length];
+            boolean[] even = new boolean[A.length];
+            odd[A.length - 1] = true;
+            even[A.length - 1] = true;
+            int count = 0;
+            for (int i = A.length - 1; i >= 0; --i) {
+                Map.Entry<Integer, Integer> oddNext = treeMap.ceilingEntry(A[i]);
+                Map.Entry<Integer, Integer> evenNext = treeMap.floorEntry(A[i]);
+                if (oddNext != null) odd[i] = even[oddNext.getValue()];
+                if (evenNext != null) even[i] = odd[evenNext.getValue()];
+                if (odd[i]) count++;
+                treeMap.put(A[i], i);
+            }
+            return count;
+        }
+    }
+  ```
