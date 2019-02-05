@@ -90,6 +90,7 @@
   * [Kth Smallest Element in a BST](Tree/kth-smallest-element-in-a-bst.md)
   * [Check Completeness of a Binary Tree](Tree/check-completeness-of-a-binary-tree.md)
   * [Flip Binary Tree To Match Preorder Traversal](Tree/flip-binary-tree-to-match-preorder-traversal.md)
+  * [Smallest String Starting From Leaf](Tree/smallest-string-starting-from-leaf.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
@@ -369,6 +370,7 @@
   * [Sum of Two Integers](bit-manipulation/sum-of-two-integers.md)
   * [Binary Watch \(easy\)](bit-manipulation/binary-watch-easy.md)
   * [Binary Number with Alternating Bits \(Easy Yahoo\)](bit-manipulation/binary-number-with-alternating-bits-easy-yahoo.md)
+  * [Triples with Bitwise AND Equal To Zero](bit-manipulation/triples-with-bitwise-and-equal-to-zero.md)
 * [Computer Graphics](computer-graphics/computer-graphics.md)
   * [Minimum Area Rectangle](computer-graphics/minimum-area-rectangle.md)
   * [Minimum Area Rectangle II](computer-graphics/minimum-area-rectangle-ii.md)
@@ -425,3 +427,7 @@
 * [Cpp Note2: 运算符重载，容器使用，Function Object，virtual method](c++-notes/cpp-note2.md)
 * [Cpp Note3: 函数指针，函数对象，Lambda](c++-notes/cpp-note3.md)
 * [Cpp Note4: 细节](c++-notes/cpp-note4.md)
+
+## System Design
+
+* [Basic Idea](system-design/basic-idea.md)
