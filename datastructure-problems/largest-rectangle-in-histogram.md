@@ -101,3 +101,30 @@ _update Sep 25 2018, 15:05_
       }
   }
   ```
+
+<br/>
+
+---
+_update Jan 12, 2019_
+
+### Update: One pass solution 最新实现
+利用在输入histogram首尾补0，使得逻辑更加简单，代码也变得更短了。
+
+```java
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        int ret = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+        int[] arr = new int[heights.length + 2];
+        for (int i = 0; i < heights.length; ++i) arr[i + 1] = heights[i];
+        for (int i = 0; i < arr.length; ++i) {
+            while (! stack.isEmpty() && arr[stack.peekLast()] > arr[i]) {
+                int height = arr[stack.pollLast()];
+                ret = Math.max(ret, (i - stack.peekLast() - 1) * height);
+            }
+            stack.offerLast(i);
+        }
+        return ret;
+    }
+}
+```

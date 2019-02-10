@@ -90,6 +90,7 @@
   * [Kth Smallest Element in a BST](Tree/kth-smallest-element-in-a-bst.md)
   * [Check Completeness of a Binary Tree](Tree/check-completeness-of-a-binary-tree.md)
   * [Flip Binary Tree To Match Preorder Traversal](Tree/flip-binary-tree-to-match-preorder-traversal.md)
+  * [Smallest String Starting From Leaf](Tree/smallest-string-starting-from-leaf.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
@@ -148,6 +149,7 @@
   * [Reverse Pairs](linkedlist-and-array/reverse-pairs.md)
   * [Split Linked List in Parts](linkedlist-and-array/split-linked-list-in-parts.md)
   * [Pancake Sorting](linkedlist-and-array/pancake-sorting.md)
+  * [Largest Perimeter Triangle](linkedlist-and-array/largest-perimeter-triangle.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
@@ -247,6 +249,7 @@
   * [Longest Valid Parentheses](datastructure-problems/longest-valid-parentheses.md)
   * [Top K Trade Value Stock](datastructure-problems/top-k-trade-value-stock.md)
   * [Exam Room](datastructure-problems/exam-room.md)
+  * [Odd Even Jump](datastructure-problems/odd-even-jump.md)
 * [Random](random/random.md)
   * [Linked List Random Node](random/linked-list-random-node.md)
   * [Random Pick Index](random/random-pick-index.md)
@@ -367,6 +370,7 @@
   * [Sum of Two Integers](bit-manipulation/sum-of-two-integers.md)
   * [Binary Watch \(easy\)](bit-manipulation/binary-watch-easy.md)
   * [Binary Number with Alternating Bits \(Easy Yahoo\)](bit-manipulation/binary-number-with-alternating-bits-easy-yahoo.md)
+  * [Triples with Bitwise AND Equal To Zero](bit-manipulation/triples-with-bitwise-and-equal-to-zero.md)
 * [Computer Graphics](computer-graphics/computer-graphics.md)
   * [Minimum Area Rectangle](computer-graphics/minimum-area-rectangle.md)
   * [Minimum Area Rectangle II](computer-graphics/minimum-area-rectangle-ii.md)
@@ -385,6 +389,7 @@
   * [Largest Palindrome Product](math-problems/largest-palindrome-product.md)
   * [Sum of Square Numbers \(Easy LinkedIn\)](math-problems/sum-of-square-numbers-easy-linkedin.md)
   * [Sparse Matrix Multiplication](math-problems/sparse-matrix-multiplication.md)
+  * [Equal Rational Numbers](math-problems/equal-rational-numbers.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
@@ -422,3 +427,7 @@
 * [Cpp Note2: 运算符重载，容器使用，Function Object，virtual method](c++-notes/cpp-note2.md)
 * [Cpp Note3: 函数指针，函数对象，Lambda](c++-notes/cpp-note3.md)
 * [Cpp Note4: 细节](c++-notes/cpp-note4.md)
+
+## System Design
+
+* [Basic Idea](system-design/basic-idea.md)
