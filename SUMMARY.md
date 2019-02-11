@@ -91,6 +91,7 @@
   * [Check Completeness of a Binary Tree](Tree/check-completeness-of-a-binary-tree.md)
   * [Flip Binary Tree To Match Preorder Traversal](Tree/flip-binary-tree-to-match-preorder-traversal.md)
   * [Smallest String Starting From Leaf](Tree/smallest-string-starting-from-leaf.md)
+  * [Vertical Order Traversal of a Binary Tree](Tree/vertical-order-traversal-of-a-binary-tree.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
