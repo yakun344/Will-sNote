@@ -45,12 +45,12 @@ Return the number of good subarrays of A.
 ```java
 class Solution {
     public int subarraysWithKDistinct(int[] A, int K) {
-        if (K == 0) return A.length;
+        if (K == 0) return 0;
         return getAtMostK(A, K) - getAtMostK(A, K - 1);
     }
     
     private int getAtMostK(int[] nums, int K) {
-        if (K == 0) return nums.length;
+        if (K == 0) return 0;
         int ret = 0;
         int[] count = new int[nums.length + 1];
         int i = 0, j = 0, m = 0;
@@ -59,7 +59,6 @@ class Solution {
                 m++;
             }
             count[nums[j]]++;
-            j++;
             while (m > K) {
                 if (--count[nums[i]] == 0) {
                     m--;
@@ -69,6 +68,7 @@ class Solution {
             // 此时保证subarray [i,j] 部分只有小于等于K个不同数字，
             // 计算从i开始到j结尾的所有subarray个数
             ret += j - i + 1;
+            j++;
         }
         return ret;
     }
