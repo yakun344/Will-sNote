@@ -90,7 +90,7 @@ Return the minimum number of dollars you need to travel every day in the given l
         dp[i + 7] + costs[1]
         dp[i + 30] + costs[2]
     ```
-    取三者中最小的作为第 `i` 天的状态。最终我们返回的是`dp[1]`;
+    取三者中最小的作为第 `i` 天的状态。最终我们返回的是`dp[1]`. 之所以我们可以只考虑在这一天买票，而不需考虑这一天可能会被之前买过的票cover，是因为如果之后计算之前某天的时候，在那一天买的票cover了这天，那么那一天的花销不会包括这一天买票的花销。
 
     具体实现的时候可以采用recursion的方法，从`dp(1)`开始调入，也可以采用从后往前数格子的方法。
     #### Java Code:
