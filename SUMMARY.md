@@ -358,6 +358,7 @@
   * [120 Triangle](dynamic-programming/triangle.md)
   * [410 Split Array Largest Sum](dynamic-programming/split-array-largest-sum.md)
   * [Delete Columns to Make Sorted III](dynamic-programming/delete-columns-to-make-sorted-iii.md)
+  * [Minimum Cost For Tickets](dynamic-programming/minimum-cost-for-tickets.md)
 * [Greedy Algorithms](greedy/greedy.md)
   * [Delete Columns to Make Sorted II](greedy/delete-columns-to-make-sorted-ii.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
