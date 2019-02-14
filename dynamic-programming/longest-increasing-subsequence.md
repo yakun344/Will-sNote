@@ -48,3 +48,43 @@ Java Code:
         }
     }
 ```
+
+---
+### Update: `O(NlogN)` Solution
+_update Feb 14 2019, 0:38_
+
+这道题还可以进一步优化，方法比较巧妙，利用了binarySearch，可以做到 `NlogN` 的时间复杂度。
+
+基本思路是维持一个递增的dp数组，其长度等于当前最长LIS的长度。从左向右扫描输入array，如果遇到大于当前dp数组最大值（最右）的元素，则appendLast，length+1. 否则则对dp数组进行binary search，用该数字换掉dp数组中大于它的最小值。
+
+```c
+    例如：[7812934], return 4, [1234]
+   curr dp[]
+    7   7   
+    8   78
+    1   18
+    2   12
+    9   129
+    3   123
+    4   1234 
+    return 最终的 dp 数组的长度
+```
+
+* #### Java Code:
+  ```java
+    class Solution {
+        public int lengthOfLIS(int[] nums) {
+            int[] dp = new int[nums.length];
+            int len = 0;
+            for (int i = 0; i < nums.length; ++i) {
+                if (len == 0 || dp[len - 1] < nums[i]) {
+                    dp[len++] = nums[i];
+                } else {
+                    int index = Arrays.binarySearch(dp, 0, len, nums[i]);
+                    if(index < 0) dp[-(index + 1)] = nums[i];
+                }
+            }
+            return len;
+        }
+    }
+  ```

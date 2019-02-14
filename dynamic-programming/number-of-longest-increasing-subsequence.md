@@ -29,7 +29,7 @@ Length of the given array will be not exceed 2000 and the answer is guaranteed t
 #### Java Code:
 ```java
     // O(n^2) solution
-    class Solution {
+   class Solution {
         public int findNumberOfLIS(int[] nums) {
             if (nums == null || nums.length == 0) return 0;
             int[] len = new int[nums.length];
@@ -53,7 +53,7 @@ Length of the given array will be not exceed 2000 and the answer is guaranteed t
                 cnt[i] = count;
             }
             
-            int max = 0, ret = 0;
+            int max = 1, ret = 0;
             for (int i = 0; i < nums.length; ++i) {
                 if (len[i] > max) {
                     max = len[i];
@@ -62,7 +62,6 @@ Length of the given array will be not exceed 2000 and the answer is guaranteed t
                     ret += cnt[i];
                 }
             }
-            if (ret == 0) return nums.length;
             return ret;
         }
     }
