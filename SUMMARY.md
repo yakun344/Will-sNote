@@ -154,6 +154,7 @@
   * [Pancake Sorting](linkedlist-and-array/pancake-sorting.md)
   * [Largest Perimeter Triangle](linkedlist-and-array/largest-perimeter-triangle.md)
   * [Subarrays with K Different Integers](linkedlist-and-array/subarrays-with-k-different-integers.md)
+  * [Subarray Sums Divisible by K](linkedlist-and-array/subarray-sums-divisible-by-k.md)
 * [Binary Search](binary-search/binary-search.md)
   * [Sqrt\(x\)](binary-search/sqrtx.md)
   * [Kth Smallest Element in a Sorted Matrix](binary-search/kth-smallest-element-in-a-sorted-matrix.md)
