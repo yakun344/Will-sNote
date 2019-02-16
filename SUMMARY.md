@@ -400,6 +400,7 @@
   * [Sparse Matrix Multiplication](math-problems/sparse-matrix-multiplication.md)
   * [Equal Rational Numbers](math-problems/equal-rational-numbers.md)
   * [Broken Calculator](math-problems/broken-calculator.md)
+  * [Least Operators to Express Number](math-problems/least-operators-to-express-number.md)
 * [Brainteaser](brainteaser/brainteaser.md)
   * [Bulb Switcher](brainteaser/bulb-switcher.md)
   * [Elimination Game](brainteaser/elimination-game.md)
