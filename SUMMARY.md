@@ -94,6 +94,7 @@
   * [Smallest String Starting From Leaf](Tree/smallest-string-starting-from-leaf.md)
   * [Vertical Order Traversal of a Binary Tree](Tree/vertical-order-traversal-of-a-binary-tree.md)
   * [Distribute Coins in Binary Tree](Tree/distribute-coins-in-binary-tree.md)
+  * [Cousins in Binary Tree](Tree/cousins-in-binary-tree.md)
 * [LinkedList & Array](linkedlist-and-array/linkedlist-and-array.md)
   * [Maximum Size Subarray Sum Equals k](linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](linkedlist-and-array/intersection-of-two-linked-lists.md)
