@@ -366,6 +366,7 @@
   * [Minimum Cost For Tickets](dynamic-programming/minimum-cost-for-tickets.md)
   * [Longest Turbulent Subarray](dynamic-programming/longest-turbulent-subarray.md)
   * [Knapsack Problem](dynamic-programming/knapsack-problem.md)
+  * [Find the Shortest Superstring](dynamic-programming/find-the-shortest-superstring.md)
 * [Greedy Algorithms](greedy/greedy.md)
   * [Delete Columns to Make Sorted II](greedy/delete-columns-to-make-sorted-ii.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
