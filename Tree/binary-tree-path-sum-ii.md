@@ -138,3 +138,38 @@ _update Dec 21, 2017  23:36_
         }
     }
 ```
+
+---
+_update Feb 19 2019, 17:27_
+
+### Update: 最直观的解
+重做此题，感觉最直观最简单的解法任然是从上到下传一个path数组，每一层先用两层for loop计算有多少从上到下且以当前node截止的满足条件的path，加入res。
+```java
+public class Solution {
+    /*
+     * @param root: the root of binary tree
+     * @param target: An integer
+     * @return: all valid paths
+     */
+    public List<List<Integer>> binaryTreePathSum2(TreeNode root, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        dfs(root, new ArrayList<>(), res, target);
+        return res;
+    }
+    
+    private void dfs(TreeNode root, List<Integer> path, List<List<Integer>> res, int target) {
+        path.add(root.val);
+        for (int i = 0; i < path.size(); ++i) {
+            int sum = 0;
+            for (int j = i; j < path.size(); ++j) {
+                sum += path.get(j);
+            }
+            if (sum == target) res.add(new ArrayList<>(path.subList(i, path.size())));
+        }
+        if (root.left != null) dfs(root.left, path, res, target);
+        if (root.right != null) dfs(root.right, path, res, target);
+        path.remove(path.size() - 1);
+    }
+}
+```
