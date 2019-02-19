@@ -367,6 +367,7 @@
   * [Longest Turbulent Subarray](dynamic-programming/longest-turbulent-subarray.md)
   * [Knapsack Problem](dynamic-programming/knapsack-problem.md)
   * [Find the Shortest Superstring](dynamic-programming/find-the-shortest-superstring.md)
+  * [Number of Squareful Arrays](dynamic-programming/number-of-squareful-arrays.md)
 * [Greedy Algorithms](greedy/greedy.md)
   * [Delete Columns to Make Sorted II](greedy/delete-columns-to-make-sorted-ii.md)
 * [Bit Manipulation](bit-manipulation/bit-manipulation.md)
