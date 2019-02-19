@@ -33,7 +33,7 @@ We may assume that no string in A is substring of another string in A.
 
 这是他视频中的slide截图，感觉很不错：
 
-![](assets/../../assets/Screenshot&#32;2019-02-18&#32;20.23.36.png)
+![](/assets/Screenshot 2019-02-18 20.23.36.png)
 
 这道题本质上可以被看作哈密顿路径问题（hamiltonian path），因为我们可以将这道题的定义进行抽象：给定N个节点，每对节点之间的边有一定的weight，要求找到一条路径经过每个节点有且只有一次，且该路径总weight最小。
 
