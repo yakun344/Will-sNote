@@ -67,3 +67,6 @@ Return the number of permutations of A that are squareful.  Two permutations A1 
     }
   ```
 ### Solution 2: DP, Hamitonian Path
+花花酱的视频讲解：[https://www.youtube.com/watch?v=ISnktonx7rY](https://www.youtube.com/watch?v=ISnktonx7rY) .
+
+这里的实现比较复杂，因为涉及到的去重的操作比较复杂。
