@@ -43,24 +43,23 @@ You have the following 3 operations permitted on a word:
   ```java
     class Solution {
         public int minDistance(String word1, String word2) {
-            int[][] dp = new int[word1.length() + 1][word2.length() + 1];
-            for (int i = 1; i < word2.length() + 1; ++i) {
-                dp[0][i] = i;
-            }
-            for (int i = 1; i < word1.length() + 1; ++i) {
-                dp[i][0] = i;
-            }
-            for (int i = 1; i <= word1.length(); ++i) {
-                for (int j = 1; j <= word2.length(); ++j) {
-                    char c1 = word1.charAt(i - 1), c2 = word2.charAt(j - 1);
-                    if (c1 == c2) {
+            int M = word1.length() + 1, N = word2.length() + 1;
+            int[][] dp = new int[M][N];
+            for (int i = 0; i < M; ++i) dp[i][0] = i;
+            for (int j = 0; j < N; ++j) dp[0][j] = j;
+
+            for (int i = 1; i < M; ++i) {
+                for (int j = 1; j < N; ++j) {
+                    char a = word1.charAt(i - 1), b = word2.charAt(j - 1);
+                    if (a == b) {
                         dp[i][j] = dp[i - 1][j - 1];
                     } else {
-                        dp[i][j] = Math.min(Math.min(dp[i - 1][j] + 1, dp[i][j - 1] + 1), dp[i - 1][j - 1] + 1);
+                        dp[i][j] = Math.min(dp[i - 1][j] + 1, 
+                                            Math.min(dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1));
                     }
                 }
             }
-            return dp[word1.length()][word2.length()];
+            return dp[M - 1][N - 1];
         }
     }
   ```
