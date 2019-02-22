@@ -243,3 +243,75 @@ class LRUCache {
     }
 }
 ```
+
+---
+
+_update Feb 21 2019, 22:45_
+
+### Java 真最终版本
+这次将维持size的函数分离出来，叫做ensureCapacity()，似的主要逻辑构架非常清晰明了。
+```java
+    class LRUCache {
+        static class Node {
+            Node prev = null, next = null;
+            int key, val;
+            public Node(int key, int val) {
+                this.key = key;
+                this.val = val;
+            }
+        }
+        private Map<Integer, Node> map = new HashMap<>();
+        private Node head, tail;
+        private int CAPACITY;
+        
+        private void removeNode(Node node) {
+            node.next.prev = node.prev;
+            node.prev.next = node.next;
+        }
+        
+        private void addToHead(Node node) {
+            node.next = head.next;
+            node.prev = head;
+            node.next.prev = node;
+            node.prev.next = node;
+        }
+        
+        private void ensureCapacity() {
+            if (map.size() <= CAPACITY) return;
+            Node rmv = tail.prev;
+            int key = rmv.key;
+            map.remove(key);
+            removeNode(rmv);
+        }
+        
+        public LRUCache(int capacity) {
+            head = new Node(0, 0);
+            tail = new Node(0, 0);
+            head.next = tail;
+            tail.prev = head;
+            CAPACITY = capacity;
+        }
+        
+        public int get(int key) {
+            if (!map.containsKey(key)) return -1;
+            Node node = map.get(key);
+            removeNode(node);
+            addToHead(node);
+            return node.val;
+        }
+        
+        public void put(int key, int value) {
+            if (map.containsKey(key)) {
+                Node node = map.get(key);
+                node.val = value;
+                removeNode(node);
+                addToHead(node);
+            } else {
+                Node node = new Node(key, value);
+                map.put(key, node);
+                addToHead(node);
+                ensureCapacity();
+            }
+        }
+    }
+```
