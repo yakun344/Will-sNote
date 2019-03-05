@@ -2,6 +2,8 @@
 _update Dec 22, 2017  19:32_
 
 ---
+[Verify Preorder Serialization of a Binary Tree](https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/)
+
 One way to serialize a binary tree is to use pre-order traversal. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as `#`.
           
                _9_
@@ -117,18 +119,3 @@ recursively 重建整个树，检查是否刚好用完所给 string 中的所有
             except StopIteration: return True
             return False
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
