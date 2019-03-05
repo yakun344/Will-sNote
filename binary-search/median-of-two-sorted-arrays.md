@@ -150,3 +150,41 @@ _update 2018-07-13 18:59:52_
 
 #### Update: 时间复杂度分析
 如果我们需要得到两个 sorted array 中第k个数字，由于每次iteration我们都会丢掉上次丢掉数字一半的数字 `(第一次 k/2, 然后 k/4, k/8 ...)`，这样的时间复杂度应该是 `log(k)`。然后因为我们最终的 `k == (lenA + lenB) / 2`，所以总的时间复杂度为 `O(log((lenA + lenB)/2)) == O(log(lenA + lenB))`。
+
+
+---
+_update Feb 24 2019, 19:24_
+
+### Update: 更简短的Java Recursive Solution
+```java
+    class Solution {
+        int[] nums1, nums2;
+        int m, n;
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            this.nums1 = nums1;
+            this.nums2 = nums2;
+            m = nums1.length;
+            n = nums2.length;
+            if ((m + n) % 2 == 0) {
+                return (findKth(0, 0, (m + n) / 2) + findKth(0, 0, (m + n) / 2 + 1)) / 2.0;
+            } else {
+                return findKth(0, 0, (m + n) / 2 + 1);
+            }
+        }
+        
+        private int findKth(int s1, int s2, int k) {
+            if (s1 >= m) return nums2[s2 + k - 1];
+            else if (s2 >= n) return nums1[s1 + k - 1];
+            else if (k == 1) {
+                return Math.min(nums1[s1], nums2[s2]);
+            }
+            int a = s1 + k / 2 - 1 < m ? nums1[s1 + k / 2 - 1] : Integer.MAX_VALUE;
+            int b = s2 + k / 2 - 1 < n ? nums2[s2 + k / 2 - 1] : Integer.MAX_VALUE;
+            if (a < b) {
+                return findKth(s1 + k / 2, s2, k - k / 2);
+            } else {
+                return findKth(s1, s2 + k / 2, k - k / 2);
+            }
+        }
+    }
+```
