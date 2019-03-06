@@ -391,6 +391,7 @@
   * [Minimum Area Rectangle](computer-graphics/minimum-area-rectangle.md)
   * [Minimum Area Rectangle II](computer-graphics/minimum-area-rectangle-ii.md)
   * [Generate Random Point in a Circle](computer-graphics/generate-random-point-in-a-circle.md)
+  * [Grid Illumination](computer-graphics/grid-illumination.md)
 * [Math Problems](math-problems/mathematical-problem.md)
   * [Nth digit](math-problems/nth-digit.md)
   * [Count Primes](math-problems/count-primes.md)
