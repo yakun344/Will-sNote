@@ -36,11 +36,11 @@ Could you solve it in linear time?
 我们可以维持一个size为k的PQ，随着window的移动增减元素，由于Java自带PQ不支持删除，我们可以使用TreeSet来代替。但是这样做的时间复杂度为 `O(nlogk)`，不是 O(n).
 
 * #### Solution 2: Using Monotonic deque（类似单调栈）
-我们可以维持一个deque，其中包含窗口内的元素的index，但其内维持一个从左到右单调递减的顺序，这样就可以保证最左端永远储存当前窗口内max元素的index。  
+我们可以维持一个deque，其中包含窗口内的元素的index，但其内维持一个从左到右单调递减的顺序，这样就可以保证最左端永远储存当前窗口内max元素的index。  
 举例说明：  
-对于窗口中元素为 `1 3 -1` 的情况，deque中存储 `3 -1` 两个元素对应的index。当窗口移动使得 1 出去，2 进来：`3 -1 2`，因为 deque中当前最大 3 未移出window，所以不需要移除当前最大，但是我们要检查刚进来的2，使得deque维持从左到右的降序，所以要让 -1 的index移除，再将 2 的index加入右边，所以之后的deque为 `3 2` 对应的index；  
+对于窗口中元素为 `1 3 -1` 的情况，deque中存储 `3 -1` 两个元素对应的index。当窗口移动使得 1 出去，2 进来：`3 -1 2`，因为 deque中当前最大 3 未移出window，所以不需要移除当前最大，但是我们要检查刚进来的2，使得deque维持从左到右的降序，所以要让 -1 的index移除，再将 2 的index加入右边，所以之后的deque为 `3 2` 对应的index；  
 
-* ##### Java Code:
+* ##### Java Code:
 ```java
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
@@ -64,3 +64,16 @@ class Solution {
     }
 }
 ```
+---
+_update Mar 14 2019, 15:07_
+
+### Update: Monotonic Queue 可以独立实现
+参考花花的讲解: [https://www.youtube.com/watch?v=2SXqBsTR6a8](https://www.youtube.com/watch?v=2SXqBsTR6a8), 我们可以把单调队列单独写成一个util类，支持三种操作：
+
+1. `offer`: 从右端加入一个元素，保证queue从左到右降序
+2. `pop`: 将最左端元素移除
+3. `getMax`: 返回最左端元素，当前max
+
+这样一个类的n次操作平均时间为O(1)每次。
+
+
