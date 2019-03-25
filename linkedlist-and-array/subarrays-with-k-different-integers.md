@@ -74,3 +74,28 @@ class Solution {
     }
 }
 ```
+
+---
+_update Mar 25, 2019_
+
+### Update concise java code
+这道题的本质是每次将right指针右移一位，所以我们可以利用一个for loop。在loop中每次检查window中是否只有小于等于K个不同的数字。合理利用++让code更短。
+```java
+    class Solution {
+        public int subarraysWithKDistinct(int[] A, int K) {
+            return atMostK(A, K) - atMostK(A, K - 1);
+        }
+        private int atMostK(int[] A, int K) {
+            int[] map = new int[A.length + 1];
+            int ret = 0, left = 0, count = 0;
+            for (int r = 0; r < A.length; ++r) {
+                if (map[A[r]]++ == 0) count++;
+                while (count > K) {
+                    if (--map[A[left++]] == 0) count--;
+                }
+                ret += r - left + 1;
+            }
+            return ret;
+        }
+    }
+```
