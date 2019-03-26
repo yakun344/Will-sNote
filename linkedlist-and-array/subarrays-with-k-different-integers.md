@@ -99,3 +99,37 @@ _update Mar 25, 2019_
         }
     }
 ```
+
+---
+_update Mar 26, 2019_
+
+### Update: Without "atMostK()"
+其实之所以需要转化成 atMostK 问题，是因为直接用双指针的时候我们需要处理重复问题，也就是当右指针right固定时，满足条件左指针的位置不是唯一的，于是我们就有了另一种思路，即右指针仍然每次前进一格，每次当窗口满足条件时，我们考虑所有满足条件的左指针的范围i～j，则对于当前右指针为止，满足条件的subarray就有 `j-i+1` 个。
+
+```java
+class Solution {
+    public int subarraysWithKDistinct(int[] A, int K) {
+        int[] map = new int[A.length + 1];
+        int ret = 0, count = 0, i = 0, j = 0;
+        for (int curr = 0; curr < A.length; ++curr) {
+            // curr 为右指针，每次前进一步
+            if (map[A[curr]]++ == 0) count++;
+            while (count > K) {
+                if (--map[A[j++]] == 0) count--;
+                i = j;
+                // 让ij一起，因为此时j是最左边左指针的位置
+            }
+            if (count == K) {
+                while (map[A[j]] > 1) {
+                    map[A[j]]--;
+                    j++;
+                }
+                // 此时 i 指向第一个满足条件的左指针的位置
+                // j 指向最右边一个满足条件左指针的位置
+                ret += j - i + 1;
+            }
+        }
+        return ret;
+    }
+}
+```
