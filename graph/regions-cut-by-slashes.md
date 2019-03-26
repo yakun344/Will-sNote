@@ -144,3 +144,59 @@ class Solution {
     }
 }
 ```
+
+### DFS Solution
+DFS 的解法基本思路使用像素格子将输入的图形画出来，然后dfs找联通块的数量。
+```java
+/*
+    [][][]      1[][]       [][]1      
+    [][][]  or  []1[]  or   []1[]    dfs
+    [][][]      [][]1       1[][]
+
+*/
+class Solution {
+    private int[] dr = {0, 1, -1, 0}, dc = {1, 0, 0, -1};
+    private boolean[][] mGrid; // true==>1, false==>0
+    private int M;
+    
+    public int regionsBySlashes(String[] grid) {
+        M = grid.length;
+        mGrid = new boolean[M * 3][M * 3];
+        for (int i = 0; i < M; ++i) {
+            for (int j = 0; j < M; ++j) {
+                char c = grid[i].charAt(j);
+                if (c == '\\') {
+                    mGrid[i * 3][j * 3] = true;
+                    mGrid[i * 3 + 1][j * 3 + 1] = true;
+                    mGrid[i * 3 + 2][j * 3 + 2] = true;
+                } else if (c == '/') {
+                    mGrid[i * 3][j * 3 + 2] = true;
+                    mGrid[i * 3 + 1][j * 3 + 1] = true;
+                    mGrid[i * 3 + 2][j * 3] = true;
+                }
+            }
+        }
+        int ret = 0;
+        for (int i = 0; i < 3 * M; ++i) {
+            for (int j = 0; j < 3 * M; ++j) {
+                if (!mGrid[i][j]) {
+                    dfs(i, j);
+                    ret++;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    private void dfs(int r, int c) {
+        if (mGrid[r][c]) return;
+        mGrid[r][c] = true;
+        for (int i = 0; i < 4; ++i) {
+            int nr = r + dr[i], nc = c + dc[i];
+            if (nr >= 0 && nr < M * 3 && nc >= 0 && nc < M * 3) {
+                dfs(nr, nc);
+            }
+        }
+    }
+}
+```
