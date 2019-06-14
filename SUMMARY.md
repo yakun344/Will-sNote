@@ -432,6 +432,7 @@
 * [Signals and handlers](operating-system/signals-and-handlers.md)
 * [Shell and Glue](operating-system/shell-and-glue.md)
 * [Pointers and Types](operating-system/pointers.md)
+* [Process Lifecycle](operating-system/process-lifecycle.md)
 * [Threads](operating-system/threads.md)
 * [Multithreaded Programming](operating-system/multithreaded-programming.md)
 * [Locks and the Bounded Buffer](operating-system/locks-and-the-bounded-buffer.md)
