@@ -441,6 +441,7 @@
 * [Memory Management](operating-system/memory-management.md)
 * [Virtual Memory](operating-system/virtual-memory.md)
 * [Memory Addressing](operating-system/memory-addressing.md)
+* [How Lock Wait Awake Works](operating-system/lock-wait-awake.md)
 
 ## C++ Notes
 
