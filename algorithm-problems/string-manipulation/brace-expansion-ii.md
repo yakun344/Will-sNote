@@ -49,7 +49,7 @@ Given an expression representing a set of words under the given grammar, return 
 3. The given expression represents a set of words based on the grammar given in the description.
 
 ### Basic Idea
-读题花了很长时间，但基本规则就是如果两个部分由“,” 相隔，则并列加入结果中，如果直接相连，则需要做两两相乘但组合。输出的结果需要去重并且排序。
+读题花了很长时间，但基本规则就是如果两个部分由“,” 相隔，则并列加入结果中，如果直接相连，则需要做两两相乘的组合。输出的结果需要去重并且排序。
 
 思路是使用递归来处理下级`"{}"`中的表达式，从左到右扫描，根据所遇到但字符进行相应操作。细节很多，需要特别注意。
 
