@@ -39,5 +39,5 @@ futex 是linux中low level的锁机制实现，它可以在 not contended 的情
 
 ![](https://static.lwn.net/images/ns/kernel/dvh-futexes.png)
 
-futex的主要操作有 FUTEX\_WAIT 和 FUTEX\_WAKE。具体的实现方式是： 如果thread或process需要wait for a futex state variable，则需要调用system call进入kernel model。在kernel中会为每个futex variable 维持一个 hash table 中的list，里面存放waiting for this futex value的processes or threads。当有wake操作当时候，进入kernel mode，选择相应当process或者thread将其wake，加入"run queue"。
+futex的主要操作有 FUTEX\_WAIT 和 FUTEX\_WAKE。具体的实现方式是： 如果thread或process需要wait for a futex state variable，则需要调用system call进入kernel model。在kernel中会为每个futex variable 维持一个 hash table 中的list，里面存放waiting for this futex value的processes or threads。当有wake操作的时候，进入kernel mode，选择相应当process或者thread将其wake，加入"run queue"。
 
