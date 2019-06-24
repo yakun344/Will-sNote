@@ -213,6 +213,7 @@
   * [Similar RGB Color \(Ease Google\)](algorithm-problems/string-manipulation/similar-rgb-color.md)
   * [Subdomain Visit Count \(Easy\)](algorithm-problems/string-manipulation/subdomain-visit-count-easy.md)
   * [String to Integer \(atoi\)](algorithm-problems/string-manipulation/string-to-integer-atoi.md)
+  * [Brace Expansion II](algorithm-problems/string-manipulation/brace-expansion-ii.md)
 * [DataStructure Problems](algorithm-problems/datastructure-problems/README.md)
   * [Maximum Product of Three Numbers](algorithm-problems/datastructure-problems/maximum-product-of-three-numbers.md)
   * [Next Greater Element II](algorithm-problems/datastructure-problems/next-greater-element-ii.md)
@@ -318,6 +319,7 @@
   * [Missing Ranges](algorithm-problems/interval-problems/missing-ranges.md)
   * [Rectangle Overlap](algorithm-problems/interval-problems/rectangle-overlap.md)
   * [Rectangle Area](algorithm-problems/interval-problems/rectangle-area.md)
+  * [Car Pooling](algorithm-problems/interval-problems/car-pooling.md)
 * [Dynamic Programming](algorithm-problems/dynamic-programming/README.md)
   * [Unique Paths](algorithm-problems/dynamic-programming/unique-paths.md)
   * [Unique Paths II](algorithm-problems/dynamic-programming/unique-paths-ii.md)
@@ -459,4 +461,3 @@
 ## System Design
 
 * [Basic Idea](system-design/basic-idea.md)
-
