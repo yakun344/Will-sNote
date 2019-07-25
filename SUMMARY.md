@@ -449,11 +449,12 @@
 
 ## C++ Notes
 
-* [Cpp Note1: 右值引用于移动语意](c++-notes/cppnote1.md)
+* [Cpp Note1: 右值引用于移动语意](c++-notes/cpp-rval-move.md)
 * [Cpp Note2: 运算符重载，容器使用，Function Object，virtual method](c++-notes/cpp-note2.md)
 * [Cpp Note3: 函数指针，函数对象，Lambda](c++-notes/cpp-note3.md)
 * [Cpp Note4: 细节](c++-notes/cpp-note4.md)
 * [Cpp Note5: 多线程](c++-notes/cpp-multithreading.md)
+* [Cpp Note6: Val Categories, 函数参数与返回值, Copy Elision](c++-notes/cpp-param-ret-val-categories-copy-elision.md)
 
 ## Computer Networking
 
