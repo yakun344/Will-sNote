@@ -99,7 +99,9 @@ Copy Elision 是一种用于消除不必要copy的编译器优化。其结果往
 
 > 在RVO和NRVO中，c++11 标准规定如果一个variable is eligible for copy elision，但是编译器无法进行copy elision优化（例如被disable），那么compiler会尝试进行move，即使那个object是一个lvalue。
 
-1. Return value optimization（RVO）
+> 如果return之前使用move，则不会被NRVO或RVO，因为 `std::move()` return一个xvalue，非lvalue或者prvalue.
+
+1. Return value optimization（RVO）(only works with prvalue)
 
     是指通过编译器优化消除当function返回temporary object时的copy操作，即使copy constructor 有其他side effect。基本原理是通过编译器优化，直接使用函数外的空间来构建object，例如下面的例子中，直接用`obj`的空间来构建被`F()`return的`C`的object。
     ```cpp
@@ -125,7 +127,7 @@ Copy Elision 是一种用于消除不必要copy的编译器优化。其结果往
     ```
     **Note:** 即使一个function有多个return statement，只要return的object是在return statement中创建的，RVO依然可以work。
 
-2. NamedReturnValueOptimization (NRVO)
+2. NamedReturnValueOptimization (NRVO) (only works with lvalue with automatic storage duration)
    
    编译器也可以对function中之前create的object做出优化，但是需要注意在所有的return path中，只能有一个returnable object，否则无法应用NRVO。例如，如下Code 1 work，2 不work。
    ```cpp
