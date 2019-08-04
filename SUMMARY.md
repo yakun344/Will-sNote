@@ -455,6 +455,7 @@
 * [Cpp Note4: 细节](c++-notes/cpp-note4.md)
 * [Cpp Note5: 多线程](c++-notes/cpp-multithreading.md)
 * [Cpp Note6: Val Categories, 函数参数与返回值, Copy Elision](c++-notes/cpp-param-ret-val-categories-copy-elision.md)
+* [Cpp Note7: auto](c++-notes/cpp-auto.md)
 
 ## Computer Networking
 
