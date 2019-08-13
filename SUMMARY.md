@@ -99,6 +99,7 @@
   * [Cousins in Binary Tree](algorithm-problems/tree/cousins-in-binary-tree.md)
   * [Maximum Binary Tree II](algorithm-problems/tree/maximum-binary-tree-ii.md)
 * [LinkedList & Array](algorithm-problems/linkedlist-and-array/README.md)
+  * [Sorting Algorithms](algorithm-problems/linkedlist-and-array/sorting-algorithms.md)
   * [Maximum Size Subarray Sum Equals k](algorithm-problems/linkedlist-and-array/maximum-size-subarray-sum-equals-k.md)
   * [Intersection of Two Linked Lists](algorithm-problems/linkedlist-and-array/intersection-of-two-linked-lists.md)
   * [Maximum Distance in Arrays](algorithm-problems/linkedlist-and-array/maximum-distance-in-arrays.md)
