@@ -318,3 +318,80 @@ _update Feb 21 2019, 22:45_
     }
 ```
 
+---
+_update Aug 24, 2019_
+
+### C++ 版本
+注意在c++中实现链表我们需要内存管理，这里因为所有node都在map中，我们使用`unordered_map<int, unique_ptr<ListNode>>` 来管理heap上node的内存。
+
+```cpp
+class LRUCache {
+    struct ListNode {
+        int key;
+        int val;
+        ListNode* prev;
+        ListNode* next;
+    };
+    unordered_map<int, unique_ptr<ListNode>> _map;
+    ListNode head, tail;
+    const int CAPACITY;
+    
+    void removeNode(ListNode* node) {
+        node->prev->next = node->next;
+        node->next->prev = node->prev;
+    }
+    
+    void addLast(ListNode* node) {
+        node->next = &tail;
+        node->prev = tail.prev;
+        tail.prev->next = node;
+        tail.prev = node;
+    }
+    
+    void moveToLast(ListNode* node) {
+        removeNode(node);
+        addLast(node);
+    }
+    
+    void ensureCapacity() {
+        if (_map.size() < CAPACITY) return;
+        int key = head.next->key;
+        removeNode(head.next);
+        _map.erase(key);
+    }
+public:
+    LRUCache(int capacity): CAPACITY(capacity) {
+        head.next = &tail;
+        tail.prev = &head;
+    }
+    
+    int get(int key) {
+        auto it = _map.find(key);
+        if (it == _map.end()) return -1;
+        ListNode* node = it->second.get();
+        moveToLast(node);
+        return node->val;
+    }
+    
+    void put(int key, int value) {
+        auto it = _map.find(key);
+        if (it == _map.end()) {
+            ensureCapacity();
+            ListNode* node = new ListNode{key, value};
+            addLast(node);
+            _map.emplace(key, node);
+        } else {
+            ListNode* node = it->second.get();
+            node->val = value;
+            moveToLast(node);
+        }
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+ ```
