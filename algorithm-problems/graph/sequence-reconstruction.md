@@ -168,3 +168,51 @@ public class Solution {
             return not [node for node in graph if count[node] > 0]
 ```
 
+---
+_update Aug 29, 2019_
+
+再记录一个更加快速的解法，不用contruct graph，而是从边出发。我们先从给定的所有seq中获得所有solid的edge，检查每个edge是否vialate给定的org array顺序。又因为必须是唯一存在的顺序，之后也要检查从前到后每一对org中元素相对顺序是否有对应的edge在seqs中出现。
+
+例如：
+```c
+    对于 org=[2,3,5,4,1]
+    则在seqs所给定的所有关系中，必须存在:
+        edge: [2,3] [3,5] [5,4] [4,1]
+```
+
+另外还有一些特殊情况要处理。
+
+```cpp
+class Solution {
+public:
+    bool sequenceReconstruction(vector<int>& org, vector<vector<int>>& seqs) {
+        // 记录 number->index mapping
+        vector<int> pos(org.size() + 1);
+        for (int i{0}; i < org.size(); ++i) {
+            pos[org[i]] = i;
+        }
+        unordered_map<int, unordered_set<int>> edges;
+        bool hasEdge = false; // 如果seq全部为空，返回false
+        for (auto& seq : seqs) {
+            for (int i{0}; i < seq.size(); ++i) {
+                hasEdge = true;
+                if (seq[i] < 1 || seq[i] > org.size()) {
+                    return false;
+                }
+                // 查看是否冲突，记录保存edge
+                if (i > 0) {
+                    int u{seq[i - 1]}, v{seq[i]};
+                    if (pos[u] >= pos[v]) return false;
+                    edges[u].emplace(v);
+                }
+            }
+        }
+        if (!hasEdge) return false;
+        // 检查是否每对顺序都有对应edge
+        for (int i{1}; i < org.size(); ++i) {
+            if (!edges[org[i - 1]].count(org[i])) return false;
+        }
+        return true;
+    }
+};
+```
