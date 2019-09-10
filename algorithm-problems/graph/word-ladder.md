@@ -184,3 +184,65 @@ private:
 };
 ```
 
+_update Sep 9, 2019_
+
+## Update, Leetcode version
+
+Leetcode 上的版本和lintcode有些许出入，但只需要略加修改即可：
+
+### Java Code:
+```java
+    public class Solution {
+        /**
+          * @param start, a string
+          * @param end, a string
+          * @param dict, a set of string
+          * @return an integer
+          */
+        private Set<String> visited;
+
+        public int ladderLength(String start, String end, Set<String> dict) {
+            if (start.equals(end)) return 1;
+            dict.add(end); // 先把end加入dict，否则无法直接判断终点
+            visited = new HashSet<String>();
+            Deque<String> queue = new LinkedList<>();
+            queue.addFirst(start);
+            int step = 1;
+            while (! queue.isEmpty()) {
+                int size = queue.size();
+                step++;
+                for (int i = 0; i < size; ++i) {
+                    String node = queue.removeLast();
+                    for (String neighbor : getNeighbors(node, dict)) {
+                        // 无需判断是否在visited中，因为getNeighbors已经判断过了
+                        if (neighbor.equals(end)) return step;
+                        queue.addFirst(neighbor);
+                        visited.add(neighbor);
+                    }
+                }
+            }
+            return 0;
+        }
+
+        private String replace(String str, int index, char c) {
+            char[] arr = str.toCharArray();
+            arr[index] = c;
+            return String.valueOf(arr);
+        }
+
+        private List<String> getNeighbors(String node, Set<String> dict) {
+            List<String> ret = new ArrayList<>();
+            for (int i = 0; i < node.length(); ++i) {
+                for (int c = 'a'; c <= 'z'; ++c) {
+                    String str = replace(node, i, (char)c);
+                    if (dict.contains(str)) {
+                        if (! visited.contains(str)) {
+                            ret.add(str);
+                        }
+                    }
+                }
+            }
+            return ret;
+        }
+    }
+```
