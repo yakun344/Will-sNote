@@ -246,3 +246,50 @@ public class Solution {
     }
 }
 ```
+
+### C++ Code
+有一点可以优化的地方，其实我们不需要另外使用一个 visited set，而是可以利用 wordSet（dict），每当我们将一个neighbor放入queue，我们就在wordset中将其去掉。
+
+```cpp
+class Solution {
+  public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> wordSet(wordList.begin(), wordList.end());
+        deque<string> queue{beginWord};
+
+        if (!wordSet.count(endWord)) return 0;
+
+        int level = 0;
+        while (!queue.empty()) {
+            level++;
+            int size = queue.size();
+            for (int i = 0; i < size; ++i) {
+                string word = std::move(queue.back());
+                if (word == endWord) return level;
+                queue.pop_back();
+                auto neighbors = getNeighbors(word, wordSet);
+                queue.insert(queue.begin(), neighbors.begin(), neighbors.end());
+            }
+        }
+        return 0;
+    }
+  private:
+    vector<string> getNeighbors(string& word, unordered_set<string>& wordSet) {
+        vector<string> ret;
+        for (int i = 0; i < word.size(); ++i) {
+            for (char c = 'a'; c <= 'z'; ++c) {
+                if (c != word[i]) {
+                    string tmp = word;
+                    tmp[i] = c;
+                    if (wordSet.count(tmp)) {
+                        // std::cout << neighbor << std::endl;
+                        wordSet.erase(tmp); // 在wordSet中去掉，相当于标记为visited
+                        ret.push_back(std::move(tmp));
+                    }
+                }
+            }
+        }
+        return ret;
+    }
+};
+```
