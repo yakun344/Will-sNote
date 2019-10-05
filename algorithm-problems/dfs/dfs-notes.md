@@ -1,6 +1,6 @@
 # DFS notes
 
-_update Jan 7, 2017 16:05_
+_update Jan 7, 2018 16:05_
 
 ## Basic Idea
 
@@ -154,4 +154,3 @@ def dfs(input, pos):
 #### Follow up：为什么不用BFS来做permutation问题？
 
 答：因为如果用BFS的话，queue.size 会指数型增长，空间复杂度太高。
-
