@@ -150,7 +150,6 @@ _update Jan 7,2017 22:20_
 
 ## Update
 
-新的思路参考 [DFS notes](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/DFS-notes.html);
+新的思路参考 [DFS notes](https://will-gxz.gitbooks.io/xiaozheng_algo/algorithm-problems/dfs/dfs-notes.html);
 
 其实和之前的决策树的思路非常接近。
-
