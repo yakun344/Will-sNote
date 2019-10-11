@@ -140,11 +140,10 @@ Java Code:
             }
 
             public int find(int x) {
-                while (ids[x] != x) {
+                if (ids[x] != x) {
                     ids[x] = find(ids[x]);
-                    x = ids[x];
                 }
-                return x;
+                return ids[x];
             }
 
             public void union(int x, int y) {
@@ -231,4 +230,3 @@ _update 2018-05-18 20:36:22_
         }
     };
 ```
-
