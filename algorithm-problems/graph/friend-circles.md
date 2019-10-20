@@ -40,7 +40,7 @@ Explanation:The 0th and 1st students are direct friends, the 1st and 2nd student
 
 ## Basic Idea:
 
-**思路1：DFS or BFS**  每个人相当于一个 vertex，从每个vertex出发进行dfs，每次dfs所发现的其他 v 都是属于同一个连通量（同一个朋友圈）。因此，只要每次进入dfs时判断当前 v 是否已被发现，如没有，则 ret++;  
+**思路1：DFS or BFS** 每个人相当于一个 vertex，从每个vertex出发进行dfs，每次dfs所发现的其他 v 都是属于同一个连通量（同一个朋友圈）。因此，只要每次进入dfs时判断当前 v 是否已被发现，如没有，则 ret++;  
 Time Complexity: 因为dfs或bfs都会每个vertex visit 一遍，所以总时间复杂度为O\(n^2\)；
 
 Python Code:
@@ -230,3 +230,4 @@ _update 2018-05-18 20:36:22_
         }
     };
 ```
+

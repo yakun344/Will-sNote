@@ -9,7 +9,7 @@ Given two words \(start and end\), and a dictionary, find the length of shortest
 * Only one letter can be changed at a time
 * Each intermediate word must exist in the dictionary
 
- **Notice**
+  **Notice**
 
 * Return 0 if there is no such transformation sequence.
 * All words have the same length.
@@ -191,6 +191,7 @@ _update Sep 9, 2019_
 Leetcode 上的版本和lintcode有些许出入，但只需要略加修改即可：
 
 ### Java Code:
+
 ```java
 public class Solution {
 
@@ -248,6 +249,7 @@ public class Solution {
 ```
 
 ### C++ Code
+
 有一点可以优化的地方，其实我们不需要另外使用一个 visited set，而是可以利用 wordSet（dict），每当我们将一个neighbor放入queue，我们就在wordset中将其去掉。
 
 ```cpp
@@ -293,3 +295,4 @@ class Solution {
     }
 };
 ```
+

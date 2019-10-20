@@ -1,7 +1,6 @@
-# Sorting Algorithms 常见排序算法实现
-_update Aug 13, 2019_
+# Sorting Algorithms
 
----
+_update Aug 13, 2019_
 
 ```java
 // Implement sorting algorithm
@@ -301,3 +300,4 @@ public class Sorting {
     }
 }
 ```
+

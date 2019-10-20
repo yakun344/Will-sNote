@@ -168,12 +168,12 @@ public class Solution {
             return not [node for node in graph if count[node] > 0]
 ```
 
----
 _update Aug 29, 2019_
 
 再记录一个更加快速的解法，不用contruct graph，而是从边出发。我们先从给定的所有seq中获得所有solid的edge，检查每个edge是否vialate给定的org array顺序。又因为必须是唯一存在的顺序，之后也要检查从前到后每一对org中元素相对顺序是否有对应的edge在seqs中出现。
 
 例如：
+
 ```c
     对于 org=[2,3,5,4,1]
     则在seqs所给定的所有关系中，必须存在:
@@ -216,3 +216,4 @@ public:
     }
 };
 ```
+

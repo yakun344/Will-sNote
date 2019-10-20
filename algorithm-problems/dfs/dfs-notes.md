@@ -46,7 +46,7 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 
 #### 讨论另一种思路：
 
-  个人认为还有另一种思路，在这种思路中，每一层代表在尚未考察过的元素中选择一个元素（或者一个都不选），而每一层的分支个数为剩余的尚未考虑过的元素个数加一（因为可能不选）。recursion tree 如下图：
+个人认为还有另一种思路，在这种思路中，每一层代表在尚未考察过的元素中选择一个元素（或者一个都不选），而每一层的分支个数为剩余的尚未考虑过的元素个数加一（因为可能不选）。recursion tree 如下图：
 
 ```python
     input: {1,1,2}
@@ -62,10 +62,10 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
  每次进入下层递归会先check当前路径，这个操作相当于是在该层一个数字都不选，即为上图中每层的空元素。
 ```
 
-  **时间复杂度分析：**  
-  这种思路时间复杂度就是 `O(2^n)`，因为这种方法所搜索的隐式图中只有 `2^n` 个节点，比之前一种要快。
+**时间复杂度分析：**  
+这种思路时间复杂度就是 `O(2^n)`，因为这种方法所搜索的隐式图中只有 `2^n` 个节点，比之前一种要快。
 
-  但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。但是在做 [CombinationSum II](https://leetcode.com/problems/combination-sum-ii/description/)的时候，我发现这种方法在去重的时候更加容易。如果用之前那种每层代表一个元素是否选取的方法，去重就很不方便。但是用这种方法，我们只需要保证每层中都只选择一组重复元素中的第一位就可以了。（[CombinationSum II 的笔记](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum-ii.html)）
+但是这种思路和之前的那种相比，并没有实质性的优化，个人认为两者没有太大区别。但是在做 [CombinationSum II](https://leetcode.com/problems/combination-sum-ii/description/)的时候，我发现这种方法在去重的时候更加容易。如果用之前那种每层代表一个元素是否选取的方法，去重就很不方便。但是用这种方法，我们只需要保证每层中都只选择一组重复元素中的第一位就可以了。（[CombinationSum II 的笔记](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum-ii.html)）
 
 ### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
 
@@ -92,10 +92,10 @@ DFS 是一种搜索算法，一个非常好的应用是用来解决排列组合�
 例如，对于 input：`{1，5，10，25}`，要求得到所有 sum 为 99 的组合。
 
 **思路 1：（bad idea）**  
-  每层有四个分支，分别表示该层使用第几个数，层数则为 `targetSum / min{input}` 层。这种方法之所以不好，是因为递归深度和 input 的 targetSum 有关，如果 sum 很大，递归会非常深。同时，因为递归深度深，以前面的输入为例子，时间复杂度可能为 `O(4^99)`, 是很慢的。
+每层有四个分支，分别表示该层使用第几个数，层数则为 `targetSum / min{input}` 层。这种方法之所以不好，是因为递归深度和 input 的 targetSum 有关，如果 sum 很大，递归会非常深。同时，因为递归深度深，以前面的输入为例子，时间复杂度可能为 `O(4^99)`, 是很慢的。
 
 **思路 2：**  
-  层数只有 4 层，每层中分别考虑一个数字选取的次数，即每层有 `remainingSum / currNumber` 个分支。这种方法递归深度浅，比较好。时间复杂度的话，考虑最多的分支99（在选取 1 的那层有99个分支），时间复杂度为 `O(99^4)`, 远远好于 思路 1；
+层数只有 4 层，每层中分别考虑一个数字选取的次数，即每层有 `remainingSum / currNumber` 个分支。这种方法递归深度浅，比较好。时间复杂度的话，考虑最多的分支99（在选取 1 的那层有99个分支），时间复杂度为 `O(99^4)`, 远远好于 思路 1；
 
 思路 2 如下图所示：
 
@@ -154,3 +154,4 @@ def dfs(input, pos):
 #### Follow up：为什么不用BFS来做permutation问题？
 
 答：因为如果用BFS的话，queue.size 会指数型增长，空间复杂度太高。
+

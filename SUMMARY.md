@@ -4,7 +4,7 @@
 
 ## Index
 
-* [Introduction](index/readme.md)
+* [Introduction](index/index.md)
 
 ## Algorithm Problems
 
@@ -459,9 +459,9 @@
 * [Cpp Note7: auto](c++-notes/cpp-auto.md)
 * [Cpp Note8: iterrators](c++-notes/cpp-iterator.md)
 
-## Computer Networking
-
-
 ## System Design
 
 * [Basic Idea](system-design/basic-idea.md)
+
+## Design Pattern
+
