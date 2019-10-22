@@ -62,16 +62,30 @@ Adapter Pattern 有两种：
 ```
 
 ## 3. Adapter 模式中登场的角色总结
-#### 1. Target
+#### i. Target
 负责定义所需方法，在这里的例子中，就是Print。
 
-#### 2. Client
+#### ii. Client
 负责使用Target所定义的方法进行具体操作，在这里的例子中，就是Main。
 
-#### 3. Adaptee
+#### iii. Adaptee
 被适配的角色，持有特定方法，但是和需求的方法不同。在这里的例子中，就是 Banner。
 
-#### 4. Adapter
+#### iv. Adapter
 这个就是 adapter 本身，在这里的例子中，就是 PrintBanner。在 Class Adapter pattern 中，Adapter 通过继承来使用 Adaptee，而在 Object Adapter pattern 中，通过委托来使用 Adaptee。
 
 ## 4. 何时使用
+### i. 限制排错范围
+当在开发过程中要用到现有的类，而现有当类已经well tested，此时可以用 Adapter Pattern 对现有类进行适配，生成新的类，如果有Bug，我们就可以明确知道Bug不再 Adaptee 中，进而可以排查 Adapter 的bug即可。
+
+### ii. 修改现有类以适配新接口
+另外，有时候我们需要稍微修改现有的类（Adaptee）来适应新的接口，但是修改现有的类就需要重新测试，于是此时可以选择在 Adapter 中进行适配修改。
+
+### iii. 版本兼容
+可以使用 Adapter 模式来对旧版本进行兼容，旧版本扮演 Target 角色，新版本扮演 Adaptee 角色，然后用 Adapter 来使用新版本的类来实现旧版本的接口。
+
+## 5. 相关设计模式
+1. Bridge 模式
+> Adapter 模式用于连接 API 不同的类，而 Bridge 模式则是用来连接类的功能层次结构与实现层次结构。
+2. Decorator 模式
+> Adapter 模式用于填补不同API之间的间隙，而 Decorator 模式则可以在不改变API的前提下增加功能。
