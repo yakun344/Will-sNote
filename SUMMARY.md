@@ -470,3 +470,4 @@
 * [Adapter Pattern](design-pattern/adapter.md)
 * [Template Method Pattern](design-pattern/template-method.md)
 * [Factory Method Pattern](design-pattern/factory-method.md)
+* [Singleton Pattern](design-pattern/singleton.md)
