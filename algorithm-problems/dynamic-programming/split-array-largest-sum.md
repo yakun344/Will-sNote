@@ -66,11 +66,11 @@ Output:
   }
   ```
 
-  ---
-  _update Oct 26, 2019_
+---
+_update Oct 26, 2019_
 
-  ### Java Binary Search Solution
-  基本思路就是设定两个可能的subarray sum最小值的边界，从 `min(nums)` 到 `sum(nums)`。然后每次用 O(n) 时间可以验证某个 subarray 和最小值能否被分割出来，进行二分法，最终返回可行的最大的 subarray sum 的最小值。
+### Java Binary Search Solution
+基本思路是一个基于结果的二分法。
 
   ```java
   class Solution {
@@ -105,5 +105,5 @@ Output:
         }
         return true;
     }
-}
+  }
 ```
