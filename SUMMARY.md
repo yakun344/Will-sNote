@@ -472,3 +472,4 @@
 * [Factory Method Pattern](design-pattern/factory-method.md)
 * [Singleton Pattern](design-pattern/singleton.md)
 * [Prototype Pattern](design-pattern/prototype.md)
+* [Builder Pattern](design-pattern/builder.md)
