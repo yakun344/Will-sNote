@@ -31,7 +31,7 @@ _update Oct 26, 2019_
   > 在Builder模式中，Director角色通过组合Builder角色中的复杂方法可以向外部提供可以简单生成实例的API（例子中的construct）；Facade 模式中的 Facade 角色则是通过组合内部模块向外部提供可以简单调用的API；
 
 ## 5. Builder Pattern 的好处
-1. 当构造步骤非常多的时候，可以使用builder实现分步骤的build操作，而且可以让set方法返回该build实例，从而实现链式操作。相反，如果直接使用new constructor，可能会需要传入非常多的参数，抑或是需要在创建实例之后 call 多次 setxxx 方法，也增加了代码可读性。
+1. 当构造步骤非常多的时候，可以使用builder实现分步骤的build操作，而且可以让set方法返回该build实例，从而实现**链式操作**。相反，如果直接使用new constructor，可能会需要传入非常多的参数，抑或是需要在创建实例之后 call 多次 setxxx 方法，也增加了代码可读性。
 2. 在builder尚未完成build工作的时候并不会生成被build类的实例，也就避免了先创建实例再调用 setxxx 方法所潜在的很多问题。
 3. 可以存在 `toBuilder()` 方法来将实例转化为builder，从而更方便地以某个实例当前状态为基础继续构建新的实例。
 4. 和 Factory Pattern 对比，Builder Pattern 无需 Director 知悉具体的可以被build的类名，而Factory Pattern 至少需要有一个可以生成实例的 class 的列表。于是 Builder Pattern 有了更好的独立性。
