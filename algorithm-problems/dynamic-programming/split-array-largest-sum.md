@@ -66,3 +66,44 @@ Output:
   }
   ```
 
+  ---
+  _update Oct 26, 2019_
+
+  ### Java Binary Search Solution
+  基本思路就是设定两个可能的subarray sum最小值的边界，从 `min(nums)` 到 `sum(nums)`。然后每次用 O(n) 时间可以验证某个 subarray 和最小值能否被分割出来，进行二分法，最终返回可行的最大的 subarray sum 的最小值。
+
+  ```java
+  class Solution {
+    public int splitArray(int[] nums, int m) {
+        int sum = 0, max = 0;
+        for (int n : nums) {
+            sum += n;
+            max = Math.max(max, n);
+        }
+        int left = max, right = sum;
+        while (left + 1 < right) {
+            int mid = left + (right - left) / 2;
+            if (canSplit(nums, m, mid)) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+        if (canSplit(nums, m, left)) return left;
+        else return right;
+    }
+    
+    private boolean canSplit(int[] nums, int m, int maxSum) {
+        int sum = 0;
+        for (int i = 0; i < nums.length; ++i) {
+            sum += nums[i];
+            if (sum > maxSum) {
+                sum = nums[i];
+                m--;
+            }
+            if (m == 0) return false;
+        }
+        return true;
+    }
+}
+```
