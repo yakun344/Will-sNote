@@ -46,7 +46,7 @@ _update Jul 22, 2019_
 * have identity and can be moved from are called xvalue;
 * do not have identity and can be moved from are called prvalue
 * do not have identity and cannot be moved from are not used
-* 有identity的都叫做 grvalue
+* 有identity的都叫做 glvalue
 * 能被move的都是rvalue
 
 ## Storage Class / Storage Duration / Linkage
@@ -225,4 +225,3 @@ output:
     destructed
     destructed
 ```
-
