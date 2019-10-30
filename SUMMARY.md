@@ -474,6 +474,7 @@
 * [Prototype Pattern](design-pattern/prototype.md)
 * [Builder Pattern](design-pattern/builder.md)
 * [Abstract Factory Pattern](design-pattern/abstract-factory.md)
+* [Bridge Pattern](design-pattern/bridge.md)
 
 ## Java Multithreading
 
