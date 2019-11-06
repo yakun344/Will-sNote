@@ -135,4 +135,12 @@ Bridge 起到桥梁作用，用来连接类的**功能层次结构**和**实现�
   > &nbsp;&nbsp;&nbsp;&nbsp; 例如，我们可以将某程序中依赖于不同操作系统的部分分为 "linux", "windows", "mac" 版，然后我们就可以用 Bridge 模式中的 “类的实现结构层次” 来表现这些依赖于操作系统的部分。这样我们只要编写一个定义这些操作系统的公共API的 Implementor 角色，然后写不同操作系统版本的 ConcreteImplementor 角色就可以了。
 2. 继承是强关联，委托是弱关联
   > &nbsp;&nbsp;&nbsp;&nbsp; 虽然继承很容易扩展类，但会在类之间形成一种强关联的关系，即 compile time binding，不修改 code 就没办法修改这种关系。这时我们可以使用 “委托delegation” 来代替继承。例子中的 Display 中使用了“委托” impl，当调用 `open()` 时候会调用 `impl.rawOpen()`，这样就实现了委托。  
-  > &nbsp;&nbsp;&nbsp;&nbsp; 之所以
+  > &nbsp;&nbsp;&nbsp;&nbsp; 之所以称 ”委托delegation“ 为弱相关关系，是因为只有在 Display 类的实例生成时候才会产生 binding，我们可以不传入 `ConcreteImpl_1` 的实例而是传入 `ConcreteImpl_2` 的实例。这时发生变化的代码只有 Main 类，Display 和 DisplayImpl 则不需要修改。
+
+## 5. 相关设计模式
+1. Template Method 模式
+  > Template Method 中使用了 “类的实现层次结构”，父类调用抽象方法，而子类实现抽象方法。
+2. Abstract Factory 模式
+  > 为了根据需求设计出良好的 ConcreteImplementor 角色，我们有时会使用 Abstract Factory。
+3. Adapter 模式
+  > 使用Bridge可以达到分离实现层次和共功能层次，并将这些层次结合起来。而Adapter模式则可以结合共嗯跟相似但接口不同的类。
