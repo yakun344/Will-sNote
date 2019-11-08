@@ -143,4 +143,4 @@ Bridge 起到桥梁作用，用来连接类的**功能层次结构**和**实现�
 2. Abstract Factory 模式
   > 为了根据需求设计出良好的 ConcreteImplementor 角色，我们有时会使用 Abstract Factory。
 3. Adapter 模式
-  > 使用Bridge可以达到分离实现层次和共功能层次，并将这些层次结合起来。而Adapter模式则可以结合共嗯跟相似但接口不同的类。
+  > 使用Bridge可以达到分离实现层次和共功能层次，并将这些层次结合起来。而Adapter模式则可以结合功能相似但接口不同的类。
