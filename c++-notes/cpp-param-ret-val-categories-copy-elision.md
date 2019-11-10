@@ -18,7 +18,7 @@ _update Jul 22, 2019_
 
 另外还有glvale\(generalized lvalue\)，所有的value可以被分成两类，即`glvalue` 以及 `prvalue`。几种categories关系如下：
 
-```text
+```c
                 expression
                 /        \
                /          \
