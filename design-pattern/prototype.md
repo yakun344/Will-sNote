@@ -53,7 +53,7 @@ public class Manager {
       }
   }
   ```
-需要注意的是，`clone()` 方法默认情况下是 protected 的，如果没有将其 override 为 public，是不可以在此类以外调用的。
+需要注意的是，`clone()` 方法默认情况下是 protected 的，如果没有将其 override 为 public，是不可以在此类以外调用的。所以我们在类的外面调用 `createClone()` 方法，再类的内部实现这个方法时调用 `clone()` 方法。
 
 这样，在使用的时候，我们可以这样做：
 ```java

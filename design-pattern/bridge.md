@@ -1,7 +1,7 @@
 # Bridge Pattern
 _update Oct 29, 2019_
 
---
+---
 
 ## 1. Introduction
 Bridge 起到桥梁作用，用来连接类的**功能层次结构**和**实现层次结构**。

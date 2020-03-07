@@ -22,7 +22,7 @@ Output: 2
 Explanation: T is "aa" which its length is 2.
 ```
 
-&lt;/br&gt;
+</br>
 
 ## Basic Idea:
 
@@ -56,4 +56,3 @@ class Solution {
     }
 }
 ```
-
