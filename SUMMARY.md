@@ -467,6 +467,7 @@
 ## Design Pattern
 
 * [Design Pattern](design-pattern/design-pattern.md)
+* [Design Principles](design-pattern/design-principle.md)
 * [Iterator Pattern](design-pattern/interator.md)
 * [Adapter Pattern](design-pattern/adapter.md)
 * [Template Method Pattern](design-pattern/template-method.md)
