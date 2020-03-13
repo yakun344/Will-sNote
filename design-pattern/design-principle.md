@@ -2,6 +2,15 @@
 _update Mar 12, 2020_
 
 ---
+**SOLID 五大Design Principles:**
+
+- (S) Single Responsibility
+- (O) Open/Closed
+- (L) Liskov Substitution
+- (I) Interface Segregation
+- (D) Dependency Inversion
+
+
 ## 1. Single Responsibility
 &nbsp;&nbsp;&nbsp;&nbsp;**"A class should have one, and only one, reason to change"**
 
@@ -99,4 +108,86 @@ It converts a data type used in your domain model into one that your persistence
 &nbsp;&nbsp;&nbsp;&nbsp;**"Software entities(classes, modules, functions, etc.) should be open for extension, but closed for modification."  --Bertrand Meyer**  
 &nbsp;&nbsp;&nbsp;&nbsp;**"You should be able to extend the behavior of a system without having to modify that system."  --Bob Martin**
 
-简单来说Open Closed principle就是一个class的功能可以被extend，但是不能通过修改这个class或者module的code自身来实现。对扩展开放，但是对修改关闭。
+* ### Introduction
+简单来说Open Closed principle就是一个class的功能可以被extend，但是不能通过修改这个class或者module的code自身来实现。对扩展开放，但是对修改关闭。但是需要注意的是由于inheritance是具有强耦合的，而且super class和sub class之间的关系是在编译时确定，不利于在运行时切换实现类，因此在开发中一般利用Interface（abstraction）以及composition来实现对于功能的拓展。
+* ### Example
+> 举例说明，例如我们需要编写一个软件来控制咖啡机做咖啡，于是我们可以定义两个class `class CoffeeApp` and `class CoffeeMachine`，当需求只需要适配一款咖啡机的时候，我们的程序可能是这样：
+> ```java
+> public class CoffeeMachine {
+>   private Coffee getCoffee() {//...}
+>   private void brewCoffee(Coffee) {//...}
+>   public void makeCoffee() {
+>     Coffee coffee = getCoffee();
+>     brewCoffee(coffee);
+>   }
+> }
+> public class CoffeeApp {
+>   private CoffeeMachine machine;
+>   public CoffeeApp() {
+>     this.machine = new CoffeeMachine();
+>   }
+>   public void prepareCoffee() {
+>     CoffeeMachine.makeCoffee();
+>   }
+>   public static void main(String[] args) {
+>     CoffeeApp app = new CoffeeApp();
+>     app.prepareCoffee();
+>   }
+> }
+> ```
+> 这样的实现可以满足当前要求，但是如果将来需求变化，需要适配多种咖啡机，这里的getCoffee以及brewCoffee就需要重新实现，同时还有可能加入研磨grind等步骤。为了适应新变化，我们就需要对现有对代码做refactor，这里会用到open closed principle。
+>
+> 首先我们需要让代码可以被extend，则需要将一些logic抽象出来，这里我们发现在CoffeeApp中实际上只需要调用CoffeeMachine::makeCoffee方法就够了，于是我们可以按照如下方法来实现：
+> ```java
+>   Interface BasicCoffeeMachine {
+>      void makeCoffee();
+>   }
+>   public class CoffeeMachine1 implements BasicCoffeeMachine {
+>      private Coffee getCoffee() {//...}
+>      private void brewCoffee(Coffee) {//...}
+>      @Override
+>      public void makeCoffee() {
+>         Coffee coffee = getCoffee();
+>         brewCoffee(coffee);
+>      }
+>   }
+>   public class CoffeeMachine2 implements BasicCoffeeMachine {
+>      private Coffee getCoffee() {//...}
+>      private void brewCoffee(Coffee) {//...}
+>      private Coffee grindCoffee(Coffee) {//...}
+>      @Override
+>      public void makeCoffee() {
+>         Coffee coffee = getCoffee();
+>         coffee = grindCoffee(coffee);
+>         brewCoffee(coffee);
+>      }
+>   }
+> public class CoffeeApp {
+>   private BasicCoffeeMachine machine;
+>   public CoffeeApp(BasicCoffeeMachine machine) {
+>     this.machine = machine;
+>   }
+>   public void prepareCoffee() {
+>     CoffeeMachine.makeCoffee();
+>   }
+>   public static void main(String[] args) {
+>     // 使用第一种咖啡机
+>     CoffeeApp app = new CoffeeApp(new CoffeeMachine1);
+>     app.prepareCoffee();
+>
+>     // 使用第二种咖啡机
+>     CoffeeApp app2 = new CoffeeApp(new CoffeeMachine2);
+>     app.prepareCoffee();
+>   }
+> }
+> ```
+> 这样refactor之后，原本对CoffeeMachine就有了可扩展性，我们可以通过在CoffeeApp的constructor中传入不同的concrete CoffeeMachine实现来做到兼容不同的咖啡机。需要注意这里的设计细节，CoffeeApp和CoffeeMachine之间的关系是 **has a** 的关系，利用了Composite的模式，而不是采用让CoffeeApp来继承某个CoffeeMachine，这样才使得动态替换CoffeeMachine instance成为了可能。
+
+## 3. Liskov Substitution Principle
+**"Let Φ(x) be a property provable about objects x of type T. Then Φ(y) should be true for objects y of type S where S is a subtype of T."  --Barbara Liskov**
+
+* ### Introduction
+用人话来说，就是说subclass的object应该可以用来替换super class的object。具体来说，一个subclass的overriden method必须接受和super clas的相同method有相同的parameter，subclass中方法的validation rule可以比super class中的宽松，而不可以更严格。相对应的，subclass中方法的return value可以是super class中方法return value的subclass，或者是super class中方法可能return value的subset。
+<br>
+<br>
+岔开一点话题，在Java中当我们在sub class中override父类方法的时候，return type只能是父类方法return type 的sub class，也就是assignable的。而access modifier只能比父类方法的更加visible而不能less visible。
