@@ -188,6 +188,7 @@ It converts a data type used in your domain model into one that your persistence
 
 * ### Introduction
 用人话来说，就是说subclass的object应该可以用来替换super class的object。具体来说，一个subclass的overriden method必须接受和super clas的相同method有相同的parameter，subclass中方法的validation rule可以比super class中的宽松，而不可以更严格。相对应的，subclass中方法的return value可以是super class中方法return value的subclass，或者是super class中方法可能return value的subset。
-<br>
-<br>
+<br><br>
+这个原则在实际开发中其实用到的地方非常多，我们经常需要将子类的object传入父类或者接口类型的argument中。例如在Open/Closed原则中，我们可以通过继承来拓展一个父类的功能，之后在调用的时候，我们可以将我们新建的subclass的object当作原本的base class的object来在原本的地方使用。
+<br><br>
 岔开一点话题，在Java中当我们在sub class中override父类方法的时候，return type只能是父类方法return type 的sub class，也就是assignable的。而access modifier只能比父类方法的更加visible而不能less visible。
