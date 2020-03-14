@@ -191,4 +191,25 @@ It converts a data type used in your domain model into one that your persistence
 <br><br>
 这个原则在实际开发中其实用到的地方非常多，我们经常需要将子类的object传入父类或者接口类型的argument中。例如在Open/Closed原则中，我们可以通过继承来拓展一个父类的功能，之后在调用的时候，我们可以将我们新建的subclass的object当作原本的base class的object来在原本的地方使用。
 <br><br>
-岔开一点话题，在Java中当我们在sub class中override父类方法的时候，return type只能是父类方法return type 的sub class，也就是assignable的。而access modifier只能比父类方法的更加visible而不能less visible。
+岔开一点话题，在Java中当我们在sub class中override父类方法的时候，return type只能是父类方法return type 的sub class，也就是assignable的。而access modifier只能比父类方法的更加visible而不能less visible。这些规则有Java语言本身的限制，但是更多遵循Liskov Substitution的规则涉及到具体业务逻辑则需要在写代码的时候特别注意。
+
+
+## 4. Interface Segregation Principle
+**“Clients should not be forced to depend upon interfaces that they do not use.”  --Robert C.Martin**
+
+* ### Introduction
+这个原则的作用和Single Responsibility类似，都是为了将程序划分成多个独立部分，从而减少side effect以及降低修改代码的频率。
+<br><br>
+简单来说，这个原则要求我们在设计Interface的时候要将不同的功能隔离开来成为不同的interface，当需求变化或者需要添加新功能的时候，要思考是否需要create新的interface而不是一味的在现有的interface中添加新的方法。因为如果我们修改现有的interface，所有implement这个interface的subclass都需要相应修改，同时还有可能需要对client进行相应修改。另一方面，在选择加入interface中的方法的时候要思考，是否所有client都需要实现这么多方法，哪些是非必要的。
+<br><br>
+当我们设计interface的时候应该倾向于将可以分为不同类的功能放入不同的interface，这样在写实现类的时候就可以根据需求选择合适的interface的组合来实现。
+
+* ### Example
+> 例如上面咖啡机的例子，如果我们除了想要控制咖啡机之外还想控制另一种咖啡机煮茶，原本的BasicCoffeeMachine接口就会变成这样：
+> ```java
+> public Interface BasicCoffeeMachine {
+>   void makeCoffee();
+>   void makeTea();
+> }
+> ```
+> 但是这样的话无论是哪种咖啡机都必须要实现这两个方法，即使"CoffeeMachine1"并不能用来煮茶。因此更好的做法其实是将其分割开来，这样可以煮茶的咖啡机就 implement "BasicTeaMachine" 接口，而不能煮茶的咖啡机类也不需要改变。
