@@ -213,3 +213,12 @@ It converts a data type used in your domain model into one that your persistence
 > }
 > ```
 > 但是这样的话无论是哪种咖啡机都必须要实现这两个方法，即使"CoffeeMachine1"并不能用来煮茶。因此更好的做法其实是将其分割开来，这样可以煮茶的咖啡机就 implement "BasicTeaMachine" 接口，而不能煮茶的咖啡机类也不需要改变。
+
+
+## 5. Dependency Inversion Principle
+* ### Introduction
+这个原则的基本思想并不负责：提供complex logic的high level module应该可以轻易被reuse，不应被提供utility features的low level module的变化所影响。因此需要引入abstraction来decouple high level module and low level module。
+<br><br>
+**Robert C.Martin's definition:**  
+1. High-level module should not depend on low-level modules. Both should depend on abstractions;
+2. Abstractions should not depend on details, details should depend on abstractions;
