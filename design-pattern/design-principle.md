@@ -222,3 +222,11 @@ It converts a data type used in your domain model into one that your persistence
 **Robert C.Martin's definition:**  
 1. High-level module should not depend on low-level modules. Both should depend on abstractions;
 2. Abstractions should not depend on details, details should depend on abstractions;
+<br><br>
+这里的“depend on abstraction”是很重要的，high-level module depends on abstraction, and low-level depends on the same abstraction。
+<br><br>
+事实上当我们在设计中使用了"Open/Closed" 和 "Liskov Substitution" 之后，就会自然符合"Dependency Inversion" 原则。例如上面咖啡机的例子，为了遵循"Open/Closed"原则使得程序可以被扩展，支持更多咖啡机，我们需要抽象出咖啡机的interface，之后就可以运用“Liskov Substitution”替换"BasicCoffeeMachine"的不同实现类的instance。此时的程序high-level module (CoffeeMachine) 不会依赖于 low-level (CoffeeApp) 以及具体实现的咖啡机的类，而是依赖于abstraction (BasicCoffeeMachine)，整个程序中依赖于具体实现类的只有CoffeeApp。
+
+
+## 6. Summary
+SOLID Design Principles 提供了设计程序的基本原则，并不具体到语言以及具体问题。而Design Patterns则针对在OOD过程中遇到的一些类型的具体问题提供了切实可行的解决方法，并且经过其他人的测试，safe to follow。而且与此同时，design pattern也都遵循SOLID principles。
