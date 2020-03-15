@@ -217,7 +217,7 @@ It converts a data type used in your domain model into one that your persistence
 
 ## 5. Dependency Inversion Principle
 * ### Introduction
-这个原则的基本思想并不负责：提供complex logic的high level module应该可以轻易被reuse，不应被提供utility features的low level module的变化所影响。因此需要引入abstraction来decouple high level module and low level module。
+这个原则的基本思想并不复杂：提供complex logic的high level module应该可以轻易被reuse，不应被提供utility features的low level module的变化所影响。因此需要引入abstraction来decouple high level module and low level module。
 <br><br>
 **Robert C.Martin's definition:**  
 1. High-level module should not depend on low-level modules. Both should depend on abstractions;
