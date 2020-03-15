@@ -229,4 +229,4 @@ It converts a data type used in your domain model into one that your persistence
 
 
 ## 6. Summary
-SOLID Design Principles 提供了设计程序的基本原则，并不具体到语言以及具体问题。而Design Patterns则针对在OOD过程中遇到的一些类型的具体问题提供了切实可行的解决方法，并且经过其他人的测试，safe to follow。而且与此同时，design pattern也都遵循SOLID principles。
+SOLID Design Principles 提供了设计程序的基本原则，并不具体到语言以及具体问题。而Design Patterns则针对在OOD过程中遇到的一些类型的具体问题提供了切实可行的解决方法，并且经过其他人的测试，safe to follow。而且与此同时，design pattern的本质也都遵循SOLID principles。
