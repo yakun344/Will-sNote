@@ -479,6 +479,7 @@
 * [Bridge Pattern](design-pattern/bridge.md)
 * [Strategy Pattern](design-pattern/Strategy-pattern.md)
 * [Composite Pattern](design-pattern/composite-pattern.md)
+* [Decorator Pattern](design-pattern/decorator-pattern.md)
 
 ## Java Multithreading
 
