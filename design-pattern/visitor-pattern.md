@@ -76,6 +76,9 @@ public class ListVisitor extend Visitor {
 考虑到数据结构类会有hierarchy，那么在处理的时候如果拿到的只是Base Class类型的引用，我们免不了需要在**处理方法**的类中检查类型以及cast，因为这样会影响性能并且引入更多的强耦合。而Visitor Pattern则可以避免这样的问题，因为通过在Visitor class中为每个具体的数据结构的类declare不同的visit方法，而在每个具体data structure的类中实现accept方法，将自身this指针pass到visitor的visit方法，通过这种方法，就可以利用overload调用到正确的visit方法，而不需要任何的type check and cast。
 
 * ### 2. Double Dispatch（双重分发）
+Double Dispatch是runtime指对于调用方法的选择同时基于 receiver type and argument type 两个因素。而在Java中，寻常的基于Interface类型的具体instance的方法调用和普通的method overload都只是single dispatch。当我们有同一个Interface的不同subclass 的instance时，在调用该Inteface中的方法时，会自动根据instance的具体类中的不同实现调用不同的方法，这也就是普通的polymorphism。而method overload虽然可以根据不同的argument type选择不同的method，但这里的argument type只是基于compile time的信息，即只要在调用这个方法时候parameter的type是base class或者interface的，那么不管传入的是哪个具体的class，overload 机制都无法区分具体的argument的type。
+<br><br>
+而在Visitor Pattern中，首先我们通过不同的ConcreteVisitor实现第一重分发，然后因为visit方法是在每个ConcreteElement中的accept方法中调用，于是被传入的参数直接就是具体的ConcreteElement的类型，于是这里实现了第二重分发。最终的结果就是我们无需知道具体的ConcreteVisitor和ConcreteElement的类型即可调用到正确的visit方法。同时需要注意，这也是为什么虽然accept方法具有完全一样的实现却不能在Element base class中实现的原因，因为如果这样做，传入`visit`方法的`this`指针类型就变成了Element base class类。
 ```java
     element.accept(visitor);
     visitor.visit(element);
