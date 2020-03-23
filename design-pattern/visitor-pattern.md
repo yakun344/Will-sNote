@@ -83,6 +83,18 @@ public class ListVisitor extend Visitor {
 这样的调用构成了双重分发，即ConcreteElement和ConcreteVisitor这两个具体的类的instance共同决定了实际进行的处理。
 
 * ### 3. 体现了Open/Closed Principle
+Visitor模式将数据结构本身和对其进行处理两类逻辑分离开来，当我们想要拓展新的操作的时候，只需要增加新的visitor，而不需要改动已有的Element以及ConcreteElement。
 
+* ### 4. 易于增加ConcreteVisitor角色，难以增加ConcreteElement角色
+当我们想要增加visitor的时候，不需要修改已有的Element。但是当我们想要增加新的Element的时候，就需要修改visitor，为新增加的ConcreteElement添加新的visit方法，并且要在Visitor的所有子类中实现这个方法。
+
+* ### 5. 使用Visitor模式需要的条件
+如果要使用visitor pattern，Element角色必须向Visitor角色公开足够多的信息，例如上面例子中，Directory类必须提供可以获得每个目录的iterator方法，以及各种获取name，获取size的方法。同时这样做的缺点是如果公开了过于多的信息，甚至是不应当被公开的信息，后期对数据结构改良就会变的非常困难。
 
 ## 5. 相关设计模式
+* ### Iterator
+两者都用于对数据结构进行处理，而Iterator只是用于遍历，Visitor则对于保存在数据结构中的元素进行某种特殊处理
+* ### Composite
+有时访问者所访问的数据结构会使用Composite模式
+* ### Interpreter
+在Interpreter Pattern中有时会使用Visitor模式，生成语法树后，可能会用Visitor模式对各个节点进行处理
