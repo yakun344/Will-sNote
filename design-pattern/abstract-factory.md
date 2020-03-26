@@ -43,6 +43,7 @@ Main class 的实现：
 这里的 `getFactory()` 方法也可以有不同的设计，例如使用另一个类 `class FactoryProvider` 来提供这个方法，从而只在 abstract factory 类中声明需要的 factory 的 API signature 即可。
 
 ## 3. Abstract Factory 模式中的角色
+![uml](../.gitbook/assets/design-pattern-abstract-factory-pattern-2.png)
 1. AbstractProduct (抽象产品)
   > 负责定义AbstractFactory角色所生成的抽象零件和产品的API，在示例中，由Tray,Link,Page类扮演。
 2. AbstractFactory （抽象工厂）
