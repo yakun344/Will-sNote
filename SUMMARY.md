@@ -482,6 +482,7 @@
 * [Decorator Pattern](design-pattern/decorator-pattern.md)
 * [Visitor Pattern](design-pattern/visitor-pattern.md)
 * [Chain of Responsibility](design-pattern/chain-of-responsibility-pattern.md)
+* [Facade Pattern](design-pattern/facade-pattern.md)
 
 ## Java Multithreading
 

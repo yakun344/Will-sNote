@@ -25,7 +25,7 @@ Handler是所有handler的基类，其中保存有一个自身类型的instance 
 2. 可能由于配置错误导致责任链循环调用
 
 
-# 5. 相关设计模式
+## 5. 相关设计模式
 1. Composite 模式
 > Handler 角色经常需要使用Composite模式来存储next handler
 
