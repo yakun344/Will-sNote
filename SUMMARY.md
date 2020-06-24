@@ -379,6 +379,7 @@
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
   * [Binary Tree Cameras](algorithm-problems/greedy/binary-tree-cameras.md)
   * [Minimum Number of K Consecutive Bit Flips](algorithm-problems/greedy/minimum-number-of-k-consecutive-bit-flips.md)
+  * [Avoid Flood in The City](algorithm-problems/greedy/avoid-flood-in-the-city.md)
 * [Bit Manipulation](algorithm-problems/bit-manipulation/README.md)
   * [Bit Manipulation Notes](algorithm-problems/bit-manipulation/bit-manipulation-notes.md)
   * [Reverse Bits](algorithm-problems/bit-manipulation/reverse-bits.md)
