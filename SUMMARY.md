@@ -311,6 +311,7 @@
   * [Max Consecutive Ones II](algorithm-problems/two-pointers-problem/max-consecutive-ones-ii.md)
   * [Reverse Vowels of a String （easy）](algorithm-problems/two-pointers-problem/reverse-vowels-of-a-string-easy.md)
   * [Trapping Rain Water](algorithm-problems/two-pointers-problem/trapping-rain-water.md)
+  * [1498. Number of Subsequences That Satisfy the Given Sum Condition](algorithm-problems/two-pointers-problem/number-of-subsequences-that-satisfy-the-given-sum-condition.md)
 * [Interval Problems](algorithm-problems/interval-problems/README.md)
   * [Non-overlapping Intervals](algorithm-problems/interval-problems/non-overlapping-intervals.md)
   * [Merge Intervals](algorithm-problems/interval-problems/merge-intervals.md)
