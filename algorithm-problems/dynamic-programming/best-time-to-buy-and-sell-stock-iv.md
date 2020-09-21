@@ -74,7 +74,7 @@ Design an algorithm to find the maximum profit. You may complete at most k trans
                 for (int i = 1; i < n; ++i) {
                     buy_this[i] = Math.max(buy_this[i - 1], sell[i - 1] - prices[i]);
                     sell[i] = Math.max(sell[i - 1], (j > 0 ? buy_last[i - 1] + prices[i] : 0));
-                }            
+                }
                 buy_last = buy_this;
                 buy_this = new int[n];
                 buy_this[0] = -prices[0];
@@ -93,3 +93,84 @@ Design an algorithm to find the maximum profit. You may complete at most k trans
     }
 ```
 
+---
+_update Sep 20, 2020_
+
+有一点需要注意的，就是对于持股状态（buy），已有0次交易时是有意义的，而且此时的value应该是`min{cost[i] for i}`；而对于不持股状态，已有0次交易的value应该都是0。
+
+### Java Code
+```java
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        int n = prices.length;
+        if (n == 0) {
+            return 0;
+        }
+        if (k > n / 2) return easySolution(prices);
+        
+        int[][] buy = new int[k + 1][n + 1];
+        int[][] sell = new int[k + 1][n + 1];
+        //注意此处初始化，第0天持股状态初始化为 -prices[0]
+        for (int i = 0; i <= k; ++i) {
+            buy[i][0] = -prices[0];
+        }
+        //这里注意，0次交易持股状态的最大value为之前所有price的最小值相反数
+        for (int i = 1; i <= n; ++i) {
+            buy[0][i] = Math.max(buy[0][i - 1], -prices[i - 1]);
+        }
+            
+        for (int i = 1; i < k + 1; ++i) {
+            for (int j = 1; j < n + 1; ++j) {
+                buy[i][j] = Math.max(buy[i][j - 1], sell[i][j - 1] - prices[j - 1]);
+                sell[i][j] = Math.max(sell[i][j - 1], buy[i - 1][j - 1] + prices[j - 1]);
+            }
+        }
+        return sell[k][n];
+    }
+    
+    private int easySolution(int[] prices) {
+        int ret = 0;
+        for (int i = 1; i < prices.length; ++i) {
+            if (prices[i] > prices[i - 1]) {
+                ret += prices[i] - prices[i - 1];
+            }
+        }
+        return ret;
+    }
+}
+```
+
+如果需要优化空间从 O(kn) 到 O(n), 有一个简单的方法，就是将数组定义为 `int[k][2]`, 然后根据天数的奇偶性来交替使用两行数组。
+
+### Java Code O(n) space
+```java
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        if (prices == null || prices.length == 0) return 0;
+        int n = prices.length;
+        if (k > n / 2) return easySolution(prices);
+        
+        int[][] buy = new int[k][prices.length + 1];
+        int[][] sell = new int[k + 1][prices.length + 1];
+        for (int i = 0; i < k; ++i) {
+            buy[i][0] = -prices[0];
+        }
+        for (int j = 1; j < prices.length + 1; ++j) {
+            for (int i = 1; i <= k; ++i) {
+                buy[i - 1][j] = Math.max(buy[i - 1][j - 1], sell[i - 1][j - 1] - prices[j - 1]);
+                sell[i][j] = Math.max(sell[i][j - 1], buy[i - 1][j - 1] + prices[j - 1]);
+            }
+        }
+        return sell[k][prices.length];
+    }
+    private int easySolution(int[] prices) {
+        int ret = 0;
+        for (int i = 1; i < prices.length; ++i) {
+            if (prices[i] > prices[i - 1]) {
+                ret += prices[i] - prices[i - 1];
+            }
+        }
+        return ret;
+    }
+}
+```
