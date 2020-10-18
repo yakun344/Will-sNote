@@ -35,7 +35,7 @@ Explanation: It is best to choose the first 3 players.
 ```c
 1. 1 <= scores.length, ages.length <= 1000
 2. scores.length == ages.length
-3. 1 <= scores[i] <= 106
+3. 1 <= scores[i] <= 106 
 4. 1 <= ages[i] <= 1000
 ```
 <br>
