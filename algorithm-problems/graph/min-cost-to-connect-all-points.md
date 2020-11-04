@@ -60,9 +60,10 @@ Output: 0
 ## Basic Idea:
 这道题目是比较典型的MST（最小生成树）的问题，解决MST问题常见的比较好的做法是Kruskal算法，可以做到 `O(ElogE)` 的时间复杂度。简单来说，Kruskal 就是将所有的边按照weight从小到大排序，从小到大检查每条边相连的点是否已经被加入MST，如果没有，则将其加入。对于这部操作可以使用并查集（Union Find）。所以总体时间复杂度就是对于边排序的时候最慢，即 `O(ElogE)`.
 
-当然也可以使用Prim算法来做，但Prim需要从一个点出发，然后每次relax一个边直到找到所有的点，如果不做优化时间复杂度是非常大的，对于这道题来说是 `O(N^2)`.
+当然也可以使用Prim算法来做，但Prim需要从一个点出发，然后每次relax一个边直到找到所有的点，如果不做优化时间复杂度是非常大的，对于这道题来说是 `O(N^2)`. 我们如果使用PriorityQueue来优化的话，理论上可以将时间复杂度做到 `O(VlogE)`. 我们从任意选定的一个点出发，将其weight标记为0，然后加入队列。每次从当前队列拿出分数最低的点，遍历其所有的边，将可以通过relax这些边获得更小weight的点加入队列。于是PriorityQueue中大概会有`O(E)`级别的元素（因为可能会有同一个点不同分数的重复），一共需要操作`O(V)` 级别。
 
 ## Java Code:
+**Kruskal**
 ```java
 class Solution {
     int[] ids;
@@ -123,6 +124,45 @@ class Solution {
             if (count == 1) return ret;
         }
         return -1;
+    }
+}
+```
+
+**Prim**
+```java
+class Solution {
+    public int minCostConnectPoints(int[][] points) {
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        boolean[] visited = new boolean[points.length];
+        int[] weight = new int[points.length];
+        for (int i = 1; i < weight.length; ++i) {
+            weight[i] = Integer.MAX_VALUE;
+        }
+        
+        int ret = 0;
+        //                 w, e
+        pq.offer(new int[]{0, 0});
+        while (!pq.isEmpty()) {
+            int[] node = pq.poll();
+            int w = node[0];
+            int curr = node[1];
+            if (visited[curr]) continue;
+            visited[curr] = true;
+            ret += w;
+            for (int i = 0; i < points.length; ++i) {
+                if (i == curr || visited[i]) continue;
+                int dist = getDist(points[curr], points[i]);
+                if (dist < weight[i]) {
+                    weight[i] = dist;
+                    pq.offer(new int[]{dist, i});
+                }
+            }
+        }
+        return ret;
+    }
+    
+    private int getDist(int[] a, int[] b) {
+        return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
     }
 }
 ```
