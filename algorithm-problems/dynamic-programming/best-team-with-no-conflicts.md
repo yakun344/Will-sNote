@@ -94,3 +94,37 @@ class Solution {
     }
 }
 ```
+
+**从左往右：**
+```java
+class Solution {
+    public int bestTeamScore(int[] scores, int[] ages) {
+        int[][] arr = new int[scores.length][2];
+        for (int i = 0; i < scores.length; ++i) {
+            arr[i][0] = ages[i];
+            arr[i][1] = scores[i];
+        }
+        Arrays.sort(arr, (a, b) -> {
+            if (a[0] != b[0]) {
+                return Integer.compare(a[0], b[0]);
+            } else {
+                return Integer.compare(a[1], b[1]);
+            }
+        });
+        int[] dp = new int[scores.length];
+        dp[0] = arr[0][1];
+        int ret = dp[0];
+        for (int i = 1; i < scores.length; ++i) {
+            dp[i] = arr[i][1];
+            for (int j = 0; j < i; ++j) {
+                if (arr[j][0] == arr[i][0] || arr[j][1] <= arr[i][1]) {
+                    dp[i] = Math.max(dp[i], dp[j] + arr[i][1]);
+                }
+            }
+            ret = Math.max(ret, dp[i]);
+        }
+        System.out.println(Arrays.toString(dp));
+        return ret;
+    }
+}
+```
