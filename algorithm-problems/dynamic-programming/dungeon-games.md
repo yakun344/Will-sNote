@@ -40,6 +40,7 @@ class Solution {
         int[][] dp = new int[R][C];
         for (int r = R - 1; r >= 0; --r) {
             for (int c = C - 1; c >= 0; --c) {
+            // 注意其中的 Math.max(0, xxx), 这里保证了不会出现负值，即如果下一步会加血，也不允许这一步的状态是负血量
                 if (r == R - 1 && c == C - 1) {
                     dp[r][c] = Math.max(0, -dungeon[r][c]);
                 } else if (r == R - 1) {
