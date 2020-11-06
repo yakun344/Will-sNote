@@ -378,6 +378,7 @@
   * [Find the Shortest Superstring](algorithm-problems/dynamic-programming/find-the-shortest-superstring.md)
   * [Number of Squareful Arrays](algorithm-problems/dynamic-programming/number-of-squareful-arrays.md)
   * [Best Team With No Conflicts ](algorithm-problems/dynamic-programming/best-team-with-no-conflicts.md)
+  * [Dungeon Games](algorithm-problems/dynamic-programming/dungeon-games.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
