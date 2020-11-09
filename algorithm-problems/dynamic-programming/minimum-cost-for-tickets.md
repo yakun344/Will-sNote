@@ -55,7 +55,7 @@ In total you spent $17 and covered all the days of your travel.
 
 * **DFS with cache \(passed but slow\)**
 
-  这是比较intuitive的思路，即对每个已经过期需要买票对日期，分别考虑买三种票的cost。用当前花销currCost 以及 endDate 做key进行cache，但是依然很慢。
+  这是比较intuitive的思路，即对每个已经过期需要买票的日期，分别考虑买三种票的cost。用当前花销currCost 以及 endDate 做key进行cache，但是依然很慢。
 
   **Java Code：**
 
@@ -108,31 +108,32 @@ In total you spent $17 and covered all the days of your travel.
 
       ```java
       class Solution {
-        private int[] memo;
-        private Set<Integer> daySet;
-        private int[] costs;
-
-        public int mincostTickets(int[] days, int[] costs) {
-            this.costs = costs;
-            memo = new int[366];
-            Arrays.fill(memo, -1);
-            daySet = new HashSet<>();
-            for (int day : days) daySet.add(day);
-            return dp(1);
-        }
-
-        private int dp(int i) {
-            if (i > 365) return 0;
-            if (memo[i] > 0) return memo[i];
-            if (daySet.contains(i)) {
-                memo[i] = Math.min(Math.min(dp(i + 1) + costs[0], 
-                                            dp(i + 7) + costs[1]), 
-                                dp(i + 30) + costs[2]);
-            } else {
-                memo[i] = dp(i + 1);
-            }
-            return memo[i];
-        }
+          private Set<Integer> daySet = new HashSet<>();
+          private Map<Integer, Integer> memo = new HashMap<>();
+          private int[] costs;
+          
+          public int mincostTickets(int[] days, int[] costs) {
+              this.costs = costs;
+              for (int day : days) daySet.add(day);
+              return costFromThisDay(1);
+          }
+          
+          // 考虑从这一天开始，并且当天没有可用车票状态下往后一共需要的花费
+          private int costFromThisDay(int day) {
+              if (day > 365) return 0;
+              if (memo.containsKey(day)) {
+                  return memo.get(day);
+              }
+              if (daySet.contains(day)) {
+                  int minCost = Math.min(costFromThisDay(day + 1) + costs[0], 
+                                        Math.min(costFromThisDay(day + 7) + costs[1], 
+                                                  costFromThisDay(day + 30) + costs[2]));
+                  memo.put(day, minCost);
+              } else {
+                  memo.put(day, costFromThisDay(day + 1));
+              }
+              return memo.get(day);
+          }
       }
       ```
 
@@ -162,4 +163,3 @@ In total you spent $17 and covered all the days of your travel.
 **反思：**
 
 一方面要想到从后往前递推的思路，二是逐天考虑，解决输入天数不连续和不同票的时间不同的问题。
-
