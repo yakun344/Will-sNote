@@ -380,6 +380,7 @@
   * [Best Team With No Conflicts ](algorithm-problems/dynamic-programming/best-team-with-no-conflicts.md)
   * [Dungeon Games](algorithm-problems/dynamic-programming/dungeon-games.md)
   * [Longest String Chain](algorithm-problems/dynamic-programming/longest-string-chain.md)
+  * [Length of Longest Fibonacci Subsequence](algorithm-problems/dynamic-programming/length-of-longest-fibonacci-subsequence.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
