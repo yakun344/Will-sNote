@@ -1,4 +1,4 @@
-1584. Min Cost to Connect All Points
+# 1584. Min Cost to Connect All Points
 _update Oct 28, 2020_
 
 ---
