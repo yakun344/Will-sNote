@@ -382,6 +382,7 @@
   * [Longest String Chain](algorithm-problems/dynamic-programming/longest-string-chain.md)
   * [Length of Longest Fibonacci Subsequence](algorithm-problems/dynamic-programming/length-of-longest-fibonacci-subsequence.md)
   * [Number of Ways to Reorder Array to Get Same BST](algorithm-problems/dynamic-programming/number-of-ways-to-reorder-array-to-get-same-bst.md)
+  * [Last Stone Weight II](algorithm-problems/dynamic-programming/last-stone-weight-ii.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
