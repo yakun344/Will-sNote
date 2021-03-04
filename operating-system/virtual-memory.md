@@ -23,17 +23,17 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 * What frame goes with what process/page?
 * Special handling instructions for pages: read-only,shared, private,...
 
-  ![](../.gitbook/assets/screen-shot-2017-11-15-at-11.42.56-am.png)
+  ![](../.gitbook/assets/screen-shot-2017-11-15-at-11.42.56-am%20%281%29.png)
 
-  ![](../.gitbook/assets/screen-shot-2017-11-15-at-12.13.57-pm%20%281%29.png)
+  ![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%2012.13.57%20PM%20%281%29.png)
 
-  ![](../.gitbook/assets/screen-shot-2017-11-15-at-12.17.55-pm.png)
+  ![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%2012.17.55%20PM.png)
 
   ![](../.gitbook/assets/screen-shot-2017-11-15-at-12.20.26-pm.png)
 
 ## Virtual memory:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-12.26.19-pm.png)
+![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%2012.26.19%20PM.png)
 
 * Process run 的时候只有一部分 pages resident；
 * 如果一个page is needed and isn't resident:
@@ -43,7 +43,7 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 
 如果map时，有 unused frame，则将需要的contents从disk中读到这里，然后map到process page。否则，就将一个已经使用的frame unmap，按需要将其存入disk，然后用这个frame存新的。
 
-**The dirty bit:** 如果memory page 和 disk 中不同，则需要 flush to disk before reuse。 ![](../.gitbook/assets/screen-shot-2017-11-15-at-1.05.03-pm%20%281%29.png)
+**The dirty bit:** 如果memory page 和 disk 中不同，则需要 flush to disk before reuse。 ![](../.gitbook/assets/screen-shot-2017-11-15-at-1.05.03-pm%20%281%29%20%281%29.png)
 
 **LRU：**  
 Optimal if memory access is linear, and increasing;

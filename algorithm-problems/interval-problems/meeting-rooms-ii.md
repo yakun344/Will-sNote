@@ -19,7 +19,7 @@ return 2.
 
 基本思路就是对start时间和end时间分别排序，然后维持两个指针开始遍历两个数组。具体思路如下图所示（摘自leetcode discussion）
 
-![](../../.gitbook/assets/untitled-1%20%281%29.jpg)
+![](../../.gitbook/assets/untitled-1%20%281%29%20%281%29.jpg)
 
 这种思路可以算作是：**基于事件的分析**
 

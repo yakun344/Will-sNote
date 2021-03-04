@@ -1,6 +1,7 @@
+# Best Team With No Conflicts
+
 Best Team With No Conflicts
 
-----
 _update Oct 18th, 2020_
 
 You are the manager of a basketball team. For the upcoming tournament, you want to choose the team with the highest overall score. The score of the team is the sum of scores of all the players in the team.
@@ -10,6 +11,7 @@ However, the basketball team is not allowed to have conflicts. A conflict exists
 Given two lists, scores and ages, where each `scores[i]` and `ages[i]` represents the score and age of the ith player, respectively, return the highest overall score of all possible basketball teams.
 
 **Example 1:**
+
 ```c
 Input: scores = [1,3,5,10,15], ages = [1,2,3,4,5]
 Output: 34
@@ -17,6 +19,7 @@ Explanation: You can choose all the players.
 ```
 
 **Example 2:**
+
 ```c
 Input: scores = [4,5,6,5], ages = [2,1,2,1]
 Output: 16
@@ -24,24 +27,26 @@ Explanation: It is best to choose the last 3 players. Notice that you are allowe
 ```
 
 **Example 3:**
+
 ```c
 Input: scores = [1,2,3,5], ages = [8,9,10,1]
 Output: 6
 Explanation: It is best to choose the first 3 players.
 ```
 
-
 **Constraints:**
+
 ```c
 1. 1 <= scores.length, ages.length <= 1000
 2. scores.length == ages.length
 3. 1 <= scores[i] <= 106 
 4. 1 <= ages[i] <= 1000
 ```
-<br>
 
 ## Basic Idea
-比较容易想到的第一步是按照年龄排序，进而可以想到如果年龄相同需要按照分数排序。考虑到需要保证选择的人之中不能出现分数更高但是更年轻的选手，而选择或者不选择某个选手会对之后的选择产生影响，整个思路倾向于DP，考虑和LIS(Longest Increasing Subsequence)类似的O(N^2)解法。我们定义如下DP规则：
+
+比较容易想到的第一步是按照年龄排序，进而可以想到如果年龄相同需要按照分数排序。考虑到需要保证选择的人之中不能出现分数更高但是更年轻的选手，而选择或者不选择某个选手会对之后的选择产生影响，整个思路倾向于DP，考虑和LIS\(Longest Increasing Subsequence\)类似的O\(N^2\)解法。我们定义如下DP规则：
+
 ```c
     先保证输入数据按照age，score主次键排序
 
@@ -55,6 +60,7 @@ Explanation: It is best to choose the first 3 players.
 ```
 
 ## Java Code:
+
 ```java
 class Solution {
     public int bestTeamScore(int[] scores, int[] ages) {
@@ -96,6 +102,7 @@ class Solution {
 ```
 
 **从左往右：**
+
 ```java
 class Solution {
     public int bestTeamScore(int[] scores, int[] ages) {
@@ -128,3 +135,4 @@ class Solution {
     }
 }
 ```
+

@@ -34,15 +34,15 @@ Page table 也有可能不能完全加载，在出现page table cache miss 的�
 
 ### IA64 不用 page table，而是使用 translation lookaside buffer \(TLB\)
 
-![](../.gitbook/assets/screen-shot-2017-12-06-at-1.27.29-am.png) ![](../.gitbook/assets/screen-shot-2017-12-06-at-1.29.17-am.png) ![](../.gitbook/assets/screen-shot-2017-12-06-at-1.29.32-am.png)
+![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.27.29%20AM.png) ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.29.17%20AM.png) ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.29.32%20AM.png)
 
-In practice, this is a huge \(optimized\) array access: `table[pgd index][pmd index][pte index]` ![](../.gitbook/assets/screen-shot-2017-12-06-at-1.32.55-am%20%281%29.png)
+In practice, this is a huge \(optimized\) array access: `table[pgd index][pmd index][pte index]` ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.32.55%20AM%20%281%29.png)
 
 ### Virtual memory
 
-![](../.gitbook/assets/screen-shot-2017-12-06-at-1.35.12-am.png)
+![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.35.12%20AM.png)
 
 ### Caches, hashes, and lookasides
 
-![](../.gitbook/assets/screen-shot-2017-12-06-at-1.39.51-am.png)
+![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.39.51%20AM.png)
 

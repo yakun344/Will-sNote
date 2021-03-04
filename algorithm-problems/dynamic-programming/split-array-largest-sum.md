@@ -66,13 +66,13 @@ Output:
   }
   ```
 
----
 _update Oct 26, 2019_
 
 ### Java Binary Search Solution
+
 基本思路是一个基于结果的二分法。
 
-  ```java
+```java
   class Solution {
     public int splitArray(int[] nums, int m) {
         int sum = 0, max = 0;
@@ -92,7 +92,7 @@ _update Oct 26, 2019_
         if (canSplit(nums, m, left)) return left;
         else return right;
     }
-    
+
     private boolean canSplit(int[] nums, int m, int maxSum) {
         int sum = 0;
         for (int i = 0; i < nums.length; ++i) {
@@ -107,3 +107,4 @@ _update Oct 26, 2019_
     }
   }
 ```
+

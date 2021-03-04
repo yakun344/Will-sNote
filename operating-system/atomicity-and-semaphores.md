@@ -57,5 +57,5 @@ value determines number of concurrent locks available.
 
 ## Using a semphore
 
-![](../.gitbook/assets/screen-shot-2017-10-22-at-4.38.38-pm.png)
+![](../.gitbook/assets/Screen%20Shot%202017-10-22%20at%204.38.38%20PM.png)
 

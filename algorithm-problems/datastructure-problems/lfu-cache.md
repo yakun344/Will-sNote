@@ -31,7 +31,7 @@ cache.get(4);       // returns 4
 
 [这里](http://bookshadow.com/weblog/2016/11/22/leetcode-lfu-cache/) 有一个非常不错的分析文章。
 
-在我的实现中，整个数据结构示意图： ![](../../.gitbook/assets/wechatimg26%20%281%29.jpg)
+在我的实现中，整个数据结构示意图： ![](../../.gitbook/assets/WechatIMG26%20%281%29.jpg)
 
 基本思想就是：
 

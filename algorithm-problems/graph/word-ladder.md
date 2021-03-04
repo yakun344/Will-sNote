@@ -28,7 +28,7 @@ return its length 5.
 
 ## Basic Idea:
 
-这道题目其实是一个隐式图搜索的题目，要求的是最短的变化路径长度，所以首选BFS。 ![](../../.gitbook/assets/screen-shot-2017-07-21-at-4.49.42-pm%20%281%29.png) 如上就是这个图的例子（来自jiuzhang）。 实现的基本思路就是每次考虑距离当前word只有一个编辑距离的dict中的词，如果还没有visit过，则加入queue，分层bfs，记录step数。 **细节:** 在生成 1 编辑距离的neighbors时，如果对所有dict中的单词逐一检查，是`O(#words in dict * length)` 的时间复杂度，所以这里采用生成所有 1 编辑距离的变化的单词，然后查看dict中是否有这个词，是`O(26 * length^2)`的复杂度，在dict中word很多而长度较短的时候，更有优势。
+这道题目其实是一个隐式图搜索的题目，要求的是最短的变化路径长度，所以首选BFS。 ![](../../.gitbook/assets/Screen%20Shot%202017-07-21%20at%204.49.42%20PM%20%281%29.png) 如上就是这个图的例子（来自jiuzhang）。 实现的基本思路就是每次考虑距离当前word只有一个编辑距离的dict中的词，如果还没有visit过，则加入queue，分层bfs，记录step数。 **细节:** 在生成 1 编辑距离的neighbors时，如果对所有dict中的单词逐一检查，是`O(#words in dict * length)` 的时间复杂度，所以这里采用生成所有 1 编辑距离的变化的单词，然后查看dict中是否有这个词，是`O(26 * length^2)`的复杂度，在dict中word很多而长度较短的时候，更有优势。
 
 ## python code:
 

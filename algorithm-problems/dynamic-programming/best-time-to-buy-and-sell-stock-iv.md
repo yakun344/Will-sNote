@@ -14,7 +14,7 @@ Design an algorithm to find the maximum profit. You may complete at most k trans
 
 延续前面的 I, II and III，这里把 III 的要求从最多允许 2 次交易推广到了最多允许 k 次交易，仅仅分两段考虑就很难满足需求了，于是我们需要在状态方程中增加一个维度 j，表示当前操作之前已经有最多 j 次完整交易。如下图：
 
-![](../../.gitbook/assets/wechatimg7%20%281%29.jpg)
+![](../../.gitbook/assets/wechatimg7%20%281%29%20%281%29.jpg)
 
 还需要注意 base case，当天数 i=0 的时候，sell的获利一定是0，buy的一定是 -prices\[0\]。当之前最大交易次数 j=0 时，sell 的最大收益一定也是 0，因为 j=0 说明到 i 天为止未进行过完整交易，也就没有 买-&gt;卖 的过程。之后的情况只要按照状态转移方程递推就可以了。
 
@@ -93,12 +93,12 @@ Design an algorithm to find the maximum profit. You may complete at most k trans
     }
 ```
 
----
 _update Sep 20, 2020_
 
 有一点需要注意的，就是对于持股状态（buy），已有0次交易时是有意义的，而且此时的value应该是`min{cost[i] for i}`；而对于不持股状态，已有0次交易的value应该都是0。
 
 ### Java Code
+
 ```java
 class Solution {
     public int maxProfit(int k, int[] prices) {
@@ -107,7 +107,7 @@ class Solution {
             return 0;
         }
         if (k > n / 2) return easySolution(prices);
-        
+
         int[][] buy = new int[k + 1][n + 1];
         int[][] sell = new int[k + 1][n + 1];
         //注意此处初始化，第0天持股状态初始化为 -prices[0]
@@ -118,7 +118,7 @@ class Solution {
         for (int i = 1; i <= n; ++i) {
             buy[0][i] = Math.max(buy[0][i - 1], -prices[i - 1]);
         }
-            
+
         for (int i = 1; i < k + 1; ++i) {
             for (int j = 1; j < n + 1; ++j) {
                 buy[i][j] = Math.max(buy[i][j - 1], sell[i][j - 1] - prices[j - 1]);
@@ -127,7 +127,7 @@ class Solution {
         }
         return sell[k][n];
     }
-    
+
     private int easySolution(int[] prices) {
         int ret = 0;
         for (int i = 1; i < prices.length; ++i) {
@@ -140,16 +140,17 @@ class Solution {
 }
 ```
 
-如果需要优化空间从 O(kn) 到 O(n), 有一个简单的方法，就是将数组定义为 `int[k][2]`, 然后根据天数的奇偶性来交替使用两行数组。
+如果需要优化空间从 O\(kn\) 到 O\(n\), 有一个简单的方法，就是将数组定义为 `int[k][2]`, 然后根据天数的奇偶性来交替使用两行数组。
 
-### Java Code O(n) space
+### Java Code O\(n\) space
+
 ```java
 class Solution {
     public int maxProfit(int k, int[] prices) {
         if (prices == null || prices.length == 0) return 0;
         int n = prices.length;
         if (k > n / 2) return easySolution(prices);
-        
+
         int[][] buy = new int[k][prices.length + 1];
         int[][] sell = new int[k + 1][prices.length + 1];
         for (int i = 0; i < k; ++i) {
@@ -174,3 +175,4 @@ class Solution {
     }
 }
 ```
+

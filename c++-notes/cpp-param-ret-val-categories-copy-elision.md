@@ -32,11 +32,11 @@ _update Jul 22, 2019_
 
 为了处理move semantics，引入了两个expressions的性质：
 
-* has identity: 
+* has identity:
 
   > it's possible to determine whether the expression refers to the same entity as another expression, such as by comparing addresses of the objects or the functions they identify \(obtained directly or indirectly\);
 
-* can be moved from: 
+* can be moved from:
 
   > move constructor, move assignment operator, or another function overload that implements move semantics can bind to the expression.
 
@@ -225,3 +225,4 @@ output:
     destructed
     destructed
 ```
+

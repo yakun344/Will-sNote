@@ -378,7 +378,7 @@
   * [Knapsack Problem](algorithm-problems/dynamic-programming/knapsack-problem.md)
   * [Find the Shortest Superstring](algorithm-problems/dynamic-programming/find-the-shortest-superstring.md)
   * [Number of Squareful Arrays](algorithm-problems/dynamic-programming/number-of-squareful-arrays.md)
-  * [Best Team With No Conflicts ](algorithm-problems/dynamic-programming/best-team-with-no-conflicts.md)
+  * [Best Team With No Conflicts](algorithm-problems/dynamic-programming/best-team-with-no-conflicts.md)
   * [Dungeon Games](algorithm-problems/dynamic-programming/dungeon-games.md)
   * [Longest String Chain](algorithm-problems/dynamic-programming/longest-string-chain.md)
   * [Length of Longest Fibonacci Subsequence](algorithm-problems/dynamic-programming/length-of-longest-fibonacci-subsequence.md)
@@ -489,7 +489,7 @@
 * [Builder Pattern](design-pattern/builder.md)
 * [Abstract Factory Pattern](design-pattern/abstract-factory.md)
 * [Bridge Pattern](design-pattern/bridge.md)
-* [Strategy Pattern](design-pattern/Strategy-pattern.md)
+* [Strategy Pattern](design-pattern/strategy-pattern.md)
 * [Composite Pattern](design-pattern/composite-pattern.md)
 * [Decorator Pattern](design-pattern/decorator-pattern.md)
 * [Visitor Pattern](design-pattern/visitor-pattern.md)
@@ -499,3 +499,4 @@
 ## Java Multithreading
 
 * [Java Multithreading](java-multithreading/java-multithreading.md)
+

@@ -14,7 +14,7 @@ Please optimize your algorithm to use less time and space. The input size may be
 
 基本思想要从这组数字的生成方式上下手，画出recursion tree，然后写dfs。
 
-![](../../.gitbook/assets/wechatimg15%20%281%29.jpg)
+![](../../.gitbook/assets/WechatIMG15%20%281%29.jpg)
 
 ## Java Code:
 

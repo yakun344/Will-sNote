@@ -16,7 +16,7 @@ You may assume no duplicate exists in the array.
 
 传说中的最难典型二分法题目，但其实搞懂了套路也可以轻易做出来。破题点是要把一个 rotated sorted array 想象成如下图的样子：  
   
- ![](../../.gitbook/assets/screen-shot-2017-09-10-at-3.05.50-pm%20%281%29.png)   
+ ![](../../.gitbook/assets/Screen%20Shot%202017-09-10%20at%203.05.50%20PM%20%281%29.png)   
 
 
 如此一来，我们只要按照 target 在前半部分还是后半部分进行分类讨论，然后就可以写出合适的binary search。

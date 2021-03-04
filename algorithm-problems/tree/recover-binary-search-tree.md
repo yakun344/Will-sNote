@@ -46,7 +46,7 @@ Python Code：
 
 [这里](http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html) 有个关于Morris-Traversal Alg 的介绍；
 
-盗图一张： ![](../../.gitbook/assets/screen-shot-2017-09-01-at-10.01.08-pm.png)
+盗图一张： ![](../../.gitbook/assets/Screen%20Shot%202017-09-01%20at%2010.01.08%20PM.png)
 
 精髓就是每到一个节点，通过把它左子树中predecessor的右指针指向自己来实现向上的跟踪；
 

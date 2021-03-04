@@ -6,7 +6,7 @@
 
 This book is for people who want to learn some basic Algorithms and Datastructures. The examples and code in this book are either written by me or I have found somewhere else. Feel free to contact me if you have any questions or advice.
 
-  _Language: Java 8 / Python \(2 or 3\) / C++0x_
+_Language: Java 8 / Python \(2 or 3\) / C++0x_
 
-  _Xiaozheng_  _E\_mail: xguo.tufts@gmail.com_
+_Xiaozheng_ _E\_mail: xguo.tufts@gmail.com_
 

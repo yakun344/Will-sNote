@@ -35,7 +35,7 @@ Gray Code的定义可以在wiki上找到，其实并非如题意所说有其他�
 
 **方法1：（找规律）**
 
-如图： ![](../../.gitbook/assets/wechatimg16%20%281%29.jpg)
+如图： ![](../../.gitbook/assets/WechatIMG16%20%281%29.jpg)
 
 Python Code:
 

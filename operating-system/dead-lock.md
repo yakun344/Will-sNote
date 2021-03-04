@@ -37,7 +37,7 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 
    是 circular dependency 的一种特殊情况，对于resource的需求供不应求。多在 incremental allocation 中产生 deadlock。 例如：  
   
-    ![](../.gitbook/assets/screen-shot-2017-11-13-at-12.26.26-pm.png)   
+    ![](../.gitbook/assets/Screen%20Shot%202017-11-13%20at%2012.26.26%20PM.png)   
 
 3. **Poor understanding of I/O:**
 
@@ -47,8 +47,8 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 
 #### Resource allocation graph
 
-![](../.gitbook/assets/screen-shot-2017-11-13-at-2.04.32-pm.png)   
- ![](../.gitbook/assets/screen-shot-2017-11-13-at-2.05.00-pm.png)
+![](../.gitbook/assets/screen-shot-2017-11-13-at-2.04.32-pm%20%281%29.png)   
+ ![](../.gitbook/assets/screen-shot-2017-11-13-at-2.05.00-pm%20%281%29.png)
 
 #### Keys to deadlock prevention: Atomicity of allocation
 
@@ -71,7 +71,7 @@ Next Class
 
 ## Three approaches to deadlock prevention:
 
-![](../.gitbook/assets/screen-shot-2017-11-13-at-4.47.26-pm.png)
+![](../.gitbook/assets/Screen%20Shot%202017-11-13%20at%204.47.26%20PM.png)
 
 ### --&gt;Banker's algorithm:
 

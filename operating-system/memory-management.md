@@ -16,21 +16,21 @@ _2017-11-14 23:18:54_
 
 ## Tiers of memory:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-12.41.53-am%20%281%29.png)
+![](../.gitbook/assets/screen-shot-2017-11-15-at-12.41.53-am%20%281%29%20%281%29.png)
 
 ## 命名
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-12.59.43-am.png)   
+![](../.gitbook/assets/screen-shot-2017-11-15-at-12.59.43-am%20%281%29.png)   
  **Page:** page 是 process's view of the memory;  
 **Frame:** frame 是 os's view of the memory;
 
 ## The life cycle of logical memory:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-2.07.47-am.png)
+![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%202.07.47%20AM.png)
 
 ## Malloc:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-2.12.03-am%20%281%29.png)
+![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%202.12.03%20AM%20%281%29.png)
 
 ### --&gt; Malloc 的行为\(理解\)
 
@@ -57,7 +57,7 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
 
 ### --&gt; How buddy system work:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-10.22.14-am.png) ![](../.gitbook/assets/screen-shot-2017-11-15-at-10.23.57-am%20%281%29.png) ![](../.gitbook/assets/screen-shot-2017-11-15-at-10.25.36-am%20%281%29.png)
+![](../.gitbook/assets/screen-shot-2017-11-15-at-10.22.14-am.png) ![](../.gitbook/assets/screen-shot-2017-11-15-at-10.23.57-am%20%281%29.png) ![](../.gitbook/assets/screen-shot-2017-11-15-at-10.25.36-am%20%281%29%20%281%29.png)
 
 **总结：**
 

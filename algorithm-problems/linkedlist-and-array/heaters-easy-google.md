@@ -94,3 +94,44 @@ class Solution {
 }
 ```
 
+\_\_
+
+_update 2020-03-04_
+
+### Update: 最新Java写法
+
+```java
+public class Solution {
+    /**
+     * @param houses: positions of houses
+     * @param heaters: positions of heaters
+     * @return: the minimum radius standard of heaters
+     */
+    public int findRadius(int[] houses, int[] heaters) {
+        Arrays.sort(houses);
+        Arrays.sort(heaters);
+        int i = 0, j = 0;
+        int minR = 0;
+        for (; i < houses.length; ++i) {
+            // 先尽量找到房子右边第一个heater
+            while (heaters[j] < houses[i] && j + 1 < heaters.length) {
+                j++;
+            }
+            // 处理edge case
+            if (j == 0) {
+                minR = Math.max(minR, Math.abs(heaters[j] - houses[i]));
+            } else if (j > 0 && Math.abs(heaters[j] - houses[i]) < Math.abs(heaters[j - 1] - houses[i])) {
+            // 对比左右两个最近的heater，可以handle最右边一个heater仍在house左的情况
+                minR = Math.max(minR, Math.abs(heaters[j] - houses[i]));
+            } else {
+            // 同上
+                minR = Math.max(minR, Math.abs(heaters[j - 1] - houses[i]));
+            }
+        }
+        return minR;
+    }
+}
+```
+
+
+

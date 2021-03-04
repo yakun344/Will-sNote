@@ -111,13 +111,13 @@ In total you spent $17 and covered all the days of your travel.
           private Set<Integer> daySet = new HashSet<>();
           private Map<Integer, Integer> memo = new HashMap<>();
           private int[] costs;
-          
+
           public int mincostTickets(int[] days, int[] costs) {
               this.costs = costs;
               for (int day : days) daySet.add(day);
               return costFromThisDay(1);
           }
-          
+
           // 考虑从这一天开始，并且当天没有可用车票状态下往后一共需要的花费
           private int costFromThisDay(int day) {
               if (day > 365) return 0;
@@ -163,3 +163,4 @@ In total you spent $17 and covered all the days of your travel.
 **反思：**
 
 一方面要想到从后往前递推的思路，二是逐天考虑，解决输入天数不连续和不同票的时间不同的问题。
+
