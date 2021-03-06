@@ -75,7 +75,7 @@ _update Nov 30, 2017 16:35_
 
 ## 更新
 
-时隔数月，再次看到这道easy竟已经想不出 O\(n\) time 的最优解了。发现最优解的思路的确足够巧妙，以至从前的我以为自己懂了，却并没有真正领会其中的精神。于是把最优解又仔细考虑了一遍，发现画图和举例子对于找思路非常有用： ![](../../.gitbook/assets/shortest-unsorted-continuous-subarray%20%281%29%20%281%29.jpg)
+时隔数月，再次看到这道easy竟已经想不出 O\(n\) time 的最优解了。发现最优解的思路的确足够巧妙，以至从前的我以为自己懂了，却并没有真正领会其中的精神。于是把最优解又仔细考虑了一遍，发现画图和举例子对于找思路非常有用： ![](../../.gitbook/assets/shortest-unsorted-continuous-subarray%20%281%29%20%281%29%20%281%29.jpg)
 
 **更新nlog\(n\)时间solution的java code，逻辑简化了不少：**
 

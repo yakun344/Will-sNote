@@ -37,7 +37,7 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 
    是 circular dependency 的一种特殊情况，对于resource的需求供不应求。多在 incremental allocation 中产生 deadlock。 例如：  
   
-    ![](../.gitbook/assets/Screen%20Shot%202017-11-13%20at%2012.26.26%20PM.png)   
+    ![](../.gitbook/assets/Screen%20Shot%202017-11-13%20at%2012.26.26%20PM%20%281%29.png)   
 
 3. **Poor understanding of I/O:**
 

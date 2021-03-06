@@ -316,6 +316,7 @@
   * [1498. Number of Subsequences That Satisfy the Given Sum Condition](algorithm-problems/two-pointers-problem/number-of-subsequences-that-satisfy-the-given-sum-condition.md)
   * [Substring With At Least K Distinct Characters](algorithm-problems/two-pointers-problem/substring-with-at-least-k-distinct-characters.md)
   * [Minimum Window Substring](algorithm-problems/two-pointers-problem/minimum-window-substring.md)
+  * [Two Sum VII](algorithm-problems/two-pointers-problem/two-sum-vii.md)
 * [Interval Problems](algorithm-problems/interval-problems/README.md)
   * [Non-overlapping Intervals](algorithm-problems/interval-problems/non-overlapping-intervals.md)
   * [Merge Intervals](algorithm-problems/interval-problems/merge-intervals.md)

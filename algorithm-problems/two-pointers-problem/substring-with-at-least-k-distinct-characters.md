@@ -1,4 +1,4 @@
-# 1375. Substring With At Least K Distinct Characters
+# Substring With At Least K Distinct Characters
 
 Given a string S with only lowercase characters.
 

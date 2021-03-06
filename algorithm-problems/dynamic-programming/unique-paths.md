@@ -8,7 +8,7 @@ A robot is located at the top-left corner of a m x n grid \(marked 'Start' in th
 
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid \(marked 'Finish' in the diagram below\).
 
-How many possible unique paths are there? ![](../../.gitbook/assets/Screen%20Shot%202017-08-12%20at%2011.57.03%20PM%20%281%29.png)
+How many possible unique paths are there? ![](../../.gitbook/assets/Screen%20Shot%202017-08-12%20at%2011.57.03%20PM%20%281%29%20%281%29.png)
 
 Above is a 3 x 7 grid. How many possible unique paths are there?
 

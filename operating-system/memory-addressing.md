@@ -34,7 +34,7 @@ Page table 也有可能不能完全加载，在出现page table cache miss 的�
 
 ### IA64 不用 page table，而是使用 translation lookaside buffer \(TLB\)
 
-![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.27.29%20AM.png) ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.29.17%20AM.png) ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.29.32%20AM.png)
+![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.27.29%20AM%20%281%29.png) ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.29.17%20AM.png) ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.29.32%20AM.png)
 
 In practice, this is a huge \(optimized\) array access: `table[pgd index][pmd index][pte index]` ![](../.gitbook/assets/Screen%20Shot%202017-12-06%20at%201.32.55%20AM%20%281%29.png)
 

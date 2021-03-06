@@ -1,26 +1,27 @@
 # Minimum Window Substring
+
 _update Mar 5, 2021_
 
----
-
-Given two strings source and target. Return the minimum substring of source which contains each char of target.
-Example
+Given two strings source and target. Return the minimum substring of source which contains each char of target. Example
 
 **Example 1:**
-```
+
+```text
 Input: source = "abc", target = "ac"
 Output: "abc"
 ```
 
 **Example 2:**
-```
+
+```text
 Input: source = "adobecodebanc", target = "abc"
 Output: "banc"
 Explanation: "banc" is the minimum substring of source string which contains each char of target "abc".
 ```
 
 **Example 3:**
-```
+
+```text
 Input: source = "abc", target = "aa"
 Output: ""
 Explanation: No substring contains two 'a'.
@@ -31,17 +32,19 @@ Explanation: No substring contains two 'a'.
 `O(n) time`
 
 **Notice**
-```
+
+```text
     If there is no answer, return "".
     You are guaranteed that the answer is unique.
     target may contain duplicate char, while the answer need to contain at least the same number of that char.
 ```
 
 ## Basic Idea
-要找到source中包含target中全部字符（需要重复次数相同）的最短substring，我们以先用一个map统计target中每个字符出现的次数，然后利用双指针，
-保证每次循环中先前进右边界，找到当前满足条件的窗口，然后逐渐右移左边界，这样就可以找到左右满足条件的窗口。
+
+要找到source中包含target中全部字符（需要重复次数相同）的最短substring，我们以先用一个map统计target中每个字符出现的次数，然后利用双指针， 保证每次循环中先前进右边界，找到当前满足条件的窗口，然后逐渐右移左边界，这样就可以找到左右满足条件的窗口。
 
 ## Java Code
+
 ```java
 public class Solution {
     public String minWindow(String source , String target) {
@@ -83,3 +86,4 @@ public class Solution {
     }
 }
 ```
+
