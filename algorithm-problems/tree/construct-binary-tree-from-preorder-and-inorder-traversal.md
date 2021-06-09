@@ -157,3 +157,30 @@ public:
 };
 ```
 
+_update 2021-06-08_
+
+时隔三天的再一次更新。
+
+可以注意到，事实上没有必要维持每次递归时候preorder数组的右边界，因为我们每次都只需要取preorder中的第一个作为这次的root，所以只需要传入每次preorder的起点。
+
+```java
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return construct(preorder, inorder, 0, 0, inorder.length - 1);
+    }
+    
+    private TreeNode construct(int[] preorder, int[] inorder, int currPre, int left, int right) {
+        if (currPre == preorder.length || left > right) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[currPre]);
+        int indexInorder = left;
+        while (inorder[indexInorder] != preorder[currPre]) {
+            indexInorder++;
+        }
+        root.left = construct(preorder, inorder, currPre + 1, left, indexInorder - 1);
+        root.right = construct(preorder, inorder, currPre + indexInorder - left + 1, indexInorder + 1, right);
+        return root;
+    }
+}
+```
