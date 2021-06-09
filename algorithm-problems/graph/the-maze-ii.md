@@ -263,3 +263,84 @@ public:
 };
 ```
 
+---
+_update 06/08/2021_
+
+三年之后的更新，感觉在很多细节的处理上都较以前更加成熟
+
+```java
+class Solution {
+    private class Node {
+        int r, c;
+        int score;
+        Node(int r, int c, int score) {
+            this.r = r;
+            this.c = c;
+            this.score = score;
+        }
+    }
+    
+                              // u,  r, d, l
+    private int[] dr = new int[]{0, 1, 0, -1};
+    private int[] dc = new int[]{1, 0, -1, 0};
+    private int[][] visited;
+    private int[][] maze;
+    private int[] destination;
+    private int R, C;
+
+    public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        this.R = maze.length;
+        this.C = maze[0].length;
+        visited = new int[R][C];
+        for (int i = 0; i < R; ++i) {
+            Arrays.fill(visited[i], Integer.MAX_VALUE);
+        }
+        this.maze = maze;
+        this.destination = destination;
+        
+        PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> Integer.compare(a.score, b.score));
+        visited[start[0]][start[1]] = 0;
+        pq.offer(new Node(start[0], start[1], 0));
+        
+        while (!pq.isEmpty()) {
+            Node curr = pq.poll();
+            if (curr.score > visited[curr.r][curr.c]) {
+                continue;
+            }
+            if (curr.r == destination[0] && curr.c == destination[1]) {
+                return curr.score;
+            }
+            for (int dir = 0; dir < 4; ++dir) {
+                Node next = roll(curr, dir);
+                if (next != null) {
+                    // System.out.println(next.r + ", " + next.c);
+                    pq.offer(next);
+                }
+            }
+        }
+        
+        return -1;
+    }
+    
+    // 这里的目的是找到neighbor，只返回可以被更新score的neighbor
+    private Node roll(Node start, int dir) {
+        int r = start.r;
+        int c = start.c;
+        int step = 0;
+        while (r + dr[dir] >= 0 && r + dr[dir] < R &&
+            c + dc[dir] >= 0 && c + dc[dir] < C && 
+            maze[r + dr[dir]][c + dc[dir]] != 1
+        ) {
+            step++;
+            r += dr[dir];
+            c += dc[dir];
+        }
+        if (visited[r][c] <= start.score + step) {
+            return null;
+        } else {
+            visited[r][c] = start.score + step;
+            return new Node(r, c, start.score + step);
+        }
+    }
+}
+```
