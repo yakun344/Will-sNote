@@ -389,6 +389,7 @@
   * [Last Stone Weight II](algorithm-problems/dynamic-programming/last-stone-weight-ii.md)
   * [Palindrome Partitioning II](algorithm-problems/dynamic-programming/palindrome-partitioning-ii.md)
   * [Jump Game VI](algorithm-problems/dynamic-programming/jump-game-vi.md)
+  * [Stone Game VII](algorithm-problems/dynamic-programming/stone-game-vii.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
