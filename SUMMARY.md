@@ -181,6 +181,7 @@
   * [Median of two Sorted Arrays](algorithm-problems/binary-search/median-of-two-sorted-arrays.md)
   * [K-diff Pairs in an Array \(Easy Amazon\)](algorithm-problems/binary-search/k-diff-pairs-in-an-array-easy-amazon.md)
   * [Find Peak Element II](algorithm-problems/binary-search/find-peak-element-ii.md)
+  * [Maximum Number of Removable Characters](algorithm-problems/binary-search/maximum-number-of-removable-characters.md)
 * [Trie](algorithm-problems/trie/README.md)
   * [Longest Word in Dictionary](algorithm-problems/trie/longest-word-in-dictionary.md)
   * [Implement Trie](algorithm-problems/trie/implement-trie-prefix-tree.md)
