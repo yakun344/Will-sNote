@@ -27,7 +27,7 @@ Fragmentation 可以由于 fixed page size, buddy system, 和 reclamation（proc
 
   ![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%2012.13.57%20PM%20%281%29.png)
 
-  ![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%2012.17.55%20PM%20%281%29.png)
+  ![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%2012.17.55%20PM%20%281%29%20%281%29.png)
 
   ![](../.gitbook/assets/screen-shot-2017-11-15-at-12.20.26-pm.png)
 

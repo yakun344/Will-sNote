@@ -23,7 +23,7 @@ address space 大概相当于 process， task 大概相当于 thread，lightweig
 
 ## 关于 TCB （Thread control block）
 
-![](../.gitbook/assets/screen-shot-2017-10-08-at-11.12.25-pm%20%281%29%20%281%29.png)
+![](../.gitbook/assets/screen-shot-2017-10-08-at-11.12.25-pm%20%281%29%20%281%29%20%281%29.png)
 
 TCB 包括了：
 

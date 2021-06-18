@@ -168,7 +168,7 @@ class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         return construct(preorder, inorder, 0, 0, inorder.length - 1);
     }
-    
+
     private TreeNode construct(int[] preorder, int[] inorder, int currPre, int left, int right) {
         if (currPre == preorder.length || left > right) {
             return null;
@@ -184,3 +184,4 @@ class Solution {
     }
 }
 ```
+

@@ -1,9 +1,11 @@
 # Stone Game VII
+
 _update Jun 11, 2021_
 
 ![image](https://user-images.githubusercontent.com/24964756/121767438-1313a500-cb0d-11eb-8a9a-70e4e1d26602.png)
 
 ## Basic Idea:
+
 Stone Game是一个典型的DP系列，但是我一直都没有很好的整理过。
 
 对于这道题来说，先动手的玩家一定赢，而要求的就是以当前玩家的视角，在两个玩家都做出最优选择的情况下能够比对方多出来的分数。我们注意到对于输入数组 `[5,3,1,4,2]`, 选择5或者选择2会分别留给下一个玩家不同的局面，而对面玩家同样需要保证能从下局开始获得尽可能大的优势。所以这里其实有一个递归的做法，即下面的dfs解法。另一种做法是bottom up DP，从只有一个数字开始到两个相邻的数字，然后到三个相邻数字，直到推导出整个数组。
@@ -21,7 +23,7 @@ class Solution {
         for (int i = 0; i < stones.length; ++i) {
             prefixSum[i + 1] = prefixSum[i] + stones[i];
         }
-        
+
         int[][] dp = new int[stones.length][stones.length];
         for (int i = 0; i < stones.length; ++i) {
             dp[i][i] = 0;
@@ -43,6 +45,7 @@ class Solution {
 ```
 
 ## DFS with Cache 解法
+
 ```java
 class Solution {
     public int stoneGameVII(int[] stones) {
@@ -52,7 +55,7 @@ class Solution {
         }
         return getMaxDiff(stones, 0, stones.length - 1, cache);
     }
-    
+
     private int getMaxDiff(int[] arr, int left, int right, int[][] cache) {
         if (left == right) return 0;
         if (cache[left][right] != Integer.MAX_VALUE) {
@@ -65,7 +68,7 @@ class Solution {
         cache[left][right] = maxDiff;
         return maxDiff;
     }
-    
+
     private int sum(int[] arr, int left, int right) {
         int ret = 0;
         for (int i = left; i <= right; ++i) {
@@ -75,3 +78,4 @@ class Solution {
     }
 }
 ```
+

@@ -263,7 +263,6 @@ public:
 };
 ```
 
----
 _update 06/08/2021_
 
 三年之后的更新，感觉在很多细节的处理上都较以前更加成熟
@@ -279,7 +278,7 @@ class Solution {
             this.score = score;
         }
     }
-    
+
                               // u,  r, d, l
     private int[] dr = new int[]{0, 1, 0, -1};
     private int[] dc = new int[]{1, 0, -1, 0};
@@ -297,11 +296,11 @@ class Solution {
         }
         this.maze = maze;
         this.destination = destination;
-        
+
         PriorityQueue<Node> pq = new PriorityQueue<>((a, b) -> Integer.compare(a.score, b.score));
         visited[start[0]][start[1]] = 0;
         pq.offer(new Node(start[0], start[1], 0));
-        
+
         while (!pq.isEmpty()) {
             Node curr = pq.poll();
             if (curr.score > visited[curr.r][curr.c]) {
@@ -318,10 +317,10 @@ class Solution {
                 }
             }
         }
-        
+
         return -1;
     }
-    
+
     // 这里的目的是找到neighbor，只返回可以被更新score的neighbor
     private Node roll(Node start, int dir) {
         int r = start.r;
@@ -344,3 +343,4 @@ class Solution {
     }
 }
 ```
+
