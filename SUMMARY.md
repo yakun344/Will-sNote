@@ -45,6 +45,7 @@
   * [Critical Connections in a Network](algorithm-problems/graph/critical-connections-in-a-network.md)
   * [Path With Minimum Effort](algorithm-problems/graph/path-with-minimum-effort.md)
   * [Min Cost to Connect All Points](algorithm-problems/graph/min-cost-to-connect-all-points.md)
+  * [Swim in Rising Water](algorithm-problems/graph/swim-in-rising-water.md)
 * [Tree](algorithm-problems/tree/README.md)
   * [Validate Binary Search Tree](algorithm-problems/tree/validate-binary-search-tree.md)
   * [Symmetric Tree](algorithm-problems/tree/symmetric-tree.md)
@@ -507,4 +508,3 @@
 ## Java Multithreading
 
 * [Java Multithreading](java-multithreading/java-multithreading.md)
-
