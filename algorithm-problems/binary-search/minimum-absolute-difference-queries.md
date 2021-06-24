@@ -1,16 +1,19 @@
 # Minimum Absolute Difference Queries
+
 _update Jun 23, 2021_
 
-----
 ![image](https://user-images.githubusercontent.com/24964756/123195824-acbc4a00-d45d-11eb-88e5-673b7331c20b.png)
 
 ## Basic Idea
+
 我们注意到虽然数组nums和queries的长度都很大，但是nums数据的范围很小。如果我们可以用一个长度为 100 的数组存储每个数字对应在nums中的index，然后在query的时候我们只需要从左往右扫描从1到100每个数字，然后更新相邻两个有query范围内的index出现的数字之间的最小绝对之差即可。
 
 其中一个细节是如何快速知道某个数字对应的index中是否包含query所标记的范围，我们可以使用二分法，也可以用BST。两者时间复杂度是类似的，但是TreeSet的overhead会大一些。
 
 ## JavaCode
+
 ### 1. TreeSet
+
 ```java
 class Solution {
     public int[] minDifference(int[] nums, int[][] queries) {
@@ -51,6 +54,7 @@ class Solution {
 ```
 
 ### 2. Binary Search
+
 ```java
 class Solution {
     public int[] minDifference(int[] nums, int[][] queries) {
@@ -81,7 +85,7 @@ class Solution {
         }
         return res;
     }
-    
+
     // 检查list中是否有[lower, upper]范围内元素
     // 因list是某数字出现的index，所以没有重复
     private boolean contains(ArrayList<Integer> list, int lower, int upper) {
@@ -102,9 +106,10 @@ class Solution {
         }
         return false;
     }
-    
+
     private boolean inRange(int k, int lower, int upper) {
         return k >= lower && k <= upper;
     }
 }
 ```
+

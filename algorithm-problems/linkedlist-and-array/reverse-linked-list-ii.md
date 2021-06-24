@@ -99,3 +99,44 @@ Given m, n satisfy the following condition:
             return dummy.next
 ```
 
+\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+_update Jun 23, 2021_
+
+### _Java Code:_
+
+新的写法，发现画个图会更容易理解
+
+```java
+class Solution {
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        if (left == right) return head;
+        ListNode dummy = new ListNode(Integer.MAX_VALUE, head);
+        ListNode prev = dummy, curr = head, next = head.next;
+        for (int i = 1; i < left; ++i) {
+            prev = prev.next;
+            curr = curr.next;
+            next = next.next;
+        }
+        
+        // 1. 4. 3. 2. 5. 6. 7. 8 , 反转 256
+        //       |  |     |
+        //      p1  p2    p3      p2 将会是反转后的右边, p3是左边
+        ListNode p1 = prev;
+        ListNode p2 = curr;
+        // 开始反转
+        for (int i = 0; i < right - left; ++i) {
+            prev = curr;
+            curr = next;
+            next = curr.next;
+            curr.next = prev;
+        }
+        // 拼接
+        ListNode p3 = curr;
+        p1.next = p3;
+        p2.next = next;
+        return dummy.next;
+    }
+}
+```
+

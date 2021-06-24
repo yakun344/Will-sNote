@@ -1,19 +1,21 @@
 # The Earliest and Latest Rounds Where Players Compete
+
 _update Jun 19, 2021_
 
----
 ![image](https://user-images.githubusercontent.com/24964756/122660547-3656d980-d137-11eb-87f0-109081d607e0.png)
 
 ## Basic Idea:
-有一种比较巧妙的思路，就是只关注p1 p2 index的变化，因为在他们相遇之前，他们会在所有compete中取胜，于是我们可以根据他们的位置穷举可能出现的下一场的人数分布，从而算出下一场 p1 和  p2 所在的位置。因为最多进行 `log2(N)` 场，而每次最多尝试 `N^2` 次，总时间复杂度应该在 `O(N^(2logN))`，考虑到N比较小，还是很快的。
+
+有一种比较巧妙的思路，就是只关注p1 p2 index的变化，因为在他们相遇之前，他们会在所有compete中取胜，于是我们可以根据他们的位置穷举可能出现的下一场的人数分布，从而算出下一场 p1 和 p2 所在的位置。因为最多进行 `log2(N)` 场，而每次最多尝试 `N^2` 次，总时间复杂度应该在 `O(N^(2logN))`，考虑到N比较小，还是很快的。
 
 ## Java Code:
+
 ```java
 class Solution {
     public int[] earliestAndLatest(int n, int firstPlayer, int secondPlayer) {
         int p1 = Math.min(firstPlayer, secondPlayer);
         int p2 = Math.max(firstPlayer, secondPlayer);
-        
+
         // 此时 p1 p2 直接交锋，结束
         if (p1 + p2 == n + 1) {
             return new int[]{1, 1};
@@ -21,7 +23,7 @@ class Solution {
         if (n < 4) {
             return new int[]{2, 2};
         }
-        
+
         // 让 p1 p2 更靠左边, 沿中线镜像翻转p1 p2不影响结果
         // 1 2 3 4 5 6 7 8 9 10 11 12
         //               1   2
@@ -71,3 +73,4 @@ class Solution {
     }
 }
 ```
+
