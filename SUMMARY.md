@@ -184,6 +184,7 @@
   * [Find Peak Element II](algorithm-problems/binary-search/find-peak-element-ii.md)
   * [Maximum Number of Removable Characters](algorithm-problems/binary-search/maximum-number-of-removable-characters.md)
   * [Minimum Absolute Difference Queries](algorithm-problems/binary-search/minimum-absolute-difference-queries.md)
+  * [Number of Matching Subsequences](algorithm-problems/binary-search/number-of-matching-subsequences.md)
 * [Trie](algorithm-problems/trie/README.md)
   * [Longest Word in Dictionary](algorithm-problems/trie/longest-word-in-dictionary.md)
   * [Implement Trie](algorithm-problems/trie/implement-trie-prefix-tree.md)
@@ -509,4 +510,3 @@
 ## Java Multithreading
 
 * [Java Multithreading](java-multithreading/java-multithreading.md)
-
