@@ -2,19 +2,22 @@
 
 _update Jun 24, 2021_
 
----
 ![image](https://user-images.githubusercontent.com/24964756/123303800-0ad74480-d4d3-11eb-8a82-a545ba5860dd.png)
 
 ## Basic Idea
+
 ### 1. Binary Search
+
 用一个长度为26的数组记录每个字符在s中出现过的index，然后对于每个word，用二分法检查它是否是s的subsequence。
 
 ### 2. 维持每个word下一个需要match的字母
-同样用一个长度为26的数组，但其中存放的是每个字母对应的下一个要match这个字母的word。然后扫描s，更新每个word下一个要match的index以及将他们放到对应字母的位置上。
-例如对于 s = abc, word = ab, 则一开始 word 在 a 对应的位置，index为0，扫描过 `s[0]` 后，word的index变为1，挪到了 b 对应的位置。扫描过 `s[1]` 后，word index 变为2，结束。
+
+同样用一个长度为26的数组，但其中存放的是每个字母对应的下一个要match这个字母的word。然后扫描s，更新每个word下一个要match的index以及将他们放到对应字母的位置上。 例如对于 s = abc, word = ab, 则一开始 word 在 a 对应的位置，index为0，扫描过 `s[0]` 后，word的index变为1，挪到了 b 对应的位置。扫描过 `s[1]` 后，word index 变为2，结束。
 
 ## Java Code:
+
 **1. Binary Search**
+
 ```java
 class Solution {
     public int numMatchingSubseq(String s, String[] words) {
@@ -33,7 +36,7 @@ class Solution {
         }
         return ret;
     }
-    
+
     // 检查能否对于word中每个字符找到mapping中对应的递增index的序列
     private boolean check(List<Integer>[] mapping, String word) {
         int last = -1;
@@ -66,6 +69,7 @@ class Solution {
 ```
 
 **2. 为每个word维持nextIndex**
+
 ```java
 class Solution {
     private static class Node {
@@ -76,7 +80,7 @@ class Solution {
             this.nextIndex = nextIndex;
         }
     }
-    
+
     public int numMatchingSubseq(String str, String[] words) {
         List<Node>[] mapping = new ArrayList[255];
         for (char c = 'a'; c <= 'z'; ++c) {
@@ -111,3 +115,4 @@ class Solution {
     }
 }
 ```
+
