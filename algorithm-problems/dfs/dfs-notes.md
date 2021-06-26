@@ -91,7 +91,7 @@ _update Jun 25, 2021_ 新的思路解释
 
 至于其与上面 subsets 的区别就是这道题目每次进入下层dfs之前需要做额外判断。 **时间复杂度** 为： O\(2^2n\), n 为括号的对数。
 
-### 3. [Print all combinations of coins that can sum up to a total value k](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/combination-sum.html)
+### 3. [Print all combinations of coins that can sum up to a total value k](https://app.gitbook.com/@willguo/s/willguo-algo/algorithm-problems/dfs/permutation-and-combination/combination-sum)
 
 例如，对于 input：`{1，5，10，25}`，要求得到所有 sum 为 99 的组合。
 
