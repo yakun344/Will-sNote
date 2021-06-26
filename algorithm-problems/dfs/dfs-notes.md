@@ -71,7 +71,7 @@ _update Jun 25, 2021_ 新的思路解释
 
 可以把这种解法理解为第一层生成所有长度为1的subsets，第二层生成所有长度为2的subsets，以此类推。
 
-### 2. [Find all valid permutations using the parentheses provided](https://will-gxz.gitbooks.io/xiaozheng_algo/content/dfs/permutation-and-combination/generate-parentheses.html)
+### 2. [Find all valid permutations using the parentheses provided](https://app.gitbook.com/@willguo/s/willguo-algo/algorithm-problems/dfs/permutation-and-combination/generate-parentheses)
 
 对于这道题，相当于在每次dfs之前需要加入判断，加右括号之前需要判断是否有与之对应的左括号。从 recursion tree 的角度上看，相当于对 recursion tree 进行 pruning：
 
