@@ -417,6 +417,7 @@
   * [Binary Watch \(easy\)](algorithm-problems/bit-manipulation/binary-watch-easy.md)
   * [Binary Number with Alternating Bits \(Easy Yahoo\)](algorithm-problems/bit-manipulation/binary-number-with-alternating-bits-easy-yahoo.md)
   * [Triples with Bitwise AND Equal To Zero](algorithm-problems/bit-manipulation/triples-with-bitwise-and-equal-to-zero.md)
+  * [Number of Wonderful Substrings](algorithm-problems/bit-manipulation/number-of-wonderful-substrings.md)
 * [Computer Graphics](algorithm-problems/computer-graphics/README.md)
   * [Minimum Area Rectangle](algorithm-problems/computer-graphics/minimum-area-rectangle.md)
   * [Minimum Area Rectangle II](algorithm-problems/computer-graphics/minimum-area-rectangle-ii.md)
@@ -511,4 +512,3 @@
 ## Java Multithreading
 
 * [Java Multithreading](java-multithreading/java-multithreading.md)
-
