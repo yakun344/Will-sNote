@@ -57,6 +57,35 @@ Explanation: The two wonderful substrings are underlined below:
 * `word` consists of lowercase English letters from `'a'` to `'j'`.
 
 ### Basic Idea
+因为这道题给的数据量比较大， 肯定不能用暴力方法做，考虑到string中的字母范围就是a-j的十个字母，而且我们只关心每个字母出现的奇偶次数，于是我们可以考虑使用bitmask表示任意的一个substring，每一位代表一个字母，无论substring的长度如何，我们只关心每个字母出现次数的奇偶性。这样，对于 `s[0,p]` 的mask 和 `s[0, q]` 的 mask，如果 `q > p`, 只要`s[0,p]mask`和`s[0,q] mask` 相等或者只差一个bit，就表示 `s[p+1,q]` 是满足条件的。于是我们可以用一个count来记录所有prefix的mask出现的次数，每次算出当前的mask，然后加上前面与其相同以及只差一个bit的mask的个数。
 
+总的时间复杂度为 `O(10n)`, 其中 n 为word的长度，每次需要检查10个bit。
+
+### Java Code:
+```java
+class Solution {
+    public long wonderfulSubstrings(String word) {
+        int[] count = new int[1<<10];
+        // 每个bit表示一个字母，最多10 bits，0表示偶数，1表示奇数
+        int mask = 0;
+        long res = 0;
+        count[0] = 1;
+        for (char c : word.toCharArray()) {
+            int ord = c - 'a';
+            mask = (mask ^ (1 << ord));
+            // 加上之前出现过的所有奇偶情况相同的prefix mask的个数
+            // 因为此时在他们之间的部分所有字母出现次数均为偶数
+            res += count[mask];
+            // 检查所有prefix mask，加上所有和当前mask只差1 bit的个数
+            // 因为此时相当于中间的部分只有一个字母出现过奇数次
+            for (int i = 0; i < 10; ++i) {
+                res += count[mask ^ (1 << i)];
+            }
+            count[mask]++;
+        }
+        return res;
+    }
+}
+```
 
 
