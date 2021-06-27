@@ -15,7 +15,7 @@ _update Jan 6, 2018 0:20_
 3. 当某次外层循环\(`for i in range(number of V)`\)中没有一条边被 relax时，我们就可以认为整个Bellman-Ford已经结束，可以提前退出，而不必要做满 `|v|-1` 次；
 
 如图：  
-  ![](../../.gitbook/assets/screen-shot-2018-01-06-at-5.35.41-pm%20%281%29%20%281%29.png)  
+  ![](../../.gitbook/assets/screen-shot-2018-01-06-at-5.35.41-pm.png)  
 分割线以左为已经确定最短距离的点。我们可以看到，左上方红色部分表示因为 `原因 1` 所带来的无用功，右下方的红色部分为 `原因 2` 带来的无用功。
 
 事实上，Dijkstra 算法同时解决了这两个问题，原因如下：
@@ -69,4 +69,3 @@ SLF 可使速度提高 15 ~ 20%，SLF + LLL 可提高约 50%。 但这两个优�
 1. 如果是 non-negative weight，可以采用 Dijkstra，时间复杂度比较好 \(O\(ElogV\)\);
 2. 如果可能存在负权回路，可以用优化版Bellman-Ford进行判断；
 3. 如果有 negative edge 而没有负权回路，可以用 SPFA;
-
