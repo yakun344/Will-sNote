@@ -56,12 +56,14 @@ Explanation: The two wonderful substrings are underlined below:
 * `1 <= word.length <= 105`
 * `word` consists of lowercase English letters from `'a'` to `'j'`.
 
-### Basic Idea
+## Basic Idea
+
 因为这道题给的数据量比较大， 肯定不能用暴力方法做，考虑到string中的字母范围就是a-j的十个字母，而且我们只关心每个字母出现的奇偶次数，于是我们可以考虑使用bitmask表示任意的一个substring，每一位代表一个字母，无论substring的长度如何，我们只关心每个字母出现次数的奇偶性。这样，对于 `s[0,p]` 的mask 和 `s[0, q]` 的 mask，如果 `q > p`, 只要`s[0,p]mask`和`s[0,q] mask` 相等或者只差一个bit，就表示 `s[p+1,q]` 是满足条件的。于是我们可以用一个count来记录所有prefix的mask出现的次数，每次算出当前的mask，然后加上前面与其相同以及只差一个bit的mask的个数。
 
 总的时间复杂度为 `O(10n)`, 其中 n 为word的长度，每次需要检查10个bit。
 
-### Java Code:
+## Java Code:
+
 ```java
 class Solution {
     public long wonderfulSubstrings(String word) {
@@ -87,5 +89,4 @@ class Solution {
     }
 }
 ```
-
 

@@ -15,7 +15,7 @@ Bellman-Ford 算法是执行 `relax all edges for |V|-1 times`，时间复杂度
 3. 当某次外层循环\(`for i in range(number of V)`\)中没有一条边被 relax时，我们就可以认为整个Bellman-Ford已经结束，可以提前退出，而不必要做满 `|v|-1` 次；
 
 如图：  
-![](../../.gitbook/assets/screen-shot-2018-01-06-at-5.35.41-pm.png)  
+![](../../.gitbook/assets/screen-shot-2018-01-06-at-5.35.41-pm%20%281%29.png)  
 分割线以左为已经确定最短距离的点。我们可以看到，左上方红色部分表示因为 `原因 1` 所带来的无用功，右下方的红色部分为 `原因 2` 带来的无用功。
 
 事实上，Dijkstra 算法同时解决了这两个问题，原因如下：
