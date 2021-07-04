@@ -64,3 +64,21 @@ class Solution {
 }
 ```
 
+----
+_update Jul 3 2021_
+
+更新一个 Iterative 做法
+
+```java
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        int lower = Math.min(p.val, q.val);
+        int upper = Math.max(p.val, q.val);
+        while (true) {
+            if (root.val < lower) root = root.right;
+            else if (root.val > upper) root = root.left;
+            else return root;
+        }
+    }
+}
+```
