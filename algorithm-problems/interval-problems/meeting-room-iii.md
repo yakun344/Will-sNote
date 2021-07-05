@@ -16,6 +16,8 @@ description: 'Jul 4, 2021'
 
 然后如何知道某一分钟是否OK？我们可以先对于每个interval标记event，按照start +1，end -1的方法，然后从左到右扫描所有event，可以得到每一分钟需要的最少room数量，然后对于没有空room的分钟标记为1，有空room的分钟标记为0即可。
 
+还有一点，在得到prefixSum之后，判断时间点`[p,q]` 是否OK实际上要判断的是`if (prefixSum[q - 1] == prefixSum[p - 1])` 这里的 `-1` 是因为上一个event结束的同时下一个就可以开始，所以需要1分钟的错位。
+
 ### Java Code：
 
 ```java
