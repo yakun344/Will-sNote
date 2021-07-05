@@ -330,6 +330,7 @@
   * [Insert Interval](algorithm-problems/interval-problems/insert-interval.md)
   * [Minimum Number of Arrows to Burst Balloons](algorithm-problems/interval-problems/minimum-number-of-arrows-to-burst-balloons.md)
   * [Meeting Rooms II](algorithm-problems/interval-problems/meeting-rooms-ii.md)
+  * [Meeting Room III](algorithm-problems/interval-problems/meeting-room-iii.md)
   * [Summary Ranges](algorithm-problems/interval-problems/summary-ranges.md)
   * [Missing Ranges](algorithm-problems/interval-problems/missing-ranges.md)
   * [Rectangle Overlap](algorithm-problems/interval-problems/rectangle-overlap.md)

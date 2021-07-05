@@ -109,3 +109,45 @@ class Solution {
 }
 ```
 
+_update Jul 4, 2021_
+
+使用了 Stream 的扫描线算法
+
+```java
+class Solution {
+    class Event {
+        int time;
+        boolean start;
+        
+        Event(int time, boolean start) {
+            this.time = time;
+            this.start = start;
+        }
+    }
+    
+    public int minMeetingRooms(int[][] intervals) {
+        List<Event> events = Arrays.stream(intervals)
+            .flatMap(interval -> {
+                return Arrays.asList(
+                    new Event(interval[0], true),
+                    new Event(interval[1], false)
+                ).stream();
+            }).sorted((a, b) -> {
+                if (a.time != b.time) {
+                    return Integer.compare(a.time, b.time);
+                } else {
+                    return Boolean.compare(a.start, b.start);
+                }
+            }).collect(Collectors.toList());
+        int maxCount = 0;
+        int count = 0;
+        for (Event e : events) {
+            if (e.start) count++;
+            else count--; // 无需检查count==0，因为一定不会小于0
+            maxCount = Math.max(count, maxCount);
+        }
+        return maxCount;
+    }
+}
+```
+
