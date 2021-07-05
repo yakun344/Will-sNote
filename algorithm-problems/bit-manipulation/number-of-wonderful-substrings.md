@@ -1,8 +1,10 @@
+---
+description: update Jun 27
+---
+
 # Number of Wonderful Substrings
 
-_update Jun 27_
-
-\_\_
+[Leetcode](https://leetcode.com/problems/number-of-wonderful-substrings/)
 
 A **wonderful** string is a string where **at most one** letter appears an **odd** number of times.
 
