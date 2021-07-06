@@ -326,6 +326,7 @@
   * [Substring With At Least K Distinct Characters](algorithm-problems/two-pointers-problem/substring-with-at-least-k-distinct-characters.md)
   * [Minimum Window Substring](algorithm-problems/two-pointers-problem/minimum-window-substring.md)
   * [Two Sum VII](algorithm-problems/two-pointers-problem/two-sum-vii.md)
+  * [the kth subarray](algorithm-problems/two-pointers-problem/the-kth-subarray.md)
 * [Interval Problems](algorithm-problems/interval-problems/README.md)
   * [Non-overlapping Intervals](algorithm-problems/interval-problems/non-overlapping-intervals.md)
   * [Merge Intervals](algorithm-problems/interval-problems/merge-intervals.md)
