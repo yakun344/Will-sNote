@@ -276,6 +276,8 @@
   * [Shuffle an Array](algorithm-problems/random/shuffle-an-array.md)
   * [Random7 Using Random5](algorithm-problems/random/random7-using-random5.md)
   * [Random1000 Using Random5](algorithm-problems/random/random1000-using-random5.md)
+* [Segment Tree](algorithm-problems/segment-tree/README.md)
+  * [Range Sum Query - Mutable](algorithm-problems/segment-tree/range-sum-query-mutable.md)
 * [DFS](algorithm-problems/dfs/README.md)
   * [DFS notes](algorithm-problems/dfs/dfs-notes.md)
   * [Permutation & Combination & Subsets](algorithm-problems/dfs/permutation-and-combination/README.md)
