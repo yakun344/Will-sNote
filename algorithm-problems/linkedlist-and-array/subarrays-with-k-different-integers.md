@@ -137,3 +137,46 @@ class Solution {
 }
 ```
 
+_-----------------------------_
+
+_Jul 7, 2021_
+
+### Update: with atMostK 新的写法
+
+其实这种做法可以理解为对于每个右边界right，找到最左端的左边界left使得之间部分只有小于等于K个不同元素，然后计算共有多少个以right结尾的subarray。因为我们每次只计算以right结尾的，而且我们考虑到了所有的right，所以不会有重复的情况。
+
+```java
+class Solution {
+    public int subarraysWithKDistinct(int[] nums, int k) {
+        return atMostK(nums, k) - atMostK(nums, k - 1);
+    }
+    
+    private int atMostK(int[] nums, int k) {
+        int[] map = new int[20001];
+        int count = 0;
+        int ret = 0;
+        int left = 0;
+        // right从0开始向右移动
+        for (int right = 0; right < nums.length; ++right) {
+            if (map[nums[right]] == 0) {
+                count++;
+            }
+            map[nums[right]]++;
+            // 右移left保证[left, right]只有小于等于k个不同数字
+            if (count > k) {
+                while (count > k) {
+                    map[nums[left]]--;
+                    if (map[nums[left]] == 0) {
+                        count--;
+                    }
+                    left++;
+                }
+            }
+            // 计算此时left到right之间以right结尾的subarray个数
+            ret += right - left + 1;
+        }
+        return ret;
+    }
+}
+```
+
