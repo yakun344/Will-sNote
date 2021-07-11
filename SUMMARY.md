@@ -340,6 +340,7 @@
   * [Rectangle Overlap](algorithm-problems/interval-problems/rectangle-overlap.md)
   * [Rectangle Area](algorithm-problems/interval-problems/rectangle-area.md)
   * [Car Pooling](algorithm-problems/interval-problems/car-pooling.md)
+  * [The Skyline Problem](algorithm-problems/interval-problems/the-skyline-problem.md)
 * [Dynamic Programming](algorithm-problems/dynamic-programming/README.md)
   * [Unique Paths](algorithm-problems/dynamic-programming/unique-paths.md)
   * [Unique Paths II](algorithm-problems/dynamic-programming/unique-paths-ii.md)
