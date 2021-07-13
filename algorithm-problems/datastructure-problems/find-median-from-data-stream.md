@@ -161,3 +161,46 @@ class MedianFinder {
 }
 ```
 
+_update Jul 12, 2021_
+
+### Updated Java
+
+时隔三年，感觉这样的写法更加容易理解，不容易有bug
+
+```java
+class MedianFinder {
+
+    private PriorityQueue<Integer> leftPq;
+    private PriorityQueue<Integer> rightPq;
+    
+    /** initialize your data structure here. */
+    public MedianFinder() {
+        this.leftPq = new PriorityQueue<>(Collections.reverseOrder());
+        this.rightPq = new PriorityQueue<>();
+    }
+    
+    // 如果奇数，leftPq多1个, 每次我们可以无脑往左边加，如果这个数太大，我们马上把它挪到右边
+    public void addNum(int num) {
+        leftPq.offer(num);
+        if (!rightPq.isEmpty() && leftPq.peek() > rightPq.peek()) {
+            rightPq.offer(leftPq.poll());
+        }
+        while (rightPq.size() + 1 > leftPq.size()) {
+            leftPq.offer(rightPq.poll());
+        }
+        while (leftPq.size() - 1 > rightPq.size()) {
+            rightPq.offer(leftPq.poll());
+        }
+    }
+    
+    public double findMedian() {
+        if (getSize() % 2 == 0) return (leftPq.peek() + rightPq.peek()) / 2.0;
+        else return leftPq.peek();
+    }
+    
+    private int getSize() {
+        return leftPq.size() + rightPq.size();
+    }
+}
+```
+
