@@ -2,6 +2,8 @@
 
 _update Jun 23, 2021_
 
+\_\_[_Leetcode_](https://leetcode.com/problems/minimum-absolute-difference-queries/)\_\_
+
 ![image](https://user-images.githubusercontent.com/24964756/123195824-acbc4a00-d45d-11eb-88e5-673b7331c20b.png)
 
 ## Basic Idea
@@ -38,6 +40,8 @@ class Solution {
                    ) {
                     if (last != -1) {
                         minDiff = Math.min(Math.abs(i - last), minDiff);
+                        // 优化，因为最小的diff就是1
+                        if (minDiff == 1) break;
                     }
                     last = i;
                 }
