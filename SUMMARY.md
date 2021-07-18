@@ -403,6 +403,7 @@
   * [Jump Game VI](algorithm-problems/dynamic-programming/jump-game-vi.md)
   * [Stone Game VII](algorithm-problems/dynamic-programming/stone-game-vii.md)
   * [Interleaving String](algorithm-problems/dynamic-programming/interleaving-string.md)
+  * [Maximum Number of Points with Cost](algorithm-problems/dynamic-programming/maximum-number-of-points-with-cost.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
