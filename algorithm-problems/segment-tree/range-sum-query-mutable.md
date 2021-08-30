@@ -44,7 +44,12 @@ numArray.sumRange(0, 2); // return 1 + 2 + 5 = 8
 
 ### Basic Idea:
 
-这道题目就是典型的线段树的应用，利用线段树可以支持此题中所要求的update和range sum query操作，时间复杂度为 `O(logN)` update, `O(logN + k)` query.
+这道题目就是典型的线段树的应用，利用线段树可以支持此题中所要求的update和range sum query操作，时间复杂度为 `O(logN)` update, `O(logN)` query.
+
+对时间复杂度的解释：
+
+1. 整个树的高度为 `log2(n)` ，而在一次query中每层最多access 2个node，所以最多为 `O(2 * log2(n))=O(log2(n))`
+2. 关于construct的时间复杂度，递归式为 `T(n)=2T(n/2)+c`, 层数最多为 log2\(n\), 所以有`T(n) = c + 2c + 4c + 8c + ... + 2^log2(n) * c = O(n)` .
 
 ### Java Code:
 
