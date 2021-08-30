@@ -36,8 +36,8 @@ Output: [0,0]
 
 **Constraints:**
 
-* `1 <= nums.length <= 105`
-* `-104 <= nums[i] <= 104`
+* `1 <= nums.length <= 10^5`
+* `-10^4 <= nums[i] <= 10^4`
 
 ### Merge Sort 解法：
 
