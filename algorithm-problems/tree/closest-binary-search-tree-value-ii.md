@@ -144,7 +144,9 @@ Java Code:
 
 对successor 和 predecessor 分别维持一个stack，这里用 successor 举例：
 
-当我们有如下BST的时候： ![](../../.gitbook/assets/WechatIMG30%20%281%29.jpg)
+当我们有如下BST的时候： 
+
+![](../../.gitbook/assets/WechatIMG30%20%281%29.jpg)
 
 经过优化，获取 predecessor 和 successor 的操作只有一开始的initialize stack 是 O\(logN\)的，之后每次获取事实上都是 O\(1\), 因此，时间复杂度变为 O\(k + logN\).
 
