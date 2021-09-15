@@ -280,6 +280,7 @@
   * [Range Sum Query - Mutable](algorithm-problems/segment-tree/range-sum-query-mutable.md)
   * [Meeting Room III](algorithm-problems/segment-tree/meeting-room-iii.md)
   * [Count of Smaller Numbers After Self](algorithm-problems/segment-tree/count-of-smaller-numbers-after-self.md)
+  * [715. Range Module](algorithm-problems/segment-tree/715.-range-module.md)
 * [DFS](algorithm-problems/dfs/README.md)
   * [DFS notes](algorithm-problems/dfs/dfs-notes.md)
   * [Permutation & Combination & Subsets](algorithm-problems/dfs/permutation-and-combination/README.md)
