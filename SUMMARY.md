@@ -432,6 +432,7 @@
   * [Minimum Area Rectangle II](algorithm-problems/computer-graphics/minimum-area-rectangle-ii.md)
   * [Generate Random Point in a Circle](algorithm-problems/computer-graphics/generate-random-point-in-a-circle.md)
   * [Grid Illumination](algorithm-problems/computer-graphics/grid-illumination.md)
+  * [149. Max Points on a Line](algorithm-problems/computer-graphics/149.-max-points-on-a-line.md)
 * [Math Problems](algorithm-problems/mathematical-problem/README.md)
   * [Nth digit](algorithm-problems/mathematical-problem/nth-digit.md)
   * [Count Primes](algorithm-problems/mathematical-problem/count-primes.md)
