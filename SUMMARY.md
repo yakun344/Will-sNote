@@ -272,6 +272,7 @@
   * [Exam Room](algorithm-problems/datastructure-problems/exam-room.md)
   * [Odd Even Jump](algorithm-problems/datastructure-problems/odd-even-jump.md)
   * [Satisfiability of Equality Equations](algorithm-problems/datastructure-problems/satisfiability-of-equality-equations.md)
+* [432. All O\`one Data Structure](algorithm-problems/432.-all-o-one-data-structure.md)
 * [Random](algorithm-problems/random/README.md)
   * [Linked List Random Node](algorithm-problems/random/linked-list-random-node.md)
   * [Random Pick Index](algorithm-problems/random/random-pick-index.md)
