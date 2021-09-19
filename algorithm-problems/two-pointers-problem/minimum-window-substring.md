@@ -85,5 +85,53 @@ public class Solution {
         return ret == null ? "" : ret;
     }
 }
+
+// 使用 int array 作为 map 
+class Solution {
+    public String minWindow(String s, String t) {
+        int[] map = new int[256];
+        for (char c : t.toCharArray()) {
+            map[c]++;
+        }
+        
+        int count = 0;
+        int minWindow = Integer.MAX_VALUE;
+        String ret = "";
+        int[] windowMap = new int[256];
+        int left = 0, right = -1;
+        while (right < s.length()) {
+            while (count < t.length()) {
+                if (++right == s.length()) {
+                    break;
+                }
+                windowMap[s.charAt(right)]++;
+                if (windowMap[s.charAt(right)] <= map[s.charAt(right)]) {
+                    count++;
+                }
+            }
+            if (count == t.length()) {
+                if (right - left + 1 < minWindow) {
+                    minWindow = right - left + 1;
+                    ret = s.substring(left, right + 1);
+                }
+            }
+            while (count == t.length()) {
+                if (right - left + 1 < minWindow) {
+                    minWindow = right - left + 1;
+                    ret = s.substring(left, right + 1);
+                }
+                char leftChar = s.charAt(left);
+                windowMap[leftChar]--;
+                if (windowMap[leftChar] < map[leftChar]) {
+                    count--;
+                }
+                left++;
+            }
+        }
+        return ret;
+    }
+}
 ```
+
+
 
