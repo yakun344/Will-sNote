@@ -73,7 +73,9 @@ One possible longest palindromic subsequence is "bb".
     }
 ```
 
-**思路3：bottom-up dp** ![](../../.gitbook/assets/WechatIMG10%20%281%29.jpg)
+**思路3：bottom-up dp** 
+
+![](../../.gitbook/assets/WechatIMG10%20%281%29.jpg)
 
 ```java
 // bottom-up dp solution
