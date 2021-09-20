@@ -408,6 +408,7 @@
   * [Stone Game VII](algorithm-problems/dynamic-programming/stone-game-vii.md)
   * [Interleaving String](algorithm-problems/dynamic-programming/interleaving-string.md)
   * [Maximum Number of Points with Cost](algorithm-problems/dynamic-programming/maximum-number-of-points-with-cost.md)
+* [730. Count Different Palindromic Subsequences](algorithm-problems/730.-count-different-palindromic-subsequences.md)
 * [1235. Maximum Profit in Job Scheduling](algorithm-problems/1235.-maximum-profit-in-job-scheduling.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
