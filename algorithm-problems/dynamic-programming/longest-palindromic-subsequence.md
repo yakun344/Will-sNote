@@ -95,6 +95,31 @@ public class Solution {
         return dp[0][s.length() - 1];
     }
 }
+
+class Solution {
+    public int longestPalindromeSubseq(String s) {
+        // dp[i][j] = max{ s[i]==s[j] ? dp[i+1][j-1] + 2
+        //               { dp[i+1][j]
+        //               { dp[i][j-1]
+        // i from max to 0, j from 0 to max
+        
+        int n = s.length();
+        int[][] dp = new int[n][n];
+        for (int i = n - 1; i >= 0; --i) {
+            for (int j = i; j < n; ++j) {
+                if (i == j) {
+                    dp[i][j] = 1;
+                } else {
+                    if (s.charAt(i) == s.charAt(j)) {
+                        dp[i][j] = 2 + dp[i + 1][j - 1];
+                    }
+                    dp[i][j] = Math.max(dp[i][j], Math.max(dp[i + 1][j], dp[i][j - 1]));
+                }
+            }
+        }
+        return dp[0][s.length() - 1];
+    }
+}
 ```
 
 **思路4：转化为求 s 和 s\[::-1\] 的 LCS 的dp问题**
