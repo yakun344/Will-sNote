@@ -23,34 +23,66 @@ Could you solve it in O\(nk\) runtime?
 ## Java Code:
 
 ```java
-    class Solution {
-        public int minCostII(int[][] costs) {
-            if (costs == null || costs.length == 0) return 0;
-            int n = costs.length, k = costs[0].length;
-            PriorityQueue<int[]> pq = new PriorityQueue<>(2, new Comparator<int[]>(){
-                // size=2，maxheap，保持每个房子最小和第二小的颜色和cost，存入int<color，cost>
-                @Override
-                public int compare(int[] cost1, int[] cost2) {
-                    return cost2[1] - cost1[1];
-                }
-            });
-            // 把第一个房子所有颜色的costs入队，保持两个最小
-            for (int i = 0; i < k; ++i) {
-                pq.offer(new int[]{i, costs[0][i]});
-                if (pq.size() > 2) pq.poll();
+// O(n*k^2) 解法
+class Solution {
+    public int minCostII(int[][] costs) {
+        int k = costs[0].length;
+        int n = costs.length;
+        
+        int[][] dp = new int[k][n];
+        for (int i = 0; i < dp.length; ++i) {
+            for (int j = 0; j < dp[0].length; ++j) {
+                dp[i][j] = Integer.MAX_VALUE;
             }
-            for (int i = 1; i < n; ++i) {
-                int[] secondMin = pq.poll();
-                int[] minCost = pq.poll();
-                for (int color = 0; color < k; ++color) {
-                    int min = minCost[0] == color ? secondMin[1] : minCost[1];
-                    pq.offer(new int[]{color, min + costs[i][color]});
-                    if (pq.size() > 2) pq.poll();
-                }
-            }
-            if (pq.size() == 2) pq.poll();
-            return pq.poll()[1];
         }
+        for (int i = 0; i < k; ++i) dp[i][0] = costs[0][i];
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < k; ++j) {
+                for (int m = 0; m < k; ++m) {
+                    if (m != j) {
+                        dp[j][i] = Math.min(dp[j][i], dp[m][i - 1] + costs[i][j]);
+                    }
+                }
+            }
+        }
+        int ret = Integer.MAX_VALUE;
+        for (int i = 0; i < k; ++i) {
+            ret = Math.min(ret, dp[i][n - 1]);
+        }
+        return ret;
     }
+}
+
+// O(nk) 解法
+class Solution {
+    public int minCostII(int[][] costs) {
+        int n = costs.length;
+        int k = costs[0].length;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
+            return Integer.compare(b[0], a[0]); // size 2 max heap
+        });
+        for (int i = 0; i < k; ++i) {
+            pq.offer(new int[] {costs[0][i], i});
+            if (pq.size() > 2) {
+                pq.poll();
+            }
+        }
+        // 依次考虑每个房子，pq中保存上一个房子最小cost的两个颜色以及cost
+        for (int i = 1; i < n; ++i) {
+            int[] second = pq.poll();
+            int[] min = pq.poll();
+            for (int j = 0; j < k; ++j) {
+                int minCost = (j == min[1] ? second[0] : min[0]) + costs[i][j];
+                pq.offer(new int[] {minCost, j});
+                if (pq.size() > 2) {
+                    pq.poll();
+                }
+            }
+        }
+        // 最后pq中保存的最小cost就是解
+        pq.poll();
+        return pq.poll()[0];
+    }
+}
 ```
 
