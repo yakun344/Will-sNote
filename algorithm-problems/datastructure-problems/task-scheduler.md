@@ -26,7 +26,9 @@ Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
 
 **思路1：计算idel周期** 这个思路来自[这里](https://discuss.leetcode.com/topic/92852/concise-java-solution-o-n-time-o-26-space)。
 
-基本思想就是先统计每种任务的个数，然后排序。用出现最多的任务作为基本单元，对时间进行划分。例如最多的任务 A 出现了四次，n = 2，则我们划分之后为 `A__A__A__A`，然后我们可以把其他的任务填入空当。如图所示： ![](../../.gitbook/assets/WechatIMG25%20%281%29.jpg)
+基本思想就是先统计每种任务的个数，然后排序。用出现最多的任务作为基本单元，对时间进行划分。例如最多的任务 A 出现了四次，n = 2，则我们划分之后为 `A__A__A__A`，然后我们可以把其他的任务填入空当。如图所示： 
+
+![](../../.gitbook/assets/WechatIMG25%20%281%29.jpg)
 
 java Code：
 
