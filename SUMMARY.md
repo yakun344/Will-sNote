@@ -226,6 +226,7 @@
   * [273. Integer to English Words](algorithm-problems/string-manipulation/273.-integer-to-english-words.md)
   * [68. Text Justification](algorithm-problems/string-manipulation/68.-text-justification.md)
 * [DataStructure Problems](algorithm-problems/datastructure-problems/README.md)
+  * [432. All O\`one Data Structure](algorithm-problems/datastructure-problems/432.-all-o-one-data-structure.md)
   * [Maximum Product of Three Numbers](algorithm-problems/datastructure-problems/maximum-product-of-three-numbers.md)
   * [Next Greater Element II](algorithm-problems/datastructure-problems/next-greater-element-ii.md)
   * [High Five](algorithm-problems/datastructure-problems/high-five.md)
@@ -272,7 +273,6 @@
   * [Exam Room](algorithm-problems/datastructure-problems/exam-room.md)
   * [Odd Even Jump](algorithm-problems/datastructure-problems/odd-even-jump.md)
   * [Satisfiability of Equality Equations](algorithm-problems/datastructure-problems/satisfiability-of-equality-equations.md)
-* [432. All O\`one Data Structure](algorithm-problems/432.-all-o-one-data-structure.md)
 * [Random](algorithm-problems/random/README.md)
   * [Linked List Random Node](algorithm-problems/random/linked-list-random-node.md)
   * [Random Pick Index](algorithm-problems/random/random-pick-index.md)
@@ -472,6 +472,7 @@
   * [Magic Squares In Grid \(Easy Google\)](algorithm-problems/other-problems/magic-squares-in-grid.md)
   * [Rotate Image](algorithm-problems/other-problems/rotate-image.md)
   * [Prison Cells After N Days](algorithm-problems/other-problems/prison-cells-after-n-days.md)
+  * [407. Trapping Rain Water II](algorithm-problems/other-problems/407.-trapping-rain-water-ii.md)
 
 ## Operating System
 
