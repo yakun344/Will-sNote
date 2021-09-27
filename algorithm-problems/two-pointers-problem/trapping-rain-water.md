@@ -1,6 +1,6 @@
 # Trapping Rain Water
 
-_update sep 6 2018, 11:32_
+Created: _sep 6 2018, 11:32, Updated  09/26/2021_
 
 [LeetCode](https://leetcode.com/problems/trapping-rain-water/description/)
 
@@ -26,34 +26,27 @@ Output: 6
 * **Java Code:**
 
   ```java
+  // Updated: 09/26/2021
   class Solution {
-   public int trap(int[] height) {
-       int left = -1, right = height.length, leftMax = 0, rightMax = 0;
-       int water = 0, waterHeight = 0;
-       while (left + 1 < right) {
-           // 根据leftmax和rightmax更新waterHeight和water
-           int currHeight = Math.min(leftMax, rightMax);
-           if (currHeight > waterHeight) {
-               water += (right - left - 1) * (currHeight - waterHeight);
-               waterHeight = currHeight;
-           }
-           // 之后移动left和right，更新leftmax和rightmax，并减去柱子占据的空间
-           if (leftMax > rightMax) {
-               right--;
-               rightMax = Math.max(rightMax, height[right]);
-               if (waterHeight > 0) {
-                   water -= Math.min(waterHeight, height[right]);
-               }
-           } else {
-               left++;
-               leftMax = Math.max(leftMax, height[left]);
-               if (waterHeight > 0) {
-                   water -= Math.min(waterHeight, height[left]);
-               }
-           }
-       }
-       return water;
-   }
+      public int trap(int[] height) {
+          int left = 0, right = height.length - 1;
+          int leftMax = height[left];
+          int rightMax = height[right];
+          int water = 0;
+          while (left < right) {
+              if (leftMax > rightMax) {
+                  // right位置的水量就是水面高度减去地面高度
+                  water += rightMax - height[right];
+                  right--;
+                  rightMax = Math.max(rightMax, height[right]);
+              } else {
+                  water += leftMax - height[left];
+                  left++;
+                  leftMax = Math.max(leftMax, height[left]);
+              }
+          }
+          return water;
+      }
   }
   ```
 
