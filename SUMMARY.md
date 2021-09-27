@@ -473,6 +473,7 @@
   * [Rotate Image](algorithm-problems/other-problems/rotate-image.md)
   * [Prison Cells After N Days](algorithm-problems/other-problems/prison-cells-after-n-days.md)
   * [407. Trapping Rain Water II](algorithm-problems/other-problems/407.-trapping-rain-water-ii.md)
+  * [1249. Minimum Remove to Make Valid Parentheses](algorithm-problems/other-problems/1249.-minimum-remove-to-make-valid-parentheses.md)
 
 ## Operating System
 
