@@ -70,3 +70,45 @@ class Solution {
 }
 ```
 
+_Update: 09/30/2021_
+
+之前的做法时间复杂度分析：
+
+1. 每层考虑一个数字，分别尝试放入k个set
+2. 一共有N个数字
+3. 总时间复杂度则为 O\(k^N\)
+
+之前的做法时间复杂度是比较大的，我们可以用另一种思路来考虑，即分别考虑每个subset，尝试生成一个subset之后再尝试下一个，直到生成了全部K个subsets。在下面的实现中，我们每次从0 index开始考虑每个数字要不要加入当前subset，对每个subset来讲，时间复杂度为 O\(2^N\), 一共有K个subset，所以一共为 `O(K * 2^N)` , 这是优于之前的方法的。
+
+#### _Java Code:_
+
+```java
+class Solution {
+    public boolean canPartitionKSubsets(int[] nums, int k) {
+        if (nums.length < k) return false;
+        int sum = 0;
+        for (int num : nums) sum += num;
+        if (sum % k != 0) return false;
+        int target = sum / k;
+        for (int num : nums) if (num > target) return false;
+        return dfs(new int[k], nums, 0, target);
+    }
+    
+    private boolean dfs(int[] sets, int[] nums, int pos, int target) {
+        if (pos == nums.length) return true;
+        int num = nums[pos];
+        boolean ret = false;
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < sets.length; ++i) {
+            if (!set.add(sets[i])) continue;
+            if (sets[i] + num <= target) {
+                sets[i] += num;
+                ret |= dfs(sets, nums, pos + 1, target);
+                sets[i] -= num;
+            }
+        }
+        return ret;
+    }
+}
+```
+
