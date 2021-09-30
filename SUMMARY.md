@@ -313,6 +313,7 @@
   * [Numbers With Same Consecutive Differences](algorithm-problems/dfs/numbers-with-same-consecutive-differences.md)
   * [The Earliest and Latest Rounds Where Players Compete](algorithm-problems/dfs/the-earliest-and-latest-rounds-where-players-compete.md)
   * [Matchsticks to Square](algorithm-problems/dfs/matchsticks-to-square.md)
+  * [241. Different Ways to Add Parentheses](algorithm-problems/dfs/241.-different-ways-to-add-parentheses.md)
 * [Two Pointers Problem](algorithm-problems/two-pointers-problem/README.md)
   * [K-diff Pairs in an Array \(Easy Amazon\)](algorithm-problems/two-pointers-problem/k-diff-pairs-in-an-array-easy-amazon.md)
   * [Two Sum - Unique pairs](algorithm-problems/two-pointers-problem/two-sum-unique-pairs.md)
