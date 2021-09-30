@@ -224,5 +224,10 @@ We can reach the end from starting indexes 1, 2, and 4.
             return count;
         }
     }
+  
   ```
+
+  需要注意这里一定要使用TreeMap，因为从右向左扫描，所以相同的Key只会存放最左边的index。使用TreeSet&lt;int\[\]&gt; 是不行的，因为floor 会返回小于当前值的最大的key最右边出现过的index。
+
+
 
