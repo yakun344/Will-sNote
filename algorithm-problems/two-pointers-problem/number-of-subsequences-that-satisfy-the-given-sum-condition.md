@@ -62,7 +62,7 @@ Explanation: All non-empty subset satisfy the condition (2^7 - 1) = 127
 
 首先，因为题目限定的是subset中最大和最小数字的和，让我们可以想到先对输入数组排序，然后用双指针从左右两端向中间扫描，如果两者之和比较小，则右移left，反之则左移right，这样可以把最外层的时间复杂度做到 `O(N)`。
 
-对于每一对符合条件的左右边界，其中一定包含左端点的所有subset都符合要求，而这些subset的个数为 `2^(right-left)`。但是对于如何计算这个2的乘方需要有所处理，因为需要 mod `1e10+7`。可以利用 `a^(m+n)=a^m * a^n` 这条性质来将时间复杂度变为 `O(log(right-left))`。
+对于每一对符合条件的左右边界，其中一定包含左端点的所有subset都符合要求，而这些subset的个数为 `2^(right-left)`。但是对于如何计算这个2的乘方需要有所处理，因为需要 mod `1e9+7`。可以利用 `a^(m+n)=a^m * a^n` 这条性质来将时间复杂度变为 `O(log(right-left))`。
 
 总时间复杂度 `O(NlogN)`。
 
