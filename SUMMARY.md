@@ -478,9 +478,9 @@
   * [407. Trapping Rain Water II](algorithm-problems/other-problems/407.-trapping-rain-water-ii.md)
   * [1249. Minimum Remove to Make Valid Parentheses](algorithm-problems/other-problems/1249.-minimum-remove-to-make-valid-parentheses.md)
 
-***
+## Multi-threading
 
-* [Multithreading Problems](multithreading-problems/README.md)
+* [Multi-threading Problems](multithreading-problems/README.md)
   * [1188. Design Bounded Blocking Queue](multithreading-problems/1188.-design-bounded-blocking-queue.md)
 
 ## Operating System
