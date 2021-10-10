@@ -10,7 +10,7 @@ Note that it is the kth smallest element in the sorted order, not the kth distin
 
 **Example:**
 
-```text
+```
   matrix = [
      [ 1,  5,  9],
      [10, 11, 13],
@@ -21,7 +21,7 @@ Note that it is the kth smallest element in the sorted order, not the kth distin
   return 13.
 ```
 
-**Note:** 
+**Note: **
 
 You may assume k is always valid, 1 ? k ? n2.
 
@@ -34,7 +34,7 @@ You may assume k is always valid, 1 ? k ? n2.
 
 这个方法的原理是我们每次都保证不在 queue 中的数字比 queue 中的都大，那么我们经过 k-1 次的poll之后，一定会得到第 k 小的元素。
 
-时间复杂度：O\(klogn\)
+时间复杂度：O(klogn)
 
 **代码如下：** **java：**
 
@@ -132,7 +132,7 @@ You may assume k is always valid, 1 ? k ? n2.
 
 _update Dec 2, 2017 22:58_
 
-### O\(n\) 时间得到这种 sorted matrix 中某元素的 rank 的方法：
+### O(n) 时间得到这种 sorted matrix 中某元素的 rank 的方法：
 
 类似 [这道题](https://will-gxz.gitbooks.io/xiaozheng_algo/content/other-problems/search-a-2d-matrix-ii.html), 我们从 matrix 的左下角出发，如果当前元素比 target 大，说明右边都比它大，则往上移动一行。如果当前元素比target小，说明这个元素及其上面一列都比 target 小，则右移一列。因为我们目的不是找到 target，而是确定target的rank，所以找到target之后要 keep going，沿途统计小于它元素的个数。
 
@@ -140,7 +140,7 @@ _update Dec 2, 2017 22:58_
 
 之前写的 binary search 手法太过稚嫩，一定是经过了很多次尝试才最终把 base case 设定好，虽然看上去简短，实则不易复现。写 binary search 一定要注意 base case： `while p + 1 < r:`
 
-原本用两个binary search的做法时间复杂度为 `O(nlogn * log(max-min))`，前面一项表示每次确定target在matrix中的rank需要`O(nlogn)`的时间。这次更新的解法，在求rank的时候使用前面的线性时间的方法，**将时间复杂度优化到** `O(nlog(max-min))`，在 `max-min` 比较小的情况下比之前使用 priority queue 的 `O(klogn)` 要快。（_这里的 n 指的是 matrix 的边长_）.
+原本用两个binary search的做法时间复杂度为 `O(nlogn * log(max-min))`，前面一项表示每次确定target在matrix中的rank需要`O(nlogn)`的时间。这次更新的解法，在求rank的时候使用前面的线性时间的方法，**将时间复杂度优化到 **`O(nlog(max-min))`，在 `max-min` 比较小的情况下比之前使用 priority queue 的 `O(klogn)` 要快。（_这里的 n 指的是 matrix 的边长_）.
 
 **Python Code:**
 
@@ -189,7 +189,7 @@ _update Dec 2, 2017 22:58_
 
 这种解法中存在许多细节：
 
-1. 为了避免返回一个不存在的数（如果要找\[1,4,7,9\]中的第三大的数，有可能返回5或者6\),在写二分法条件判断的时候，要按照找最后一个满足条件的数的情况去写，因为不存在的kth数一定比存在的kth数要小；
+1. 为了避免返回一个不存在的数（如果要找\[1,4,7,9]中的第三大的数，有可能返回5或者6),在写二分法条件判断的时候，要按照找最后一个满足条件的数的情况去写，因为不存在的kth数一定比存在的kth数要小；
 2. 为了处理有重复元素的问题，如果二分结束后 r 对应的 rank 小于 k，则说明 kth 有不止一个数字，我们可以认为 r 就是解。
 
 _update Jan 6, 2018 12:28_
@@ -199,55 +199,54 @@ _update Jan 6, 2018 12:28_
 Laioffer 课程中又提供了一种新的思路，和 Dijkstra 算法的思路相关。我们知道在 Dijkstra SSSP 算法中有一个性质，就是每次从 priority queue 中 poll 出来的元素都是单调非递减的，利用这条性质，我们就得到了解决此题的最优方案：
 
 1. 首先我们观察到左上角的元素`（0，0）`是整个 matrix 中最小的元素，而我们可以从这个元素出发，generate 两个最接近它的比它大的元素 `(0,1), (1,0)`，将它们 enqueue;
-2. 每次从 priority queue 中 poll 出一个元素，这个元素就是当前最小，操作 poll 出 k-1
+2.  每次从 priority queue 中 poll 出一个元素，这个元素就是当前最小，操作 poll 出 k-1
 
-   次，此时的 peek 就是 k-th smallest 了；
+    次，此时的 peek 就是 k-th smallest 了；
 
 整个时间复杂度为`O(k * logk)`, 因为每次 poll 出一个元素，同时至多 generate 2 个元素入队，所以总时间复杂度小于 `O(3klogk) == O(klogk)`;
 
-**Correctness:**  
+**Correctness:**\
   可以把整个计算的顺序想象成从左上角到右下角的扇形辐射路径，每次 poll 出当前最小值之后会 generate 右方和下方的两个 node （但是注意去重），可以保证每一时刻在该扇形区域之外的 node 没有小于当前 peek 元素的 node。于是，我们只要进行 k-1 次 poll 的操作，就一定可以保证得到 k-th smallest element;
 
-* **Java Code:**
+*   **Java Code:**
 
-  ```java
-  class Solution {
-    // implement Comparable, 为了实现可以按照val排序
-    class Element implements Comparable<Element> {
-        public int r, c;
-        public int val;
-        public Element(int r, int c, int val) {
-            this.r = r;
-            this.c = c;
-            this.val = val;
-        }
+    ```java
+    class Solution {
+      // implement Comparable, 为了实现可以按照val排序
+      class Element implements Comparable<Element> {
+          public int r, c;
+          public int val;
+          public Element(int r, int c, int val) {
+              this.r = r;
+              this.c = c;
+              this.val = val;
+          }
 
-        @Override
-        public int compareTo(Element e) {
-            return Integer.compare(this.val, e.val);
-        }
+          @Override
+          public int compareTo(Element e) {
+              return Integer.compare(this.val, e.val);
+          }
+      }
+
+      public int kthSmallest(int[][] matrix, int k) {
+          boolean[][] visited = new boolean[matrix.length][matrix[0].length]; // 建一个visited数组，记录已经enqueue的元素，避免重复入队
+          PriorityQueue<Element> pq = new PriorityQueue<>();
+          Element start = new Element(0, 0, matrix[0][0]);
+          pq.offer(start);
+          visited[0][0] = true;
+          for (int i = 0; i < k - 1; ++i) { // 执行 poll k-1 次，可以保证 peek 是 k-th
+              Element curr = pq.poll();
+              // 分别判断当前元素之右以及之下两个元素是否需要入队
+              if (curr.r + 1 < matrix.length && ! visited[curr.r + 1][curr.c]) {
+                  pq.offer(new Element(curr.r + 1, curr.c, matrix[curr.r + 1][curr.c]));
+                  visited[curr.r + 1][curr.c] = true;
+              }
+              if (curr.c + 1 < matrix[0].length && ! visited[curr.r][curr.c + 1]) {
+                  pq.offer(new Element(curr.r, curr.c + 1, matrix[curr.r][curr.c + 1]));
+                  visited[curr.r][curr.c + 1] = true;
+              }
+          }
+          return pq.peek().val;
+      }
     }
-
-    public int kthSmallest(int[][] matrix, int k) {
-        boolean[][] visited = new boolean[matrix.length][matrix[0].length]; // 建一个visited数组，记录已经enqueue的元素，避免重复入队
-        PriorityQueue<Element> pq = new PriorityQueue<>();
-        Element start = new Element(0, 0, matrix[0][0]);
-        pq.offer(start);
-        visited[0][0] = true;
-        for (int i = 0; i < k - 1; ++i) { // 执行 poll k-1 次，可以保证 peek 是 k-th
-            Element curr = pq.poll();
-            // 分别判断当前元素之右以及之下两个元素是否需要入队
-            if (curr.r + 1 < matrix.length && ! visited[curr.r + 1][curr.c]) {
-                pq.offer(new Element(curr.r + 1, curr.c, matrix[curr.r + 1][curr.c]));
-                visited[curr.r + 1][curr.c] = true;
-            }
-            if (curr.c + 1 < matrix[0].length && ! visited[curr.r][curr.c + 1]) {
-                pq.offer(new Element(curr.r, curr.c + 1, matrix[curr.r][curr.c + 1]));
-                visited[curr.r][curr.c + 1] = true;
-            }
-        }
-        return pq.peek().val;
-    }
-  }
-  ```
-
+    ```

@@ -2,20 +2,20 @@
 
 _update Aug 28, 2017 17:50_
 
-[LintCode](http://www.lintcode.com/en/problem/inorder-successor-in-binary-search-tree/)  
+[LintCode](http://www.lintcode.com/en/problem/inorder-successor-in-binary-search-tree/)\
 [LeetCode](https://leetcode.com/problems/inorder-successor-in-bst/description/)
 
-Given a binary search tree \(See Definition\) and a node in it, find the in-order successor of that node in the BST.
+Given a binary search tree (See Definition) and a node in it, find the in-order successor of that node in the BST.
 
 If the given node has no in-order successor in the tree, return null.
 
 **Notice**
 
-It's guaranteed p is one node in the given tree. \(You can directly compare the memory address to find p\)
+It's guaranteed p is one node in the given tree. (You can directly compare the memory address to find p)
 
 **Example**
 
-```text
+```
     Given tree = [2,1] and node = 1:
 
               2
@@ -31,9 +31,9 @@ It's guaranteed p is one node in the given tree. \(You can directly compare the 
     return node 3.
 ```
 
-**Challenge** 
+**Challenge **
 
-O\(h\), where h is the height of the BST.
+O(h), where h is the height of the BST.
 
 ## Basic Idea:
 
@@ -42,7 +42,7 @@ O\(h\), where h is the height of the BST.
 * 如果 p 有右子树，则 successor 为其右子树中最小的元素，即 `p.right.leftMost`；
 * 如果 p 没有右子树，则向 parent 方向一路向上看，successor 就是第一个右祖先，即p所在子树是其左子树；
 
-这个算法的时间复杂度是 O\(h\)；
+这个算法的时间复杂度是 O(h)；
 
 ## Java Code：
 
@@ -114,4 +114,3 @@ O\(h\), where h is the height of the BST.
                 return None
             return stack[-1]
 ```
-

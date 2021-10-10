@@ -8,9 +8,9 @@ Given an array S of n integers, are there elements a, b, c, and d in S such that
 
 **Note:** The solution set must not contain duplicate quadruplets.
 
-**For example,** 
+**For example, **
 
-```text
+```
 given array S = [1, 0, -1, 0, -2, 2], and target = 0.
 
 A solution set is:
@@ -23,7 +23,7 @@ A solution set is:
 
 ## Basic Idea:
 
-因为要列举所有可行的解，所以时间复杂度最优即为O\(n^3\)。基本思路就是先排序，然后对于每一对 first，second，用 2 pointers 找后两个数的组合。过程中要特别注意去重。
+因为要列举所有可行的解，所以时间复杂度最优即为O(n^3)。基本思路就是先排序，然后对于每一对 first，second，用 2 pointers 找后两个数的组合。过程中要特别注意去重。
 
 **java code:**
 
@@ -128,4 +128,3 @@ A solution set is:
         }
     }
 ```
-

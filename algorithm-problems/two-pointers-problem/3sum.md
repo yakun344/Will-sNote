@@ -8,9 +8,9 @@ Given an array S of n integers, are there elements `a, b, c` in S such that `a +
 
 Note: The solution set must not contain duplicate triplets.
 
-**For example,** 
+**For example, **
 
-```text
+```
 given array S = [-1, 0, 1, 2, -1, -4],
 
 A solution set is:
@@ -65,4 +65,3 @@ A solution set is:
         }
     }
 ```
-

@@ -8,7 +8,7 @@ Given a binary tree, return all root-to-leaf paths.
 
 **For example**,
 
-```text
+```
 given the following binary tree:
 
      1
@@ -191,7 +191,7 @@ _update Jul 14, 2017 14:17_
     }
 ```
 
- **C++ 实现：** 
+** C++ 实现： **
 
 ```cpp
 // traverse
@@ -236,4 +236,3 @@ public:
     }
 };
 ```
-

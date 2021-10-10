@@ -14,7 +14,7 @@ Only constant memory is allowed.
 
 **Example**
 
-```text
+```
 Given this linked list: 1->2->3->4->5
 
 For k = 2, you should return: 2->1->4->3->5
@@ -30,13 +30,13 @@ For k = 3, you should return: 3->2->1->4->5
 
 **具体地**，解法分成两部分：
 
-* ListNode getKth\(ListNode head, int k\);
+* ListNode getKth(ListNode head, int k);
 
 这个函数对每个输入的head节点，找到从它开始第k个节点，若不存在，则返回null。
 
-* ListNode reverse\(ListNode pre\_head, ListNode tail\);
+* ListNode reverse(ListNode pre_head, ListNode tail);
 
-这个函数 reverse 从pre\_head.next 到 tail \(include\) 间的节点。之所以要传入要reverse的第一个节点之前的节点是为了整个list在reverse之后依然是连接的。
+这个函数 reverse 从pre_head.next 到 tail (include) 间的节点。之所以要传入要reverse的第一个节点之前的节点是为了整个list在reverse之后依然是连接的。
 
 ### Python Code:
 
@@ -146,9 +146,9 @@ class Solution {
 
 _udpate Jan 17,2018 11:54_
 
-## Update \(Recursion Solution\)
+## Update (Recursion Solution)
 
-严格上讲，这种 recursion 的解法是不符合 constant space 的要求的，但是这种写法更为简单，所以也提供一下。基本思路就是每次reverse完一组 k 个 nodes 之后，将其后的部分视作一个子问题，然后递归求解。   
+严格上讲，这种 recursion 的解法是不符合 constant space 的要求的，但是这种写法更为简单，所以也提供一下。基本思路就是每次reverse完一组 k 个 nodes 之后，将其后的部分视作一个子问题，然后递归求解。 \
 
 
 ### Java Code:
@@ -239,4 +239,3 @@ class Solution {
     }
 }
 ```
-

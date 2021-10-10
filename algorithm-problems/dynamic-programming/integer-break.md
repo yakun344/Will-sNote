@@ -6,20 +6,20 @@ _udpate Jul,30 2017 11:02_
 
 Given a positive integer n, break it into the sum of at least two positive integers and maximize the product of those integers. Return the maximum product you can get.
 
-```text
+```
 For example, 
 given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
 ```
 
-**Note:** You may assume that n is not less than 2 and not larger than 58.
+**Note: **You may assume that n is not less than 2 and not larger than 58.
 
 ## Basic Idea:
 
 这是一道dp问题。
 
-**思路1 \(bottom-up\)：** 我们注意到对 n 来说，可以用一个比他小的数 i 将其分成 `i 和 n - i`，而对于这两部分我们又可以分别考虑**直接使用自身**还是**继续拆分**。于是，我们就有了一个思路，即`dp[n] = 对于所有的划分 i，max(i, dp[i]) * max[n - i, dp[n - i]] 的最大值`。只要维持一个int\[\] dp，从小到大计算即可。
+**思路1 (bottom-up)：** 我们注意到对 n 来说，可以用一个比他小的数 i 将其分成 `i 和 n - i`，而对于这两部分我们又可以分别考虑**直接使用自身**还是**继续拆分**。于是，我们就有了一个思路，即`dp[n] = 对于所有的划分 i，max(i, dp[i]) * max[n - i, dp[n - i]] 的最大值`。只要维持一个int\[] dp，从小到大计算即可。
 
-**思路2 \(memoization\)（最初想法）：** `dp[n] = max{ i * dp[n - i] for i in range(1, n) }`，换句话说，就是对于所有的相加等于 n 的和序列，取最大的乘积，用 momoization 的方法保存之前结果。用dfs遍历所有序列。但是要注意当 n = 4 时，`2 * dp[2] == 2 * 1 == 2 != 4`，所以 Base case 要一直写到 `n = 4 的情况`。
+**思路2 (memoization)（最初想法）：** `dp[n] = max{ i * dp[n - i] for i in range(1, n) }`，换句话说，就是对于所有的相加等于 n 的和序列，取最大的乘积，用 momoization 的方法保存之前结果。用dfs遍历所有序列。但是要注意当 n = 4 时，`2 * dp[2] == 2 * 1 == 2 != 4`，所以 Base case 要一直写到 `n = 4 的情况`。
 
 ## Python Code :
 
@@ -75,4 +75,3 @@ given n = 2, return 1 (2 = 1 + 1); given n = 10, return 36 (10 = 3 + 3 + 4).
         }
     }
 ```
-

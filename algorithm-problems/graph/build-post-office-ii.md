@@ -4,38 +4,38 @@ _update Jul 19, 2017 16:49_
 
 [lintcode](http://www.lintcode.com/en/problem/build-post-office-ii/)
 
-Given a 2D grid, each cell is either a wall 2, an house 1 or empty 0 \(the number zero, one, two\), find a place to build a post office so that the sum of the distance from the post office to all the houses is smallest.
+Given a 2D grid, each cell is either a wall 2, an house 1 or empty 0 (the number zero, one, two), find a place to build a post office so that the sum of the distance from the post office to all the houses is smallest.
 
 Return the smallest sum of distance. Return -1 if it is not possible.
 
- **Notice**
+** Notice**
 
-```text
+```
 You cannot pass through wall and house, but can pass through empty.
 You only build post office on an empty.
 ```
 
 **Example** Given a grid:
 
-```text
+```
 0 1 0 0 0
 1 0 0 2 1
 0 1 0 0 0
 ```
 
-return 8, You can build at \(1,1\). \(Placing a post office at \(1,1\), the distance that post office to all the house sum is smallest.\)
+return 8, You can build at (1,1). (Placing a post office at (1,1), the distance that post office to all the house sum is smallest.)
 
 ## Basic Idea:
 
-**方法1**:从空格出发  
-循环枚举所有的office修建位置的可能性\(空格\)  
-计算从这个位置出发到达所有房子的距离之和  
+**方法1**:从空格出发\
+循环枚举所有的office修建位置的可能性(空格)\
+计算从这个位置出发到达所有房子的距离之和\
 在所有方案中找到最小的距离和
 
-**方法2**:从房子出发  
-循环枚举所有的房子的位置  
-从房子出发,计算每个空格到达房子的距离  
-累加某个空格到达其他所有房子的距离之和  
+**方法2**:从房子出发\
+循环枚举所有的房子的位置\
+从房子出发,计算每个空格到达房子的距离\
+累加某个空格到达其他所有房子的距离之和\
 在所有空格中,找到最小距离和
 
 以上是九章中提出的用来讨论的两种方式，其实从时间复杂度的角度考虑，如果房子的数量等于空地数量，两种方法是差不多的。但是就这道题而言，方法二会好一些，因为房子的数量相对较少。整个方法的实现有些细节需要关注，但整体其实比较无脑。
@@ -225,4 +225,3 @@ _update 2018-05-22 20:55:37_
         }
     };
 ```
-

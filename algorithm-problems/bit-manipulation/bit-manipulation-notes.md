@@ -26,7 +26,7 @@ class Solution(object):
         return True
 ```
 
-  **第二种实现 \(更快\)**
+  **第二种实现 (更快)**
 
 ```python
 class Solution(object):
@@ -40,8 +40,8 @@ class Solution(object):
 
 ## 2. Count the Number of Bits That Are Different
 
-[leetcode: Hamming Distance](https://leetcode.com/problems/hamming-distance/description/)  
-只要 `countBit(a ^ b)` 就可以了。xor 可以得到所有两个数不同的位都为 1 的一个数，然后计算这个数中 1 的个数。   
+[leetcode: Hamming Distance](https://leetcode.com/problems/hamming-distance/description/)\
+只要 `countBit(a ^ b)` 就可以了。xor 可以得到所有两个数不同的位都为 1 的一个数，然后计算这个数中 1 的个数。 \
 
 
 ## 3. Determine If a String Contains Unique Characters
@@ -66,10 +66,10 @@ class Solution(object):
 
 ## 4. Reverse Integer
 
-[LeetCode: Reverse Bits](https://leetcode.com/problems/reverse-bits/description/)  
+[LeetCode: Reverse Bits](https://leetcode.com/problems/reverse-bits/description/)\
 两种思路，一种是用两个指针指向左右，如果左右不同则建一个只有这两位为 1 的 mask，然后与其 xor，例如：
 
-```text
+```
     input:                1001 0110
     对于第 0 位和 -1 位:    l->   <-r
     两位不同，生成mask：     1000 0001
@@ -92,4 +92,3 @@ public class Solution {
     }
 }
 ```
-

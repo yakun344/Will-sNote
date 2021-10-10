@@ -8,7 +8,7 @@ In the "100 game," two players take turns adding, to a running total, any intege
 
 What if we change the game so that players cannot re-use integers?
 
-For example, two players might take turns drawing from a common pool of numbers of 1..15 without replacement until they reach a total &gt;= 100.
+For example, two players might take turns drawing from a common pool of numbers of 1..15 without replacement until they reach a total >= 100.
 
 Given an integer maxChoosableInteger and another integer desiredTotal, determine if the first player to move can force a win, assuming both players play optimally.
 
@@ -16,7 +16,7 @@ You can always assume that maxChoosableInteger will not be larger than 20 and de
 
 **Example**
 
-```text
+```
 Input:
 maxChoosableInteger = 10
 desiredTotal = 11
@@ -25,12 +25,12 @@ Output:
 false
 ```
 
-**Explanation:**  
-1. No matter which integer the first player choose, the first player will lose. 2. The first player can choose an integer from 1 up to 10. 3. If the first player choose 1, the second player can only choose integers from 2 up to 10. 4. The second player will win by choosing 10 and get a total = 11, which is &gt;= desiredTotal. 5. Same with other integers chosen by the first player, the second player will always win.
+**Explanation:**\
+1\. No matter which integer the first player choose, the first player will lose. 2. The first player can choose an integer from 1 up to 10. 3. If the first player choose 1, the second player can only choose integers from 2 up to 10. 4. The second player will win by choosing 10 and get a total = 11, which is >= desiredTotal. 5. Same with other integers chosen by the first player, the second player will always win.
 
 ## Basic Idea:
 
-又是一道典型零和游戏问题，解决这类问题要抓住一个原则，那就是：**！canWin\(\)** 就代表输定了，所以在每一步检查所有可能决策的时候，只有发现一条路径使得 `canWin(next) == false`，我们就选择这个决策，并且可以直接返回，因为这样做对面已经没有取胜机会。
+又是一道典型零和游戏问题，解决这类问题要抓住一个原则，那就是：**！canWin()** 就代表输定了，所以在每一步检查所有可能决策的时候，只有发现一条路径使得 `canWin(next) == false`，我们就选择这个决策，并且可以直接返回，因为这样做对面已经没有取胜机会。
 
 接下来，具体地，这道题提到最大Integer不会超过20，说明我们可以轻松地用一个32bit 的 int 来做 bitmap，充当used数组，这样等一会需要做 memoization 优化的时候，就可以轻松地获得 key。
 
@@ -166,4 +166,3 @@ false
             memo = {}
             return canWin(0, desiredTotal)
 ```
-

@@ -11,28 +11,28 @@ _2017-11-14 23:18:54_
    4. **File cache:** Describe what is on disk;
 2. **Application memory:**
    1. **private:** for this application only;
-   2. **shared:** \(e.g., between threads\);
+   2. **shared:** (e.g., between threads);
    3. **copy on write:** when forking;
 
 ## Tiers of memory:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-12.41.53-am%20%281%29%20%281%29.png)
+![](<../../.gitbook/assets/screen-shot-2017-11-15-at-12.41.53-am (1) (1).png>)
 
 ## 命名
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-12.59.43-am%20%281%29%20%281%29.png)   
- **Page:** page 是 process's view of the memory;  
+![](<../../.gitbook/assets/screen-shot-2017-11-15-at-12.59.43-am (1) (1).png>) \
+ **Page:** page 是 process's view of the memory;\
 **Frame:** frame 是 os's view of the memory;
 
 ## The life cycle of logical memory:
 
-![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%202.07.47%20AM.png)
+![](<../../.gitbook/assets/Screen Shot 2017-11-15 at 2.07.47 AM.png>)
 
 ## Malloc:
 
-![](../.gitbook/assets/Screen%20Shot%202017-11-15%20at%202.12.03%20AM%20%281%29%20%281%29.png)
+![](<../../.gitbook/assets/Screen Shot 2017-11-15 at 2.12.03 AM (1) (1).png>)
 
-### --&gt; Malloc 的行为\(理解\)
+### --> Malloc 的行为(理解)
 
 Malloc 记录两个结构：现在正在使用的block的description以及可以被重用的block的description。为了简便，理解为 **free list** 和 **used list**；
 
@@ -46,7 +46,7 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
 
 这里有一篇文章讲得很好：[http://blog.csdn.net/vanbreaker/article/details/7605367](http://blog.csdn.net/vanbreaker/article/details/7605367);
 
-### --&gt; Buddy system descriptors:
+### --> Buddy system descriptors:
 
 ```c
   struct descriptor {
@@ -55,21 +55,20 @@ Malloc 记录两个结构：现在正在使用的block的description以及可以
   } descriptors[TABLESIZE], *free[POWERS];
 ```
 
-### --&gt; How buddy system work:
+### --> How buddy system work:
 
-![](../.gitbook/assets/screen-shot-2017-11-15-at-10.22.14-am.png) ![](../.gitbook/assets/screen-shot-2017-11-15-at-10.23.57-am%20%281%29.png) ![](../.gitbook/assets/screen-shot-2017-11-15-at-10.25.36-am%20%281%29%20%281%29%20%281%29.png)
+![](../../.gitbook/assets/screen-shot-2017-11-15-at-10.22.14-am.png) ![](<../../.gitbook/assets/screen-shot-2017-11-15-at-10.23.57-am (1).png>) ![](<../../.gitbook/assets/screen-shot-2017-11-15-at-10.25.36-am (1) (1) (1).png>)
 
 **总结：**
 
 * You ask for m bytes;
 * Malloc actually hands out blocks of 2^p - 16;
-* Where actual size is such that 2^\(p-1\) - 16 &lt; m &lt; 2^p - 16;
+* Where actual size is such that 2^(p-1) - 16 < m < 2^p - 16;
 * The first 16 bytes say: 
   1. block 的长度（2 的幂次方）；
   2. free list 中的 next pointer；
 
-### --&gt; 题点
+### --> 题点
 
 1. 注意对于给定大小需求时，实际分配内存大小的推断；
 2. 注意每次malloc所返回的指针之前的16bytes位descriptor，而这个位置是可以被 write over 的，所以如果 free 修改后descriptor的地址，就会 segmentation fault；
-

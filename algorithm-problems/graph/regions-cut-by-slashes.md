@@ -6,13 +6,13 @@ _update Dec 23, 19:47_
 
 In a `N x N` grid composed of `1 x 1` squares, each `1 x 1` square consists of a `/`, `\`, or blank space. These characters divide the square into contiguous regions.
 
-\(Note that backslash characters are escaped, so a `\` is represented as `"\\"`.\)
+(Note that backslash characters are escaped, so a `\` is represented as `"\\"`.)
 
 Return the number of regions.
 
 **Example 1:**
 
-```text
+```
 Input:
 [
 " /",
@@ -26,7 +26,7 @@ Explanation: The 2x2 grid is as follows:
 
 **Example 2:**
 
-```text
+```
 Input:
 [
 " /",
@@ -40,7 +40,7 @@ Explanation: The 2x2 grid is as follows:
 
 **Example 3:**
 
-```text
+```
 Input:
 [
 "\\/",
@@ -55,7 +55,7 @@ The 2x2 grid is as follows:
 
 **Example 4:**
 
-```text
+```
 Input:
 [
 "/\\",
@@ -70,7 +70,7 @@ The 2x2 grid is as follows:
 
 **Example 5:**
 
-```text
+```
 Input:
 [
 "//",
@@ -84,12 +84,12 @@ Explanation: The 2x2 grid is as follows:
 
 **Note:**
 
-1. 1 &lt;= grid.length == grid\[0\].length &lt;= 30
-2. grid\[i\]\[j\] is either '/', '\', or ' '.
+1. 1 <= grid.length == grid\[0].length <= 30
+2. grid\[i]\[j] is either '/', '\\', or ' '.
 
 ## Basic Idea:
 
-这道题乍一看很新颖，但本质其实是number of islands。我们可以将一个最小的正方形看成左右上下四个三角形组成的。于是我们可以利用union find的解法，对于 ' '，我们union所有的四个三角，对于 '/'，我们分别 union 左上和右下，对于 '\\'，我们分别union 左下和右上 。同时因为相邻两个正方形之间的两个三角形一定是共用的，我们也需要做union。
+这道题乍一看很新颖，但本质其实是number of islands。我们可以将一个最小的正方形看成左右上下四个三角形组成的。于是我们可以利用union find的解法，对于 ' '，我们union所有的四个三角，对于 '/'，我们分别 union 左上和右下，对于 '\\\\'，我们分别union 左下和右上 。同时因为相邻两个正方形之间的两个三角形一定是共用的，我们也需要做union。
 
 ### Java Code:
 
@@ -213,4 +213,3 @@ class Solution {
     }
 }
 ```
-

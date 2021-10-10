@@ -2,20 +2,20 @@
 
 _update Aug 15, 2017 22:41_
 
-[LintCode](http://www.lintcode.com/en/problem/median-of-two-sorted-arrays/#)  
+[LintCode](http://www.lintcode.com/en/problem/median-of-two-sorted-arrays/#)\
 [LeetCode](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
 
 There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays.
 
 **Example**
 
-```text
+```
 Given A=[1,2,3,4,5,6] and B=[2,3,4,5], the median is 3.5.
 
 Given A=[1,2,3] and B=[4,5], the median is 3.
 ```
 
-**Challenge**  The overall run time complexity should be O\(log \(m+n\)\).
+**Challenge ** The overall run time complexity should be O(log (m+n)).
 
 ### Basic Idea:
 
@@ -24,7 +24,7 @@ Given A=[1,2,3] and B=[4,5], the median is 3.
 1. 把找median转换成求第 `(m+n)/2` 个数的问题；
 2. 明确当要找第K个数时，移除两数组中较小的第 k/2 个数及其之前的数是安全的；
 
-于是，我们就可以得到一个 log\(n\) 时间的解法。
+于是，我们就可以得到一个 log(n) 时间的解法。
 
 实现的细节：当两个数组不一样长的时候，可能会出现 k/2 比短的那个数组长度还大，此时我们可以假设两个数组都是无限长，超过有效值部分都是 INF；
 
@@ -193,4 +193,3 @@ _update Feb 24 2019, 19:24_
         }
     }
 ```
-

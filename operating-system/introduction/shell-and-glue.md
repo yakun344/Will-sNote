@@ -20,7 +20,7 @@ _update Sep 30, 2017 21:25_
     dup(oldfd, newfd); // 将 oldfd 复制到 newfd，使得 newfd 指向同一个文件
 ```
 
-## 关于 open\(\) 和 fopen\(\) 以及 fdopen\(）
+## 关于 open() 和 fopen() 以及 fdopen(）
 
 ```c
     FILE *fdopen(int fd, const char *mode);
@@ -30,7 +30,7 @@ _update Sep 30, 2017 21:25_
 
 `open()` is a low-level os call. `fdopen()` converts an os-level file descriptor to the higher-level FILE-abstraction of the C language. `fopen()` calls `open()` in the background and gives you a FILE-pointer directly.
 
-1\) fopen is a library function while open is a system call. 2\) fopen provides buffered IO which is faster compare to open which is non buffered. 3\) fopen is portable while open not portable \(open is environment specific\). 4\) fopen returns a pointer to a FILE structure\(FILE _\); open returns an integer that identifies the file. 5\) A FILE_  gives you the ability to use fscanf and other stdio functions.
+1\) fopen is a library function while open is a system call. 2) fopen provides buffered IO which is faster compare to open which is non buffered. 3) fopen is portable while open not portable (open is environment specific). 4) fopen returns a pointer to a FILE structure(FILE _); open returns an integer that identifies the file. 5) A FILE _ gives you the ability to use fscanf and other stdio functions.
 
 Line-buffered: 每次 “\n” 写入； block-buffered: 每 8192 bytes 写入； unbuffered：直接写入；
 
@@ -41,23 +41,23 @@ fd 是与每个 process 独立关联，当 fork 的时候，child 会继承 pare
 fd 是 system call 的参数，而 FILE\* 是buffered I/O 的参数，本质上是一个 file buffer 的指针。
 
 | fd | FILE\* |
-| :--- | :--- |
-| 0 | stdin |
-| 1 | stdout |
-| 2 | stderr |
+| -- | ------ |
+| 0  | stdin  |
+| 1  | stdout |
+| 2  | stderr |
 
 ## process 间通信的方法
 
-1. fork\(\) parent can read statistics of child；
-2. one process can send signal to another: kill\(pid, sig\);
-3. a process can respond to a signal: signal\(sig, handler\);
-4. pipeline programming, typically: shell programming;
+1. fork() parent can read statistics of child；
+2. one process can send signal to another: kill(pid, sig);
+3. a process can respond to a signal: signal(sig, handler);
+4.  pipeline programming, typically: shell programming;
 
-   ![](../.gitbook/assets/screen-shot-2017-09-30-at-11.02.11-pm%20%281%29.png) ;
+    ![](<../../.gitbook/assets/screen-shot-2017-09-30-at-11.02.11-pm (1).png>) ;
 
 ## pipe
 
-[这里](https://segmentfault.com/a/1190000009528245) 有一个不错的介绍，比较简洁，**一定要看**。 [这里](http://blog.csdn.net/shanshanpt/article/details/39049579) 还有一个dup\(\) 的介绍；
+[这里](https://segmentfault.com/a/1190000009528245) 有一个不错的介绍，比较简洁，**一定要看**。 [这里](http://blog.csdn.net/shanshanpt/article/details/39049579) 还有一个dup() 的介绍；
 
 **以下是摘要：**
 
@@ -91,7 +91,7 @@ fd 是 system call 的参数，而 FILE\* 是buffered I/O 的参数，本质上�
 
 output:
 
-```text
+```
 couchvm01{xguo04}60: ./a.out
 I wrote: hi there
 I read: hi there
@@ -124,14 +124,14 @@ I read: hi there
 
 output:
 
-```text
+```
 couchvm01{xguo04}63: ./a.out
 child 12617 got: 'hi there!
 '
 exit code for 12617 is 0
 ```
 
-**用pipe和dup实现 parent \| cat，child 输出parent写入pipe的内容：**
+**用pipe和dup实现 parent | cat，child 输出parent写入pipe的内容：**
 
 ```c
     main()
@@ -163,14 +163,14 @@ exit code for 12617 is 0
 
 output:
 
-```text
+```
 couchvm01{xguo04}67: ./a.out
 fd[0]=3, fd[1]=4
 hi there!
 exit code for 15089 is 0
 ```
 
-**实现 ps -ef \(child \| parent, 此处的parent相当于是shell\)**
+**实现 ps -ef (child | parent, 此处的parent相当于是shell)**
 
 ```c
     main()
@@ -204,7 +204,7 @@ exit code for 15089 is 0
     }
 ```
 
-**实现 ps -ef \|& ./proc2** 基本思路就是将主程序作为parent，其stdin和执行ps的child的stdout相连，其stdout和执行proc2的child的stdin相连。
+**实现 ps -ef |& ./proc2** 基本思路就是将主程序作为parent，其stdin和执行ps的child的stdout相连，其stdout和执行proc2的child的stdin相连。
 
 ```c
     #define SIZE 256
@@ -233,4 +233,3 @@ exit code for 15089 is 0
         } 
     }
 ```
-

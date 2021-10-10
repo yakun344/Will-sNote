@@ -6,13 +6,13 @@ _update Jul 13, 2017 15:57_
 
 Given a binary tree, find the subtree with maximum average. Return the root of the subtree.
 
- **Notice**
+** Notice**
 
 LintCode will print the subtree which root is your return node. It's guaranteed that there is only one subtree with maximum average.
 
 **Example** Given a binary tree:
 
-```text
+```
       1
     /   \
   -5     11
@@ -28,7 +28,7 @@ return the node 11.
 
 具体到这道题，要求平均值最大的 subtree，我们除了要知道sum之外还得知道node的个数，所以定义一个包含这两个值的 Tuple class 作为 helper function 的返回值，左右分治，得到左右返回的 Tuple 之后，结合当前 node.val 就可以得到当前 node 为root的子树的情况，进而和全局变量 `currSum, currCount` 进行对比，如果当前 average 更大，则 `currRoot = 当前node`。
 
-**Reference:** [九章笔记第三章](https://stomachache007.wordpress.com/2017/03/12/九章算法笔记-3-binary-tree-divide-conquer/)
+**Reference:** [九章笔记第三章](https://stomachache007.wordpress.com/2017/03/12/%E4%B9%9D%E7%AB%A0%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0-3-binary-tree-divide-conquer/)
 
 ## Java Code:
 
@@ -101,4 +101,3 @@ return the node 11.
             helper(root)
             return self.root
 ```
-

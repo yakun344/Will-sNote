@@ -4,15 +4,15 @@ _update Jul,30 2017 16:25_
 
 [leetcode](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/description/)
 
-Given a non-empty array of numbers, a0, a1, a2, … , an-1, where 0 ≤ ai &lt; 231.
+Given a non-empty array of numbers, a0, a1, a2, … , an-1, where 0 ≤ ai < 231.
 
-Find the maximum result of ai XOR aj, where 0 ≤ i, j &lt; n.
+Find the maximum result of ai XOR aj, where 0 ≤ i, j < n.
 
-Could you do this in **O\(n\) runtime**?
+Could you do this in** O(n) runtime**?
 
 **Example:**
 
-```text
+```
 Input: [3, 10, 5, 25, 2, 8]
 
 Output: 28
@@ -22,7 +22,7 @@ Explanation: The maximum result is 5 ^ 25 = 28.
 
 ## Basic Idea:
 
-这道题用两层for循环可以轻易解决，但是需要O\(n^2\)的时间复杂度，因为对于每个数，我们需要对比 n 次xor 和 maxXor。于是我们想到，如果可以将求每个数与其他数之间的最大 xor 的过程优化到O\(const\)，我们就可以得到`O(const * n)`的最终复杂度。因为每个数的长度都相等 \(32bit integer\)，我们就想到可以使用 Trie 来解决。Trie 的高度是32，每层最多有 2 个 node \(0 and 1\)。则对每个数求其于其他数最大xor的时间是 O\(32\)，共有 n 个数，加上构造 trie 的 O\(32n\)，总的时间为`O(2 * 32 n)`。
+这道题用两层for循环可以轻易解决，但是需要O(n^2)的时间复杂度，因为对于每个数，我们需要对比 n 次xor 和 maxXor。于是我们想到，如果可以将求每个数与其他数之间的最大 xor 的过程优化到O(const)，我们就可以得到`O(const * n)`的最终复杂度。因为每个数的长度都相等 (32bit integer)，我们就想到可以使用 Trie 来解决。Trie 的高度是32，每层最多有 2 个 node (0 and 1)。则对每个数求其于其他数最大xor的时间是 O(32)，共有 n 个数，加上构造 trie 的 O(32n)，总的时间为`O(2 * 32 n)`。
 
 ## Java Code：
 
@@ -81,4 +81,3 @@ Explanation: The maximum result is 5 ^ 25 = 28.
         }
     }
 ```
-

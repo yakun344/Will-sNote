@@ -10,7 +10,7 @@ Find K-th largest element in an array. and N is much larger than k.
 
 **Example:**
 
-```text
+```
 In array [9,3,2,4,8], the 3rd largest element is 4.
 
 In array [1,2,3,4,5], the 1st largest element is 5, 2nd largest element is 4, 3rd largest element is 3 and etc.
@@ -88,6 +88,5 @@ _update 2018-07-15 21:28:314_
 
 ## Update: 关于判断条件的思考
 
-**为什么quickSelection和quickSort中要保证每次 partition index 的左边都** `<= pivot` **（或者**`>=`**），而不是小于或者大于？**  
+**为什么quickSelection和quickSort中要保证每次 partition index 的左边都 **`<= pivot`** （或者**`>=`**），而不是小于或者大于？**\
 因为如果没有小于或者大于pivot的数字，当前次的partition就什么都做不了了，加入等于条件保证至少有一个数字（即当前pivot）可以被分到左边。
-

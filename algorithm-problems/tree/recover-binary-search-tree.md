@@ -4,15 +4,15 @@ _update Sep 1, 2017 21:52_
 
 [LeetCode](https://leetcode.com/problems/recover-binary-search-tree/description/)
 
-Two elements of a binary search tree \(BST\) are swapped by mistake.
+Two elements of a binary search tree (BST) are swapped by mistake.
 
 Recover the tree without changing its structure.
 
-**Note:** A solution using O\(n\) space is pretty straight forward. Could you devise a constant space solution?
+**Note:** A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
 
 ## Basic Idea:
 
-#### **思路1\( worst one,** `O(n) space, O(nlogn) time`**\)：**
+#### **思路1( worst one, **`O(n) space, O(nlogn) time`**)：**
 
 虽然是一个比较简单的思路，但一开始我竟没有想出来。就是直接 inorder traverse，把node和val分别存入两个list，对val从小到大排序，然后依次对node list中的node赋值即可。
 
@@ -40,13 +40,13 @@ Python Code：
                 inorder_nodes[i].val = inorder_vals[i]
 ```
 
-#### **思路2\(**`O(1) space, O(n) time`**\)：**
+#### **思路2(**`O(1) space, O(n) time`**)：**
 
-还是那句话，面对一道 hard 难度的题目，给出如上那么 “straight forward” 的解自然交不了差。要做到follow up的要求，我们需要知道一种叫做 Morris-Traversal 算法，这种算法可以实现 O\(n\) time and O\(1\) Space 的 Binary Tree Traversing；
+还是那句话，面对一道 hard 难度的题目，给出如上那么 “straight forward” 的解自然交不了差。要做到follow up的要求，我们需要知道一种叫做 Morris-Traversal 算法，这种算法可以实现 O(n) time and O(1) Space 的 Binary Tree Traversing；
 
 [这里](http://www.cnblogs.com/AnnieKim/archive/2013/06/15/morristraversal.html) 有个关于Morris-Traversal Alg 的介绍；
 
-盗图一张： ![](../../.gitbook/assets/Screen%20Shot%202017-09-01%20at%2010.01.08%20PM.png)
+盗图一张： ![](<../../.gitbook/assets/Screen Shot 2017-09-01 at 10.01.08 PM.png>)
 
 精髓就是每到一个节点，通过把它左子树中predecessor的右指针指向自己来实现向上的跟踪；
 
@@ -160,7 +160,7 @@ class Solution {
 
 **Note**
 
-关于在便利过程中找first和second的方法，灵感来自 [这里](http://fisherlei.blogspot.com/2012/12/leetcode-recover-binary-search-tree.html);  
+关于在便利过程中找first和second的方法，灵感来自 [这里](http://fisherlei.blogspot.com/2012/12/leetcode-recover-binary-search-tree.html);\
 关键步骤：
 
 > Inorder traverse, keep the previous tree node, Find first misplaced node by
@@ -177,13 +177,13 @@ class Solution {
 >    Node second = current;
 > ```
 >
-> After traversal, swap the values of first and second node. Only need two pointers, prev and current node. O\(1\) space.
+> After traversal, swap the values of first and second node. Only need two pointers, prev and current node. O(1) space.
 
 **该方法时间复杂度分析:**
 
-因为 Morris Traversal 的过程中我们最多见到每个 node 3 次，所以总的时间复杂度仍然为 O\(n\);
+因为 Morris Traversal 的过程中我们最多见到每个 node 3 次，所以总的时间复杂度仍然为 O(n);
 
-#### 思路3 \(fastest, O\(n\) time/space\)
+#### 思路3 (fastest, O(n) time/space)
 
 这种思路最简单，就是直接 inorder 整个树，用**方法2中的方法记录fist和second**，然后互换值。
 
@@ -246,4 +246,3 @@ public:
     }
 };
 ```
-

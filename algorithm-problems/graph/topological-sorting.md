@@ -6,13 +6,13 @@ _update Jul 18, 2017 11:11_
 
 Given an directed graph, a topological order of the graph nodes is defined as follow:
 
-For each directed edge A -&gt; B in graph, A must before B in the order list. The first node in the order can be any node in the graph with no nodes direct to it. Find any topological order for the given graph.
+For each directed edge A -> B in graph, A must before B in the order list. The first node in the order can be any node in the graph with no nodes direct to it. Find any topological order for the given graph.
 
- **Notice**
+** Notice**
 
 You can assume that there is at least one topological order in the graph.
 
-```text
+```
 Example
 For graph as follow:
 
@@ -24,7 +24,7 @@ The topological order can be:
 ...
 ```
 
-**Challenge**  Can you do it in both BFS and DFS?
+**Challenge ** Can you do it in both BFS and DFS?
 
 ## Basic Idea:
 
@@ -39,9 +39,9 @@ The topological order can be:
 
 **Follow up:** 如何判断能否进行 topological sort 呢（即是否有环）？
 
-1. 如果bfs结束之后，仍有indegree &gt; 0的node，则说明至少有一个环。
+1. 如果bfs结束之后，仍有indegree > 0的node，则说明至少有一个环。
 2. 如果采用下面python dfs的类似方法也是一样，如果仍存在大于0的indegree的node，则有环。
-3. \(待续\)
+3. (待续)
 
 ## Java Code:
 
@@ -210,4 +210,3 @@ _update 2018-05-19 15:36:48_
         }
     };
 ```
-

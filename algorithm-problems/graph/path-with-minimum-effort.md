@@ -10,29 +10,29 @@ A route's effort is the **maximum** absolute difference in heights between two c
 
 Return the **minimum effort** required to travel from the top-left cell to the bottom-right cell.
 
-**Example 1:**  
+**Example 1:**\
  ![](https://assets.leetcode.com/uploads/2020/10/04/ex1.png)
 
-```text
+```
 Input: heights = [[1,2,2],[3,8,2],[5,3,5]]
 Output: 2
 Explanation: The route of [1,3,5,3,5] has a maximum absolute difference of 2 in consecutive cells.
 This is better than the route of [1,2,2,2,5], where the maximum absolute difference is 3.
 ```
 
-**Example 2:**  
+**Example 2:**\
  ![](https://assets.leetcode.com/uploads/2020/10/04/ex2.png)
 
-```text
+```
 Input: heights = [[1,2,3],[3,8,4],[5,3,5]]
 Output: 1
 Explanation: The route of [1,2,3,4,5] has a maximum absolute difference of 1 in consecutive cells, which is better than route [1,3,5,3,5].
 ```
 
-**Example 3:**  
+**Example 3:**\
  ![](https://assets.leetcode.com/uploads/2020/10/04/ex3.png)
 
-```text
+```
 Input: heights = [[1,2,1,1,1],[1,2,1,2,1],[1,2,1,2,1],[1,2,1,2,1],[1,1,1,2,1]]
 Output: 0
 Explanation: This route does not require any effort.
@@ -51,11 +51,10 @@ columns == heights[i].length
 
 要从左上角开始走到右下角，允许上下左右四个方向，而effort的定义是一条路径上穿过的任意相邻格子之间差的绝对值的最大值。看到这里会觉得有些奇怪，会想到使用有些最短路径算法比如Dijkstra，但总觉得这里并不是求一个所有edge weight和的最小值的传统最短路径问题。
 
-1. 仔细想想，Dijkstra是可以做的，其中node的score就定义为走到该node为止所经历的路线上相邻差的最大值。因为dijkstra的特性，我们可以保证对于每次出队的node，它的score是对它来说的最优解，那么当我们见到右下角的node出队时候，就找到了全局的最优解。当然在过程中会出现同一个位置不同score的node先后入队，但我们会选择score更小的node继续，其余相同位置的node则会因为重复被跳过.  
+1.  仔细想想，Dijkstra是可以做的，其中node的score就定义为走到该node为止所经历的路线上相邻差的最大值。因为dijkstra的特性，我们可以保证对于每次出队的node，它的score是对它来说的最优解，那么当我们见到右下角的node出队时候，就找到了全局的最优解。当然在过程中会出现同一个位置不同score的node先后入队，但我们会选择score更小的node继续，其余相同位置的node则会因为重复被跳过.\
 
 
-   整体的时间复杂度不太好分析，但因为每个node最多从上下左右四个方向被入队四次，所以我们可以得到一个时间复杂度的上界，即pq中最多有 `m*n*4` 个元素，最多有 `m*n*4` 次 offer/poll 操作，可以得到上界 `O((m*n*4)*Log(m*n*4))`。
-
+    整体的时间复杂度不太好分析，但因为每个node最多从上下左右四个方向被入队四次，所以我们可以得到一个时间复杂度的上界，即pq中最多有 `m*n*4` 个元素，最多有 `m*n*4` 次 offer/poll 操作，可以得到上界 `O((m*n*4)*Log(m*n*4))`。
 2. 还有另一种使用二分法的做法。我们可以对于最终结果进行二分，而对于给定的结果进行验证，这一步可以使用BFS来做，整体时间复杂度为 `O(m*n*log(1e6))`
 
 ## Java Code:
@@ -172,4 +171,3 @@ class Solution {
     }
 }
 ```
-

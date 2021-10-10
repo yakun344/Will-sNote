@@ -33,56 +33,54 @@ class Client {
 
 ![structure uml2](../.gitbook/assets/design-pattern-decorator-1.png)
 
-1. **Component:**  被装饰物的接口，核心角色，也就是最上层的CommonInterface。
-2. **ConcreteComponent:**  实现了Component接口的具体的被装饰物的实现，也就是上面的CoreFunctionality。
-3. **Decorator:**  装饰器接口，该接口需要继承自Component接口，在其内部保存被装饰对象的instance，也就是上面的OptionalWrapper。
-4. **ConcreteDecorator:**  具体的Decorator角色，也就是上面的OptionOne/Two/Three。
+1. **Component:**\
+    被装饰物的接口，核心角色，也就是最上层的CommonInterface。
+2. **ConcreteComponent:**\
+    实现了Component接口的具体的被装饰物的实现，也就是上面的CoreFunctionality。
+3. **Decorator:**\
+    装饰器接口，该接口需要继承自Component接口，在其内部保存被装饰对象的instance，也就是上面的OptionalWrapper。
+4. **ConcreteDecorator:**\
+    具体的Decorator角色，也就是上面的OptionOne/Two/Three。
 
 ## 4. 拓展思路要点
 
-* **1. API的透明性**
+*   **1. API的透明性**
 
-  类似于Composite Pattern，这里的Decorator和Wrappee具有一致性。具体来说，Decorator是Component接口的子类，这就体现了他们的一致性，也就是说Decorator和Component具有相同的接口，这样即使Wrappee被Decorator装饰起来了，接口Component也并不会被隐藏，其中的方法依然可以被调用，这就是接口的“透明性”。   
-  
-   而得益于接口的透明性，Decorator模式也可以形成类似于Composite中的递归结构，也就是说decorator中的Wrappee也可以是另一个decorator的instance，但他们的目的是不同的。
+    类似于Composite Pattern，这里的Decorator和Wrappee具有一致性。具体来说，Decorator是Component接口的子类，这就体现了他们的一致性，也就是说Decorator和Component具有相同的接口，这样即使Wrappee被Decorator装饰起来了，接口Component也并不会被隐藏，其中的方法依然可以被调用，这就是接口的“透明性”。 \
+    \
+     而得益于接口的透明性，Decorator模式也可以形成类似于Composite中的递归结构，也就是说decorator中的Wrappee也可以是另一个decorator的instance，但他们的目的是不同的。
+*   **2. 在不改变被装饰物的前提下增加新功能**
 
-* **2. 在不改变被装饰物的前提下增加新功能**
+    Decorator模式利用了Delegation委托，从而使得我们可以在不改变wrappee的前提下为之添加新的功能。
+*   **3. 可以动态增加新的功能**
 
-  Decorator模式利用了Delegation委托，从而使得我们可以在不改变wrappee的前提下为之添加新的功能。
+    同样因为Decorator中使用了Delegation，使Decorator类和ConcreteComponent之间是一种弱关联的关系，我们可以在runtime决定使用哪些Decorator对wrappee进行装饰。
+*   **4. `Java.io` 包与 Decorator 模式**
 
-* **3. 可以动态增加新的功能**
+    首先可以生成一个读取文件的instance：
 
-  同样因为Decorator中使用了Delegation，使Decorator类和ConcreteComponent之间是一种弱关联的关系，我们可以在runtime决定使用哪些Decorator对wrappee进行装饰。
+    ```java
+    Reader reader = new FileReader("datafile.txt");
+    ```
 
-* **4. `Java.io` 包与 Decorator 模式**
+    然后，可以在读取文件时将文件内容放入buffer：
 
-  首先可以生成一个读取文件的instance：
+    ```java
+    Reader reader = new LineNumberReader(
+                      new BufferReader(
+                          new FileReader("datafile.txt")));
+    ```
 
-  ```java
-  Reader reader = new FileReader("datafile.txt");
-  ```
+    这里的LineNumberReader以及BufferReader都可以接受Reader类的instance，他们事实上就是Decorator。
+*   **5. 导致增加了许多很小的类**
 
-  然后，可以在读取文件时将文件内容放入buffer：
-
-  ```java
-  Reader reader = new LineNumberReader(
-                    new BufferReader(
-                        new FileReader("datafile.txt")));
-  ```
-
-  这里的LineNumberReader以及BufferReader都可以接受Reader类的instance，他们事实上就是Decorator。
-
-* **5. 导致增加了许多很小的类**
-
-  Decorator 模式的一个缺点是会导致程序中增加许多功能类似的很小的类.
+    Decorator 模式的一个缺点是会导致程序中增加许多功能类似的很小的类.
 
 ## 5. 延伸阅读：继承和委托中的一致性（the consistency of Inheritance and Delegation）
 
-* **1. 继承--父类和子类的一致性**
+*   **1. 继承--父类和子类的一致性**
 
-  如果继承了父类，则子类的instance可以保存在parent类的type中，也可以调用从parent继承的方法。但反过来如果想将parent类的变量当child类操作，则需要先进行类型转换。
+    如果继承了父类，则子类的instance可以保存在parent类的type中，也可以调用从parent继承的方法。但反过来如果想将parent类的变量当child类操作，则需要先进行类型转换。
+*   **2. 委托--自己和被委托对象的一致性**
 
-* **2. 委托--自己和被委托对象的一致性**
-
-  如果两个类实现了同样的interface，可以通过在其中一个类中存有另一个类的instance来实现一致性，这也是composite和decorator模式中的做法。这样做可以使得两个类的关系变为弱耦合，可以在runtime binding之间的关系。
-
+    如果两个类实现了同样的interface，可以通过在其中一个类中存有另一个类的instance来实现一致性，这也是composite和decorator模式中的做法。这样做可以使得两个类的关系变为弱耦合，可以在runtime binding之间的关系。

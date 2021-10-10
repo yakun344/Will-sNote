@@ -6,11 +6,11 @@ _update Jul 11, 2017 12:09_
 
 Given an array with positive and negative numbers, find the maximum average subarray which length should be greater or equal to given length k.
 
- **Notice**
+** Notice**
 
 It's guaranteed that the size of the array is greater or equal to k.
 
-```text
+```
 Example
 Given nums = [1, 12, -5, -6, 50, 3], k = 3
 
@@ -19,13 +19,13 @@ Return 15.667 // (-6 + 50 + 3) / 3 = 15.667
 
 ## Basic Idea:
 
-**Reference:**  [**Hyoung's Blog**](http://blog.hyoung.me/cn/2017/02/binary-search-ii/)
+**Reference: ** [**Hyoung's Blog**](http://blog.hyoung.me/cn/2017/02/binary-search-ii/)
 
-首先有一点需要明确，即如果当前子序列的最后一个元素为nums\[i\], 其之前小于0的最小前缀和为 min\_pre，则该子序列的包含`nums[i]`的最大和为 `sum[nums[0:i]] - min_pre`。这也是 Kadane 算法的基本原理。
+首先有一点需要明确，即如果当前子序列的最后一个元素为nums\[i], 其之前小于0的最小前缀和为 min_pre，则该子序列的包含`nums[i]`的最大和为 `sum[nums[0:i]] - min_pre`。这也是 Kadane 算法的基本原理。
 
 接下来，我们可以用二分法确定候选最大平均值，然后检验当前候选平均值的长度不小于k的子数组是否存在。这是二分结果的思路。
 
-**具体地**，如何检验当前候选平均值是否存在呢。我们维持一个sums累加数组（sums\[i\]存放的是sum\[nums\[0:i\]\]），但是累加的不是原来的nums\[i\]而是`nums[i] - 候选avg`，这样我们只要找是否有长度不小于k且和大于等于0的子数组。**如何找到长度不小于K的呢？**我们只要限制 min\_pre 为 i - k 之前的最小前缀和即可。
+**具体地**，如何检验当前候选平均值是否存在呢。我们维持一个sums累加数组（sums\[i]存放的是sum\[nums\[0:i]]），但是累加的不是原来的nums\[i]而是`nums[i] - 候选avg`，这样我们只要找是否有长度不小于k且和大于等于0的子数组。**如何找到长度不小于K的呢？**我们只要限制 min_pre 为 i - k 之前的最小前缀和即可。
 
 ## Python Code:
 
@@ -105,4 +105,3 @@ public class Solution {
     }
 }
 ```
-

@@ -10,20 +10,20 @@ address space 大概相当于 process， task 大概相当于 thread，lightweig
 
 ## 关于 process 和 thread
 
-[这里](http://community.bittiger.io/topic/434/进程-process-和线程-thread-的区别/3) 有一个关于进程和线程区别的讨论。
+[这里](http://community.bittiger.io/topic/434/%E8%BF%9B%E7%A8%8B-process-%E5%92%8C%E7%BA%BF%E7%A8%8B-thread-%E7%9A%84%E5%8C%BA%E5%88%AB/3) 有一个关于进程和线程区别的讨论。
 
 总结一下，在多进程多线程模型中，processes are used to group resources together; Threads are the entities scheduled for execution on the CPU.
 
 具体而言，process 包括了：
 
-* an memory map \(包括 data\(global\)，stack，heap， text\)；
-* a process control block （linux中的 task\_struct）\(包括pid，state，pc等很多内容\)；
+* an memory map (包括 data(global)，stack，heap， text)；
+* a process control block （linux中的 task_struct）(包括pid，state，pc等很多内容)；
 
-而 thread 从属于 process。一个process下的所有 threads 共享了 process 的 memory map中的 （data\(global\)，heap, text），而同时每个 thread 拥有自己的 stack 和 thread control block（包括pc 和 register value）。
+而 thread 从属于 process。一个process下的所有 threads 共享了 process 的 memory map中的 （data(global)，heap, text），而同时每个 thread 拥有自己的 stack 和 thread control block（包括pc 和 register value）。
 
 ## 关于 TCB （Thread control block）
 
-![](../.gitbook/assets/screen-shot-2017-10-08-at-11.12.25-pm%20%281%29%20%281%29%20%281%29.png)
+![](<../../.gitbook/assets/screen-shot-2017-10-08-at-11.12.25-pm (1) (1) (1).png>)
 
 TCB 包括了：
 
@@ -39,23 +39,22 @@ TCB 包括了：
 4. terminate 也快。
 5. 同一 process 的 threads 间切换也比 process 快。
 
-## 关于 mutex\_lock
+## 关于 mutex_lock
 
 lock 和 unlock 都是在 user mode 完成的，只有当需要 block thread 的时候会进入 kernel mode。
 
 ## 应用
 
-1. Hiding latency for multiple I/O requests; \(optimize run time\)
+1.  Hiding latency for multiple I/O requests; (optimize run time)
 
-   > 1. Make multiple requests to web server, get answer asynchronously, one per thread.
-   > 2. fork-join parallelism in web browser.
-   > 3. a file system.
-
-2. Producer / consumer program architecture; \(simplify coding\)
+    > 1. Make multiple requests to web server, get answer asynchronously, one per thread.
+    > 2. fork-join parallelism in web browser.
+    > 3. a file system.
+2. Producer / consumer program architecture; (simplify coding)
 
 ## 课上小程序示例分析
 
-**简单创建一个thread，用pthread\_join回收，阻塞** 对于这段代码，起初对于 pthread\_join\(\) 所接收的二级指针参数 `(void **)&retptr` 有所疑问，但是仔细想来就明白了。因为我们需要让retptr等于thread\_routine的返回值，而其返回值是一个 `void * ret`，为了令`retptr == ret`，我们需要传入 `&retptr`，此时 `&retptr`的类型就变成了 `void**`。
+**简单创建一个thread，用pthread_join回收，阻塞** 对于这段代码，起初对于 pthread_join() 所接收的二级指针参数 `(void **)&retptr` 有所疑问，但是仔细想来就明白了。因为我们需要让retptr等于thread_routine的返回值，而其返回值是一个 `void * ret`，为了令`retptr == ret`，我们需要传入 `&retptr`，此时 `&retptr`的类型就变成了 `void**`。
 
 ```c
     #include "header.h"
@@ -134,7 +133,7 @@ lock 和 unlock 都是在 user mode 完成的，只有当需要 block thread 的
     }
 ```
 
-**Using mutex\_lock**  mutex\_lock 的原理基于当pthread\_mutex\_lock\(\) 的参数已经被lock时，该函数会令当前thread wait直到locker可以被lock。
+**Using mutex_lock ** mutex_lock 的原理基于当pthread_mutex_lock() 的参数已经被lock时，该函数会令当前thread wait直到locker可以被lock。
 
 ```c
     /* mutex locks to avoid race conditions */
@@ -186,4 +185,3 @@ lock 和 unlock 都是在 user mode 完成的，只有当需要 block thread 的
        pthread_mutex_destroy(&locker);
     }
 ```
-

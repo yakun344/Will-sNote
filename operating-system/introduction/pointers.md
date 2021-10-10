@@ -4,11 +4,11 @@ _update 2017-10-01 02:47:10_
 
 ## 关于 malloc 和 free
 
-malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 initialize，malloc 耗时 O\(1\)，否则的话就是 `O(#bytes)`。而 free\(p\) 的时候会释放 p 指向的内存，使其可以被 malloc 重新分配给其他指针，当 p 已经被释放后对 `*p` 进行操作是危险的，会影响到被重新分配的内存。
+malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 initialize，malloc 耗时 O(1)，否则的话就是 `O(#bytes)`。而 free(p) 的时候会释放 p 指向的内存，使其可以被 malloc 重新分配给其他指针，当 p 已经被释放后对 `*p` 进行操作是危险的，会影响到被重新分配的内存。
 
 ## 关于const
 
-![](../.gitbook/assets/screen-shot-2017-10-01-at-2.27.14-pm%20%281%29.png)
+![](<../../.gitbook/assets/screen-shot-2017-10-01-at-2.27.14-pm (1).png>)
 
 紧跟在 const 后的才是 constant 的。
 
@@ -22,13 +22,13 @@ malloc return a `(void *)` pointer to storage, data is uninitialized. 如果不 
 
 ## 关于复杂的 C types
 
-[这里](http://blog.csdn.net/zhangnannan_/article/details/40677569) 有一篇不错的讲解。
+[这里](http://blog.csdn.net/zhangnannan\_/article/details/40677569) 有一篇不错的讲解。
 
 [这里](http://www.cnblogs.com/windlaughing/archive/2013/04/10/3012012.html) 有一个关于函数指针的讲解。
 
-**fun\(\) 和 \(\*fun\)\(\)**
+**fun() 和 (\*fun)()**
 
-事实上两者在调用的时候是等价的，C 语言中函数名的本质其实是一个函数指针，反应了指令执行时候的跳转地址，为了方便才令 fun\(\) 可以做到 `(*fun)()` 的工作。但是在 declare 的时候不大相同，通过 `void fun()` 声明的函数，fun 是一个函数指针常亮，不可以被赋值。而通过 `void (*fun)()` 声明的函数，fun 是一个函数指针变量，可以被赋值为其他有着同样 parameter and return type 的函数。
+事实上两者在调用的时候是等价的，C 语言中函数名的本质其实是一个函数指针，反应了指令执行时候的跳转地址，为了方便才令 fun() 可以做到 `(*fun)()` 的工作。但是在 declare 的时候不大相同，通过 `void fun()` 声明的函数，fun 是一个函数指针常亮，不可以被赋值。而通过 `void (*fun)()` 声明的函数，fun 是一个函数指针变量，可以被赋值为其他有着同样 parameter and return type 的函数。
 
 **注意**：如果一个 function 被 called with extra parameters， they will be ignored。但是如果参数不够，则会有奇怪的 stack或register中的东西被识别为参数，会出错。
 
@@ -42,7 +42,7 @@ extern 告诉编译器某变量在其他地方定义了；
 
 ## 关于 typedef
 
-**eg:** `typedef int (*fint)()`
+**eg: **`typedef int (*fint)()`
 
 typedef 右边的部分相当于一个变量的声明，此处声明了一个叫做 fint 的变量，类型则是一个 返回int，没有参数的函数指针。加上了 typedef 之后，相当于这个 fint 本身变成了一种类型，可以用来定义该类型的其他的变量，而类型就是typedef 右边部分定义的类型。
 
@@ -91,4 +91,3 @@ typedef 右边的部分相当于一个变量的声明，此处声明了一个叫
 
     }
 ```
-

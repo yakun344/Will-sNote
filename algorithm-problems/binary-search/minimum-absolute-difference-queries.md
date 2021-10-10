@@ -2,7 +2,7 @@
 
 _update Jun 23, 2021_
 
-\_\_[_Leetcode_](https://leetcode.com/problems/minimum-absolute-difference-queries/)\_\_
+__[_Leetcode_](https://leetcode.com/problems/minimum-absolute-difference-queries/)__
 
 ![image](https://user-images.githubusercontent.com/24964756/123195824-acbc4a00-d45d-11eb-88e5-673b7331c20b.png)
 
@@ -116,4 +116,3 @@ class Solution {
     }
 }
 ```
-

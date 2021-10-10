@@ -8,13 +8,13 @@ Flatten a binary tree to a fake "linked list" in pre-order traversal.
 
 Here we use the right pointer in TreeNode as the next pointer in ListNode.
 
- **Notice**
+** Notice**
 
 Don't forget to mark the left child of each node to null. Or you will get Time Limit Exceeded or Memory Limit Exceeded.
 
 **Example:**
 
-```text
+```
               1
                \
      1          2
@@ -93,4 +93,3 @@ update Aug 26,2017 22:05
             helper(root)
             return root
 ```
-

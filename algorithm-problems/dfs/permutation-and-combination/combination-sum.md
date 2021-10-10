@@ -2,22 +2,22 @@
 
 _update Jul 21, 2017 17:58_
 
-[lintcode](http://www.lintcode.com/en/problem/combination-sum/)  
+[lintcode](http://www.lintcode.com/en/problem/combination-sum/)\
 [LeetCode](https://leetcode.com/problems/combination-sum/description/)
 
-Given a set of candidate numbers \(C\) and a target number \(T\), find all unique combinations in C where the candidate numbers sums to T.
+Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
 The same repeated number may be chosen from C unlimited number of times.
 
- **Notice**
+** Notice**
 
-* All numbers \(including target\) will be positive integers.
-* Elements in a combination \(a1, a2, … , ak\) must be in non-descending order. \(ie, a1 ≤ a2 ≤ … ≤ ak\).
+* All numbers (including target) will be positive integers.
+* Elements in a combination (a1, a2, … , ak) must be in non-descending order. (ie, a1 ≤ a2 ≤ … ≤ ak).
 * The solution set must not contain duplicate combinations.
 
 **Example**
 
-```text
+```
 Given candidate set [2,3,6,7] and target 7, a solution set is:
 
 [7]
@@ -76,7 +76,7 @@ Given candidate set [2,3,6,7] and target 7, a solution set is:
 
 _update Jan 9, 2017 15:35_
 
-## Update: 新的思考\(better solution\)
+## Update: 新的思考(better solution)
 
 首先我们分析一下之前这种方法的时间空间复杂度。之前的dfs算法中，一共会有 `target / min(candidates)` 层，每一层会有 `len(candidates)` 个分支，如果 input 的 target sum 非常大，会有很深的递归深度，同时也会有很高的时间复杂度（如果input: `{1,5,10,25}`, `target=99`, 则最大递归深度为 `99 / 1 = 99` 层，总时间复杂度 `O(4^99)`）；
 
@@ -86,7 +86,7 @@ _update Jan 9, 2017 15:35_
 2. 每层考虑使用一个 candidate 不同的次数；
 3. 所以第 i 层有 `remain sum / candidates[i]` 个分支；
 
-如此，如果按照刚刚的 input，时间复杂度就变为了 O\(99^4\)，显著降低。递归深度也从99变4，空间复杂度降低。
+如此，如果按照刚刚的 input，时间复杂度就变为了 O(99^4)，显著降低。递归深度也从99变4，空间复杂度降低。
 
 ### 实现思路：
 
@@ -101,7 +101,7 @@ _update Jan 9, 2017 15:35_
 
 基础版本的写法，最终的结果就保存在了 `int[] times` 中，每个元素对应 `candidates` 相应元素的次数；
 
-**Java Code: \(LintCode version\)**
+**Java Code: (LintCode version)**
 
 ```java
 public class Solution {
@@ -141,4 +141,3 @@ public class Solution {
     }
 }
 ```
-

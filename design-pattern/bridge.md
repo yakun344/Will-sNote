@@ -8,48 +8,47 @@ Bridge 起到桥梁作用，用来连接类的**功能层次结构**和**实现�
 
 ### i. 类的层次结构的两个作用
 
-1. **希望增加新功能时**
+1.  **希望增加新功能时**
 
-   > 假设有一个类 Something，当我们想要在 Something 中增加新功能时（想增加一个具体方法），会编写一个Something类的子类，即SomethingGood类，这样就有了一个类的层次结构：
-   >
-   > ```text
-   > Something
-   >      |
-   >      |--SomethingGood
-   > ```
-   >
-   > 这就是为了增加新功能而产生的层次结构。父类具有基本功能，在子类中增加新的功能。  
-   > 如果我们想要在 SomethingGood 的基础上增加新的功能，我们可以同样编写一个 SomethigBetter类，这样层次结构就更深了：
-   >
-   > ```text
-   > Something
-   >    |
-   >    |--SomethingGood
-   >            |
-   >            |--SomethingBetter
-   > ```
-   >
-   > 通常来说，类的层次结构不易过深。
+    > 假设有一个类 Something，当我们想要在 Something 中增加新功能时（想增加一个具体方法），会编写一个Something类的子类，即SomethingGood类，这样就有了一个类的层次结构：
+    >
+    > ```
+    > Something
+    >      |
+    >      |--SomethingGood
+    > ```
+    >
+    > 这就是为了增加新功能而产生的层次结构。父类具有基本功能，在子类中增加新的功能。\
+    > 如果我们想要在 SomethingGood 的基础上增加新的功能，我们可以同样编写一个 SomethigBetter类，这样层次结构就更深了：
+    >
+    > ```
+    > Something
+    >    |
+    >    |--SomethingGood
+    >            |
+    >            |--SomethingBetter
+    > ```
+    >
+    > 通常来说，类的层次结构不易过深。
+2.  **希望增加新实现时**
 
-2. **希望增加新实现时**
-
-   > 在 Template Method 模式讲了抽象类的作用，抽象类声明了一些方法，定义了一些API，然后由子类负责去实现这些抽象方法。父类的任务是通过声明抽象方法的方式定义API，子类的任务是实现抽象方法，这样我们才能编写出具有高可替换性的类。&lt;/br&gt; 这里其实也可以存在层次结构，例如，当子类 ConcreteClass 实现了父类 AbstractClass 类的抽象方法时，他们之间就构成了一个层次结构：
-   >
-   > ```text
-   >  AbstractClass
-   >      |
-   >      |--ConcreteClass
-   > ```
-   >
-   > 但是这里的类的层次结构并非用于增加新功能，它真正的作用是实现上面所说的父类和子类不同的任务分组，这就是类的实现层次结构。当我们想要以其它方式实现AbstractClass时，例如要实现一个 AnotherConcreteClass 时，类的层次结构会发生一些变化：
-   >
-   > ```text
-   > AbstractClass
-   >      |
-   >      |--ConcreteClass
-   >      |
-   >      |--AnotherConcreteClass
-   > ```
+    > 在 Template Method 模式讲了抽象类的作用，抽象类声明了一些方法，定义了一些API，然后由子类负责去实现这些抽象方法。父类的任务是通过声明抽象方法的方式定义API，子类的任务是实现抽象方法，这样我们才能编写出具有高可替换性的类。\</br> 这里其实也可以存在层次结构，例如，当子类 ConcreteClass 实现了父类 AbstractClass 类的抽象方法时，他们之间就构成了一个层次结构：
+    >
+    > ```
+    >  AbstractClass
+    >      |
+    >      |--ConcreteClass
+    > ```
+    >
+    > 但是这里的类的层次结构并非用于增加新功能，它真正的作用是实现上面所说的父类和子类不同的任务分组，这就是类的实现层次结构。当我们想要以其它方式实现AbstractClass时，例如要实现一个 AnotherConcreteClass 时，类的层次结构会发生一些变化：
+    >
+    > ```
+    > AbstractClass
+    >      |
+    >      |--ConcreteClass
+    >      |
+    >      |--AnotherConcreteClass
+    > ```
 
 ### ii. 类的层次结构混杂与分离
 
@@ -137,47 +136,40 @@ Bridge 起到桥梁作用，用来连接类的**功能层次结构**和**实现�
 
 ## 3. Bridge Pattern 中登场的角色
 
-1. Abstraction
+1.  Abstraction
 
-   > 该角色位于 “类的功能层次结构” 最上层，它定义了基本功能，使用 Implementor 角色中的方法。该角色保存了 Implementor 角色的实例。在例子中，由 Display 类扮演。
+    > 该角色位于 “类的功能层次结构” 最上层，它定义了基本功能，使用 Implementor 角色中的方法。该角色保存了 Implementor 角色的实例。在例子中，由 Display 类扮演。
+2.  RefinedAbstraction
 
-2. RefinedAbstraction
+    > 在 Abstraction 中增加新的功能的角色。在例子中由 CountDisplay 类扮演。
+3.  Implementor
 
-   > 在 Abstraction 中增加新的功能的角色。在例子中由 CountDisplay 类扮演。
+    > 位于 “类的实现层次结构” 最上层，定义了用于实现 Abstract 角色的 API。在例子中由 DisplayImpl 扮演。
+4.  ConcreteImplementor
 
-3. Implementor
-
-   > 位于 “类的实现层次结构” 最上层，定义了用于实现 Abstract 角色的 API。在例子中由 DisplayImpl 扮演。
-
-4. ConcreteImplementor
-
-   > 该角色负责实现 Implementor 角色中定义的API。在例子中由StringDisplayImpl扮演。
+    > 该角色负责实现 Implementor 角色中定义的API。在例子中由StringDisplayImpl扮演。
 
 ![UML](../.gitbook/assets/design-pattern-bridge-1.png)
 
 ## 4. 思路拓展
 
-1. 分开后更容易拓展
+1.  分开后更容易拓展
 
-   > 模式将类的 “功能层次结构”和“实现层次结构” 分离开，有利于独立对它们进行扩展。当想要增加新功能时候只需要在功能层次一侧增加类，而且新增加对功能类可以直接兼容“所有的实现“。  
-   >      例如，我们可以将某程序中依赖于不同操作系统的部分分为 "linux", "windows", "mac" 版，然后我们就可以用 Bridge 模式中的 “类的实现结构层次” 来表现这些依赖于操作系统的部分。这样我们只要编写一个定义这些操作系统的公共API的 Implementor 角色，然后写不同操作系统版本的 ConcreteImplementor 角色就可以了。
+    >      模式将类的 “功能层次结构”和“实现层次结构” 分离开，有利于独立对它们进行扩展。当想要增加新功能时候只需要在功能层次一侧增加类，而且新增加对功能类可以直接兼容“所有的实现“。\
+    >      例如，我们可以将某程序中依赖于不同操作系统的部分分为 "linux", "windows", "mac" 版，然后我们就可以用 Bridge 模式中的 “类的实现结构层次” 来表现这些依赖于操作系统的部分。这样我们只要编写一个定义这些操作系统的公共API的 Implementor 角色，然后写不同操作系统版本的 ConcreteImplementor 角色就可以了。
+2.  继承是强关联，委托是弱关联
 
-2. 继承是强关联，委托是弱关联
-
-   > 虽然继承很容易扩展类，但会在类之间形成一种强关联的关系，即 compile time binding，不修改 code 就没办法修改这种关系。这时我们可以使用 “委托delegation” 来代替继承。例子中的 Display 中使用了“委托” impl，当调用 `open()` 时候会调用 `impl.rawOpen()`，这样就实现了委托。  
-   >      之所以称 ”委托delegation“ 为弱相关关系，是因为只有在 Display 类的实例生成时候才会产生 binding，我们可以不传入 `ConcreteImpl_1` 的实例而是传入 `ConcreteImpl_2` 的实例。这时发生变化的代码只有 Main 类，Display 和 DisplayImpl 则不需要修改。
+    >      虽然继承很容易扩展类，但会在类之间形成一种强关联的关系，即 compile time binding，不修改 code 就没办法修改这种关系。这时我们可以使用 “委托delegation” 来代替继承。例子中的 Display 中使用了“委托” impl，当调用 `open()` 时候会调用 `impl.rawOpen()`，这样就实现了委托。\
+    >      之所以称 ”委托delegation“ 为弱相关关系，是因为只有在 Display 类的实例生成时候才会产生 binding，我们可以不传入 `ConcreteImpl_1` 的实例而是传入 `ConcreteImpl_2` 的实例。这时发生变化的代码只有 Main 类，Display 和 DisplayImpl 则不需要修改。
 
 ## 5. 相关设计模式
 
-1. Template Method 模式
+1.  Template Method 模式
 
-   > Template Method 中使用了 “类的实现层次结构”，父类调用抽象方法，而子类实现抽象方法。
+    > Template Method 中使用了 “类的实现层次结构”，父类调用抽象方法，而子类实现抽象方法。
+2.  Abstract Factory 模式
 
-2. Abstract Factory 模式
+    > 为了根据需求设计出良好的 ConcreteImplementor 角色，我们有时会使用 Abstract Factory。
+3.  Adapter 模式
 
-   > 为了根据需求设计出良好的 ConcreteImplementor 角色，我们有时会使用 Abstract Factory。
-
-3. Adapter 模式
-
-   > 使用Bridge可以达到分离实现层次和共功能层次，并将这些层次结合起来。而Adapter模式则可以结合功能相似但接口不同的类。
-
+    > 使用Bridge可以达到分离实现层次和共功能层次，并将这些层次结合起来。而Adapter模式则可以结合功能相似但接口不同的类。

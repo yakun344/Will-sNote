@@ -2,10 +2,10 @@
 
 _update Jul 14, 2017 18:13_
 
-[LintCode](http://www.lintcode.com/en/problem/validate-binary-search-tree/)  
+[LintCode](http://www.lintcode.com/en/problem/validate-binary-search-tree/)\
 [LeetCode](https://leetcode.com/problems/validate-binary-search-tree/description/)
 
-Given a binary tree, determine if it is a valid binary search tree \(BST\).
+Given a binary tree, determine if it is a valid binary search tree (BST).
 
 Assume a BST is **defined** as follows:
 
@@ -13,7 +13,7 @@ The left subtree of a node contains only nodes with keys less than the node's ke
 
 **Example:**
 
-```text
+```
         An example:
 
           2
@@ -26,8 +26,8 @@ The above binary tree is serialized as {2,1,4,#,#,3,5} (in level order).
 
 ### Basic Idea:
 
-利用定义，每一个子树都需要是vlaid bst。对于每个root，需要保证root.val 大于左子树中的最大值，小于右子树的最小值。由此，我们可以定义一个ReturnType，其中包含`boolean isValid, max, min`三个变量。  
-（需要注意的是，当node的值是Integer.MAX\_VALUE的时候，会造成边界判定不准，可以转成\(long\)Integer.MAX\_VALUE + 1之类来处理）
+利用定义，每一个子树都需要是vlaid bst。对于每个root，需要保证root.val 大于左子树中的最大值，小于右子树的最小值。由此，我们可以定义一个ReturnType，其中包含`boolean isValid, max, min`三个变量。\
+（需要注意的是，当node的值是Integer.MAX_VALUE的时候，会造成边界判定不准，可以转成(long)Integer.MAX_VALUE + 1之类来处理）
 
 ### Java Code:
 
@@ -75,7 +75,7 @@ _update Aug 27, 2017 20:39_
 
 更新一个Python的解法，和前面Java的思路类似，但是这次我们不使用boolean flag，而是当我们检测到当前树invalid时，直接返回None； 另外还有一种思路，最简单的，就是inorder遍历一遍，然后验证生成的数组是否是递增的，但是这种方法有局限，就是无法判断如下情况：
 
-```text
+```
      1                   1
    /   \     ---------     \
   1     1                   1
@@ -142,7 +142,7 @@ _update Dec 20, 2017 15:30_
     }
 ```
 
-  
+\
  再更新一种 iterative 的解法，就是简单的 inorder traversal，检查是否严格单调递增，对于这种没有重复元素的BST很好用。
 
 ```python
@@ -203,4 +203,3 @@ class Solution {
     }
 }
 ```
-

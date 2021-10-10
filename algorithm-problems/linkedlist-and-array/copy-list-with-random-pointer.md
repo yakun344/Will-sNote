@@ -8,13 +8,13 @@ A linked list is given such that each node contains an additional random pointer
 
 Return a deep copy of the list.
 
-**Challenge**  Could you solve it with O\(1\) space?
+**Challenge ** Could you solve it with O(1) space?
 
 ## Basic Idea:
 
 这道题就是说这个链表除了next指针还有一个指针叫做random，可以指向其他任何node，求这个链表的deep copy。
 
-**两种思路：** 1. 利用图的deep copy的做法，先用一个hashmap复制所有的node，再利用map中的新旧node一一对应关系复制random指针（就相当于图里面的edge），很简单，O\(n\)空间。 2. 利用链表next一路向后的性质，我们可以构造一个新旧node交替的大链表（old1-&gt;new1-&gt;old2-&gt;new2-&gt;old3-&gt;new3...），构造成功之后再traverse一遍搞定newnode们的random指针，然后把他们分开即可。
+**两种思路：** 1. 利用图的deep copy的做法，先用一个hashmap复制所有的node，再利用map中的新旧node一一对应关系复制random指针（就相当于图里面的edge），很简单，O(n)空间。 2. 利用链表next一路向后的性质，我们可以构造一个新旧node交替的大链表（old1->new1->old2->new2->old3->new3...），构造成功之后再traverse一遍搞定newnode们的random指针，然后把他们分开即可。
 
 ## Java Code:
 
@@ -107,7 +107,7 @@ Return a deep copy of the list.
     }
 ```
 
-_update Nov 26, 2017 0:14_ 对于 O\(1\) space 的解法，有一点需要更正。以上解法中的 split 函数没有恢复原链表，实际使用中肯定是需要恢复的，所以在新的解法中更正了这一部分。
+_update Nov 26, 2017 0:14_ 对于 O(1) space 的解法，有一点需要更正。以上解法中的 split 函数没有恢复原链表，实际使用中肯定是需要恢复的，所以在新的解法中更正了这一部分。
 
 ```java
     public class Solution {
@@ -164,4 +164,3 @@ _update Nov 26, 2017 0:14_ 对于 O\(1\) space 的解法，有一点需要更正
         }
     }
 ```
-

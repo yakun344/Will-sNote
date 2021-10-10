@@ -8,7 +8,7 @@ Given k sorted integer arrays, merge them into one sorted array.
 
 **Example** Given 3 sorted arrays:
 
-```text
+```
 [
   [1, 3, 5, 7],
   [2, 4, 6],
@@ -16,15 +16,15 @@ Given k sorted integer arrays, merge them into one sorted array.
 ]
 ```
 
-return \[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\].
+return \[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].
 
-**Challenge**  Do it in O\(N log k\).
+**Challenge ** Do it in O(N log k).
 
 > N is the total number of integers. k is the number of arrays.
 
 ## Basic Idea:
 
-基本思想和上一道 [Merge K Sorted Lists](https://will-gxz.gitbooks.io/xiaozheng_algo/content/datastructure-problems/merge-k-sorted-lists.html) 其实是一样的，不同的地方在于这里操作的是数组，我们要跟踪当前位置的话还需要保存一组坐标。在Python中，我们可以直接在pq中存入tuple，而在java中，我们就需要定义一个新的类（queue element class\);
+基本思想和上一道 [Merge K Sorted Lists](https://will-gxz.gitbooks.io/xiaozheng_algo/content/datastructure-problems/merge-k-sorted-lists.html) 其实是一样的，不同的地方在于这里操作的是数组，我们要跟踪当前位置的话还需要保存一组坐标。在Python中，我们可以直接在pq中存入tuple，而在java中，我们就需要定义一个新的类（queue element class);
 
 ## Java Code:
 
@@ -100,4 +100,3 @@ return \[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\].
                     heapq.heappush(pq, (arrays[r][c + 1], r, c + 1))
             return res
 ```
-

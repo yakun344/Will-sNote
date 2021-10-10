@@ -24,20 +24,21 @@ A sequence of events in time that demonstrates that a situation is not a deadloc
 
 #### 基本假设和deadlock
 
-**Assumption:**  
-1. 进程所申请的资源都是其需要的资源； 2. 当进程获得所有需要的资源后，他一定会完成并且释放资源，没有 outside influences.
+**Assumption:**\
+1\. 进程所申请的资源都是其需要的资源； 2. 当进程获得所有需要的资源后，他一定会完成并且释放资源，没有 outside influences.
 
-**Deadlock when:**  
-进程需要资源，而它们在无 outside intervention\(ctrl-d\) 时不会结束时。
+**Deadlock when:**\
+进程需要资源，而它们在无 outside intervention(ctrl-d) 时不会结束时。
 
 #### Deadlock 的产生
 
-1. **Circular dependency:** 1. If every process ask for everything it needs all at ones, **deadlock cannot occur.** 2. 产生deadlock的原因是： processes **waits for some resources but already holds others.**
-2. 另一种是 **Resource starvation:**
+1. **Circular dependency:**\
+   1\. If every process ask for everything it needs all at ones, **deadlock cannot occur.** 2. 产生deadlock的原因是： processes **waits for some resources but already holds others.**
+2.  另一种是 **Resource starvation:**
 
-   是 circular dependency 的一种特殊情况，对于resource的需求供不应求。多在 incremental allocation 中产生 deadlock。 例如：  
-  
-    ![](../.gitbook/assets/Screen%20Shot%202017-11-13%20at%2012.26.26%20PM%20%281%29.png)   
+    是 circular dependency 的一种特殊情况，对于resource的需求供不应求。多在 incremental allocation 中产生 deadlock。 例如：\
+    \
+     ![](<../../.gitbook/assets/Screen Shot 2017-11-13 at 12.26.26 PM (1).png>) \
 
 3. **Poor understanding of I/O:**
 
@@ -47,8 +48,8 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 
 #### Resource allocation graph
 
-![](../.gitbook/assets/screen-shot-2017-11-13-at-2.04.32-pm%20%281%29.png)   
- ![](../.gitbook/assets/screen-shot-2017-11-13-at-2.05.00-pm%20%281%29.png)
+![](<../../.gitbook/assets/screen-shot-2017-11-13-at-2.04.32-pm (1).png>) \
+ ![](<../../.gitbook/assets/screen-shot-2017-11-13-at-2.05.00-pm (1).png>)
 
 #### Keys to deadlock prevention: Atomicity of allocation
 
@@ -58,24 +59,24 @@ When a process awaits resources, it not ready or runnable. 因为它被block，�
 
 #### OS deadlock prevention methods
 
-1. 提供atomic multi-resource locks \(semp\);
+1. 提供atomic multi-resource locks (semp);
 2. 给lock设定优先级，如此避免circular dependency；
 3. Detect and break deadlock proactively；
-4. Grant lock 和 resource 之前先 analyze；
+4.  Grant lock 和 resource 之前先 analyze；
 
-   **检测binary lock 的 deadlock**
+    **检测binary lock 的 deadlock**
 
-   Compute resource allocation graph，如果有环，则有deadlock。在linux中，系统会随机kill一个process来解决。判断是否有环的方法和topological sort类似，可以每次把indegree为0的node去掉，如果最后还剩下node没有去掉，则说明有环。
+    Compute resource allocation graph，如果有环，则有deadlock。在linux中，系统会随机kill一个process来解决。判断是否有环的方法和topological sort类似，可以每次把indegree为0的node去掉，如果最后还剩下node没有去掉，则说明有环。
 
 Next Class
 
 ## Three approaches to deadlock prevention:
 
-![](../.gitbook/assets/Screen%20Shot%202017-11-13%20at%204.47.26%20PM.png)
+![](<../../.gitbook/assets/Screen Shot 2017-11-13 at 4.47.26 PM.png>)
 
-### --&gt;Banker's algorithm:
+### -->Banker's algorithm:
 
-![](../.gitbook/assets/screen-shot-2017-11-13-at-4.58.55-pm%20%281%29.png)
+![](<../../.gitbook/assets/screen-shot-2017-11-13-at-4.58.55-pm (1).png>)
 
 #### ---Attributes of algorithm:
 
@@ -97,7 +98,7 @@ Next Class
 * **Columns**: resources
 * **At row i, column j**: demand or supply of resource j by process i;
 
-[https://en.wikipedia.org/wiki/Banker%27s\_algorithm](https://en.wikipedia.org/wiki/Banker's_algorithm) 上面讲的很不错。
+[https://en.wikipedia.org/wiki/Banker%27s_algorithm](https://en.wikipedia.org/wiki/Banker's_algorithm) 上面讲的很不错。
 
 #### ---What is unsafe?
 
@@ -115,39 +116,36 @@ Next Class
 * 当resource request 增加的时候，把它移向尾部；
 * 当resource request 减少的时候，把它移向头部；
 
-So we store the schedule and update it as source requirement change \(**via bubble sort!**\); \(**bubble sort 居然有了用武之地**\)
+So we store the schedule and update it as source requirement change (**via bubble sort!**); (**bubble sort 居然有了用武之地**)
 
-所以性能上，需要 O\(n^2\) 时间initialize整个sequence，然后需要 O\(n\) per change\(step\)。If requests are small, the time is on average one step。
+所以性能上，需要 O(n^2) 时间initialize整个sequence，然后需要 O(n) per change(step)。If requests are small, the time is on average one step。
 
 #### ---题点
 
-1. 为什么banker's algorithm 要考虑 resources are requested, available and not granted 的情况？
+1.  为什么banker's algorithm 要考虑 resources are requested, available and not granted 的情况？
 
-   > 因为当一个process结束的时候，它的resource的释放和重新分配需要时间。事实上在实际应用中会遇到很多异步的requests，而 actual granting 会需要比较长的时间，这期间还会有 requests 进入，形成一种 producer-consumer 的关系。
+    > 因为当一个process结束的时候，它的resource的释放和重新分配需要时间。事实上在实际应用中会遇到很多异步的requests，而 actual granting 会需要比较长的时间，这期间还会有 requests 进入，形成一种 producer-consumer 的关系。
+2.  为什么当 malloc 失败（没有内存资源供分配）时返回 0 而不是直接 kill 当前 process？
 
-2. 为什么当 malloc 失败（没有内存资源供分配）时返回 0 而不是直接 kill 当前 process？
+    > 虽然现在malloc不成功，不代表等一会也不会成功。根据 banker's algorithm 我们假设所有的 resource 最终都会被释放，所以这里的返回值 0 事实上是 indication that the process should wait.
 
-   > 虽然现在malloc不成功，不代表等一会也不会成功。根据 banker's algorithm 我们假设所有的 resource 最终都会被释放，所以这里的返回值 0 事实上是 indication that the process should wait.
-
-### --&gt; Locking in order:
+### --> Locking in order:
 
 1. Number the locks in increasing order;
-2. Lock in that order;
+2.  Lock in that order;
 
-   **解释**
-
+    **解释**
 3. 即使两process的起始lock编号不同，也不会出现deadlock；
 4. 即使有多个processes按照顺序lock，也不会出现deadlock；
 
-### --&gt; Atomic allocation:
+### --> Atomic allocation:
 
 If N processes request all resources all at once, then there is no deadlock;
 
-### --&gt; Lock prioritization
+### --> Lock prioritization
 
 * 为每个 lock 分配一定的 priority；
 * 需要按照 priority 顺序 lock；
 * If attempt is made out of order, break 低优先级的 lock，按优先级继续；
 
-[http://www.cs.tufts.edu/comp/111/notes/Deadlock\_prevention.pdf](http://www.cs.tufts.edu/comp/111/notes/Deadlock_prevention.pdf)
-
+[http://www.cs.tufts.edu/comp/111/notes/Deadlock_prevention.pdf](http://www.cs.tufts.edu/comp/111/notes/Deadlock_prevention.pdf)

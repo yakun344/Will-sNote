@@ -6,7 +6,7 @@ _update Sep 10, 2017 15:00_
 
 Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
 
-\(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2\).
+(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
 
 You are given a target value to search. If found in the array return its index, otherwise return -1.
 
@@ -14,17 +14,17 @@ You may assume no duplicate exists in the array.
 
 ## Basic Idea:
 
-传说中的最难典型二分法题目，但其实搞懂了套路也可以轻易做出来。破题点是要把一个 rotated sorted array 想象成如下图的样子：  
-  
- ![](../../.gitbook/assets/Screen%20Shot%202017-09-10%20at%203.05.50%20PM%20%281%29.png)   
+传说中的最难典型二分法题目，但其实搞懂了套路也可以轻易做出来。破题点是要把一个 rotated sorted array 想象成如下图的样子：\
+\
+ ![](<../../.gitbook/assets/Screen Shot 2017-09-10 at 3.05.50 PM (1).png>) \
 
 
 如此一来，我们只要按照 target 在前半部分还是后半部分进行分类讨论，然后就可以写出合适的binary search。
 
-**Follow Up:**  
+**Follow Up:**\
 What if duplicates are allowed?
 
-> 如果重复允许出现，会有如下情况：`nums: [1,1,1,1,3,1,1,1], target=3` 这种情况下，只能是用O\(n\)的解法，我们没有办法做得更好。
+> 如果重复允许出现，会有如下情况：`nums: [1,1,1,1,3,1,1,1], target=3` 这种情况下，只能是用O(n)的解法，我们没有办法做得更好。
 
 ## Java Code:
 
@@ -85,4 +85,3 @@ _update Dec 17, 2017 1:14_
             elif nums[r] == target: return r
             else: return -1
 ```
-

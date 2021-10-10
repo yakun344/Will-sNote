@@ -2,11 +2,11 @@
 
 _update Jun 21, 2017_
 
-**LeetCode problems:**  
-[Inorder](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)  
-[Preorder](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)  
-[Postorder](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)  
-  
+**LeetCode problems:**\
+[Inorder](https://leetcode.com/problems/binary-tree-inorder-traversal/description/)\
+[Preorder](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)\
+[Postorder](https://leetcode.com/problems/binary-tree-postorder-traversal/description/)\
+\
 
 
 这里所讲的`BST Traversal`方法指的主要是`preorder, inorder, postorder`，严格意义上三种都属于`DFS`。用`recursion`做BST的`Traversal`比较简单，思路很直接，但是如果要用`Iterative`的方法，就要用到`stack`，没有那么直观。这里主要提供三种遍历的`java`实现。
@@ -101,7 +101,7 @@ Postorder 是最复杂的，有两种实现方法，一种用两个stack，另�
     }
 ```
 
-_注意： 这个方法是可以求该 BST 的 max hight 的，就是 stack 的最大 size_   
+_注意： 这个方法是可以求该 BST 的 max hight 的，就是 stack 的最大 size_ \
 
 
 _update Jan 14,2018 0:59_
@@ -133,4 +133,3 @@ class Solution {
 ```
 
 需要注意的是这种思路虽然也work，但是性能非常不好，因为要完成 postorder traversal，这种思路需要先完成所有的遍历，之后才能开始输出节点，所以更加推荐之前的那种。
-
