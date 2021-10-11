@@ -8,13 +8,13 @@ Given the running logs of n functions that are executed in a nonpreemptive singl
 
 Each function has a unique id, start from `0` to `n-1`. A function may be called recursively or by another function.
 
-A log is a string has this format : function\_id:start\_or\_end:timestamp. For example, `"0:start:0"` means function 0 starts from the very beginning of time 0. `"0:end:0"` means function 0 ends to the very end of time 0.
+A log is a string has this format : function_id:start_or_end:timestamp. For example, `"0:start:0"` means function 0 starts from the very beginning of time 0. `"0:end:0"` means function 0 ends to the very end of time 0.
 
 Exclusive time of a function is defined as the time spent within this function, the time spent by calling other functions should not be considered as this function's exclusive time. You should return the exclusive time of each function sorted by their function id.
 
 **Example 1:**
 
-```text
+```
     Input:
     n = 2
     logs =
@@ -34,17 +34,17 @@ Function 0 starts at time 0, then it executes 2 units of time and reaches the en
 * Input logs will be sorted by timestamp, NOT log id.
 * Your output should be sorted by function id, which means the 0th element of your output corresponds to the exclusive time of function 0.
 * Two functions won't start or end at the same time.
-* Functions could be called recursively, and will always end.
+*   Functions could be called recursively, and will always end.
 
-  `1 <= n <= 100`
+    `1 <= n <= 100`
 
 ## Basic Idea:
 
-题目是要求每个task自身所消耗的时间，不包括它调用其他函数所消耗的时间。但是可以call 自身，也就是递归，而递归的时间不重复计算。即如果task 0 从 0 开始，5 结束，期间无论调用多少次自身，最终 task 0 的绝对时间都是 6 \(5-0+1\)。**另外**，log本身是按照end的时间排序。
+题目是要求每个task自身所消耗的时间，不包括它调用其他函数所消耗的时间。但是可以call 自身，也就是递归，而递归的时间不重复计算。即如果task 0 从 0 开始，5 结束，期间无论调用多少次自身，最终 task 0 的绝对时间都是 6 (5-0+1)。**另外**，log本身是按照end的时间排序。
 
 基本思想是使用stack存放当前开始了还未结束的 task ID，按照读入的log逐个增加计算当前栈顶ID所对应的时间。 **例如：**
 
-```text
+```
         "0:start:0",--------- 任务0开始，prevTime = 0，stack.push(0)
 
         "0:start:1",--------- 任务0开始，任务0时间+1=1，prevTime = 1, stack.push(0)
@@ -126,7 +126,7 @@ class Solution {
         return ret;
     }
 
-    // [id, (0 or 1), time], 1 表示 start，0 表示 end
+    // [id, (0 or 1), time], 0 表示 start，1 表示 end
     private int[] parse(String log) {
         String[] arr = log.split(":");   
         int[] ret = new int[3];
@@ -137,4 +137,3 @@ class Solution {
     }
 }
 ```
-
