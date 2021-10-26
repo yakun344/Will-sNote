@@ -19,6 +19,7 @@
   * [Topological Sorting](algorithm-problems/graph/topological-sorting.md)
   * [Course Schedule](algorithm-problems/graph/course-schedule.md)
   * [Course Schedule II](algorithm-problems/graph/course-schedule-ii.md)
+  * [2050. Parallel Courses III](algorithm-problems/graph/2050.-parallel-courses-iii.md)
   * [Sequence Reconstruction](algorithm-problems/graph/sequence-reconstruction.md)
   * [Number of Islands](algorithm-problems/graph/number-of-islands.md)
   * [Number of Islands II (Hard Google)](algorithm-problems/graph/number-of-islands-ii-hard-google.md)
