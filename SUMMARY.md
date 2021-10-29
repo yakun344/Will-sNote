@@ -415,6 +415,7 @@
   * [1235. Maximum Profit in Job Scheduling](algorithm-problems/dynamic-programming/1235.-maximum-profit-in-job-scheduling.md)
   * [730. Count Different Palindromic Subsequences](algorithm-problems/dynamic-programming/730.-count-different-palindromic-subsequences.md)
   * [1682. Longest Palindromic Subsequence II](algorithm-problems/dynamic-programming/1682.-longest-palindromic-subsequence-ii.md)
+  * [2044. Count Number of Maximum Bitwise-OR Subsets](algorithm-problems/dynamic-programming/2044.-count-number-of-maximum-bitwise-or-subsets.md)
 * [Greedy Algorithms](algorithm-problems/greedy/README.md)
   * [Delete Columns to Make Sorted II](algorithm-problems/greedy/delete-columns-to-make-sorted-ii.md)
   * [Find the Celebrity](algorithm-problems/greedy/find-the-celebrity.md)
