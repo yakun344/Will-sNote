@@ -1,6 +1,5 @@
 # Design Pattern
 
-_update Oct 19, 2019_
+_created: 11/13/2021_
 
-此时距离2017年暑假开始刷题已经两年有余，现在开始更新一些在学习design pattern时的心得体会。使用的教材是《图解设计模式》，一本经典教材，翻译自日本结成浩先生的作品。
-
+最近准备重新学习一下design pattern，使用的教材是The Beauty of Design Patterns以及一些其他可以找到的资料。
