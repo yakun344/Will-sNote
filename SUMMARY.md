@@ -1,6 +1,5 @@
 # [Table of contents](null) 
 * [Introduction](README.md) 
-* [Introduction](index/index.md) 
 * [Algorithms]()
 	* [Graph](algorithm-problems/graph/README.md) 
 		* [关于最短路径算法的一些想法](algorithm-problems/graph/guan-yu-zui-duan-lu-jing-suan-fa-de-yi-xie-xiang-fa.md) 
